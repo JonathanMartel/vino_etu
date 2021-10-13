@@ -37,9 +37,26 @@ class SAQ extends Modele {
 		$url = "https://www.saq.com/fr/produits/vin/vin-rouge?p=1&product_list_limit=24&product_list_order=name_asc";
 		//curl_setopt($s, CURLOPT_URL, "http://www.saq.com/webapp/wcs/stores/servlet/SearchDisplay?searchType=&orderBy=&categoryIdentifier=06&showOnly=product&langId=-2&beginIndex=".$debut."&tri=&metaData=YWRpX2YxOjA8TVRAU1A%2BYWRpX2Y5OjE%3D&pageSize=". $nombre ."&catalogId=50000&searchTerm=*&sensTri=&pageView=&facet=&categoryId=39919&storeId=20002");
 		//curl_setopt($s, CURLOPT_URL, "https://www.saq.com/webapp/wcs/stores/servlet/SearchDisplay?categoryIdentifier=06&showOnly=product&langId=-2&beginIndex=" . $debut . "&pageSize=" . $nombre . "&catalogId=50000&searchTerm=*&categoryId=39919&storeId=20002");
-		curl_setopt($s, CURLOPT_URL, $url);
-		curl_setopt($s, CURLOPT_RETURNTRANSFER, true);
+		//curl_setopt($s, CURLOPT_URL, $url);
+		//curl_setopt($s, CURLOPT_RETURNTRANSFER, true);
+        //curl_setopt($s, CURLOPT_CUSTOMREQUEST, 'GET');
+        //curl_setopt($s, CURLOPT_NOBODY, false);
 		//curl_setopt($s, CURLOPT_FOLLOWLOCATION, 1);
+
+        // Se prendre pour un navigateur pour berner le serveur de la saq...
+        curl_setopt_array($s,array(
+            CURLOPT_URL => $url,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_USERAGENT=>'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0',
+            CURLOPT_ENCODING=>'gzip, deflate',
+            CURLOPT_HTTPHEADER=>array(
+                    'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+                    'Accept-Language: en-US,en;q=0.5',
+                    'Accept-Encoding: gzip, deflate',
+                    'Connection: keep-alive',
+                    'Upgrade-Insecure-Requests: 1',
+            ),
+    ));
 
 		self::$_webpage = curl_exec($s);
 		self::$_status = curl_getinfo($s, CURLINFO_HTTP_CODE);
@@ -51,7 +68,6 @@ class SAQ extends Modele {
 		@$doc -> loadHTML(self::$_webpage);
 		$elements = $doc -> getElementsByTagName("li");
 		$i = 0;
-		
 		foreach ($elements as $key => $noeud) {
 			//var_dump($noeud -> getAttribute('class')) ;
 			//if ("resultats_product" == str$noeud -> getAttribute('class')) {
@@ -98,8 +114,11 @@ class SAQ extends Modele {
 		$a_titre = $noeud -> getElementsByTagName("a") -> item(0);
 		$info -> url = $a_titre->getAttribute('href');
 		
-		$info -> nom = self::nettoyerEspace(trim($a_titre -> textContent));	//TODO : Retirer le format de la bouteille du titre.
-		
+        //var_dump($noeud -> getElementsByTagName("a")->item(1)->textContent);
+        $nom = $noeud -> getElementsByTagName("a")->item(1)->textContent;
+        //var_dump($a_titre);
+		$info -> nom = self::nettoyerEspace(trim($nom));
+		//var_dump($info -> nom);
 		// Type, format et pays
 		$aElements = $noeud -> getElementsByTagName("strong");
 		foreach ($aElements as $node) {
