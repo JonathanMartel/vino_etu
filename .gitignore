@@ -22,3 +22,5 @@ Desktop.ini
 !/.project
 dataconf.php
 .push.settings.jsonc
+dataconf.model.php
+.gitignore
