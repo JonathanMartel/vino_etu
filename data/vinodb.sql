@@ -40,7 +40,7 @@ CREATE TABLE `vino__bouteille` (
   `format` varchar(20) DEFAULT NULL,
   `type` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  AUTO_INCREMENT=11;
 
 --
 -- Contenu de la table `vino__bouteille`
@@ -74,7 +74,7 @@ CREATE TABLE `vino__cellier` (
   `quantite` int(11) DEFAULT NULL,
   `millesime` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  AUTO_INCREMENT=10 ;
 
 --
 -- Contenu de la table `vino__cellier`
@@ -101,7 +101,7 @@ CREATE TABLE `vino__type` (
   `id` int(11) NOT NULL,
   `type` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB;
 
 --
 -- Contenu de la table `vino__type`
