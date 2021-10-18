@@ -1,24 +1,15 @@
-
-# ignore IDE/hidden/OS cache files
-.*
-*~
-nbproject
-nb-configuration.xml
-Session.vim
-*.tmproj
-*.tmproject
-tmtags
-Thumbs.db
-Desktop.ini
-
-# ignore Composer downloads
-/vendor/*
-/bower_components/*
-
-# keep some hiddens
-!.htaccess
-!/.gitignore
-!/.travis.yml
-!/.project
-dataconf.php
-.push.settings.jsonc
+/node_modules
+/public/hot
+/public/storage
+/storage/*.key
+/vendor
+.env
+.env.backup
+.phpunit.result.cache
+docker-compose.override.yml
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+/.idea
+/.vscode
