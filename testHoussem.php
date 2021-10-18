@@ -1,3 +1,15 @@
+<?php
+
+    class newClass {
+
+        //grande fonction complex
+        //aa
+        //bb
+        //cc
+        //dd
+    }
+
+?>
 git add ./testhoussem.php
 
 <h2>un titre de Valentina</h2> 
