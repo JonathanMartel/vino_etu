@@ -1,4 +1,7 @@
 <?php
+
+
+
 /**
  * Fichier de configuration. Il est appelé par index.php et par test/index.php
  * Il contient notamment l'autoloader
