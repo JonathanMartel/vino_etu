@@ -45,7 +45,7 @@
                                 }
                             ],
                             "outputPath": "../../public/assets/angular",
-                            "deployUrl": "/assets/angular",
+                            "deployUrl": "/assets/angular/",
                             "fileReplacements": [
                                 {
                                     "replace": "src/environments/environment.ts",
@@ -56,7 +56,7 @@
                         },
                         "development": {
                             "outputPath": "dist/assets/angular",
-                            "baseHref": "/assets/angular",
+                            "baseHref": "/assets/angular/",
                             "buildOptimizer": false,
                             "optimization": false,
                             "vendorChunk": true,
