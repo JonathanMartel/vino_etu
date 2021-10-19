@@ -35,6 +35,4 @@ class Utilitaires {
 		$res = '<table>'. $header . $res . '</table>';
 		return $res;
 	}
-
 }
-?>

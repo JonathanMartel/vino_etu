@@ -10,7 +10,8 @@
  * @since 2.0 Correction du singleton, PHP 7.1 valide la visibilité du constructeur de l'objet hérité. Retrait de l'héritage et réécriture du singleton.
  *
  */
-class MonSQL {
+class MonSQL
+{
 	/**
 	 * @var $_instance
 	 * @access private
@@ -24,9 +25,8 @@ class MonSQL {
 	 * @param void
 	 * @return void
 	 */
-	private function __construct($host, $user, $password, $database) 
+	private function __construct($host, $user, $password, $database)
 	{
-		
 	}
 
 	/**
@@ -36,20 +36,18 @@ class MonSQL {
 	 * @param void
 	 * @return Singleton
 	 */
-	public static function getInstance() {
+	public static function getInstance()
+	{
 
 		if (is_null(self::$_instance)) {
 			self::$_instance = new mysqli(HOST, USER, PASSWORD, DATABASE);
-			if (self::$_instance-> connect_errno) {
-				echo "Echec lors de la connexion à MySQL : (" . self::$_instance -> connect_errno . ") " . self::$_instance-> connect_error;
-			}
-			else {
-				self::$_instance->set_charset("UTF-8");	
+			if (self::$_instance->connect_errno) {
+				echo "Echec lors de la connexion à MySQL : (" . self::$_instance->connect_errno . ") " . self::$_instance->connect_error;
+			} else {
+				self::$_instance->set_charset("UTF-8");
 			}
 		}
 
 		return self::$_instance;
 	}
-
 }
-?>
