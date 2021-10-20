@@ -16,8 +16,6 @@ class CellierBouteilleController extends Controller
     {
         $cellier = CellierBouteille::all();
 
-var_dump($cellier);
-
 	    return view('cellier.index', [
             'cellier' => $cellier,
         ]);
