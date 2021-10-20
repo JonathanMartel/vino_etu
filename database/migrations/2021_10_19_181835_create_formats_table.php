@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePasswordResetsTable extends Migration
+class CreateFormatsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreatePasswordResetsTable extends Migration
      */
     public function up()
     {
-        Schema::create('mot_de_passe_resets', function (Blueprint $table) {
-            $table->string('courriel')->index();
-            $table->string('token');
-            $table->timestamp('created_at')->nullable();
+        Schema::create('formats', function (Blueprint $table) {
+            $table->id();
+            $table->char('nom',14)->nullable();
+            $table->float('taille');
+            $table->timestamps();
         });
     }
 
@@ -27,6 +28,6 @@ class CreatePasswordResetsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('password_resets');
+        Schema::dropIfExists('formats');
     }
 }
