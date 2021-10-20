@@ -1,9 +1,9 @@
 import React from "react";
 import Bouteille from "../Bouteille/Bouteille";
 
-import './ListeBouteilleCellier.css';
+import './ListeBouteilleSAQ.css';
 
-export default class ListeBouteilleCellier extends React.Component {
+export default class ListeBouteilleSAQ extends React.Component {
 	constructor(props){
 	  super(props);
 	  this.state = {
