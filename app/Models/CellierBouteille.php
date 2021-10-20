@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class CellierBouteille extends Model
 {
     use HasFactory;
-    public $timestamps = false;
+
     protected $fillable = ['garde_jusqua', 'date_achat', 'note', 'commentaire', 'prix', 'quantite', 'millesime','cellier_id', 'bouteille_id'];
 
     public function bouteille()
