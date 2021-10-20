@@ -16,7 +16,7 @@ export default class ListeBouteilleSAQ extends React.Component {
         fetch("") // Insérer l'adresse pour la request HTTP
             .then(reponse => reponse.json())
             .then((donnees)=>{
-                this.setState({items:donnees.data}) 
+                this.setState({bouteilles:donnees.data}) 
                 console.log(donnees)
             });
     }
@@ -24,3 +24,4 @@ export default class ListeBouteilleSAQ extends React.Component {
 	render() {
 		
 	}
+}
