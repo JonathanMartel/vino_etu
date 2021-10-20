@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cellier;
+use App\Models\Format;
 use Illuminate\Http\Request;
 
-class CellierController extends Controller
+class FormatController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,6 @@ class CellierController extends Controller
      */
     public function index()
     {
-       
         //
     }
 
@@ -25,8 +24,7 @@ class CellierController extends Controller
      */
     public function create()
     {
-         return view('cellier.create', [
-        ]);
+        //
     }
 
     /**
@@ -43,10 +41,10 @@ class CellierController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Cellier  $cellier
+     * @param  \App\Models\Format  $format
      * @return \Illuminate\Http\Response
      */
-    public function show(Cellier $cellier)
+    public function show(Format $format)
     {
         //
     }
@@ -54,10 +52,10 @@ class CellierController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Cellier  $cellier
+     * @param  \App\Models\Format  $format
      * @return \Illuminate\Http\Response
      */
-    public function edit(Cellier $cellier)
+    public function edit(Format $format)
     {
         //
     }
@@ -66,10 +64,10 @@ class CellierController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Cellier  $cellier
+     * @param  \App\Models\Format  $format
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cellier $cellier)
+    public function update(Request $request, Format $format)
     {
         //
     }
@@ -77,15 +75,11 @@ class CellierController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Cellier  $cellier
+     * @param  \App\Models\Format  $format
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cellier $cellier)
+    public function destroy(Format $format)
     {
         //
     }
-
-    
-
-    
 }
