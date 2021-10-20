@@ -8,11 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Cellier extends Model
 {
     use HasFactory;
-    public $timestamps = false;
-    protected $fillable = ['id', 'garde_jusqua', 'date_achat', 'notes', 'prix', 'quantite', 'millesime', 'bouteille_id'];
+    
+    protected $fillable = ['id', 'nom', 'localisation', 'user_id'];
 
-    public function bouteille()
+    public function user()
     {
-        return $this->belongsTo(Bouteille::class);
+        return $this->belongsTo(User::class);
     }
+
 }
