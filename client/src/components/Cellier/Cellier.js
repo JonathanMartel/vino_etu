@@ -7,3 +7,7 @@ export default class Cellier extends React.Component {
 	  super(props);
 	
 	}
+
+	render() {
+		
+	}

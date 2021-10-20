@@ -7,3 +7,7 @@ export default class Bouteille extends React.Component {
 	  super(props);
 	
 	}
+
+	render() {
+		
+	}
