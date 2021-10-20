@@ -21,7 +21,7 @@ use App\Http\Controllers\CellierBouteilleController;
 
 Route::get('/cellier', [CellierBouteilleController::class, 'index']);
 
-Route::get('/ajouterBouteille/{idCellier}/{idBouteille}', [CellierBouteilleController::class, 'ajouterBouteille'])->name('ajouterBouteille');
+Route::get('/ajouterBouteille/{idCellier}/{idBouteille}/{millesime}', [CellierBouteilleController::class, 'ajouterBouteille'])->name('ajouterBouteille');
 
 
 

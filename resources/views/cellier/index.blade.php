@@ -17,7 +17,7 @@
     </thead>
 
     <tbody>
-    @foreach($cellier as $cellierBouteille)
+    @foreach($cellierBouteilles as $cellierBouteille)
       
 
         <tr>
@@ -25,7 +25,11 @@
         <td>{{$cellierBouteille->bouteille->nom}}</td>
         <td>{{$cellierBouteille->quantite}}</td>
         <td>{{$cellierBouteille->bouteille->pays}}</td>
-        <td>{{$cellierBouteille->bouteille->millesime}}</td>
+        <td>
+            @if( $cellierBouteille->millesime != 0)
+                {{$cellierBouteille->millesime}}
+            @endif
+        </td>
         <td>{{$cellierBouteille->bouteille->type->type}}</td>
         <td><a href="{{$cellierBouteille->bouteille->url_saq}}">Lien SAQ</a></td>
         <td> 
@@ -33,6 +37,7 @@
             <a href="{{ route('ajouterBouteille',[
                     'idCellier'=>$cellierBouteille->cellier_id,
                     'idBouteille'=>$cellierBouteille->bouteille_id,
+                    'millesime'=> $cellierBouteille->millesime
                     ])}}"><i class="material-icons">add</i></a>
         </td>
         </tr>
