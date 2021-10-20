@@ -22,4 +22,4 @@ use App\Http\Controllers\CellierController;
 Route::get('/cellier', [CellierController::class, 'index']);
 Route::get('/ajouterBouteille/{cellier}', [CellierController::class, 'ajouterBouteille'])->name('ajouterBouteille');
 Route::get('/boireBouteille/{cellier}', [CellierController::class, 'boireBouteille'])->name('boireBouteille');
-Route::get('/cellier/create', [CellierController::class, 'create'])->name('ajouterNouveauBouteille');
+Route::get('/cellier/create', [CellierController::class, 'create'])->name('ajouterNouvelleBouteille');

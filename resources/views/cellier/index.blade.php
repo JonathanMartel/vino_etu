@@ -1,11 +1,8 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-<script src = "https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js">  
-      </script>    
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link href="{{asset('css/main.css')}}" rel="stylesheet" />
+@extends('layouts.app')
+@section('content')
         
 <h1>Un petit verre de vino ?</h1>
-<a href="{{ route('ajouterNouveauBouteille')}}">Ajouter une bouteille au cellier</a>
+<a href="{{ route('ajouterNouvelleBouteille')}}">Ajouter une bouteille au cellier</a>
 <table class="responsive-table striped highlight">
         <thead>
           <tr>
@@ -42,3 +39,4 @@
 @endforeach
     </tbody>
       </table>
+@endsection
