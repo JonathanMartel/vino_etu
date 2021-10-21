@@ -82,7 +82,7 @@ export default class ListeBouteilleCellier extends React.Component {
 
 		return (
 			<div>
-				<Link to={"/ajoutbouteillescellier"}>
+				<Link to={"/ajoutbouteillecellier"}>
 					<span>Ajouter une nouvelle bouteille à votre cellier</span>
 				</Link>
 				
