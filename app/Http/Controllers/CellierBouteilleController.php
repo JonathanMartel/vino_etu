@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CellierBouteille;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+
 
 class CellierBouteilleController extends Controller
 {
@@ -34,26 +34,7 @@ class CellierBouteilleController extends Controller
         ]);
     }
 
-    /**
-     * https://stackoverflow.com/questions/37666135/how-to-increment-and-update-column-in-one-eloquent-query
-     * Incrémenter de 1 la quantité de la bouteille dans un cellier
-     * @return la quantité à incrémenter
-     */
-    public function ajouterBouteille($idCellier, $idBouteille, $millesime)
-    {   
-
-        if($millesime == 0) {
-            $millesime = 0000;
-        }
-        DB::table('cellier_bouteilles')
-        ->where('cellier_id', $idCellier)
-        ->where('bouteille_id', $idBouteille)
-        ->where('millesime', $millesime)
-        ->increment('quantite', 1);
-        
-
-         return response()->json(1);
-    }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -88,6 +69,45 @@ class CellierBouteilleController extends Controller
         //
     }
 
+/**
+     * https://stackoverflow.com/questions/37666135/how-to-increment-and-update-column-in-one-eloquent-query
+     * Incrémenter de 1 la quantité de la bouteille dans un cellier
+     * @return la quantité à incrémenter
+     */
+    public function ajouterBouteille($idCellier, $idBouteille, $millesime)
+    {
+        $quantiteAjoute = 1; // a inclure en paramettre si on donne l'option d'ajouter plus d'une bouteille à la fois.
+
+        if($millesime == 0) {
+            $millesime = 0000;
+        }
+        $estAjoute = CellierBouteille::modifierQuantiteBouteille($idCellier, $idBouteille, $millesime, $quantiteAjoute);
+
+        if($estAjoute){
+            return response()->json($quantiteAjoute);
+        }
+    }
+
+     /**
+     *
+     * Décrémenter de 1 la quantité de la bouteille dans un cellier
+     */
+    public function boireBouteille($idCellier, $idBouteille, $millesime)
+    {
+        $quantiteBue = -1; // a inclure en paramettre si on donne l'option d'ajouter plus d'une bouteille à la fois.
+
+
+        if($millesime == 0) {
+            $millesime = 0000;
+        }
+        $estBue = CellierBouteille::modifierQuantiteBouteille($idCellier, $idBouteille, $millesime, $quantiteBue);
+
+        if($estBue){
+            return response()->json($quantiteBue);
+        }
+         return redirect('cellier');
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -111,22 +131,6 @@ class CellierBouteilleController extends Controller
         //
     }
 
-     /**
-     * 
-     * Décrémenter de 1 la quantité de la bouteille dans un cellier
-     */
-    public function boireBouteille($idCellier, $idBouteille, $millesime)
-    {
-        if($millesime == 0) {
-            $millesime = 0000;
-        } 
-        DB::table('cellier_bouteilles')
-        ->where('cellier_id', $idCellier)
-        ->where('bouteille_id', $idBouteille)
-        ->where('millesime', $millesime)
-        ->decrement('quantite', 1);
-        
-         return redirect('cellier');
-    }
+    
 
 }

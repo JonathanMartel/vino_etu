@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <h1>Un petit verre de vino ?</h1>
-<a href="{{ route('ajouterNouvelleBouteille') }}">Ajouter une nouvelle bouteille au ceillier</a>
+<a href="{{ route('ajouterNouvelleBouteille') }}">Ajouter un nouveau vin au cellier</a>
 <table class="responsive-table striped highlight">
     <thead>
         <tr>
@@ -17,38 +17,40 @@
     </thead>
 
     <tbody>
-    @foreach($cellierBouteilles as $cellierBouteille)
-      
+        @foreach($cellierBouteilles as $cellierBouteille)
+
 
         <tr>
-        <td><img src="{{$cellierBouteille->bouteille->url_img}}" alt=""></td>
-        <td>{{$cellierBouteille->bouteille->nom}}</td>
-        <td name="quantite">{{$cellierBouteille->quantite}}</td>
-        <td>{{$cellierBouteille->bouteille->pays}}</td>
-        <td>
-            @if( $cellierBouteille->millesime != 0)
+            <td><img src="{{$cellierBouteille->bouteille->url_img}}" alt=""></td>
+            <td>{{$cellierBouteille->bouteille->nom}}</td>
+            <td name="quantite">{{$cellierBouteille->quantite}}</td>
+            <td>{{$cellierBouteille->bouteille->pays}}</td>
+            <td>
+                @if( $cellierBouteille->millesime != 0)
                 {{$cellierBouteille->millesime}}
-            @endif
-        </td>
-        <td>{{$cellierBouteille->bouteille->type->type}}</td>
-        <td><a href="{{$cellierBouteille->bouteille->url_saq}}">Lien SAQ</a></td>
-        <td> 
-           
-        
-            <i class="material-icons">edit</i>
-            <a name="btnAjouterBouteille" href="{{ route('ajouterBouteille',[
-                    'idCellier'=>$cellierBouteille->cellier_id,
-                    'idBouteille'=>$cellierBouteille->bouteille_id,
-                    'millesime'=> $cellierBouteille->millesime
-                    ])}}"><i class="material-icons">add</i>
-            </a>
-            <a href="{{ route('boireBouteille',[
-                    'idCellier'=>$cellierBouteille->cellier_id,
-                    'idBouteille'=>$cellierBouteille->bouteille_id,
-                    'millesime'=> $cellierBouteille->millesime
-                    ])}}"><i class="material-icons">remove</i>
-            </a>
-        </td>
+                @endif
+            </td>
+            <td>{{$cellierBouteille->bouteille->type->type}}</td>
+            <td><a href="{{$cellierBouteille->bouteille->url_saq}}">Lien SAQ</a></td>
+            <td>
+
+
+                <i class="material-icons">edit</i>
+                <a name="btnAjouterBouteille" href="{{ route('ajouterBouteille',[
+                        'idCellier'=>$cellierBouteille->cellier_id,
+                        'idBouteille'=>$cellierBouteille->bouteille_id,
+                        'millesime'=> $cellierBouteille->millesime
+                        ])}}">
+                    <i class="material-icons">add</i>
+                </a>
+                <a name="btnRetirerBouteille" href="{{ route('boireBouteille',[
+                        'idCellier'=>$cellierBouteille->cellier_id,
+                        'idBouteille'=>$cellierBouteille->bouteille_id,
+                        'millesime'=> $cellierBouteille->millesime
+                        ])}}">
+                    <i class="material-icons">remove</i>
+                </a>
+            </td>
         </tr>
         @endforeach
     </tbody>
