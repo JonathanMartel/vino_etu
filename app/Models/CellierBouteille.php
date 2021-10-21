@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class CellierBouteille extends Model
 {
@@ -19,4 +20,14 @@ class CellierBouteille extends Model
         return $this->belongsTo(Bouteille::class);
     }
 
+    public static function modifierQuantiteBouteille($idCellier, $idBouteille, $millesime, $modificationQuantite){
+        
+        DB::table('cellier_bouteilles')
+        ->where('cellier_id', $idCellier)
+        ->where('bouteille_id', $idBouteille)
+        ->where('millesime', $millesime)
+        ->increment('quantite', $modificationQuantite);
+        
+         return true;
+    }
 }
