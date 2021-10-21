@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <h1>Un petit verre de vino ?</h1>
-
+<a href="{{ route('ajouterNouvelleBouteille') }}">Ajouter une nouvelle bouteille au ceillier</a>
 <table class="responsive-table striped highlight">
     <thead>
         <tr>
@@ -23,7 +23,7 @@
         <tr>
         <td><img src="{{$cellierBouteille->bouteille->url_img}}" alt=""></td>
         <td>{{$cellierBouteille->bouteille->nom}}</td>
-        <td>{{$cellierBouteille->quantite}}</td>
+        <td name="quantite">{{$cellierBouteille->quantite}}</td>
         <td>{{$cellierBouteille->bouteille->pays}}</td>
         <td>
             @if( $cellierBouteille->millesime != 0)
@@ -33,8 +33,10 @@
         <td>{{$cellierBouteille->bouteille->type->type}}</td>
         <td><a href="{{$cellierBouteille->bouteille->url_saq}}">Lien SAQ</a></td>
         <td> 
+           
+        
             <i class="material-icons">edit</i>
-            <a href="{{ route('ajouterBouteille',[
+            <a name="btnAjouterBouteille" href="{{ route('ajouterBouteille',[
                     'idCellier'=>$cellierBouteille->cellier_id,
                     'idBouteille'=>$cellierBouteille->bouteille_id,
                     'millesime'=> $cellierBouteille->millesime
@@ -51,7 +53,6 @@
         @endforeach
     </tbody>
 </table>
-
-
-
 @endsection
+
+<script src="{{asset('js/cellierBouteille_index.js')}}"></script>

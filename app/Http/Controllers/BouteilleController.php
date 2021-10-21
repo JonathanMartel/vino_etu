@@ -14,7 +14,8 @@ class BouteilleController extends Controller
      */
     public function index()
     {
-        //
+        $liste = Bouteille::all();
+        return response()->json($liste);
     }
 
     /**

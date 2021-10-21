@@ -17,7 +17,7 @@ class CellierBouteilleController extends Controller
     {
         $cellierBouteilles = CellierBouteille::all();
 
-	    return view('cellier.index', [
+	    return view('cellierBouteille.index', [
             'cellierBouteilles' => $cellierBouteilles,
         ]);
     }
@@ -29,22 +29,30 @@ class CellierBouteilleController extends Controller
      */
     public function create()
     {
-        //
+        return view('cellierBouteille.create', [
+            
+        ]);
     }
 
     /**
      * https://stackoverflow.com/questions/37666135/how-to-increment-and-update-column-in-one-eloquent-query
      * Incrémenter de 1 la quantité de la bouteille dans un cellier
+     * @return la quantité à incrémenter
      */
     public function ajouterBouteille($idCellier, $idBouteille, $millesime)
-    {      
+    {   
+
+        if($millesime == 0) {
+            $millesime = 0000;
+        }
         DB::table('cellier_bouteilles')
         ->where('cellier_id', $idCellier)
         ->where('bouteille_id', $idBouteille)
         ->where('millesime', $millesime)
         ->increment('quantite', 1);
         
-         return redirect('cellier');
+
+         return response()->json(1);
     }
 
     /**
@@ -109,6 +117,9 @@ class CellierBouteilleController extends Controller
      */
     public function boireBouteille($idCellier, $idBouteille, $millesime)
     {
+        if($millesime == 0) {
+            $millesime = 0000;
+        } 
         DB::table('cellier_bouteilles')
         ->where('cellier_id', $idCellier)
         ->where('bouteille_id', $idBouteille)
