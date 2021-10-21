@@ -1,5 +1,5 @@
 import React from "react";
-import Bouteille from "../Bouteille/Bouteille";
+import BouteilleSAQ from "../BouteilleSAQ/BouteilleSAQ";
 
 import './AjoutBouteilleCellier.css';
 
