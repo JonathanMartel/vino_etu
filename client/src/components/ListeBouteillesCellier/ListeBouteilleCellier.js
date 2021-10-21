@@ -1,5 +1,6 @@
 import React from "react";
 import BouteilleCellier from "../BouteilleCellier/BouteilleCellier";
+import { Link } from "react-router-dom";
 
 import './ListeBouteilleCellier.css';
 
@@ -32,7 +33,7 @@ export default class ListeBouteilleCellier extends React.Component {
 		 const reqOptions = {
             method: 'PATCH',
             headers: entete,
-            body: , // Insérer le contenu du body nécessaire
+            body: "", // Insérer le contenu du body nécessaire
             redirect: 'follow'
         };
         return fetch("", reqOptions) // Insérer l'adresse de la requete HTTP 
@@ -50,7 +51,7 @@ export default class ListeBouteilleCellier extends React.Component {
 		 const reqOptions = {
             method: 'PATCH',
             headers: entete,
-            body: , // Insérer le contenu du body nécessaire
+            body: "", // Insérer le contenu du body nécessaire
             redirect: 'follow'
         };
         return fetch("", reqOptions) // Insérer l'adresse de la requete HTTP 
@@ -69,16 +70,26 @@ export default class ListeBouteilleCellier extends React.Component {
 		const bouteilles = this.state.bouteilles
 								.map((bouteille, index)=>{
 									return (
+										<div>
 										<BouteilleCellier bouteille={bouteille} key={index}/>
 										<button onClick={this.ajouter(index)}>Ajouter une bouteille</button>
 										<button onClick={this.retirer(index)}>Retirer une bouteille</button>
+										</div>
 									);
 								})
 
+		
+
 		return (
-			<section className="listeBouteilleCellier">
-				{bouteilles}
-			</section>
+			<div>
+				<Link to={"/ajoutbouteillescellier"}>
+					<span>Ajouter une nouvelle bouteille à votre cellier</span>
+				</Link>
+				
+				<div>
+					{bouteilles}
+				</div>
+			</div>
 		);
 	}
 }

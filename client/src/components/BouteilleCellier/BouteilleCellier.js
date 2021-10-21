@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 
 import './BouteilleCellier.css';
 
-class extends BouteilleCellier extends React.Component {
+export default class BouteilleCellier extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {  }
@@ -16,7 +16,7 @@ class extends BouteilleCellier extends React.Component {
 		
 		return ( 
 				<article className="uneBouteille">
-					<img src={this.props.bouteille.url_image}>
+					<img src={this.props.bouteille.url_image} />
 					<p>{this.props.bouteille.nom}</p>
 					<p>{this.props.bouteille.pays}</p>
 					<p>{this.props.bouteille.vino__type_id}</p>
