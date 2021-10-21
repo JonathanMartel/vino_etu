@@ -103,14 +103,18 @@ class CellierBouteilleController extends Controller
         //
     }
 
-    public function boireBouteille($idCellier)
+     /**
+     * 
+     * Décrémenter de 1 la quantité de la bouteille dans un cellier
+     */
+    public function boireBouteille($idCellier, $idBouteille, $millesime)
     {
-        $bouteilleCellier = CellierBouteille::find($idCellier);
-
-         $bouteilleCellier->update([
-             'quantite' => $bouteilleCellier->quantite - 1,
-         ]);
-
+        DB::table('cellier_bouteilles')
+        ->where('cellier_id', $idCellier)
+        ->where('bouteille_id', $idBouteille)
+        ->where('millesime', $millesime)
+        ->decrement('quantite', 1);
+        
          return redirect('cellier');
     }
 

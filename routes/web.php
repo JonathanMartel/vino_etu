@@ -29,7 +29,7 @@ Route::get('/ajouterBouteille/{idCellier}/{idBouteille}/{millesime}', [CellierBo
 
 
 
-Route::get('/boireBouteille/{cellier}', [CellierBouteilleController::class, 'boireBouteille'])->name('boireBouteille');
+Route::get('/boireBouteille/{idCellier}/{idBouteille}/{millesime}', [CellierBouteilleController::class, 'boireBouteille'])->name('boireBouteille');
 
 
 Route::get('/cellier/create', [CellierBouteilleController::class, 'create'])->name('ajouterNouveauBouteille');

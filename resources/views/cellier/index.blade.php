@@ -38,7 +38,14 @@
                     'idCellier'=>$cellierBouteille->cellier_id,
                     'idBouteille'=>$cellierBouteille->bouteille_id,
                     'millesime'=> $cellierBouteille->millesime
-                    ])}}"><i class="material-icons">add</i></a>
+                    ])}}"><i class="material-icons">add</i>
+            </a>
+            <a href="{{ route('boireBouteille',[
+                    'idCellier'=>$cellierBouteille->cellier_id,
+                    'idBouteille'=>$cellierBouteille->bouteille_id,
+                    'millesime'=> $cellierBouteille->millesime
+                    ])}}"><i class="material-icons">remove</i>
+            </a>
         </td>
         </tr>
         @endforeach
