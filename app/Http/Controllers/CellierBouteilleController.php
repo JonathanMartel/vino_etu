@@ -41,6 +41,7 @@ class CellierBouteilleController extends Controller
      */
     public function ajouterBouteille($idCellier, $idBouteille, $millesime)
     {   
+        $quantiteAjoutee = 1;
 
         if($millesime == 0) {
             $millesime = 0000;
@@ -49,10 +50,10 @@ class CellierBouteilleController extends Controller
         ->where('cellier_id', $idCellier)
         ->where('bouteille_id', $idBouteille)
         ->where('millesime', $millesime)
-        ->increment('quantite', 1);
+        ->increment('quantite', $quantiteAjoutee);
         
 
-         return response()->json(1);
+         return response()->json($quantiteAjoutee);
     }
 
     /**

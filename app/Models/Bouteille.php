@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Bouteille extends Model
 {
@@ -17,5 +18,12 @@ class Bouteille extends Model
     public function type()
     {
         return $this->belongsTo(Type::class);
+    }
+
+    public static function rechercheBouteilles($motCle) {
+
+        return DB::table('bouteilles')
+        ->where('nom', "LIKE" , "%" .$motCle. "%")
+        ->get();
     }
 }
