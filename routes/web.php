@@ -20,10 +20,10 @@ Route::get('/', function () {
 
 
 
-Route::get('/cellier', [CellierBouteilleController::class, 'index']);
+Route::get('/cellier', [CellierBouteilleController::class, 'index'])->name('cellier');
 
 Route::get('/ajouterBouteille/{idCellier}/{idBouteille}/{millesime}', [CellierBouteilleController::class, 'ajouterBouteille'])->name('ajouterBouteille');
-Route::get('/liste', [BouteilleController::class, 'index']);
+Route::get('/rechercheBouteilles/{motCle}', [BouteilleController::class, 'rechercheBouteilles'])->name('rechercheBouteilles');
 
 
 

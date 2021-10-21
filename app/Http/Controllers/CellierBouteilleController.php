@@ -34,7 +34,31 @@ class CellierBouteilleController extends Controller
         ]);
     }
 
+<<<<<<< HEAD
+    /**
+     * https://stackoverflow.com/questions/37666135/how-to-increment-and-update-column-in-one-eloquent-query
+     * Incrémenter de 1 la quantité de la bouteille dans un cellier
+     * @return la quantité à incrémenter
+     */
+    public function ajouterBouteille($idCellier, $idBouteille, $millesime)
+    {   
+        $quantiteAjoutee = 1;
+
+        if($millesime == 0) {
+            $millesime = 0000;
+        }
+        DB::table('cellier_bouteilles')
+        ->where('cellier_id', $idCellier)
+        ->where('bouteille_id', $idBouteille)
+        ->where('millesime', $millesime)
+        ->increment('quantite', $quantiteAjoutee);
+        
+
+         return response()->json($quantiteAjoutee);
+    }
+=======
     
+>>>>>>> e83b24db2f4d25cba210e7a63f642c8651b6436a
 
     /**
      * Store a newly created resource in storage.
