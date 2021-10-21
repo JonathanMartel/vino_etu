@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CellierBouteille;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CellierBouteilleController extends Controller
 {
@@ -14,10 +15,10 @@ class CellierBouteilleController extends Controller
      */
     public function index()
     {
-        $cellier = CellierBouteille::all();
+        $cellierBouteilles = CellierBouteille::all();
 
-	    return view('cellier.index', [
-            'cellier' => $cellier,
+	    return view('cellierBouteille.index', [
+            'cellierBouteilles' => $cellierBouteilles,
         ]);
     }
 
@@ -28,21 +29,30 @@ class CellierBouteilleController extends Controller
      */
     public function create()
     {
-        //
+        return view('cellierBouteille.create', [
+            
+        ]);
     }
 
-    public function ajouterBouteille($idCellier, $idBouteille)
-    {
-        $bouteilleCellier = CellierBouteille::selectCellierBouteille($idCellier, $idBouteille);
+    /**
+     * https://stackoverflow.com/questions/37666135/how-to-increment-and-update-column-in-one-eloquent-query
+     * Incrémenter de 1 la quantité de la bouteille dans un cellier
+     * @return la quantité à incrémenter
+     */
+    public function ajouterBouteille($idCellier, $idBouteille, $millesime)
+    {   
 
-var_dump($bouteilleCellier);
+        if($millesime == 0) {
+            $millesime = 0000;
+        }
+        DB::table('cellier_bouteilles')
+        ->where('cellier_id', $idCellier)
+        ->where('bouteille_id', $idBouteille)
+        ->where('millesime', $millesime)
+        ->increment('quantite', 1);
+        
 
-
-         $bouteilleCellier->update([
-             'quantite' => $bouteilleCellier->quantite + 1,
-         ]);
-
-         return redirect('cellier');
+         return response()->json(1);
     }
 
     /**
@@ -101,14 +111,21 @@ var_dump($bouteilleCellier);
         //
     }
 
-    public function boireBouteille($idCellier)
+     /**
+     * 
+     * Décrémenter de 1 la quantité de la bouteille dans un cellier
+     */
+    public function boireBouteille($idCellier, $idBouteille, $millesime)
     {
-        $bouteilleCellier = CellierBouteille::find($idCellier);
-
-         $bouteilleCellier->update([
-             'quantite' => $bouteilleCellier->quantite - 1,
-         ]);
-
+        if($millesime == 0) {
+            $millesime = 0000;
+        } 
+        DB::table('cellier_bouteilles')
+        ->where('cellier_id', $idCellier)
+        ->where('bouteille_id', $idBouteille)
+        ->where('millesime', $millesime)
+        ->decrement('quantite', 1);
+        
          return redirect('cellier');
     }
 

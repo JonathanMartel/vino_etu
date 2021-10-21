@@ -11,6 +11,9 @@ class Cellier extends Model
     
     protected $fillable = ['id', 'nom', 'localisation', 'user_id'];
 
+    /**
+     * Obtenir les informations de la table bouteilles
+     */
     public function user()
     {
         return $this->belongsTo(User::class);

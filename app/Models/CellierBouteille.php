@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
 
 class CellierBouteille extends Model
 {
@@ -12,16 +11,12 @@ class CellierBouteille extends Model
 
     protected $fillable = ['garde_jusqua', 'date_achat', 'note', 'commentaire', 'prix', 'quantite', 'millesime','cellier_id', 'bouteille_id'];
 
+    /**
+     * Obtenir les informations de la table bouteilles
+     */
     public function bouteille()
     {
         return $this->belongsTo(Bouteille::class);
     }
 
-    public static function selectCellierBouteille($idCellier, $idBouteille){
-        return CellierBouteille::select('*')
-            ->where('bouteille_id', $idBouteille)
-            ->where("cellier_id", $idCellier)
-            ->first();
-
-    }
 }

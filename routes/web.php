@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\CellierBouteilleController;
+use App\Http\Controllers\BouteilleController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,19 +18,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-use App\Http\Controllers\CellierBouteilleController;
+
 
 Route::get('/cellier', [CellierBouteilleController::class, 'index']);
 
-Route::get('/ajouterBouteille/{idCellier}/{idBouteille}', [CellierBouteilleController::class, 'ajouterBouteille'])->name('ajouterBouteille');
+Route::get('/ajouterBouteille/{idCellier}/{idBouteille}/{millesime}', [CellierBouteilleController::class, 'ajouterBouteille'])->name('ajouterBouteille');
+Route::get('/liste', [BouteilleController::class, 'index']);
 
 
 
 
 
 
+Route::get('/boireBouteille/{idCellier}/{idBouteille}/{millesime}', [CellierBouteilleController::class, 'boireBouteille'])->name('boireBouteille');
 
-Route::get('/boireBouteille/{cellier}', [CellierBouteilleController::class, 'boireBouteille'])->name('boireBouteille');
 
-
-Route::get('/cellier/create', [CellierBouteilleController::class, 'create'])->name('ajouterNouveauBouteille');
+Route::get('/cellierBouteille/create', [CellierBouteilleController::class, 'create'])->name('ajouterNouvelleBouteille');
