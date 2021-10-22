@@ -1,0 +1,13 @@
+<h1>Mon cellier</h1>
+<article *ngFor="let uneBouteille of cellier">
+    <h2>{{uneBouteille.id}}</h2>
+    <div>
+        <p>Id de bouteille :{{uneBouteille.id_bouteille}}</p>
+        <p>Date d'achat :{{uneBouteille.date_achat}}</p>
+        <p>Concervation :{{uneBouteille.garde_jusqua}}</p>
+        <p>Notes :{{uneBouteille.notes}}</p>
+        <p>Prix :{{uneBouteille.prix}}</p>
+        <p>Quantité :{{uneBouteille.quantite}}</p>
+        <p>Année de fabrication :{{uneBouteille.millesime}}</p>
+    </div>
+</article>
