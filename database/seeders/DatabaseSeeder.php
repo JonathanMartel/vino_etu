@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             PaysSeeder::class,
-            AlcoolTypeSeeder::class,
+            CategorieSeeder::class,
         ]);
     }
 }

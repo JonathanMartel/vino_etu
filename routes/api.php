@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\PaysController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -22,7 +23,7 @@ Route::apiResource('pays', PaysController::class)->only([
     "index",
 ]);
 
-Route::apiResource('alcool_types', AlcoolTypeController::class)->only([
+Route::apiResource('categories', CategorieController::class)->only([
     "index",
 ]);
 
