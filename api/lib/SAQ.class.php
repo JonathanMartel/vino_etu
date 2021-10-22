@@ -24,8 +24,8 @@ class SAQ extends Modele
 	public function __construct()
 	{
 		parent::__construct();
-		if (!($this->stmt = $this->_db->prepare("INSERT INTO vino__bouteille(nom, type, image, code_saq, pays, description, prix_saq, url_saq, url_img, format) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
-			echo "Echec de la préparation : (" . $this->_db->errno . ") " . $this->_db->mysqli->error;
+		if (!($this->stmt = $this->_db->prepare("INSERT INTO vino__bouteille_saq(nom, type, code_saq, pays, description, prix_saq, url_saq, url_img, format) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
+			echo "Echec de la préparation : (" . $mysqli->errno . ") " . $mysqli->error;
 		}
 	}
 
@@ -67,6 +67,7 @@ class SAQ extends Modele
 		foreach ($elements as $key => $noeud) {
 			if (strpos($noeud->getAttribute('class'), "product-item") !== false) {
 				$info = $this->recupereInfo($noeud);
+				var_dump($info);
 				echo "<p>" . $info->nom;
 				$retour = $this->ajouteProduit($info);
 				echo "<br>Code de retour : " . $retour->raison . "<br>";
@@ -156,18 +157,21 @@ class SAQ extends Modele
 		$retour->succes = false;
 		$retour->raison = '';
 
+		//var_dump($bte);
 		// Récupère le type
 		$rows = $this->_db->query("select id from vino__type where type = '" . $bte->desc->type . "'");
 
 		if ($rows->num_rows == 1) {
 			$type = $rows->fetch_assoc();
+			//var_dump($type);
 			$type = $type['id'];
 
-			$rows = $this->_db->query("select id from vino__bouteille where code_saq = '" . $bte->desc->code_SAQ . "'");
+			$rows = $this->_db->query("select id from vino__bouteille_saq where code_saq = '" . $bte->desc->code_SAQ . "'");
 			if ($rows->num_rows < 1) {
-				$this->stmt->bind_param("sissssisss", $bte->nom, $type, $bte->img, $bte->desc->code_SAQ, $bte->desc->pays, $bte->desc->texte, $bte->prix, $bte->url, $bte->img, $bte->desc->format);
+				$this->stmt->bind_param("sisssisss", $bte->nom, $type, $bte->desc->code_SAQ, $bte->desc->pays, $bte->desc->texte, $bte->prix, $bte->url, $bte->img, $bte->desc->format);
 				$retour->succes = $this->stmt->execute();
 				$retour->raison = self::INSERE;
+				//var_dump($this->stmt);
 			} else {
 				$retour->succes = false;
 				$retour->raison = self::DUPLICATION;
