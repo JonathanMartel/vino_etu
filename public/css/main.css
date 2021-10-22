@@ -2,3 +2,8 @@ img {
     width: 100px;
     height: 100px;
 }
+li:hover {
+    background-color: blue;
+    color : white;
+    cursor: pointer;
+}
