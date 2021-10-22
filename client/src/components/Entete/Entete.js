@@ -21,7 +21,7 @@ export default class Entete extends React.Component {
 							<li><BoutonNav lien="#" label="S'inscrire"/></li>
 							<li><BoutonNav lien="#" label="Se connecter"/></li>
 							<li><BoutonNav lien="#" label="Mon compte"/></li>
-							<li><BoutonNav lien="#" label="Mon cellier"/></li>
+							<li><BoutonNav lien="/listebouteillescellier" label="Mon cellier"/></li>
 						</ul>
 					</nav>
 				</div>

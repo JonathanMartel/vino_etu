@@ -1,8 +1,8 @@
 import React from "react";
 
-import './Bouteille.css';
+import './BouteilleSAQ.css';
 
-export default class Bouteille extends React.Component {
+export default class BouteilleSAQ extends React.Component {
 	constructor(props){
 	  super(props);
 	
