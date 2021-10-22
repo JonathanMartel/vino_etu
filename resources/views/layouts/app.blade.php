@@ -29,21 +29,21 @@
                 <a href="#" class="brand-logo"><span class="black-text">Logo</sapn></a>
                 <a href="#" class="sidenav-trigger right" data-target="mobile-links"><i class="material-icons"><span class="black-text">menu</span></i></a>
                 <ul class="right hide-on-med-and-down">
-                    <li><a href="registration"><span class="black-text">S'inscrire</sapn></a></li>
-                    <li><a href="login"><span class="black-text">Se connecter</sapn></a></li>
+                    <li><a href="/registration"><span class="black-text">S'inscrire</sapn></a></li>
+                    <li><a href="/login"><span class="black-text">Se connecter</sapn></a></li>
                 </ul>
             </div>
             <ul class="sidenav" id="mobile-links">
-                <li><a href="cellier">Accueil</a></li>
-                <li><a href="cellier">Les celliers</a></li>
-                <li><a href="registration">S'inscrire</a></li>
-                <li><a href="login">Se connecter</a></li>
+                <li><a href="/cellier">Accueil</a></li>
+                <li><a href="/cellier">Les celliers</a></li>
+                <li><a href="/registration">S'inscrire</a></li>
+                <li><a href="/login">Se connecter</a></li>
             </ul>
             <div class="nav-content row white">
                 <div class="col s6">
                     <ul class="tabs tabs-transparent hide-on-med-and-down">
-                        <li class="tab"><a href="cellier"><span class="black-text">Accueil</sapn></a></li>
-                        <li class="tab"><a href="cellier"><span class="black-text">Les cilliers</sapn></a></li>
+                        <li class="tab"><a href="/cellier"><span class="black-text">Accueil</sapn></a></li>
+                        <li class="tab"><a href="/cellier"><span class="black-text">Les celliers</sapn></a></li>
                         <li class="tab"><a href="#"><span class="black-text">Compte</sapn></a></li>
                     </ul>
                 </div>

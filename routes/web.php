@@ -19,7 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('login', [CustomAuthController::class, 'index'])->name('login');
+Route::get('/login', [CustomAuthController::class, 'index'])->name('login');
 Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('login.custom');
 Route::get('/registration', [CustomAuthController::class, 'create']);
 
