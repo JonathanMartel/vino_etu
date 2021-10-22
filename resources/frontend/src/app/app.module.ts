@@ -9,6 +9,9 @@ import { CellierComponent } from './cellier/cellier.component';
 import { BouteilleDeVinService } from './bouteille-de-vin.service';
 import { HttpClientModule } from '@angular/common/http';
 import { EnteteComponent } from './entete/entete.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import { MenuMobileComponent } from './menu-mobile/menu-mobile.component';
 
 
 @NgModule({
@@ -16,13 +19,16 @@ import { EnteteComponent } from './entete/entete.component';
     AppComponent,
     AccueilComponent,
     CellierComponent,
-    EnteteComponent
+    EnteteComponent,
+    MenuMobileComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    MatToolbarModule,
+    MatIconModule,
   ],
   providers: [BouteilleDeVinService],
   bootstrap: [AppComponent]
