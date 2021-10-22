@@ -8,13 +8,15 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { CellierComponent } from './cellier/cellier.component';
 import { BouteilleDeVinService } from './bouteille-de-vin.service';
 import { HttpClientModule } from '@angular/common/http';
+import { EnteteComponent } from './entete/entete.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     AccueilComponent,
-    CellierComponent
+    CellierComponent,
+    EnteteComponent
   ],
   imports: [
     BrowserModule,
