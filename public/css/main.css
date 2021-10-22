@@ -2,3 +2,15 @@ img {
     width: 100px;
     height: 100px;
 }
+
+.flex-row {
+	display: flex;
+	flex-direction: row;
+}
+
+.flex-box {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 600px;
+	padding: 30px;
+  }

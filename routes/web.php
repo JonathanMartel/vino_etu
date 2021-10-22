@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CellierBouteilleController;
 use App\Http\Controllers\BouteilleController;
+use App\Http\Controllers\CustomAuthController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +18,12 @@ use App\Http\Controllers\BouteilleController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('login', [CustomAuthController::class, 'index'])->name('login');
+Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('login.custom');
+Route::get('/registration', [CustomAuthController::class, 'create']);
+
+
 
 
 
