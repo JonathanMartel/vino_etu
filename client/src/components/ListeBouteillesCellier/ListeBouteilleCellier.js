@@ -8,12 +8,15 @@ export default class ListeBouteilleCellier extends React.Component {
 	constructor(props){
 	  super(props);
 	  this.state = {
-		  bouteilles: []
+		  bouteilles: [],
+		  voirModal: false,
 	  }
 
 	  this.ajouter = this.ajouter.bind(this);
 	  this.retirer = this.retirer.bind(this);
 	  this.fetchBouteilles = this.fetchBouteilles.bind(this);
+	  this.ouvrirModal = this.ouvrirModal.bind(this);
+	  this.fermerModal = this.fermerModal.bind(this);
 	
 	}
 
@@ -26,7 +29,18 @@ export default class ListeBouteilleCellier extends React.Component {
             });
 	}
 
+	ouvrirModal(){
+		this.setState({voirModal: true});
+	}
+
+	fermerModal(){
+		this.setState({voirModal: false});
+	}
+	
 	ajouter(id){
+
+		this.ouvrirModal();
+
 		 const entete = new Headers();
 		 entete.append("Content-Type", "application/json");
 
@@ -45,6 +59,9 @@ export default class ListeBouteilleCellier extends React.Component {
 	}
 
 	retirer(id){
+
+		this.ouvrirModal();
+		
 		const entete = new Headers();
 		 entete.append("Content-Type", "application/json");
 
