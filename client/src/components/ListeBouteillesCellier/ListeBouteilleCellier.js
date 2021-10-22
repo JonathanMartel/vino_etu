@@ -31,7 +31,7 @@ export default class ListeBouteilleCellier extends React.Component {
 		 entete.append("Content-Type", "application/json");
 
 		 const reqOptions = {
-            method: 'PATCH',
+            method: 'PUT',
             headers: entete,
             body: "", // Insérer le contenu du body nécessaire
             redirect: 'follow'
@@ -49,7 +49,7 @@ export default class ListeBouteilleCellier extends React.Component {
 		 entete.append("Content-Type", "application/json");
 
 		 const reqOptions = {
-            method: 'PATCH',
+            method: 'PUT',
             headers: entete,
             body: "", // Insérer le contenu du body nécessaire
             redirect: 'follow'
