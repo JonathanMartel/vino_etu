@@ -1,0 +1,12 @@
+<section>
+    <h1>Catalogue de bouteilles</h1>
+    <article *ngFor="let uneBouteille of bouteille">
+        <h2>{{uneBouteille.nom}}</h2>
+        <div>
+            <p>Pays :{{uneBouteille.pays}}</p>
+            <p>Description :{{uneBouteille.description}}</p>
+            <p>Prix :{{uneBouteille.prix_saq}}</p>
+            <p>Format :{{uneBouteille.format}}</p>
+        </div>
+    </article>
+</section>

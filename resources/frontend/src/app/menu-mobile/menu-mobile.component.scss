@@ -1,0 +1,19 @@
+
+.mat-toolbar{
+    background-color:#4c1920;
+    position: sticky;
+    bottom: 0;
+    z-index: 100;
+
+}
+
+.mat-toolbar .menu-mobile{
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;  
+}
+
+.mat-toolbar a{
+    text-decoration: none;
+    color: #fff;
+}

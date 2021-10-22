@@ -12,6 +12,7 @@ import { EnteteComponent } from './entete/entete.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import { MenuMobileComponent } from './menu-mobile/menu-mobile.component';
+import { ListeBouteilleComponent } from './liste-bouteille/liste-bouteille.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { MenuMobileComponent } from './menu-mobile/menu-mobile.component';
     AccueilComponent,
     CellierComponent,
     EnteteComponent,
-    MenuMobileComponent
+    MenuMobileComponent,
+    ListeBouteilleComponent
   ],
   imports: [
     BrowserModule,

@@ -23,9 +23,17 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::get('/cellier', function(){
-    // return vino__cellier::all();
+ 
 
     return response(vino__cellier::all(), 200);
+
+
+});
+
+Route::get('/bouteilles', function(){
+  
+
+    return response(vino__bouteille::all(), 200);
 
 
 });
