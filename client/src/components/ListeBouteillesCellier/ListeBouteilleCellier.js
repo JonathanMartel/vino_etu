@@ -78,8 +78,6 @@ export default class ListeBouteilleCellier extends React.Component {
 									);
 								})
 
-		
-
 		return (
 			<div>
 				<Link to={"/ajoutbouteillecellier"}>
