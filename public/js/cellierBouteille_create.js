@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 return (response.json())
             })
             .then(response => {
-                console.log(response)
 
                 response.forEach(function(element){
                     liste.innerHTML += "<li data-id='"+element.id +"'>"+element.nom+"</li>";
@@ -23,14 +22,20 @@ document.addEventListener('DOMContentLoaded', function() {
  
     })
 
-    const listeLi = document. querySelectorAll('li');
-
-    listeLi.forEach(li => {
-        li.addEventListener(('click'), () => {
-            console.log(li)
-        })
-    });
+    let inputNom = document.querySelector('#nom');
+  liste.addEventListener('click', e => {
+        
+      if(e.target.tagName == "LI") {
+        inputNom.nextElementSibling.className ='active';
+        inputNom.value = e.target.innerHTML;
+        inputNom.disabled = true;
+        recherche.value = "";
+        recherche.nextElementSibling.className ='';
+        liste.innerHTML = "";
+      }
+  })
     
-  
+  var elems = document.querySelectorAll('.datepicker');
+    var instances = M.Datepicker.init(elems, {autoClose : true});
 
   });

@@ -14,3 +14,9 @@ img {
 	max-width: 600px;
 	padding: 30px;
   }
+  
+li:hover {
+    background-color: blue;
+    color : white;
+    cursor: pointer;
+}
