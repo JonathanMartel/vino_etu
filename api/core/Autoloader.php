@@ -13,7 +13,7 @@ class Autoloader
         spl_autoload_register(array(new self, 'mon_autoloader'));
     }
 
-    public function mon_autoloader()
+    private function mon_autoloader()
     {
         $dossierClasse = array('modeles/', 'libs/', 'controllers/');
 
