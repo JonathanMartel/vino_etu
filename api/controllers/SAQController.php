@@ -21,7 +21,7 @@ class SAQController extends Router
             $body = array_slice(explode('/', $_SERVER['QUERY_STRING']), 1);
 
             if (!empty($body)) {
-                $bteClassObj = new BouteilleModele();
+                $bteClassObj = new BouteilleModele;
                 $listeBouteille = $bteClassObj->autocomplete($body[0]);
 
                 $this->retour['data'] = $listeBouteille;

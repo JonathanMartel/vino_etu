@@ -77,15 +77,15 @@ class Router
 					echo json_encode('users');
 					break;
 				case 'bouteilles':
-					$bouteilleClassObj = new BouteilleController();
+					$bouteilleClassObj = new BouteilleController;
 					$bouteilleClassObj->getBouteilles();
 					break;
 				case 'celliers':
-					$cellierClassObj = new CellierController();
+					$cellierClassObj = new CellierController;
 					$cellierClassObj->getCelliers();
 					break;
 				case 'saq':
-					$saqClassObj = new SAQController();
+					$saqClassObj = new SAQController;
 					$saqClassObj->autocompleteBouteille();
 					break;
 				default:
@@ -113,11 +113,11 @@ class Router
 				echo json_encode('users');
 				break;
 			case 'bouteilles':
-				$bouteilleClassObj = new BouteilleController();
+				$bouteilleClassObj = new BouteilleController;
 				$bouteilleClassObj->ajouterNouvelleBouteilleCellier();
 				break;
 			case 'celliers':
-				$cellierClassObj = new CellierController();
+				$cellierClassObj = new CellierController;
 				$cellierClassObj->ajouterNouveauCellier();
 				break;
 			case 'saq':

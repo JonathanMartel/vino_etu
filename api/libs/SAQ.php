@@ -64,7 +64,7 @@ class SAQ extends Modele
 		self::$_status = curl_getinfo($s, CURLINFO_HTTP_CODE);
 		curl_close($s);
 
-		$doc = new DOMDocument();
+		$doc = new DOMDocument;
 		$doc->recover = true;
 		$doc->strictErrorChecking = false;
 		@$doc->loadHTML(self::$_webpage);
@@ -109,7 +109,7 @@ class SAQ extends Modele
 	private function recupereInfo($noeud)
 	{
 
-		$info = new stdClass();
+		$info = new stdClass;
 		$info->img = $noeud->getElementsByTagName("img")->item(0)->getAttribute('src'); //TODO : Nettoyer le lien
 		;
 		$a_titre = $noeud->getElementsByTagName("a")->item(0);
@@ -122,7 +122,7 @@ class SAQ extends Modele
 		$aElements = $noeud->getElementsByTagName("strong");
 		foreach ($aElements as $node) {
 			if ($node->getAttribute('class') == 'product product-item-identity-format') {
-				$info->desc = new stdClass();
+				$info->desc = new stdClass;
 				$info->desc->texte = $node->textContent;
 				$info->desc->texte = $this->nettoyerEspace($info->desc->texte);
 				$aDesc = explode("|", $info->desc->texte); // Type, Format, Pays
@@ -159,7 +159,7 @@ class SAQ extends Modele
 
 	private function ajouteProduit($bte)
 	{
-		$retour = new stdClass();
+		$retour = new stdClass;
 		$retour->succes = false;
 		$retour->raison = '';
 

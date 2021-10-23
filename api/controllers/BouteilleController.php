@@ -19,7 +19,7 @@ class BouteilleController extends Router
 	{
 		if (count($this->urlParams) == 2) {
 			if (ctype_digit($this->urlParams[1])) {
-				$bte = new BouteilleModele();
+				$bte = new BouteilleModele;
 				$bouteilles = $bte->getBouteillesParUsagerId($this->urlParams[1]);
 
 				$this->retour['data'] = $bouteilles;
@@ -28,7 +28,7 @@ class BouteilleController extends Router
 				unset($this->retour['data']);
 			}
 		} else if (count($this->urlParams) == 1) {
-			$bte = new BouteilleModele();
+			$bte = new BouteilleModele;
 			$cellier = $bte->getListeBouteilleCellier();
 
 			$this->retour['data'] = $cellier;
@@ -50,7 +50,7 @@ class BouteilleController extends Router
 		$body = json_decode(file_get_contents('php://input'));
 
 		if (!empty($body)) {
-			$bte = new BouteilleModele();
+			$bte = new BouteilleModele;
 			$resultat = $bte->modifierQuantiteBouteilleCellier($body->id, 1);
 
 			$this->retour['data'] = $resultat;
@@ -73,7 +73,7 @@ class BouteilleController extends Router
 			$body = json_decode(file_get_contents('php://input'));
 
 			if (!empty($body)) {
-				$bte = new BouteilleModele();
+				$bte = new BouteilleModele;
 				$resultat = $bte->ajouterBouteilleCellier($body);
 
 				$this->retour['data'] = $resultat;
