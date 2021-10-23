@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const recherche = document.querySelector('[name="autocomplete"]');
-    const liste = document.querySelector('ul');
+    const recherche = document.querySelector('[name="recherche"]');
+    const liste = document.querySelector('.autocomplete');
     recherche.addEventListener('input', () => {
 
         if(recherche.value.trim() != "") {
@@ -10,9 +10,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 return (response.json())
             })
             .then(response => {
-
+                console.log(response)
                 response.forEach(function(element){
-                    liste.innerHTML += "<li data-id='"+element.id +"'>"+element.nom+"</li>";
+                    liste.innerHTML += "<div data-id='"+element.id +"'>"+element.nom+"</div>";
                   })
                   
             }).catch(error => console.log(error))
@@ -24,8 +24,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let inputNom = document.querySelector('#nom');
   liste.addEventListener('click', e => {
-        
-      if(e.target.tagName == "LI") {
+            console.log(e.target.tagName)
+      if(e.target.tagName == "DIV") {
         inputNom.nextElementSibling.className ='active';
         inputNom.value = e.target.innerHTML;
         inputNom.disabled = true;
@@ -35,7 +35,9 @@ document.addEventListener('DOMContentLoaded', function() {
       }
   })
     
-  var elems = document.querySelectorAll('.datepicker');
-    var instances = M.Datepicker.init(elems, {autoClose : true});
+  var datepicker = document.querySelector('.datepicker');
+    M.Datepicker.init(datepicker, {autoClose : true});
+
+    
 
   });
