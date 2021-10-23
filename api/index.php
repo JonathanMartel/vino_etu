@@ -16,7 +16,7 @@ header('Access-Control-Allow-Credentials: true');
 /** Fichier de configuration **/
 /***************************************************/
 require_once('./config/dataconf.php');
-require_once('./core/Autoload.php');
+require_once('./core/Autoloader.php');
 
 /***************************************************/
 /** Autoload... **/
