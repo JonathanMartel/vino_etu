@@ -1,3 +1,4 @@
+<!-- //TODO convertir ce fichier en méthode de modèle -->
 <!DOCTYPE HTML>
 <html>
 

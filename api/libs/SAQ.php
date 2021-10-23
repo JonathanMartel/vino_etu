@@ -1,5 +1,11 @@
 <?php
 
+namespace VinoAPI\Libs;
+
+use VinoAPI\Modeles\Modele;
+use DOMDocument;
+use stdClass;
+
 /**
  * Class MonSQL
  * Classe qui génère ma connection à MySQL à travers un singleton
@@ -25,7 +31,7 @@ class SAQ extends Modele
 	{
 		parent::__construct();
 		if (!($this->stmt = $this->_db->prepare("INSERT INTO vino__bouteille_saq(nom, type, code_saq, pays, description, prix_saq, url_saq, url_img, format) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
-			echo "Echec de la préparation : (" . $mysqli->errno . ") " . $mysqli->error;
+			//echo "Echec de la préparation : (" . $mysqli->errno . ") " . $mysqli->error;
 		}
 	}
 

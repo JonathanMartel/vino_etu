@@ -1,17 +1,13 @@
 <?php
 
+namespace VinoAPI\Modeles;
+
+use Exception;
+
 /**
- * Class Bouteille
- * Cette classe possède les fonctions de gestion des bouteilles dans le cellier et des bouteilles dans le catalogue complet.
- * 
- * @author Jonathan Martel
- * @version 1.0
- * @update 2019-01-21
- * @license Creative Commons BY-NC 3.0 (Licence Creative Commons Attribution - Pas d’utilisation commerciale 3.0 non transposé)
- * @license http://creativecommons.org/licenses/by-nc/3.0/deed.fr
- * 
+ * Traite les requêtes des bouteilles à la db.
  */
-class Bouteille extends Modele
+class BouteilleModele extends Modele
 {
 	const TABLE = 'vino__bouteille';
 
@@ -49,7 +45,6 @@ class Bouteille extends Modele
 			}
 		} else {
 			throw new Exception("Erreur de requête sur la base de donnée", 1);
-			//$this->_db->error;
 		}
 
 		return $rows;
@@ -101,7 +96,7 @@ class Bouteille extends Modele
 	 * @param string $nom La chaine de caractère à rechercher
 	 * @param integer $nb_resultat Le nombre de résultat maximal à retourner.
 	 * 
-	 * @throws Exception Erreur de requête sur la base de données 
+	 * @throws Exception Erreur de requête sur la base de données.
 	 * 
 	 * @return array id et nom de la bouteille trouvée dans le catalogue
 	 */
@@ -113,9 +108,8 @@ class Bouteille extends Modele
 		$nom = $this->_db->real_escape_string($nom);
 		$nom = preg_replace("/\*/", "%", $nom);
 
-		$requete = "(SELECT id, nom, 'SAQ' AS 'TABLE' FROM vino__bouteille_saq where LOWER(nom) LIKE LOWER('%" . $nom . "%') LIMIT 0," . $nb_resultat .")"
-
-			. "UNION ALL (SELECT id, nom, 'Cellier' AS 'TABLE' FROM vino__bouteille where LOWER(nom) LIKE LOWER('%" . $nom . "%') LIMIT 0," . $nb_resultat .");";
+		$requete = "(SELECT id, nom, 'SAQ' AS 'TABLE' FROM vino__bouteille_saq where LOWER(nom) LIKE LOWER('%" . $nom . "%') LIMIT 0," . $nb_resultat . ")"
+			. "UNION ALL (SELECT id, nom, 'Cellier' AS 'TABLE' FROM vino__bouteille where LOWER(nom) LIKE LOWER('%" . $nom . "%') LIMIT 0," . $nb_resultat . ");";
 
 		if (($res = $this->_db->query($requete)) ==	 true) {
 			if ($res->num_rows) {

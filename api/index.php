@@ -1,16 +1,30 @@
 <?php
+
+use VinoAPI\Core\Autoloader;
+use VinoAPI\Core\Router;
+
+/***************************************************/
+/** Headers HTTP **/
+/***************************************************/
+
 header('Content-Type: application/json; charset=utf8');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: OPTIONS, PUT, POST, GET, DELETE');
+header('Access-Control-Allow-Credentials: true');
 
 /***************************************************/
-/** Fichier de configuration, contient les define et l'autoloader **/
+/** Fichier de configuration **/
 /***************************************************/
-require_once('./dataconf.php');
-require_once("./config.php");
+require_once('./config/dataconf.php');
+require_once('./core/Autoload.php');
 
 /***************************************************/
-/** Démarrage du controleur **/
+/** Autoload... **/
 /***************************************************/
-$oCtl = new Controller();
-$oCtl->gerer();
+Autoloader::register();
+
+/***************************************************/
+/** Démarrage du router **/
+/***************************************************/
+$oRouter = new Router;
+$oRouter->gerer();

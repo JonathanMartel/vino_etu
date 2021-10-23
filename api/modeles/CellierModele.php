@@ -1,18 +1,24 @@
 <?php
 
+namespace VinoAPI\Modeles;
+
+use Exception;
+
 /**
- * Gère les requêtes de celliers.
+ * Traite les requêtes des celliers à la db.
  */
-class Cellier extends Modele
+class CellierModele extends Modele
 {
     /**
      * Ajoute un nouveau cellier.
      *
      * @param mixed $data Le body de la requête.
-     * @return void
+     * 
+     * @return Boolean Passage de la requête.
      */
     public function ajouterNouveauCellier($data)
     {
+
         //TODO : Valider les données.
 
         $requete = "INSERT INTO vino__cellier(emplacement_cellier,usager_id) VALUES (" .
@@ -23,12 +29,13 @@ class Cellier extends Modele
 
         return $res;
     }
-    
+
     /**
      * Retourne tous les celliers d'un usager.
      *
      * @param mixed $id L'id de l'usager.
-     * @return void
+     * 
+     * @return Array Résultats de la requête.
      */
     public function getCelliersParUsagerId($id)
     {
@@ -36,7 +43,7 @@ class Cellier extends Modele
 
         $requete = "SELECT id_cellier, emplacement_cellier FROM vino__cellier WHERE usager_id = $id";
 
-        if (($res = $this->_db->query($requete)) ==     true) {
+        if (($res = $this->_db->query($requete)) == true) {
             if ($res->num_rows) {
                 while ($row = $res->fetch_assoc()) {
                     $row['emplacement_cellier'] = trim(utf8_encode($row['emplacement_cellier']));

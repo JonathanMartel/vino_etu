@@ -1,4 +1,9 @@
 <?php
+
+namespace VinoAPI\Libs;
+
+use mysqli;
+
 /**
  * Class MonSQL
  * Classe qui génère ma connection à MySQL à travers un singleton
