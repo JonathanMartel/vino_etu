@@ -24,6 +24,7 @@ class Bouteille extends Model
 
         return DB::table('bouteilles')
         ->where('nom', "LIKE" , "%" .$motCle. "%")
+        ->where("user_id", 1)
         ->get();
     }
 }

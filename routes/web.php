@@ -41,3 +41,5 @@ Route::get('/boireBouteille/{idCellier}/{idBouteille}/{millesime}', [CellierBout
 
 
 Route::get('/cellierBouteille/create', [CellierBouteilleController::class, 'create'])->name('ajouterNouvelleBouteille');
+Route::post('/cellierBouteille/store', [CellierBouteilleController::class, 'store'])->name('cellierBouteille.store');
+Route::get('/rechercheCellierBouteille/{idCellier}/{idBouteille}/{millesime}', [CellierBouteilleController::class, 'rechercheCellierBouteille'])->name('rechercheCellierBouteille');

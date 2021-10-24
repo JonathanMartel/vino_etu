@@ -30,4 +30,13 @@ class CellierBouteille extends Model
         
          return true;
     }
+
+    public static function rechercheCellierBouteille($idCellier, $idBouteille, $millesime) {
+
+        return DB::table('cellier_bouteilles')
+        ->where('cellier_id', $idCellier)
+        ->where('bouteille_id', $idBouteille)
+        ->where('millesime', $millesime)
+        ->get();
+    }
 }

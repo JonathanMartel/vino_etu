@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cellier;
 use App\Models\CellierBouteille;
 use Illuminate\Http\Request;
 
@@ -44,7 +45,13 @@ class CellierBouteilleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if(!isset($request->millesime)){
+            $request->millesime = 0000;
+        }
+       $cellierBouteille = CellierBouteille::rechercheCellierBouteille(1, $request->bouteille_id, $request->millesime);
+      if(isset($cellierBouteille[0])){
+        return back()->with('success', "k");
+      }
     }
 
     /**
@@ -131,6 +138,5 @@ class CellierBouteilleController extends Controller
         //
     }
 
-    
 
 }

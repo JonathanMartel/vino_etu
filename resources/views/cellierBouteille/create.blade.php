@@ -1,18 +1,23 @@
 @extends('layouts.app')
 @section('content')
+
+@if(Session::get('success'))
+<span class="success"></span>
+@endif
 <div class="row">
-      <div class="input-field col s12">
+      <div class="input-field col s12 recherche">
           <i class="material-icons prefix">search</i>
           <input type="text"  name="recherche" autocomplete="off">
           <label for="recherche">Rechercher une bouteille</label>
-          <div class="autocomplete"></div>
+          <div class="autocomplete z-depth-2"></div>
         </div>
       </div>
 
 <div class="row">
-    <form class="col s12">
+    <form class="col s12" action="{{route('cellierBouteille.store')}}" method="POST">
+          @csrf
         <div class="input-field col s12">
-          <input id="nom" type="text" class="validate">
+          <input id="nom" name="nom" type="text" class="validate" required>
           <label for="nom">Nom</label>
           <span class="helper-text" data-error="Format invalid"></span>
         </div>
@@ -27,12 +32,13 @@
           <span class="helper-text" data-error="Format invalid"></span>
         </div>
         <div class="input-field col s12">
-          <input id="millesime" type="number" max="9999" min="0000" pattern="\d{4}" class="validate">
-          <label for="millesime">Millesime</label>
-          <span class="helper-text" data-error="Format invalid"></span>
-        </div>
+    <select name ="millesime">
+      <option value="" disabled selected></option>
+    </select>
+    <label>Millesime</label>
+  </div>
         <div class="input-field col s12">
-          <input id="date_achat" type="text" class="datepicker validate">
+          <input id="date_achat" type="text" tabindex="-1" class="datepicker validate">
           <label for="date_achat">Date d'achat</label>
           <span class="helper-text" data-error="Format invalid"></span>
         </div>
@@ -49,13 +55,13 @@
         <div class="file-field input-field col s12">
           <div class="btn">
             <span>Image</span>
-            <input type="file">
+            <input type="file" accept="image/*">
           </div>
           <div class="file-path-wrapper">
             <input class="file-path validate" type="text">
           </div>
         </div>
-        <div class="rate col s12">
+        <div class="rate">
           <input type="radio" id="star5" name="rate" value="5" />
           <label for="star5" title="text">5 stars</label>
           <input type="radio" id="star4" name="rate" value="4" />
@@ -67,11 +73,12 @@
           <input type="radio" id="star1" name="rate" value="1" />
           <label for="star1" title="text">1 star</label>
         </div>
-        <input type="hidden" id="bouteille_id">
+        <input type="hidden"  id="note">
+        <input type="hidden" name="bouteille_id" id="bouteille_id">
         <div class="col s12">
-        <button class="btn waves-effect waves-light" type="reset" name="action">reset
-              <i class="material-icons right">reset</i>
-          <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+        <button class="btn waves-effect waves-light" type="reset" name="reset">Annuler
+      
+          <button class="btn waves-effect waves-light" type="submit" name="submit">Submit
               <i class="material-icons right">send</i>
         </div>
   </button>
