@@ -1,5 +1,6 @@
 import React from "react";
 import BouteilleCellier from "../BouteilleCellier/BouteilleCellier";
+import Modal from "../Modal/Modal";
 import { Link } from "react-router-dom";
 
 import './ListeBouteilleCellier.css';
@@ -8,12 +9,15 @@ export default class ListeBouteilleCellier extends React.Component {
 	constructor(props){
 	  super(props);
 	  this.state = {
-		  bouteilles: []
+		  bouteilles: [],
+		  voirModal: false,
 	  }
 
 	  this.ajouter = this.ajouter.bind(this);
 	  this.retirer = this.retirer.bind(this);
 	  this.fetchBouteilles = this.fetchBouteilles.bind(this);
+	  this.ouvrirModal = this.ouvrirModal.bind(this);
+	  this.fermerModal = this.fermerModal.bind(this);
 	
 	}
 
@@ -26,12 +30,23 @@ export default class ListeBouteilleCellier extends React.Component {
             });
 	}
 
+	ouvrirModal(){
+		this.setState({voirModal: true});
+	}
+
+	fermerModal(){
+		this.setState({voirModal: false});
+	}
+	
 	ajouter(id){
+
+		this.ouvrirModal();
+
 		 const entete = new Headers();
 		 entete.append("Content-Type", "application/json");
 
 		 const reqOptions = {
-            method: 'PATCH',
+            method: 'PUT',
             headers: entete,
             body: "", // Insérer le contenu du body nécessaire
             redirect: 'follow'
@@ -45,11 +60,14 @@ export default class ListeBouteilleCellier extends React.Component {
 	}
 
 	retirer(id){
+
+		this.ouvrirModal();
+
 		const entete = new Headers();
 		 entete.append("Content-Type", "application/json");
 
 		 const reqOptions = {
-            method: 'PATCH',
+            method: 'PUT',
             headers: entete,
             body: "", // Insérer le contenu du body nécessaire
             redirect: 'follow'
@@ -87,6 +105,9 @@ export default class ListeBouteilleCellier extends React.Component {
 				<div>
 					{bouteilles}
 				</div>
+				<Modal voir={this.state.voirModal} fermer={this.fermerModal}>
+					
+				</Modal>
 			</div>
 		);
 	}

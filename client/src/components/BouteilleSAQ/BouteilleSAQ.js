@@ -5,7 +5,6 @@ import './BouteilleSAQ.css';
 export default class BouteilleSAQ extends React.Component {
 	constructor(props){
 	  super(props);
-	
 	}
 
 	render() {
