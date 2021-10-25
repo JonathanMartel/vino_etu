@@ -18,7 +18,6 @@ export default class AjoutBouteilleCellier extends React.Component {
 			prix: "",
 			garde: "",
 			commentaires: "",
-
 		}
 
 		// Binding des fonctions
@@ -53,13 +52,9 @@ export default class AjoutBouteilleCellier extends React.Component {
             body: "", // Insérer le body de la requete
             redirect: 'follow'
         };
-
-		
 	}
 	
-	
 	componentDidMount(){
-		
 	}
 
 	render() {
