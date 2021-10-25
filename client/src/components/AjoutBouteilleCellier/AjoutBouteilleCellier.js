@@ -62,7 +62,7 @@ export default class AjoutBouteilleCellier extends React.Component {
 		const bouteilles = this.state.bouteillesSAQ
 								.map((bouteille, index)=>{
 									return (
-										<Bouteille info={bouteille} onClick={this.choixBouteille.bind(bouteille)} key={index}/>
+										<BouteilleSAQ info={bouteille} onClick={this.choixBouteille.bind(bouteille)} key={index}/>
 									)
 								})
 		
