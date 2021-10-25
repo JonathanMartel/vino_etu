@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Cellier;
 use Illuminate\Database\Seeder;
 
 class CellierSeeder extends Seeder
@@ -13,6 +14,10 @@ class CellierSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Cellier::create([
+            "nom"         => "maison",
+            "description" => "Cellier au sous-sol de la maison",
+            "user_id"     => 1,
+        ]);
     }
 }

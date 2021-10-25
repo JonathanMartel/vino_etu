@@ -16,7 +16,7 @@ class CreateCelliersTable extends Migration
         Schema::create('celliers', function (Blueprint $table) {
             $table->id();
             $table->string("nom");
-            $table->string("description");
+            $table->string("description")->nullable();
             $table->foreignId("user_id")->constrained();
             $table->timestamps();
         });
