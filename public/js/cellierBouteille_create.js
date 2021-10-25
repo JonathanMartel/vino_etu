@@ -1,3 +1,5 @@
+
+
 document.addEventListener('DOMContentLoaded', function() {
     const recherche = document.querySelector('[name="recherche"]');
     const liste = document.querySelector('.autocomplete');
@@ -14,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 return (response.json())
             })
             .then(response => {
-                console.log(response)
+
                 response.forEach(function(element){
                     liste.innerHTML += "<div data-id='"+element.id +"'>"+element.nom+"</div>";
                   })
@@ -31,34 +33,28 @@ document.addEventListener('DOMContentLoaded', function() {
      */
     const inputNom = document.querySelector('#nom');
     const inputBouteilleId = document.querySelector('#bouteille_id');
+    const fileInput = document.querySelector(".file-field");
+
     liste.addEventListener('click', e => {
-                console.log(e.target.tagName)
+        
         if(e.target.tagName == "DIV") {
             inputNom.nextElementSibling.className ='active';
             inputNom.value = e.target.innerHTML;
-            inputNom.disabled = true;
+            inputNom.readOnly = true;
+            inputNom.className = "valid";
             recherche.value = "";
             recherche.nextElementSibling.className ='';
             liste.innerHTML = "";
             inputBouteilleId.value = e.target.dataset.id;
+            fileInput.style.display = "none";
         }
     })
 
     /**
-     * Remplir le select de millesime
+     *  le select de millesime
      */
     const millesime = document.querySelector('[name="millesime"]');
     M.FormSelect.init(millesime);
-
-    const date = new Date();
-    const anneePresent = date.getFullYear();
-    const anneDebut = 1700;
-
-    for(var annee = anneePresent; annee >= anneDebut; annee--){
-        millesime.options[millesime.options.length] = new Option(annee, annee);
-    };
-
-    M.FormSelect.init(millesime); 
 
     /**
      * Calendier de la date d'achat
@@ -66,22 +62,70 @@ document.addEventListener('DOMContentLoaded', function() {
     const datepicker = document.querySelector('.datepicker');
     M.Datepicker.init(datepicker, {autoClose : true});
 
-    const radios = document.querySelectorAll('input[type="radio"]');
-    const inputNote = document.querySelector('note');
-    radios.forEach(radio => {
-
-        radio.addEventListener('click', (e) => {
-            e.preventDefault()
-            e.stopPropagation()
-           
-            console.log(radio.value)
-        })
-        
-    });
+   
+    /**
+     * Message Dialogue si une bouteille existe déjà
+     */
     const success = document.querySelector(".success");
-    console.log(success)
+
     if(success) {
         var toastHTML = '<span>Cette bouteille existe déjà dans vôtre cellier</span><button class="btn-flat toast-action">Fermer</button>';
         M.toast({html: toastHTML, displayLength : 5000})
     }
+
+    if( inputBouteilleId.value) {
+        fileInput.style.display = "none";
+        inputNom.readOnly = true;
+    }
+
+    /**
+     * Note
+     */
+     new StarRating('.star-rating',{
+        maxStars: 5,
+        clearable : true,
+        classNames: {
+            active: 'gl-active',
+            base: 'gl-star-rating',
+            selected: 'gl-selected',
+          },
+          stars: function (el, item, index) {
+            el.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect class="gl-star-full" width="19" height="19" x="2.5" y="2.5"/><polygon fill="#FFF" points="12 5.375 13.646 10.417 19 10.417 14.665 13.556 16.313 18.625 11.995 15.476 7.688 18.583 9.333 13.542 5 10.417 10.354 10.417"/></svg>';
+          },
+          tooltip: 'Choisir une note',
+          
+    });
+
+     /**
+     * Réinitialiser le formulaire d'ajout
+     */
+      const form = document.querySelector('form');
+      const btnReset = form.querySelector('[name="reinitialiser"]');
+  
+      btnReset.addEventListener('click', (e) => {
+        e.preventDefault()
+        form.reset();
+
+        form.querySelectorAll('input').forEach(input => {
+            input.value = null;
+            input.classList.remove('valid');
+        })
+        
+        form.querySelector('select').options.selectedIndex = null;
+        
+        form.querySelectorAll('.gl-active').forEach(etoile => {
+        etoile.classList.remove('gl-active', 'gl-selected');
+        })
+
+        form.querySelector('.gl-star-rating--stars').setAttribute('aria-label', 'Choisir une note');
+        form.querySelector('.gl-star-rating--stars').setAttribute('data-rating', 0);
+        form.querySelector('textarea').value = "";
+        fileInput.style.display = "block";
+        inputNom.readOnly = false;
+
+      })
   });
+
+  
+
+ 

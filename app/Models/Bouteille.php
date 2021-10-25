@@ -20,11 +20,16 @@ class Bouteille extends Model
         return $this->belongsTo(Type::class);
     }
 
+    /**
+     * https://stackoverflow.com/questions/261783/how-to-do-select-from-where-x-is-equal-to-multiple-values
+     * Obtenir les bouteilles listées et celles qui sont non-listées appantenant à l'usager connecté
+     */
+
     public static function rechercheBouteilles($motCle) {
 
         return DB::table('bouteilles')
         ->where('nom', "LIKE" , "%" .$motCle. "%")
-        ->where("user_id", 1)
+        ->whereIn("user_id", [1, 2])
         ->get();
     }
 }

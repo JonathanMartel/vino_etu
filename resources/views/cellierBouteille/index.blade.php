@@ -1,5 +1,9 @@
 @extends('layouts.app')
 @section('content')
+
+@if(Session::get('nouvelleBouteille'))
+<span class="nouvelleBouteille"></span>
+@endif
 <h1>Un petit verre de vino ?</h1>
 <a href="{{ route('ajouterNouvelleBouteille') }}">Ajouter un nouveau vin au cellier</a>
 <table class="responsive-table striped highlight">
