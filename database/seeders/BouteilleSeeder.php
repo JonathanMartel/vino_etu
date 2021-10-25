@@ -13,16 +13,21 @@ class BouteilleSeeder extends Seeder {
      * @param int $nombre
      * @param int $debut
      */
-    static public function getProduitsParCategorie($nombre = 24, $page = 1, $categorie_url = "vin/vin-rouge") {
+    static public function insererProduitsParCategorie($nombre = 24, $page = 1, $categorie_url = "vin/vin-rouge") {
         // Carotgraphier l'id de la catégorie selon l'url reçu
-        /* $categoriesUrlIdMapping = [
+        $categoriesUrlIdMapping = [
             "vin/vin-blanc" => "1",
             "vin/vin-rouge" => "2",
-        ]; */
+        ];
+
+        $categorieId = $categoriesUrlIdMapping[$categorie_url];
+
+        // Tableau de tableaux de résultats à insérer avec la méthode createMany
+        $aInserer = [];
 
 
         $s = curl_init();
-        $url = "https://www.saq.com/fr/produits/vin/vin-rouge?p=1&product_list_limit=24&product_list_order=name_asc";
+        $url = "https://www.saq.com/fr/produits/{$categorie_url}?p={$page}&product_list_limit={$nombre}&product_list_order=name_asc";
 
         // Se prendre pour un navigateur pour berner le serveur de la saq...
         curl_setopt_array($s, array(
@@ -50,29 +55,29 @@ class BouteilleSeeder extends Seeder {
         @$doc->loadHTML($webpage);
 
         $elements = $doc->getElementsByTagName("li");
-        // dd(iterator_to_array($elements));
-        $i = 0;
 
         foreach ($elements as $noeud) {
-            if (strpos($noeud -> getAttribute('class'), "product-item") === false) {
+            if (strpos($noeud->getAttribute('class'), "product-item") === false) {
                 continue;
-			}
+            }
 
-            $info = self::recupereInfo($noeud);
+            if(!$bouteille = self::recupereInfo($noeud, $categorieId)) {
+                continue;
+            }
 
-            var_dump($info);
-
-            Bouteille::create(self::recupereInfo($noeud));
+            $aInserer[] = $bouteille;
         }
 
-        return $i;
+        Bouteille::insert($aInserer);
+
+        return;
     }
 
     static private function nettoyerEspace($chaine) {
         return preg_replace('/\s+/', ' ', $chaine);
     }
 
-    static private function recupereInfo($noeud) {
+    static private function recupereInfo($noeud, $categorieId) {
 
         $info = new \stdClass();
 
@@ -92,9 +97,14 @@ class BouteilleSeeder extends Seeder {
                 $aDesc = explode("|", $info->description); // Type, Format, Pays
 
                 if (count($aDesc) == 3) {
-                    $info->categories_id = Categorie::select("id")->where("nom", trim($aDesc[0]))->get()->first()->id;
+                    $info->categories_id = $categorieId;
                     $info->format = trim($aDesc[1]);
-                    $info->pays_id = Pays::select("id")->where("nom", trim($aDesc[2]))->get()->first()->id;
+
+                    if(!$pays = Pays::select("id")->where("nom", "like", "%".trim($aDesc[2])."%")->get()->first()) {
+                        return false;
+                    }
+
+                    $info->pays_id = $pays->id;
                 }
 
                 $info->description = trim($info->description);
@@ -112,6 +122,18 @@ class BouteilleSeeder extends Seeder {
      * @return void
      */
     public function run() {
-        $this->getProduitsParCategorie();
+        $categories = [
+            "vin/vin-blanc",
+            "vin/vin-rouge",
+        ];
+
+        $affichageParPage = 96;
+        $nombrePage = 3;
+
+        foreach ($categories as $categorie) {
+            for ($i = 1; $i <= $nombrePage; $i++) {
+                $this->insererProduitsParCategorie($affichageParPage, $i, $categorie);
+            }
+        }
     }
 }

@@ -43,10 +43,29 @@ class PaysSeeder extends Seeder {
             [
                 "nom" => "Chili",
             ],
+            [
+                "nom" => "Grèce",
+            ],
+            [
+                "nom" => "Nouvelle-Zélande",
+            ],
+            [
+                "nom" => "Moldavie",
+            ],
+            [
+                "nom" => "Allemagne",
+            ],
+            [
+                "nom" => "Autriche",
+            ],
+            [
+                "nom" => "Hongrie",
+            ],
+            [
+                "nom" => "Arménie",
+            ],
         ];
 
-        foreach($pays as $unPays) {
-            Pays::create($unPays);
-        }
+        Pays::insert($pays);
     }
 }
