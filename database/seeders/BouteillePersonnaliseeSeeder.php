@@ -16,7 +16,7 @@ class BouteillePersonnaliseeSeeder extends Seeder
     {
         BouteillePersonnalisee::create([
             "nom" => "Vin de bouette",
-            "description" => "Un vin particulièrement excécrable",
+            "description" => "Un vin particulièrement exécrable",
             "conservation" => "pas plus qu'une semaine",
             "pays_id" => 5,
             "categories_id" => 2,
