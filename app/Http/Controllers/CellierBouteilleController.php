@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cellier;
 use App\Models\CellierBouteille;
 use Illuminate\Http\Request;
 
@@ -44,8 +45,34 @@ class CellierBouteilleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if(!isset($request->millesime)) {
+            $request->millesime = 0;
+        }
+
+        $request->validate([
+            'nom' => 'required',
+        ]);
+      
+       if(isset($request->bouteille_id)){
+        $cellierBouteille = CellierBouteille::rechercheCellierBouteille(1, $request->bouteille_id, $request->millesime);
+        
+        if(isset($cellierBouteille[0])){
+            return back()->withInput()->with('erreur', "Bouteille existe déjà");
+        }else {
+            if(isset($request->date_achat)){
+                $request->date_achat = date('Y-m-d', strtotime($request->date_achat));
+            }
+            $cellierBouteille = new CellierBouteille;
+            $cellierBouteille->fill($request->all());
+            $cellierBouteille->cellier_id = 1;
+            $cellierBouteille->save();
+            
+            return redirect("cellier")->with("nouvelleBouteille", "nouvelle bouteille ajoutée" );
+        }
     }
+        
+    }
+    
 
     /**
      * Display the specified resource.
@@ -78,9 +105,7 @@ class CellierBouteilleController extends Controller
     {
         $quantiteAjoute = 1; // a inclure en paramettre si on donne l'option d'ajouter plus d'une bouteille à la fois.
 
-        if($millesime == 0) {
-            $millesime = 0000;
-        }
+    
         $estAjoute = CellierBouteille::modifierQuantiteBouteille($idCellier, $idBouteille, $millesime, $quantiteAjoute);
 
         if($estAjoute){
@@ -96,10 +121,6 @@ class CellierBouteilleController extends Controller
     {
         $quantiteBue = -1; // a inclure en paramettre si on donne l'option d'ajouter plus d'une bouteille à la fois.
 
-
-        if($millesime == 0) {
-            $millesime = 0000;
-        }
         $estBue = CellierBouteille::modifierQuantiteBouteille($idCellier, $idBouteille, $millesime, $quantiteBue);
 
         if($estBue){
@@ -131,6 +152,5 @@ class CellierBouteilleController extends Controller
         //
     }
 
-    
 
 }
