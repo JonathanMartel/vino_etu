@@ -31,6 +31,18 @@ class PaysSeeder extends Seeder {
             [
                 "nom" => "États-Unis",
             ],
+            [
+                "nom" => "Australie",
+            ],
+            [
+                "nom" => "Espagne",
+            ],
+            [
+                "nom" => "Argentine",
+            ],
+            [
+                "nom" => "Chili",
+            ],
         ];
 
         foreach($pays as $unPays) {

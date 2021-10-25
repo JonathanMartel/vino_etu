@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AngularController;
+use Database\Seeders\BouteilleSeeder;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,5 +14,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/seed-saq', function () {
+    BouteilleSeeder::getProduitsParCategorie();
+});
 
 Route::any('/{any}', [AngularController::class, "index"])->where("any", "^(?!api).*$");

@@ -17,6 +17,7 @@ class CreateBouteillesTable extends Migration
             $table->id();
             $table->string("nom");
             $table->text("description")->nullable();
+            $table->string("url_image")->nullable();
             $table->string("url_achat")->nullable();
             $table->string("url_infos")->nullable();
             $table->string("conservation")->nullable();
