@@ -11,7 +11,7 @@ header('Content-Type: application/json; charset=utf8');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: OPTIONS, PUT, POST, GET, DELETE');
 header('Access-Control-Allow-Credentials: true');
-//header('Access-Control-Allow-Headers: Accept');
+header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
 
 if($_SERVER['REQUEST_METHOD'] == 'OPTIONS')
 {
