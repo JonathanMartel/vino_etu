@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BouteilleDeVinService} from '../bouteille-de-vin.service';
+import { BouteilleDeVinService} from '@services/bouteille-de-vin.service';
 
 @Component({
   selector: 'app-cellier',
@@ -9,7 +9,7 @@ import { BouteilleDeVinService} from '../bouteille-de-vin.service';
 export class CellierComponent implements OnInit {
   cellier:any;
 
-  constructor(private servBouteilleDeVin:BouteilleDeVinService) { 
+  constructor(private servBouteilleDeVin:BouteilleDeVinService) {
 
   }
 
