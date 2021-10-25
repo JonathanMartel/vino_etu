@@ -5,6 +5,8 @@ import Pied from '../Pied/Pied';
 import Page404 from "../Page404/Page404";
 import AjoutBouteilleCellier from "../AjoutBouteilleCellier/AjoutBouteilleCellier";
 import ListeBouteilleCellier from "../ListeBouteillesCellier/ListeBouteilleCellier";
+import Inscription from "../Inscription/Inscription";	
+import Connexion from "../Connexion/Connexion";	
 
 import {Route, Switch, BrowserRouter as Router} from 'react-router-dom';
 
@@ -28,6 +30,8 @@ export default class App extends React.Component{
 					<Route exact path="/" component={Accueil} />
 					<Route exact path="/ajoutbouteillecellier" component={AjoutBouteilleCellier} />
 					<Route exact path="/listebouteillescellier" component={ListeBouteilleCellier} />
+					<Route exact path="/inscription" component={Inscription} />		
+					<Route exact path="/Connexion" component={Connexion} />	
 					<Route exact path="*" component={Page404} />
 				</Switch>
         <Pied/>
