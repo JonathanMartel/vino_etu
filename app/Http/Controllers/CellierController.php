@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cellier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CellierController extends Controller
 {
@@ -14,8 +15,11 @@ class CellierController extends Controller
      */
     public function index()
     {
-       
-        //
+        //$user_id = Auth::user()->id; //en attendant que l'authentification fonctionne !!!
+        $user_id = 2;
+        $userCelliers = Cellier::getCelliersByUser($user_id);
+
+        return view('celliers.index', ['celliers' =>$userCelliers]);
     }
 
     /**

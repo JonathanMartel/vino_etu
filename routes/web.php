@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CellierBouteilleController;
 use App\Http\Controllers\BouteilleController;
 use App\Http\Controllers\CustomAuthController;
+use App\Http\Controllers\CellierController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,6 +19,13 @@ use App\Http\Controllers\CustomAuthController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+/* Page d'accueil : Liste des celliers */
+
+Route::get('/home', [CellierController::class, 'index'])->name('home');
+
+
+
 
 Route::get('/login', [CustomAuthController::class, 'index'])->name('login');
 Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('login.custom');
