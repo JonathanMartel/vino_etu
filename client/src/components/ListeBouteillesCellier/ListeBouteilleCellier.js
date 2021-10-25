@@ -106,7 +106,7 @@ export default class ListeBouteilleCellier extends React.Component {
 					{bouteilles}
 				</div>
 				<Modal voir={this.state.voirModal} fermer={this.fermerModal}>
-					
+					<p>Test</p>
 				</Modal>
 			</div>
 		);

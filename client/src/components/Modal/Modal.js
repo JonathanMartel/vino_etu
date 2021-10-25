@@ -14,15 +14,15 @@ export default class Modal extends React.Component {
 		const Modal = ({fermer, voir, enfant}) => {
 			const choisirClasse = voir ? "modal display-block" : "modal display-none";
 		
-		return (
-			 <div className={choisirClasse}>
-				 <div className="modal-bloc">
-					 {enfant}
-					 <button onClick={fermer}>Fermer</button>
-				 </div>
-			 </div>
-		);
-		}
+			return (
+				<div className={choisirClasse}>
+					<div className="modal-bloc">
+						{enfant}
+						<button onClick={fermer}>Fermer</button>
+					</div>
+				</div>
+			);
+		};
 	}
 	
 };
