@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\PaysController;
+use App\Http\Controllers\UserController;
 use App\Models\vino__bouteille;
 use App\Models\vino__cellier;
 use Illuminate\Http\Request;
@@ -17,13 +20,29 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Générer les ressources nécessaires par défaut
+Route::apiResource("user", UserController::class)->only(
+    "store",
+);
+
+// Pour ces modèles, ne rendre que l'obtention de la liste complète comme disponible
+Route::apiResource('pays', PaysController::class)->parameters(["pays" => "pays"])->only([
+    "index",
+]);
+
+Route::apiResource('categories', CategorieController::class)->only([
+    "index",
+]);
+
+
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
 
 Route::get('/cellier', function(){
- 
+
 
     return response(vino__cellier::all(), 200);
 
@@ -31,7 +50,7 @@ Route::get('/cellier', function(){
 });
 
 Route::get('/bouteilles', function(){
-  
+
 
     return response(vino__bouteille::all(), 200);
 
