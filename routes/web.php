@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AngularController;
+use Database\Seeders\BouteilleSeeder;
 use Illuminate\Support\Facades\Route;
 
 /*
