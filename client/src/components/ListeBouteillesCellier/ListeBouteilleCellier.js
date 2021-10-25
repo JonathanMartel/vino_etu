@@ -1,6 +1,5 @@
 import React from "react";
 import BouteilleCellier from "../BouteilleCellier/BouteilleCellier";
-//import Modal from "../Modal/Modal";
 import { Link } from "react-router-dom";
 
 import './ListeBouteilleCellier.css';
@@ -10,7 +9,6 @@ export default class ListeBouteilleCellier extends React.Component {
 	  super(props);
 	  this.state = {
 		  bouteilles: [],
-		  //voirModal: false,
 	  }
 
 	  this.ajouter = this.ajouter.bind(this);
