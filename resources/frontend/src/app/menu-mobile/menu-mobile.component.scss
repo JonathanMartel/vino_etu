@@ -1,19 +1,27 @@
 
 .mat-toolbar{
-    background-color:#4c1920;
-    position: sticky;
+    position: fixed;
+    background-color:#FFF;
     bottom: 0;
+    left: 0;
     z-index: 100;
-
+    box-shadow: 0 -1px 4px 0 rgb(0 0 0 / 28%);
 }
 
 .mat-toolbar .menu-mobile{
     display: flex;
+    padding: 12px 20px;
+    margin: 0;
     justify-content: space-between;
     flex-grow: 1;  
 }
 
 .mat-toolbar a{
+    font-size: 13px;
+    text-align: center;
+    padding: var(--espacement-petit);
+    border-radius: var(--espacement-petit);
+    margin: var(--espacement-petit);
     text-decoration: none;
-    color: #fff;
+    color: #000;
 }

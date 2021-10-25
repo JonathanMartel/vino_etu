@@ -1,12 +1,20 @@
-<section>
+
+<div class="content">
+    
     <h1>Catalogue de bouteilles</h1>
-    <article *ngFor="let uneBouteille of bouteille">
-        <h2>{{uneBouteille.nom}}</h2>
-        <div>
-            <p>Pays :{{uneBouteille.pays}}</p>
-            <p>Description :{{uneBouteille.description}}</p>
-            <p>Prix :{{uneBouteille.prix_saq}}</p>
-            <p>Format :{{uneBouteille.format}}</p>
+    <section *ngFor="let uneBouteille of bouteille" class="resultat">
+        <div class="resultat-vin">
+            <a class="btn-vin" href="#"><img src="https://www.saq.com/media/catalog/product/1/4/14453730-1_1588617319.png?width=367&height=550&canvas=367:550&quality=80&fit=bounds" alt="une bouteille"></a>
+            <div class="resultat-vin-data"><a class="target-link" href="#">{{uneBouteille.nom}}</a></div>
+            <div class="vin-data-droit">{{uneBouteille.format}}</div>
+            <span class="subtexte">{{uneBouteille.prix_saq}}.99$</span>
         </div>
-    </article>
-</section>
+        <div>
+            <div>
+                <span class="subtexte">{{uneBouteille.pays}}</span>
+            </div>
+            <div class="subtexte">{{uneBouteille.code_saq}}</div>
+        </div>
+    </section>
+    
+</div>
