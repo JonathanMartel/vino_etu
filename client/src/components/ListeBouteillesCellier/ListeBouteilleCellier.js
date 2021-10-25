@@ -1,5 +1,6 @@
 import React from "react";
 import BouteilleCellier from "../BouteilleCellier/BouteilleCellier";
+import Modal from "../Modal/Modal";
 import { Link } from "react-router-dom";
 
 import './ListeBouteilleCellier.css';
@@ -61,7 +62,7 @@ export default class ListeBouteilleCellier extends React.Component {
 	retirer(id){
 
 		this.ouvrirModal();
-		
+
 		const entete = new Headers();
 		 entete.append("Content-Type", "application/json");
 
@@ -104,6 +105,9 @@ export default class ListeBouteilleCellier extends React.Component {
 				<div>
 					{bouteilles}
 				</div>
+				<Modal voir={this.state.voirModal} fermer={this.fermerModal}>
+					
+				</Modal>
 			</div>
 		);
 	}
