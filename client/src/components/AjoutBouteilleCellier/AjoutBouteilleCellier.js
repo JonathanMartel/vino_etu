@@ -22,16 +22,27 @@ export default class AjoutBouteilleCellier extends React.Component {
 
 		// Binding des fonctions
 		this.fetchBouteillesSAQ = this.fetchBouteillesSAQ.bind(this);
-		this.afficheBouteilleSAQ = this.afficheBouteilleSAQ.bind(this);
 		this.ajouterBouteilleCellier = this.ajouterBouteilleCellier.bind(this);
 	}
 
-	afficheBouteilleSAQ(event) {
-		this.setState({recherche:event.target.value});
-	}
-
-	fetchBouteillesSAQ(){
-		fetch("") // Insérer l'adresse pour la request HTTP
+	fetchBouteillesSAQ(event){
+		console.log(event.target.value);
+		const entete = new Headers();
+        entete.append("Content-Type", "application/json");
+		entete.append("Authorization", "Basic " + btoa("vino:vino"));
+		entete.append("mode", "CORS");
+		const reqOptions = {
+            headers: entete
+        };
+		fetch("http://127.0.0.1:8000/webservice/php/saq/" + event.target.value, {
+			method: 'GET',
+			headers: new Headers({
+				"Content-Type": "application/json",
+				"authorization": "Basic " + btoa("vino:vino"),
+			}),
+			//mode: 'no-cors'
+			
+		}) 
 		.then(reponse => reponse.json())
 		.then((donnees)=>{
 			this.setState({bouteillesSAQ:donnees.data}) 
@@ -40,7 +51,8 @@ export default class AjoutBouteilleCellier extends React.Component {
 	}
 
 	choixBouteille(){
-		//this.setState({nomBouteilleSAQ:this.bouteille.nom, prixBouteilleSAQ: this.bouteille.prix_saq});
+		this.setState({nomBouteilleSAQ:this.bouteille.nom, prixBouteilleSAQ: this.bouteille.prix_saq});
+		console.log(this.state.nomBouteilleSAQ);
     }
 
 	ajouterBouteilleCellier() {
@@ -67,8 +79,8 @@ export default class AjoutBouteilleCellier extends React.Component {
 								})
 		
 		return (
-			<div className="nouvelleBouteille" vertical layout>
-				<p>Recherche : <input onChange={this.afficheBouteilleSAQ} type="text" name="nom_bouteille" /></p>
+			<div className="nouvelleBouteille">
+				<p>Recherche : <input onKeyUp={(event)=>this.fetchBouteillesSAQ(event)} type="text" name="nom_bouteille" /></p>
 					<ul>
 						{bouteilles}
 					</ul>
