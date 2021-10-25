@@ -1,5 +1,11 @@
 <?php
 
+namespace VinoAPI\Libs;
+
+use VinoAPI\Modeles\Modele;
+use DOMDocument;
+use stdClass;
+
 /**
  * Class MonSQL
  * Classe qui génère ma connection à MySQL à travers un singleton
@@ -24,8 +30,8 @@ class SAQ extends Modele
 	public function __construct()
 	{
 		parent::__construct();
-		if (!($this->stmt = $this->_db->prepare("INSERT INTO vino__bouteille(nom, type, image, code_saq, pays, description, prix_saq, url_saq, url_img, format) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
-			echo "Echec de la préparation : (" . $this->_db->errno . ") " . $this->_db->mysqli->error;
+		if (!($this->stmt = $this->_db->prepare("INSERT INTO vino__bouteille_saq(nom, type, code_saq, pays, description, prix_saq, url_saq, url_img, format) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
+			//echo "Echec de la préparation : (" . $mysqli->errno . ") " . $mysqli->error;
 		}
 	}
 
@@ -58,7 +64,7 @@ class SAQ extends Modele
 		self::$_status = curl_getinfo($s, CURLINFO_HTTP_CODE);
 		curl_close($s);
 
-		$doc = new DOMDocument();
+		$doc = new DOMDocument;
 		$doc->recover = true;
 		$doc->strictErrorChecking = false;
 		@$doc->loadHTML(self::$_webpage);
@@ -67,6 +73,7 @@ class SAQ extends Modele
 		foreach ($elements as $key => $noeud) {
 			if (strpos($noeud->getAttribute('class'), "product-item") !== false) {
 				$info = $this->recupereInfo($noeud);
+				var_dump($info);
 				echo "<p>" . $info->nom;
 				$retour = $this->ajouteProduit($info);
 				echo "<br>Code de retour : " . $retour->raison . "<br>";
@@ -102,7 +109,7 @@ class SAQ extends Modele
 	private function recupereInfo($noeud)
 	{
 
-		$info = new stdClass();
+		$info = new stdClass;
 		$info->img = $noeud->getElementsByTagName("img")->item(0)->getAttribute('src'); //TODO : Nettoyer le lien
 		;
 		$a_titre = $noeud->getElementsByTagName("a")->item(0);
@@ -115,7 +122,7 @@ class SAQ extends Modele
 		$aElements = $noeud->getElementsByTagName("strong");
 		foreach ($aElements as $node) {
 			if ($node->getAttribute('class') == 'product product-item-identity-format') {
-				$info->desc = new stdClass();
+				$info->desc = new stdClass;
 				$info->desc->texte = $node->textContent;
 				$info->desc->texte = $this->nettoyerEspace($info->desc->texte);
 				$aDesc = explode("|", $info->desc->texte); // Type, Format, Pays
@@ -152,22 +159,25 @@ class SAQ extends Modele
 
 	private function ajouteProduit($bte)
 	{
-		$retour = new stdClass();
+		$retour = new stdClass;
 		$retour->succes = false;
 		$retour->raison = '';
 
+		var_dump($this->_db);
 		// Récupère le type
 		$rows = $this->_db->query("select id from vino__type where type = '" . $bte->desc->type . "'");
-
+		var_dump($rows);
 		if ($rows->num_rows == 1) {
 			$type = $rows->fetch_assoc();
+			//var_dump($type);
 			$type = $type['id'];
 
-			$rows = $this->_db->query("select id from vino__bouteille where code_saq = '" . $bte->desc->code_SAQ . "'");
+			$rows = $this->_db->query("select id from vino__bouteille_saq where code_saq = '" . $bte->desc->code_SAQ . "'");
 			if ($rows->num_rows < 1) {
-				$this->stmt->bind_param("sissssisss", $bte->nom, $type, $bte->img, $bte->desc->code_SAQ, $bte->desc->pays, $bte->desc->texte, $bte->prix, $bte->url, $bte->img, $bte->desc->format);
+				$this->stmt->bind_param("sisssisss", $bte->nom, $type, $bte->desc->code_SAQ, $bte->desc->pays, $bte->desc->texte, $bte->prix, $bte->url, $bte->img, $bte->desc->format);
 				$retour->succes = $this->stmt->execute();
 				$retour->raison = self::INSERE;
+				//var_dump($this->stmt);
 			} else {
 				$retour->succes = false;
 				$retour->raison = self::DUPLICATION;
