@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BouteilleDeVinService} from '../bouteille-de-vin.service';
+import { BouteilleDeVinService} from '@services/bouteille-de-vin.service';
 
 @Component({
   selector: 'app-liste-bouteille',
