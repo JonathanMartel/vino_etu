@@ -26,12 +26,13 @@ class Router
 	/**
 	 * Array qui contient les erreurs et le data de chaque requête.
 	 *
-	 * @var array
+	 * @var Array
 	 */
 	private $retour = array('data' => array());
 
 	/**
 	 * Traite les requêtes.
+	 * 
 	 * @return void
 	 */
 	public function gerer()
@@ -161,8 +162,7 @@ class Router
 
 		if (isset($headers['authorization'])) {
 			if (isset($_SERVER['PHP_AUTH_PW']) && isset($_SERVER['PHP_AUTH_USER'])) {
-				$usagerClassObj = new UsagerModele();
-				if ($usagerClassObj->match($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW'])) {
+				if ($_SERVER['PHP_AUTH_PW'] == 'vino' && $_SERVER['PHP_AUTH_USER'] == 'vino') {
 					$access = true;
 				}
 			}
@@ -173,7 +173,7 @@ class Router
 	/**
 	 * Affiche une erreur http et return une array avec le code d'erreur.
 	 *
-	 * @param mixed $code
+	 * @param int $code
 	 * 
 	 * @return Array Erreur de requête HTTP.
 	 */

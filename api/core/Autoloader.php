@@ -7,12 +7,21 @@ namespace VinoAPI\Core;
  */
 class Autoloader
 {
-
+    /**
+     * Fonction statique qui démarre l'autoloader.
+     *
+     * @return void
+     */
     public static function register()
     {
         spl_autoload_register(array(new self, 'mon_autoloader'));
     }
-
+    
+    /**
+     * Custom autoloader qui va importer toutes les classes.
+     *
+     * @return void
+     */
     private function mon_autoloader()
     {
         $dossierClasse = array('modeles/', 'libs/', 'controllers/');
