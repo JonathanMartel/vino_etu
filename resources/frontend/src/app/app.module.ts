@@ -13,6 +13,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import { MenuMobileComponent } from './menu-mobile/menu-mobile.component';
 import { ListeBouteilleComponent } from './liste-bouteille/liste-bouteille.component';
+import { AjoutBouteilleComponent } from './ajout-bouteille/ajout-bouteille.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { ListeBouteilleComponent } from './liste-bouteille/liste-bouteille.compo
     CellierComponent,
     EnteteComponent,
     MenuMobileComponent,
-    ListeBouteilleComponent
+    ListeBouteilleComponent,
+    AjoutBouteilleComponent
   ],
   imports: [
     BrowserModule,
