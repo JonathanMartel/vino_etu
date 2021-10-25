@@ -15,8 +15,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/seed-saq', function () {
-    BouteilleSeeder::getProduitsParCategorie();
-});
-
 Route::any('/{any}', [AngularController::class, "index"])->where("any", "^(?!api).*$");
