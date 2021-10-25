@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder {
             CategorieSeeder::class,
             UserSeeder::class,
             CellierSeeder::class,
+            BouteilleSeeder::class,
         ]);
     }
 }
