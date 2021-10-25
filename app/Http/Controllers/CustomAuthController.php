@@ -39,6 +39,17 @@ class CustomAuthController extends Controller
     }
 
     /**
+     * Function se déconnecter.
+     *
+    */
+    public function logout(){
+        Session::flush();
+        Auth::logout();
+  
+        return redirect('login');
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param  \App\Models\user  $user

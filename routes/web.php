@@ -21,7 +21,9 @@ Route::get('/', function () {
 
 Route::get('/login', [CustomAuthController::class, 'index'])->name('login');
 Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('login.custom');
-Route::get('/registration', [CustomAuthController::class, 'create'])->name('inscription');
+// Route::get('/registration', [CustomAuthController::class, 'create'])->name('inscription');
+Route::get('/registration', [CustomAuthController::class, 'create']);
+Route::post('custom-registration', [CustomAuthController::class, 'store'])->name('register.custom');
 
 
 
