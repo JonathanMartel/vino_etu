@@ -15,6 +15,15 @@ class CreateBouteillesTable extends Migration
     {
         Schema::create('bouteilles', function (Blueprint $table) {
             $table->id();
+            $table->string("nom");
+            $table->text("description")->nullable();
+            $table->string("url_achat")->nullable();
+            $table->string("url_infos")->nullable();
+            $table->string("conservation")->nullable();
+            $table->text("notes")->nullable();
+            $table->string("format")->nullable();
+            $table->foreignId("pays_id")->constrained();
+            $table->foreignId("categories_id")->constrained();
             $table->timestamps();
         });
     }
