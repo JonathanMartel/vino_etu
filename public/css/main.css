@@ -6,6 +6,7 @@ img {
 .flex-row {
 	display: flex;
 	flex-direction: row;
+	
 }
 
 .flex-box {
@@ -15,6 +16,3 @@ img {
 	padding: 30px;
   }
 
-.titre-vignette {
-	
-}

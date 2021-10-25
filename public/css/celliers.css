@@ -1,0 +1,23 @@
+.liste-celliers {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.cellier {
+    background-color: #BBC7C1;
+    display: flex;
+    align-items: center;
+}
+
+.titre-vignette {
+	
+}
+
+.localisation-vignette {
+
+}
+
+.nb-vins-cellier {
+
+}
