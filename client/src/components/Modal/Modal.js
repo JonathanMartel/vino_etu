@@ -22,7 +22,7 @@ export default class Modal extends React.Component {
 				 </div>
 			 </div>
 		);
-		}
+		};
 	}
 	
-};
+}
