@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 // Générer les ressources nécessaires par défaut
 
 // Pour ces modèles, ne rendre que l'obtention de la liste complète comme disponible
-Route::apiResource('pays', PaysController::class)->only([
+Route::apiResource('pays', PaysController::class)->parameters(["pays" => "pays"])->only([
     "index",
 ]);
 
