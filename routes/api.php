@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\PaysController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Générer les ressources nécessaires par défaut
+Route::apiResource("user", UserController::class)->only(
+    "store",
+);
 
 // Pour ces modèles, ne rendre que l'obtention de la liste complète comme disponible
 Route::apiResource('pays', PaysController::class)->parameters(["pays" => "pays"])->only([
