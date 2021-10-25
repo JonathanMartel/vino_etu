@@ -30,9 +30,9 @@ class CellierController extends Router
             }
         } else if (count($this->urlParams) == 1) {
             $bte = new BouteilleModele;
-            $cellier = $bte->getListeBouteilleCellier();
+            //$cellier = $bte->getListeBouteilleCellier();
 
-            $this->retour['data'] = $cellier;
+            //$this->retour['data'] = $cellier;
         } else {
             $this->retour['erreur'] = $this->erreur(400);
             unset($this->retour['data']);

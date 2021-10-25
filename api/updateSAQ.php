@@ -8,8 +8,14 @@
 
 <body>
 	<?php
-	require("dataconf.php");
-	require("config.php");
+
+require("./core/Autoloader.php");
+use VinoAPI\Core\Autoloader;
+
+Autoloader::register();
+use VinoAPI\Libs\SAQ;
+
+require("./config/dataconf.php");
 	$page = 1;
 	$nombreProduit = 24; //48 ou 96	
 

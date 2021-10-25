@@ -163,10 +163,10 @@ class SAQ extends Modele
 		$retour->succes = false;
 		$retour->raison = '';
 
-		//var_dump($bte);
+		var_dump($this->_db);
 		// Récupère le type
 		$rows = $this->_db->query("select id from vino__type where type = '" . $bte->desc->type . "'");
-
+		var_dump($rows);
 		if ($rows->num_rows == 1) {
 			$type = $rows->fetch_assoc();
 			//var_dump($type);

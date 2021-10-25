@@ -18,11 +18,10 @@ class CellierModele extends Modele
      */
     public function ajouterNouveauCellier($data)
     {
-
         //TODO : Valider les données.
 
-        $requete = "INSERT INTO vino__cellier(emplacement_cellier,usager_id) VALUES (" .
-            "'" . $data->emplacement_cellier . "'," .
+        $requete = "INSERT INTO vino__cellier(emplacement,usager_id) VALUES (" .
+            "'" . $data->emplacement . "'," .
             "" . $data->usager_id . ")";
 
         $res = $this->_db->query($requete);
@@ -41,18 +40,17 @@ class CellierModele extends Modele
     {
         $rows = array();
 
-        $requete = "SELECT id_cellier, emplacement_cellier FROM vino__cellier WHERE usager_id = $id";
+        $requete = "SELECT id_cellier, emplacement FROM vino__cellier WHERE usager_id = $id";
 
         if (($res = $this->_db->query($requete)) == true) {
             if ($res->num_rows) {
                 while ($row = $res->fetch_assoc()) {
-                    $row['emplacement_cellier'] = trim(utf8_encode($row['emplacement_cellier']));
+                    $row['emplacement_cellier'] = trim(utf8_encode($row['emplacement']));
                     $rows[] = $row;
                 }
             }
         } else {
             throw new Exception("Erreur de requête sur la base de donnée", 1);
-            //$this->_db->error;
         }
 
         return $rows;

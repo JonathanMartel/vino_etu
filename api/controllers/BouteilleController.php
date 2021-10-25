@@ -19,19 +19,24 @@ class BouteilleController extends Router
 	{
 		if (count($this->urlParams) == 2) {
 			if (ctype_digit($this->urlParams[1])) {
-				$bte = new BouteilleModele;
-				$bouteilles = $bte->getBouteillesParUsagerId($this->urlParams[1]);
+				$bteClassObj = new BouteilleModele;
+				$bouteilles = $bteClassObj->getBouteilleParId($this->urlParams[1]);
 
 				$this->retour['data'] = $bouteilles;
 			} else {
 				$this->retour['erreur'] = $this->erreur(400);
 				unset($this->retour['data']);
 			}
-		} else if (count($this->urlParams) == 1) {
-			$bte = new BouteilleModele;
-			$cellier = $bte->getListeBouteilleCellier();
+		} else if (count($this->urlParams) == 3) {
+			if ($this->urlParams[1] == 'usager' && ctype_digit($this->urlParams[2])) {
+				$bteClassObj = new BouteilleModele;
+				$bouteilles = $bteClassObj->getBouteillesParUsagerId($this->urlParams[2]);
 
-			$this->retour['data'] = $cellier;
+				$this->retour['data'] = $bouteilles;
+			} else {
+				$this->retour['erreur'] = $this->erreur(400);
+				unset($this->retour['data']);
+			}
 		} else {
 			$this->retour['erreur'] = $this->erreur(400);
 			unset($this->retour['data']);
@@ -41,17 +46,17 @@ class BouteilleController extends Router
 	}
 
 	/**
-	 * Augmente la quantité de la bouteille de 1.
+	 * Change la quantité d'une bouteille.
 	 *
 	 * @return void
 	 */
-	public function ajouterBouteilleCellier()
+	public function modifierQuantiteBouteilleCellier()
 	{
 		$body = json_decode(file_get_contents('php://input'));
 
 		if (!empty($body)) {
-			$bte = new BouteilleModele;
-			$resultat = $bte->modifierQuantiteBouteilleCellier($body->id, 1);
+			$bteClassObj = new BouteilleModele;
+			$resultat = $bteClassObj->modifierQuantiteBouteilleCellier($body->id, $body->quantite);
 
 			$this->retour['data'] = $resultat;
 		} else {
@@ -59,7 +64,7 @@ class BouteilleController extends Router
 			unset($this->retour['data']);
 		}
 
-		echo json_encode($resultat);
+		echo json_encode($this->retour);
 	}
 
 	/**
@@ -73,8 +78,8 @@ class BouteilleController extends Router
 			$body = json_decode(file_get_contents('php://input'));
 
 			if (!empty($body)) {
-				$bte = new BouteilleModele;
-				$resultat = $bte->ajouterBouteilleCellier($body);
+				$bteClassObj = new BouteilleModele;
+				$resultat = $bteClassObj->ajouterNouvelleBouteilleCellier($body);
 
 				$this->retour['data'] = $resultat;
 			} else {

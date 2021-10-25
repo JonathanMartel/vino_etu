@@ -139,6 +139,26 @@ class Router
 	 */
 	private function putAction()
 	{
+		switch ($this->urlParams[0]) {
+			case 'users':
+				echo json_encode('users put');
+				break;
+			case 'bouteilles':
+				$bouteilleClassObj = new BouteilleController;
+				$bouteilleClassObj->modifierQuantiteBouteilleCellier();
+				break;
+			case 'celliers':
+				echo json_encode('celliers put');
+				break;
+			case 'saq':
+				echo json_encode('saq put');
+				break;
+			default:
+				$this->retour['erreur'] = $this->erreur(400);
+				unset($this->retour['data']);
+				echo json_encode($this->retour);
+				break;
+		}
 	}
 
 	/**
@@ -148,12 +168,31 @@ class Router
 	 */
 	private function deleteAction()
 	{
+		switch ($this->urlParams[0]) {
+			case 'users':
+				echo json_encode('users delete');
+				break;
+			case 'bouteilles':
+				echo json_encode('bouteilles delete');
+				break;
+			case 'celliers':
+				echo json_encode('celliers delete');
+				break;
+			case 'saq':
+				echo json_encode('saq delete');
+				break;
+			default:
+				$this->retour['erreur'] = $this->erreur(400);
+				unset($this->retour['data']);
+				echo json_encode($this->retour);
+				break;
+		}
 	}
 
 	/**
 	 * Valide l'authentification HTTP.
 	 *
-	 * @return Boolean Authentification.
+	 * @return Boolean $access Authentification.
 	 */
 	public function validerAuthentification()
 	{
