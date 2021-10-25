@@ -9,7 +9,7 @@ export default class BouteilleSAQ extends React.Component {
 
 	render() {
 		return (
-			<li>{this.props.info.nom}{this.props.info.table === "Cellier" ? `(this.props.info.quantite)`: ''}</li>
+			<li>{this.props.info.nom}{this.props.info.Table === "Cellier" ? ` (${this.props.info.Quantite})`: ''}</li>
 		)
 	}
 }

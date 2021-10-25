@@ -26,6 +26,11 @@ export default class AjoutBouteilleCellier extends React.Component {
 	}
 
 	fetchBouteillesSAQ(event){
+		if (event.target.value == '') {
+			this.setState({bouteillesSAQ: []});
+			return;
+		}
+
 		console.log(event.target.value);
 		const entete = new Headers();
         entete.append("Content-Type", "application/json");
@@ -70,7 +75,7 @@ export default class AjoutBouteilleCellier extends React.Component {
 	}
 
 	render() {
-
+		console.log(this.state.bouteillesSAQ);
 		const bouteilles = this.state.bouteillesSAQ
 								.map((bouteille, index)=>{
 									return (
