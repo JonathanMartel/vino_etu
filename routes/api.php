@@ -1,7 +1,10 @@
 <?php
 
+use App\Models\vino__bouteille;
+use App\Models\vino__cellier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +19,21 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+
+Route::get('/cellier', function(){
+ 
+
+    return response(vino__cellier::all(), 200);
+
+
+});
+
+Route::get('/bouteilles', function(){
+  
+
+    return response(vino__bouteille::all(), 200);
+
+
 });
