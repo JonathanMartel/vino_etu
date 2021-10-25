@@ -15,6 +15,7 @@
 - ajouterBouteilleCellier()
 - supprimerBouteilleCellier()
 - obtenirListeBouteilles()
+- rechercherCellierBouteille()
 
 ###Cellier
 
