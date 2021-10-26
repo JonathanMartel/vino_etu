@@ -16,7 +16,7 @@
 <div class="row">
   
     <form class="col s12" action="{{route('cellierBouteille.store')}}" method="POST" enctype="multipart/form-data" >
-    <img class="materialboxed" src="{{ old('url_img') }}">
+    <img name="img-bouteille" class="materialboxed" src="{{ old('url_img') }}">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="input-field col s12">
           <input id="nom" name="nom" type="text" class="@if($errors->first('nom')) invalid @endif validate" value="{{ old('nom') }}" required />

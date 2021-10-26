@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const format_id = document.querySelector('[name="format_id"]');
     const labelMillesime = document.querySelector('[name="labelMillesime"]');
     const pays = document.querySelector('[name="pays"]');
-    const img = document.querySelector('img');
+    const img = document.querySelector('[name="img-bouteille"]');
     const imgUrl = document.querySelector('[name="url_img"]');
     const millesimes = document.querySelector('[name="millesimes"]');
     
