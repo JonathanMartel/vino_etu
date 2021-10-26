@@ -2,13 +2,20 @@ html {
   font-family: 'Raleway', sans-serif;
 }
 
-h1 {
+h1,h4 {
   font-family: 'Acme', sans-serif;
 }
+
+
 
 * + *, h1,h2,h3,h4,h5,h6 {
 margin: 0;
 padding: 0;
+}
+
+
+.height-120{
+	height: 120px !important;
 }
 
 img {
@@ -16,10 +23,18 @@ img {
     height: 100px;
 }
 
+
+/* css pour app.blade.php */
+
+.padding-30 {
+	padding-left:30px;
+	padding-right:30px;
+
+}
+
 .flex-row {
 	display: flex;
 	flex-direction: row;
-	
 }
 
 .flex-box {
@@ -28,6 +43,13 @@ img {
 	max-width: 600px;
 	padding: 30px;
   }
+
+.flex-center {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
 
   
 
