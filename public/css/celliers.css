@@ -4,12 +4,13 @@
     align-items: center;
     row-gap: 1rem;
     color: #742F30;
+    padding: 1rem;
+    text-align: center;
 }
 
 .liste-celliers {
     display: flex;
     flex-direction: column;
-    
     row-gap: 1rem;
 }
 
@@ -71,4 +72,29 @@
     font-size: 1.25rem;
     color: #343B41;
     text-align: end;
+}
+
+/* Formulaire d'ajout */
+
+.form-ajout {
+    padding: 1rem;
+    border-radius: 5px;
+    flex-grow: 1;
+    border: 2px solid #BBC7C1;
+    display: flex;
+}
+.form-ajout > form {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.form-ajout > form > button {
+    border-radius: 5px;
+    padding: 1rem;
+    background-color:#99AAA2;
+    color: #343B41;
+    font-weight: bold;
+    font-size: 1.5rem;
 }
