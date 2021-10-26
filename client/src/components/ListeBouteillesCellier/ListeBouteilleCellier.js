@@ -9,36 +9,24 @@ export default class ListeBouteilleCellier extends React.Component {
 	  super(props);
 	  this.state = {
 		  bouteilles: [],
+		  cellierId: ""
 	  }
 
 	  this.ajouter = this.ajouter.bind(this);
 	  this.retirer = this.retirer.bind(this);
 	  this.fetchBouteilles = this.fetchBouteilles.bind(this);
-	  this.ouvrirModal = this.ouvrirModal.bind(this);
-	  this.fermerModal = this.fermerModal.bind(this);
 	
 	}
 
 	fetchBouteilles(){
-		fetch("") // Insérer l'adresse pour la request HTTP
+		fetch("127.0.0.1:8000/webservice/php/bouteilles/cellier/" + this.state.cellierId)
             .then(reponse => reponse.json())
             .then((donnees)=>{
                 this.setState({bouteilles:donnees.data})
-                console.log(donnees)
             });
 	}
 
-	ouvrirModal(){
-		this.setState({voirModal: true});
-	}
-
-	fermerModal(){
-		this.setState({voirModal: false});
-	}
-	
 	ajouter(id){
-
-		this.ouvrirModal();
 
 		 const entete = new Headers();
 		 entete.append("Content-Type", "application/json");
@@ -58,8 +46,6 @@ export default class ListeBouteilleCellier extends React.Component {
 	}
 
 	retirer(id){
-
-		this.ouvrirModal();
 
 		const entete = new Headers();
 		 entete.append("Content-Type", "application/json");
@@ -81,7 +67,6 @@ export default class ListeBouteilleCellier extends React.Component {
         this.fetchBouteilles();
     }
 
-	
 	render() {
 		const bouteilles = this.state.bouteilles
 								.map((bouteille, index)=>{

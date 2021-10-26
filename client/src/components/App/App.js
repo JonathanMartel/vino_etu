@@ -30,6 +30,8 @@ export default class App extends React.Component{
 					<Route exact path="/ajoutbouteillecellier" component={AjoutBouteilleCellier} />
 					<Route exact path="/listebouteillescellier" component={ListeBouteilleCellier} />
 					<Route exact path="/ajoutcellier" component={AjoutCellier} />
+					<Route exact path="/cellier/:id" render={(param_route)=><ListeBouteilleCellier {...param_route} id={param_route?.match?.params?.id} param={param_route} />}
+					/>
 					<Route exact path="*" component={Page404} />
 				</Switch>
         <Pied/>

@@ -9,9 +9,6 @@ export default class BouteilleCellier extends React.Component {
 		this.state = {  }
 	}
 	
-	
-	
-	
 	render() { 
 		
 		return ( 

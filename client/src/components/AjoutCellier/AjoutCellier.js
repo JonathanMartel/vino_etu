@@ -1,5 +1,6 @@
 import React from 'react';
 import Cellier from "../Cellier/Cellier";
+import { Redirect } from "react-router-dom";
 
 export default class AjoutCellier extends React.Component {
 	constructor(props) {
@@ -14,7 +15,7 @@ export default class AjoutCellier extends React.Component {
 
 	ajouterCellier() {
 		let nouveauCellier = {
-			id_usager: this.state.id_usager,
+			//id_usager: this.state.id_usager,
 			emplacement: this.state.emplacement
 		}
 		fetch("http://127.0.0.1:8000/webservice/php/celliers", {
@@ -28,13 +29,11 @@ export default class AjoutCellier extends React.Component {
 		.then(reponse => reponse.json())
         .then(()=>{
             console.log("Cellier ajouté");
+			<Redirect to='/' /> // À changer pour rediriger vers le cellier qu'on viens d'ajouter.
         });
 	}
 
 	render() {
-
-		
-		
 		return (
 
 			<div className="nouveauCellier">
