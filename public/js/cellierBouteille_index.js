@@ -2,7 +2,7 @@
 
 document.addEventListener('DOMContentLoaded', function() {
 
-    
+    sessionStorage.clear();
     let btnAjouterBouteilles = document.querySelectorAll('[name="btnAjouterBouteille"]')
 
     

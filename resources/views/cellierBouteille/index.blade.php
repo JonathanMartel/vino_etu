@@ -26,7 +26,7 @@
 
         <tr>
         
-            <td><img src="{{ asset('storage/'. $cellierBouteille->bouteille->url_img) }}" onerror="this.onerror=null;this.src='{{ asset($cellierBouteille->bouteille->url_img) }}';" alt=""></td>
+            <td><img src="{{ asset($cellierBouteille->bouteille->url_img) }}" alt=""></td>
             <td>{{$cellierBouteille->bouteille->nom}}</td>
             <td name="quantite">{{$cellierBouteille->quantite}}</td>
             <td>{{$cellierBouteille->bouteille->pays}}</td>

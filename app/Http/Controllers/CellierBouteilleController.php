@@ -8,6 +8,7 @@ use App\Models\CellierBouteille;
 use App\Models\Format;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 
 class CellierBouteilleController extends Controller
 {
@@ -89,8 +90,9 @@ class CellierBouteilleController extends Controller
                     if($request->file) {
                         $fileName = time().'_'.$request->file->getClientOriginalName();
                         $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
-                        $request->url_img = $filePath;
+                        $request->url_img = URL::to(''). "/storage/" . $filePath;
                     }
+
                     $bouteille = Bouteille::create([
 
                         'nom' => $request->nom,
@@ -102,8 +104,6 @@ class CellierBouteilleController extends Controller
                         'user_id' =>  2
                     ]);
                 
-
-            
                     $cellierBouteille = new CellierBouteille;
                     $cellierBouteille->fill($request->all());
                     $cellierBouteille->bouteille_id = $bouteille->id;

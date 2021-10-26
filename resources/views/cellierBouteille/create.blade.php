@@ -14,9 +14,9 @@
       </div>
       
 <div class="row">
-<img class="materialboxed">  
+  
     <form class="col s12" action="{{route('cellierBouteille.store')}}" method="POST" enctype="multipart/form-data" >
-   
+    <img class="materialboxed" src="{{ old('url_img') }}">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="input-field col s12">
           <input id="nom" name="nom" type="text" class="@if($errors->first('nom')) invalid @endif validate" value="{{ old('nom') }}" required />
@@ -71,7 +71,7 @@
                 <option value="{{ $i }}" @if( old('millesime') == $i) selected @endif>{{ $i }}</option>
             @endfor
           </select>
-          <label name="labelMillesime">Millesime</label>
+          <label name="labelMillesime">{{ old('millesimes') ?? 'Millesime' }}</label>
         </div>
         <div class="input-field col s12">
           <input id="date_achat" type="text" tabindex="-1" name="date_achat" class="datepicker validate" value="{{ old('date_achat') }}" autocomplete="off">
@@ -108,11 +108,12 @@
               <option value="1" @if( old('note') == 1) selected @endif>Terrible</option>
           </select>
         </div>
+        <input type="hidden" name="millesimes" value="{{ old('millesimes') }}" id="millesimes">
         <input type="hidden" name="bouteille_id" value="{{ old('bouteille_id') }}" id="bouteille_id">
-        <input type="hidden" name="url_img" value="{{ old('url_img') }}" id="bouteille_id">
+        <input type="hidden" name="url_img" value="{{ old('url_img') }}" id="url_img">
         <div class="col s12">
           <button class="btn waves-effect waves-light" type="submit" name="submit">Ajouter
-              <i class="material-icons right">send</i>
+              <i class="material-icons right">send</i></button>
         </div>
   </button>
 

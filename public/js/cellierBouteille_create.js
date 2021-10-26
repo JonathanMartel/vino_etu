@@ -2,26 +2,26 @@ document.addEventListener('DOMContentLoaded', function() {
     const recherche = document.querySelector('[name="recherche"]');
     const liste = document.querySelector('.autocomplete');
     
-        /**
+    /**
      * Calendier de la date d'achat
      */
          const datepicker = document.querySelector('.datepicker');
-         const datepickerIns = M.Datepicker.init(datepicker, {autoClose : true});
+         M.Datepicker.init(datepicker, {autoClose : true});
      
     
     /**
      * Recherche les noms des bouteilles dans la base de données  qui correspondent au mot-clé 
      */
     recherche.addEventListener('input', () => {
-
+        
         if(recherche.value.trim() != "") {
             liste.innerHTML = "";
+            
             fetch("/rechercheBouteillesParMotCle/" + recherche.value)
             .then(response => {
                 return (response.json())
             })
             .then(response => {
-                
                 response.forEach(function(element){
                     liste.innerHTML += `<div  data-description="${element.description}" data-pays="${element.pays}" data-idtype="${element.type_id}" data-idformat="${element.format_id}" data-id="${element.id}"  data-imgurl="${element.url_img}" data-nom="${element.nom}" >${element.nom} - ${element.type}</div>`;
                   })
@@ -38,7 +38,6 @@ document.addEventListener('DOMContentLoaded', function() {
      */
     const inputNom = document.querySelector('#nom');
     const inputBouteilleId = document.querySelector('#bouteille_id');
-    const fileInput = document.querySelector(".file-field");
     const description = document.querySelector('#description');
     const type_id = document.querySelector('[name="type_id"]');
     const format_id = document.querySelector('[name="format_id"]');
@@ -46,8 +45,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const pays = document.querySelector('[name="pays"]');
     const img = document.querySelector('img');
     const imgUrl = document.querySelector('[name="url_img"]');
-
-    img.style.display = "none";
+    const millesimes = document.querySelector('[name="millesimes"]');
+    
+    if(!imgUrl.value) {
+            img.style.display = "none";
+    }
+      
     liste.addEventListener('click', e => {
         
         if(e.target.tagName == "DIV") {
@@ -55,11 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             img.style.display = "block";
             img.src = e.target.dataset.imgurl;
-            
-            img.addEventListener('error', () => {
-                img.src = location.origin + "/storage/" + e.target.dataset.imgurl;
-            })
-            
+
             inputNom.nextElementSibling.className ='active';
             inputNom.value = e.target.dataset.nom;
             inputNom.className = "valid";
@@ -79,20 +78,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 if(response[0])
                 {
                     labelMillesime.innerHTML += " (existant : ";
+
                     response.forEach((millesime, i) => {
-                        if(response[i +i] != undefined)
+                      
+                        if(millesime.millesime == 0)
                         {
-                            if(millesime.millesime == 0)
-                                {
-                                    millesime.millesime = "sans millesime";
-                                }
+                            millesime.millesime = "sans millesime";
+                        }
+
+                        if(response[i +1] != undefined)
+                        {
+                          
                             labelMillesime.innerHTML += ` ${millesime.millesime}, `;
                         }else {
-                            console.log('j')
+                            
                             labelMillesime.innerHTML += ` ${millesime.millesime}`; 
                         }
                     })
                     labelMillesime.innerHTML += " )";
+
+                    millesimes.value = labelMillesime.innerHTML;
                 }
                 
             }).catch(error => console.log(error))
@@ -153,8 +158,5 @@ document.addEventListener('DOMContentLoaded', function() {
     var images = document.querySelectorAll('.materialboxed');
     M.Materialbox.init(images);
    
-  });
-
   
-
- 
+  });
