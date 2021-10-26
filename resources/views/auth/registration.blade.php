@@ -8,15 +8,15 @@
     
     <div class="col s12 m12">
       <div class="card">
-        <div class="card-content">
+        <div class="card-content flex-center">
           <h4>Créer un compte</h4>
+          <img src="{{asset('assets/icon/logo-3-bouteilles-cellier.svg')}}" class="center"></a>
         </div>
 
         <div class="card-content">
           <form action="{{ route('register.custom') }}" method="POST">
           @csrf
             <div class="row">
-
               <div class="input-field col s12">
                   <input id="nom" type="text" class="validate" name="nom" value="{{ old('nom')}}">
                   <label for="nom">Nom et prénom</label>
@@ -43,7 +43,7 @@
 
               <div class="input-field col s12">
                 <input id="Password" type="password" class="validate" name="password">
-                <label for="Password">Mot de passe (minimum de 6 caractères)</label>
+                <label for="Password">Mot de passe</label>
                 @if ($errors->has('password'))
                     <span class="red-text">{{ $errors->first('password') }}</span>
                 @endif
