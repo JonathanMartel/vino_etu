@@ -28,6 +28,13 @@
         @endif
     </div>
 
+    <div>
+        <label hidden for="user_id">user_id :</label>
+        <input hidden type="text" name="user_id" id="user_id" value="{{Auth::user()->id}}" />
+        
+        
+    </div>
+    <button type="submit">Créer</button>
 </form>
 
 
