@@ -1,0 +1,114 @@
+********************************* Charte graphique *********************************
+
+
+En général
+
+espacement (px): 5, 10, 20, 50 (dans le doute ceci est une bonne référence)
+
+
+
+///// Entête //////
+
+Logo:
+    size 89px x 89px
+    Padding-left: 10px
+    Padding-top: 10px
+
+Menu burger:
+    size: w-45px, h-30px
+    color: #778D83
+    border: 2px
+
+
+
+
+///// Vos celliers /////
+
+
+Titre H1 
+    font: acme, 61.04 px
+    rouge / #742F30
+    padding-top: 50px
+    padding-bottom: 20px
+
+icon / logo-3-bouteilles-cellier
+    size: w-106px, h-90px
+    padding-bottom: 50px
+
+titre h2 (party de bureau)
+    font: Raleway, bold, 20px
+    color: #343B41
+    padding-left: 10px
+    padding-top-bottom: 20px
+
+emplacement
+    font: Raleway, regular, 16px
+    color: #343B41
+    padding-left: 10px
+    padding-bottom: 20px
+
+icon / bouteille-cellier
+    w-17.20px, h-66.90px
+
+    *note* Espace à la droite variable selon l'affichage du nombre de bouteille...
+
+
+
+
+///// Vos Vins /////
+
+Cellier
+    background-color: #E0CFA0
+    margin-top: 20px
+    font: Raleway, regular, 20px
+    color: #343B41
+    padding-top-bottom: 5px
+
+emplacement
+    background-color: #7A5958
+    font: Raleway, regular, 16px
+    color: white
+
+search bar 
+    size: 355px x 64px
+    border: 1px 
+    border-color: #778D83
+    font: Raleway, light, 25px
+
+Titre H1 
+    font: acme, 61.04 px
+    rouge / #742F30
+    padding-top: 50px
+    padding-bottom: 50px
+
+
+boite d'un Vin
+    size: h-194px
+    font: Raleway, regular, 16px
+    color: #343B41
+
+    h2: Raleway, bold, 20px
+        color: #343B41
+        background-color: #99AAA2
+    
+    étoiles:
+        color: #AA7E42
+    
+    le cercle du + :
+        background-color: #BBC7C1
+        size: 59px
+
+    le cercle du - :
+        background-color: #7A5958
+        size: 59px
+
+
+
+
+
+
+
+
+
+
+

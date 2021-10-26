@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: center;
     row-gap: 1rem;
+    color: #742F30;
 }
 
 .liste-celliers {
@@ -42,14 +43,14 @@
 .nom-cellier {
     font-size: 2rem;
     color: #343B41;
-    font-family: 'Acme', sans-serif;
+    
     font-weight: bold;
 }
 
 .localisation-cellier {
     color: #707070;
     font-size: 1.25rem;
-    font-family: 'Acme', sans-serif;
+    
 }
 
 .nb-bouteille-container {
