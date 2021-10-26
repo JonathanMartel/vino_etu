@@ -61,11 +61,12 @@ class CellierBouteilleController extends Controller
        if(isset($request->bouteille_id)){
             $cellierBouteille = CellierBouteille::rechercheCellierBouteille(1, $request->bouteille_id, $request->millesime);
             $cellierBouteilleExistante = CellierBouteille::rechercheBouteilleExistante( $request);
+            print_r($cellierBouteilleExistante);
             if( isset($cellierBouteilleExistante[0]) && isset($cellierBouteille[0])){
                 return back()->withInput()->with('erreur', "Bouteille existe déjà");
             }else {
 
-                
+                $date_achat = 0;
                 if(isset($request->date_achat)){
                     
                     $date_achat = date('Y-m-d', strtotime($request->date_achat));
@@ -111,7 +112,12 @@ class CellierBouteilleController extends Controller
         
     }
     
-
+    public static function obtenirMillesime($idCellier, $idBouteille)
+    {
+        
+        $millesimes = CellierBouteille::obtenirMillesime($idCellier, $idBouteille);
+        return response()->json($millesimes);
+    }
     /**
      * Display the specified resource.
      *

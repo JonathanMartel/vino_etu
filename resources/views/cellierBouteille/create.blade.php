@@ -14,7 +14,9 @@
       </div>
       
 <div class="row">
+  
     <form class="col s12" action="{{route('cellierBouteille.store')}}" method="POST">
+    <img class="materialboxed" src="" alt="">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="input-field col s12">
           <input id="nom" name="nom" type="text" class="@if($errors->first('nom')) invalid @endif validate" value="{{ old('nom') }}" required />
@@ -69,7 +71,7 @@
                 <option value="{{ $i }}" @if( old('millesime') == $i) selected @endif>{{ $i }}</option>
             @endfor
           </select>
-          <label>Millesime</label>
+          <label name="labelMillesime">Millesime</label>
         </div>
         <div class="input-field col s12">
           <input id="date_achat" type="text" tabindex="-1" name="date_achat" class="datepicker validate" value="{{ old('date_achat') }}" autocomplete="off">

@@ -21,9 +21,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 return (response.json())
             })
             .then(response => {
-
+                
                 response.forEach(function(element){
-                    liste.innerHTML += `<div  data-description="${element.description}" data-pays="${element.pays}" data-idtype="${element.type_id}" data-idformat="${element.format_id}" data-id="${element.id}"  data-imgurl="${element.url_img}">${element.nom}</div>`;
+                    liste.innerHTML += `<div  data-description="${element.description}" data-pays="${element.pays}" data-idtype="${element.type_id}" data-idformat="${element.format_id}" data-id="${element.id}"  data-imgurl="${element.url_img}" data-nom="${element.nom}" >${element.nom} - ${element.type}</div>`;
                   })
                   
             }).catch(error => console.log(error))
@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
     })
 
     /**
-     * Insérer le nom de la bouteille lorsqu'on clique sur le nom d'une bouteille
+     * Insérer les informations de la bouteille lorsqu'on clique sur le nom d'une bouteille
      */
     const inputNom = document.querySelector('#nom');
     const inputBouteilleId = document.querySelector('#bouteille_id');
@@ -42,30 +42,51 @@ document.addEventListener('DOMContentLoaded', function() {
     const description = document.querySelector('#description');
     const type_id = document.querySelector('[name="type_id"]');
     const format_id = document.querySelector('[name="format_id"]');
-    const millesime = document.querySelector('[name="millesime"]');
+    const labelMillesime = document.querySelector('[name="labelMillesime"]');
     const pays = document.querySelector('[name="pays"]');
-    const commentaire = document.querySelector('[name="commentaire"]');
-    const date_achat = document.querySelector('[name="date_achat"]');
-    const garde_jusqua = document.querySelector('[name="garde_jusqua"]');
-    const quantite = document.querySelector('[name="quantite"]');
-    const prix = document.querySelector('[name="prix"]');
+    const img = document.querySelector('img');
+
     liste.addEventListener('click', e => {
         
         if(e.target.tagName == "DIV") {
+            labelMillesime.innerHTML = "Millesime";
             
-            
+            img.src = e.target.dataset.imgurl;
             inputNom.nextElementSibling.className ='active';
-            inputNom.value = e.target.innerHTML;
-            //inputNom.readOnly = true;
+            inputNom.value = e.target.dataset.nom;
             inputNom.className = "valid";
+            
             if(e.target.dataset?.description != ''){
                 description.value = e.target.dataset.description;
-                description.className ='active';
+                description.className ='materialize-textarea';
                 description.nextElementSibling.className ='active';
             }
 
-            console.log( e.target.dataset.millesime)
-            millesime.value = e.target.dataset.millesime;
+            fetch('/obtenirMillesime/1/'+ e.target.dataset.id)
+            .then(response => {
+                return (response.json())
+            })
+            .then(response => {
+                if(response[0])
+                {
+                    labelMillesime.innerHTML += " (existant : ";
+                    response.forEach((millesime, i) => {
+                        if(response[i +i] != undefined)
+                        {
+                            if(millesime.millesime == 0)
+                                {
+                                    millesime.millesime = "sans millesime";
+                                }
+                            labelMillesime.innerHTML += ` ${millesime.millesime}, `;
+                        }else {
+                            labelMillesime.innerHTML += ` ${millesime.millesime}`; 
+                        }
+                    })
+                    labelMillesime.innerHTML += " )";
+                }
+                
+            }).catch(error => console.log(error))
+            
             type_id.value = e.target.dataset.idtype;
             format_id.value = e.target.dataset.idformat;
             M.FormSelect.init(elems);
@@ -74,11 +95,12 @@ document.addEventListener('DOMContentLoaded', function() {
             recherche.nextElementSibling.className ='';
             liste.innerHTML = "";
             inputBouteilleId.value = e.target.dataset.id;
+           
             if(e.target.dataset?.pays != ''){
                 pays.value = e.target.dataset.pays;
                 pays.nextElementSibling.className ='active';
             }
-            //fileInput.style.display = "none";
+
         }
     })
 
@@ -117,6 +139,9 @@ document.addEventListener('DOMContentLoaded', function() {
           tooltip: 'Choisir une note',
           
     });
+
+    var image = document.querySelectorAll('.materialboxed');
+    var instances = M.Materialbox.init(image);
    
   });
 

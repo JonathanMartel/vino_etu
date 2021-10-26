@@ -28,8 +28,10 @@ class Bouteille extends Model
     public static function rechercheBouteilles($motCle) {
 
         return DB::table('bouteilles')
+        ->select('nom', 'bouteilles.id', 'pays', 'description', 'type', 'type_id', 'format_id', 'url_img' )
         ->where('nom', "LIKE" , "%" .$motCle. "%")
         ->whereIn("user_id", [1, 2])
+        ->join('types', 'bouteilles.type_id', '=', 'types.id')
         ->get();
     }
 }
