@@ -33,7 +33,8 @@
                     @guest
                     <li><a href="/login"><span class="black-text">Se connecter</sapn></a></li>
                     @else
-                    <li><a href="{{ route('logout') }}"><span class="black-text">Se déconnecter</sapn></a></li>
+                    <li><a href="/logout"><span class="black-text">Se déconnecter</sapn></a></li>
+                    <li><a href="/dashboard"><i class="large material-icons"><span class="black-text">account_circle</span></i></a></li>
                     @endguest
                 </ul>
             </div>
