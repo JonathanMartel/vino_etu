@@ -24,6 +24,15 @@ Route::get('/', function () {
 
 Route::get('/home', [CellierController::class, 'index'])->name('home');
 
+/* Page d'un cellier avec les vins correspondants, leur quantité et millesime */
+Route::get('/cellier/{cellier}', [CellierController::class, 'show']);
+
+
+/* Page d'ajout d'un cellier  */
+Route::get('/create/cellier', [CellierController::class, 'create']);
+Route::post('/create/cellier', [CellierController::class, 'store']);
+
+
 
 
 
@@ -34,7 +43,7 @@ Route::get('/registration', [CustomAuthController::class, 'create'])->name('insc
 
 
 
-
+/* ??? ette route ou celle plus haut ??? */
 Route::get('/cellier', [CellierBouteilleController::class, 'index'])->name('cellier');
 
 Route::get('/ajouterBouteille/{idCellier}/{idBouteille}/{millesime}', [CellierBouteilleController::class, 'ajouterBouteille'])->name('ajouterBouteille');

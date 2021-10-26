@@ -26,7 +26,6 @@ class Cellier extends Model
         $celliers = DB::table('celliers')
         ->where("user_id", $user_id)
         ->get();
-        var_dump($celliers);
         return $celliers;
     }
 

@@ -1,23 +1,73 @@
+.entete-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 1rem;
+}
+
 .liste-celliers {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    
+    row-gap: 1rem;
+}
+
+.lien-cellier {
+    display: flex;
+    width: 100%;
 }
 
 .cellier {
+    padding: 1rem;
+    border-radius: 5px;
+    flex-grow: 1;
     background-color: #BBC7C1;
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    column-gap: 1rem;
 }
 
-.titre-vignette {
-	
+.texte-cellier-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
 }
 
-.localisation-vignette {
+.texte-cellier-container>* {
+    margin: 0;
+}
 
+.nom-cellier {
+    font-size: 2rem;
+    color: #343B41;
+    font-family: 'Acme', sans-serif;
+    font-weight: bold;
+}
+
+.localisation-cellier {
+    color: #707070;
+    font-size: 1.25rem;
+    font-family: 'Acme', sans-serif;
+}
+
+.nb-bouteille-container {
+    display: flex;
+    align-items: center;
+    column-gap: 1rem;
+}
+
+.bouteille-icone {
+    height: 20vw;
+    min-height: 5rem;
+    max-height: 8rem;
+    width: auto;
 }
 
 .nb-vins-cellier {
-
+    width: 40px;
+    font-size: 1.25rem;
+    color: #343B41;
+    text-align: end;
 }

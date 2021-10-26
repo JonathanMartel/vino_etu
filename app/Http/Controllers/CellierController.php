@@ -29,8 +29,7 @@ class CellierController extends Controller
      */
     public function create()
     {
-         return view('cellier.create', [
-        ]);
+         return view('celliers.create');
     }
 
     /**
