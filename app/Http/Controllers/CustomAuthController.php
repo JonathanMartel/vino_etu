@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\user;
 use Illuminate\Http\Request;
 
+use Hash;
+use Session;
+use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
+
 class CustomAuthController extends Controller
 {
     /**
@@ -35,7 +40,70 @@ class CustomAuthController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nom' =>'required|max:50|min:2|unique:users',
+            'courriel' => 'required|email|unique:users',
+            'password' => 'required|min:6|max:20',
+            'date_naissance' => 'required|date:d-m-Y|before:' . Carbon::now()->subYears(18)->format('d-m-Y')          
+        ]);
+   
+          $user = new User;
+          $user->fill($request->all());
+          $user->password = Hash::make($request->password);
+          $user->save();
+   
+        return redirect('login');
+    }
+
+    /**
+     * Function se connecter.
+     *
+    */
+    public function customLogin(Request $request){
+
+        $request->validate([
+          'courriel' => 'required',
+          'password' => 'required|min:6'
+        ]);
+
+        $credentials = $request->only('courriel', 'password');
+        if(Auth::attempt($credentials)){
+
+          return redirect()->intended('dashboard');
+        }
+
+        return redirect('login')->withSuccess('Les informations de connexion ne sont pas valides!');
+
+  }
+
+    /*
+    *
+    * Le view pour dashboard.
+    *
+    */
+
+  public function dashboard(){
+
+    // $name = null;
+    // if(Auth::check()){
+    //   $name = Auth::user()->name;
+    //   $courriel = Auth::user()->courriel;
+    // }
+
+    //   return view('user.dashboard', ['name' => $name,
+    //                                  'courriel' => $courriel]);
+    return view('user.dashboard');
+}
+
+    /**
+     * Function se déconnecter.
+     *
+    */
+    public function logout(){
+        Session::flush();
+        Auth::logout();
+  
+        return redirect('login');
     }
 
     /**
