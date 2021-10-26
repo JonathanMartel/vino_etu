@@ -2,7 +2,7 @@
 @section('content')
 
 <link href="{{asset('css/celliers.css')}}" rel="stylesheet" />
-
+@if(isset(Auth::user()->id))
 <div class="entete-page">
     <h1>Vos celliers</h1>
     <img src="{{URL::asset('/assets/icon/logo-3-bouteilles-cellier.svg')}}" alt="Icone trois bouteilles">
@@ -34,6 +34,6 @@
 </div>
 
 
-
+@endif
 
 @endsection

@@ -15,11 +15,15 @@ class CellierController extends Controller
      */
     public function index()
     {
-        $user_id = Auth::user()->id; //en attendant que l'authentification fonctionne !!!
+        if(Auth::check()){
+        $user_id = Auth::user()->id;
         //$user_id = 2;
         $userCelliers = Cellier::getCelliersByUser($user_id);
 
         return view('celliers.index', ['celliers' =>$userCelliers]);
+        }
+
+        return redirect('login');
     }
 
     /**
