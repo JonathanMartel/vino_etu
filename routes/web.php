@@ -4,11 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CellierBouteilleController;
 use App\Http\Controllers\BouteilleController;
 use App\Http\Controllers\CustomAuthController;
-<<<<<<< HEAD
-
-=======
 use App\Http\Controllers\CellierController;
->>>>>>> f2c9486bffc36df50db35e5fa52b9ab570b7020a
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,12 +41,9 @@ Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name(
 Route::get('/registration', [CustomAuthController::class, 'create'])->name('inscription');
 
 
-<<<<<<< HEAD
-=======
 
 
 /* ??? ette route ou celle plus haut ??? */
->>>>>>> f2c9486bffc36df50db35e5fa52b9ab570b7020a
 Route::get('/cellier', [CellierBouteilleController::class, 'index'])->name('cellier');
 Route::get('/ajouterBouteille/{idCellier}/{idBouteille}/{millesime}', [CellierBouteilleController::class, 'ajouterBouteille'])->name('ajouterBouteille');
 Route::get('/boireBouteille/{idCellier}/{idBouteille}/{millesime}', [CellierBouteilleController::class, 'boireBouteille'])->name('boireBouteille');
