@@ -15,8 +15,8 @@ class CellierController extends Controller
      */
     public function index()
     {
-        //$user_id = Auth::user()->id; //en attendant que l'authentification fonctionne !!!
-        $user_id = 2;
+        $user_id = Auth::user()->id; //en attendant que l'authentification fonctionne !!!
+        //$user_id = 2;
         $userCelliers = Cellier::getCelliersByUser($user_id);
 
         return view('celliers.index', ['celliers' =>$userCelliers]);
@@ -40,7 +40,14 @@ class CellierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nom' => 'required|max:45',
+            'localisation' => 'max:45',
+            'user_id' => 'required | exists:users,id',
+        ]);
+
+        $post = Cellier::create($request->all());
+        return redirect('cellier/' . $post->id);
     }
 
     /**
