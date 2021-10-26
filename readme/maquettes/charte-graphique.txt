@@ -7,6 +7,22 @@ espacement (px): 5, 10, 20, 50 (dans le doute ceci est une bonne référence)
 
 
 
+///// Boutons /////
+
+bouton (action possitive comme ajouter etc...)
+    background-color: #99AAA2
+    font: Raleway, 31.25, bold
+    color: #343B41
+
+
+
+bouton (action "négative" comme effacer etc...)
+    background-color: #7A5958
+    font: Raleway, 31.25, bold
+    color: white
+
+
+
 ///// Entête //////
 
 Logo:
