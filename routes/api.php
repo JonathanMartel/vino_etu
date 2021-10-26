@@ -41,7 +41,7 @@ Route::apiResource("bouteilles", BouteilleController::class)->only([
     "show",
 ]);
 
-Route::get("suggestions-noms-bouteilles", [UnionsController::class, "obtenirSuggestionsNoms"]);
+Route::get("catalogue-bouteilles", [UnionsController::class, "obtenirCatalogueBouteilles"]);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

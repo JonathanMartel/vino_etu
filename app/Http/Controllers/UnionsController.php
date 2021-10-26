@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class UnionsController extends Controller
 {
-    public function obtenirSuggestionsNoms() {
-        dd(Unions::obtenirSuggestionsNomsDeBouteilles());
+    public function obtenirCatalogueBouteilles() {
+        return Unions::obtenirCatalogueBouteillesParUtilisateur(1);
     }
 }
