@@ -9,7 +9,7 @@ export default class ListeBouteilleCellier extends React.Component {
 	  super(props);
 	  this.state = {
 		  bouteilles: [],
-		  cellierId: ""
+		  cellierId: "1" // Dummy pour faire tests
 	  }
 
 	  this.ajouter = this.ajouter.bind(this);
@@ -19,7 +19,13 @@ export default class ListeBouteilleCellier extends React.Component {
 	}
 
 	fetchBouteilles(){
-		fetch("127.0.0.1:8000/webservice/php/bouteilles/cellier/" + this.state.cellierId)
+		fetch("http://127.0.0.1:8000/webservice/php/bouteilles/cellier/" + this.state.cellierId, {
+		method: 'GET',
+		headers: new Headers({
+			"Content-Type": "application/json",
+			"authorization": "Basic " + btoa("vino:vino"),
+		}),
+	})
             .then(reponse => reponse.json())
             .then((donnees)=>{
                 this.setState({bouteilles:donnees.data})

@@ -32,20 +32,12 @@ export default class AjoutBouteilleCellier extends React.Component {
 		}
 
 		console.log(event.target.value);
-		const entete = new Headers();
-        entete.append("Content-Type", "application/json");
-		entete.append("Authorization", "Basic " + btoa("vino:vino"));
-		entete.append("mode", "CORS");
-		const reqOptions = {
-            headers: entete
-        };
 		fetch("http://127.0.0.1:8000/webservice/php/saq/" + event.target.value, {
 			method: 'GET',
 			headers: new Headers({
 				"Content-Type": "application/json",
 				"authorization": "Basic " + btoa("vino:vino"),
 			}),
-			//mode: 'no-cors'
 			
 		}) 
 		.then(reponse => reponse.json())
