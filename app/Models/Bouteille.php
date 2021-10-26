@@ -10,7 +10,7 @@ class Bouteille extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['id', 'nom', 'code_saq', 'pays', 'description', 'prix_saq', 'url_saq', 'url_img', 'format_id', 'type_id'];
+    protected $fillable = ['id', 'nom', 'code_saq', 'pays', 'description', 'prix_saq', 'url_saq', 'url_img', 'format_id', 'type_id', 'user_id'];
 
     /**
      * Obtenir les informations de la table types

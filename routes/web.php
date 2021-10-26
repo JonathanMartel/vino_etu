@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CellierBouteilleController;
 use App\Http\Controllers\BouteilleController;
 use App\Http\Controllers\CustomAuthController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,22 +25,12 @@ Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name(
 Route::get('/registration', [CustomAuthController::class, 'create'])->name('inscription');
 
 
-
-
-
 Route::get('/cellier', [CellierBouteilleController::class, 'index'])->name('cellier');
-
 Route::get('/ajouterBouteille/{idCellier}/{idBouteille}/{millesime}', [CellierBouteilleController::class, 'ajouterBouteille'])->name('ajouterBouteille');
-Route::get('/rechercheBouteilles/{motCle}', [BouteilleController::class, 'rechercheBouteilles'])->name('rechercheBouteilles');
-
-
-
-
-
-
 Route::get('/boireBouteille/{idCellier}/{idBouteille}/{millesime}', [CellierBouteilleController::class, 'boireBouteille'])->name('boireBouteille');
-
-
 Route::get('/cellierBouteille/create', [CellierBouteilleController::class, 'create'])->name('ajouterNouvelleBouteille');
 Route::post('/cellierBouteille/store', [CellierBouteilleController::class, 'store'])->name('cellierBouteille.store');
-Route::get('/rechercheCellierBouteille/{idCellier}/{idBouteille}/{millesime}', [CellierBouteilleController::class, 'rechercheCellierBouteille'])->name('rechercheCellierBouteille');
+
+
+Route::get('/rechercheBouteilles/{motCle}', [BouteilleController::class, 'rechercheBouteilles'])->name('rechercheBouteilles');
+
