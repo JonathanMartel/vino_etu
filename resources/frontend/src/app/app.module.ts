@@ -14,6 +14,8 @@ import {MatIconModule} from '@angular/material/icon';
 import { MenuMobileComponent } from './components/menu-mobile/menu-mobile.component';
 import { ListeBouteilleComponent } from '@pages/liste-bouteille/liste-bouteille.component';
 import { AjoutBouteilleComponent } from '@pages/ajout-bouteille/ajout-bouteille.component';
+import { ConnectionComponent } from '@pages/connection/connection.component';
+import { CreerCompteComponent } from '@pages/creer-compte/creer-compte.component';
 
 
 @NgModule({
@@ -25,6 +27,9 @@ import { AjoutBouteilleComponent } from '@pages/ajout-bouteille/ajout-bouteille.
     MenuMobileComponent,
     ListeBouteilleComponent,
     AjoutBouteilleComponent,
+    ConnectionComponent,
+    CreerCompteComponent,
+    
   ],
   imports: [
     BrowserModule,
