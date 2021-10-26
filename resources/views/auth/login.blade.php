@@ -8,8 +8,9 @@
   
   <div class="col s12 m12">
     <div class="card">
-      <div class="card-content">
+      <div class="card-content flex-center">
         <h4>Connectez-vous à votre compte</h4>
+        <img src="{{asset('assets/icon/logo-3-bouteilles-cellier.svg')}}" class="center"></a>
       </div>
   <div class="card-content">
     <form action="{{ route('login.custom') }}" method="POST">

@@ -68,8 +68,8 @@ class CustomAuthController extends Controller
 
         $credentials = $request->only('courriel', 'password');
         if(Auth::attempt($credentials)){
-
-          return redirect()->intended('dashboard');
+          session(['user' => Auth::user()]);
+          return redirect()->intended('home');
         }
 
         return redirect('login')->withSuccess('Les informations de connexion ne sont pas valides!');
@@ -84,15 +84,18 @@ class CustomAuthController extends Controller
 
   public function dashboard(){
 
-    // $name = null;
-    // if(Auth::check()){
-    //   $name = Auth::user()->name;
-    //   $courriel = Auth::user()->courriel;
-    // }
+    $nom = null;
+    if(Auth::check()){
+      $nom = Auth::user()->nom;
+      $courriel = Auth::user()->courriel;
+      $date_naissance = Auth::user()->date_naissance;
 
-    //   return view('user.dashboard', ['name' => $name,
-    //                                  'courriel' => $courriel]);
-    return view('user.dashboard');
+    }
+
+      return view('user.dashboard', ['nom' => $nom,
+                                     'courriel' => $courriel,
+                                     'date_naissance' => $date_naissance
+                                    ]);
 }
 
     /**
