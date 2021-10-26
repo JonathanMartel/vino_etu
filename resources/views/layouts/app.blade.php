@@ -30,7 +30,11 @@
                 <a href="#" class="sidenav-trigger right" data-target="mobile-links"><i class="material-icons"><span class="black-text">menu</span></i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="/registration"><span class="black-text">S'inscrire</sapn></a></li>
+                    @guest
                     <li><a href="/login"><span class="black-text">Se connecter</sapn></a></li>
+                    @else
+                    <li><a href="{{ route('logout') }}"><span class="black-text">Se déconnecter</sapn></a></li>
+                    @endguest
                 </ul>
             </div>
             <ul class="sidenav" id="mobile-links">
@@ -46,10 +50,6 @@
                         <li class="tab"><a href="/cellier"><span class="black-text">Les celliers</sapn></a></li>
                         <li class="tab"><a href="#"><span class="black-text">Compte</sapn></a></li>
                     </ul>
-                </div>
-                <div class="search-wrapper right col l4 s12  flex-row">
-                    <input id="search" placeholder="Trouvez un vin">
-                    <i class="material-icons"><span class="black-text">search</sapn></i>
                 </div>
             </div>
         </nav>
@@ -68,13 +68,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="{{asset('js/scripts.js')}}"></script>
     <script src="{{asset('js/app.js')}}"></script>
-
-
-    <!-- <script>
-        $(document).ready(function(){
-            $('.sidenav').sidenav();
-        });
-    </script> -->
 
 </body>
 
