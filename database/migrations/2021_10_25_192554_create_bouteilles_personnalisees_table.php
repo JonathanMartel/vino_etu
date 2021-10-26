@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBouteillesTable extends Migration
+class CreateBouteillesPersonnaliseesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateBouteillesTable extends Migration
      */
     public function up()
     {
-        Schema::create('bouteilles', function (Blueprint $table) {
+        Schema::create('bouteilles_personnalisees', function (Blueprint $table) {
             $table->id();
             $table->string("nom");
             $table->text("description")->nullable();
@@ -25,6 +25,7 @@ class CreateBouteillesTable extends Migration
             $table->string("format")->nullable();
             $table->foreignId("pays_id")->constrained();
             $table->foreignId("categories_id")->constrained();
+            $table->foreignId("users_id")->constrained();
             $table->timestamps();
         });
     }
@@ -36,6 +37,6 @@ class CreateBouteillesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bouteilles');
+        Schema::dropIfExists('bouteilles_personnalisees');
     }
 }
