@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BouteilleController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\PaysController;
 use App\Http\Controllers\UserController;
@@ -34,6 +35,11 @@ Route::apiResource('categories', CategorieController::class)->only([
     "index",
 ]);
 
+Route::apiResource("bouteilles", BouteilleController::class)->only([
+    "index",
+    "show",
+]);
+
 
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -45,14 +51,6 @@ Route::get('/cellier', function(){
 
 
     return response(vino__cellier::all(), 200);
-
-
-});
-
-Route::get('/bouteilles', function(){
-
-
-    return response(vino__bouteille::all(), 200);
 
 
 });

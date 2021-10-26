@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\BouteilleResource;
 use App\Models\Bouteille;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,7 @@ class BouteilleController extends Controller
      */
     public function index()
     {
-        //
+            return BouteilleResource::collection(Bouteille::all());
     }
 
     /**
