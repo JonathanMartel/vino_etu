@@ -17,8 +17,8 @@ class BouteilleController extends Controller
       
     }
 
-    public function rechercheBouteilles($motCle) {
-        $listeBouteilles = Bouteille::rechercheBouteilles($motCle);
+    public function rechercheBouteillesParMotCle($motCle) {
+        $listeBouteilles = Bouteille::rechercheBouteillesParMotCle($motCle);
 
         return response()->json($listeBouteilles);
     }

@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const recherche = document.querySelector('[name="recherche"]');
     const liste = document.querySelector('.autocomplete');
-
+    
         /**
      * Calendier de la date d'achat
      */
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if(recherche.value.trim() != "") {
             liste.innerHTML = "";
-            fetch("/rechercheBouteilles/" + recherche.value)
+            fetch("/rechercheBouteillesParMotCle/" + recherche.value)
             .then(response => {
                 return (response.json())
             })
@@ -45,24 +45,33 @@ document.addEventListener('DOMContentLoaded', function() {
     const labelMillesime = document.querySelector('[name="labelMillesime"]');
     const pays = document.querySelector('[name="pays"]');
     const img = document.querySelector('img');
+    const imgUrl = document.querySelector('[name="url_img"]');
 
+    img.style.display = "none";
     liste.addEventListener('click', e => {
         
         if(e.target.tagName == "DIV") {
             labelMillesime.innerHTML = "Millesime";
             
+            img.style.display = "block";
             img.src = e.target.dataset.imgurl;
+            
+            img.addEventListener('error', () => {
+                img.src = location.origin + "/storage/" + e.target.dataset.imgurl;
+            })
+            
             inputNom.nextElementSibling.className ='active';
             inputNom.value = e.target.dataset.nom;
             inputNom.className = "valid";
             
+            imgUrl.value = e.target.dataset.imgurl;
             if(e.target.dataset?.description != ''){
                 description.value = e.target.dataset.description;
                 description.className ='materialize-textarea';
                 description.nextElementSibling.className ='active';
             }
 
-            fetch('/obtenirMillesime/1/'+ e.target.dataset.id)
+            fetch('/obtenirMillesimesParBouteille/1/'+ e.target.dataset.id)
             .then(response => {
                 return (response.json())
             })
@@ -79,6 +88,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                 }
                             labelMillesime.innerHTML += ` ${millesime.millesime}, `;
                         }else {
+                            console.log('j')
                             labelMillesime.innerHTML += ` ${millesime.millesime}`; 
                         }
                     })
@@ -140,8 +150,8 @@ document.addEventListener('DOMContentLoaded', function() {
           
     });
 
-    var image = document.querySelectorAll('.materialboxed');
-    var instances = M.Materialbox.init(image);
+    var images = document.querySelectorAll('.materialboxed');
+    M.Materialbox.init(images);
    
   });
 

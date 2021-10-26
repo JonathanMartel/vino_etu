@@ -14,9 +14,9 @@
       </div>
       
 <div class="row">
-  
-    <form class="col s12" action="{{route('cellierBouteille.store')}}" method="POST">
-    <img class="materialboxed" src="" alt="">
+<img class="materialboxed">  
+    <form class="col s12" action="{{route('cellierBouteille.store')}}" method="POST" enctype="multipart/form-data" >
+   
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="input-field col s12">
           <input id="nom" name="nom" type="text" class="@if($errors->first('nom')) invalid @endif validate" value="{{ old('nom') }}" required />
@@ -91,7 +91,7 @@
         <div class="file-field input-field col s12">
           <div class="btn">
             <span>Image</span>
-            <input type="file" accept="image/*">
+            <input type="file" name="file" accept="image/*">
           </div>
           <div class="file-path-wrapper">
             <input class="file-path validate" type="text">
@@ -109,6 +109,7 @@
           </select>
         </div>
         <input type="hidden" name="bouteille_id" value="{{ old('bouteille_id') }}" id="bouteille_id">
+        <input type="hidden" name="url_img" value="{{ old('url_img') }}" id="bouteille_id">
         <div class="col s12">
           <button class="btn waves-effect waves-light" type="submit" name="submit">Ajouter
               <i class="material-icons right">send</i>

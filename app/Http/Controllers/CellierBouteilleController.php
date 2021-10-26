@@ -7,7 +7,7 @@ use App\Models\Type;
 use App\Models\CellierBouteille;
 use App\Models\Format;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Storage;
 
 class CellierBouteilleController extends Controller
 {
@@ -60,9 +60,9 @@ class CellierBouteilleController extends Controller
       
        if(isset($request->bouteille_id)){
             $cellierBouteille = CellierBouteille::rechercheCellierBouteille(1, $request->bouteille_id, $request->millesime);
-            $cellierBouteilleExistante = CellierBouteille::rechercheBouteilleExistante( $request);
-            print_r($cellierBouteilleExistante);
-            if( isset($cellierBouteilleExistante[0]) && isset($cellierBouteille[0])){
+            $bouteilleExistante = Bouteille::rechercheBouteilleExistante( $request);
+            
+            if( isset($bouteilleExistante[0]) && isset($cellierBouteille[0])){
                 return back()->withInput()->with('erreur', "Bouteille existe déjà");
             }else {
 
@@ -72,7 +72,7 @@ class CellierBouteilleController extends Controller
                     $date_achat = date('Y-m-d', strtotime($request->date_achat));
                    
                 }
-            if(isset($cellierBouteilleExistante[0])) {
+            if(isset($bouteilleExistante[0])) {
 
                 
                     $cellierBouteille = new CellierBouteille;
@@ -85,13 +85,19 @@ class CellierBouteilleController extends Controller
                     
                     return redirect("cellier")->with("nouvelleBouteille", "nouvelle bouteille ajoutée" );
                 }else {
-                    
+
+                    if($request->file) {
+                        $fileName = time().'_'.$request->file->getClientOriginalName();
+                        $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
+                        $request->url_img = $filePath;
+                    }
                     $bouteille = Bouteille::create([
 
                         'nom' => $request->nom,
                         'pays' => $request->pays,
                         'description' =>  $request->description,
                         'format_id' =>  $request->format_id,
+                        'url_img' => $request->url_img,
                         'type_id' =>  $request->type_id,
                         'user_id' =>  2
                     ]);
@@ -112,10 +118,16 @@ class CellierBouteilleController extends Controller
         
     }
     
-    public static function obtenirMillesime($idCellier, $idBouteille)
+     /**
+     * @param idCellier
+     * @param idBouteille
+     * Obtenir une liste des millisimes équivalent à idCellier et idBouteille
+     * @return response une liste des millisime
+     */
+    public static function obtenirMillesimesParBouteille($idCellier, $idBouteille)
     {
         
-        $millesimes = CellierBouteille::obtenirMillesime($idCellier, $idBouteille);
+        $millesimes = CellierBouteille::obtenirMillesimesParBouteille($idCellier, $idBouteille);
         return response()->json($millesimes);
     }
     /**

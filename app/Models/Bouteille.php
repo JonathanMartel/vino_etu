@@ -21,11 +21,11 @@ class Bouteille extends Model
     }
 
     /**
-     * https://stackoverflow.com/questions/261783/how-to-do-select-from-where-x-is-equal-to-multiple-values
-     * Obtenir les bouteilles listées et celles qui sont non-listées appantenant à l'usager connecté
+     * @param motCle
+     * Rechercher dans la table bouteilles les noms qui contiennent le motCle
+     * @return rows des lignes de la table bouteilles
      */
-
-    public static function rechercheBouteilles($motCle) {
+    public static function rechercheBouteillesParMotCle($motCle) {
 
         return DB::table('bouteilles')
         ->select('nom', 'bouteilles.id', 'pays', 'description', 'type', 'type_id', 'format_id', 'url_img' )
@@ -33,5 +33,22 @@ class Bouteille extends Model
         ->whereIn("user_id", [1, 2])
         ->join('types', 'bouteilles.type_id', '=', 'types.id')
         ->get();
+    }
+
+        /**
+     * @param $request
+     * Rechercher dans la table bouteilles pour vérifier si une bouteille existe déjà
+     * @return row une ligne de la table cellier_bouteilles
+     */
+    public static function rechercheBouteilleExistante($request) {
+        return DB::table('bouteilles')
+        ->where('id', $request->bouteille_id)
+        ->where('nom', $request->nom)
+        ->where('pays', $request->pays)
+        ->where('type_id', $request->type_id)
+        ->where('format_id', $request->format_id)
+        ->whereIn("user_id",  [1, 2])
+        ->get();
+        
     }
 }
