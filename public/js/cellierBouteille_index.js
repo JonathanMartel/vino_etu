@@ -2,7 +2,7 @@
 
 document.addEventListener('DOMContentLoaded', function() {
 
-    
+    sessionStorage.clear();
     let btnAjouterBouteilles = document.querySelectorAll('[name="btnAjouterBouteille"]')
 
     
@@ -49,4 +49,6 @@ document.addEventListener('DOMContentLoaded', function() {
         var toastHTML = '<span>Une nouvelle bouteille a été ajoutée</span><button class="btn-flat toast-action">Fermer</button>';
         M.toast({html: toastHTML, displayLength : 5000})
     }
-});
+
+
+    })

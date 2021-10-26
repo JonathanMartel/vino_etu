@@ -54,18 +54,11 @@ Route::get('dashboard', [CustomAuthController::class, 'dashboard'])->middleware(
 
 /* ??? ette route ou celle plus haut ??? */
 Route::get('/cellier', [CellierBouteilleController::class, 'index'])->name('cellier');
-
 Route::get('/ajouterBouteille/{idCellier}/{idBouteille}/{millesime}', [CellierBouteilleController::class, 'ajouterBouteille'])->name('ajouterBouteille');
-Route::get('/rechercheBouteilles/{motCle}', [BouteilleController::class, 'rechercheBouteilles'])->name('rechercheBouteilles');
-
-
-
-
-
-
 Route::get('/boireBouteille/{idCellier}/{idBouteille}/{millesime}', [CellierBouteilleController::class, 'boireBouteille'])->name('boireBouteille');
-
-
 Route::get('/cellierBouteille/create', [CellierBouteilleController::class, 'create'])->name('ajouterNouvelleBouteille');
 Route::post('/cellierBouteille/store', [CellierBouteilleController::class, 'store'])->name('cellierBouteille.store');
-Route::get('/rechercheCellierBouteille/{idCellier}/{idBouteille}/{millesime}', [CellierBouteilleController::class, 'rechercheCellierBouteille'])->name('rechercheCellierBouteille');
+Route::get('/obtenirMillesimesParBouteille/{idCellier}/{idBouteille}', [CellierBouteilleController::class, 'obtenirMillesimesParBouteille'])->name('obtenirMillesimesParBouteille');
+
+Route::get('/rechercheBouteillesParMotCle/{motCle}', [BouteilleController::class, 'rechercheBouteillesParMotCle'])->name('rechercheBouteillesParMotCle');
+

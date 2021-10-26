@@ -25,7 +25,8 @@
 
 
         <tr>
-            <td><img src="{{$cellierBouteille->bouteille->url_img}}" alt=""></td>
+        
+            <td><img src="{{ asset($cellierBouteille->bouteille->url_img) }}" alt=""></td>
             <td>{{$cellierBouteille->bouteille->nom}}</td>
             <td name="quantite">{{$cellierBouteille->quantite}}</td>
             <td>{{$cellierBouteille->bouteille->pays}}</td>

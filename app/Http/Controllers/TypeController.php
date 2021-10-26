@@ -17,6 +17,10 @@ class TypeController extends Controller
         //
     }
 
+    public function obtenirListeTypes() {
+        return response()->json( Type::all());
+    }
+
     /**
      * Show the form for creating a new resource.
      *

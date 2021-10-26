@@ -20,6 +20,9 @@ class CellierBouteille extends Model
         return $this->belongsTo(Bouteille::class);
     }
 
+    /**
+     * Ajouter ou diminuer la quantité d'une bouteille dans un cellier
+     */
     public static function modifierQuantiteBouteille($idCellier, $idBouteille, $millesime, $modificationQuantite){
         
         DB::table('cellier_bouteilles')
@@ -31,12 +34,34 @@ class CellierBouteille extends Model
          return true;
     }
 
-    public static function rechercheCellierBouteille($idCellier, $idBouteille, $millesime) {
 
+
+    /**
+     * @param idCellier
+     * @param idBouteille
+     * @param millesime
+     * Vérifier si une bouteille existe déjà dans le cellier
+     * @return row une ligne de la table cellier_bouteilles
+     */
+    public static function rechercheCellierBouteille($idCellier, $idBouteille, $millesime) {
         return DB::table('cellier_bouteilles')
         ->where('cellier_id', $idCellier)
         ->where('bouteille_id', $idBouteille)
         ->where('millesime', $millesime)
+        ->get();
+    }
+
+    /**
+     * @param idCellier
+     * @param idBouteille
+     * Obtenir une liste des millisimes équivalent à idCellier et idBouteille
+     * @return rows des lignes de la table cellier_bouteilles équivalent à idCellier et idBouteille 
+     */
+    public static function obtenirMillesimesParBouteille($idCellier, $idBouteille)
+    {
+        return DB::table('cellier_bouteilles')
+        ->where('cellier_id', $idCellier)
+        ->where('bouteille_id', $idBouteille)
         ->get();
     }
 }

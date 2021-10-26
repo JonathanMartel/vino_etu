@@ -1,24 +1,29 @@
-
-
 document.addEventListener('DOMContentLoaded', function() {
     const recherche = document.querySelector('[name="recherche"]');
     const liste = document.querySelector('.autocomplete');
-
+    
+    /**
+     * Calendier de la date d'achat
+     */
+         const datepicker = document.querySelector('.datepicker');
+         M.Datepicker.init(datepicker, {autoClose : true});
+     
+    
     /**
      * Recherche les noms des bouteilles dans la base de données  qui correspondent au mot-clé 
      */
     recherche.addEventListener('input', () => {
-
+        
         if(recherche.value.trim() != "") {
             liste.innerHTML = "";
-            fetch("/rechercheBouteilles/" + recherche.value)
+            
+            fetch("/rechercheBouteillesParMotCle/" + recherche.value)
             .then(response => {
                 return (response.json())
             })
             .then(response => {
-
                 response.forEach(function(element){
-                    liste.innerHTML += "<div data-id='"+element.id +"'>"+element.nom+"</div>";
+                    liste.innerHTML += `<div  data-description="${element.description}" data-pays="${element.pays}" data-idtype="${element.type_id}" data-idformat="${element.format_id}" data-id="${element.id}"  data-imgurl="${element.url_img}" data-nom="${element.nom}" >${element.nom} - ${element.type}</div>`;
                   })
                   
             }).catch(error => console.log(error))
@@ -29,38 +34,96 @@ document.addEventListener('DOMContentLoaded', function() {
     })
 
     /**
-     * Insérer le nom de la bouteille lorsqu'on clique sur le nom d'une bouteille
+     * Insérer les informations de la bouteille lorsqu'on clique sur le nom d'une bouteille
      */
     const inputNom = document.querySelector('#nom');
     const inputBouteilleId = document.querySelector('#bouteille_id');
-    const fileInput = document.querySelector(".file-field");
-
+    const description = document.querySelector('#description');
+    const type_id = document.querySelector('[name="type_id"]');
+    const format_id = document.querySelector('[name="format_id"]');
+    const labelMillesime = document.querySelector('[name="labelMillesime"]');
+    const pays = document.querySelector('[name="pays"]');
+    const img = document.querySelector('img');
+    const imgUrl = document.querySelector('[name="url_img"]');
+    const millesimes = document.querySelector('[name="millesimes"]');
+    
+    if(!imgUrl.value) {
+            img.style.display = "none";
+    }
+      
     liste.addEventListener('click', e => {
         
         if(e.target.tagName == "DIV") {
+            labelMillesime.innerHTML = "Millesime";
+            
+            img.style.display = "block";
+            img.src = e.target.dataset.imgurl;
+
             inputNom.nextElementSibling.className ='active';
-            inputNom.value = e.target.innerHTML;
-            inputNom.readOnly = true;
+            inputNom.value = e.target.dataset.nom;
             inputNom.className = "valid";
+            
+            imgUrl.value = e.target.dataset.imgurl;
+            if(e.target.dataset?.description != ''){
+                description.value = e.target.dataset.description;
+                description.className ='materialize-textarea';
+                description.nextElementSibling.className ='active';
+            }
+
+            fetch('/obtenirMillesimesParBouteille/1/'+ e.target.dataset.id)
+            .then(response => {
+                return (response.json())
+            })
+            .then(response => {
+                if(response[0])
+                {
+                    labelMillesime.innerHTML += " (existant : ";
+
+                    response.forEach((millesime, i) => {
+                      
+                        if(millesime.millesime == 0)
+                        {
+                            millesime.millesime = "sans millesime";
+                        }
+
+                        if(response[i +1] != undefined)
+                        {
+                          
+                            labelMillesime.innerHTML += ` ${millesime.millesime}, `;
+                        }else {
+                            
+                            labelMillesime.innerHTML += ` ${millesime.millesime}`; 
+                        }
+                    })
+                    labelMillesime.innerHTML += " )";
+
+                    millesimes.value = labelMillesime.innerHTML;
+                }
+                
+            }).catch(error => console.log(error))
+            
+            type_id.value = e.target.dataset.idtype;
+            format_id.value = e.target.dataset.idformat;
+            M.FormSelect.init(elems);
+          
             recherche.value = "";
             recherche.nextElementSibling.className ='';
             liste.innerHTML = "";
             inputBouteilleId.value = e.target.dataset.id;
-            fileInput.style.display = "none";
+           
+            if(e.target.dataset?.pays != ''){
+                pays.value = e.target.dataset.pays;
+                pays.nextElementSibling.className ='active';
+            }
+
         }
     })
 
     /**
-     *  le select de millesime
+     *  les selects
      */
-    const millesime = document.querySelector('[name="millesime"]');
-    M.FormSelect.init(millesime);
-
-    /**
-     * Calendier de la date d'achat
-     */
-    const datepicker = document.querySelector('.datepicker');
-    M.Datepicker.init(datepicker, {autoClose : true});
+     var elems = document.querySelectorAll('select:not(.star-rating)');
+     M.FormSelect.init(elems);
 
    
     /**
@@ -73,10 +136,6 @@ document.addEventListener('DOMContentLoaded', function() {
         M.toast({html: toastHTML, displayLength : 5000})
     }
 
-    if( inputBouteilleId.value) {
-        fileInput.style.display = "none";
-        inputNom.readOnly = true;
-    }
 
     /**
      * Note
@@ -96,36 +155,8 @@ document.addEventListener('DOMContentLoaded', function() {
           
     });
 
-     /**
-     * Réinitialiser le formulaire d'ajout
-     */
-      const form = document.querySelector('form');
-      const btnReset = form.querySelector('[name="reinitialiser"]');
+    var images = document.querySelectorAll('.materialboxed');
+    M.Materialbox.init(images);
+   
   
-      btnReset.addEventListener('click', (e) => {
-        e.preventDefault()
-        form.reset();
-
-        form.querySelectorAll('input').forEach(input => {
-            input.value = null;
-            input.classList.remove('valid');
-        })
-        
-        form.querySelector('select').options.selectedIndex = null;
-        
-        form.querySelectorAll('.gl-active').forEach(etoile => {
-        etoile.classList.remove('gl-active', 'gl-selected');
-        })
-
-        form.querySelector('.gl-star-rating--stars').setAttribute('aria-label', 'Choisir une note');
-        form.querySelector('.gl-star-rating--stars').setAttribute('data-rating', 0);
-        form.querySelector('textarea').value = "";
-        fileInput.style.display = "block";
-        inputNom.readOnly = false;
-
-      })
   });
-
-  
-
- 
