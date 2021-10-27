@@ -9,4 +9,7 @@ class Bouteille extends Model
 {
     use HasFactory;
 
+    public function celliers() {
+        return $this->belongsToMany(Cellier::class, "bouteilles_celliers");
+    }
 }

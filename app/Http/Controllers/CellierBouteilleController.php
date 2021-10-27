@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\BouteilleResource;
+use App\Models\Bouteille;
 use App\Models\Cellier;
 use App\Models\CellierBouteille;
 use Illuminate\Http\Request;
@@ -16,7 +17,6 @@ class CellierBouteilleController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**
@@ -49,7 +49,7 @@ class CellierBouteilleController extends Controller
      * @param  \App\Models\CellierBouteille  $cellierBouteille
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CellierBouteille $cellierBouteille)
+    public function update(Request $request, Cellier $cellier, Bouteille $bouteille)
     {
         //
     }
