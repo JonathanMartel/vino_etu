@@ -19,6 +19,7 @@ label {
     padding-top: 1rem;
     margin: 0.5rem 0;
     font-size: 14px;
+    font-weight: 500;
 }
 
 .formulaire input {
@@ -40,7 +41,7 @@ select{
     background-color: #fff;
 }
 
-input[type=date] { 
+input[type=date] {
     color: #000;
     background-color: #fff;
 }
@@ -49,7 +50,7 @@ input[type=date] {
 select {
     display: block;
     width: 100%;
-    padding: 0.625rem;
+    padding: 0.625rem 0;
     margin-top: 0.5rem;
     border-radius: 3px;
     border: 1px solid var(--color-border-input);

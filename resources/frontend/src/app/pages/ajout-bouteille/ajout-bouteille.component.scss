@@ -10,6 +10,10 @@
     margin-top: 3rem;
 }
 
+.formulaire-contenu {
+    width: 100%;
+}
+
 div {
     margin-bottom: 0.5rem;
 }
@@ -19,6 +23,7 @@ label {
     padding-top: 1rem;
     margin: 0.5rem 0;
     font-size: 14px;
+    font-weight: 500;
 }
 
 .formulaire input {
@@ -49,13 +54,14 @@ input[type=date] {
 select {
     display: block;
     width: 100%;
-    padding: 0.625rem;
+    padding: 0.625rem 0;
     margin-top: 0.5rem;
     border-radius: 3px;
     border: 1px solid var(--color-border-input);
 }
 
 .formulaire button {
+    display: flex;
     text-transform: uppercase;
     border: none;
     font-size: 0.725rem;
