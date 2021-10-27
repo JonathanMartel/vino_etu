@@ -8,20 +8,19 @@ import { HttpClient} from '@angular/common/http';
 export class BouteilleDeVinService {
 
   private url_cellier:string = "http://127.0.0.1:8000/api/cellier";
-  private url_bouteille:string = "http://127.0.0.1:8000/api/bouteilles";
+  private url_bouteille:string = "http://127.0.0.1:8000/api/catalogue-bouteilles";
 
   constructor(private http: HttpClient) { }
 
   getCellier(){
 
     return this.http.get(this.url_cellier);
-    
+
   }
 
   getListeBouteille(){
- 
-    return this.http.get(this.url_bouteille);
-    
+
+    return this.http.get<any>(this.url_bouteille);
   }
 }
 

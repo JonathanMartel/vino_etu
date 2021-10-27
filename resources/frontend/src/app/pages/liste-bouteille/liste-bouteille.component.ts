@@ -13,7 +13,7 @@ export class ListeBouteilleComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.servBouteilleDeVin.getListeBouteille().subscribe(bouteille => this.bouteille = bouteille);
+    this.servBouteilleDeVin.getListeBouteille().subscribe(bouteille => this.bouteille = bouteille.data);
   }
 
 }
