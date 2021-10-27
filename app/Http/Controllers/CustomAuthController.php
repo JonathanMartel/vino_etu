@@ -70,7 +70,7 @@ class CustomAuthController extends Controller
         $credentials = $request->only('courriel', 'password');
         if(Auth::attempt($credentials)){
           session(['user' => Auth::user()]);
-          return redirect()->intended('home');
+          return redirect()->intended('cellier');
         }
 
         return redirect('login')->withSuccess('Les informations de connexion ne sont pas valides!');
