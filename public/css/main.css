@@ -80,5 +80,38 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
   }
 
 
+/* Les boutons */
 
+.btn-space {
+    display: flex;
+    gap: 1rem;
+}
 
+.btn-space-col {
+	display: flex;
+	flex-direction: column;
+    gap: 1rem;
+}
+
+.button {
+    border-radius: 5px;
+    flex-grow: 1;
+    font-weight: bold;
+    font-size: 1.25rem;
+}
+
+.btn-ajouter {
+	background-color: #99AAA2;
+    color: #343B41;
+}
+
+.btn-annuler {
+	border: 2px solid #99AAA2;
+    background-color: white;
+	color: #343B41;
+}
+
+.btn-supprimer {
+    color: white;
+    background-color: #774444;
+}
