@@ -4,8 +4,9 @@
 @if(Session::get('nouvelleBouteille'))
 <span class="nouvelleBouteille"></span>
 @endif
+
 <h1>Un petit verre de vino ?</h1>
-<a href="{{ route('ajouterNouvelleBouteille') }}">Ajouter un nouveau vin au cellier</a>
+<a href="{{ route('ajouterVin', $idCellier) }}">Ajouter un nouveau vin au cellier</a>
 <table class="responsive-table striped highlight">
     <thead>
         <tr>
@@ -19,24 +20,22 @@
             <th>Actions</th>
         </tr>
     </thead>
-
     <tbody>
         @foreach($cellierBouteilles as $cellierBouteille)
 
-
         <tr>
         
-            <td><img src="{{ asset($cellierBouteille->bouteille->url_img) }}" alt="{{$cellierBouteille->bouteille->nom}}"></td>
-            <td>{{$cellierBouteille->bouteille->nom}}</td>
+            <td><img src="{{ asset($cellierBouteille->url_img) }}" alt="{{$cellierBouteille->nom}}"></td>
+            <td>{{$cellierBouteille->nom}}</td>
             <td name="quantite">{{$cellierBouteille->quantite}}</td>
-            <td>{{$cellierBouteille->bouteille->pays}}</td>
+            <td>{{$cellierBouteille->pays}}</td>
             <td>
                 @if( $cellierBouteille->millesime != 0)
                 {{$cellierBouteille->millesime}}
                 @endif
             </td>
-            <td>{{$cellierBouteille->bouteille->type->type}}</td>
-            <td><a href="{{$cellierBouteille->bouteille->url_saq}}">Lien SAQ</a></td>
+            <td>{{$cellierBouteille->type}}</td>
+            <td><a href="{{$cellierBouteille->url_saq}}">Lien SAQ</a></td>
             <td>
 
 
