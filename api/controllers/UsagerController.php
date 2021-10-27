@@ -17,19 +17,24 @@ class UsagerController extends Router
      */
     public function login()
     {
-        if (count($this->urlParams) == 1) {
-            $body = json_decode(file_get_contents('php://input'));
+        if (count($this->urlParams) == 2) {
+            if ($this->urlParams[1] == 'login') {
+                $body = json_decode(file_get_contents('php://input'));
 
-            if (!empty($body)) {
-                //TODO valider données
+                if (!empty($body)) {
+                    //TODO valider données
 
-                $usagerClassObj = new UsagerModele;
-                $resultat = $usagerClassObj->match($body->courriel, $body->password);
+                    $usagerClassObj = new UsagerModele;
+                    $resultat = $usagerClassObj->match($body->courriel, $body->password);
 
-                $this->retour['data'] = $resultat;
+                    $this->retour['data'] = $resultat;
+                } else {
+                    $this->retour['erreur'] = $this->erreur(400);
+                    unset($this->retour['data']);
+                }
             } else {
                 $this->retour['erreur'] = $this->erreur(400);
-                unset($this->retour['data']);
+                unset($this->retour['data']);    
             }
         } else {
             $this->retour['erreur'] = $this->erreur(400);
