@@ -3,8 +3,8 @@
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\PaysController;
 use App\Http\Controllers\UserController;
-use App\Models\vino__bouteille;
-use App\Models\vino__cellier;
+use App\Models\Bouteille;
+use App\Models\Cellier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -44,7 +44,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/cellier', function(){
 
 
-    return response(vino__cellier::all(), 200);
+    return response(Cellier::all(), 200);
 
 
 });
@@ -52,7 +52,7 @@ Route::get('/cellier', function(){
 Route::get('/bouteilles', function(){
 
 
-    return response(vino__bouteille::all(), 200);
+    return response(Bouteille::all(), 200);
 
 
 });
