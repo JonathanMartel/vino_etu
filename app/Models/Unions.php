@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\DB;
  *
  */
 class Unions {
-    static public function obtenirCatalogueBouteillesParUtilisateur(int $idUtilisateur = 1, int $limite = 24) {
+    static public function obtenirCatalogueBouteillesPourUtilisateur(int $idUtilisateur = 1, int $limite = 24) {
         $requeteBouteille = DB::table("bouteilles")
                                 ->join("pays", "pays.id", "=","bouteilles.pays_id")
                                 ->join("categories", "categories.id", "=", "bouteilles.categories_id")

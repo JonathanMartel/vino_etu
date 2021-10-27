@@ -8,6 +8,6 @@ use Illuminate\Http\Request;
 class UnionsController extends Controller
 {
     public function obtenirCatalogueBouteilles() {
-        return Unions::obtenirCatalogueBouteillesParUtilisateur(1);
+        return Unions::obtenirCatalogueBouteillesPourUtilisateur(1);
     }
 }
