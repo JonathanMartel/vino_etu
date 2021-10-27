@@ -64,4 +64,6 @@ class CellierBouteille extends Model
         ->where('bouteille_id', $idBouteille)
         ->get();
     }
+    
+
 }

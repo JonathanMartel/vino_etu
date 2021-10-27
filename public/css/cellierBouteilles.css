@@ -1,0 +1,32 @@
+img[name="img-bouteille"]
+{
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+.flex-center {
+    margin-bottom: 2em;
+}
+
+.flex-center > h1 {
+    color: #7A5958;
+}
+
+button[name="annuler"] {
+    background-color: #742F30;
+    margin-right: 1em;
+}
+
+button[name="annuler"]:hover{
+    background-color: #7A5958;
+}
+
+.flex-row {
+    justify-content: end;
+    margin-top: 1em;
+}
+
+
+
+
+
