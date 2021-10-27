@@ -1,0 +1,56 @@
+.conteneur{
+    position: fixed; 
+}
+
+.formulaire {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 15rem;
+    max-width: 70vw;
+    padding: 2.5rem;
+    border-radius: .5rem;
+    color: black;
+    margin: 7rem 1rem;
+}
+
+.input-case {
+    display: flex;
+    align-items: center;
+    margin: 1rem 0.875rem;
+}
+
+label {
+    display: inline-block;
+    padding-top: 1.5rem;
+}
+
+.formulaire input {
+    display: inline-block;
+    margin: 0.75rem;
+    padding: 0.875rem;
+    width: 200px;
+    border: none;
+    border-bottom: 1px solid #000;
+}
+
+.formulaire button {
+    text-transform: uppercase;
+    border: none;
+    font-size: 0.725rem;
+    color: #ffffff;
+    font-weight: bold;
+    background-color: #4c1920;
+    width: 10rem;
+    display: block;
+    padding: 0.875rem 1rem;
+    margin: 1rem 0;
+    border-radius: 1.5rem;
+    box-shadow: 3px 3px 8px #b1b1b1, -3px -3px 8px #ffffff;
+    cursor: pointer;
+}
+
+a {
+    padding-top: 1rem;
+    font-size: 14px;
+}
