@@ -1,0 +1,241 @@
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+  line-height: 1.4;
+}
+
+html, body {
+  height: 100%;
+  min-height: 100%;
+  font-family: 'Nunito', sans-serif;
+}
+
+main {
+  padding-top: 50px;
+  font-family: 'Nunito', sans-serif;
+  min-height: 100%;
+}
+
+.app-header {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  color: #fff;
+  height: 6.125rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0);
+}
+
+.header-content {
+  position: relative;
+  height: 100%;
+  width: 100%;
+}
+
+.app-toolbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  height: 50px; 
+  padding: 0 16px;
+  pointer-events: none;
+  font-size: 20px;
+}
+
+#large-toolbar {
+  position: absolute;
+  bottom: 0;
+  transform-origin: left top;  
+  width: 100%;
+  height: 100%;
+}
+
+.large-title {
+  flex: 1;
+  font-weight: 400;
+  line-height: 1em;
+  font-size: 1em;
+  text-align: center;
+}
+
+.background {
+  pointer-events: none;
+  position: absolute;
+  background-size: cover;
+  height: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+
+#background-front {
+  background-color: #4c1920;
+  background-position: left center;
+}
+
+.btns {
+    display: flex;
+    margin: 0;
+    box-shadow: 0 1px 4px 0 rgb(0 0 0 / 28%);
+    background-color: #fff;
+}
+
+.items{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    padding: 4px 8px;
+    margin: 0;
+}
+
+.item{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    text-align: center;
+    padding: 0.75rem;
+    text-decoration: none;
+    color: #000;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 500;
+    width: 80%;
+}
+
+.item>img {
+    width: 100%;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+    margin: 3rem 0;
+}
+
+.card-title {
+    display: flex;
+    justify-content: flex-start;
+    padding: 1rem .8rem .3rem;
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.card-title>h4 {
+  padding: 0 1rem;
+  margin: 1.25rem 0;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2.5rem;
+    padding: 1.5rem 0;
+}
+
+p {
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.4em;
+    padding: 0 16px;
+}
+
+.btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.step__button {
+    background: lightgrey;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 20px;
+    width: 120px;
+    height: 100px;
+}
+
+.step__button>img{
+    max-width: 70px; 
+    max-height: 70px;
+    justify-content: center;
+    margin: 0px 0px 2px;
+    height: auto;
+
+}
+
+.step__button>span {
+    display: flex;
+    vertical-align: middle;
+    color: #4c1920;
+    align-items: flex-end;
+    font-family: 'Nunito', sans-serif;
+    font-size: 12px;
+}
+
+
+body>main>footer{
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 50010;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 0;
+    box-shadow: 0 -1px 4px 0 rgb(0 0 0 / 28%);
+    background-color: #fff;
+}
+
+
+body>main>footer>button:not(:hover) {
+    background-color: transparent;
+}
+
+body>main>footer button {
+    font-size: 13px;
+    text-align: center;
+    padding: var(--espacement-petit);
+    border: none;
+    border-radius: var(--espacement-petit);
+    margin: var(--espacement-petit);
+}
+
+body>main>footer>*{
+    flex-grow: 1;
+}
+
+.home-btns{
+  margin: 0.5rem;
+  padding: 1rem;
+}
+
+
+
+.home-btns button {
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    border: none;
+    font-size: 0.875rem;
+    color: #ffffff;
+    font-weight: bold;
+    background-color: hsl(352, 50%, 20%);
+    width: 100%;
+    display: block;
+    padding: 1.125rem .875rem;
+    border-radius: 1.5rem;
+    box-shadow: 3px 3px 8px #b1b1b1, -3px -3px 8px #ffffff;
+    cursor: pointer;
+}

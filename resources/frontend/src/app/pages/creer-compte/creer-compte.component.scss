@@ -10,10 +10,6 @@
     margin-top: 3rem;
 }
 
-.formulaire-contenu {
-    width: 100%;
-}
-
 div {
     margin-bottom: 0.5rem;
 }
@@ -45,7 +41,7 @@ select{
     background-color: #fff;
 }
 
-input[type=date] { 
+input[type=date] {
     color: #000;
     background-color: #fff;
 }
@@ -61,7 +57,6 @@ select {
 }
 
 .formulaire button {
-    display: flex;
     text-transform: uppercase;
     border: none;
     font-size: 0.725rem;
