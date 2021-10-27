@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\BouteilleResource;
+use App\Models\Bouteille;
+use App\Models\Cellier;
 use App\Models\CellierBouteille;
 use Illuminate\Http\Request;
 
@@ -14,7 +17,16 @@ class CellierBouteilleController extends Controller
      */
     public function index()
     {
-        //
+    }
+
+    /**
+     *
+     * Afficher les bouteilles contenu dans un cellier donné
+     *
+     *
+     */
+    public function obtenirBouteillesParCellier(Cellier $cellier) {
+        return BouteilleResource::make($cellier->bouteilles);
     }
 
     /**
@@ -23,9 +35,10 @@ class CellierBouteilleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Cellier $cellier, Request $request)
     {
-        //
+
+        return response("Ça marche, $cellier->id !", 200);
     }
 
     /**
@@ -36,7 +49,7 @@ class CellierBouteilleController extends Controller
      */
     public function show(CellierBouteille $cellierBouteille)
     {
-        //
+        return new BouteilleResource($cellierBouteille);
     }
 
     /**
@@ -46,9 +59,9 @@ class CellierBouteilleController extends Controller
      * @param  \App\Models\CellierBouteille  $cellierBouteille
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CellierBouteille $cellierBouteille)
+    public function update(Request $request, Cellier $cellier, Bouteille $bouteille)
     {
-        //
+
     }
 
     /**
