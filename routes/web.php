@@ -37,7 +37,7 @@ Route::post('/create/cellier', [CellierController::class, 'store'])->name('celli
 Route::get('/cellier/{cellier}/edit', [CellierController::class, 'edit'])->middleware('auth');
 Route::put('/cellier/{cellier}/edit', [CellierController::class, 'update'])->middleware('auth');
 
-//Route::delete('/cellier/{cellier}', [CellierController::class, 'destroy'])->middleware('auth');
+Route::delete('/cellier/{cellier}', [CellierController::class, 'destroy'])->middleware('auth');
 
 
 
