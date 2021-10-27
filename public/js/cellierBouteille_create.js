@@ -69,8 +69,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 description.value = e.target.dataset.description;
           
             }
+            const idCellier = location.pathname.split('/')[2];
 
-            fetch('/obtenirMillesimesParBouteille/1/'+ e.target.dataset.id)
+            fetch(`/obtenirMillesimesParBouteille/${idCellier}/${e.target.dataset.id}`)
             .then(response => {
                 return (response.json())
             })
@@ -136,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const success = document.querySelector(".success");
 
     if(success) {
-        var toastHTML = '<span>Cette bouteille existe déjà dans vôtre cellier</span><button class="btn-flat toast-action">Fermer</button>';
+        var toastHTML = '<span>Cette bouteille existe déjà dans votre cellier</span><button class="btn-flat toast-action">Fermer</button>';
         M.toast({html: toastHTML, displayLength : 5000})
     }
 

@@ -7,7 +7,6 @@ use App\Models\Type;
 use App\Models\CellierBouteille;
 use App\Models\Format;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\URL;
 
 class CellierBouteilleController extends Controller
@@ -19,10 +18,11 @@ class CellierBouteilleController extends Controller
      */
     public static function index($idCellier)
     {
-        $cellierBouteilles = CellierBouteille::all(); // !!! affiche tous les vins de la base qui sont dans un cellier(pas nécessairement celui selectionné) a modifier pour afficher seulement celles du cellier selctionné.
+        $cellierBouteilles = CellierBouteille::obtenirListeBouteilleCellier($idCellier); 
 
 	    return view('cellierBouteille.index', [
             'cellierBouteilles' => $cellierBouteilles,
+            'idCellier' => $idCellier,
         ]);
     }
 
@@ -31,13 +31,14 @@ class CellierBouteilleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($idCellier)
     {
         $types = Type::all();
         $formats = Format::all();
         return view('cellierBouteille.create', [
             'types' => $types,
-            'formats' => $formats
+            'formats' => $formats,
+            'idCellier' => $idCellier
         ]);
     }
 
@@ -57,13 +58,13 @@ class CellierBouteilleController extends Controller
 
         $request->validate([
             'nom' => 'required',
-            'quantite' => 'integer|gte:1',
-            'prix' => 'numeric|regex:/^\d+\.\d{0,2}$/|gte:0.01',
+            'quantite' => 'integer|gte:0',
+            'prix' => 'numeric|regex:/[0-9]+(\.[0-9][0-9]?)?/|gte:0',
             'pays' => 'alpha'
         ]);
       
        if(isset($request->bouteille_id)){
-            $cellierBouteille = CellierBouteille::rechercheCellierBouteille(1, $request->bouteille_id, $request->millesime);
+            $cellierBouteille = CellierBouteille::rechercheCellierBouteille($request->cellier_id, $request->bouteille_id, $request->millesime);
             $bouteilleExistante = Bouteille::rechercheBouteilleExistante( $request);
             
             if( isset($bouteilleExistante[0]) && isset($cellierBouteille[0])){
@@ -77,13 +78,9 @@ class CellierBouteilleController extends Controller
                    
                 }
             if(isset($bouteilleExistante[0])) {
-
-                
+ 
                     $cellierBouteille = new CellierBouteille;
                     $cellierBouteille->fill($request->all());
-                    
-                
-                    $cellierBouteille->cellier_id = 1;
                     $cellierBouteille->date_achat = $date_achat;
                     $cellierBouteille->save();
                     
@@ -104,17 +101,16 @@ class CellierBouteilleController extends Controller
                         'format_id' =>  $request->format_id,
                         'url_img' => $request->url_img,
                         'type_id' =>  $request->type_id,
-                        'user_id' =>  2
+                        'user_id' =>  session('user')->id
                     ]);
                 
                     $cellierBouteille = new CellierBouteille;
                     $cellierBouteille->fill($request->all());
                     $cellierBouteille->bouteille_id = $bouteille->id;
                     $cellierBouteille->date_achat = $date_achat;
-                    $cellierBouteille->cellier_id = 1;
                     $cellierBouteille->save();
                     
-                    return redirect("cellier")->with("nouvelleBouteille", "nouvelle bouteille ajoutée" );
+                    return redirect("cellier/" + $request->cellier_id)->with("nouvelleBouteille", "nouvelle bouteille ajoutée" );
                 }
             }
         }

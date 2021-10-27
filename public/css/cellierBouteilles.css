@@ -4,12 +4,11 @@ img[name="img-bouteille"]
     margin-bottom: 10px;
 }
 
-.flex-center {
-    margin-bottom: 2em;
-}
 
-.flex-center > h1 {
+div > h1 {
     color: #7A5958;
+    text-align: center;
+    margin-bottom: 0.5em;
 }
 
 button[name="annuler"] {
@@ -24,6 +23,11 @@ button[name="annuler"]:hover{
 .flex-row {
     justify-content: end;
     margin-top: 1em;
+}
+.col.s12.ajout-vin {
+    padding: 1rem;
+    border-radius: 5px;
+    border: 2px solid #BBC7C1;
 }
 
 
