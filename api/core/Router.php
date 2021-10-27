@@ -5,6 +5,7 @@ namespace VinoAPI\Core;
 use VinoAPI\Controllers\BouteilleController;
 use VinoAPI\Controllers\CellierController;
 use VinoAPI\Controllers\SAQController;
+use VinoAPI\Controllers\UsagerController;
 use VinoAPI\Modeles\UsagerModele;
 
 /**
@@ -74,8 +75,8 @@ class Router
 	{
 		if (isset($this->urlParams[0])) {
 			switch ($this->urlParams[0]) {
-				case 'users':
-					echo json_encode('users');
+				case 'usagers':
+					echo json_encode('usagers');
 					break;
 				case 'bouteilles':
 					$bouteilleClassObj = new BouteilleController;
@@ -110,8 +111,8 @@ class Router
 	private function postAction()
 	{
 		switch ($this->urlParams[0]) {
-			case 'users':
-				echo json_encode('users');
+			case 'usagers':
+				echo json_encode('usagers');
 				break;
 			case 'bouteilles':
 				$bouteilleClassObj = new BouteilleController;
@@ -140,8 +141,9 @@ class Router
 	private function putAction()
 	{
 		switch ($this->urlParams[0]) {
-			case 'users':
-				echo json_encode('users put');
+			case 'usagers':
+				$usagerClassObj = new UsagerController;
+				$usagerClassObj->login();
 				break;
 			case 'bouteilles':
 				$bouteilleClassObj = new BouteilleController;
@@ -169,8 +171,8 @@ class Router
 	private function deleteAction()
 	{
 		switch ($this->urlParams[0]) {
-			case 'users':
-				echo json_encode('users delete');
+			case 'usagers':
+				echo json_encode('usagers delete');
 				break;
 			case 'bouteilles':
 				echo json_encode('bouteilles delete');
