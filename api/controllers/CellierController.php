@@ -20,8 +20,8 @@ class CellierController extends Router
     {
         if (count($this->urlParams) == 2) {
             if (ctype_digit($this->urlParams[1])) {
-                $cellier = new CellierModele;
-                $celliers = $cellier->getCelliersParUsagerId($this->urlParams[1]);
+                $cellierClassObj = new CellierModele;
+                $celliers = $cellierClassObj->getCelliersParUsagerId($this->urlParams[1]);
 
                 $this->retour['data'] = $celliers;
             } else {
@@ -52,8 +52,8 @@ class CellierController extends Router
             $body = json_decode(file_get_contents('php://input'));
 
             if (!empty($body)) {
-                $bte = new CellierModele;
-                $resultat = $bte->ajouterNouveauCellier($body);
+                $cellierClassObj = new CellierModele;
+                $resultat = $cellierClassObj->ajouterNouveauCellier($body);
 
                 $this->retour['data'] = $resultat;
             } else {
