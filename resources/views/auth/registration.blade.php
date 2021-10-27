@@ -27,7 +27,7 @@
 
               <div class="input-field col s12">
                   <input id="date_naissance" type="text" class="validate" name="date_naissance" value="{{ old('date_naissance')}}">
-                  <label for="date_naissance">Date de naissance(jj-mm-aaaa)</label>
+                  <label for="date_naissance">Date de naissance(aaaa-mm-jj)</label>
                   @if ($errors->has('date_naissance'))
                       <span class="red-text">{{ $errors->first('date_naissance') }}</span>
                   @endif
@@ -50,7 +50,7 @@
               </div>
 
               <div class="input-field col s12">
-                <button type="submit" class="waves-effect waves-light btn-small blue right">Créer compte</button>
+                <button type="submit" class="waves-effect waves-light btn-small right">Créer compte</button>
               </div>
               
               <div class="input-field col s12">
