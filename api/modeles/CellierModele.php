@@ -45,9 +45,39 @@ class CellierModele extends Modele
         if (($res = $this->_db->query($requete)) == true) {
             if ($res->num_rows) {
                 while ($row = $res->fetch_assoc()) {
-                    $row['emplacement_cellier'] = trim(utf8_encode($row['emplacement']));
+                    $row['emplacement'] = trim(utf8_encode($row['emplacement']));
                     $rows[] = $row;
                 }
+            }
+        } else {
+            throw new Exception("Erreur de requête sur la base de donnée", 1);
+        }
+
+        return $rows;
+    }
+
+    /**
+     * Retourne le cellier.
+     *
+     * @param mixed $id L'id du cellier.
+     * 
+     * @return Array Résultats de la requête.
+     */
+    public function getCellierParId($id)
+    {
+        $rows = array();
+
+        $requete = "SELECT * FROM vino__cellier"
+            . " LEFT JOIN vino__cellier_inventaire ON vino__cellier.id_cellier = vino__cellier_inventaire.id_cellier"
+            . " WHERE vino__cellier.id_cellier = $id";
+
+        if (($res = $this->_db->query($requete)) == true) {
+            if ($res->num_rows) {
+                while ($row = $res->fetch_assoc()) {
+                    $rows[] = $row;
+                }
+            } else {
+                $rows = false;
             }
         } else {
             throw new Exception("Erreur de requête sur la base de donnée", 1);
