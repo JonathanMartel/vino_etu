@@ -57,8 +57,8 @@ class CellierBouteilleController extends Controller
 
         $request->validate([
             'nom' => 'required',
-            'quantite' => 'integer|gte:1',
-            'prix' => 'numeric|regex:/^\d+\.\d{0,2}$/|gte:0.01',
+            'quantite' => 'integer|gte:0',
+            'prix' => 'numeric|regex:/^\d+\.\d{0,2}$/|gte:0',
             'pays' => 'alpha'
         ]);
       
