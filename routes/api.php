@@ -50,6 +50,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/cellier', function(){
     return response(vino__cellier::all(), 200);
-
-
 });
