@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BouteilleController;
 use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\CellierBouteilleController;
 use App\Http\Controllers\PaysController;
 use App\Http\Controllers\UnionsController;
 use App\Http\Controllers\UserController;
@@ -43,11 +44,17 @@ Route::apiResource("bouteilles", BouteilleController::class)->only([
 
 Route::get("catalogue-bouteilles", [UnionsController::class, "obtenirCatalogueBouteilles"]);
 
+// Ajout d'une bouteille à un cellier
+Route::post('celliers/{cellier}/bouteilles', [CellierBouteilleController::class, "store"]);
+
+// Mise à jour de l'inventaire d'une bouteille dans un cellier donné
+Route::put("celliers/{cellier}/bouteilles", [CellierBouteilleController::class, "update"]);
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
 
-Route::get('/cellier', function(){
+Route::get('/celliers', function(){
     return response(vino__cellier::all(), 200);
 });
