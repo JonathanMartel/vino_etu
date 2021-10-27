@@ -25,7 +25,7 @@ class UsagerController extends Router
                     //TODO valider données
 
                     $usagerClassObj = new UsagerModele;
-                    $resultat = $usagerClassObj->match($body->courriel, $body->password);
+                    $resultat = $usagerClassObj->match($body->courriel, $body->mot_passe);
 
                     $this->retour['data'] = $resultat;
                 } else {
