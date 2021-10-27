@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\BouteilleController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\PaysController;
+use App\Http\Controllers\UnionsController;
 use App\Http\Controllers\UserController;
 use App\Models\Bouteille;
 use App\Models\Cellier;
@@ -34,7 +36,12 @@ Route::apiResource('categories', CategorieController::class)->only([
     "index",
 ]);
 
+Route::apiResource("bouteilles", BouteilleController::class)->only([
+    "index",
+    "show",
+]);
 
+Route::get("catalogue-bouteilles", [UnionsController::class, "obtenirCatalogueBouteilles"]);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -43,16 +50,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/cellier', function(){
 
-
     return response(Cellier::all(), 200);
 
-
 });
 
-Route::get('/bouteilles', function(){
-
-
-    return response(Bouteille::all(), 200);
-
-
-});

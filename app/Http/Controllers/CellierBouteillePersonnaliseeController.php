@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\BouteilleResource;
-use App\Models\Bouteille;
+use App\Models\CellierBouteillePersonnalisee;
 use Illuminate\Http\Request;
 
-class BouteilleController extends Controller
+class CellierBouteillePersonnaliseeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,7 @@ class BouteilleController extends Controller
      */
     public function index()
     {
-            return BouteilleResource::collection(Bouteille::all());
+        //
     }
 
     /**
@@ -32,10 +31,10 @@ class BouteilleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Bouteille  $bouteille
+     * @param  \App\Models\CellierBouteillePersonnalisee  $cellierBouteillePersonnalisee
      * @return \Illuminate\Http\Response
      */
-    public function show(Bouteille $bouteille)
+    public function show(CellierBouteillePersonnalisee $cellierBouteillePersonnalisee)
     {
         //
     }
@@ -44,10 +43,10 @@ class BouteilleController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Bouteille  $bouteille
+     * @param  \App\Models\CellierBouteillePersonnalisee  $cellierBouteillePersonnalisee
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Bouteille $bouteille)
+    public function update(Request $request, CellierBouteillePersonnalisee $cellierBouteillePersonnalisee)
     {
         //
     }
@@ -55,10 +54,10 @@ class BouteilleController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Bouteille  $bouteille
+     * @param  \App\Models\CellierBouteillePersonnalisee  $cellierBouteillePersonnalisee
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Bouteille $bouteille)
+    public function destroy(CellierBouteillePersonnalisee $cellierBouteillePersonnalisee)
     {
         //
     }
