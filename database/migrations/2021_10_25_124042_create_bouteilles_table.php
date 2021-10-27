@@ -20,7 +20,9 @@ class CreateBouteillesTable extends Migration
             $table->string("url_image")->nullable();
             $table->string("url_achat")->nullable();
             $table->string("url_infos")->nullable();
+            $table->date("date_achat")->nullable();
             $table->string("conservation")->nullable();
+            $table->year("millesime")->nullable();
             $table->text("notes")->nullable();
             $table->string("format")->nullable();
             $table->foreignId("pays_id")->constrained();
