@@ -26,13 +26,13 @@ Route::get('/', function () {
 Route::get('/cellier', [CellierController::class, 'index'])->name('cellier');
 
 /* Page d'un cellier avec les vins correspondants, leur quantité et millesime */
-Route::get('/cellier/{cellier}', [CellierController::class, 'show']);
+Route::get('/cellier/{cellier}', [CellierController::class, 'show'])->name('cellier.show');
 
-//Route::get('/cellier', [CellierBouteilleController::class, 'index'])->name('cellier');
+
 
 /* Page d'ajout d'un cellier  */
-Route::get('/create/cellier', [CellierController::class, 'create']);
-Route::post('/create/cellier', [CellierController::class, 'store']);
+Route::get('/create/cellier', [CellierController::class, 'create'])->name('cellier.create');
+Route::post('/create/cellier', [CellierController::class, 'store'])->name('cellier.store');
 
 Route::get('/cellier/{cellier}/edit', [CellierController::class, 'edit'])->middleware('auth');
 Route::put('/cellier/{cellier}/edit', [CellierController::class, 'update'])->middleware('auth');

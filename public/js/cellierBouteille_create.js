@@ -167,10 +167,4 @@ document.addEventListener('DOMContentLoaded', function() {
           
     });
     
-    const btnAnnuler = document.querySelector('[name="annuler"]');
-    btnAnnuler.addEventListener('click', (e) => {
-        e.preventDefault();
-        
-        location.href = '/cellier';
-    })
   });

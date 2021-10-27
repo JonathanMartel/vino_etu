@@ -30,7 +30,7 @@
           <span class="helper-text" data-error="Champ obligatoire"></span>
         </div>
         <div class="input-field col s12">
-          <select name ="type_id">
+          <select name ="type_id" required>
             <option value="" disabled selected></option>
             @foreach($types as $type)
             <option value="{{ $type->id }}" @if( old('type_id') == $type->id) selected @endif>{{ $type->type}}</option>
@@ -121,10 +121,10 @@
         <input type="hidden" name="millesimes" value="{{ old('millesimes') }}" id="millesimes">
         <input type="hidden" name="bouteille_id" value="{{ old('bouteille_id') }}" id="bouteille_id">
         <input type="hidden" name="url_img" value="{{ old('url_img') }}" id="url_img">
-        <div class="col s12 flex-row">
-        <button class="btn waves-effect waves-light"  name="annuler">Annuler</button>
-        <button class="btn waves-effect waves-light" type="submit" name="submit">Ajouter<i class="material-icons right">send</i>
-        </button>
+        <div class="col s12 btn-space">
+          <a href="{{route('cellier.show', $idCellier)}}" class="btn waves-effect waves-light button btn-annuler"  name="annuler">Annuler</a>
+          <button class="btn waves-effect waves-light button btn-ajouter" type="submit" name="submit">Ajouter
+          </button>
         </div>
   </button>
 

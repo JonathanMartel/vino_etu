@@ -14,7 +14,7 @@
 
 <div class="liste-celliers">
     @forelse($celliers as $cellier)
-    <a class="lien-cellier" href="./cellier/{{ $cellier->id }}">
+    <a class="lien-cellier" href="{{route('cellier.show',  $cellier->id)}}">
         <article class="cellier">
             <div class="texte-cellier-container">
                 <h2 class="nom-cellier">{{ ucfirst($cellier->nom) }}</h2>
@@ -36,7 +36,7 @@
     @empty
     <div class="no-cellier">
         <p>Vous n'avez pour l'instant aucun cellier.</p>
-        <a class="btn waves-effect waves-light button" href="/create/cellier">Ajouter un cellier</a>
+        <a class="btn waves-effect waves-light button" href="{{route('cellier.create')}}">Ajouter un cellier</a>
     </div>
 
     @endforelse

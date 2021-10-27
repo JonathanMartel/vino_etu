@@ -38,7 +38,7 @@
 
         </div>
         <div class="btn-space">
-        <a class="btn waves-effect waves-light button btn-annuler" href="/">Annuler</a>
+        <a class="btn waves-effect waves-light button btn-annuler" href="{{route('cellier')}}">Annuler</a>
         <button class="btn waves-effect waves-light button" type="submit">Mofifier</button>
         </div>
         
