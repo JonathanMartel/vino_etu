@@ -73,7 +73,7 @@ class CellierController extends Controller
      */
     public function edit(Cellier $cellier)
     {
-        //
+        return view('celliers.edit', ['cellier'=> $cellier]);
     }
 
     /**
