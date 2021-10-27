@@ -21,18 +21,23 @@ class CellierController extends Router
         if (count($this->urlParams) == 2) {
             if (ctype_digit($this->urlParams[1])) {
                 $cellierClassObj = new CellierModele;
-                $celliers = $cellierClassObj->getCelliersParUsagerId($this->urlParams[1]);
+                $celliers = $cellierClassObj->getCellierParId($this->urlParams[1]);
 
                 $this->retour['data'] = $celliers;
             } else {
                 $this->retour['erreur'] = $this->erreur(400);
                 unset($this->retour['data']);
             }
-        } else if (count($this->urlParams) == 1) {
-            $bte = new BouteilleModele;
-            //$cellier = $bte->getListeBouteilleCellier();
+        } else if (count($this->urlParams) == 3) {
+            if (ctype_digit($this->urlParams[2]) && $this->urlParams[1] == 'usagers') {
+                $cellierClassObj = new CellierModele;
+                $celliers = $cellierClassObj->getCelliersParUsagerId($this->urlParams[2]);
 
-            //$this->retour['data'] = $cellier;
+                $this->retour['data'] = $celliers;
+            } else {
+                $this->retour['erreur'] = $this->erreur(400);
+                unset($this->retour['data']);
+            }
         } else {
             $this->retour['erreur'] = $this->erreur(400);
             unset($this->retour['data']);
