@@ -32,7 +32,7 @@ export default class AjoutBouteilleCellier extends React.Component {
 		}
 
 		console.log(event.target.value);
-		fetch("http://127.0.0.1:8000/webservice/php/saq/" + event.target.value, {
+		fetch("http://localhost/webservice/php/saq/" + event.target.value, {
 			method: 'GET',
 			headers: new Headers({
 				"Content-Type": "application/json",
