@@ -158,10 +158,11 @@ document.addEventListener('DOMContentLoaded', function() {
           tooltip: 'Choisir une note',
           
     });
-   
+    
     const btnAnnuler = document.querySelector('[name="annuler"]');
     btnAnnuler.addEventListener('click', (e) => {
         e.preventDefault();
-        history.back();
+        
+        location.href = '/cellier';
     })
   });

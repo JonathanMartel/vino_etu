@@ -51,7 +51,7 @@
           <span class="helper-text" data-error="Format invalid"></span>
         </div>
         <div class="input-field col s12">
-          <input id="pays" type="text" name="pays" class="validate" value="{{ old('pays') }}">
+          <input id="pays" type="text" name="pays" class="@if($errors->first('pays')) invalid @endif validate" pattern="[a-zA-Z]*" value="{{ old('pays') }}">
           <label for="pays">Pays</label>
           <span class="helper-text" data-error="Format invalid"></span>
         </div>
@@ -68,12 +68,12 @@
           <label name="labelMillesime">{{ old('millesimes') ?? 'Millesime' }}</label>
         </div>
         <div class="input-field col s12">
-          <input id="quantite" type="number" name="quantite" min="1" class="validate" value="{{ old('quantite') }}">
+          <input id="quantite" type="number" name="quantite" min="1" class="@if($errors->first('quantite')) invalid @endif validate" value="{{ old('quantite') }}">
           <label for="quantite">Quantité</label>
           <span class="helper-text" data-error="Format invalid"></span>
         </div>
         <div class="input-field col s12">
-          <input id="prix" type="number" pattern="[0-9]+(\\.[0-9][0-9]?)?" name="prix" step=".01" min=".01" class="validate" value="{{ old('prix') }}">
+          <input id="prix" type="number" pattern="[0-9]+(\\.[0-9][0-9]?)?" name="prix" step=".01" min=".01" class="@if($errors->first('prix')) invalid @endif validate" value="{{ old('prix') }}">
           <label for="prix">Prix</label>
           <span class="helper-text" data-error="Format invalid"></span>
         </div>
