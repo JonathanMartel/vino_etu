@@ -3,12 +3,32 @@
     float: none;
     margin-right: auto;
   }
+  
+.recherche.input-field .prefix ~ label {
+  margin-left: 3rem;
+}
+
+.row .col.s12.recherche.input-field .prefix.active {
+  color: #778D83;
+}
 
 .row .col.s12.recherche > input {
 
-margin-bottom: 0;
-
+  margin-bottom: 0;
+  margin-right: auto;
+  border: 1px #CDCED1 solid;
+  border-radius: 10px;
+  margin-left: 0;
+  width: 100%;
+  padding-left: 10px;
 }
+
+.row .col.s12.recherche > i {
+
+  color: #CDCED1
+}
+
+/* https://www.w3schools.com/howto/howto_js_autocomplete.asp */
 .autocomplete {
     position: absolute;
     border: 1px solid #d4d4d4;

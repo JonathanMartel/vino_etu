@@ -4,11 +4,15 @@
 @if(Session::get('erreur'))
 <span class="success"></span>
 @endif
+
+<div class="flex-center">
+  <h1>Nouveau vin</h1>
+</div>
 <div class="row">
       <div class="input-field col s12 recherche">
           <i class="material-icons prefix">search</i>
           <input type="text"  name="recherche" autocomplete="off">
-          <label for="recherche">Rechercher une bouteille</label>
+          <label for="recherche">Rechercher un vin</label>
           <div class="autocomplete z-depth-2"></div>
         </div>
       </div>
@@ -16,7 +20,7 @@
 <div class="row">
   
     <form class="col s12" action="{{route('cellierBouteille.store')}}" method="POST" enctype="multipart/form-data" >
-    <img name="img-bouteille" class="materialboxed" src="{{ old('url_img') }}">
+    <img name="img-bouteille" src="{{ old('url_img') }}" alt="{{ old('nom') }}">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="input-field col s12">
           <input id="nom" name="nom" type="text" class="@if($errors->first('nom')) invalid @endif validate" value="{{ old('nom') }}" required />
@@ -52,16 +56,6 @@
           <span class="helper-text" data-error="Format invalid"></span>
         </div>
         <div class="input-field col s12">
-          <input id="quantite" type="number" name="quantite" min="1" class="validate" value="{{ old('quantite') }}">
-          <label for="quantite">Quantité</label>
-          <span class="helper-text" data-error="Format invalid"></span>
-        </div>
-        <div class="input-field col s12">
-          <input id="prix" type="number" pattern="[0-9]+(\\.[0-9][0-9]?)?" name="prix" step=".01" class="validate" value="{{ old('prix') }}">
-          <label for="prix">Prix</label>
-          <span class="helper-text" data-error="Format invalid"></span>
-        </div>
-        <div class="input-field col s12">
           <select name ="millesime">
             <option value="" disabled selected></option>
             {{ $anneeDebut= 1700 }}
@@ -72,6 +66,16 @@
             @endfor
           </select>
           <label name="labelMillesime">{{ old('millesimes') ?? 'Millesime' }}</label>
+        </div>
+        <div class="input-field col s12">
+          <input id="quantite" type="number" name="quantite" min="1" class="validate" value="{{ old('quantite') }}">
+          <label for="quantite">Quantité</label>
+          <span class="helper-text" data-error="Format invalid"></span>
+        </div>
+        <div class="input-field col s12">
+          <input id="prix" type="number" pattern="[0-9]+(\\.[0-9][0-9]?)?" name="prix" step=".01" min=".01" class="validate" value="{{ old('prix') }}">
+          <label for="prix">Prix</label>
+          <span class="helper-text" data-error="Format invalid"></span>
         </div>
         <div class="input-field col s12">
           <input id="date_achat" type="text" tabindex="-1" name="date_achat" class="datepicker validate" value="{{ old('date_achat') }}" autocomplete="off">
@@ -111,9 +115,10 @@
         <input type="hidden" name="millesimes" value="{{ old('millesimes') }}" id="millesimes">
         <input type="hidden" name="bouteille_id" value="{{ old('bouteille_id') }}" id="bouteille_id">
         <input type="hidden" name="url_img" value="{{ old('url_img') }}" id="url_img">
-        <div class="col s12">
-          <button class="btn waves-effect waves-light" type="submit" name="submit">Ajouter
-              <i class="material-icons right">send</i></button>
+        <div class="col s12 flex-row">
+        <button class="btn waves-effect waves-light"  name="annuler">Annuler</button>
+        <button class="btn waves-effect waves-light" type="submit" name="submit">Ajouter<i class="material-icons right">send</i>
+        </button>
         </div>
   </button>
 
@@ -123,6 +128,7 @@
 
 @endsection
 <link href="{{asset('css/autocomplete.css')}}" rel="stylesheet" />
+<link href="{{asset('css/cellierBouteilles.css')}}" rel="stylesheet" />
 <script src="{{asset('js/cellierBouteille_create.js')}}"></script>
 <link href="{{asset('css/star-rating.css')}}" rel="stylesheet" />
 <script src="{{asset('js/star-rating.js')}}"></script>

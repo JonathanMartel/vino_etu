@@ -58,16 +58,16 @@ document.addEventListener('DOMContentLoaded', function() {
             
             img.style.display = "block";
             img.src = e.target.dataset.imgurl;
-
-            inputNom.nextElementSibling.className ='active';
+            img.alt = e.target.dataset.nom; 
+            
             inputNom.value = e.target.dataset.nom;
-            inputNom.className = "valid";
+            inputNom.className = 'valid';
             
             imgUrl.value = e.target.dataset.imgurl;
+            
             if(e.target.dataset?.description != ''){
                 description.value = e.target.dataset.description;
-                description.className ='materialize-textarea';
-                description.nextElementSibling.className ='active';
+          
             }
 
             fetch('/obtenirMillesimesParBouteille/1/'+ e.target.dataset.id)
@@ -104,17 +104,21 @@ document.addEventListener('DOMContentLoaded', function() {
             
             type_id.value = e.target.dataset.idtype;
             format_id.value = e.target.dataset.idformat;
+            
             M.FormSelect.init(elems);
           
             recherche.value = "";
             recherche.nextElementSibling.className ='';
+            
             liste.innerHTML = "";
             inputBouteilleId.value = e.target.dataset.id;
            
             if(e.target.dataset?.pays != ''){
                 pays.value = e.target.dataset.pays;
-                pays.nextElementSibling.className ='active';
+
             }
+
+            M.updateTextFields();
 
         }
     })
@@ -154,9 +158,10 @@ document.addEventListener('DOMContentLoaded', function() {
           tooltip: 'Choisir une note',
           
     });
-
-    var images = document.querySelectorAll('.materialboxed');
-    M.Materialbox.init(images);
    
-  
+    const btnAnnuler = document.querySelector('[name="annuler"]');
+    btnAnnuler.addEventListener('click', (e) => {
+        e.preventDefault();
+        history.back();
+    })
   });
