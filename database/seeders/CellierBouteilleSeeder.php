@@ -16,23 +16,23 @@ class CellierBouteilleSeeder extends Seeder
     {
         $cellierBouteilles = [
             [
-                "cellier_id"   => 1,
-                "bouteille_id" => 45,
+                "celliers_id"   => 1,
+                "bouteilles_id" => 45,
                 "inventaire"   => 2
             ],
             [
-                "cellier_id"   => 1,
-                "bouteille_id" => 78,
+                "celliers_id"   => 1,
+                "bouteilles_id" => 78,
                 "inventaire"   => 1
             ],
             [
-                "cellier_id"   => 1,
-                "bouteille_id" => 2,
+                "celliers_id"   => 1,
+                "bouteilles_id" => 2,
                 "inventaire"   => 1
             ],
             [
-                "cellier_id"   => 1,
-                "bouteille_id" => 136,
+                "celliers_id"   => 1,
+                "bouteilles_id" => 33,
                 "inventaire"   => 3
             ],
         ];

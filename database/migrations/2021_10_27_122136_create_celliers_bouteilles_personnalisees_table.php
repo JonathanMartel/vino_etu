@@ -15,6 +15,8 @@ class CreateCelliersBouteillesPersonnaliseesTable extends Migration
     {
         Schema::create('celliers_bouteilles_personnalisees', function (Blueprint $table) {
             $table->id();
+            $table->foreignId("cellier_id")->constrained();
+            $table->foreignId("bouteille_personnalisee_id")->constrained("bouteilles_personnalisees");
             $table->timestamps();
         });
     }
