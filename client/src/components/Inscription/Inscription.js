@@ -1,6 +1,6 @@
 import React from "react";
 import "./Inscription.css";
-import CryptoJS from "crypto-js";
+import Bcryptjs from "bcryptjs";
 
 /* import Page404 from "../Page404/Page404";
 import {Route, Switch, BrowserRouter as Router} from 'react-router-dom'; */
@@ -42,7 +42,7 @@ export default class Inscription extends React.Component{
             if (bRegex) {
                 if (this.state.mot_passe === this.state.mot_passe_verif ) {
                     // chiffrer le mot de passe  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                    let mot_passe_chiffre = CryptoJS.AES.encrypt(this.state.mot_passe, "vinochou").toString();
+                    let mot_passe_chiffre = Bcryptjs.hashSync(this.state.mot_passe).toString();
                     console.log("mot_passe_chiffre: ", mot_passe_chiffre);
                     bValidation =true;
                 }
@@ -50,7 +50,7 @@ export default class Inscription extends React.Component{
         }
         
         return bValidation;
-    }
+    }  
     
     sinscrire() {
         console.log("Click sur bouton S'inscrire!!!");

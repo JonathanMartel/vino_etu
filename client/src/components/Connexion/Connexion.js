@@ -44,12 +44,12 @@ export default class Connexion extends React.Component{
         if (this.validation()) {
             console.log("Connexion usager!!!");
 
-            let mot_passe_chiffre = CryptoJS.AES.encrypt(this.state.mot_passe, "vinochou").toString();
-            console.log("mot_passe_chiffre: ", mot_passe_chiffre);
+            /* let mot_passe_chiffre = CryptoJS.AES.encrypt(this.state.mot_passe, "vinochou").toString();
+            console.log("mot_passe_chiffre: ", mot_passe_chiffre); */
 
             const donnes = {
                 courriel : this.state.courriel,
-                mot_passe : mot_passe_chiffre
+                mot_passe : this.state.mot_passe
             }
 
             const postMethod = {
@@ -61,10 +61,9 @@ export default class Connexion extends React.Component{
                 body: JSON.stringify(donnes) 
             }
     
-            //Pas encore!!!
-            /* fetch("http://127.0.0.1:8000/webservice/php/usagers/", postMethod)
+            fetch("http://127.0.0.1:8000/webservice/php/usagers/login/", postMethod)
                 .then(res => res.json()) 
-                .then(res => console.log("Connexion réussi !!!")) */
+                .then(res => console.log("Connexion réussi !!!"))
 
             //Si le PUT viens en TRUE, l'usager existe, vers l'accueil
             
