@@ -20,6 +20,16 @@ class CellierBouteilleController extends Controller
     }
 
     /**
+     *
+     * Afficher les bouteilles contenu dans un cellier donné
+     *
+     *
+     */
+    public function obtenirBouteillesParCellier(Cellier $cellier) {
+        return BouteilleResource::make($cellier->bouteilles);
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -51,7 +61,7 @@ class CellierBouteilleController extends Controller
      */
     public function update(Request $request, Cellier $cellier, Bouteille $bouteille)
     {
-        //
+
     }
 
     /**
