@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCellierBouteillePersonnaliseeTable extends Migration
+class CreateCelliersBouteillesPersonnaliseesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateCellierBouteillePersonnaliseeTable extends Migration
      */
     public function up()
     {
-        Schema::create('cellier_bouteille_personnalisee', function (Blueprint $table) {
+        Schema::create('celliers_bouteilles_personnalisees', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });
