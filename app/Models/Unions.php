@@ -12,27 +12,29 @@ use Illuminate\Support\Facades\DB;
 class Unions {
     static public function obtenirCatalogueBouteillesParUtilisateur(int $idUtilisateur = 1, int $limite = 24) {
         $requeteBouteille = DB::table("bouteilles")
-                                // ->leftJoin("pays", "pays.id", "=","bouteilles.pays_id")
+                                ->join("pays", "pays.id", "=","bouteilles.pays_id")
+                                ->join("categories", "categories.id", "=", "bouteilles.categories_id")
                                 ->select(
                                     "bouteilles.id",
                                     "bouteilles.nom",
                                     "description",
                                     "url_image",
                                     "format",
-                                    // DB::raw("pays.nom as pays"),
-                                    "categories_id",
+                                    "pays.nom as pays",
+                                    "categories.nom as categorie",
                                     DB::raw("null as users_id"));
 
         $toutesBouteilles = DB::table("bouteilles_personnalisees as bp")
-                                        // ->leftJoin("pays", "pays.id", "=","bp.pays_id")
+                                        ->join("pays", "pays.id", "=","bp.pays_id")
+                                        ->join("categories", "categories.id", "=", "bp.categories_id")
                                         ->select(
                                             "bp.id",
                                             "bp.nom",
                                             "description",
                                             "url_image",
                                             "format",
-                                            // "pays.nom as pays",
-                                            "categories_id",
+                                            "pays.nom as pays",
+                                            "categories.nom as categorie",
                                             "users_id")
                                         ->where("users_id", $idUtilisateur)
                                         ->unionAll($requeteBouteille)
