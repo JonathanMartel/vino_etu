@@ -10,23 +10,44 @@ use Illuminate\Support\Facades\DB;
  *
  */
 class Unions {
-    static public function obtenirCatalogueBouteillesParUtilisateur(int $idUtilisateur = 1, int $limite = 48) {
+    static public function obtenirCatalogueBouteillesParUtilisateur(int $idUtilisateur = 1, int $limite = 24) {
         $requeteBouteille = DB::table("bouteilles")
-                                ->select("*", DB::raw("NULL as users_id"));
+                                ->select(
+                                    "id",
+                                    "nom",
+                                    "description",
+                                    "url_image",
+                                    "url_achat",
+                                    "url_infos",
+                                    "format",
+                                    "pays_id",
+                                    "categories_id",
+                                    DB::raw("null as users_id"));
 
         $toutesBouteilles = DB::table("bouteilles_personnalisees")
-                ->select("*")
+                ->select(
+                    "id",
+                    "nom",
+                    "description",
+                    "url_image",
+                    "url_achat",
+                    "url_infos",
+                    "format",
+                    "pays_id",
+                    "categories_id",
+                    "users_id")
                 ->where("users_id", $idUtilisateur)
                 ->unionAll($requeteBouteille)
                 ->orderBy("nom")
-                ->limit($limite)
-                ->get();
+                // ->get();
+                // ->toSql();
+                ->paginate($limite);
 
         // dd($toutesBouteilles);
         /* $tousNomsBouteilles = $toutesBouteilles->map(function($item) {
             return $item->nom;
         }); */
 
-        return $toutesBouteilles->toJson();
+        return $toutesBouteilles;
     }
 }

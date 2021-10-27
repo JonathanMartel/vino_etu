@@ -68,7 +68,9 @@ class BouteilleSeeder extends Seeder {
             $aInserer[] = $bouteille;
         }
 
-        Bouteille::insert($aInserer);
+        foreach($aInserer as $bouteille) {
+            Bouteille::create($bouteille);
+        }
 
         return;
     }
@@ -127,8 +129,8 @@ class BouteilleSeeder extends Seeder {
             "vin/vin-rouge",
         ];
 
-        $affichageParPage = 96;
-        $nombrePage = 3;
+        $affichageParPage = 24;
+        $nombrePage = 2;
 
         foreach ($categories as $categorie) {
             for ($i = 1; $i <= $nombrePage; $i++) {
