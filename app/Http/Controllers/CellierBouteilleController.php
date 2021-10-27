@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\BouteilleResource;
+use App\Models\Bouteille;
+use App\Models\Cellier;
 use App\Models\CellierBouteille;
 use Illuminate\Http\Request;
 
@@ -23,9 +26,15 @@ class CellierBouteilleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Cellier $cellier)
     {
-        //
+        $bouteilleCellier = new CellierBouteille;
+        $bouteilleCellier -> bouteilles_id = $request->bouteilles_id;
+        $bouteilleCellier -> celliers_id = $request->celliers_id;
+        $bouteilleCellier -> inventaire = $request->inventaire;
+        $newBouteilleCellier = $bouteilleCellier -> save();
+        
+        return response("Ca marche, $newBouteilleCellier !", 200);
     }
 
     /**
@@ -61,4 +70,14 @@ class CellierBouteilleController extends Controller
     {
         //
     }
+
+    /**
+     *
+     * Afficher les bouteilles contenu dans un cellier donné
+     *
+     */
+    public function obtenirBouteillesParCellier(Cellier $cellier) {
+        return BouteilleResource::collection($cellier->bouteilles());
+    }
+
 }

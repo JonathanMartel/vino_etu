@@ -6,6 +6,7 @@ use App\Http\Controllers\PaysController;
 use App\Http\Controllers\UnionsController;
 use App\Http\Controllers\UserController;
 use App\Models\Bouteille;
+use App\Http\Controllers\CellierBouteilleController;
 use App\Models\Cellier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -48,9 +49,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::get('/cellier', function(){
-
+Route::get('/celliers', function(){
     return response(Cellier::all(), 200);
-
 });
 
+// Ajout d'une bouteille à un cellier
+Route::post('celliers/{cellier}/bouteilles', [CellierBouteilleController::class, "store"]);
+
+// Afficher les bouteilles d'un cellier
+Route::get('celliers/{cellier}/bouteilles', [CellierBouteilleController::class, "obtenirBouteillesParCellier"]);

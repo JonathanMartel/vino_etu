@@ -15,7 +15,7 @@ class BouteilleController extends Controller
      */
     public function index()
     {
-            return BouteilleResource::collection(Bouteille::all());
+        return BouteilleResource::collection(Bouteille::all());
     }
 
     /**
@@ -37,7 +37,7 @@ class BouteilleController extends Controller
      */
     public function show(Bouteille $bouteille)
     {
-        //
+        return new BouteilleResource($bouteille);
     }
 
     /**
