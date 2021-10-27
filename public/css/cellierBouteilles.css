@@ -1,7 +1,7 @@
 img[name="img-bouteille"]
 {
     margin: auto;
-    margin-bottom: 10px;
+  
 }
 
 
@@ -30,6 +30,10 @@ button[name="annuler"]:hover{
     border: 2px solid #BBC7C1;
 }
 
+.image {
+    display: flex;
+    margin-bottom: 20px;
+}
 
 
 

@@ -18,7 +18,9 @@
       </div>
       
 <div class="row">
-<img name="img-bouteille" src="{{ old('url_img') }}" alt="{{ old('nom') }}">
+<div class="image">
+  <img name="img-bouteille" src="{{ old('url_img') }}" alt="{{ old('nom') }}">
+</div>
     <form class="col s12 ajout-vin" action="{{route('cellierBouteille.store')}}" method="POST" enctype="multipart/form-data" >
     
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
