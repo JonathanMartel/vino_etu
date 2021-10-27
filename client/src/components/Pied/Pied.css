@@ -1,15 +1,13 @@
-footer
-{
+footer {	
+	background-color: rgba(0, 0, 0, .8);
 	position: fixed;;
 	bottom:0px;
+	height: 100px;
 	width: 100%;
-	padding-top:3px;
-	text-align: center;
-	background-color:#FFFFFF;
+	text-align: right;
 }
-footer p
-{
-	display:inline;
-	padding-right:50px;
-	font-size : 10px;
+
+.rmpd {
+	padding: 20px;
+	width: 325px;
 }

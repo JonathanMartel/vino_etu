@@ -1,30 +1,45 @@
 import React from 'react';
-import BoutonNav from '../BoutonNav/BoutonNav';
-
-import { Link, NavLink } from 'react-router-dom';
-
+// import { Link, NavLink } from 'react-router-dom';
 import './Entete.css';
+import menu from '../../Menu.png';
+import logo from '../../logo.png';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import { border, color } from '@mui/system';
+import zIndex from '@mui/material/styles/zIndex';
+// import { sizing } from '@mui/system';
+
+/* Variables de styles */
+const appBarStyles = {
+	backgroundColor: 'rgba(0, 0, 0, .8)',
+	position: 'relative',
+}
+
+const toolBarStyles = {
+	display: 'flex',
+	justifyContent: 'space-between',
+	height: 100
+
+}
+
 
 export default class Entete extends React.Component {
-	constructor(props){
-	  super(props);
-	
+	constructor(props) {
+		super(props);
 	}
 
 	render() {
 
-		return (  
-				<div>
-					<nav>
-						<ul>
-							<li><BoutonNav lien="/" label="Accueil"/></li>
-							<li><BoutonNav lien="#" label="S'inscrire"/></li>
-							<li><BoutonNav lien="#" label="Se connecter"/></li>
-							<li><BoutonNav lien="#" label="Mon compte"/></li>
-							<li><BoutonNav lien="/listebouteillescellier" label="Mon cellier"/></li>
-						</ul>
-					</nav>
-				</div>
-			);
+		return (
+			<Box>
+				<AppBar sx={appBarStyles}>
+					<Toolbar sx={toolBarStyles}>
+						<img className="logo" src={logo} alt="Logo" />
+						<img className="menu" src={menu} alt="Menu" />
+					</Toolbar>
+				</AppBar>
+			</Box>
+		);
 	}
 }
