@@ -39,7 +39,7 @@
         </div>
         <div class="btn-space">
         <a class="btn waves-effect waves-light button btn-annuler" href="/">Annuler</a>
-        <button class="btn waves-effect waves-light button" type="submit">Créer</button>
+        <button class="btn waves-effect waves-light button btn-ajouter" type="submit">Créer</button>
         </div>
         
     </form>

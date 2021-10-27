@@ -8,6 +8,13 @@
     text-align: center;
 }
 
+.no-cellier {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
 .liste-celliers {
     display: flex;
     flex-direction: column;
@@ -91,23 +98,4 @@
     flex-grow: 1;
     display: flex;
     flex-direction: column;
-}
-
-.btn-space {
-    display: flex;
-    gap: 1rem;
-}
-
-.button {
-    border-radius: 5px;
-    flex-grow: 1;
-    background-color: #99AAA2;
-    color: #343B41;
-    font-weight: bold;
-    font-size: 1.25rem;
-}
-
-.btn-annuler {
-    color: white;
-    background-color: #BBC7C1;
 }
