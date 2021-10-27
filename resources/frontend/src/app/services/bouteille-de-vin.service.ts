@@ -15,13 +15,12 @@ export class BouteilleDeVinService {
   getCellier(){
 
     return this.http.get(this.url_cellier);
-    
+
   }
 
   getListeBouteille(){
- 
+
     return this.http.get<any>(this.url_bouteille);
-    
   }
 }
 
