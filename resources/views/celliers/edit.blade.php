@@ -13,7 +13,7 @@
         @csrf
         <div class="input-field col s12">
             
-            <input type="text" name="nom" id="nom"  class="@if($errors->first('nom')) invalid @endif validate" value="{{old('nom')}}" />
+            <input type="text" name="nom" id="nom"  class="@if($errors->first('nom')) invalid @endif validate" value="{!! $cellier->nom !!}" />
             <label for="nom">Nom :</label>
             
             @if ($errors->has('nom'))
@@ -23,7 +23,7 @@
 
         <div class="input-field col s12">
             
-            <input type="text" name="localisation" id="localisation" class="validate" value="{{old('localisation')}}" />
+            <input type="text" name="localisation" id="localisation" class="validate" value="{!! $cellier->localisation !!}" />
             <label for="localisation">Localisation :</label>
             
             @if ($errors->has('localisation'))
@@ -39,7 +39,7 @@
         </div>
         <div class="btn-space">
         <a class="btn waves-effect waves-light button btn-annuler" href="/">Annuler</a>
-        <button class="btn waves-effect waves-light button" type="submit">Créer</button>
+        <button class="btn waves-effect waves-light button" type="submit">Mofifier</button>
         </div>
         
     </form>
