@@ -47,6 +47,11 @@
     font-weight: bold;
 }
 
+.map-icone {
+    height: 1.25rem;
+    width: auto;
+}
+
 .localisation-cellier {
     color: #707070;
     font-size: 1.25rem;

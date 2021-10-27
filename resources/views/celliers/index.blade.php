@@ -18,11 +18,11 @@
         <article class="cellier">
             <div class="texte-cellier-container">
                 <h2 class="nom-cellier">{{ ucfirst($cellier->nom) }}</h2>
-                <h3 class="localisation-cellier">Localisation : {{ ucfirst($cellier->localisation) }}</h3>
+                <h3 class="localisation-cellier"><img class="map-icone" src="{{URL::asset('/assets/icon/map-marker-rouge.svg')}}" alt="icone map"> {{ ucfirst($cellier->localisation) }}</h3>
             </div>
             <div class="nb-bouteille-container">
             <img class="bouteille-icone" src="{{URL::asset('/assets/icon/bouteille-cellier.svg')}}" alt="Icone Bouteille">
-            <p class="nb-vins-cellier">42</p><!-- !!! insérer nb vins dans cellier ici  -->
+            <!-- <p class="nb-vins-cellier">42</p> --><!-- !!! insérer nb vins dans cellier ici  -->
             </div>
             
 
