@@ -17,17 +17,18 @@ use App\Http\Controllers\CellierController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/cellier');
 });
 
 
 /* Page d'accueil : Liste des celliers */
 
-Route::get('/home', [CellierController::class, 'index'])->name('home');
+Route::get('/cellier', [CellierController::class, 'index'])->name('cellier');
 
 /* Page d'un cellier avec les vins correspondants, leur quantité et millesime */
 Route::get('/cellier/{cellier}', [CellierController::class, 'show']);
 
+//Route::get('/cellier', [CellierBouteilleController::class, 'index'])->name('cellier');
 
 /* Page d'ajout d'un cellier  */
 Route::get('/create/cellier', [CellierController::class, 'create']);
@@ -53,7 +54,7 @@ Route::get('dashboard', [CustomAuthController::class, 'dashboard'])->middleware(
 
 
 /* ??? ette route ou celle plus haut ??? */
-Route::get('/cellier', [CellierBouteilleController::class, 'index'])->name('cellier');
+
 Route::get('/ajouterBouteille/{idCellier}/{idBouteille}/{millesime}', [CellierBouteilleController::class, 'ajouterBouteille'])->name('ajouterBouteille');
 Route::get('/boireBouteille/{idCellier}/{idBouteille}/{millesime}', [CellierBouteilleController::class, 'boireBouteille'])->name('boireBouteille');
 Route::get('/cellierBouteille/create', [CellierBouteilleController::class, 'create'])->name('ajouterNouvelleBouteille');

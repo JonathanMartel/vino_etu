@@ -62,7 +62,7 @@ class CellierController extends Controller
      */
     public function show(Cellier $cellier)
     {
-        //
+        return CellierBouteilleController::index($cellier->id);
     }
 
     /**

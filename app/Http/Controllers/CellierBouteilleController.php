@@ -17,9 +17,9 @@ class CellierBouteilleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public static function index($idCellier)
     {
-        $cellierBouteilles = CellierBouteille::all();
+        $cellierBouteilles = CellierBouteille::all(); // !!! affiche tous les vins de la base qui sont dans un cellier(pas nécessairement celui selectionné) a modifier pour afficher seulement celles du cellier selctionné.
 
 	    return view('cellierBouteille.index', [
             'cellierBouteilles' => $cellierBouteilles,
@@ -57,6 +57,9 @@ class CellierBouteilleController extends Controller
 
         $request->validate([
             'nom' => 'required',
+            'quantite' => 'integer|gte:1',
+            'prix' => 'numeric|regex:/^\d+\.\d{0,2}$/|gte:0.01',
+            'pays' => 'alpha'
         ]);
       
        if(isset($request->bouteille_id)){
