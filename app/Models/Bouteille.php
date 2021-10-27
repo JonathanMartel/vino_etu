@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
@@ -30,7 +31,7 @@ class Bouteille extends Model
         return DB::table('bouteilles')
         ->select('nom', 'bouteilles.id', 'pays', 'description', 'type', 'type_id', 'format_id', 'url_img' )
         ->where('nom', "LIKE" , "%" .$motCle. "%")
-        ->whereIn("user_id", [1, 2])
+        ->whereIn("user_id", [1, session('user')->id])
         ->join('types', 'bouteilles.type_id', '=', 'types.id')
         ->get();
     }
@@ -47,7 +48,7 @@ class Bouteille extends Model
         ->where('pays', $request->pays)
         ->where('type_id', $request->type_id)
         ->where('format_id', $request->format_id)
-        ->whereIn("user_id",  [1, 2])
+        ->whereIn("user_id",  [1, session('user')->id])
         ->get();
         
     }

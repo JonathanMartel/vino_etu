@@ -5,7 +5,7 @@
 <span class="success"></span>
 @endif
 
-<div class="flex-center">
+<div>
   <h1>Nouveau vin</h1>
 </div>
 <div class="row">
@@ -18,9 +18,9 @@
       </div>
       
 <div class="row">
-  
-    <form class="col s12" action="{{route('cellierBouteille.store')}}" method="POST" enctype="multipart/form-data" >
-    <img name="img-bouteille" src="{{ old('url_img') }}" alt="{{ old('nom') }}">
+<img name="img-bouteille" src="{{ old('url_img') }}" alt="{{ old('nom') }}">
+    <form class="col s12 ajout-vin" action="{{route('cellierBouteille.store')}}" method="POST" enctype="multipart/form-data" >
+    
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="input-field col s12">
           <input id="nom" name="nom" type="text" class="@if($errors->first('nom')) invalid @endif validate" value="{{ old('nom') }}" required />
@@ -71,12 +71,12 @@
           <span class="helper-text" data-error="Format invalid"></span>
         </div>
         <div class="input-field col s12">
-          <input id="quantite" type="number" name="quantite" min="0" class="@if($errors->first('quantite')) invalid @endif validate" value="{{ old('quantite') }}">
+          <input id="quantite" type="number" name="quantite" min="0" class="@if($errors->first('quantite')) invalid @endif validate" value="{{ old('quantite') ?? 0 }}">
           <label for="quantite">Quantité</label>
           <span class="helper-text" data-error="Format invalid"></span>
         </div>
         <div class="input-field col s12">
-          <input id="prix" type="number" pattern="[0-9]+(\\.[0-9][0-9]?)?" name="prix" step=".01" min="0" class="@if($errors->first('prix')) invalid @endif validate" value="{{ old('prix') }}">
+          <input id="prix" type="number" pattern="[0-9]+(\\.[0-9][0-9]?)?" name="prix" step=".01" min="0" class="@if($errors->first('prix')) invalid @endif validate" value="{{ old('prix') ?? 0}}">
           <label for="prix">Prix</label>
           <span class="helper-text" data-error="Format invalid"></span>
         </div>
@@ -115,6 +115,7 @@
               <option value="1" @if( old('note') == 1) selected @endif>Terrible</option>
           </select>
         </div>
+        <input type="hidden" name="cellier_id" value="{{ $idCellier }}" id="cellier_id">
         <input type="hidden" name="millesimes" value="{{ old('millesimes') }}" id="millesimes">
         <input type="hidden" name="bouteille_id" value="{{ old('bouteille_id') }}" id="bouteille_id">
         <input type="hidden" name="url_img" value="{{ old('url_img') }}" id="url_img">
