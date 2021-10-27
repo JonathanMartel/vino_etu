@@ -34,6 +34,16 @@ Route::get('/cellier/{cellier}', [CellierController::class, 'show']);
 Route::get('/create/cellier', [CellierController::class, 'create']);
 Route::post('/create/cellier', [CellierController::class, 'store']);
 
+Route::get('/cellier/{cellier}/edit', [CellierController::class, 'edit'])->middleware('auth');
+Route::put('/cellier/{cellier}/edit', [CellierController::class, 'update'])->middleware('auth');
+
+//Route::delete('/cellier/{cellier}', [CellierController::class, 'destroy'])->middleware('auth');
+
+
+
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Login & registration reRoutes
