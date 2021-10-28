@@ -9,7 +9,7 @@
     <img src="{{URL::asset('/assets/icon/logo-3-bouteilles-cellier.svg')}}" alt="Icone trois bouteilles">
 </div>
 <div class="form-ajout">
-    <form action="" method="POST">
+    <form action="{{ route('cellier.store')}}" method="POST">
         @csrf
         <div class="input-field col s12">
             
@@ -38,7 +38,7 @@
 
         </div>
         <div class="btn-space">
-        <a class="btn waves-effect waves-light button btn-annuler" href="/">Annuler</a>
+        <a class="btn waves-effect waves-light button btn-annuler" href="{{route('cellier')}}">Annuler</a>
         <button class="btn waves-effect waves-light button btn-ajouter" type="submit">Créer</button>
         </div>
         

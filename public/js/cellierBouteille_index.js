@@ -2,7 +2,6 @@
 
 document.addEventListener('DOMContentLoaded', function() {
 
-    sessionStorage.clear();
     let btnAjouterBouteilles = document.querySelectorAll('[name="btnAjouterBouteille"]')
 
     
@@ -12,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     Array.from (btnAjouterBouteilles).forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
+            
             fetch(btn.href)
             .then(response => {
                 return (response.json())
@@ -31,15 +31,18 @@ document.addEventListener('DOMContentLoaded', function() {
     Array.from (btnRetirerBouteilles).forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.preventDefault();
-
-            fetch(btn.href)
-            .then(response => {
-                return (response.json())
-            })
-            .then(response => {
-                const quantitePrecedent = parseInt( btn.closest('tr').querySelector('[name="quantite"]').innerHTML);
-                btn.closest('tr').querySelector('[name="quantite"]').innerHTML = quantitePrecedent + response;
-            }).catch(error => console.log(error))
+            const quantitePrecedent = parseInt( btn.closest('tr').querySelector('[name="quantite"]').innerHTML);
+            
+            if(quantitePrecedent > 0 ){
+                fetch(btn.href)
+                .then(response => {
+                    return (response.json())
+                })
+                .then(response => {
+                
+                    btn.closest('tr').querySelector('[name="quantite"]').innerHTML = quantitePrecedent + response;
+                }).catch(error => console.log(error))
+        }
         })
     });
     
@@ -48,6 +51,12 @@ document.addEventListener('DOMContentLoaded', function() {
     if(nouvelleBouteille) {
         var toastHTML = '<span>Une nouvelle bouteille a été ajoutée</span><button class="btn-flat toast-action">Fermer</button>';
         M.toast({html: toastHTML, displayLength : 5000})
+
+        const message = document.querySelector('.toast-action')
+
+        message.addEventListener('click', () => {
+            M.Toast.dismissAll();
+        })
     }
 
 

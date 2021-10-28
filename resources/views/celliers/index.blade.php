@@ -14,7 +14,7 @@
 
 <div class="liste-celliers">
     @forelse($celliers as $cellier)
-    <a class="lien-cellier" href="./cellier/{{ $cellier->id }}">
+    <a class="lien-cellier" href="{{route('cellier.show',  $cellier->id)}}">
         <article class="cellier">
             <div class="texte-cellier-container">
                 <h2 class="nom-cellier">{{ ucfirst($cellier->nom) }}</h2>
@@ -25,9 +25,9 @@
                 <!-- <p class="nb-vins-cellier">42</p> -->
                 <!-- !!! insérer nb vins dans cellier ici  -->
                 <div class="btn-space-col">
-                    <a class="btn waves-effect waves-light button btn-modifier" href="cellier/{{ $cellier->id }}/edit"><i class="material-icons">edit</i></a>
+                    <a class="btn waves-effect waves-light button btn-modifier" href="{{ route('cellier.edit', $cellier->id)}}"><i class="material-icons">edit</i></a>
                     <!-- <a class="btn waves-effect waves-light button btn-supprimer" href="#"><i class="material-icons">delete</i></a> -->
-                    <form action="/cellier/{{$cellier->id}}" method="POST">
+                    <form action="{{ route('cellier.destroy', $cellier->id)}}" method="POST">
                     @method('DELETE')
                     @csrf
                     <button class="btn waves-effect waves-light button btn-supprimer"><i class="material-icons">delete</i></button>
@@ -41,7 +41,7 @@
     @empty
     <div class="no-cellier">
         <p>Vous n'avez pour l'instant aucun cellier.</p>
-        <a class="btn waves-effect waves-light button" href="/create/cellier">Ajouter un cellier</a>
+        <a class="btn waves-effect waves-light button" href="{{route('cellier.create')}}">Ajouter un cellier</a>
     </div>
 
     @endforelse

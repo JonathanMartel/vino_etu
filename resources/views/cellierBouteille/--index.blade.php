@@ -1,0 +1,64 @@
+@extends('layouts.app')
+@section('content')
+
+@if(Session::get('nouvelleBouteille'))
+<span class="nouvelleBouteille"></span>
+@endif
+
+<h1>Un petit verre de vino ?</h1>
+<a href="{{ route('ajouterVin', $idCellier) }}">Ajouter un nouveau vin au cellier</a>
+<table class="responsive-table striped highlight">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Nom</th>
+            <th>Quantité</th>
+            <th>Pays</th>
+            <th>Millesime</th>
+            <th>Type</th>
+            <th>Lien SAQ</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($cellierBouteilles as $cellierBouteille)
+
+        <tr>
+        
+            <td><img src="{{ asset($cellierBouteille->url_img) }}" alt="{{$cellierBouteille->nom}}"></td>
+            <td>{{$cellierBouteille->nom}}</td>
+            <td name="quantite">{{$cellierBouteille->quantite}}</td>
+            <td>{{$cellierBouteille->pays}}</td>
+            <td>
+                @if( $cellierBouteille->millesime != 0)
+                {{$cellierBouteille->millesime}}
+                @endif
+            </td>
+            <td>{{$cellierBouteille->type}}</td>
+            <td><a href="{{$cellierBouteille->url_saq}}">Lien SAQ</a></td>
+            <td>
+
+
+                <i class="material-icons">edit</i>
+                <a name="btnAjouterBouteille" href="{{ route('ajouterBouteille',[
+                        'idCellier'=>$cellierBouteille->cellier_id,
+                        'idBouteille'=>$cellierBouteille->bouteille_id,
+                        'millesime'=> $cellierBouteille->millesime
+                        ])}}">
+                    <i class="material-icons">add</i>
+                </a>
+                <a name="btnRetirerBouteille" href="{{ route('boireBouteille',[
+                        'idCellier'=>$cellierBouteille->cellier_id,
+                        'idBouteille'=>$cellierBouteille->bouteille_id,
+                        'millesime'=> $cellierBouteille->millesime
+                        ])}}">
+                    <i class="material-icons">remove</i>
+                </a>
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
+@endsection
+
+<script src="{{asset('js/cellierBouteille_index.js')}}"></script>

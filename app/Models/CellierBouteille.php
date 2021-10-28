@@ -24,13 +24,16 @@ class CellierBouteille extends Model
      * Ajouter ou diminuer la quantité d'une bouteille dans un cellier
      */
     public static function modifierQuantiteBouteille($idCellier, $idBouteille, $millesime, $modificationQuantite){
-        
+      
+        if($millesime == 0) {
+            $millesime = 0000;
+        }
         DB::table('cellier_bouteilles')
         ->where('cellier_id', $idCellier)
         ->where('bouteille_id', $idBouteille)
         ->where('millesime', $millesime)
         ->increment('quantite', $modificationQuantite);
-        
+    
          return true;
     }
 
