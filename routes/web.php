@@ -34,6 +34,16 @@ Route::get('/cellier/{cellier}', [CellierController::class, 'show']);
 Route::get('/create/cellier', [CellierController::class, 'create']);
 Route::post('/create/cellier', [CellierController::class, 'store']);
 
+Route::get('/cellier/{cellier}/edit', [CellierController::class, 'edit'])->middleware('auth');
+Route::put('/cellier/{cellier}/edit', [CellierController::class, 'update'])->middleware('auth');
+
+Route::delete('/cellier/{cellier}', [CellierController::class, 'destroy'])->middleware('auth');
+
+
+
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Login & registration reRoutes
@@ -57,7 +67,7 @@ Route::get('dashboard', [CustomAuthController::class, 'dashboard'])->middleware(
 
 Route::get('/ajouterBouteille/{idCellier}/{idBouteille}/{millesime}', [CellierBouteilleController::class, 'ajouterBouteille'])->name('ajouterBouteille');
 Route::get('/boireBouteille/{idCellier}/{idBouteille}/{millesime}', [CellierBouteilleController::class, 'boireBouteille'])->name('boireBouteille');
-Route::get('/cellierBouteille/create', [CellierBouteilleController::class, 'create'])->name('ajouterNouvelleBouteille');
+Route::get('/cellier/{idCellier}/ajouterVin', [CellierBouteilleController::class, 'create'])->name('ajouterVin');
 Route::post('/cellierBouteille/store', [CellierBouteilleController::class, 'store'])->name('cellierBouteille.store');
 Route::get('/obtenirMillesimesParBouteille/{idCellier}/{idBouteille}', [CellierBouteilleController::class, 'obtenirMillesimesParBouteille'])->name('obtenirMillesimesParBouteille');
 

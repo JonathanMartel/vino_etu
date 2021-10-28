@@ -65,5 +65,18 @@ class CellierBouteille extends Model
         ->get();
     }
     
-
+    /**
+     * @param idCellier
+     * Obtenir une liste des bouteilles équivalent à idCellier
+     * @return rows des lignes de la table cellier_bouteilles équivalent à idCellier
+     */
+    public static function obtenirListeBouteilleCellier($idCellier)
+    {
+        return DB::table('cellier_bouteilles')
+        ->where('cellier_id', $idCellier)
+        ->join('bouteilles', 'bouteilles.id', '=', 'cellier_bouteilles.bouteille_id')
+        ->join('types', 'types.id', '=', 'bouteilles.type_id')
+        ->get();
+    }
+    
 }

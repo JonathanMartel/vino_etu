@@ -19,8 +19,10 @@
 
 ###CellierBouteille
 
-- ajouterQuantiteBouteille()    //Ajouter une seule bouteille depuis la liste //Fait
-- supprimerQuantiteBouteille()  //Retirer une seule bouteille depuis la liste //Fait
+- ajouterQuantiteBouteille()    
+  - Ajouter une seule bouteille depuis la liste //Fait
+- supprimerQuantiteBouteille()  
+  - Retirer une seule bouteille depuis la liste //Fait
 
 // !!! 2 options pour ajouter ou retirer plusieurs bouteilles dansun cellier en même temps : faire 2 nouvelles méthodes ou réutiliser et modifier les 2 méthode plus haut. -> tester si fonctionne de nouveau
 
@@ -32,6 +34,7 @@
 ###Cellier
 
 - ajouterCellier()
+  - Ajouter un cellier et rediriger vers la liste des celliers //Fait
 - supprimerCellier()
 - editerCellier()
 - obtenirCellier()

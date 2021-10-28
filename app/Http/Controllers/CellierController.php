@@ -73,7 +73,7 @@ class CellierController extends Controller
      */
     public function edit(Cellier $cellier)
     {
-        //
+        return view('celliers.edit', ['cellier'=> $cellier]);
     }
 
     /**
@@ -85,7 +85,11 @@ class CellierController extends Controller
      */
     public function update(Request $request, Cellier $cellier)
     {
-        //
+        $cellier->update([
+            'nom' => $request->nom,
+            'localisation' => $request->localisation,
+        ]);
+        return redirect('/');
     }
 
     /**
@@ -96,7 +100,9 @@ class CellierController extends Controller
      */
     public function destroy(Cellier $cellier)
     {
-        //
+        $cellier->delete();
+
+        return redirect('/');
     }
 
     
