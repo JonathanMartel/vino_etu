@@ -17,6 +17,8 @@ export class CellierComponent implements OnInit {
 
     this.servBouteilleDeVin.getCellier().subscribe(cellier => this.cellier = cellier);
 
+    console.log(this.cellier);
+
   }
 
 }
