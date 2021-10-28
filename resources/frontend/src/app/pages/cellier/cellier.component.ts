@@ -15,9 +15,15 @@ export class CellierComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.servBouteilleDeVin.getCellier().subscribe(cellier => this.cellier = cellier);
+    this.servBouteilleDeVin.getBouteillesCellier().subscribe(cellier => {
 
-    console.log(this.cellier);
+      this.cellier = cellier.data
+      console.log(cellier.data);
+
+    });
+
+    
+
 
   }
 
