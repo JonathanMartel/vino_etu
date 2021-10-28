@@ -1,16 +1,17 @@
 
 <div class="content">
-    <h1>Catalogue de bouteilles</h1>
+    <h2 class="titre">Catalogue de bouteilles</h2>
     <section *ngFor="let uneBouteille of bouteille" class="resultat">
         <div class="resultat-vin">
             <a class="btn-vin" href="#"><img src="{{uneBouteille.url_image}}" alt="une bouteille"></a>
-            <div class="resultat-vin-data"><a class="target-link" href="#">{{uneBouteille.nom}}</a></div>
+            <div class="resultat-vin-data"><a class="target-link" routerLink="/ficheBouteille/{{uneBouteille.id}}">{{uneBouteille.nom}}</a></div>
             <div class="vin-data-droit">{{uneBouteille.format}}</div>
             <span class="subtexte">{{uneBouteille.prix_saq}}.99$</span>
         </div>
         <div>
             <div>
                 <span class="subtexte">{{uneBouteille.pays}}</span>
+                <span class="vin-data-droit">{{uneBouteille.categorie}}</span>
             </div>
             <div class="subtexte">{{uneBouteille.code_saq}}</div>
         </div>

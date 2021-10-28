@@ -50,7 +50,13 @@ class CellierBouteilleController extends Controller
     public function store(Cellier $cellier, Request $request)
     {
 
-        return response("Ça marche, $cellier->id !", 200);
+        $bouteilleCellier = new CellierBouteille;
+        $bouteilleCellier -> bouteilles_id = $request->bouteilles_id;
+        $bouteilleCellier -> celliers_id = $request->celliers_id;
+        $bouteilleCellier -> inventaire = $request->inventaire;
+        $newBouteilleCellier = $bouteilleCellier -> save();
+
+        return response("Ça marche, $newBouteilleCellier !", 200);
     }
 
     /**
