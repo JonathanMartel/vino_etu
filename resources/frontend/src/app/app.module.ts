@@ -17,7 +17,8 @@ import { AjoutBouteilleComponent } from '@pages/ajout-bouteille/ajout-bouteille.
 import { ConnectionComponent } from '@pages/connection/connection.component';
 import { CreerCompteComponent } from '@pages/creer-compte/creer-compte.component';
 import { FicheBouteilleComponent } from './pages/fiche-bouteille/fiche-bouteille.component';
-
+import {MatButtonModule} from '@angular/material/button';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,6 @@ import { FicheBouteilleComponent } from './pages/fiche-bouteille/fiche-bouteille
     ConnectionComponent,
     CreerCompteComponent,
     FicheBouteilleComponent,
-    
   ],
   imports: [
     BrowserModule,
@@ -40,6 +40,8 @@ import { FicheBouteilleComponent } from './pages/fiche-bouteille/fiche-bouteille
     HttpClientModule,
     MatToolbarModule,
     MatIconModule,
+    MatButtonModule,
+    MatFormFieldModule
   ],
   providers: [BouteilleDeVinService],
   bootstrap: [AppComponent]
