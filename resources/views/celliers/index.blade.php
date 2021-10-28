@@ -9,7 +9,7 @@
 </div>
 
 <div>
-    <a href="/create/cellier">Ajouter un cellier</a>
+    <a class="" href="/create/cellier"><i class="material-icons">add</i></a>
 </div>
 
 <div class="liste-celliers">
@@ -49,5 +49,6 @@
 
 
 @endif
+
 
 @endsection
