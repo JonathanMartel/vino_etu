@@ -13,6 +13,7 @@ class BouteilleController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
+
         return BouteilleResource::collection(Bouteille::all());
     }
 
@@ -36,6 +37,7 @@ class BouteilleController extends Controller {
     public function show(Bouteille $bouteille) {
 
         return BouteilleResource::make($bouteille);
+
     }
 
     /**

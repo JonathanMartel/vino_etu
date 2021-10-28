@@ -13,13 +13,20 @@ export class BouteilleDeVinService {
 
   getCellier(){
 
+
     return this.http.get<any>(this.url + '/celliers/' + 1 + '/bouteilles');
 
+
+  }
+
+  getBouteillesCellier(){
+    return this.http.get<any>(this.url + '/celliers/' + 1 + '/bouteilles');
   }
 
   getListeBouteille(){
 
-    return this.http.get<any>(this.url + '/catalogue-bouteilles');
+
+    return this.http.get<any>(this.url+'/catalogue-bouteilles');
   }
 
   getBouteilleParId(id_bouteille:any){

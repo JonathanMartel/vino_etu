@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot, Resolve, RouterState, RouterStateSnapshot } from '@angular/router';
 import { BouteilleDeVinService } from './bouteille-de-vin.service';
 
 @Injectable({
@@ -7,8 +7,9 @@ import { BouteilleDeVinService } from './bouteille-de-vin.service';
 })
 export class BouteilleResolverServiceService implements Resolve<any>{
 
-
-  constructor(private servBouteilleDeVin:BouteilleDeVinService) { }
+  constructor(
+    private servBouteilleDeVin:BouteilleDeVinService,
+    ) { }
 
   resolve( route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
