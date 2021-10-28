@@ -17,7 +17,6 @@ const routes: Routes = [
     {path:"connection", component:ConnectionComponent},
     {path:"creerCompte", component:CreerCompteComponent},
     {path:"ficheBouteille/:id", component:FicheBouteilleComponent, resolve: {bouteille: BouteilleResolverServiceService}},
-
 ];
 
 @NgModule({

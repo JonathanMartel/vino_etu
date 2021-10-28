@@ -56,9 +56,3 @@ Route::put("celliers/modifier-inventaire/{cellierBouteilleId}", [CellierBouteill
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-
-// Ajout d'une bouteille à un cellier
-Route::post('celliers/{cellier}/bouteilles', [CellierBouteilleController::class, "store"]);
-
-// Afficher les bouteilles d'un cellier
-Route::get('celliers/{cellier}/bouteilles', [CellierBouteilleController::class, "obtenirBouteillesParCellier"]);

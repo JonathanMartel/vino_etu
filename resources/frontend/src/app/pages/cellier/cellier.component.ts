@@ -9,21 +9,26 @@ import { BouteilleDeVinService} from '@services/bouteille-de-vin.service';
 export class CellierComponent implements OnInit {
   cellier:any;
 
+
   constructor(private servBouteilleDeVin:BouteilleDeVinService) {
 
   }
 
   ngOnInit(): void {
 
-    this.servBouteilleDeVin.getBouteillesCellier().subscribe(cellier => {
+   /* this.servBouteilleDeVin.getBouteillesCellier().subscribe(cellier => {
 
       this.cellier = cellier.data
       console.log(cellier.data);
 
-    });
+    }); */
 
-    
 
+    this.servBouteilleDeVin.getCellier().subscribe(cellier => {this.cellier = cellier.data, console.log(this.cellier)});
+
+  }
+
+  augmenter() {
 
   }
 

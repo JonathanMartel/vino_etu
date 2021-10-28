@@ -13,7 +13,9 @@ export class BouteilleDeVinService {
 
   getCellier(){
 
-    return this.http.get(this.url+'/celliers');
+
+    return this.http.get<any>(this.url + '/celliers/' + 1 + '/bouteilles');
+
 
   }
 
@@ -22,6 +24,7 @@ export class BouteilleDeVinService {
   }
 
   getListeBouteille(){
+
 
     return this.http.get<any>(this.url+'/catalogue-bouteilles');
   }

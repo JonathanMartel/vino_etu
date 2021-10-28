@@ -2,12 +2,10 @@ import { Injectable } from '@angular/core';
 import { ActivatedRoute, ActivatedRouteSnapshot, Resolve, RouterState, RouterStateSnapshot } from '@angular/router';
 import { BouteilleDeVinService } from './bouteille-de-vin.service';
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class BouteilleResolverServiceService implements Resolve<any>{
-
 
   constructor(
     private servBouteilleDeVin:BouteilleDeVinService,

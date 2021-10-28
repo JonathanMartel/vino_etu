@@ -40,6 +40,8 @@ class CellierBouteilleController extends Controller
                     "cb.inventaire as inventaire",
                     "b.url_image as imageBouteille",
                     "b.nom as nom",
+                    "b.url_image as image",
+                    "b.format as format",
                     "pays.nom as pays",
                     "cat.nom as categorie")
                 ->where("cb.celliers_id", $cellierId)
@@ -78,8 +80,10 @@ class CellierBouteilleController extends Controller
         $bouteilleCellier -> celliers_id = $request->celliers_id;
         $bouteilleCellier -> inventaire = $request->inventaire;
         $newBouteilleCellier = $bouteilleCellier -> save();
-        
-        return response("Ca marche, $newBouteilleCellier !", 200);
+
+
+        return response("Ça marche, $newBouteilleCellier !", 200);
+
     }
 
     /**

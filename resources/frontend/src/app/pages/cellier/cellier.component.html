@@ -1,11 +1,23 @@
-<section>
-    <h1>Mon cellier</h1>
-    <article>
-        <h2>{{cellier.id}}</h2>
-        <div>
-            <p>Cellier : {{cellier.celliers_id}}</p>
-            <p>Bouteille id : {{cellier.bouteilles_id}}</p>
-            <p>Inventaire : {{cellier.inventaire}}</p>
+<div class="content">
+    <h2 class="titre">Mon Cellier</h2>
+    <section *ngFor="let uneBouteille of cellier" class="resultat">
+        <div class="resultat-vin">
+            <a class="btn-vin"><img src="{{uneBouteille.image}}" alt="une bouteille"></a>
+            <div class="resultat-vin-data"><a class="target-link">{{uneBouteille.nom}}</a></div>
+            <span class="subtexte">{{uneBouteille.categorie}}</span>
+            <div class="vin-data-droit">{{uneBouteille.format}}</div>
+            <button onclick="diminuer()">-</button>
+            <input type="hidden" value="{{uneBouteille.inventaire}}">
+            <button onclick="augmenter()">+</button>
         </div>
-    </article>
-</section>
+        <div>
+            <div>
+                <span class="subtexte">{{uneBouteille.pays}}</span>
+                <span class="vin-data-droit">inventaire : {{uneBouteille.inventaire}}</span>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+
