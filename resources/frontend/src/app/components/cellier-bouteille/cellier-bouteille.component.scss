@@ -66,3 +66,15 @@
     font-size: 14px;
 }
 
+.mat-mini-fab.mat-accent{
+    background-color: var(--couleur-primaire);
+}
+
+.mat-form-field {
+    max-width: 5ch;
+    padding: 0 0 0 .75em;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-flex {
+    background-color: red;
+}

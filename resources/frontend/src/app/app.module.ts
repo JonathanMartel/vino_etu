@@ -19,6 +19,10 @@ import { CreerCompteComponent } from '@pages/creer-compte/creer-compte.component
 import { FicheBouteilleComponent } from './pages/fiche-bouteille/fiche-bouteille.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import { CellierBouteilleComponent } from './components/cellier-bouteille/cellier-bouteille.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -32,6 +36,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     ConnectionComponent,
     CreerCompteComponent,
     FicheBouteilleComponent,
+    CellierBouteilleComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,7 +46,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
   ],
   providers: [BouteilleDeVinService],
   bootstrap: [AppComponent]

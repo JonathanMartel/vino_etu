@@ -16,14 +16,10 @@ export class CellierComponent implements OnInit {
 
   ngOnInit(): void {
 
-
-
     this.servBouteilleDeVin.getCellier().subscribe(cellier => {this.cellier = cellier.data, console.log(this.cellier)});
 
   }
 
-  augmenter() {
 
-  }
 
 }
