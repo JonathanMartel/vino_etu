@@ -2,53 +2,50 @@
 
 document.addEventListener('DOMContentLoaded', function() {
 
-    let btnAjouterBouteilles = document.querySelectorAll('[name="btnAjouterBouteille"]')
-    const conteneur = document.querySelectorAll('.')
     
-    /**
-     * Requête fetch pour incrémenter la quantité d'une bouteille à un cellier sans recharger la page
-     */
-    Array.from (btnAjouterBouteilles).forEach(btn => {
-        btn.addEventListener('click', (e) => {
+    const sections = document.querySelectorAll('section')
+
+    sections.forEach(section => {
+
+         /**
+         * Requête fetch pour incrémenter la quantité d'une bouteille à un cellier sans recharger la page
+         */
+        const btnAjouter = section.querySelector('[name="btnAjouterBouteille"]');
+        const quantitePrecedent = section.querySelector('.quantite > span');
+        
+        btnAjouter.addEventListener('click', (e) => {
             e.preventDefault();
             
-            fetch(btn.href)
+            fetch(btnAjouter.href)
             .then(response => {
                 return (response.json())
             })
             .then(response => {
-                const quantitePrecedent = parseInt( btn.closest('tr').querySelector('[name="quantite"]').innerHTML);
-                btn.closest('tr').querySelector('[name="quantite"]').innerHTML = quantitePrecedent + response;
+                quantitePrecedent.innerHTML = parseInt(quantitePrecedent.innerHTML) + response;
             }).catch(error => console.log(error))
         })
-    });
 
-    let btnRetirerBouteilles = document.querySelectorAll('[name="btnRetirerBouteille"]')
-
-    /**
-     * Requête fetch pour incrémenter la quantité d'une bouteille à un cellier sans recharger la page
-     */
-    Array.from (btnRetirerBouteilles).forEach(btn => {
-        btn.addEventListener('click', (e) => {
+        const btnRetirer = section.querySelector('[name="btnRetirerBouteille"]');
+     
+        
+        btnRetirer.addEventListener('click', (e) => {
             e.preventDefault();
-            const quantitePrecedent = parseInt( btn.closest('tr').querySelector('[name="quantite"]').innerHTML);
             
-            if(quantitePrecedent > 0 ){
-                fetch(btn.href)
-                .then(response => {
-                    return (response.json())
-                })
-                .then(response => {
-                
-                    btn.closest('tr').querySelector('[name="quantite"]').innerHTML = quantitePrecedent + response;
-                }).catch(error => console.log(error))
-        }
+            fetch(btnRetirer.href)
+            .then(response => {
+                return (response.json())
+            })
+            .then(response => {
+                quantitePrecedent.innerHTML = parseInt(quantitePrecedent.innerHTML) + response;
+            }).catch(error => console.log(error))
         })
-    });
+    })
+    
     
     const nouvelleBouteille = document.querySelector(".nouvelleBouteille");
     
     if(nouvelleBouteille) {
+        console.log('kl')
         var toastHTML = '<span>Une nouvelle bouteille a été ajoutée</span><button class="btn-flat toast-action">Fermer</button>';
         M.toast({html: toastHTML, displayLength : 5000})
 

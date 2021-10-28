@@ -65,7 +65,7 @@ class CellierBouteilleController extends Controller
             'nom' => 'required',
             'quantite' => 'integer|gte:0',
             'prix' => 'numeric|regex:/[0-9]+(\.[0-9][0-9]?)?/|gte:0',
-            'pays' => 'nullable|regex:^[A-ZÀÂÇÉÈÊËÎÏÔÛÙÜŸÑÆŒa-zàâçéèêëîïôûùüÿñæœ]+$^',
+            'pays' => 'nullable|regex:^[A-ZÀÂÇÉÈÊËÎÏÔÛÙÜŸÑa-zàâçéèêëîïôûùüÿñ]+$^',
             'type_id' => 'required|exists:types,id',
             'format_id' => 'required|exists:formats,id',
         ]);
@@ -92,7 +92,7 @@ class CellierBouteilleController extends Controller
                     $cellierBouteille->date_achat = $date_achat;
                     $cellierBouteille->save();
                     
-                    return redirect("cellier")->with("nouvelleBouteille", "nouvelle bouteille ajoutée" );
+                    return redirect("cellier/". $request->cellier_id)->with("nouvelleBouteille", "nouvelle bouteille ajoutée" );
                 }else {
 
                     if($request->file) {
