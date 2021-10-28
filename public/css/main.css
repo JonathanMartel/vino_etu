@@ -65,9 +65,6 @@ img {
 }
 
 
-<<<<<<< HEAD
-
-=======
   /* Materialize css */
 
   .btn, .btn-large, .btn-small {
@@ -86,7 +83,6 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
 	border-bottom: 1px solid #778D83;
     box-shadow: 0 1px 0 0 #778D83;
 }
->>>>>>> 82df968b3a59161a818db31de36ed31399f264d1
 
 #toast-container {
 	top: auto !important;
@@ -96,7 +92,10 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
 	
   }
 
-
+  .btn, .btn-large, .btn-small, .btn-flat {
+      text-transform: none;
+  }
+  
 /* Les boutons */
 
 .btn-space {
