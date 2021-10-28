@@ -12,7 +12,7 @@ export default class AjoutCellier extends React.Component {
 	}
 
 	fetchCelliers(){
-		fetch("127.0.0.1:8000/webservice/php/celliers/usager/")// Il faut ajouter le id de l'usager dans le fetch
+		fetch("http://rmpdwebservices.ca/webservice/php/celliers/usager/")// Il faut ajouter le id de l'usager dans le fetch
 		.then(reponse => reponse.json())
         .then((donnees)=>{
 			this.setState({celliers: donnees.data})
