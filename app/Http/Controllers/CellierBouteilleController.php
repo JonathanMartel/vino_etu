@@ -6,6 +6,7 @@ use App\Models\Bouteille;
 use App\Models\Type;
 use App\Models\CellierBouteille;
 use App\Models\Format;
+use App\Models\Cellier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 
@@ -19,10 +20,12 @@ class CellierBouteilleController extends Controller
     public static function index($idCellier)
     {
         $cellierBouteilles = CellierBouteille::obtenirListeBouteilleCellier($idCellier); 
+        $cellier = Cellier::find($idCellier);
 
 	    return view('cellierBouteille.index', [
             'cellierBouteilles' => $cellierBouteilles,
             'idCellier' => $idCellier,
+            'cellier' => $cellier,
         ]);
     }
 

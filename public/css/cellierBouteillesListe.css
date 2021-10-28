@@ -24,12 +24,11 @@ main h1{
     display: flex;
 }
 
-
-
 .info{
     display: flex;
     flex-direction: column;
-    padding: 20px 60px 0 0;
+    align-self: center;
+    padding: 0px 20px 0 20px;
 }
 
 * + *, p {
@@ -37,15 +36,11 @@ main h1{
     padding: 0;
 }
 
-div img{
-  
-    margin-top: 20px;
-    margin-bottom: 20px;
-    height: 20vw;
-    min-height: 7rem;
-    max-height: 9rem;
-    width: auto;
-    object-fit: contain;
+.image{
+    margin: 20px 10px 20px 10px;
+    width: 30px;
+    height: 112px;
+    object-fit: cover;
 }
 
 .nomVin{
@@ -61,14 +56,16 @@ section{
     border-color: #99AAA2;
     border-width: 1px;
     padding-bottom: 1.25rem;
+    border-bottom: none;
+    border-left: none;
+    border-right: none;
 }
 
-
-
-
 .bouton-conteneur{
+    align-self: center;
     margin-left: auto;
     padding-right: 10px;
+    column-gap: 10px;
 }
 
 .bouton-cercle-add{
@@ -92,6 +89,10 @@ section{
 }
 
 .icon-item{
-   color: white
+   color: white;
 }
 
+
+.quantite{
+    padding-top: 10px;
+}
