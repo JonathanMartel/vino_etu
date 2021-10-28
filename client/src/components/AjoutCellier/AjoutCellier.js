@@ -18,7 +18,7 @@ export default class AjoutCellier extends React.Component {
 			//id_usager: this.state.id_usager,
 			emplacement: this.state.emplacement
 		}
-		fetch("http://127.0.0.1:8000/webservice/php/celliers", {
+		fetch("http://rmpdwebservices.ca/webservice/php/celliers", {
 			method: 'POST',
 			body: JSON.stringify(nouveauCellier),
 			headers: new Headers({

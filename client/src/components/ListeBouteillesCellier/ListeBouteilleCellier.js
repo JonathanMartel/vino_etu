@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import './ListeBouteilleCellier.css';
 
-export default class ListeBouteilleCellier extends React.Component {
+export default class ListeBouteilles extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -21,7 +21,7 @@ export default class ListeBouteilleCellier extends React.Component {
 	}
 
 	fetchBouteilles() {
-		fetch("http://127.0.0.1:8000/webservice/php/bouteilles/cellier/" + this.state.cellierId, {
+		fetch("http://rmpdwebservices.ca/webservice/php/bouteilles/cellier/" + this.state.cellierId, {
 			method: 'GET',
 			headers: new Headers({
 				"Content-Type": "application/json",
@@ -91,7 +91,7 @@ export default class ListeBouteilleCellier extends React.Component {
 
 		return (
 			<div>
-				<Link to={"/ajoutbouteillecellier"}>
+				<Link to={"/ajoutBouteille"}>
 					<span>Ajouter une nouvelle bouteille à votre cellier</span>
 				</Link>
 

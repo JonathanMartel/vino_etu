@@ -1,8 +1,9 @@
 import React from "react";
+import fondEcran from '../../fondEcran.svg';
 import BouteilleSAQ from "../BouteilleSAQ/BouteilleSAQ";
 import './AjoutBouteilleCellier.css';
 
-export default class AjoutBouteilleCellier extends React.Component {
+export default class AjoutBouteille extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -17,6 +18,8 @@ export default class AjoutBouteilleCellier extends React.Component {
 			prix: "",
 			garde: "",
 			commentaires: "",
+			usager_id: "1",
+			vino__type_id: "1"
 		}
 
 		// Binding des fonctions
@@ -31,7 +34,7 @@ export default class AjoutBouteilleCellier extends React.Component {
 		}
 
 		console.log(event.target.value);
-		fetch("http://localhost/webservice/php/saq/" + event.target.value, {
+		fetch("http://rmpdwebservices.ca/webservice/php/saq/" + event.target.value, {
 			method: 'GET',
 			headers: new Headers({
 				"Content-Type": "application/json",
@@ -42,7 +45,7 @@ export default class AjoutBouteilleCellier extends React.Component {
 			.then(reponse => reponse.json())
 			.then((donnees) => {
 				this.setState({ bouteillesSAQ: donnees.data })
-				console.log(donnees)
+				console.log(donnees.data.url_saq);
 			});
 	}
 
@@ -62,6 +65,8 @@ export default class AjoutBouteilleCellier extends React.Component {
 			prix: this.state.prix,
 			garde: this.state.garde,
 			commentaires: this.state.commentaires,
+			usager_id: this.state.usager_id,
+			vino__type_id: this.state.vino__type_id,
 		}
 
 		entete.append("Content-Type", "application/json");
@@ -93,7 +98,9 @@ export default class AjoutBouteilleCellier extends React.Component {
 			})
 
 		return (
+			
 			<div className="nouvelleBouteille">
+				
 				<p>Recherche : <input onKeyUp={(event) => this.fetchBouteillesSAQ(event)} type="text" name="nom_bouteille" /></p>
 				<ul>
 					{bouteilles}
@@ -106,7 +113,9 @@ export default class AjoutBouteilleCellier extends React.Component {
 					<p>Prix : <input name="prix" value={this.state.prix} onChange={e => this.setState({ prix: e.target.value })} /></p>
 					<p>Peux être garder ? : <input name="garde_jusqua" value={this.state.garde} onChange={e => this.setState({ garde: e.target.value })} /></p>
 					<p>Commentaires: <input name="notes" value={this.state.commentaires} onChange={e => this.setState({ commentaires: e.target.value })} /></p>
+					
 				</div>
+				
 				<button onClick={this.ajouterBouteilleCellier} name="ajouterBouteilleCellier">Ajouter la bouteille au cellier</button>
 			</div>
 		);
