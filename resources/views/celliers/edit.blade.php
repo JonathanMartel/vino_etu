@@ -9,7 +9,7 @@
     <img src="{{URL::asset('/assets/icon/logo-3-bouteilles-cellier.svg')}}" alt="Icone trois bouteilles">
 </div>
 <div class="form-ajout">
-    <form id="edit-form" action="" method="POST">
+    <form id="edit-form" action="{{route('cellier.update', $cellier->id )}}" method="POST">
         @method('PUT')
         @csrf
         <div class="input-field col s12">
@@ -39,7 +39,7 @@
 
         </div>
         <div class="btn-space">
-        <a class="btn waves-effect waves-light button btn-annuler" href="/">Annuler</a>
+        <a class="btn waves-effect waves-light button btn-annuler" href="{{route('cellier')}}">Annuler</a>
             <button class="btn waves-effect waves-light button btn-modifier" type="submit">Modifier</button>
             <!-- <a class="btn waves-effect waves-light button btn-supprimer " href="#"><i class="material-icons">delete</i></a> -->
 
@@ -48,7 +48,7 @@
 </div>
 
     
-    <form class="btn-sup-container" id="delete-form" action="/cellier/{{$cellier->id}}" method="POST">
+    <form class="btn-sup-container" id="delete-form" action="{{route('cellier.destroy', $cellier->id )}}" method="POST">
         @method('DELETE')
         @csrf
         <button class="btn waves-effect waves-light button btn-supprimer"><i class="material-icons">delete</i></button>

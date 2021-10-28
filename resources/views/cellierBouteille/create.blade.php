@@ -9,25 +9,27 @@
   <h1>Nouveau vin</h1>
 </div>
 <div class="row">
-      <div class="input-field col s12 recherche">
-          <i class="material-icons prefix">search</i>
-          <input type="text"  name="recherche" autocomplete="off">
-          <label for="recherche">Rechercher un vin</label>
-          <div class="autocomplete z-depth-2"></div>
-        </div>
-      </div>
+  <div class="input-field col s12 recherche">
+      <i class="material-icons prefix">search</i>
+      <input type="text"  name="recherche" autocomplete="off">
+      <label for="recherche">Rechercher un vin</label>
+      <div class="autocomplete z-depth-2"></div>
+    </div>
+  </div>
       
-<div class="row">
-<img name="img-bouteille" src="{{ old('url_img') }}" alt="{{ old('nom') }}">
+  <div class="row">
+    <div class="image">
+      <img name="img-bouteille" src="{{ old('url_img') }}" alt="{{ old('nom') }}">
+    </div>
     <form class="col s12 ajout-vin" action="{{route('cellierBouteille.store')}}" method="POST" enctype="multipart/form-data" >
     
-    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+      <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="input-field col s12">
           <input id="nom" name="nom" type="text" class="@if($errors->first('nom')) invalid @endif validate" value="{{ old('nom') }}" required />
           <label for="nom">Nom</label>
           <span class="helper-text" data-error="Champ obligatoire"></span>
         </div>
-        <div class="input-field col s12">
+        <div class="input-field col s12 ">
           <select name ="type_id">
             <option value="" disabled selected></option>
             @foreach($types as $type)
@@ -35,7 +37,8 @@
             @endforeach
           </select>
           <label>Type</label>
-          <span class="helper-text" data-error="Format invalid"></span>
+          @if($errors->first('type_id')) <span class="helper-text erreur" data-error="Format invalid">Champ obligatoire</span> @endif
+          
         </div>
         <div class="input-field col s12">
           <select name ="format_id">
@@ -45,7 +48,7 @@
             @endforeach
           </select>
           <label>Format</label>
-          <span class="helper-text" data-error="Format invalid"></span>
+          @if($errors->first('format_id')) <span class="helper-text erreur" data-error="Format invalid">Champ obligatoire</span> @endif
         </div>
         <div class="input-field col s12">
           <textarea id="description" name="description" class="materialize-textarea">{{ old('description') }}</textarea>
@@ -53,7 +56,7 @@
           <span class="helper-text" data-error="Format invalid"></span>
         </div>
         <div class="input-field col s12">
-          <input id="pays" type="text" name="pays" class="@if($errors->first('pays')) invalid @endif validate" pattern="[a-zA-Z]*" value="{{ old('pays') }}">
+          <input id="pays" type="text" name="pays" pattern="^[-a-zA-ZáéíóúÁÉÍÓÚÑñÇç]*$" class="@if($errors->first('pays')) invalid @endif validate"  value="{{ old('pays') }}">
           <label for="pays">Pays</label>
           <span class="helper-text" data-error="Format invalid"></span>
         </div>
@@ -119,15 +122,15 @@
         <input type="hidden" name="millesimes" value="{{ old('millesimes') }}" id="millesimes">
         <input type="hidden" name="bouteille_id" value="{{ old('bouteille_id') }}" id="bouteille_id">
         <input type="hidden" name="url_img" value="{{ old('url_img') }}" id="url_img">
-        <div class="col s12 flex-row">
-        <button class="btn waves-effect waves-light"  name="annuler">Annuler</button>
-        <button class="btn waves-effect waves-light" type="submit" name="submit">Ajouter<i class="material-icons right">send</i>
-        </button>
+        <div class="col s12 btn-space">
+          <a href="{{route('cellier.show', $idCellier)}}" class="btn waves-effect waves-light button btn-annuler"  name="annuler">Annuler</a>
+          <button class="btn waves-effect waves-light button btn-ajouter" type="submit" name="submit">Ajouter
+          </button>
         </div>
-  </button>
+      </button>
 
     </form>
-    </div>
+  </div>
 
 
 @endsection

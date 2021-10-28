@@ -139,8 +139,15 @@ document.addEventListener('DOMContentLoaded', function() {
     if(success) {
         var toastHTML = '<span>Cette bouteille existe déjà dans votre cellier</span><button class="btn-flat toast-action">Fermer</button>';
         M.toast({html: toastHTML, displayLength : 5000})
+
+        const message = document.querySelector('.toast-action')
+
+        message.addEventListener('click', () => {
+            M.Toast.dismissAll();
+        })
     }
 
+    
 
     /**
      * Note
@@ -160,10 +167,4 @@ document.addEventListener('DOMContentLoaded', function() {
           
     });
     
-    const btnAnnuler = document.querySelector('[name="annuler"]');
-    btnAnnuler.addEventListener('click', (e) => {
-        e.preventDefault();
-        
-        location.href = '/cellier';
-    })
   });

@@ -29,7 +29,9 @@ img {
     height: 100px;
 }
 
-
+.input-field .helper-text.erreur {
+	color: #F44336;
+}
 /* css pour app.blade.php */
 
 .padding-30 {
@@ -75,6 +77,14 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
 	border-bottom: 1px solid #778D83;
     box-shadow: 0 1px 0 0 #778D83;
 }
+
+#toast-container {
+	top: auto !important;
+	right: auto !important;
+	bottom: 0;
+	left: auto !important;
+	
+  }
 
 
 /* Les boutons */
