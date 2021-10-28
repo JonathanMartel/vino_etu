@@ -79,6 +79,7 @@ class CellierBouteille extends Model
         ->where('cellier_id', $idCellier)
         ->join('bouteilles', 'bouteilles.id', '=', 'cellier_bouteilles.bouteille_id')
         ->join('types', 'types.id', '=', 'bouteilles.type_id')
+        ->join('formats', 'formats.id', '=', 'bouteilles.format_id')
         ->get();
     }
     

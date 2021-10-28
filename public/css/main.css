@@ -97,7 +97,6 @@ nav .sidenav-trigger{
 }
 
 
-
   /* Materialize css */
 
   .btn, .btn-large, .btn-small {
@@ -125,7 +124,10 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
 	
   }
 
-
+  .btn, .btn-large, .btn-small, .btn-flat {
+      text-transform: none;
+  }
+  
 /* Les boutons */
 
 .btn-space {

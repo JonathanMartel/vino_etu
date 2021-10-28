@@ -35,7 +35,7 @@
 <div id="body_container">
     <header class="flex-row padding-1rem z-depth-1">
             <!-- Voir la navigation !!! -->
-        <a href="#" class="brand-logo left "><img src="{{asset('assets/logo/logo-vino.svg')}}"></a>
+        <a href="/" class="brand-logo left "><img src="{{asset('assets/logo/logo-vino.svg')}}"></a>
 
         <nav class="nav-extended white z-depth-0">
             <div class="nav-wrapper">
