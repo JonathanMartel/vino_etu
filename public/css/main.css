@@ -28,6 +28,7 @@ padding: 0;
 
 .height-120{
 	height: 120px !important;
+	/* height: 120px; */
 }
 
 img {
@@ -91,7 +92,10 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
 	
   }
 
-
+  .btn, .btn-large, .btn-small, .btn-flat {
+      text-transform: none;
+  }
+  
 /* Les boutons */
 
 .btn-space {

@@ -46,8 +46,8 @@
                     {{$cellierBouteille->millesime}}
                     @endif
                 </p>
-                <p>{{$cellierBouteille->quantite}}ml</p>
-                <p class="quantite">Qte | {{$cellierBouteille->quantite}}</p>
+                <p>{{$cellierBouteille->taille}}ml</p>
+                <p class="quantite">Qte | <span>{{$cellierBouteille->quantite}}</span></p>
             </div>
 
             <div class=" flex bouton-conteneur">
