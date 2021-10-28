@@ -1,13 +1,20 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
 html {
   font-family: 'Raleway', sans-serif;
   font-size: 16px;
   color: #343B41;
+  height: 100%;
 }
 body {
     
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+	height: 100%;
 }
 h1,h4 {
   font-family: 'Acme', sans-serif;
@@ -26,10 +33,7 @@ padding: 0;
 }
 
 
-.height-120{
-	height: 120px !important;
-	/* height: 120px; */
-}
+
 
 img {
     width: 100px;
@@ -41,14 +45,29 @@ img {
 }
 /* css pour app.blade.php */
 
-.padding-30 {
-	padding-left:10px;
-	padding-right:10px;
+#body_container {
+	display: flex;
+    flex-direction: column;
+    height: 100%;
 }
+
+header{
+    flex: 0 0 auto;
+}
+
+main{
+    flex: 1 0 auto;
+}
+
+footer{
+    flex: 0 0 auto;
+}
+
 
 .flex-row {
 	display: flex;
 	flex-direction: row;
+	align-items: center;
 }
 
 .flex-box {
@@ -64,10 +83,21 @@ img {
 	align-items: center;
 }
 
+.padding-1rem {
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
 
-<<<<<<< HEAD
+nav .sidenav-trigger{
+	margin: 0;
+}
 
-=======
+.container {
+	text-align: center;
+}
+
+
+
   /* Materialize css */
 
   .btn, .btn-large, .btn-small {
@@ -86,7 +116,6 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
 	border-bottom: 1px solid #778D83;
     box-shadow: 0 1px 0 0 #778D83;
 }
->>>>>>> 82df968b3a59161a818db31de36ed31399f264d1
 
 #toast-container {
 	top: auto !important;
