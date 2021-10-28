@@ -101,18 +101,35 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
     font-size: 1.25rem;
 }
 
+.btn-annuler {
+	border: 1px solid #99AAA2;
+    background-color: white;
+	color: #343B41;
+}
+
 .btn-ajouter {
 	background-color: #99AAA2;
     color: #343B41;
 }
 
-.btn-annuler {
-	border: 2px solid #99AAA2;
-    background-color: white;
-	color: #343B41;
+.btn-modifier {
+	background-color: #E5CB85;
+    color: #774444;
+}
+
+.btn-modifier:hover {
+	background-color: #774444;
+    color: #E5CB85;
+	border: 1px solid #E5CB85;
 }
 
 .btn-supprimer {
     color: white;
     background-color: #774444;
+}
+
+.btn-supprimer:hover {
+    color: #774444;
+    background-color: white;
+	border: 1px solid #774444;
 }
