@@ -26,11 +26,11 @@ export default class AjoutCellier extends React.Component {
 				"authorization": "Basic " + btoa("vino:vino"),
 			}),
 		})
-		.then(reponse => reponse.json())
-        .then(()=>{
-            console.log("Cellier ajouté");
-			<Redirect to='/' /> // À changer pour rediriger vers le cellier qu'on viens d'ajouter.
-        });
+			.then(reponse => reponse.json())
+			.then(() => {
+				console.log("Cellier ajouté");
+				<Redirect to='/' /> // À changer pour rediriger vers le cellier qu'on viens d'ajouter.
+			});
 	}
 
 	render() {
@@ -38,7 +38,7 @@ export default class AjoutCellier extends React.Component {
 
 			<div className="nouveauCellier">
 				<div>
-					<p>Emplacement du cellier : <input name="emplacement" value={this.state.emplacement} onChange={ e => this.setState({ emplacement : e.target.value }) }/></p>
+					<p>Emplacement du cellier : <input name="emplacement" value={this.state.emplacement} onChange={e => this.setState({ emplacement: e.target.value })} /></p>
 				</div>
 				<button onClick={this.ajouterCellier} name="ajouterCellier">Ajouter votre cellier</button>
 			</div>
