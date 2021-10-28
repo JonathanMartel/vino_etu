@@ -14,10 +14,10 @@ class Bouteille extends Model
     }
 
     public function pays() {
-        return $this->belongsTo(Pays::class);
+        return $this->belongsTo(Pays::class, "pays_id", "id");
     }
 
     public function categorie() {
-        return $this->belongsTo(Categorie::class);
+        return $this->belongsTo(Categorie::class, "categories_id", "id");
     }
 }
