@@ -33,14 +33,15 @@ document.addEventListener('DOMContentLoaded', function() {
         
         btnRetirer.addEventListener('click', (e) => {
             e.preventDefault();
-            
-            fetch(btnRetirer.href)
-            .then(response => {
-                return (response.json())
-            })
-            .then(response => {
-                quantitePrecedent.innerHTML = parseInt(quantitePrecedent.innerHTML) + response;
-            }).catch(error => console.log(error))
+            if(quantitePrecedent.innerHTML > 0) {
+                fetch(btnRetirer.href)
+                .then(response => {
+                    return (response.json())
+                })
+                .then(response => {
+                    quantitePrecedent.innerHTML = parseInt(quantitePrecedent.innerHTML) + response;
+                }).catch(error => console.log(error))
+            }
         })
     })
     
