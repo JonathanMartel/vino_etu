@@ -8,8 +8,8 @@
     <img src="{{URL::asset('/assets/icon/logo-3-bouteilles-cellier.svg')}}" alt="Icone trois bouteilles">
 </div>
 
-<div>
-    <a class="" href="/create/cellier"><i class="material-icons">add</i></a>
+<div class="bouton-conteneur">
+    <a class="bouton-cercle-add" href="/create/cellier"><i class="material-icons">add</i></a>
 </div>
 
 <div class="liste-celliers">
@@ -39,7 +39,7 @@
         </article>
     </a>
     @empty
-    <div class="no-cellier">
+    <div class="list-empty">
         <p>Vous n'avez pour l'instant aucun cellier.</p>
         <a class="btn waves-effect waves-light button" href="{{route('cellier.create')}}">Ajouter un cellier</a>
     </div>

@@ -104,3 +104,19 @@
     display: flex;
 
 }
+
+
+.bouton-conteneur{
+    display: flex;
+    justify-content: center;
+}
+
+.bouton-cercle-add{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:#BBC7C1;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+}

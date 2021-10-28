@@ -144,3 +144,11 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
     background-color: white;
 	border: 1px solid #774444;
 }
+
+
+.list-empty {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}

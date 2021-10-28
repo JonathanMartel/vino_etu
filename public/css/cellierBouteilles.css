@@ -35,6 +35,10 @@ button[name="annuler"]:hover{
     margin-bottom: 20px;
 }
 
-
+.row.barre-recherche {
+    margin-left: unset; 
+     margin-right: unset;
+    margin-bottom: 20px;
+}
 
 

@@ -8,7 +8,7 @@
 <div>
   <h1>Nouveau vin</h1>
 </div>
-<div class="row">
+<div class="row barre-recherche">
   <div class="input-field col s12 recherche">
       <i class="material-icons prefix">search</i>
       <input type="text"  name="recherche" autocomplete="off">

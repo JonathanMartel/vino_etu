@@ -7,6 +7,7 @@
 @endif
 
 
+
 <header>
     <div class="cellier">
         <span>Cellier | {{ $cellier->nom }}</span>
@@ -27,14 +28,13 @@
       </div>
     <div class="row">-->
 
-
 </header>
 
 
 <main>
     <h1>Vos vins</h1>
     <a href="{{ route('ajouterVin', $idCellier) }}">Ajouter un nouveau vin au cellier</a>
-    @foreach($cellierBouteilles as $cellierBouteille)
+    @forelse($cellierBouteilles as $cellierBouteille)
     <section>
         <div class="flex">
             <div class="img-conteneur ">
@@ -76,10 +76,15 @@
         </div>
     </section>
     @empty
-    <div class="no-cellier">
+    <div class="list-empty">
         <p>Vous n'avez pour l'instant aucun vin.</p>
         <a class="btn waves-effect waves-light button" href="{{ route('ajouterVin', $idCellier) }}">Ajouter un nouveau vin au cellier</a>
-    @endforeach
+    </div>
+
+   
+
+    @endforelse
+   
 </main>
 
 
@@ -140,6 +145,7 @@
         @endforeach
     </tbody>
 </table>-->
+
 @endsection
 
 <script src="{{asset('js/cellierBouteille_index.js')}}"></script>
