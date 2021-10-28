@@ -1,4 +1,16 @@
-* text=auto
+# Auto detect text files and perform LF normalization
+*        text=auto
+
+*.cs     text diff=csharp
+*.java   text diff=java
+*.html   text diff=html
+*.css    text
+*.js     text
+*.sql    text
+*.ts     text
+*.php    text
+
+
 *.css linguist-vendored
 *.scss linguist-vendored
 *.js linguist-vendored
