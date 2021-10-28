@@ -1,5 +1,5 @@
 import React from "react";
-
+import rmpd from '../../rmpd.png';
 import './Pied.css';
 
 export default class Accueil extends React.Component {
@@ -10,9 +10,7 @@ export default class Accueil extends React.Component {
 	render() {
 		return (
 			<footer>
-				<p>
-					Réalisé par l'équipe formée de Diana Quiroz, Mathieu Rioux, Robert Gaina et Pascal Beausoleil.
-				</p>
+				<img className="rmpd" src={rmpd} alt="rmpd" />
 			</footer>
 		);
 	}
