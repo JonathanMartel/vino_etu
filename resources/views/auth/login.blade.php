@@ -3,15 +3,18 @@
 @section('content')
 
 
+
+
+
+
 <div class="flex-box">
 <div class="row"> 
-  
   <div class="col s12 m12">
     <div class="card">
-      <div class="card-content flex-center">
+      <div class="card-content flex-center entete-page">
         <h4>Connectez-vous à votre compte</h4>
-        <img src="{{asset('assets/icon/logo-3-bouteilles-cellier.svg')}}" class="center"></a>
-      </div>
+        <img src="{{asset('assets/icon/coupe-verte.svg')}}" class="center"></a>
+    </div>
   <div class="card-content">
     <form action="{{ route('login.custom') }}" method="POST">
       @csrf
@@ -43,7 +46,7 @@
           <a href="#" class="right">Mot de passe oublié?</a>
         </div>       -->
         <div class="input-field col s12">
-          <a href="/registration" class="right">Nouveau client? Créer un compte</a>
+          <a href="{{ route('register') }}" class="right">Nouveau client? Créer un compte</a>
         </div>      
       </div>	
     </form>

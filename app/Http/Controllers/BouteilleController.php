@@ -17,6 +17,11 @@ class BouteilleController extends Controller
       
     }
 
+     /**
+     * @param motCle
+     * Rechercher dans la table bouteilles les noms qui contiennent le motCle
+     * @return response une listes de bouteilles qui contiennent le motCle dans leur nom
+     */
     public function rechercheBouteillesParMotCle($motCle) {
         $listeBouteilles = Bouteille::rechercheBouteillesParMotCle($motCle);
 

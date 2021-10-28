@@ -69,9 +69,14 @@ class CellierBouteilleController extends Controller
             'type_id' => 'required|exists:types,id',
             'format_id' => 'required|exists:formats,id',
         ]);
-
-        // Vérifier si la bouteille existe dans la table cellier_bouteilles et le vin dans la table bouteilles
-        if (isset($request->bouteille_id)) {
+      
+        /**
+         * Vérifier si la bouteille existe dans la table cellier_bouteilles et le vin dans la table bouteilles
+         * Si oui indique qu'elle existe déjà
+         * Sinon si elle n'existe pas dans table bouteille, la créer et ajouter dans la table cellier_bouteille
+         * Si la bouteille existe dans la table bouteillesm l'ajouter dans la table cellier_bouteilles
+         */ 
+       if(isset($request->bouteille_id)){
             $cellierBouteille = CellierBouteille::rechercheCellierBouteille($request->cellier_id, $request->bouteille_id, $request->millesime);
             $bouteilleExistante = Bouteille::rechercheBouteilleExistante($request);
 
@@ -90,6 +95,9 @@ class CellierBouteilleController extends Controller
                     $cellierBouteille->fill($request->all());
                     $cellierBouteille->date_achat = $date_achat;
                     $cellierBouteille->save();
+                    
+                    return redirect("cellier/". $request->cellier_id)->withInput()->with("nouvelleBouteille", "nouvelle bouteille ajoutée" );
+                }else {
 
                     return redirect("cellier/" . $request->cellier_id)->with("nouvelleBouteille", "nouvelle bouteille ajoutée");
                 } else {
@@ -116,8 +124,8 @@ class CellierBouteilleController extends Controller
                     $cellierBouteille->bouteille_id = $bouteille->id;
                     $cellierBouteille->date_achat = $date_achat;
                     $cellierBouteille->save();
-
-                    return redirect("cellier/" . $request->cellier_id)->with("nouvelleBouteille", "nouvelle bouteille ajoutée");
+                    
+                    return redirect("cellier/". $request->cellier_id)->withInput()->with("nouvelleBouteille", "nouvelle bouteille ajoutée" );
                 }
             }
         } else {
@@ -145,8 +153,8 @@ class CellierBouteilleController extends Controller
             $cellierBouteille->bouteille_id = $bouteille->id;
             $cellierBouteille->date_achat = $date_achat;
             $cellierBouteille->save();
-
-            return redirect("cellier/" . $request->cellier_id)->with("nouvelleBouteille", "nouvelle bouteille ajoutée");
+            
+            return redirect("cellier/". $request->cellier_id)->withInput()->with("nouvelleBouteille", "nouvelle bouteille ajoutée" );
         }
     }
 

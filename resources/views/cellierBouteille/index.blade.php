@@ -7,6 +7,7 @@
 @endif
 
 
+
 <header>
     <div class="cellier">
         <span>Cellier | {{ $cellier->nom }}</span>
@@ -26,15 +27,19 @@
         </div>
       </div>
     <div class="row">-->
-
-
 </header>
 
 
 <main>
-    <h1>Vos bouteilles</h1>
-    <a href="{{ route('ajouterVin', $idCellier) }}">Ajouter un nouveau vin au cellier</a>
-    @foreach($cellierBouteilles as $cellierBouteille)
+    <div class="entete-page">
+        <h1>Vos vins</h1>
+        <img src="{{URL::asset('/assets/icon/deux-coupe-jaune.svg')}}" alt="Icone deux coupe de vin">
+    </div>
+
+    <div class="bouton-ajout-conteneur">
+        <a class="bouton-cercle-ajout" href="{{ route('ajouterVin', $idCellier) }}"><i class="material-icons">add</i></a></a>
+    </div>
+    @forelse($cellierBouteilles as $cellierBouteille)
     <section>
         <div class="flex">
             <div class="img-conteneur ">
@@ -57,7 +62,7 @@
                             'idBouteille'=>$cellierBouteille->bouteille_id,
                             'millesime'=> $cellierBouteille->millesime
                             ])}}">
-                        <i class="material-icons">remove</i>
+                        <i class="material-icon">remove</i>
                     </a>
                 </div>
                 <div class="bouton-cercle-add" >
@@ -66,7 +71,7 @@
                             'idBouteille'=>$cellierBouteille->bouteille_id,
                             'millesime'=> $cellierBouteille->millesime
                             ])}}">
-                        <i class="material-icons">add</i>
+                        <i class="material-icon">add</i>
                     </a>
                 </div>
             </div>
@@ -75,67 +80,17 @@
             <p>{{$cellierBouteille->nom}}</p>
         </div>
     </section>
-    @endforeach
+    @empty
+    <div class="list-empty">
+        <p>Vous n'avez pour l'instant aucun vin.</p>
+        <a class="btn waves-effect waves-light button" href="{{ route('ajouterVin', $idCellier) }}">Ajouter un nouveau vin au cellier</a>
+    </div>
+
+   
+
+    @endforelse
+   
 </main>
-
-
-
-
-<!-- Page de liste originale -->
-
-<!--
-<table class="responsive-table striped highlight">
-    <thead>
-        <tr>
-            <th>Image</th>
-            <th>Nom</th>
-            <th>Quantité</th>
-            <th>Pays</th>
-            <th>Millesime</th>
-            <th>Type</th>
-            <th>Lien SAQ</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($cellierBouteilles as $cellierBouteille)
-
-        <tr>
-        
-            <td><img src="{{ asset($cellierBouteille->url_img) }}" alt="{{$cellierBouteille->nom}}"></td>
-            <td>{{$cellierBouteille->nom}}</td>
-            <td name="quantite">{{$cellierBouteille->quantite}}</td>
-            <td>{{$cellierBouteille->pays}}</td>
-            <td>
-                @if( $cellierBouteille->millesime != 0)
-                {{$cellierBouteille->millesime}}
-                @endif
-            </td>
-            <td>{{$cellierBouteille->type}}</td>
-            <td><a href="{{$cellierBouteille->url_saq}}">Lien SAQ</a></td>
-            <td>
-
-
-                <i class="material-icons">edit</i>
-                <a name="btnAjouterBouteille" href="{{ route('ajouterBouteille',[
-                        'idCellier'=>$cellierBouteille->cellier_id,
-                        'idBouteille'=>$cellierBouteille->bouteille_id,
-                        'millesime'=> $cellierBouteille->millesime
-                        ])}}">
-                    <i class="material-icons">add</i>
-                </a>
-                <a name="btnRetirerBouteille" href="{{ route('boireBouteille',[
-                        'idCellier'=>$cellierBouteille->cellier_id,
-                        'idBouteille'=>$cellierBouteille->bouteille_id,
-                        'millesime'=> $cellierBouteille->millesime
-                        ])}}">
-                    <i class="material-icons">remove</i>
-                </a>
-            </td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>-->
 @endsection
 
 <script src="{{asset('js/cellierBouteille_index.js')}}"></script>
