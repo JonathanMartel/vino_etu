@@ -1,14 +1,10 @@
 import React from 'react';
-// import { Link, NavLink } from 'react-router-dom';
 import './Entete.css';
 import menu from '../../Menu.png';
 import logo from '../../logo.png';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import { border, color } from '@mui/system';
-import zIndex from '@mui/material/styles/zIndex';
-// import { sizing } from '@mui/system';
 
 /* Variables de styles */
 const appBarStyles = {
