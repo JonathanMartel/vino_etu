@@ -50,7 +50,7 @@
               </div>
 
               <div class="input-field col s12">
-                <button type="submit" class="waves-effect waves-light btn-small right">Créer compte</button>
+                <button type="submit" class="btn waves-effect waves-light button right">Créer compte</button>
               </div>
               
               <div class="input-field col s12">
