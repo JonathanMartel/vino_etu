@@ -38,7 +38,7 @@
 
         <nav class="nav-extended padding-30 white">
             <div class="nav-wrapper  height-120">
-                <a href="#" class="brand-logo left "><img src="{{asset('assets/logo/logo-vino.svg')}}"></a>
+                <a href="/" class="brand-logo left "><img src="{{asset('assets/logo/logo-vino.svg')}}"></a>
                 <a href="#" class="sidenav-trigger right" data-target="mobile-links"><i class="material-icons" style="font-size: 50px"><span class="black-text  md-48">menu</span></i></a>
                 <ul class="right hide-on-med-and-down">
                     @guest
