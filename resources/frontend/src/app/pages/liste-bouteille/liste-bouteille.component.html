@@ -4,16 +4,15 @@
     <section *ngFor="let uneBouteille of bouteille" class="resultat">
         <div class="resultat-vin">
             <a class="btn-vin" href="#"><img src="{{uneBouteille.url_image}}" alt="une bouteille"></a>
-            <div class="resultat-vin-data"><a class="target-link" routerLink="/ficheBouteille/{{uneBouteille.id}}">{{uneBouteille.nom}}</a></div>
+            <div class="resultat-vin-data"><a class="target-link" routerLink="/ficheBouteille/{{uneBouteille.id}}" >{{uneBouteille.nom}}</a></div>
             <div class="vin-data-droit">{{uneBouteille.format}}</div>
-            <span class="subtexte">{{uneBouteille.prix_saq}}.99$</span>
+            <span class="subtexte"></span>
         </div>
         <div>
             <div>
-                <span class="subtexte">{{uneBouteille.pays}}</span>
-                <span class="vin-data-droit">{{uneBouteille.categorie}}</span>
+                <span class="subtexte">id pays: {{uneBouteille.pays_id}}</span>
             </div>
-            <div class="subtexte">{{uneBouteille.code_saq}}</div>
+            <div class="subtexte"></div>
         </div>
     </section>
 </div>

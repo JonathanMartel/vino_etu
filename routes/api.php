@@ -3,11 +3,11 @@
 use App\Http\Controllers\BouteilleController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\CellierBouteilleController;
+use App\Http\Controllers\CellierController;
 use App\Http\Controllers\PaysController;
 use App\Http\Controllers\UnionsController;
 use App\Http\Controllers\UserController;
-use App\Models\vino__bouteille;
-use App\Models\vino__cellier;
+use App\Models\Bouteille;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -56,4 +56,3 @@ Route::put("celliers/modifier-inventaire/{cellierBouteilleId}", [CellierBouteill
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-

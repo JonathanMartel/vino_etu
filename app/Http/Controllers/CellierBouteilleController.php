@@ -18,6 +18,9 @@ class CellierBouteilleController extends Controller
      */
     public function index()
     {
+
+        //
+
     }
 
     /**
@@ -70,16 +73,19 @@ class CellierBouteilleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Cellier $cellier, Request $request)
+    public function store(Request $request, Cellier $cellier)
     {
-
         $bouteilleCellier = new CellierBouteille;
         $bouteilleCellier -> bouteilles_id = $request->bouteilles_id;
         $bouteilleCellier -> celliers_id = $request->celliers_id;
         $bouteilleCellier -> inventaire = $request->inventaire;
         $newBouteilleCellier = $bouteilleCellier -> save();
 
-        return response("Ça marche, $newBouteilleCellier !", 200);
+
+        return response()->json([
+            'message' => 'ajout reussit!'
+        ],200);
+
     }
 
     /**
@@ -115,4 +121,5 @@ class CellierBouteilleController extends Controller
     {
         //
     }
+
 }
