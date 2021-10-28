@@ -7,13 +7,15 @@
     <h1>Vos celliers</h1>
     <img src="{{URL::asset('/assets/icon/logo-3-bouteilles-cellier.svg')}}" alt="Icone trois bouteilles">
 </div>
-
-<div class="bouton-conteneur">
-    <a class="bouton-cercle-add" href="/create/cellier"><i class="material-icons">add</i></a>
+<div class="bouton-ajout-conteneur">
+    <a class="bouton-cercle-ajout" href="/create/cellier"><i class="material-icons">add</i></a>
 </div>
+
+
 
 <div class="liste-celliers">
     @forelse($celliers as $cellier)
+    
     <a class="lien-cellier" href="{{route('cellier.show',  $cellier->id)}}">
         <article class="cellier">
             <div class="texte-cellier-container">
@@ -34,8 +36,6 @@
                 </form>
                 </div>
             </div>
-
-
         </article>
     </a>
     @empty

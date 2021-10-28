@@ -61,6 +61,10 @@ section{
     border-right: none;
 }
 
+
+
+/*** boutons ajout et retrait d'un vin existant ****/
+
 .bouton-conteneur{
     align-self: center;
     margin-left: auto;
@@ -96,3 +100,26 @@ section{
 .quantite{
     padding-top: 10px;
 }
+
+  /* Materialize css */
+
+
+.material-icon {
+    color: white;
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 25px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+}
+
+
+

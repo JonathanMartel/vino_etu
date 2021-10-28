@@ -32,7 +32,10 @@
 
 <main>
     <h1>Vos vins</h1>
-    <a href="{{ route('ajouterVin', $idCellier) }}">Ajouter un nouveau vin au cellier</a>
+
+    <div class="bouton-ajout-conteneur">
+        <a class="bouton-cercle-ajout" href="{{ route('ajouterVin', $idCellier) }}"><i class="material-icons">add</i></a></a>
+    </div>
     @forelse($cellierBouteilles as $cellierBouteille)
     <section>
         <div class="flex">
@@ -56,7 +59,7 @@
                             'idBouteille'=>$cellierBouteille->bouteille_id,
                             'millesime'=> $cellierBouteille->millesime
                             ])}}">
-                        <i class="material-icons">remove</i>
+                        <i class="material-icon">remove</i>
                     </a>
                 </div>
                 <div class="bouton-cercle-add" >
@@ -65,7 +68,7 @@
                             'idBouteille'=>$cellierBouteille->bouteille_id,
                             'millesime'=> $cellierBouteille->millesime
                             ])}}">
-                        <i class="material-icons">add</i>
+                        <i class="material-icon">add</i>
                     </a>
                 </div>
             </div>

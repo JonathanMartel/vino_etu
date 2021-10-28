@@ -156,3 +156,45 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
     justify-content: center;
     text-align: center;
 }
+
+
+
+
+/*** Bouton ajout principale (cercle) ***/
+
+.bouton-ajout-conteneur{
+    display: flex;
+    justify-content: start;
+    margin-left: 10px;
+    margin-bottom: 0.4rem;
+}
+
+.bouton-cercle-ajout{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:#778D83;
+    border-radius: 50%;
+    width: 75px;
+    height: 75px;
+}
+
+  /* Materialize css */
+
+
+.material-icons {
+    color: white;
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 50px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+}
