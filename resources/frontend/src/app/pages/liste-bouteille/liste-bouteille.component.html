@@ -6,11 +6,11 @@
             <a class="btn-vin" href="#"><img src="{{uneBouteille.url_image}}" alt="une bouteille"></a>
             <div class="resultat-vin-data"><a class="target-link" routerLink="/ficheBouteille/{{uneBouteille.id}}" >{{uneBouteille.nom}}</a></div>
             <div class="vin-data-droit">{{uneBouteille.format}}</div>
-            <span class="subtexte"></span>
+            <span class="subtexte">{{uneBouteille.categorie}}</span>
         </div>
         <div>
             <div>
-                <span class="subtexte">id pays: {{uneBouteille.pays_id}}</span>
+                <span class="subtexte">Pays: {{uneBouteille.pays}}</span>
             </div>
             <div class="subtexte"></div>
         </div>

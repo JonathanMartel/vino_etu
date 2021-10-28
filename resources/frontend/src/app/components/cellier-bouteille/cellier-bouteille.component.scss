@@ -1,20 +1,5 @@
-.content {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    padding: 3rem 1rem 5.25rem;
-    margin-bottom: 1rem;
-}
-
-.resultat {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-}
-
 .resultat-vin {
-    clear: both;
+    width: 100%;
     min-height: 45px;
     margin: 0 -10px;
     padding: 10px 10px;
@@ -72,7 +57,7 @@
 
 .mat-form-field {
     max-width: 5ch;
-    padding: 0 0 0 .75em;
+    
 }
 
 .mat-form-field-appearance-fill .mat-form-field-flex {
