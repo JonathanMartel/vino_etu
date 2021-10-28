@@ -7,6 +7,21 @@ espacement (px): 5, 10, 20, 50 (dans le doute ceci est une bonne référence)
 
 
 
+Convertion rem->px (échelle typo, tierce majeure)
+
+3.815rem/61.04px	
+3.052rem/48.83px	
+2.441rem/39.06px	
+1.953rem/31.25px	
+1.563rem/25.00px	
+1.25rem/20.00px	
+1rem/16.00px	
+0.8rem/12.80px
+
+
+
+
+
 ///// Boutons /////
 
 bouton (action possitive comme ajouter etc...)
