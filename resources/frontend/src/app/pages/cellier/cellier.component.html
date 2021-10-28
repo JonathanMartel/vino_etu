@@ -1,15 +1,23 @@
-<section>
-    <h1>Mon cellier</h1>
-    <article *ngFor="let uneBouteille of cellier">
-        <h2>{{uneBouteille.id}}</h2>
-        <div>
-            <p>Id de bouteille :{{uneBouteille.id_bouteille}}</p>
-            <p>Date d'achat :{{uneBouteille.date_achat}}</p>
-            <p>Concervation :{{uneBouteille.garde_jusqua}}</p>
-            <p>Notes :{{uneBouteille.notes}}</p>
-            <p>Prix :{{uneBouteille.prix}}</p>
-            <p>Quantité :{{uneBouteille.quantite}}</p>
-            <p>Année de fabrication :{{uneBouteille.millesime}}</p>
+<div class="content">
+    <h2 class="titre">Mon Cellier</h2>
+    <section *ngFor="let uneBouteille of cellier" class="resultat">
+        <div class="resultat-vin">
+            <a class="btn-vin"><img src="{{uneBouteille.image}}" alt="une bouteille"></a>
+            <div class="resultat-vin-data"><a class="target-link">{{uneBouteille.nom}}</a></div>
+            <span class="subtexte">{{uneBouteille.categorie}}</span>
+            <div class="vin-data-droit">{{uneBouteille.format}}</div>
+            <button onclick="diminuer()">-</button>
+            <input type="hidden" value="{{uneBouteille.inventaire}}">
+            <button onclick="augmenter()">+</button>
         </div>
-    </article>
-</section>
+        <div>
+            <div>
+                <span class="subtexte">{{uneBouteille.pays}}</span>
+                <span class="vin-data-droit">inventaire : {{uneBouteille.inventaire}}</span>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+

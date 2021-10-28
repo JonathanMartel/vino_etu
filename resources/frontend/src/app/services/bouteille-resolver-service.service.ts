@@ -8,9 +8,7 @@ import { BouteilleDeVinService } from './bouteille-de-vin.service';
 export class BouteilleResolverServiceService implements Resolve<any>{
 
 
-  constructor(
-    private servBouteilleDeVin:BouteilleDeVinService,
-    ) { }
+  constructor(private servBouteilleDeVin:BouteilleDeVinService) { }
 
   resolve( route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 

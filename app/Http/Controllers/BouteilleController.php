@@ -37,7 +37,7 @@ class BouteilleController extends Controller
      */
     public function show(Bouteille $bouteille)
     {
-        //
+        return BouteilleResource::make($bouteille);
     }
 
     /**

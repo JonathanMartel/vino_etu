@@ -13,7 +13,7 @@ export class BouteilleDeVinService {
 
   getCellier(){
 
-    return this.http.get(this.url + '/cellier' + 1 + '/bouteilles');
+    return this.http.get<any>(this.url + '/celliers/' + 1 + '/bouteilles');
 
   }
 

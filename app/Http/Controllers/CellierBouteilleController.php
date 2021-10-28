@@ -35,6 +35,8 @@ class CellierBouteilleController extends Controller
                 ->select(
                     "cb.inventaire as inventaire",
                     "b.nom as nom",
+                    "b.url_image as image",
+                    "b.format as format",
                     "pays.nom as pays",
                     "cat.nom as categorie")
                 ->where("cb.celliers_id", $cellier->id)
