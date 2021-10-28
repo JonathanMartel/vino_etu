@@ -62,7 +62,9 @@ class CellierBouteilleController extends Controller
             'nom' => 'required',
             'quantite' => 'integer|gte:0',
             'prix' => 'numeric|regex:/[0-9]+(\.[0-9][0-9]?)?/|gte:0',
-            'pays' => 'alpha'
+            'pays' => 'nullable|regex:^[A-ZÀÂÇÉÈÊËÎÏÔÛÙÜŸÑÆŒa-zàâçéèêëîïôûùüÿñæœ]+$^',
+            'type_id' => 'required|exists:types,id',
+            'format_id' => 'required|exists:formats,id',
         ]);
       
         // Vérifier si la bouteille existe dans la table cellier_bouteilles et le vin dans la table bouteilles

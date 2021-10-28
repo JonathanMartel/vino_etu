@@ -29,15 +29,16 @@
           <label for="nom">Nom</label>
           <span class="helper-text" data-error="Champ obligatoire"></span>
         </div>
-        <div class="input-field col s12">
-          <select name ="type_id" required>
+        <div class="input-field col s12 ">
+          <select name ="type_id">
             <option value="" disabled selected></option>
             @foreach($types as $type)
             <option value="{{ $type->id }}" @if( old('type_id') == $type->id) selected @endif>{{ $type->type}}</option>
             @endforeach
           </select>
           <label>Type</label>
-          <span class="helper-text" data-error="Format invalid"></span>
+          @if($errors->first('type_id')) <span class="helper-text erreur" data-error="Format invalid">Champ obligatoire</span> @endif
+          
         </div>
         <div class="input-field col s12">
           <select name ="format_id">
@@ -47,7 +48,7 @@
             @endforeach
           </select>
           <label>Format</label>
-          <span class="helper-text" data-error="Format invalid"></span>
+          @if($errors->first('format_id')) <span class="helper-text erreur" data-error="Format invalid">Champ obligatoire</span> @endif
         </div>
         <div class="input-field col s12">
           <textarea id="description" name="description" class="materialize-textarea">{{ old('description') }}</textarea>
@@ -55,7 +56,7 @@
           <span class="helper-text" data-error="Format invalid"></span>
         </div>
         <div class="input-field col s12">
-          <input id="pays" type="text" name="pays" class="@if($errors->first('pays')) invalid @endif validate" pattern="[a-zA-Z]*" value="{{ old('pays') }}">
+          <input id="pays" type="text" name="pays" pattern="^[-a-zA-ZáéíóúÁÉÍÓÚÑñÇç]*$" class="@if($errors->first('pays')) invalid @endif validate"  value="{{ old('pays') }}">
           <label for="pays">Pays</label>
           <span class="helper-text" data-error="Format invalid"></span>
         </div>

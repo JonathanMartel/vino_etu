@@ -24,7 +24,9 @@ img {
     height: 100px;
 }
 
-
+.input-field .helper-text.erreur {
+	color: #F44336;
+}
 /* css pour app.blade.php */
 
 .padding-30 {
