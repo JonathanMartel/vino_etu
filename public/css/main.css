@@ -2,7 +2,12 @@ html {
   font-family: 'Raleway', sans-serif;
   font-size: 16px;
 }
-
+body {
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 h1,h4 {
   font-family: 'Acme', sans-serif;
 }
