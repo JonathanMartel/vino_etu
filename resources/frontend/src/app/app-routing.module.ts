@@ -6,6 +6,8 @@ import { ListeBouteilleComponent } from '@pages/liste-bouteille/liste-bouteille.
 import { AjoutBouteilleComponent } from '@pages/ajout-bouteille/ajout-bouteille.component';
 import { ConnectionComponent } from '@pages/connection/connection.component';
 import { CreerCompteComponent } from '@pages/creer-compte/creer-compte.component';
+import { FicheBouteilleComponent } from '@pages/fiche-bouteille/fiche-bouteille.component';
+import { BouteilleResolverServiceService } from '@services/bouteille-resolver-service.service';
 
 const routes: Routes = [
     {path:"", component:AccueilComponent},
@@ -14,6 +16,7 @@ const routes: Routes = [
     {path:"ajout", component:AjoutBouteilleComponent},
     {path:"connection", component:ConnectionComponent},
     {path:"creerCompte", component:CreerCompteComponent},
+    {path:"ficheBouteille/:id", component:FicheBouteilleComponent, resolve: {bouteille: BouteilleResolverServiceService}},
 ];
 
 @NgModule({
