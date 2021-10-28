@@ -1,29 +1,8 @@
-img[name="img-bouteille"]
-{
-    margin: auto;
-  
-}
-
-
 div > h1 {
-    color: #7A5958;
-    text-align: center;
+    margin-top: 1em;
     margin-bottom: 0.5em;
 }
 
-button[name="annuler"] {
-    background-color: #742F30;
-    margin-right: 1em;
-}
-
-button[name="annuler"]:hover{
-    background-color: #7A5958;
-}
-
-.flex-row {
-    justify-content: end;
-    margin-top: 1em;
-}
 .col.s12.ajout-vin {
     padding: 1rem;
     border-radius: 5px;
@@ -33,6 +12,7 @@ button[name="annuler"]:hover{
 .image {
     display: flex;
     margin-bottom: 20px;
+    justify-content: center;
 }
 
 .row.barre-recherche {

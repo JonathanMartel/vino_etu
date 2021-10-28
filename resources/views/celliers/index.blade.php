@@ -7,8 +7,14 @@
     <h1>Vos celliers</h1>
     <img src="{{URL::asset('/assets/icon/logo-3-bouteilles-cellier.svg')}}" alt="Icone trois bouteilles">
 </div>
+<<<<<<< HEAD
 <div class="bouton-ajout-conteneur">
     <a class="bouton-cercle-ajout" href="/create/cellier"><i class="material-icons">add</i></a>
+=======
+
+<div>
+    <a class="" href="{{route('cellier.create')}}"><i class="material-icons">add</i></a>
+>>>>>>> 8ab60c404d0e9bdaee4a7bc27c7672bf24f8224b
 </div>
 
 

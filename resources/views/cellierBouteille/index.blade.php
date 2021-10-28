@@ -95,6 +95,7 @@
 
 
 
+<<<<<<< HEAD
 <!-- Page de liste originale -->
 
 <!--
@@ -150,6 +151,8 @@
         @endforeach
     </tbody>
 </table>-->
+=======
+>>>>>>> 8ab60c404d0e9bdaee4a7bc27c7672bf24f8224b
 
 @endsection
 
