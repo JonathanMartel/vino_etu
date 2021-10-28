@@ -1,6 +1,5 @@
 import React from "react";
 import BouteilleCellier from "../BouteilleCellier/BouteilleCellier";
-//import Modal from "../Modal/Modal";
 import { Link } from "react-router-dom";
 
 import './ListeBouteilleCellier.css';
@@ -9,38 +8,33 @@ export default class ListeBouteilleCellier extends React.Component {
 	constructor(props){
 	  super(props);
 	  this.state = {
-		  bouteilles: [],
-		  //voirModal: false,
+		bouteilles: [],
+		cellierId: "1", // Dummy pour faire tests
+		qteModif: "",
+		qteInventaire: ""
 	  }
 
 	  this.ajouter = this.ajouter.bind(this);
 	  this.retirer = this.retirer.bind(this);
 	  this.fetchBouteilles = this.fetchBouteilles.bind(this);
-	  this.ouvrirModal = this.ouvrirModal.bind(this);
-	  this.fermerModal = this.fermerModal.bind(this);
 	
 	}
 
 	fetchBouteilles(){
-		fetch("") // Insérer l'adresse pour la request HTTP
+		fetch("http://127.0.0.1:8000/webservice/php/bouteilles/cellier/" + this.state.cellierId, {
+			method: 'GET',
+			headers: new Headers({
+				"Content-Type": "application/json",
+				"authorization": "Basic " + btoa("vino:vino"),
+			}),
+		})
             .then(reponse => reponse.json())
             .then((donnees)=>{
-                this.setState({bouteilles:donnees.data})
-                console.log(donnees)
+                this.setState({bouteilles:donnees.data});
             });
 	}
 
-	ouvrirModal(){
-		this.setState({voirModal: true});
-	}
-
-	fermerModal(){
-		this.setState({voirModal: false});
-	}
-	
 	ajouter(id){
-
-		this.ouvrirModal();
 
 		 const entete = new Headers();
 		 entete.append("Content-Type", "application/json");
@@ -61,7 +55,7 @@ export default class ListeBouteilleCellier extends React.Component {
 
 	retirer(id){
 
-		this.ouvrirModal();
+		this.setState({qteModif:"-"});
 
 		const entete = new Headers();
 		 entete.append("Content-Type", "application/json");
@@ -83,14 +77,13 @@ export default class ListeBouteilleCellier extends React.Component {
         this.fetchBouteilles();
     }
 
-	
 	render() {
 		const bouteilles = this.state.bouteilles
 								.map((bouteille, index)=>{
 									return (
 										<div>
 										<BouteilleCellier bouteille={bouteille} key={index}/>
-										<button onClick={this.ajouter(index)}>Ajouter une bouteille</button>
+										<button onClick={this.ajouter(index)}>Ajouter une bouteille</button>  
 										<button onClick={this.retirer(index)}>Retirer une bouteille</button>
 										</div>
 									);

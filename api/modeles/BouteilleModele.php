@@ -81,8 +81,10 @@ class BouteilleModele extends Modele
 		$nom = $this->_db->real_escape_string($nom);
 		$nom = preg_replace("/\*/", "%", $nom);
 
-		$requete = "(SELECT id, nom, 'SAQ' AS 'Table' FROM vino__bouteille_saq where LOWER(nom) LIKE LOWER('%" . $nom . "%') LIMIT 0," . $nb_resultat . ")"
-			. "UNION ALL (SELECT id, nom, 'Cellier' AS 'Table' FROM vino__bouteille where LOWER(nom) LIKE LOWER('%" . $nom . "%') LIMIT 0," . $nb_resultat . ");";
+		$requete = "(SELECT id, nom, 'SAQ' AS 'Table', NULL AS 'Quantite' FROM vino__bouteille_saq WHERE LOWER(nom) LIKE LOWER('%" . $nom . "%') LIMIT 0," . $nb_resultat . ")"
+			. "UNION ALL (SELECT id, nom, 'Cellier' AS 'Table', vino__cellier_inventaire.quantite AS 'Quantite' FROM vino__bouteille"
+			. " LEFT JOIN vino__cellier_inventaire ON vino__bouteille.id = vino__cellier_inventaire.bouteille_id"
+			. " WHERE LOWER(nom) LIKE LOWER('%" . $nom . "%') LIMIT 0," . $nb_resultat . ");";
 
 		if (($res = $this->_db->query($requete)) ==	 true) {
 			if ($res->num_rows) {

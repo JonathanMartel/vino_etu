@@ -22,16 +22,24 @@ export default class AjoutBouteilleCellier extends React.Component {
 
 		// Binding des fonctions
 		this.fetchBouteillesSAQ = this.fetchBouteillesSAQ.bind(this);
-		this.afficheBouteilleSAQ = this.afficheBouteilleSAQ.bind(this);
 		this.ajouterBouteilleCellier = this.ajouterBouteilleCellier.bind(this);
 	}
 
-	afficheBouteilleSAQ(event) {
-		this.setState({recherche:event.target.value});
-	}
+	fetchBouteillesSAQ(event){
+		if (event.target.value == '') {
+			this.setState({bouteillesSAQ: []});
+			return;
+		}
 
-	fetchBouteillesSAQ(){
-		fetch("") // Insérer l'adresse pour la request HTTP
+		console.log(event.target.value);
+		fetch("http://localhost/webservice/php/saq/" + event.target.value, {
+			method: 'GET',
+			headers: new Headers({
+				"Content-Type": "application/json",
+				"authorization": "Basic " + btoa("vino:vino"),
+			}),
+			
+		}) 
 		.then(reponse => reponse.json())
 		.then((donnees)=>{
 			this.setState({bouteillesSAQ:donnees.data}) 
@@ -40,7 +48,8 @@ export default class AjoutBouteilleCellier extends React.Component {
 	}
 
 	choixBouteille(){
-		//this.setState({nomBouteilleSAQ:this.bouteille.nom, prixBouteilleSAQ: this.bouteille.prix_saq});
+		this.setState({nomBouteilleSAQ:this.bouteille.nom, prixBouteilleSAQ: this.bouteille.prix_saq});
+		console.log(this.state.nomBouteilleSAQ);
     }
 
 	ajouterBouteilleCellier() {
@@ -58,7 +67,7 @@ export default class AjoutBouteilleCellier extends React.Component {
 	}
 
 	render() {
-
+		console.log(this.state.bouteillesSAQ);
 		const bouteilles = this.state.bouteillesSAQ
 								.map((bouteille, index)=>{
 									return (
@@ -67,8 +76,8 @@ export default class AjoutBouteilleCellier extends React.Component {
 								})
 		
 		return (
-			<div className="nouvelleBouteille" vertical layout>
-				<p>Recherche : <input onChange={this.afficheBouteilleSAQ} type="text" name="nom_bouteille" /></p>
+			<div className="nouvelleBouteille">
+				<p>Recherche : <input onKeyUp={(event)=>this.fetchBouteillesSAQ(event)} type="text" name="nom_bouteille" /></p>
 					<ul>
 						{bouteilles}
 					</ul>
