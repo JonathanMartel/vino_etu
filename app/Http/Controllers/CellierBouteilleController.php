@@ -70,7 +70,7 @@ class CellierBouteilleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Cellier $cellier, Request $request)
+    public function store(Request $request)
     {
 
         $bouteilleCellier = new CellierBouteille;
@@ -79,7 +79,9 @@ class CellierBouteilleController extends Controller
         $bouteilleCellier -> inventaire = $request->inventaire;
         $newBouteilleCellier = $bouteilleCellier -> save();
 
-        return response("Ça marche, $newBouteilleCellier !", 200);
+        return response()->json([
+            "message" => "ajout réussi !"
+        ], 200);
     }
 
     /**
