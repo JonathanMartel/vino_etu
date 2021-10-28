@@ -16,7 +16,10 @@ import { ListeBouteilleComponent } from '@pages/liste-bouteille/liste-bouteille.
 import { AjoutBouteilleComponent } from '@pages/ajout-bouteille/ajout-bouteille.component';
 import { ConnectionComponent } from '@pages/connection/connection.component';
 import { CreerCompteComponent } from '@pages/creer-compte/creer-compte.component';
-import { FicheBouteilleComponent } from './pages/fiche-bouteille/fiche-bouteille.component';
+import { FicheBouteilleComponent } from '@pages/fiche-bouteille/fiche-bouteille.component';
+import { BouteilleResolverServiceService } from '@services/bouteille-resolver-service.service';
+import {MatCardModule} from '@angular/material/card';
+
 
 
 @NgModule({

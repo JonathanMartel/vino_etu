@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BouteilleDeVinService} from '@services/bouteille-de-vin.service';
 import { ActivatedRoute } from '@angular/router';
-import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 
 @Component({
   selector: 'app-fiche-bouteille',
@@ -8,7 +8,6 @@ import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
   styleUrls: ['./fiche-bouteille.component.scss']
 })
 export class FicheBouteilleComponent implements OnInit {
-
   bouteille:any;
   bouteilleId:any;
 
@@ -20,7 +19,7 @@ export class FicheBouteilleComponent implements OnInit {
 
     this.servBouteilleDeVin.getBouteilleParId(this.bouteilleId).subscribe(bouteille => this.bouteille = bouteille.data);
 
-  console.log(this.actRoute.data);
+  // console.log(this.actRoute.data);
 
     this.actRoute.data.subscribe(data => { this.bouteille = data.bouteille; });
   }

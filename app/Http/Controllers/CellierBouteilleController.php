@@ -18,6 +18,9 @@ class CellierBouteilleController extends Controller
      */
     public function index()
     {
+
+        //
+
     }
 
     /**
@@ -72,7 +75,6 @@ class CellierBouteilleController extends Controller
      */
     public function store(Request $request)
     {
-
         $bouteilleCellier = new CellierBouteille;
         $bouteilleCellier -> bouteilles_id = $request->bouteilles_id;
         $bouteilleCellier -> celliers_id = $request->celliers_id;
@@ -117,4 +119,5 @@ class CellierBouteilleController extends Controller
     {
         //
     }
+
 }

@@ -2,7 +2,7 @@
 .content {
     display: flex;
     flex-direction: column;
-    padding: 3rem 1rem 5.25rem;
+    padding: 5rem 0;
     margin-bottom: 1rem;
 }
 
@@ -48,4 +48,68 @@
     padding-right: 15px;
     font-weight: 500;
     font-size: 14px;
+}
+
+.example-card {
+    box-shadow: none;
+}
+
+.card-header{
+    display: block;
+}
+
+.card-header h2{
+    margin-bottom: 10px;
+}
+
+.card-content{
+    font-weight: bold;
+}
+
+.card-action{
+    display: flex;
+    justify-content: center;
+}
+
+.card-action button{
+    text-transform: uppercase;
+    border: none;
+    font-size: 0.725rem;
+    color: #ffffff;
+    font-weight: bold;
+    background-color: #4c1920;
+    width: 10rem;
+    display: block;
+    padding: 0.875rem 1rem;
+    margin: 1rem 0;
+    border-radius: 1.5rem;
+    box-shadow: 3px 3px 8px #b1b1b1, -3px -3px 8px #ffffff;
+    cursor: pointer;
+}
+
+.card-link{
+    border-top: 0.0625rem solid #e0e0e0;
+}
+
+.card-link a {
+    display: block;
+    text-decoration: none;
+    color: #000;
+    font-weight: 400;
+    margin-left: 10px;
+    padding-top: 5px;
+}
+
+.card-link a:hover{
+    text-decoration: underline;
+}
+
+.card-link p{
+    display: flex; 
+}
+  
+.mat-card-image{
+    width: 40vw;
+    display: block;
+    margin: 0 auto;
 }
