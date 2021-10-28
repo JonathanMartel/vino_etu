@@ -7,6 +7,7 @@ use App\Models\Bouteille;
 use App\Models\Cellier;
 use App\Models\CellierBouteille;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CellierBouteilleController extends Controller
 {
@@ -26,7 +27,18 @@ class CellierBouteilleController extends Controller
      *
      */
     public function obtenirBouteillesParCellier(Cellier $cellier) {
-        return BouteilleResource::make($cellier->bouteilles);
+        return
+            DB::table('celliers_bouteilles as cb')
+                ->join("bouteilles as b", "bouteilles_id", "=", "b.id")
+                ->join("pays", "b.pays_id", "=", "pays.id")
+                ->join("categories as cat", "b.categories_id", "=", "cat.id")
+                ->select(
+                    "cb.inventaire as inventaire",
+                    "b.nom as nom",
+                    "pays.nom as pays",
+                    "cat.nom as categorie")
+                ->where("cb.celliers_id", $cellier->id)
+                ->paginate(24);
     }
 
     /**
