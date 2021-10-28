@@ -24,14 +24,14 @@ class UsagerModele extends Modele
 
         $match = false;
 
-        $requete = "SELECT mot_passe FROM vino__usager WHERE courriel = '$courriel'";
+        $requete = "SELECT id_usager, mot_passe FROM vino__usager WHERE courriel = '$courriel'";
 
         if (($res = $this->_db->query($requete)) == true) {
             if ($res->num_rows) {
                 $rows = $res->fetch_assoc();
 
                 if (password_verify($password, $rows['mot_passe']))
-                    $match = true;
+                    $match = $rows['id_usager'];
             } else {
                 $match = false;
             }
