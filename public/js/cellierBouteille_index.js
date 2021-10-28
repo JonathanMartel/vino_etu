@@ -25,27 +25,33 @@ document.addEventListener('DOMContentLoaded', function() {
             }).catch(error => console.log(error))
         })
 
+        /**
+         * Requête fetch pour décrémenter la quantité d'une bouteille à un cellier sans recharger la page
+         */
         const btnRetirer = section.querySelector('[name="btnRetirerBouteille"]');
      
         
         btnRetirer.addEventListener('click', (e) => {
             e.preventDefault();
-            
-            fetch(btnRetirer.href)
-            .then(response => {
-                return (response.json())
-            })
-            .then(response => {
-                quantitePrecedent.innerHTML = parseInt(quantitePrecedent.innerHTML) + response;
-            }).catch(error => console.log(error))
+            if(quantitePrecedent.innerHTML > 0) {
+                fetch(btnRetirer.href)
+                .then(response => {
+                    return (response.json())
+                })
+                .then(response => {
+                    quantitePrecedent.innerHTML = parseInt(quantitePrecedent.innerHTML) + response;
+                }).catch(error => console.log(error))
+            }
         })
     })
     
-    
+     /**
+     * Message Dialogue si une bouteille a été créé
+     */
+
     const nouvelleBouteille = document.querySelector(".nouvelleBouteille");
     
     if(nouvelleBouteille) {
-        console.log('kl')
         var toastHTML = '<span>Une nouvelle bouteille a été ajoutée</span><button class="btn-flat toast-action">Fermer</button>';
         M.toast({html: toastHTML, displayLength : 5000})
 
