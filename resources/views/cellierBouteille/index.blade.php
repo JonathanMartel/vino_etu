@@ -32,7 +32,7 @@
 
 
 <main>
-    <h1>Vos bouteilles</h1>
+    <h1>Vos vins</h1>
     <a href="{{ route('ajouterVin', $idCellier) }}">Ajouter un nouveau vin au cellier</a>
     @foreach($cellierBouteilles as $cellierBouteille)
     <section>
@@ -75,6 +75,10 @@
             <p>{{$cellierBouteille->nom}}</p>
         </div>
     </section>
+    @empty
+    <div class="no-cellier">
+        <p>Vous n'avez pour l'instant aucun vin.</p>
+        <a class="btn waves-effect waves-light button" href="{{ route('ajouterVin', $idCellier) }}">Ajouter un nouveau vin au cellier</a>
     @endforeach
 </main>
 
