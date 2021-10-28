@@ -31,7 +31,10 @@
 
 
 <main>
-    <h1>Vos vins</h1>
+    <div class="entete-page">
+        <h1>Vos vins</h1>
+        <img src="{{URL::asset('/assets/icon/deux-coupe-jaune.svg')}}" alt="Icone deux coupe de vin">
+    </div>
 
     <div class="bouton-ajout-conteneur">
         <a class="bouton-cercle-ajout" href="{{ route('ajouterVin', $idCellier) }}"><i class="material-icons">add</i></a></a>

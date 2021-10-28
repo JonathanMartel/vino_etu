@@ -146,6 +146,8 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
     flex-grow: 1;
     font-weight: bold;
     font-size: 1.25rem;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .btn-annuler {
@@ -230,3 +232,18 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
     -webkit-font-feature-settings: 'liga';
     -webkit-font-smoothing: antialiased;
 }
+
+
+/* entete pour le titre et icon */
+
+.entete-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 1.25rem;
+    color: #742F30;
+    padding: 1.25rem;
+    margin-top: 50px;
+    text-align: center;
+}
+

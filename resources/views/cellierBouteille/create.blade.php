@@ -5,7 +5,7 @@
 <span class="success"></span>
 @endif
 
-<div>
+<div class="entete-page">
   <h1>Nouveau vin</h1>
 </div>
 <div class="row barre-recherche">
