@@ -15,12 +15,12 @@ class CellierController extends Controller
      */
     public function index()
     {
-        if(Auth::check()){
-        $user_id = Auth::user()->id;
-        //$user_id = 2;
-        $userCelliers = Cellier::getCelliersByUser($user_id);
+        if (Auth::check()) {
+            $user_id = Auth::user()->id;
+            //$user_id = 2;
+            $userCelliers = Cellier::getCelliersByUser($user_id);
 
-        return view('celliers.index', ['celliers' =>$userCelliers]);
+            return view('celliers.index', ['celliers' => $userCelliers]);
         }
 
         return redirect('login');
@@ -33,7 +33,7 @@ class CellierController extends Controller
      */
     public function create()
     {
-         return view('celliers.create');
+        return view('celliers.create');
     }
 
     /**
@@ -45,8 +45,8 @@ class CellierController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nom' => 'required|max:45',
-            'localisation' => 'max:45',
+            'nom' => 'required | max:45',
+            'localisation' => 'required | max:45',
             'user_id' => 'required | exists:users,id',
         ]);
 
@@ -73,7 +73,7 @@ class CellierController extends Controller
      */
     public function edit(Cellier $cellier)
     {
-        return view('celliers.edit', ['cellier'=> $cellier]);
+        return view('celliers.edit', ['cellier' => $cellier]);
     }
 
     /**
@@ -104,8 +104,4 @@ class CellierController extends Controller
 
         return redirect('/');
     }
-
-    
-
-    
 }
