@@ -3,7 +3,7 @@
 document.addEventListener('DOMContentLoaded', function() {
 
     let btnAjouterBouteilles = document.querySelectorAll('[name="btnAjouterBouteille"]')
-
+    const conteneur = document.querySelectorAll('.')
     
     /**
      * Requête fetch pour incrémenter la quantité d'une bouteille à un cellier sans recharger la page
