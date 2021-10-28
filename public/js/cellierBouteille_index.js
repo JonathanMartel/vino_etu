@@ -25,6 +25,9 @@ document.addEventListener('DOMContentLoaded', function() {
             }).catch(error => console.log(error))
         })
 
+        /**
+         * Requête fetch pour décrémenter la quantité d'une bouteille à un cellier sans recharger la page
+         */
         const btnRetirer = section.querySelector('[name="btnRetirerBouteille"]');
      
         
@@ -41,11 +44,13 @@ document.addEventListener('DOMContentLoaded', function() {
         })
     })
     
-    
+     /**
+     * Message Dialogue si une bouteille a été créé
+     */
+
     const nouvelleBouteille = document.querySelector(".nouvelleBouteille");
     
     if(nouvelleBouteille) {
-        console.log('kl')
         var toastHTML = '<span>Une nouvelle bouteille a été ajoutée</span><button class="btn-flat toast-action">Fermer</button>';
         M.toast({html: toastHTML, displayLength : 5000})
 
