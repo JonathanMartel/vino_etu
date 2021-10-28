@@ -9,7 +9,7 @@
 </div>
 
 <div>
-    <a class="" href="/create/cellier"><i class="material-icons">add</i></a>
+    <a class="" href="{{route('cellier.create')}}"><i class="material-icons">add</i></a>
 </div>
 
 <div class="liste-celliers">

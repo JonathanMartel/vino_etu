@@ -43,7 +43,7 @@
           <a href="#" class="right">Mot de passe oublié?</a>
         </div>       -->
         <div class="input-field col s12">
-          <a href="/registration" class="right">Nouveau client? Créer un compte</a>
+          <a href="{{ route('register') }}" class="right">Nouveau client? Créer un compte</a>
         </div>      
       </div>	
     </form>
