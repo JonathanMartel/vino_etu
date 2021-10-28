@@ -1,13 +1,20 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
 html {
   font-family: 'Raleway', sans-serif;
   font-size: 16px;
   color: #343B41;
+  height: 100%;
 }
 body {
     
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+	height: 100%;
 }
 h1,h4 {
   font-family: 'Acme', sans-serif;
@@ -26,10 +33,7 @@ padding: 0;
 }
 
 
-.height-120{
-	height: 120px !important;
-	/* height: 120px; */
-}
+
 
 img {
     width: 100px;
@@ -41,14 +45,29 @@ img {
 }
 /* css pour app.blade.php */
 
-.padding-30 {
-	padding-left:10px;
-	padding-right:10px;
+#body_container {
+	display: flex;
+    flex-direction: column;
+    height: 100%;
 }
+
+header{
+    flex: 0 0 auto;
+}
+
+main{
+    flex: 1 0 auto;
+}
+
+footer{
+    flex: 0 0 auto;
+}
+
 
 .flex-row {
 	display: flex;
 	flex-direction: row;
+	align-items: center;
 }
 
 .flex-box {
@@ -62,6 +81,19 @@ img {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+}
+
+.padding-1rem {
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+
+nav .sidenav-trigger{
+	margin: 0;
+}
+
+.container {
+	text-align: center;
 }
 
 
