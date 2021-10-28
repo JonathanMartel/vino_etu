@@ -24,6 +24,7 @@ import {MatInputModule} from '@angular/material/input';
 import { CellierBouteilleComponent } from './components/cellier-bouteille/cellier-bouteille.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 
@@ -54,6 +55,7 @@ import {MatCardModule} from '@angular/material/card';
     MatInputModule,
     ReactiveFormsModule,
     MatCardModule,
+    MatSnackBarModule,
   ],
   providers: [BouteilleDeVinService, BouteilleResolverServiceService],
   bootstrap: [AppComponent]
