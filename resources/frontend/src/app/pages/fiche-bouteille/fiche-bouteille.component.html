@@ -1,27 +1,24 @@
-<<<<<<< HEAD
-<p>fiche-bouteille works!</p>
 
-=======
->>>>>>> b04df2bc6b3d5c2b0bae0a314889ac18141918d8
 <div class="content">
-    <h1>Fiche d'une bouteille</h1>
-    <section class="resultat">
-        <div class="resultat-vin">
-            <a class="btn-vin" href="#"><img src="{{bouteille.url_image}}" alt="une bouteille"></a>
-            <div class="resultat-vin-data"><a class="target-link" routerLink="/ficheBouteille" >{{bouteille.nom}}</a></div>
-            <div class="vin-data-droit">{{bouteille.format}}</div>
-            <span class="subtexte"></span>
-        </div>
-        <div>
-            <div>
-                <span class="subtexte">id pays: {{bouteille.pays_id}}</span>
+    <mat-card class="example-card">
+        <img mat-card-image src="{{bouteille.url_image}}" alt="Photo of a Shiba Inu">
+        <mat-card-header class="card-header">
+            <h2>{{bouteille.nom}}</h2>
+            <mat-card-subtitle></mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content class="card-content"> 
+            <p>{{bouteille.description}}</p>
+            <div class="card-link">
+                <p>
+                    <mat-icon>local_grocery_store</mat-icon><a href="{{bouteille.url_achat}}">Acheter à la SAQ</a>
+                </p>
+                <p>
+                    <mat-icon>playlist_add</mat-icon><a href="{{bouteille.url_infos}}">Voir les informartion</a>
+                </p>
             </div>
-            <div class="subtexte"></div>
-        </div>
-        <button (click)='ajouterBouteilleCellier(bouteille.id)'>ajouter au cellier</button>
-    </section>
-<<<<<<< HEAD
+        </mat-card-content>
+        <mat-card-actions class="card-action">
+            <button (click)='ajouterBouteilleCellier(bouteille.id)'>ajouter au cellier</button>
+        </mat-card-actions>
+    </mat-card>
 </div>
-=======
-</div>
->>>>>>> b04df2bc6b3d5c2b0bae0a314889ac18141918d8

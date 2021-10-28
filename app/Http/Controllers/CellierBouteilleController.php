@@ -82,7 +82,9 @@ class CellierBouteilleController extends Controller
         $newBouteilleCellier = $bouteilleCellier -> save();
 
 
-        return response("Ça marche, $newBouteilleCellier !", 200);
+        return response()->json([
+            'message' => 'ajout reussit!'
+        ],200);
 
     }
 

@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
 import { BouteilleDeVinService} from '@services/bouteille-de-vin.service';
 import { ActivatedRoute } from '@angular/router';
-=======
-import { ActivatedRoute } from '@angular/router';
-import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
->>>>>>> b04df2bc6b3d5c2b0bae0a314889ac18141918d8
 
 @Component({
   selector: 'app-fiche-bouteille',
@@ -13,10 +8,6 @@ import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
   styleUrls: ['./fiche-bouteille.component.scss']
 })
 export class FicheBouteilleComponent implements OnInit {
-<<<<<<< HEAD
-=======
-
->>>>>>> b04df2bc6b3d5c2b0bae0a314889ac18141918d8
   bouteille:any;
   bouteilleId:any;
 
@@ -28,11 +19,7 @@ export class FicheBouteilleComponent implements OnInit {
 
     this.servBouteilleDeVin.getBouteilleParId(this.bouteilleId).subscribe(bouteille => this.bouteille = bouteille.data);
 
-<<<<<<< HEAD
   // console.log(this.actRoute.data);
-=======
-  console.log(this.actRoute.data);
->>>>>>> b04df2bc6b3d5c2b0bae0a314889ac18141918d8
 
     this.actRoute.data.subscribe(data => { this.bouteille = data.bouteille; });
   }
@@ -42,10 +29,4 @@ export class FicheBouteilleComponent implements OnInit {
     this.servBouteilleDeVin.ajoutBouteilleCellier(bouteilleId).subscribe(response => {console.log(response)});
     //console.log(bouteilleId);
   }
-<<<<<<< HEAD
-
-  
-
-=======
->>>>>>> b04df2bc6b3d5c2b0bae0a314889ac18141918d8
 }
