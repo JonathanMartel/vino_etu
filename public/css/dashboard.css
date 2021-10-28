@@ -1,5 +1,17 @@
 .card .card-content p{
     margin-top: 1.1rem;
     margin-bottom: 1.1rem;
+    margin-left: 1rem;
 }
 
+.space {
+    justify-content:space-between;
+}
+
+.flex-row h6 {
+    margin-left: 1rem;
+}
+
+.card a {
+    color: #343B41;
+}

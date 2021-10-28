@@ -44,9 +44,8 @@ class CustomAuthController extends Controller
             'nom' =>'required|max:50|min:2|unique:users',
             'courriel' => 'required|email|unique:users',
             'password' => 'required|min:6|max:20',
-            'date_naissance' => 'required|date:Y-m-d|before:' . Carbon::now()->subYears(18)->format('Y-m-d')          
+            'date_naissance' => 'required|date_format:Y-m-d|before:' . Carbon::now()->subYears(18)->format('Y-m-d')          
         ]);
-        // print_r($request->all());
    
           $user = new User;
           $user->fill($request->all());
