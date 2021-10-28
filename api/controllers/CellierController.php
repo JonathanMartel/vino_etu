@@ -29,7 +29,7 @@ class CellierController extends Router
                 unset($this->retour['data']);
             }
         } else if (count($this->urlParams) == 3) {
-            if (ctype_digit($this->urlParams[2]) && $this->urlParams[1] == 'usagers') {
+            if (ctype_digit($this->urlParams[2]) && $this->urlParams[1] == 'usager') {
                 $cellierClassObj = new CellierModele;
                 $celliers = $cellierClassObj->getCelliersParUsagerId($this->urlParams[2]);
 

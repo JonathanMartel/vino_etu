@@ -61,7 +61,7 @@ export default class Connexion extends React.Component{
                 body: JSON.stringify(donnes) 
             }
     
-            fetch("http://127.0.0.1:8000/webservice/php/usagers/login/", postMethod)
+            fetch("http://rmpdwebservices.ca/webservice/php/usagers/login/", postMethod)
                 .then(res => res.json()) 
                 .then(res => console.log("Connexion réussi !!!"))
 
