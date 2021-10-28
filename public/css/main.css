@@ -147,6 +147,8 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
     flex-grow: 1;
     font-weight: bold;
     font-size: 1.25rem;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .btn-annuler {
@@ -181,3 +183,68 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
     background-color: white;
 	border: 1px solid #774444;
 }
+
+
+.list-empty {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+
+
+
+/*** Bouton ajout principale (cercle) ***/
+
+.bouton-ajout-conteneur{
+    display: flex;
+    justify-content: start;
+    margin-left: 10px;
+    margin-bottom: 0.4rem;
+}
+
+.bouton-cercle-ajout{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color:#778D83;
+    border-radius: 50%;
+    width: 75px;
+    height: 75px;
+}
+
+  /* Materialize css */
+
+
+.material-icons {
+    color: white;
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 50px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+}
+
+
+/* entete pour le titre et icon */
+
+.entete-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 1.25rem;
+    color: #742F30;
+    padding: 1.25rem;
+    margin-top: 50px;
+    text-align: center;
+}
+

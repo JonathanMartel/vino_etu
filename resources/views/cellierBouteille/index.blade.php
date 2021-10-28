@@ -7,6 +7,7 @@
 @endif
 
 
+
 <header>
     <div class="cellier">
         <span>Cellier | {{ $cellier->nom }}</span>
@@ -26,15 +27,19 @@
         </div>
       </div>
     <div class="row">-->
-
-
 </header>
 
 
 <main>
-    <h1>Vos bouteilles</h1>
-    <a href="{{ route('ajouterVin', $idCellier) }}">Ajouter un nouveau vin au cellier</a>
-    @foreach($cellierBouteilles as $cellierBouteille)
+    <div class="entete-page">
+        <h1>Vos vins</h1>
+        <img src="{{URL::asset('/assets/icon/deux-coupe-jaune.svg')}}" alt="Icone deux coupe de vin">
+    </div>
+
+    <div class="bouton-ajout-conteneur">
+        <a class="bouton-cercle-ajout" href="{{ route('ajouterVin', $idCellier) }}"><i class="material-icons">add</i></a></a>
+    </div>
+    @forelse($cellierBouteilles as $cellierBouteille)
     <section>
         <div class="flex">
             <div class="img-conteneur ">
@@ -57,7 +62,7 @@
                             'idBouteille'=>$cellierBouteille->bouteille_id,
                             'millesime'=> $cellierBouteille->millesime
                             ])}}">
-                        <i class="material-icons">remove</i>
+                        <i class="material-icon">remove</i>
                     </a>
                 </div>
                 <div class="bouton-cercle-add" >
@@ -66,7 +71,7 @@
                             'idBouteille'=>$cellierBouteille->bouteille_id,
                             'millesime'=> $cellierBouteille->millesime
                             ])}}">
-                        <i class="material-icons">add</i>
+                        <i class="material-icon">add</i>
                     </a>
                 </div>
             </div>
@@ -75,13 +80,17 @@
             <p>{{$cellierBouteille->nom}}</p>
         </div>
     </section>
-    @endforeach
+    @empty
+    <div class="list-empty">
+        <p>Vous n'avez pour l'instant aucun vin.</p>
+        <a class="btn waves-effect waves-light button" href="{{ route('ajouterVin', $idCellier) }}">Ajouter un nouveau vin au cellier</a>
+    </div>
+
+   
+
+    @endforelse
+   
 </main>
-
-
-
-
-
 @endsection
 
 <script src="{{asset('js/cellierBouteille_index.js')}}"></script>

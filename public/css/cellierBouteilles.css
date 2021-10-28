@@ -15,6 +15,10 @@ div > h1 {
     justify-content: center;
 }
 
-
+.row.barre-recherche {
+    margin-left: unset; 
+     margin-right: unset;
+    margin-bottom: 20px;
+}
 
 

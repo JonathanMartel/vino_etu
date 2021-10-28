@@ -8,9 +8,9 @@
     
     <div class="col s12 m12">
       <div class="card">
-        <div class="card-content flex-center">
+        <div class="card-content flex-center entete-page">
           <h4>Créer un compte</h4>
-          <img src="{{asset('assets/icon/logo-3-bouteilles-cellier.svg')}}" class="center"></a>
+          <img src="{{asset('assets/icon/bouteille-diagonale.svg')}}" class="center"></a>
         </div>
 
         <div class="card-content">
