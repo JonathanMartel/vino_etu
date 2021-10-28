@@ -65,6 +65,10 @@ class CellierBouteilleController extends Controller
                 "message" => "Erreur lors de la mise à jour de l'inventaire"
             ], 400);
         };
+
+        return response()->json([
+            "message" => "Modification réussie"
+        ], 201);
     }
 
     /**

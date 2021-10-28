@@ -45,6 +45,16 @@ export class BouteilleDeVinService {
     return this.http.post<any>(this.url +'/celliers/' + 1 + '/bouteilles', body);
 
   }
+
+  modifierInventaireCellierBouteille(bouteille_id:any, nouvelInventaire:any){
+
+    let body = {
+      'inventaire': nouvelInventaire,
+    }
+
+    return this.http.put<any>(this.url + '/celliers/modifier-inventaire/' + bouteille_id ,body)
+  }
+
 }
 
 

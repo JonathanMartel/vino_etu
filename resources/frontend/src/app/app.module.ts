@@ -16,9 +16,16 @@ import { ListeBouteilleComponent } from '@pages/liste-bouteille/liste-bouteille.
 import { AjoutBouteilleComponent } from '@pages/ajout-bouteille/ajout-bouteille.component';
 import { ConnectionComponent } from '@pages/connection/connection.component';
 import { CreerCompteComponent } from '@pages/creer-compte/creer-compte.component';
-import { FicheBouteilleComponent } from '@pages/fiche-bouteille/fiche-bouteille.component';
 import { BouteilleResolverServiceService } from '@services/bouteille-resolver-service.service';
-import {MatCardModule} from '@angular/material/card';
+import { FicheBouteilleComponent } from './pages/fiche-bouteille/fiche-bouteille.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { CellierBouteilleComponent } from './components/cellier-bouteille/cellier-bouteille.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
 
 
 
@@ -34,7 +41,7 @@ import {MatCardModule} from '@angular/material/card';
         ConnectionComponent,
         CreerCompteComponent,
         FicheBouteilleComponent,
-
+        CellierBouteilleComponent,
     ],
     imports: [
         BrowserModule,
@@ -43,8 +50,14 @@ import {MatCardModule} from '@angular/material/card';
         HttpClientModule,
         MatToolbarModule,
         MatIconModule,
+        MatButtonModule,
+        MatFormFieldModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        MatCardModule,
+        MatSnackBarModule,
     ],
-    providers: [BouteilleDeVinService],
+    providers: [BouteilleDeVinService, BouteilleResolverServiceService],
     bootstrap: [AppComponent]
 })
 export class AppModule { }
