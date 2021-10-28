@@ -26,6 +26,8 @@ class CellierModele extends Modele
 
         $res = $this->_db->query($requete);
 
+        if ($res) return $this->_db->insert_id;
+        
         return $res;
     }
 
@@ -67,9 +69,10 @@ class CellierModele extends Modele
     {
         $rows = array();
 
-        $requete = "SELECT * FROM vino__cellier"
-            . " LEFT JOIN vino__cellier_inventaire ON vino__cellier.id_cellier = vino__cellier_inventaire.id_cellier"
-            . " WHERE vino__cellier.id_cellier = $id";
+        $requete = "SELECT vino__bouteille.*, vino__cellier.id_cellier, vino__cellier.emplacement FROM vino__cellier"
+        . " LEFT JOIN vino__cellier_inventaire ON vino__cellier.id_cellier = vino__cellier_inventaire.id_cellier"
+        . " LEFT JOIN vino__bouteille ON vino__cellier_inventaire.bouteille_id = vino__bouteille.id"
+        . " WHERE vino__cellier.id_cellier = $id";
 
         if (($res = $this->_db->query($requete)) == true) {
             if ($res->num_rows) {
