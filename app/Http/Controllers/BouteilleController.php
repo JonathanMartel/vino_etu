@@ -32,7 +32,9 @@ class BouteilleController extends Controller {
      * @param  \App\Models\Bouteille  $bouteille
      * @return \Illuminate\Http\Response
      */
+
     public function show(Bouteille $bouteille) {
+
         return BouteilleResource::make($bouteille);
     }
 
