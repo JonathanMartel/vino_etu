@@ -1,6 +1,7 @@
 html {
   font-family: 'Raleway', sans-serif;
   font-size: 16px;
+  color: #343B41;
 }
 body {
     
@@ -12,6 +13,11 @@ h1,h4 {
   font-family: 'Acme', sans-serif;
 }
 
+h1 {
+    color: #7A5958;
+    text-align: center;
+	font-size: 3.815rem;
+}
 
 
 * + *, h1,h2,h3,h4,h5,h6 {
@@ -35,9 +41,8 @@ img {
 /* css pour app.blade.php */
 
 .padding-30 {
-	padding-left:30px;
-	padding-right:30px;
-
+	padding-left:10px;
+	padding-right:10px;
 }
 
 .flex-row {
@@ -59,6 +64,9 @@ img {
 }
 
 
+<<<<<<< HEAD
+
+=======
   /* Materialize css */
 
   .btn, .btn-large, .btn-small {
@@ -77,6 +85,7 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
 	border-bottom: 1px solid #778D83;
     box-shadow: 0 1px 0 0 #778D83;
 }
+>>>>>>> 82df968b3a59161a818db31de36ed31399f264d1
 
 #toast-container {
 	top: auto !important;
