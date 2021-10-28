@@ -25,9 +25,9 @@
                 <!-- <p class="nb-vins-cellier">42</p> -->
                 <!-- !!! insérer nb vins dans cellier ici  -->
                 <div class="btn-space-col">
-                    <a class="btn waves-effect waves-light button btn-modifier" href="cellier/{{ $cellier->id }}/edit"><i class="material-icons">edit</i></a>
+                    <a class="btn waves-effect waves-light button btn-modifier" href="{{ route('cellier.edit', $cellier->id)}}"><i class="material-icons">edit</i></a>
                     <!-- <a class="btn waves-effect waves-light button btn-supprimer" href="#"><i class="material-icons">delete</i></a> -->
-                    <form action="/cellier/{{$cellier->id}}" method="POST">
+                    <form action="{{ route('cellier.destroy', $cellier->id)}}" method="POST">
                     @method('DELETE')
                     @csrf
                     <button class="btn waves-effect waves-light button btn-supprimer"><i class="material-icons">delete</i></button>

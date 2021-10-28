@@ -23,21 +23,21 @@ Route::get('/', function () {
 
 /* Page d'accueil : Liste des celliers */
 
-Route::get('/cellier', [CellierController::class, 'index'])->name('cellier');
+Route::get('/cellier', [CellierController::class, 'index'])->name('cellier')->middleware('auth');
 
 /* Page d'un cellier avec les vins correspondants, leur quantité et millesime */
-Route::get('/cellier/{cellier}', [CellierController::class, 'show'])->name('cellier.show');
+Route::get('/cellier/{cellier}', [CellierController::class, 'show'])->name('cellier.show')->middleware('auth');
 
 
 
 /* Page d'ajout d'un cellier  */
-Route::get('/create/cellier', [CellierController::class, 'create'])->name('cellier.create');
-Route::post('/create/cellier', [CellierController::class, 'store'])->name('cellier.store');
+Route::get('/create/cellier', [CellierController::class, 'create'])->name('cellier.create')->middleware('auth');
+Route::post('/create/cellier', [CellierController::class, 'store'])->name('cellier.store')->middleware('auth');
 
-Route::get('/cellier/{cellier}/edit', [CellierController::class, 'edit'])->middleware('auth');
-Route::put('/cellier/{cellier}/edit', [CellierController::class, 'update'])->middleware('auth');
+Route::get('/cellier/{cellier}/edit', [CellierController::class, 'edit'])->middleware('auth')->name('cellier.edit');
+Route::put('/cellier/{cellier}/edit', [CellierController::class, 'update'])->middleware('auth')->name('cellier.update');
 
-Route::delete('/cellier/{cellier}', [CellierController::class, 'destroy'])->middleware('auth');
+Route::delete('/cellier/{cellier}', [CellierController::class, 'destroy'])->middleware('auth')->name('cellier.destroy');
 
 
 

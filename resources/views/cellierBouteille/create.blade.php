@@ -9,21 +9,21 @@
   <h1>Nouveau vin</h1>
 </div>
 <div class="row">
-      <div class="input-field col s12 recherche">
-          <i class="material-icons prefix">search</i>
-          <input type="text"  name="recherche" autocomplete="off">
-          <label for="recherche">Rechercher un vin</label>
-          <div class="autocomplete z-depth-2"></div>
-        </div>
-      </div>
+  <div class="input-field col s12 recherche">
+      <i class="material-icons prefix">search</i>
+      <input type="text"  name="recherche" autocomplete="off">
+      <label for="recherche">Rechercher un vin</label>
+      <div class="autocomplete z-depth-2"></div>
+    </div>
+  </div>
       
-<div class="row">
-<div class="image">
-  <img name="img-bouteille" src="{{ old('url_img') }}" alt="{{ old('nom') }}">
-</div>
+  <div class="row">
+    <div class="image">
+      <img name="img-bouteille" src="{{ old('url_img') }}" alt="{{ old('nom') }}">
+    </div>
     <form class="col s12 ajout-vin" action="{{route('cellierBouteille.store')}}" method="POST" enctype="multipart/form-data" >
     
-    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+      <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="input-field col s12">
           <input id="nom" name="nom" type="text" class="@if($errors->first('nom')) invalid @endif validate" value="{{ old('nom') }}" required />
           <label for="nom">Nom</label>
@@ -126,10 +126,10 @@
           <button class="btn waves-effect waves-light button btn-ajouter" type="submit" name="submit">Ajouter
           </button>
         </div>
-  </button>
+      </button>
 
     </form>
-    </div>
+  </div>
 
 
 @endsection
