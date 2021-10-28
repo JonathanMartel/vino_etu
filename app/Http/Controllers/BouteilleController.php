@@ -6,16 +6,14 @@ use App\Http\Resources\BouteilleResource;
 use App\Models\Bouteille;
 use Illuminate\Http\Request;
 
-class BouteilleController extends Controller
-{
+class BouteilleController extends Controller {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-            return BouteilleResource::collection(Bouteille::all());
+    public function index() {
+        return BouteilleResource::collection(Bouteille::all());
     }
 
     /**
@@ -24,8 +22,7 @@ class BouteilleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         //
     }
 
@@ -35,9 +32,8 @@ class BouteilleController extends Controller
      * @param  \App\Models\Bouteille  $bouteille
      * @return \Illuminate\Http\Response
      */
-    public function show(Bouteille $bouteille)
-    {
-        //
+    public function show(Bouteille $bouteille) {
+        return BouteilleResource::make($bouteille);
     }
 
     /**
@@ -47,8 +43,7 @@ class BouteilleController extends Controller
      * @param  \App\Models\Bouteille  $bouteille
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Bouteille $bouteille)
-    {
+    public function update(Request $request, Bouteille $bouteille) {
         //
     }
 
@@ -58,8 +53,7 @@ class BouteilleController extends Controller
      * @param  \App\Models\Bouteille  $bouteille
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Bouteille $bouteille)
-    {
+    public function destroy(Bouteille $bouteille) {
         //
     }
 }

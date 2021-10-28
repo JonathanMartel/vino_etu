@@ -45,13 +45,13 @@ Route::apiResource("bouteilles", BouteilleController::class)->only([
 Route::get("catalogue-bouteilles", [UnionsController::class, "obtenirCatalogueBouteilles"]);
 
 // Afficher les bouteilles d'un cellier
-Route::get('celliers/{cellier}/bouteilles', [CellierBouteilleController::class, "obtenirBouteillesParCellier"]);
+Route::get('celliers/{cellierId}/bouteilles', [CellierBouteilleController::class, "obtenirBouteillesParCellier"]);
 
 // Ajout d'une bouteille à un cellier
 Route::post('celliers/{cellier}/bouteilles', [CellierBouteilleController::class, "store"]);
 
 // Mise à jour de l'inventaire d'une bouteille dans un cellier donné
-Route::put("celliers/{cellier}/bouteilles/{bouteille}", [CellierBouteilleController::class, "update"]);
+Route::put("celliers/modifier-inventaire/{cellierBouteilleId}", [CellierBouteilleController::class, "modifierInventaireBouteille"]);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
