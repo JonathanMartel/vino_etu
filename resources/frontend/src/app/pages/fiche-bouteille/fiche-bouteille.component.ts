@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BouteilleDeVinService} from '@services/bouteille-de-vin.service';
 import { ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-fiche-bouteille',
@@ -11,7 +12,7 @@ export class FicheBouteilleComponent implements OnInit {
   bouteille:any;
   bouteilleId:any;
 
-  constructor(private servBouteilleDeVin:BouteilleDeVinService, private actRoute: ActivatedRoute) { }
+  constructor(private servBouteilleDeVin:BouteilleDeVinService, private actRoute: ActivatedRoute, private snackBar:MatSnackBar) { }
 
   ngOnInit(): void {
 
@@ -19,14 +20,18 @@ export class FicheBouteilleComponent implements OnInit {
 
     this.servBouteilleDeVin.getBouteilleParId(this.bouteilleId).subscribe(bouteille => this.bouteille = bouteille.data);
 
-  // console.log(this.actRoute.data);
-
     this.actRoute.data.subscribe(data => { this.bouteille = data.bouteille; });
+  }
+
+  openSnackBar(message:any, action:any){
+    this.snackBar.open(message, action);
   }
 
   ajouterBouteilleCellier(bouteilleId:any){
 
-    this.servBouteilleDeVin.ajoutBouteilleCellier(bouteilleId).subscribe(response => {console.log(response)});
-    //console.log(bouteilleId);
+    this.servBouteilleDeVin.ajoutBouteilleCellier(bouteilleId).subscribe(()=> {this.openSnackBar('Vous avez ajouté une bouteille à votre cellier', 'dismiss')});
+
   }
+
+  
 }

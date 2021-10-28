@@ -19,6 +19,7 @@ import { CreerCompteComponent } from '@pages/creer-compte/creer-compte.component
 import { FicheBouteilleComponent } from '@pages/fiche-bouteille/fiche-bouteille.component';
 import { BouteilleResolverServiceService } from '@services/bouteille-resolver-service.service';
 import {MatCardModule} from '@angular/material/card';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 
@@ -44,6 +45,7 @@ import {MatCardModule} from '@angular/material/card';
     MatToolbarModule,
     MatIconModule,
     MatCardModule,
+    MatSnackBarModule,
   ],
   providers: [BouteilleDeVinService, BouteilleResolverServiceService],
   bootstrap: [AppComponent]
