@@ -8,8 +8,8 @@
     <img src="{{URL::asset('/assets/icon/logo-3-bouteilles-cellier.svg')}}" alt="Icone trois bouteilles">
 </div>
 
-<div>
-    <a class="" href="{{route('cellier.create')}}"><i class="material-icons">add</i></a>
+<div class="bouton-ajout-conteneur">
+    <a class="bouton-cercle-ajout" href="{{route('cellier.create')}}"><i class="material-icons">add</i></a>
 </div>
 
 

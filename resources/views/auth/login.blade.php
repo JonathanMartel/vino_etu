@@ -3,15 +3,18 @@
 @section('content')
 
 
+
+
+
+
 <div class="flex-box">
 <div class="row"> 
-  
   <div class="col s12 m12">
     <div class="card">
       <div class="card-content flex-center entete-page">
         <h4>Connectez-vous à votre compte</h4>
         <img src="{{asset('assets/icon/coupe-verte.svg')}}" class="center"></a>
-      </div>
+    </div>
   <div class="card-content">
     <form action="{{ route('login.custom') }}" method="POST">
       @csrf
