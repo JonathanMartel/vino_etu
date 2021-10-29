@@ -179,4 +179,22 @@ class BouteilleModele extends Modele
 
 		return $res;
 	}
+	
+	/**
+	 * Cette méthode UPDATE les informations d'une bouteille.
+	 *
+	 * @param Object $body Les informations
+	 * @return Boolean $res Succès de la requête
+	 */
+	public function modifierBouteille($body) {
+		$id = $body->id;
+
+		$requete = "UPDATE vino__bouteille AS t1, vino__cellier_inventaire AS t2"
+		. " SET t1.nom = '$body->nom', t1.code_saq = '$body->code_saq', t1.pays = '$body->pays', t1.millesime = $body->millesime, t1.description = '$body->description', t1.format = '$body->format', t1.garde_jusqua = '$body->garde_jusqua', t1.note_degustation = '$body->note', t1.date_ajout = '$body->date_ajout', t2.quantite = '$body->quantite'"
+		. " WHERE t1.id = $id AND t2.bouteille_id = $id";
+
+		$res = $this->_db->query($requete);
+
+		return $res;
+	}
 }
