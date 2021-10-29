@@ -13,7 +13,7 @@
         <span>Cellier | {{ $cellier->nom }}</span>
     </div> -->
     <div class="emplacement">
-        <span>Emplacement | {{ $cellier->localisation }}</span>
+        <span>Localisation | {{ $cellier->localisation }}</span>
     </div>
 
     <!-- La barre de recherche n'est pas fonctionnel -->

@@ -11,8 +11,8 @@
     text-align: center;
     padding-top: 5px;
     padding-bottom: 5px;
-    color: white;
-    background-color: #7A5958;
+    color: #343B41;
+    background-color: #E0CFA0;
 }
 
 
@@ -131,11 +131,12 @@ section{
     padding-bottom: 0.512rem;
     padding-right: 1rem;
     padding-left: 1rem;
-    border-style: solid;
-    border-color: #E0CFA0;
+    /* border-style: solid;
+    border-color: #707070; */
     border-radius: 30px;
-    color: #778D83;
+    color: #343B41;
     font-weight: 700;
+    background-color: #CDCED1;
 
 }
 
