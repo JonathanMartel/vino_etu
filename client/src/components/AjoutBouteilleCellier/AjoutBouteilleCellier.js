@@ -41,7 +41,7 @@ export default class AjoutBouteille extends React.Component {
 		}
 
 		console.log(event.target.value);
-		fetch("http://rmpdwebservices.ca/webservice/php/saq/" + event.target.value, {
+		fetch("https://rmpdwebservices.ca/webservice/php/saq/" + event.target.value, {
 			method: 'GET',
 			headers: new Headers({
 				"Content-Type": "application/json",
@@ -79,7 +79,7 @@ export default class AjoutBouteille extends React.Component {
 		}
 
 		entete.append("Content-Type", "application/json");
-		fetch("http://rmpdwebservices.ca/webservice/php/bouteilles", {
+		fetch("https://rmpdwebservices.ca/webservice/php/bouteilles", {
 			method: 'POST',
 			body: JSON.stringify(nouvelleBouteille),
 			headers: new Headers({
@@ -92,7 +92,7 @@ export default class AjoutBouteille extends React.Component {
 			.then(reponse => reponse.json())
 			.then(() => {
 				console.log("Bouteille ajoutée");
-				this.props.history.push('/listebouteillescellier')
+				this.props.history.push('/cellier/' + this.state.id_cellier)
 			});
 
 	}
