@@ -13,11 +13,11 @@
                 <div class="card-content">
                     <h6>Tableau de bord des comptes</h6>
                     <div class="flex-row">    
-                        <i class="small material-icons">email</i>
+                        <i class="small material-icons black-text">email</i>
                         <p>{{$courriel}}</p>    
                     </div>
                     <div class="flex-row">    
-                        <i class="small material-icons">cake</i>
+                        <i class="small material-icons black-text">cake</i>
                         <p>{{$date_naissance}}</p>   
                     </div>         
                 </div>
@@ -27,7 +27,7 @@
                 <div class="card-content">
                     
                     <div class="flex-row">    
-                      <i class="small material-icons">account_box</i>
+                      <i class="small material-icons black-text">account_box</i>
                       <h6>Gérer mon compte</h6>      
                     </div>      
                 </div>
@@ -38,7 +38,7 @@
                     <a href="/cellier">
                     <div class="flex-row space">  
                         <h6>Vos celliers</h6>   
-                        <i class="small material-icons">chevron_right</i>   
+                        <i class="small material-icons black-text">chevron_right</i>   
                     </div> </a>     
                 </div>
             </div>
