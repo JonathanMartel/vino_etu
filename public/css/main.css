@@ -24,7 +24,7 @@ h1, h2, h3, h4, h5 {
 }
 
 h1 {
-    font-size: 3.052rem;
+    font-size:1.953rem;
     font-family: 'Acme', sans-serif;
     color: #7A5958;
     text-align: center;
@@ -58,6 +58,12 @@ body {
 
 
 img {
+    width: 48.83px;
+    height: 48.83px;
+}
+
+.logo{
+
     width: 76.29px;
     height: 76.29px;
 }
@@ -265,7 +271,7 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
     align-items: center;
     /*row-gap: 1rem;*/
     color: #742F30;
-    padding: 1.25rem;
+    padding: 1rem;
     text-align: center;
 }
 
