@@ -195,6 +195,7 @@ class BouteilleModele extends Modele
 
 		$res = $this->_db->query($requete);
 
+		//TODO Return id du cellier de la bouteille modifiée.
 		return $res;
 	}
 }
