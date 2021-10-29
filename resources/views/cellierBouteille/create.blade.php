@@ -79,7 +79,7 @@
           <span class="helper-text" data-error="Format invalid"></span>
         </div>
         <div class="input-field col s12">
-          <input id="prix" type="number" pattern="[0-9]+(\\.[0-9][0-9]?)?" name="prix" step=".01" min="0" max="100000" class="@if($errors->first('prix')) invalid @endif validate" value="{{ old('prix')}}">
+          <input id="prix" type="number" pattern="[0-9]+(\\.[0-9][0-9]?)?" name="prix" step=".01" min="0" max="100000" class="@if($errors->first('prix')) invalid @endif validate" value="{{ old('prix') ?? 0 }}">
           <label for="prix">Prix</label>
           <span class="helper-text" data-error="Format invalid"></span>
         </div>
