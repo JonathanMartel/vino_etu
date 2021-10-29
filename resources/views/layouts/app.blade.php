@@ -77,11 +77,14 @@
     @yield('content')
     </main>
     <!-- Footer -->
-    <footer class="footer text-faded text-center py-5">
+    <!-- <footer class="footer text-faded text-center py-5">
         <div class="container">
             <p class="m-0 small">Copyright - In Vino Veritas</p>
         </div>
-    </footer>
+    </footer> -->
+
+
+  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="{{asset('js/scripts.js')}}"></script>
     <script src="{{asset('js/app.js')}}"></script>

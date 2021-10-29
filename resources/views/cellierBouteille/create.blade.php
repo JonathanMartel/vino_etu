@@ -176,6 +176,9 @@
 
 
 @endsection
+
+
+
 <link href="{{asset('css/autocomplete.css')}}" rel="stylesheet" />
 <link href="{{asset('css/cellierBouteilles.css')}}" rel="stylesheet" />
 <script src="{{asset('js/cellierBouteille_create.js')}}"></script>
