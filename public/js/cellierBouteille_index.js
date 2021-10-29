@@ -34,12 +34,14 @@ document.addEventListener('DOMContentLoaded', function() {
         btnRetirer.addEventListener('click', (e) => {
             e.preventDefault();
             if(quantitePrecedent.innerHTML > 0) {
+                btnRetirer.disabled = true;
                 fetch(btnRetirer.href)
                 .then(response => {
                     return (response.json())
                 })
                 .then(response => {
                     quantitePrecedent.innerHTML = parseInt(quantitePrecedent.innerHTML) + response;
+                    btnRetirer. disabled = false;
                 }).catch(error => console.log(error))
             }
         })

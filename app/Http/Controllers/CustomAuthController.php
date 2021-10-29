@@ -41,7 +41,7 @@ class CustomAuthController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nom' =>'required|max:25|min:2|unique:users',
+            'nom' =>'required|max:50|min:2|unique:users',
             'courriel' => 'required|email:rfc,filter|unique:users',
             'password' => 'required|min:6|max:20',
             'date_naissance' => 'required|date_format:Y-m-d|before:' . Carbon::now()->subYears(18)->format('Y-m-d')         
@@ -63,7 +63,11 @@ class CustomAuthController extends Controller
 
         $request->validate([
           'courriel' => 'required|email:rfc,filter|exists:users,courriel',
+<<<<<<< HEAD
           'password' => 'required|min:6'
+=======
+          'password' => 'required'
+>>>>>>> c8bbe9531fccdebbf7a9b5b9ead2952d54673816
         ]);
 
         $credentials = $request->only('courriel', 'password');
