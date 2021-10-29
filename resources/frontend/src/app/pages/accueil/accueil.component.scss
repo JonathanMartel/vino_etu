@@ -42,6 +42,7 @@ p {
 .home-btns{
     margin: 0.5rem;
     padding: 0.25rem;
+    display: none;
 }
 
 .home-btns button {
@@ -57,5 +58,6 @@ p {
     border-radius: 1.5rem;
     box-shadow: 3px 3px 8px #b1b1b1, -3px -3px 8px #ffffff;
     cursor: pointer;
+    
 }
 
