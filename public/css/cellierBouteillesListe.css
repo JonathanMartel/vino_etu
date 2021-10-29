@@ -25,7 +25,7 @@
     display: flex;
     flex-direction: column;
     align-self: center;
-    padding: 0px 20px 0 20px;
+    padding: 0.64rem;
 }
 
 * + *, p {
@@ -93,10 +93,6 @@ section{
    color: white;
 }
 
-
-.quantite{
-    padding-top: 10px;
-}
 
   /* Materialize css */
 
