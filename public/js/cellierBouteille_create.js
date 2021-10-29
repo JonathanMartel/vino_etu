@@ -5,8 +5,12 @@ document.addEventListener('DOMContentLoaded', function() {
     /**
      * Calendier de la date d'achat
      */
-         const datepicker = document.querySelector('.datepicker');
-         M.Datepicker.init(datepicker, {autoClose : true, defaultDate: new Date(2018, 1, 3),
+    const date = new Date();
+    const datepicker = document.querySelector('.datepicker');
+    
+    M.Datepicker.init(datepicker,
+        {  autoClose : true,
+            defaultDate: new Date(date.getFullYear(), date.getMonth(), date.getDate),
             setDefaultDate: true});
      
     
