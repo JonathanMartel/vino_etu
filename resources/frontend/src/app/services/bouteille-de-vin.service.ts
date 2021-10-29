@@ -7,9 +7,9 @@ import { HttpClient } from '@angular/common/http';
 })
 export class BouteilleDeVinService {
 
-    private url:string = "http://127.0.0.1:8000/api";
+    // private url:string = "http://127.0.0.1:8000/api";
 
-    // private url: string = new URL(window.location.href).origin + "/api";
+    private url: string = new URL(window.location.href).origin + "/api";
 
     constructor(private http: HttpClient) {
         console.log(this.url);
