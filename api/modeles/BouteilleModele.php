@@ -78,23 +78,40 @@ class BouteilleModele extends Modele
 	public function autocomplete($nom, $nb_resultat = 10)
 	{
 		$rows = array();
+
+		$success = false;
+
 		$nom = $this->_db->real_escape_string($nom);
 		$nom = preg_replace("/\*/", "%", $nom);
 
-		$requete = "(SELECT *, 'SAQ' AS 'table', NULL AS 'quantite', NULL AS '', NULL AS '', NULL AS '', NULL AS '', NULL AS '', NULL AS '', NULL AS '' FROM vino__bouteille_saq WHERE LOWER(nom) LIKE LOWER('%" . $nom . "%') LIMIT 0," . $nb_resultat . ")"
-			. "UNION ALL (SELECT *, 'Cellier' AS 'table', vino__cellier_inventaire.quantite AS 'quantite' FROM vino__bouteille"
-			. " LEFT JOIN vino__cellier_inventaire ON vino__bouteille.id = vino__cellier_inventaire.bouteille_id"
-			. " WHERE LOWER(nom) LIKE LOWER('%" . $nom . "%') LIMIT 0," . $nb_resultat . ");";
+		$requeteSaq = "SELECT *, 'saq' AS 'table' FROM vino__bouteille_saq WHERE LOWER(nom) LIKE LOWER('%" . $nom . "%') LIMIT 0,10";
 
-		if (($res = $this->_db->query($requete)) ==	 true) {
+		$requeteCellier = "SELECT vino__bouteille.*, vino__cellier_inventaire.quantite, 'cellier' AS 'table' FROM vino__bouteille"
+			. " LEFT JOIN vino__cellier_inventaire ON vino__bouteille.id = vino__cellier_inventaire.bouteille_id"
+			. " WHERE LOWER(nom) LIKE LOWER('%" . $nom . "%') LIMIT 0,10";
+
+		if (($res = $this->_db->query($requeteSaq)) ==	 true) {
 			if ($res->num_rows) {
 				while ($row = $res->fetch_assoc()) {
-					$row['nom'] = trim(utf8_encode($row['nom']));
-					$rows[] = $row;
+					array_push($rows, $row);
 				}
+
+				$success = true;
 			}
 		} else {
 			throw new Exception("Erreur de requête sur la base de données", 1);
+		}
+
+		if ($success) {
+			if (($res = $this->_db->query($requeteCellier)) ==	 true) {
+				if ($res->num_rows) {
+					while ($row = $res->fetch_assoc()) {
+						array_push($rows, $row);
+					}
+				}
+			} else {
+				throw new Exception("Erreur de requête sur la base de données", 1);
+			}
 		}
 
 		return $rows;

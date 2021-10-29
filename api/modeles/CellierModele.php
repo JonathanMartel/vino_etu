@@ -69,7 +69,7 @@ class CellierModele extends Modele
     {
         $rows = array();
 
-        $requete = "SELECT vino__bouteille.*, vino__cellier.id_cellier, vino__cellier.emplacement FROM vino__cellier"
+        $requete = "SELECT vino__bouteille.*, vino__cellier.id_cellier, vino__cellier.emplacement, .vino__cellier_inventaire.quantite FROM vino__cellier"
         . " LEFT JOIN vino__cellier_inventaire ON vino__cellier.id_cellier = vino__cellier_inventaire.id_cellier"
         . " LEFT JOIN vino__bouteille ON vino__cellier_inventaire.bouteille_id = vino__bouteille.id"
         . " WHERE vino__cellier.id_cellier = $id";
