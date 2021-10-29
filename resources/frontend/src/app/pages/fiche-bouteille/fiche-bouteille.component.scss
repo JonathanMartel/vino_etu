@@ -104,12 +104,17 @@
     text-decoration: underline;
 }
 
-.card-link p{
+.card-link div{
     display: flex; 
+    margin-top: 1rem;
 }
   
 .mat-card-image{
     width: 40vw;
     display: block;
     margin: 0 auto;
+}
+
+.card-link .voir-info{
+    display: none;
 }

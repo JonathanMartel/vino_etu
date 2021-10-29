@@ -45,7 +45,7 @@
                                 }
                             ],
                             "outputPath": "../../public/assets/angular",
-                            "deployUrl": "/assets/angular/",
+                            "deployUrl": "/vino_etu/assets/angular/",
                             "fileReplacements": [
                                 {
                                     "replace": "src/environments/environment.ts",
