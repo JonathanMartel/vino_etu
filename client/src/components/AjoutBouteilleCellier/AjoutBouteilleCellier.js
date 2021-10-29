@@ -58,24 +58,26 @@ export default class AjoutBouteille extends React.Component {
 
 	choixBouteille(info) {
 		console.log(info.nom);
-		this.setState({ nomBouteilleSAQ: info.nom, prixBouteilleSAQ: info.prix_saq });
-		this.setState({bouteillesSAQ: []});	
+		this.setState({ nomBouteilleSAQ: info.nom, prixBouteilleSAQ: info.prix_saq, pays: info.pays});
+		this.setState({bouteillesSAQ: []});
 	}
 
 	ajouterBouteilleCellier() {
 		const entete = new Headers();
 		const nouvelleBouteille = {
 			prixBouteilleSAQ: this.state.prixBouteilleSAQ,
-			nom: this.state.nom,
+			nom: this.state.nomBouteilleSAQ,
+			pays: this.state.pays,
 			millesime: this.state.millesime,
 			quantite: this.state.quantite,
 			dateAchat: this.state.date_achat,
-			prix: this.state.prix,
+			prix: this.state.prixBouteilleSAQ,
 			garde: this.state.garde,
 			commentaires: this.state.commentaires,
 			usager_id: this.state.usager_id,
 			vino__type_id: this.state.vino__type_id,
-			id_cellier: this.state.id_cellier
+			id_cellier: this.state.id_cellier,
+			pays: this.state.pays
 		}
 
 		entete.append("Content-Type", "application/json");
@@ -86,12 +88,11 @@ export default class AjoutBouteille extends React.Component {
 				"Content-Type": "application/json",
 				"authorization": "Basic " + btoa("vino:vino"),
 			}),
-
 		})
-
 			.then(reponse => reponse.json())
 			.then(() => {
-				console.log("Bouteille ajoutée");
+				//this.setState({pays: })
+				console.log(nouvelleBouteille.pays);
 				this.props.history.push('/cellier/' + this.state.id_cellier)
 			});
 
@@ -118,6 +119,7 @@ export default class AjoutBouteille extends React.Component {
 				</ul>
 				<div>
 					<p>Nom : <input name="nom" value={this.state.nomBouteilleSAQ} onChange={e => this.setState({ nom: e.target.value })} /></p>
+					<p>Pays : <input name="pays" value={this.state.pays} onChange={e => this.setState({ pays: e.target.value })} /></p>
 					<p>Millesime : <input name="millesime" value={this.state.millesime} onChange={e => this.setState({ millesime: e.target.value })} /></p>
 					<p>Quantité : <input name="quantite" value={this.state.quantite} onChange={e => this.setState({ quantite: e.target.value })} /></p>
 					<p>Date d'achat : <input name="date_achat" value={this.state.date_achat} onChange={e => this.setState({ date_achat: e.target.value })} /></p>
