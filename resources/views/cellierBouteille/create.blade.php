@@ -11,16 +11,55 @@
 </div>
 <div class="row">
   <div class="input-field col s12 recherche">
-      <i class="material-icons prefix">search</i>
-      <input type="text"  name="recherche" autocomplete="off">
-      <label for="recherche">Rechercher un vin</label>
-      <div class="autocomplete z-depth-2"></div>
-    </div>
+    <i class="material-icons prefix">search</i>
+    <input type="text" name="recherche" autocomplete="off">
+    <label for="recherche">Rechercher un vin</label>
+    <div class="autocomplete z-depth-2"></div>
   </div>
-      
-  <div class="row">
-    <div class="image">
-      <img name="img-bouteille" src="{{ old('url_img') }}" alt="{{ old('nom') }}">
+</div>
+
+<div class="row">
+  <div class="image">
+    <img name="img-bouteille" src="{{ old('url_img') }}" alt="{{ old('nom') }}">
+  </div>
+  <form class="col s12 ajout-vin" action="{{route('cellierBouteille.store')}}" method="POST" enctype="multipart/form-data">
+
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+    <div class="input-field col s12">
+      <input id="nom" name="nom" max="111" type="text" class="@if($errors->first('nom')) invalid @endif validate" value="{{ old('nom') }}" required />
+      <label for="nom">Nom</label>
+      <span class="helper-text" data-error="Champ obligatoire"></span>
+    </div>
+    <div class="input-field col s12 ">
+      <select name="type_id">
+        <option value="" disabled selected></option>
+        @foreach($types as $type)
+        <option value="{{ $type->id }}" @if( old('type_id')==$type->id) selected @endif>{{ $type->type}}</option>
+        @endforeach
+      </select>
+      <label>Type</label>
+      @if($errors->first('type_id')) <span class="helper-text erreur" data-error="Format invalid">Champ obligatoire</span> @endif
+
+    </div>
+    <div class="input-field col s12">
+      <select name="format_id">
+        <option value="" disabled selected></option>
+        @foreach($formats as $format)
+        <option value="{{ $format->id }}" @if( old('format_id')==$format->id) selected @endif>{{ $format->nom}} - {{$format->taille}} cL </option>
+        @endforeach
+      </select>
+      <label>Format</label>
+      @if($errors->first('format_id')) <span class="helper-text erreur" data-error="Format invalid">Champ obligatoire</span> @endif
+    </div>
+    <div class="input-field col s12">
+      <textarea id="description" name="description" class="materialize-textarea">{{ old('description') }}</textarea>
+      <label for="description">Description</label>
+      <span class="helper-text" data-error="Format invalid"></span>
+    </div>
+    <div class="input-field col s12">
+      <input id="pays" type="text" name="pays" pattern="^[-a-zA-ZáéíóúÁÉÍÓÚÑñÇç]*$" class="@if($errors->first('pays')) invalid @endif validate" value="{{ old('pays') }}">
+      <label for="pays">Pays</label>
+      <span class="helper-text" data-error="Format invalid"></span>
     </div>
     <form class="col s12 ajout-vin" action="{{route('cellierBouteille.store')}}" method="POST" enctype="multipart/form-data" >
     
@@ -80,7 +119,7 @@
           <span class="helper-text" data-error="Format invalid"></span>
         </div>
         <div class="input-field col s12">
-          <input id="prix" type="number" pattern="[0-9]+(\\.[0-9][0-9]?)?" name="prix" step=".01" min="0" max="100000" class="@if($errors->first('prix')) invalid @endif validate" value="{{ old('prix')}}">
+          <input id="prix" type="number" pattern="[0-9]+(\\.[0-9][0-9]?)?" name="prix" step=".01" min="0" max="100000" class="@if($errors->first('prix')) invalid @endif validate" value="{{ old('prix') ?? 0 }}">
           <label for="prix">Prix</label>
           <span class="helper-text" data-error="Format invalid"></span>
         </div>
@@ -129,9 +168,11 @@
           </button>
         </div>
       </button>
+    </div>
+    </button>
 
-    </form>
-  </div>
+  </form>
+</div>
 
 
 @endsection

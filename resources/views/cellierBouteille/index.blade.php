@@ -56,7 +56,7 @@
                     @endif
                 </p>
                 
-                <p>Qte | <span>{{$cellierBouteille->quantite}}</span></p>
+                <p class="quantite">Qte | <span>{{$cellierBouteille->quantite}}</span></p>
             </div>
 
             <div class=" flex bouton-conteneur">

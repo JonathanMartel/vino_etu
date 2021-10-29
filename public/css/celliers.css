@@ -90,6 +90,12 @@
     display: flex;
     flex-direction: column;
 }
+
+.input-field.col label {
+     left: 0;
+}
+
+
 .btn-sup-container {
     padding: 1rem;
     display: flex;
