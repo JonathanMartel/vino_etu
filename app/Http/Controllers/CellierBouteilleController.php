@@ -24,7 +24,6 @@ class CellierBouteilleController extends Controller
 
         return view('cellierBouteille.index', [
             'cellierBouteilles' => $cellierBouteilles,
-            'idCellier' => $idCellier,
             'cellier' => $cellier,
         ]);
     }

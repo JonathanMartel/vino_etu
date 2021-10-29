@@ -5,8 +5,13 @@ document.addEventListener('DOMContentLoaded', function() {
     /**
      * Calendier de la date d'achat
      */
-         const datepicker = document.querySelector('.datepicker');
-         M.Datepicker.init(datepicker, {autoClose : true});
+    const date = new Date();
+    const datepicker = document.querySelector('.datepicker');
+    
+    M.Datepicker.init(datepicker,
+        {  autoClose : true,
+            defaultDate: new Date(date.getFullYear(), date.getMonth(), date.getDate),
+            setDefaultDate: true});
      
     
     /**
@@ -24,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => {
 
                 response.forEach(function(element){
-                    liste.innerHTML += `<div  data-description="${element.description}" data-pays="${element.pays}" data-idtype="${element.type_id}" data-idformat="${element.format_id}" data-id="${element.id}"  data-imgurl="${element.url_img}" data-nom="${element.nom}" >${element.nom} - ${element.type}</div>`;
+                    liste.innerHTML += `<div  data-description="${element.description}" data-pays="${element.pays}" data-idtype="${element.type_id}" data-idformat="${element.format_id}" data-id="${element.id}" data-prix="${element.prix_saq}"  data-imgurl="${element.url_img}" data-nom="${element.nom}" >${element.nom} - ${element.type} -  ${element.taille} cL - ${element.pays}</div>`;
                   })
                   
             }).catch(error => console.log(error))
@@ -47,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const img = document.querySelector('[name="img-bouteille"]');
     const imgUrl = document.querySelector('[name="url_img"]');
     const millesimeExistant = document.querySelector('[name="millesime-existant"]');
-    
+    const prix = document.querySelector('[name="prix"]');
     if(!imgUrl.value) {
             img.style.display = "none";
     }
@@ -66,6 +71,8 @@ document.addEventListener('DOMContentLoaded', function() {
             
             imgUrl.value = e.target.dataset.imgurl;
             
+            prix.value = e.target.dataset.prix
+
             if(e.target.dataset?.description != ''){
                 description.value = e.target.dataset.description;
           
@@ -97,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             labelMillesime.innerHTML += ` ${millesime.millesime}`; 
                         }
                     })
-                    labelMillesime.innerHTML += " )";
+                    labelMillesime.innerHTML += ")";
 
                     millesimeExistant.value = labelMillesime.innerHTML;
                 }
