@@ -37,7 +37,7 @@
     </div>
 
     <div class="bouton-ajout-conteneur">
-        <a class="bouton-cercle-ajout" href="{{ route('ajouterVin', $idCellier) }}"><i class="material-icons">add</i></a></a>
+        <a class="bouton-cercle-ajout" href="{{ route('ajouterVin', $cellier->id) }}"><i class="material-icons">add</i></a></a>
     </div>
     @forelse($cellierBouteilles as $cellierBouteille)
     <section>
@@ -47,11 +47,15 @@
             </div>
             <div class="info">
                 <p>{{$cellierBouteille->pays}}</p>
-                <p>{{$cellierBouteille->type}} |   @if( $cellierBouteille->millesime != 0)
+                <p>{{$cellierBouteille->type}}</p>
+                <p>{{$cellierBouteille->taille}} cl</p> 
+                <p>  @if( $cellierBouteille->millesime != 0)
                     {{$cellierBouteille->millesime}}
+                    @else
+                        Non millisimé
                     @endif
                 </p>
-                <p>{{$cellierBouteille->taille}}ml</p>
+                
                 <p class="quantite">Qte | <span>{{$cellierBouteille->quantite}}</span></p>
             </div>
 
@@ -60,7 +64,7 @@
                     <a class="icon-item" name="btnRetirerBouteille" href="{{ route('boireBouteille',[
                             'idCellier'=>$cellierBouteille->cellier_id,
                             'idBouteille'=>$cellierBouteille->bouteille_id,
-                            'millesime'=> $cellierBouteille->millesime
+                            'millesime'=> $cellierBouteille->millesime,
                             ])}}">
                         <i class="material-icon">remove</i>
                     </a>
@@ -83,7 +87,7 @@
     @empty
     <div class="list-empty">
         <p>Vous n'avez pour l'instant aucun vin.</p>
-        <a class="btn waves-effect waves-light button" href="{{ route('ajouterVin', $idCellier) }}">Ajouter un nouveau vin au cellier</a>
+        <a class="btn waves-effect waves-light button" href="{{ route('ajouterVin', $cellier->id) }}">Ajouter un nouveau vin au cellier</a>
     </div>
 
    
