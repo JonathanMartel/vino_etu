@@ -41,3 +41,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 :root {
   --couleur-primaire: #4c1920;
 }
+
+.mat-form-field-appearance-fill .mat-form-field-flex{
+  background-color: white;
+}
+
