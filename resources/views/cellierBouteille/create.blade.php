@@ -8,7 +8,7 @@
 <div class="entete-page">
   <h1>Nouveau vin</h1>
 </div>
-<div class="row barre-recherche">
+<div class="row">
   <div class="input-field col s12 recherche">
       <i class="material-icons prefix">search</i>
       <input type="text"  name="recherche" autocomplete="off">
@@ -25,7 +25,7 @@
     
       <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="input-field col s12">
-          <input id="nom" name="nom" type="text" class="@if($errors->first('nom')) invalid @endif validate" value="{{ old('nom') }}" required />
+          <input id="nom" name="nom" max="111" type="text" class="@if($errors->first('nom')) invalid @endif validate" value="{{ old('nom') }}" required />
           <label for="nom">Nom</label>
           <span class="helper-text" data-error="Champ obligatoire"></span>
         </div>
@@ -62,7 +62,7 @@
         </div>
         <div class="input-field col s12">
           <select name ="millesime">
-            <option value="" disabled selected></option>
+            <option value="0000" disabled selected></option>
             {{ $anneeDebut= 1700 }}
             {{ $anneePresent = date('Y') }}
 
@@ -70,7 +70,7 @@
                 <option value="{{ $i }}" @if( old('millesime') == $i) selected @endif>{{ $i }}</option>
             @endfor
           </select>
-          <label name="labelMillesime">{{ old('millesimes') ?? 'Millesime' }}</label>
+          <label name="labelMillesime">{{ old('millesime-existant') ?? 'Millesime' }}</label>
           <span class="helper-text" data-error="Format invalid"></span>
         </div>
         <div class="input-field col s12">
@@ -79,7 +79,7 @@
           <span class="helper-text" data-error="Format invalid"></span>
         </div>
         <div class="input-field col s12">
-          <input id="prix" type="number" pattern="[0-9]+(\\.[0-9][0-9]?)?" name="prix" step=".01" min="0" class="@if($errors->first('prix')) invalid @endif validate" value="{{ old('prix') ?? 0}}">
+          <input id="prix" type="number" pattern="[0-9]+(\\.[0-9][0-9]?)?" name="prix" step=".01" min="0" max="100000" class="@if($errors->first('prix')) invalid @endif validate" value="{{ old('prix') ?? 0}}">
           <label for="prix">Prix</label>
           <span class="helper-text" data-error="Format invalid"></span>
         </div>
@@ -119,7 +119,7 @@
           </select>
         </div>
         <input type="hidden" name="cellier_id" value="{{ $idCellier }}" id="cellier_id">
-        <input type="hidden" name="millesimes" value="{{ old('millesimes') }}" id="millesimes">
+        <input type="hidden" name="millesime-existant" value="{{ old('millesime-existant') }}" id="millesime-existant">
         <input type="hidden" name="bouteille_id" value="{{ old('bouteille_id') }}" id="bouteille_id">
         <input type="hidden" name="url_img" value="{{ old('url_img') }}" id="url_img">
         <div class="col s12 btn-space">
