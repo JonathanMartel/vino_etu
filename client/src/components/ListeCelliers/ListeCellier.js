@@ -20,6 +20,7 @@ export default class ListeCellier extends React.Component {
 	}
 
 	fetchCelliers(){
+
 		console.log('this.props.match.params.id : ', this.props.match.params.id);
 		//Pour quoi ne fonctionne pas ???
 		/* this.setState({id_usager: this.props.match.params.id});

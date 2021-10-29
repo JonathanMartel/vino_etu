@@ -55,6 +55,7 @@ export default class Connexion extends React.Component{
                 body: JSON.stringify(donnes) 
             }
     
+
             fetch("https://rmpdwebservices.ca/webservice/php/usagers/login/", postMethod)
                 .then(res => res.json()) 
                 .then((res) => {

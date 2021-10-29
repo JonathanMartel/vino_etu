@@ -52,7 +52,7 @@ export default class ListeBouteilleCellier extends React.Component {
 			},
 			body: JSON.stringify(donnes) 
 		}
-
+    
 		fetch("https://rmpdwebservices.ca/webservice/php/bouteilles/", postMethod)
 			.then(res => res.json()) 
 			.then((res) => {
@@ -124,10 +124,10 @@ export default class ListeBouteilleCellier extends React.Component {
 
 		return (
 			<section>
-				<Link to={"/ajoutbouteillecellier"}>
+				<Link to={"/ajoutBouteille"}>
 					<span>Ajouter une nouvelle bouteille à votre cellier</span>
 				</Link>
-				
+
 				<div>
 					{bouteilles}
 				</div>
