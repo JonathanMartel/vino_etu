@@ -19,11 +19,10 @@ document.addEventListener('DOMContentLoaded', function() {
             
             fetch("/rechercheBouteillesParMotCle/" + recherche.value)
             .then(response => {
-                console.log(response)
                 return (response.json())
             })
             .then(response => {
-                console.log(response)
+
                 response.forEach(function(element){
                     liste.innerHTML += `<div  data-description="${element.description}" data-pays="${element.pays}" data-idtype="${element.type_id}" data-idformat="${element.format_id}" data-id="${element.id}"  data-imgurl="${element.url_img}" data-nom="${element.nom}" >${element.nom} - ${element.type}</div>`;
                   })
@@ -47,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const pays = document.querySelector('[name="pays"]');
     const img = document.querySelector('[name="img-bouteille"]');
     const imgUrl = document.querySelector('[name="url_img"]');
-    const millesimes = document.querySelector('[name="millesimes"]');
+    const millesimeExistant = document.querySelector('[name="millesime-existant"]');
     
     if(!imgUrl.value) {
             img.style.display = "none";
@@ -100,7 +99,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     })
                     labelMillesime.innerHTML += " )";
 
-                    millesimes.value = labelMillesime.innerHTML;
+                    millesimeExistant.value = labelMillesime.innerHTML;
                 }
                 
             }).catch(error => console.log(error))
