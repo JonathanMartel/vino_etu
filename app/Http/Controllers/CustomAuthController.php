@@ -63,8 +63,8 @@ class CustomAuthController extends Controller
     public function customLogin(Request $request){
 
         $request->validate([
-          'courriel' => 'required',
-          'password' => 'required|min:6'
+          'courriel' => 'required|email:rfc,dns,filter',
+          'password' => 'required'
         ]);
 
         $credentials = $request->only('courriel', 'password');
