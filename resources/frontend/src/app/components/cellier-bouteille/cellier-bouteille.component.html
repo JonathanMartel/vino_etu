@@ -1,5 +1,5 @@
 <section class="wrapper">
-    <div class="resultat-vin">
+    <div class="resultat-img">
         <a class="btn-vin"><img src="{{bouteille.image}}" alt="une bouteille"></a>
     </div>
     <div class="resultat-vin">
@@ -15,7 +15,9 @@
             L'inventaire ne doit pas être inférieur à 0
         </div>
         <button mat-mini-fab (click)="diminuer()"><mat-icon>remove</mat-icon></button>
-        <mat-form-field class="inventaire-form-field" appearance ="fill"><input matInput type="number" [formControl] = "inventaire"></mat-form-field>
+        <mat-form-field class="inventaire-form-field" appearance ="fill">
+            <input matInput type="text" [formControl] = "inventaire">
+        </mat-form-field>
         <button mat-mini-fab (click)="augmenter()"><mat-icon>add</mat-icon></button>
     </div>
 </section>

@@ -25,7 +25,7 @@ class CellierBouteilleController extends Controller
 
     /**
      *
-     * Afficher les bouteilles contenu dans un cellier donné
+     * Afficher les bouteilles contenu dans un cellier donné.
      *
      * @param int|string $cellierId l'id du cellier d'on on veut afficher l'inventaire
      */
@@ -50,7 +50,7 @@ class CellierBouteilleController extends Controller
 
     /**
      *
-     * Afficher les bouteilles contenu dans un cellier donné
+     * Modifier l'inventaire d'une bouteille dans un cellier.
      *
      * @param int|string $cellierBouteilleId l'id du pivot où se trouve l'inventaire
      *
@@ -65,6 +65,10 @@ class CellierBouteilleController extends Controller
                 "message" => "Erreur lors de la mise à jour de l'inventaire"
             ], 400);
         };
+
+        return response()->json([
+            "message" => "Modification réussie"
+        ], 201);
     }
 
     /**
@@ -73,7 +77,7 @@ class CellierBouteilleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Cellier $cellier)
+    public function store(Request $request)
     {
         $bouteilleCellier = new CellierBouteille;
         $bouteilleCellier -> bouteilles_id = $request->bouteilles_id;
@@ -81,11 +85,9 @@ class CellierBouteilleController extends Controller
         $bouteilleCellier -> inventaire = $request->inventaire;
         $newBouteilleCellier = $bouteilleCellier -> save();
 
-
         return response()->json([
-            'message' => 'ajout reussit!'
-        ],200);
-
+            "message" => "ajout réussi !"
+        ], 200);
     }
 
     /**
