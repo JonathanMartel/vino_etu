@@ -215,14 +215,14 @@ class CellierBouteilleController extends Controller
      */
     public function boireBouteille($idCellier, $idBouteille, $millesime)
     {
-        $quantiteBue = -1; // a inclure en paramettre si on donne l'option d'ajouter plus d'une bouteille à la fois.
+        $quantiteBue = 1; // a inclure en paramettre si on donne l'option d'ajouter plus d'une bouteille à la fois.
 
-        $estBue = CellierBouteille::modifierQuantiteBouteille($idCellier, $idBouteille, $millesime, $quantiteBue);
+        $estBue = CellierBouteille::supprimerQuantiteBouteille($idCellier, $idBouteille, $millesime, $quantiteBue);
 
         if ($estBue) {
             return response()->json($quantiteBue);
         }
-        return redirect('cellier');
+
     }
 
     /**

@@ -16,3 +16,7 @@ div > h1 {
 }
 
 
+#description {
+    overflow-y:visible;
+    height: 5em;
+}
