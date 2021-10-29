@@ -89,7 +89,7 @@ export default class DetailsBouteille extends React.Component {
 	render() {
 		console.log("items: ", this.state.items);
 		//console.log("Render nom: ", this.state.items.nom); 
-	
+	 
 		var bouteille = this.state.items;
 		console.log("Mi botella: ", bouteille);
 		console.log("Mi botella.nom: ", bouteille.nom);

@@ -59,7 +59,7 @@ export default class ListeBouteilleCellier extends React.Component {
 				this.setState({id_usager: res.data})
 				if (res.data) {
 					this.fetchBouteilles();
-				} else {
+				} else { 
 					console.log("Erreur.")
 				}
 			});
