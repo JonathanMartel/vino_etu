@@ -77,11 +77,11 @@
     @yield('content')
     </main>
     <!-- Footer -->
-    <!-- <footer class="footer text-faded text-center py-5">
+    <footer class="footer text-faded text-center py-5">
         <div class="container">
             <p class="m-0 small">Copyright - In Vino Veritas</p>
         </div>
-    </footer> -->
+    </footer>
 
 
   
