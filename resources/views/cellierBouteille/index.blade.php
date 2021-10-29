@@ -36,8 +36,8 @@
         <img src="{{URL::asset('/assets/icon/deux-coupe-jaune.svg')}}" alt="Icone deux coupe de vin">
     </div>
 
-    <div class="bouton-ajout-conteneur">
-        <a class="bouton-cercle-ajout" href="{{ route('ajouterVin', $idCellier) }}"><i class="material-icons">add</i></a></a>
+    <div class="bouton-ajout-vin-conteneur">
+        <a class="bouton-ajout-vin" href="{{ route('ajouterVin', $idCellier) }}">Ajouter un vin</a>
     </div>
     @forelse($cellierBouteilles as $cellierBouteille)
     <section>

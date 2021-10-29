@@ -11,8 +11,8 @@
 <div class="row"> 
   <div class="col s12 m12">
     <div class="card">
-      <div class="card-content flex-center entete-page">
-        <h4>Connectez-vous à votre compte</h4>
+      <div class="card-content flex-center entete-login">
+        <h1 class="titre-formulaire">Connexion</h1>
         <img src="{{asset('assets/icon/coupe-verte.svg')}}" class="center" alt="icone coupe verte"></a>
     </div>
   <div class="card-content">
@@ -55,6 +55,7 @@
   </div>
   </div>
 </div>
- 
 
 @endsection
+
+<link href="{{asset('css/auth.css')}}" rel="stylesheet" />

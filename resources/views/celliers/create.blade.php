@@ -5,7 +5,7 @@
 
 @if(isset(Auth::user()->id))
 <div class="entete-page">
-    <h1>Nouveau cellier</h1>
+    <h1 class="titre-formulaire">Nouveau cellier</h1>
     <img src="{{URL::asset('/assets/icon/logo-3-bouteilles-cellier.svg')}}" alt="Icone trois bouteilles">
 </div>
 <div class="form-ajout">
