@@ -1,59 +1,60 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class BouteilleDeVinService {
 
-  private url:string = "http://127.0.0.1:8000/api";
+    private url:string = "http://127.0.0.1:8000/api";
+    // private url: string = "http://e2095388.webdev.cmaisonneuve.qc.ca/api";
 
-  constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) { }
 
-  getCellier(){
-
-
-    return this.http.get<any>(this.url + '/celliers/' + 1 + '/bouteilles');
+    getCellier() {
 
 
-  }
-
-  getBouteillesCellier(){
-    return this.http.get<any>(this.url + '/celliers/' + 1 + '/bouteilles');
-  }
-
-  getListeBouteille(){
+        return this.http.get<any>(this.url + '/celliers/' + 1 + '/bouteilles');
 
 
-    return this.http.get<any>(this.url+'/catalogue-bouteilles');
-  }
-
-  getBouteilleParId(id_bouteille:any){
-
-    return this.http.get<any>(this.url + '/bouteilles/' + id_bouteille);
-  }
-
-  ajoutBouteilleCellier(bouteille_id:any){
-
-    let body = {
-      'celliers_id': 1,
-      'bouteilles_id': bouteille_id,
-      'inventaire': 1,
     }
 
-    return this.http.post<any>(this.url +'/celliers/' + 1 + '/bouteilles', body);
-
-  }
-
-  modifierInventaireCellierBouteille(bouteille_id:any, nouvelInventaire:any){
-
-    let body = {
-      'inventaire': nouvelInventaire,
+    getBouteillesCellier() {
+        return this.http.get<any>(this.url + '/celliers/' + 1 + '/bouteilles');
     }
 
-    return this.http.put<any>(this.url + '/celliers/modifier-inventaire/' + bouteille_id ,body)
-  }
+    getListeBouteille() {
+
+
+        return this.http.get<any>(this.url + '/catalogue-bouteilles');
+    }
+
+    getBouteilleParId(id_bouteille: any) {
+
+        return this.http.get<any>(this.url + '/bouteilles/' + id_bouteille);
+    }
+
+    ajoutBouteilleCellier(bouteille_id: any) {
+
+        let body = {
+            'celliers_id': 1,
+            'bouteilles_id': bouteille_id,
+            'inventaire': 1,
+        }
+
+        return this.http.post<any>(this.url + '/celliers/' + 1 + '/bouteilles', body);
+
+    }
+
+    modifierInventaireCellierBouteille(bouteille_id: any, nouvelInventaire: any) {
+
+        let body = {
+            'inventaire': nouvelInventaire,
+        }
+
+        return this.http.put<any>(this.url + '/celliers/modifier-inventaire/' + bouteille_id, body)
+    }
 
 }
 
