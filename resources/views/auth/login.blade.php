@@ -28,7 +28,7 @@
         </div>
         <div class="input-field col s12">
           <input id="mot_de_passe" type="password" class="validate" name="password"  required>
-          <label for="mot_de_passe">Mot de passe</label>
+          <label for="mot_de_passe">Password</label>
           @if ($errors->has('password'))
               <span class="red-text">{{ $errors->first('password') }}</span>
           @endif

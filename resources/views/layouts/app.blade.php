@@ -53,11 +53,11 @@
                 </ul>
             </div>
             <ul class="sidenav" id="mobile-links">
-                <li><a href="{{ route('cellier') }}">Vos celliers</a></li>
                 @guest
                     <li><a href="{{ route('register') }}">S'inscrire</a></li>
                     <li><a href="{{ route('login') }}">Se connecter</a></li>
                 @else
+                    <li><a href="{{ route('cellier') }}">Vos celliers</a></li>
                     <li><a href="{{ route('dashboard') }}"><span class="black-text">Mon Compte</span></a></li>
                     <li><a href="{{ route('logout') }}"><span class="black-text">Se déconnecter</span></a></li>
                 @endguest
