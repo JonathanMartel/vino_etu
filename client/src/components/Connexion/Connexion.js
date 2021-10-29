@@ -11,6 +11,7 @@ export default class Connexion extends React.Component{
         this.state = {
             courriel : "",
             mot_passe : "",
+            id_usager : null,
             estConnecte : false
         }
         
@@ -30,6 +31,8 @@ export default class Connexion extends React.Component{
             
             if (bRegex) {
                 bValidation =true;
+            } else {
+                console.log("Courriel non admissible")
             }
         }
         
@@ -52,23 +55,26 @@ export default class Connexion extends React.Component{
                 body: JSON.stringify(donnes) 
             }
     
-            fetch("http://127.0.0.1:8000/webservice/php/usagers/login/", postMethod)
+            fetch("https://rmpdwebservices.ca/webservice/php/usagers/login/", postMethod)
                 .then(res => res.json()) 
                 .then((res) => {
-                    this.setState({estConnecte: res.data})
+                    this.setState({id_usager: res.data})
                     if (res.data) {
-                        console.log("Connexion ?", res.data)
+                        console.log("Connexion avec succès!!!", res.data)
                         /* this.props.history.push("/"); */
-                        this.props.history.push("/ListeCelliers");
+                        this.props.history.push("/ListeCelliers/" + res.data);
                     } else {
                         console.log("Courriel ou mot de passe incorrect.")
                     }
-                    console.log("Connexion ?", res)
+                    /* console.log("Connexion ?", res) */
                 });
         }
     }
 
   render() {
+        /* const connectado = this.state.seConnecter; */
+        console.log("Usager connecté : ", this.state.id_usager); //Retourne false si ne trouve pas l'usager
+
 		return (
             <section>
                 <h2>Se connecter</h2>
@@ -86,6 +92,7 @@ export default class Connexion extends React.Component{
                 <br/> <br/>
                 <div>
                     <button onClick={this.seConnecter}>Se connecter</button>
+                    {/* <button onClick={this.seConnecter}>{(this.state.seConnecter ? "Se déconnecter" : "Se connecter")}</button> */}
                 </div>
             </section>
 		);

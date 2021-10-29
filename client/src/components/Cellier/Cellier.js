@@ -12,9 +12,9 @@ export default class Cellier extends React.Component {
 	render() {
 		
 		return(
-			<Link to={"/cellier/" + this.props.info.id}>
+			<Link to={"/cellier/" + this.props.info.id_cellier}> {/* ListeBouteilleCellier */}
 				<div>
-					<p>{this.props.info.emplacement}</p>
+					<p>Emplacement : {this.props.info.emplacement}</p>
 				</div>
 			</Link>
 		);

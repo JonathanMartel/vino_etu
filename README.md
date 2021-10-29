@@ -10,7 +10,7 @@
 | `PUT`     | `/bouteilles/id`         | `La modification de la bouteille`     |
 | `DELETE`  | `/bouteilles/id`         | `La supression de la bouteille`       |
 | `GET`     | `/celliers/id`           | `Le cellier`                          |
-| `GET`     | `/celliers/usager/id`    | `Les celliers de l'usager`            |
+| `GET`     | `/celliers/usagers/id`   | `Les celliers de l'usager`            |
 | `POST`    | `/celliers`              | `L'insertion du cellier`              |
 | `PUT`     | `/celliers/id`           | `La modification du cellier`          |
 | `DELETE`  | `/celliers/id`           | `La supression du cellier`            |

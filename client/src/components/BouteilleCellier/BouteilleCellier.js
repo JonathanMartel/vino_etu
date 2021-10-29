@@ -10,16 +10,20 @@ export default class BouteilleCellier extends React.Component {
 	}
 	
 	render() { 
+		<Link to={"/bouteilles/" + this.props.info.id} />
 		
 		return ( 
 				<article className="uneBouteille">
-					<img src={this.props.bouteille.url_image} />
-					<p>{this.props.bouteille.nom}</p>
-					<p>{this.props.bouteille.pays}</p>
-					<p>{this.props.bouteille.vino__type_id}</p>
-					<p>{this.props.bouteille.millesime}</p>
-					<a href={this.props.bouteille.url_saq}>Voir sur le site de la SAQ</a>
-					<Link to={"/bouteilles/"+this.props.info.id}>
+					<p>Bouteille_id : {this.props.info.id}</p>
+					<p>Nom : {this.props.info.nom}</p>
+					<p>Pays : {this.props.info.pays}</p>
+					<p>Millesime : {this.props.info.millesime}</p>
+					<p>Quantite : {this.props.info.quantite}</p>
+					{/* <p>{this.props.info.vino__type_id}</p>
+					<img src={this.props.info.url_image} /> */}
+					{/* <a href={this.props.info.url_saq} >Voir sur le site de la SAQ</a> */}
+					
+					<Link to={"/bouteilles/" + this.props.info.id}>
 						<button>Modifier</button>
 					</Link>
 				</article>
