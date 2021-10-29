@@ -26,7 +26,7 @@ export default class App extends React.Component {
 			<Router>
 				<Entete />
 				<Switch>
-					<Route exact path="/" component={Accueil} />
+					<Route exact path="/" component={Connexion} />
 					<Route exact path="/ajoutBouteille" component={AjoutBouteille} />
 
 					<Route exact path="/inscription" component={Inscription} />
