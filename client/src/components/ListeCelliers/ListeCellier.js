@@ -40,7 +40,7 @@ export default class ListeCellier extends React.Component {
 		}
 
 		console.log("this.state.id_usager: ", this.state.id_usager);
-		fetch("https://rmpdwebservices.ca/webservice/php/celliers/usagers/" + this.props.match.params.id, getMethod)
+		fetch("https://rmpdwebservices.ca/webservice/php/celliers/usager/" + this.props.match.params.id, getMethod)
 			.then(reponse => reponse.json())
         	.then((donnees)=>{
 				this.setState({items: donnees.data})

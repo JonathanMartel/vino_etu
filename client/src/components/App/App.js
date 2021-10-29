@@ -28,7 +28,6 @@ export default class App extends React.Component {
 				<Switch>
 					<Route exact path="/" component={Accueil} />
 					<Route exact path="/ajoutBouteille" component={AjoutBouteille} />
-					<Route exact path="/listeBouteilles" component={ListeBouteilles} />
 
 					<Route exact path="/inscription" component={Inscription} />
 					<Route exact path="/connexion" component={Connexion} />
@@ -38,7 +37,7 @@ export default class App extends React.Component {
 
 					<Route exact path="/ajoutcellier" component={AjoutCellier} />
 					<Route exact path="/cellier/:id" render={(param_route)=> 
-							<ListeBouteilleCellier {...param_route} id={param_route?.match?.params?.id} param={param_route} />} />
+							<ListeBouteilles {...param_route} id={param_route?.match?.params?.id} param={param_route} />} />
 					{/* <Route exact path="/bouteilles/:id" component={DetailsBouteille} /> */}
 					<Route exact path="/bouteilles/:id" render={(param_route)=> 
 							<DetailsBouteille {...param_route} bouteille_id={param_route?.match?.params?.bouteille_id} param={param_route} />} />

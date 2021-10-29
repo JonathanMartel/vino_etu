@@ -1,8 +1,24 @@
 # REST API
 
-## API Documentation
+## API Endpoints
 
-<a href="https://rmpdwebservices.ca/webservice/docs/"><img src="https://camo.githubusercontent.com/96e43701d83561899724a89d71187445b7b8f4fe84518a3ea5bec8f85bd207bf/68747470733a2f2f63646e2e737667706f726e2e636f6d2f6c6f676f732f737761676765722e737667" width="100px"></a>
+| Method    | End point                | Returns                               |
+| :-------- | :----------------------- | :------------------------------------ |
+| `GET`     | `/bouteilles/id`         | `La bouteille`                        |
+| `GET`     | `/bouteilles/usager/id`  | `Les bouteilles de l'usager`          |
+| `POST`    | `/bouteilles`            | `L'insertion de la bouteille`         |
+| `PUT`     | `/bouteilles/id`         | `La modification de la bouteille`     |
+| `DELETE`  | `/bouteilles/id`         | `La supression de la bouteille`       |
+| `GET`     | `/celliers/id`           | `Le cellier`                          |
+| `GET`     | `/celliers/usagers/id`   | `Les celliers de l'usager`            |
+| `POST`    | `/celliers`              | `L'insertion du cellier`              |
+| `PUT`     | `/celliers/id`           | `La modification du cellier`          |
+| `DELETE`  | `/celliers/id`           | `La supression du cellier`            |
+| `GET`     | `/usagers/id`            | `L'usager`                            |
+| `POST`    | `/usagers`               | `L'insertion de l'usager`             |
+| `PUT`     | `/usagers/id`            | `La modification de l'usager`         |
+| `DELETE`  | `/usagers/id`            | `La supression de l'usager`           |
+
 
 ## License
 
