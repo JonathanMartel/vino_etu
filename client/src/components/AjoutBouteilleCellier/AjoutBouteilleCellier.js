@@ -19,7 +19,8 @@ export default class AjoutBouteille extends React.Component {
 			garde: "",
 			commentaires: "",
 			usager_id: "1",
-			vino__type_id: "1"
+			vino__type_id: "1",
+			id_cellier: "3"
 		}
 
 		// Binding des fonctions
@@ -74,6 +75,7 @@ export default class AjoutBouteille extends React.Component {
 			commentaires: this.state.commentaires,
 			usager_id: this.state.usager_id,
 			vino__type_id: this.state.vino__type_id,
+			id_cellier: this.state.id_cellier
 		}
 
 		entete.append("Content-Type", "application/json");
