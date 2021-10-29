@@ -5,7 +5,7 @@
 <span class="success"></span>
 @endif
 
-<div>
+<div class="entete-page">
   <h1>Nouveau vin</h1>
 </div>
 <div class="row">
@@ -25,7 +25,7 @@
     
       <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="input-field col s12">
-          <input id="nom" name="nom" type="text" class="@if($errors->first('nom')) invalid @endif validate" value="{{ old('nom') }}" required />
+          <input id="nom" name="nom" max="111" type="text" class="@if($errors->first('nom')) invalid @endif validate" value="{{ old('nom') }}" required />
           <label for="nom">Nom</label>
           <span class="helper-text" data-error="Champ obligatoire"></span>
         </div>
@@ -79,7 +79,7 @@
           <span class="helper-text" data-error="Format invalid"></span>
         </div>
         <div class="input-field col s12">
-          <input id="prix" type="number" pattern="[0-9]+(\\.[0-9][0-9]?)?" name="prix" step=".01" min="0" class="@if($errors->first('prix')) invalid @endif validate" value="{{ old('prix') ?? 0}}">
+          <input id="prix" type="number" pattern="[0-9]+(\\.[0-9][0-9]?)?" name="prix" step=".01" min="0" max="100000" class="@if($errors->first('prix')) invalid @endif validate" value="{{ old('prix') ?? 0}}">
           <label for="prix">Prix</label>
           <span class="helper-text" data-error="Format invalid"></span>
         </div>

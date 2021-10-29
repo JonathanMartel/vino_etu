@@ -19,10 +19,10 @@ class CellierBouteilleController extends Controller
      */
     public static function index($idCellier)
     {
-        $cellierBouteilles = CellierBouteille::obtenirListeBouteilleCellier($idCellier); 
+        $cellierBouteilles = CellierBouteille::obtenirListeBouteilleCellier($idCellier);
         $cellier = Cellier::find($idCellier);
 
-	    return view('cellierBouteille.index', [
+        return view('cellierBouteille.index', [
             'cellierBouteilles' => $cellierBouteilles,
             'idCellier' => $idCellier,
             'cellier' => $cellier,
@@ -45,7 +45,7 @@ class CellierBouteilleController extends Controller
         ]);
     }
 
-    
+
 
     /**
      * Store a newly created resource in storage.
@@ -61,15 +61,11 @@ class CellierBouteilleController extends Controller
          if(isset($request->date_achat)){
            $date_achat = date('Y-m-d', strtotime($request->date_achat));                   
         }
-
-        if(empty($request->millesime)) {
-            $request->millesime = 1000;
-        }
-        return $request->millesime;
+   
         $request->validate([
-            'nom' => 'required',
+            'nom' => 'required|max:111',
             'quantite' => 'integer|gte:0',
-            'prix' => 'numeric|regex:/[0-9]+(\.[0-9][0-9]?)?/|gte:0',
+            'prix' => 'numeric|regex:/[0-9]+(\.[0-9][0-9]?)?/|gte:0|max:100000',
             'pays' => 'nullable|regex:^[A-ZÀÂÇÉÈÊËÎÏÔÛÙÜŸÑa-zàâçéèêëîïôûùüÿñ]+$^',
             'type_id' => 'required|exists:types,id',
             'format_id' => 'required|exists:formats,id',
@@ -83,19 +79,22 @@ class CellierBouteilleController extends Controller
          */ 
        if(isset($request->bouteille_id)){
             $cellierBouteille = CellierBouteille::rechercheCellierBouteille($request->cellier_id, $request->bouteille_id, $request->millesime);
-            $bouteilleExistante = Bouteille::rechercheBouteilleExistante( $request);
-            
-            if( isset($bouteilleExistante[0]) && isset($cellierBouteille[0])){
-                return back()->withInput()->with('erreur', "Bouteille existe déjà");
-            }else {
+            $bouteilleExistante = Bouteille::rechercheBouteilleExistante($request);
 
-               
-               
-            if(isset($bouteilleExistante[0])) {
+            if (isset($bouteilleExistante[0]) && isset($cellierBouteille[0])) {
+                return back()->withInput()->with('erreur', "Bouteille existe déjà");
+            } else {
+
+                if(isset($bouteilleExistante[0])) {
  
                     $cellierBouteille = new CellierBouteille;
                     $cellierBouteille->fill($request->all());
                     $cellierBouteille->date_achat = $date_achat;
+
+                    if(empty($request->millesime)) {
+                        $cellierBouteille->millesime = 0;
+                    }
+
                     $cellierBouteille->save();
                     
                     return redirect("cellier/". $request->cellier_id)->withInput()->with("nouvelleBouteille", "nouvelle bouteille ajoutée" );
@@ -117,10 +116,15 @@ class CellierBouteilleController extends Controller
                         'type_id' =>  $request->type_id,
                         'user_id' =>  session('user')->id
                     ]);
-                
+
                     $cellierBouteille = new CellierBouteille;
                     $cellierBouteille->fill($request->all());
                     $cellierBouteille->bouteille_id = $bouteille->id;
+
+                    if(empty($request->millesime)) {
+                        $cellierBouteille->millesime = 0;
+                    }
+
                     $cellierBouteille->date_achat = $date_achat;
                     $cellierBouteille->save();
                     
@@ -147,19 +151,23 @@ class CellierBouteilleController extends Controller
                 'type_id' =>  $request->type_id,
                 'user_id' =>  session('user')->id
             ]);
-        
+
             $cellierBouteille = new CellierBouteille;
             $cellierBouteille->fill($request->all());
             $cellierBouteille->bouteille_id = $bouteille->id;
             $cellierBouteille->date_achat = $date_achat;
+
+            if(empty($request->millesime)) {
+                $cellierBouteille->millesime = 0;
+            }
+
             $cellierBouteille->save();
             
             return redirect("cellier/". $request->cellier_id)->withInput()->with("nouvelleBouteille", "nouvelle bouteille ajoutée" );
         }
-        
     }
-    
-     /**
+
+    /**
      * @param idCellier
      * @param idBouteille
      * Obtenir une liste des millisimes équivalent à idCellier et idBouteille
@@ -167,7 +175,7 @@ class CellierBouteilleController extends Controller
      */
     public static function obtenirMillesimesParBouteille($idCellier, $idBouteille)
     {
-        
+
         $millesimes = CellierBouteille::obtenirMillesimesParBouteille($idCellier, $idBouteille);
         return response()->json($millesimes);
     }
@@ -193,7 +201,7 @@ class CellierBouteilleController extends Controller
         //
     }
 
-/**
+    /**
      * https://stackoverflow.com/questions/37666135/how-to-increment-and-update-column-in-one-eloquent-query
      * Incrémenter de 1 la quantité de la bouteille dans un cellier
      * @return la quantité à incrémenter
@@ -202,15 +210,15 @@ class CellierBouteilleController extends Controller
     {
         $quantiteAjoute = 1; // a inclure en paramettre si on donne l'option d'ajouter plus d'une bouteille à la fois.
 
-    
+
         $estAjoute = CellierBouteille::modifierQuantiteBouteille($idCellier, $idBouteille, $millesime, $quantiteAjoute);
 
-        if($estAjoute){
+        if ($estAjoute) {
             return response()->json($quantiteAjoute);
         }
     }
 
-     /**
+    /**
      *
      * Décrémenter de 1 la quantité de la bouteille dans un cellier
      */
@@ -220,10 +228,10 @@ class CellierBouteilleController extends Controller
 
         $estBue = CellierBouteille::modifierQuantiteBouteille($idCellier, $idBouteille, $millesime, $quantiteBue);
 
-        if($estBue){
+        if ($estBue) {
             return response()->json($quantiteBue);
         }
-         return redirect('cellier');
+        return redirect('cellier');
     }
 
     /**
@@ -248,6 +256,4 @@ class CellierBouteilleController extends Controller
     {
         //
     }
-
-
 }
