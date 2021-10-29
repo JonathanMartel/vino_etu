@@ -46,19 +46,38 @@ class BouteilleController extends Router
 	}
 
 	/**
-	 * Change la quantité d'une bouteille.
+	 * Gère les actions des requêtes PUT de bouteilles.
 	 *
 	 * @return void
 	 */
-	public function modifierQuantiteBouteilleCellier()
+	public function putBouteille()
 	{
-		$body = json_decode(file_get_contents('php://input'));
+		if (count($this->urlParams) == 1) {
+			$body = json_decode(file_get_contents('php://input'));
 
-		if (!empty($body)) {
-			$bteClassObj = new BouteilleModele;
-			$resultat = $bteClassObj->modifierQuantiteBouteilleCellier($body->id, $body->quantite);
+			if (!empty($body)) {
+				$bteClassObj = new BouteilleModele;
+				$bouteilles = $bteClassObj->modifierBouteille($body);
 
-			$this->retour['data'] = $resultat;
+				$this->retour['data'] = $bouteilles;
+			} else {
+				$this->retour['erreur'] = $this->erreur(400);
+				unset($this->retour['data']);
+			}
+		} else if (count($this->urlParams) == 2) {
+			if ($this->urlParams[1] == 'quantite') {
+				$body = json_decode(file_get_contents('php://input'));
+
+				if (!empty($body)) {
+					$bteClassObj = new BouteilleModele;
+					$bouteilles = $bteClassObj->modifierQuantiteBouteilleCellier($body->id, $body->quantite);
+
+					$this->retour['data'] = $bouteilles;
+				} else {
+					$this->retour['erreur'] = $this->erreur(400);
+					unset($this->retour['data']);
+				}
+			}
 		} else {
 			$this->retour['erreur'] = $this->erreur(400);
 			unset($this->retour['data']);

@@ -147,7 +147,7 @@ class Router
 				break;
 			case 'bouteilles':
 				$bouteilleClassObj = new BouteilleController;
-				$bouteilleClassObj->modifierQuantiteBouteilleCellier();
+				$bouteilleClassObj->putBouteille();
 				break;
 			case 'celliers':
 				echo json_encode('celliers put');
@@ -201,7 +201,7 @@ class Router
 		$access = false;
 		$headers = apache_request_headers();
 
-		if (isset($headers['authorization'])) {
+		if (isset($headers['Authorization'])) {
 			if (isset($_SERVER['PHP_AUTH_PW']) && isset($_SERVER['PHP_AUTH_USER'])) {
 				if ($_SERVER['PHP_AUTH_PW'] == 'vino' && $_SERVER['PHP_AUTH_USER'] == 'vino') {
 					$access = true;
