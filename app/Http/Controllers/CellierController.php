@@ -16,9 +16,12 @@ class CellierController extends Controller
     public function index()
     {
         if (Auth::check()) {
-            $user_id = Auth::user()->id;
-            //$user_id = 2;
-            $userCelliers = Cellier::getCelliersByUser($user_id);
+
+            $userCelliers = Cellier::getCelliersByUser(Auth::user()->id);
+                        
+            if (Auth::user()->id <> 1 && !isset($userCelliers->id)){
+                return view('celliers.create');
+            }
 
             return view('celliers.index', ['celliers' => $userCelliers]);
         }
