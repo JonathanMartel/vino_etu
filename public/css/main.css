@@ -24,7 +24,7 @@ h1, h2, h3, h4, h5 {
 }
 
 h1 {
-    font-size:1.953rem;
+    font-size:1.563rem;
     font-family: 'Acme', sans-serif;
     color: #7A5958;
     text-align: center;
@@ -58,8 +58,8 @@ body {
 
 
 img {
-    width: 48.83px;
-    height: 48.83px;
+    width: 39.06px;
+    height: 39.06px;
 }
 
 .logo{
@@ -228,7 +228,7 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
 .bouton-ajout-conteneur{
     display: flex;
     justify-content: start;
-
+    margin-top:0;
     margin: 0.64rem;
 }
 

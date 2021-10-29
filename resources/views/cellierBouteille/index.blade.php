@@ -9,9 +9,9 @@
 
 
 <header>
-    <div class="cellier">
+    <!-- <div class="cellier">
         <span>Cellier | {{ $cellier->nom }}</span>
-    </div>
+    </div> -->
     <div class="emplacement">
         <span>Emplacement | {{ $cellier->localisation }}</span>
     </div>
@@ -32,7 +32,7 @@
 
 <main>
     <div class="entete-page">
-        <h1>Vos vins</h1>
+        <h1>{{ $cellier->nom }}</h1>
         <img src="{{URL::asset('/assets/icon/deux-coupe-jaune.svg')}}" alt="Icone deux coupe de vin">
     </div>
 
