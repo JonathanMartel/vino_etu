@@ -53,13 +53,13 @@ export default class ListeBouteilleCellier extends React.Component {
 			body: JSON.stringify(donnes) 
 		}
     
-		fetch("https://rmpdwebservices.ca/webservice/php/bouteilles/", postMethod)
+		fetch("https://rmpdwebservices.ca/webservice/php/bouteilles/quantite", postMethod)
 			.then(res => res.json()) 
 			.then((res) => {
 				this.setState({id_usager: res.data})
 				if (res.data) {
 					this.fetchBouteilles();
-				} else {
+				} else { 
 					console.log("Erreur.")
 				}
 			});
@@ -87,7 +87,7 @@ export default class ListeBouteilleCellier extends React.Component {
 				body: JSON.stringify(donnes) 
 			}
 	
-			fetch("https://rmpdwebservices.ca/webservice/php/bouteilles/", postMethod)
+			fetch("https://rmpdwebservices.ca/webservice/php/bouteilles/quantite", postMethod)
 				.then(res => res.json()) 
 				.then((res) => {
 					this.setState({id_usager: res.data})
