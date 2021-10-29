@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cellier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CellierController extends Controller
 {
@@ -15,6 +16,16 @@ class CellierController extends Controller
     public function index()
     {
         //
+    }
+
+    /**
+     *
+     * Récupérer les bouteilles contenu dans un cellier donné.
+     *
+     * @param int|string $cellierId l'id du cellier d'on on veut afficher l'inventaire
+     */
+    public function obtenirBouteilles(int|string $cellierId, array $filtres = null) {
+        return Cellier::obtenirBouteillesParCellier($cellierId);
     }
 
     /**

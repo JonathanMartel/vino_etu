@@ -25,7 +25,7 @@ class CellierBouteilleController extends Controller
 
     /**
      *
-     * Afficher les bouteilles contenu dans un cellier donné.
+     * Récupérer les bouteilles contenu dans un cellier donné.
      *
      * @param int|string $cellierId l'id du cellier d'on on veut afficher l'inventaire
      */
