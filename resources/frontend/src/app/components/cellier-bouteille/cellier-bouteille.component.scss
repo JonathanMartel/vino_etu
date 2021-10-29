@@ -82,12 +82,16 @@
 
 
 .mat-form-field {
-    max-width: 5ch;
-    padding: 0 0 0 .75em;
+    max-width: 4ch;
 }
 
 .mat-form-field-appearance-fill {
     padding: 0;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-flex{
+    background-color: white;
+    height: 10px;
 }
 
 .inventaire-form-field .mat-form-field-flex{
