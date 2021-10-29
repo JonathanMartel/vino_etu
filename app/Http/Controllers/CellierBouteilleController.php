@@ -55,12 +55,17 @@ class CellierBouteilleController extends Controller
      */
     public function store(Request $request)
     {
-        $date_achat = 0; 
-
-        if(!isset($request->millesime)) {
-            $request->millesime = 0;
+        
+        $date_achat = null;
+     
+         if(isset($request->date_achat)){
+           $date_achat = date('Y-m-d', strtotime($request->date_achat));                   
         }
 
+        if(empty($request->millesime)) {
+            $request->millesime = 1000;
+        }
+        return $request->millesime;
         $request->validate([
             'nom' => 'required',
             'quantite' => 'integer|gte:0',
@@ -85,11 +90,7 @@ class CellierBouteilleController extends Controller
             }else {
 
                
-                if(isset($request->date_achat)){
-                    
-                    $date_achat = date('Y-m-d', strtotime($request->date_achat));
-                   
-                }
+               
             if(isset($bouteilleExistante[0])) {
  
                     $cellierBouteille = new CellierBouteille;
@@ -102,8 +103,8 @@ class CellierBouteilleController extends Controller
 
                     if($request->file) {
                         $fileName = time().'_'.$request->file->getClientOriginalName();
-                        $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
-                        $request->url_img = URL::to(''). "/storage/" . $filePath;
+                        $request->file('file')->move(public_path().'/img',$fileName);
+                        $request->url_img = URL::to('') . '/img/' . $fileName;
                     }
 
                     $bouteille = Bouteille::create([
@@ -129,8 +130,8 @@ class CellierBouteilleController extends Controller
         }else {
             if($request->file) {
                 $fileName = time().'_'.$request->file->getClientOriginalName();
-                $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
-                $request->url_img = URL::to(''). "/storage/" . $filePath;
+                $request->file('file')->move(public_path().'/img',$fileName);
+                $request->url_img = URL::to('') . '/img/' . $fileName;
             }else {
                 $request->url_img = URL::to(''). "/assets/icon/bouteille-cellier.svg";
     

@@ -62,7 +62,7 @@
         </div>
         <div class="input-field col s12">
           <select name ="millesime">
-            <option value="" disabled selected></option>
+            <option value="0000" disabled selected></option>
             {{ $anneeDebut= 1700 }}
             {{ $anneePresent = date('Y') }}
 
@@ -70,7 +70,7 @@
                 <option value="{{ $i }}" @if( old('millesime') == $i) selected @endif>{{ $i }}</option>
             @endfor
           </select>
-          <label name="labelMillesime">{{ old('millesimes') ?? 'Millesime' }}</label>
+          <label name="labelMillesime">{{ old('millesime-existant') ?? 'Millesime' }}</label>
           <span class="helper-text" data-error="Format invalid"></span>
         </div>
         <div class="input-field col s12">
@@ -119,7 +119,7 @@
           </select>
         </div>
         <input type="hidden" name="cellier_id" value="{{ $idCellier }}" id="cellier_id">
-        <input type="hidden" name="millesimes" value="{{ old('millesimes') }}" id="millesimes">
+        <input type="hidden" name="millesime-existant" value="{{ old('millesime-existant') }}" id="millesime-existant">
         <input type="hidden" name="bouteille_id" value="{{ old('bouteille_id') }}" id="bouteille_id">
         <input type="hidden" name="url_img" value="{{ old('url_img') }}" id="url_img">
         <div class="col s12 btn-space">
