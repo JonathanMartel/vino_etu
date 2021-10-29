@@ -55,16 +55,17 @@ class CellierBouteilleController extends Controller
      */
     public function store(Request $request)
     {
-        $date_achat = 0;
-
-        if (!isset($request->millesime)) {
-            $request->millesime = 0;
+        
+        $date_achat = null;
+     
+         if(isset($request->date_achat)){
+           $date_achat = date('Y-m-d', strtotime($request->date_achat));                   
         }
-
+   
         $request->validate([
-            'nom' => 'required',
+            'nom' => 'required|max:111',
             'quantite' => 'integer|gte:0',
-            'prix' => 'numeric|regex:/[0-9]+(\.[0-9][0-9]?)?/|gte:0',
+            'prix' => 'numeric|regex:/[0-9]+(\.[0-9][0-9]?)?/|gte:0|max:100000',
             'pays' => 'nullable|regex:^[A-ZÀÂÇÉÈÊËÎÏÔÛÙÜŸÑa-zàâçéèêëîïôûùüÿñ]+$^',
             'type_id' => 'required|exists:types,id',
             'format_id' => 'required|exists:formats,id',
@@ -84,25 +85,25 @@ class CellierBouteilleController extends Controller
                 return back()->withInput()->with('erreur', "Bouteille existe déjà");
             } else {
 
-
-                if (isset($request->date_achat)) {
-
-                    $date_achat = date('Y-m-d', strtotime($request->date_achat));
-                }
-                if (isset($bouteilleExistante[0])) {
-
+                if(isset($bouteilleExistante[0])) {
+ 
                     $cellierBouteille = new CellierBouteille;
                     $cellierBouteille->fill($request->all());
                     $cellierBouteille->date_achat = $date_achat;
+
+                    if(empty($request->millesime)) {
+                        $cellierBouteille->millesime = 0;
+                    }
+
                     $cellierBouteille->save();
                     
                     return redirect("cellier/". $request->cellier_id)->withInput()->with("nouvelleBouteille", "nouvelle bouteille ajoutée" );
                 }else {
 
-                    if ($request->file) {
-                        $fileName = time() . '_' . $request->file->getClientOriginalName();
-                        $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
-                        $request->url_img = URL::to('') . "/storage/" . $filePath;
+                    if($request->file) {
+                        $fileName = time().'_'.$request->file->getClientOriginalName();
+                        $request->file('file')->move(public_path().'/img',$fileName);
+                        $request->url_img = URL::to('') . '/img/' . $fileName;
                     }
 
                     $bouteille = Bouteille::create([
@@ -119,19 +120,25 @@ class CellierBouteilleController extends Controller
                     $cellierBouteille = new CellierBouteille;
                     $cellierBouteille->fill($request->all());
                     $cellierBouteille->bouteille_id = $bouteille->id;
+
+                    if(empty($request->millesime)) {
+                        $cellierBouteille->millesime = 0;
+                    }
+
                     $cellierBouteille->date_achat = $date_achat;
                     $cellierBouteille->save();
                     
                     return redirect("cellier/". $request->cellier_id)->withInput()->with("nouvelleBouteille", "nouvelle bouteille ajoutée" );
                 }
             }
-        } else {
-            if ($request->file) {
-                $fileName = time() . '_' . $request->file->getClientOriginalName();
-                $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
-                $request->url_img = URL::to('') . "/storage/" . $filePath;
-            } else {
-                $request->url_img = URL::to('') . "/assets/icon/bouteille-cellier.svg";
+        }else {
+            if($request->file) {
+                $fileName = time().'_'.$request->file->getClientOriginalName();
+                $request->file('file')->move(public_path().'/img',$fileName);
+                $request->url_img = URL::to('') . '/img/' . $fileName;
+            }else {
+                $request->url_img = URL::to(''). "/assets/icon/bouteille-cellier.svg";
+    
             }
 
             $bouteille = Bouteille::create([
@@ -149,6 +156,11 @@ class CellierBouteilleController extends Controller
             $cellierBouteille->fill($request->all());
             $cellierBouteille->bouteille_id = $bouteille->id;
             $cellierBouteille->date_achat = $date_achat;
+
+            if(empty($request->millesime)) {
+                $cellierBouteille->millesime = 0;
+            }
+
             $cellierBouteille->save();
             
             return redirect("cellier/". $request->cellier_id)->withInput()->with("nouvelleBouteille", "nouvelle bouteille ajoutée" );

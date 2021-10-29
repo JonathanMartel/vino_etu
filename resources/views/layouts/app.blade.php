@@ -35,7 +35,7 @@
 <div id="body_container">
     <header class="flex-row padding-1rem z-depth-1">
             <!-- Voir la navigation !!! -->
-        <a href="{{ route('cellier') }}" class="brand-logo left "><img src="{{asset('assets/logo/logo-vino.svg')}}"></a>
+        <a href="{{ route('cellier') }}" class="brand-logo left "><img src="{{asset('assets/logo/logo-vino.svg')}}" alt="logo InVino"></a>
 
         <nav class="nav-extended white z-depth-0">
             <div class="nav-wrapper">
@@ -46,7 +46,7 @@
                     <li><a href="{{ route('login') }}"><span class="black-text">Se connecter</sapn></a></li>
                     @else
                     <li><a href="{{ route('logout') }}"><span class="black-text">Se déconnecter</span></a></li>
-                    <li><a href="{{ route('dashboard') }}"><i class="large material-icons"><span class="black-text">account_circle</span></i></a></li>
+                    <!--<li><a href="{{ route('dashboard') }}"><i class="large material-icons"><span class="black-text">account_circle</span></i></a></li>-->
                     @endguest
                 </ul>
             </div>
@@ -56,16 +56,16 @@
                     <li><a href="{{ route('register') }}">S'inscrire</a></li>
                     <li><a href="{{ route('login') }}">Se connecter</a></li>
                 @else
-                    <li><a href="{{ route('dashboard') }}"><span class="black-text">Mon Compte</span></a></li>
-                    <li><a href="{{ route('logout') }}"><span class="black-text">Se déconnecter</span></a></li>
+<!--                     <li><a href="{{ route('dashboard') }}"><span class="black-text">Mon Compte</span></a></li>
+ -->                    <li><a href="{{ route('logout') }}"><span class="black-text">Se déconnecter</span></a></li>
                 @endguest
             </ul>
             <div class="nav-content row white">
                 <div class="col s6">
                     <ul class="tabs tabs-transparent hide-on-med-and-down">
                         <li class="tab"><a href="{{ route('cellier') }}"><span class="black-text">Vos celliers</span></a></li>
-                        <li class="tab"><a href="{{ route('dashboard') }}"><span class="black-text">Compte</span></a></li>
-                    </ul>
+<!--                         <li class="tab"><a href="{{ route('dashboard') }}"><span class="black-text">Compte</span></a></li>
+ -->                    </ul>
                 </div>
             </div>
         </nav>

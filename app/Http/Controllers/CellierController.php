@@ -85,6 +85,11 @@ class CellierController extends Controller
      */
     public function update(Request $request, Cellier $cellier)
     {
+        $request->validate([
+            'nom' => 'required | max:45',
+            'localisation' => 'required | max:45',
+        ]);
+
         $cellier->update([
             'nom' => $request->nom,
             'localisation' => $request->localisation,

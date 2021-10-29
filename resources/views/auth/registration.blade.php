@@ -10,7 +10,7 @@
       <div class="card">
         <div class="card-content flex-center entete-page">
           <h4>Créer un compte</h4>
-          <img src="{{asset('assets/icon/bouteille-diagonale.svg')}}" class="center"></a>
+          <img src="{{asset('assets/icon/bouteille-diagonale.svg')}}" class="center" alt="icone bouteille diagonale"></a>
         </div>
 
         <div class="card-content">
