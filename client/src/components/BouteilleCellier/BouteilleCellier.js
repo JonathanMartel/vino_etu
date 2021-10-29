@@ -16,7 +16,6 @@ export default class BouteilleCellier extends React.Component {
 		return ( 
 				<article className="uneBouteille">
 					<img src={this.state.imgSaq} />
-					<p>Bouteille_id : {this.props.info.id}</p>
 					<p>Nom : {this.props.info.nom}</p>
 					<p>Pays : {this.props.info.pays}</p>
 					<p>Millesime : {this.props.info.millesime}</p>
