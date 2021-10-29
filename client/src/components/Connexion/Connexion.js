@@ -11,7 +11,7 @@ export default class Connexion extends React.Component{
         this.state = {
             courriel : "",
             mot_passe : "",
-            id_usager : null,
+            id_usager : undefined,
             estConnecte : false
         }
         
@@ -59,8 +59,8 @@ export default class Connexion extends React.Component{
             fetch("https://rmpdwebservices.ca/webservice/php/usagers/login/", postMethod)
                 .then(res => res.json()) 
                 .then((res) => {
-                    this.setState({id_usager: res.data})
                     if (res.data) {
+                        this.setState({id_usager: res.data})
                         console.log("Connexion avec succès!!!", res.data)
                         /* this.props.history.push("/"); */
                         this.props.history.push("/ListeCelliers/" + res.data);
