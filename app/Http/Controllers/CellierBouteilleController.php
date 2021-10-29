@@ -25,7 +25,7 @@ class CellierBouteilleController extends Controller
 
     /**
      *
-     * Afficher les bouteilles contenu dans un cellier donné
+     * Afficher les bouteilles contenu dans un cellier donné.
      *
      * @param int|string $cellierId l'id du cellier d'on on veut afficher l'inventaire
      */
@@ -50,7 +50,7 @@ class CellierBouteilleController extends Controller
 
     /**
      *
-     * Afficher les bouteilles contenu dans un cellier donné
+     * Modifier l'inventaire d'une bouteille dans un cellier.
      *
      * @param int|string $cellierBouteilleId l'id du pivot où se trouve l'inventaire
      *
