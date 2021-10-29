@@ -74,12 +74,11 @@ export default class Inscription extends React.Component{
                 method: 'POST', 
                 headers: {
                     'Content-type': 'application/json',
-                    'Authorization': 'Basic ' + btoa('vino:vino')
+                    'authorization': 'Basic ' + btoa('vino:vino')
                 },
                 body: JSON.stringify(donnes) 
             }
     
-            //Pas encore!!!
             /* fetch("http://127.0.0.1:8000/webservice/php/usagers/", postMethod)
                 .then(res => res.json())  */
 
@@ -98,37 +97,32 @@ export default class Inscription extends React.Component{
 
                 <div>
                     <p>Prenom</p>
-                    <input name="prenom" value={this.state.prenom} onChange={evt => this.setState({ prenom: evt.target.value})} placeholder="Entrez votre prenom" type="text" />
+                    <input name="prenom" onKeyUp={evt => this.setState({ prenom: evt.target.value})} placeholder="Entrez votre prenom" type="text" />
                 </div>
 
                 <div>
                     <p>Nom</p>
-                    <input name="nom" value={this.state.nom} onChange={evt => this.setState({ nom: evt.target.value})} placeholder="Entrez votre nom" type="text" />
+                    <input name="nom" onKeyUp={evt => this.setState({ nom: evt.target.value})} placeholder="Entrez votre nom" type="text" />
                 </div>
                 
                 <div>
                     <p>Téléphone</p>
-                    <input name="telephone" value={this.state.telephone} onChange={evt => this.setState({ telephone: evt.target.value})} placeholder="Entrez votre telephone" type="text" />
+                    <input name="telephone" onKeyUp={evt => this.setState({ telephone: evt.target.value})} placeholder="Entrez votre telephone" type="text" />
                 </div>
-
-                {/* <div>
-                    <p>Utilisateur</p>
-                    <input name="utilisateur" value={this.state.utilisateur} onChange={evt => this.setState({ utilisateur: evt.target.value})} placeholder="Entrez votre utilisateur" type="text" />
-                </div> */}
 
                 <div>
                     <p>Courriel</p>
-                    <input name="courriel" value={this.state.courriel} onChange={evt => this.setState({ courriel: evt.target.value})} placeholder="Entrez votre courriel" type="email" />
+                    <input name="courriel" onKeyUp={evt => this.setState({ courriel: evt.target.value})} placeholder="Entrez votre courriel" type="email" />
                 </div>
 
                 <div>
                     <p>Mot de passe</p>
-                    <input name="mot_passe" value={this.state.mot_passe} onChange={evt => this.setState({ mot_passe: evt.target.value})} placeholder="Entrez votre mot de passe" type="password" />
+                    <input name="mot_passe" onKeyUp={evt => this.setState({ mot_passe: evt.target.value})} placeholder="Entrez votre mot de passe" type="password" />
                 </div>
 
                 <div>
                     <p>Verification de Mot de passe</p>
-                    <input name="mot_passe_verif" value={this.state.mot_passe_verif} onChange={evt => this.setState({ mot_passe_verif: evt.target.value})} placeholder="Entrez votre verification de mot de passe" type="password" />
+                    <input name="mot_passe_verif" onKeyUp={evt => this.setState({ mot_passe_verif: evt.target.value})} placeholder="Entrez votre verification de mot de passe" type="password" />
                 </div>
                 <br/><br/>
                 <div>

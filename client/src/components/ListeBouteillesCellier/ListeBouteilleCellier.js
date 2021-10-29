@@ -4,93 +4,126 @@ import { Link } from "react-router-dom";
 
 import './ListeBouteilleCellier.css';
 
-export default class ListeBouteilles extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			bouteilles: [],
-			cellierId: "1", // Dummy pour faire tests
-			qteModif: "",
-			qteInventaire: ""
-		}
+export default class ListeBouteilleCellier extends React.Component {
+	constructor(props){
+	  super(props);
+	  this.state = {
+		qteModif: "",
+		qteInventaire: "",
+		items: [],
+		message: ""
+	  }
 
-		this.ajouter = this.ajouter.bind(this);
-		this.retirer = this.retirer.bind(this);
-		this.fetchBouteilles = this.fetchBouteilles.bind(this);
-
+	  this.fetchBouteilles = this.fetchBouteilles.bind(this);
+	  this.ajouter = this.ajouter.bind(this);
+	  this.retirer = this.retirer.bind(this);
 	}
 
-	fetchBouteilles() {
-		fetch("http://rmpdwebservices.ca/webservice/php/bouteilles/cellier/" + this.state.cellierId, {
+	fetchBouteilles(){
+		fetch("https://rmpdwebservices.ca/webservice/php/celliers/" + this.props.match.params.id, {
 			method: 'GET',
 			headers: new Headers({
 				"Content-Type": "application/json",
 				"authorization": "Basic " + btoa("vino:vino"),
 			}),
 		})
-			.then(reponse => reponse.json())
-			.then((donnees) => {
-				this.setState({ bouteilles: donnees.data });
-			});
+            .then(reponse => reponse.json())
+            .then((donnees)=>{
+				console.log('Diana : ', donnees)
+                this.setState({items:donnees.data});
+            });
 	}
 
-	ajouter(id) {
+	ajouter(idItem) {
+		console.log("Ajouter 1 bouteille");
+		console.log("Ajouter :", idItem.id);
+		console.log("Ajouter :", idItem.nom);
+        
+		const donnes = {
+			id : idItem.id,
+			quantite : 1
+		}
 
-		const entete = new Headers();
-		entete.append("Content-Type", "application/json");
-
-		const reqOptions = {
-			method: 'PUT',
-			headers: entete,
-			body: "", // Insérer le contenu du body nécessaire
-			redirect: 'follow'
-		};
-		return fetch("", reqOptions) // Insérer l'adresse de la requete HTTP 
-			.then(reponse => reponse.json())
-			.then(() => {
-				this.fetchBouteilles();
+		const postMethod = {
+			method: 'PUT', 
+			headers: {
+				'Content-type': 'application/json',
+				'authorization': 'Basic ' + btoa('vino:vino')
+			},
+			body: JSON.stringify(donnes) 
+		}
+    
+		fetch("https://rmpdwebservices.ca/webservice/php/bouteilles/", postMethod)
+			.then(res => res.json()) 
+			.then((res) => {
+				this.setState({id_usager: res.data})
+				if (res.data) {
+					this.fetchBouteilles();
+				} else {
+					console.log("Erreur.")
+				}
 			});
-
+			this.setState({message: ""});
 	}
 
-	retirer(id) {
-
-		this.setState({ qteModif: "-" });
-
-		const entete = new Headers();
-		entete.append("Content-Type", "application/json");
-
-		const reqOptions = {
-			method: 'PUT',
-			headers: entete,
-			body: "", // Insérer le contenu du body nécessaire
-			redirect: 'follow'
-		};
-		return fetch("", reqOptions) // Insérer l'adresse de la requete HTTP 
-			.then(reponse => reponse.json())
-			.then(() => {
-				this.fetchBouteilles();
-			});
+	retirer(idItem){
+		console.log("Retirer 1 bouteille");
+		console.log("Retirer Diana", idItem.id);
+		console.log("Retirer Diana", idItem.nom);
+		console.log("Retirer quantite", idItem.quantite);
+		
+		if (idItem.quantite >= 1) {
+			const donnes = {
+				id : idItem.id,
+				quantite : -1
+			}
+	
+			const postMethod = {
+				method: 'PUT', 
+				headers: {
+					'Content-type': 'application/json',
+					'authorization': 'Basic ' + btoa('vino:vino')
+				},
+				body: JSON.stringify(donnes) 
+			}
+	
+			fetch("https://rmpdwebservices.ca/webservice/php/bouteilles/", postMethod)
+				.then(res => res.json()) 
+				.then((res) => {
+					this.setState({id_usager: res.data})
+					if (res.data) {
+						this.fetchBouteilles();
+					} else {
+						console.log("Erreur.")
+					}
+				});
+			this.setState({message: ""});
+		} else {
+			console.log("Il n'y a pas de bouteilles pour retirer");
+			this.setState({message: "Il n'y a pas de bouteilles pour retirer"});
+		}
+		
 	}
 
-	componentDidMount() {
+	componentDidMount(){
 		this.fetchBouteilles();
-	}
+    }
 
 	render() {
-		const bouteilles = this.state.bouteilles
-			.map((bouteille, index) => {
-				return (
-					<div>
-						<BouteilleCellier bouteille={bouteille} key={index} />
-						<button onClick={this.ajouter(index)}>Ajouter une bouteille</button>
-						<button onClick={this.retirer(index)}>Retirer une bouteille</button>
-					</div>
-				);
-			})
+		const bouteilles = this.state.items
+								.map((item, index)=>{
+									return (
+										<div key={index}>
+											{/* <p className="messagRouge"> {this.state.message} </p> */}
+											<BouteilleCellier info={item} />
+											<button type="button" onClick={(e) => this.ajouter(item)}>Ajouter une bouteille</button>
+											<button type="button" onClick={(e) => this.retirer(item)}>Retirer une bouteille</button>
+										</div>
+									);
+								})
 
 		return (
-			<div>
+			<section>
 				<Link to={"/ajoutBouteille"}>
 					<span>Ajouter une nouvelle bouteille à votre cellier</span>
 				</Link>
@@ -98,8 +131,7 @@ export default class ListeBouteilles extends React.Component {
 				<div>
 					{bouteilles}
 				</div>
-				<p>Test</p>
-			</div>
+			</section>
 		);
 	}
 }
