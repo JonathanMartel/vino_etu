@@ -41,8 +41,7 @@
     </a>
     @empty
     <div class="list-empty">
-        <p>Vous n'avez pour l'instant aucun cellier.</p>
-        <a class="btn waves-effect waves-light button" href="{{route('cellier.create')}}">Ajouter un cellier</a>
+        <p>Vous n'avez pour l'instant aucun cellier. Veuillez en créer un avant de continuer</p>
     </div>
 
     @endforelse
