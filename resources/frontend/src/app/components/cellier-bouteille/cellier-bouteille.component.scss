@@ -82,30 +82,31 @@
 
 .mat-form-field {
     max-width: 4ch;
+    padding: 0 0 0 .75em;
 }
 
 .mat-form-field-appearance-fill {
     padding: 0;
 }
 
-.mat-form-field-appearance-fill .mat-form-field-flex{
-    background-color: white;
-    height: 10px;
-}
-
-.inventaire-form-field .mat-form-field-flex{
-    padding: 0;
-    text-align: center;
-    background-color: white;
+.wrapper{
+    display: flex;
+    border-top: 1px solid #e9e8e5;
 }
 
 .resultat-vin{
     flex: 1;
+    
 }
 
 .boutons-inventaire{
   margin: auto 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  
 }
+
 
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {

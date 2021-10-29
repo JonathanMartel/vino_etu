@@ -45,4 +45,6 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mat-form-field-appearance-fill .mat-form-field-flex{
   background-color: white;
 }
-
+.mat-mini-fab:not([class*=mat-elevation-z]){
+  box-shadow: none;
+}
