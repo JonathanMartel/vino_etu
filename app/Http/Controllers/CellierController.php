@@ -18,8 +18,7 @@ class CellierController extends Controller
         if (Auth::check()) {
 
             $userCelliers = Cellier::getCelliersByUser(Auth::user()->id);
-                        
-            if (Auth::user()->id <> 1 && !isset($userCelliers->id)){
+            if (Auth::user()->id <> 1 && !isset($userCelliers[0])){
                 return view('celliers.create');
             }
 
