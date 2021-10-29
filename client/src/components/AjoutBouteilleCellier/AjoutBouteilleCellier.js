@@ -25,6 +25,12 @@ export default class AjoutBouteille extends React.Component {
 		// Binding des fonctions
 		this.fetchBouteillesSAQ = this.fetchBouteillesSAQ.bind(this);
 		this.ajouterBouteilleCellier = this.ajouterBouteilleCellier.bind(this);
+		this.choixBouteille = this.choixBouteille.bind(this);
+
+	}
+
+	componentDidUpdate() {
+		console.log(this.state.nomBouteilleSAQ);
 	}
 
 	fetchBouteillesSAQ(event) {
@@ -45,13 +51,14 @@ export default class AjoutBouteille extends React.Component {
 			.then(reponse => reponse.json())
 			.then((donnees) => {
 				this.setState({ bouteillesSAQ: donnees.data })
-				console.log(donnees.data.url_saq);
+				
 			});
 	}
 
-	choixBouteille() {
-		this.setState({ nomBouteilleSAQ: this.bouteille.nom, prixBouteilleSAQ: this.bouteille.prix_saq });
-		console.log(this.state.nomBouteilleSAQ);
+	choixBouteille(info) {
+		console.log(info.nom);
+		this.setState({ nomBouteilleSAQ: info.nom, prixBouteilleSAQ: info.prix_saq });
+		this.setState({bouteillesSAQ: []});	
 	}
 
 	ajouterBouteilleCellier() {
@@ -87,13 +94,15 @@ export default class AjoutBouteille extends React.Component {
 			});
 
 	}
+	
 
 	render() {
 		console.log(this.state.bouteillesSAQ);
 		const bouteilles = this.state.bouteillesSAQ
 			.map((bouteille, index) => {
 				return (
-					<BouteilleSAQ info={bouteille} onClick={this.choixBouteille.bind(bouteille)} key={index} />
+					<BouteilleSAQ info={bouteille} choixBouteille={this.choixBouteille} key={index} />
+					
 				)
 			})
 
@@ -106,11 +115,11 @@ export default class AjoutBouteille extends React.Component {
 					{bouteilles}
 				</ul>
 				<div>
-					<p>Nom : <input name="nom" value={this.state.nom} onChange={e => this.setState({ nom: e.target.value })} /></p>
+					<p>Nom : <input name="nom" value={this.state.nomBouteilleSAQ} onChange={e => this.setState({ nom: e.target.value })} /></p>
 					<p>Millesime : <input name="millesime" value={this.state.millesime} onChange={e => this.setState({ millesime: e.target.value })} /></p>
 					<p>Quantité : <input name="quantite" value={this.state.quantite} onChange={e => this.setState({ quantite: e.target.value })} /></p>
 					<p>Date d'achat : <input name="date_achat" value={this.state.date_achat} onChange={e => this.setState({ date_achat: e.target.value })} /></p>
-					<p>Prix : <input name="prix" value={this.state.prix} onChange={e => this.setState({ prix: e.target.value })} /></p>
+					<p>Prix : <input name="prix" value={this.state.prixBouteilleSAQ} onChange={e => this.setState({ prix: e.target.value })} /></p>
 					<p>Peux être garder ? : <input name="garde_jusqua" value={this.state.garde} onChange={e => this.setState({ garde: e.target.value })} /></p>
 					<p>Commentaires: <input name="notes" value={this.state.commentaires} onChange={e => this.setState({ commentaires: e.target.value })} /></p>
 					
