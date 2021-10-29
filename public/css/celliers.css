@@ -18,7 +18,7 @@
 }
 
 .cellier {
-    padding: 1rem;
+    padding: 0.64rem;
     border-radius: 5px;
     flex-grow: 1;
     background-color: #BBC7C1;
@@ -101,5 +101,36 @@
     display: flex;
 
 }
+
+.bouton-ajout-vin-conteneur{
+    display: flex;
+    justify-content: center;
+    margin: 0.64rem;
+    margin-top: 0;
+}
+
+.bouton-ajout-vin{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 0.512rem;
+    padding-bottom: 0.512rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    border-style: solid;
+    border-color: #778D83;
+    border-radius: 30px;
+    color: #343B41;
+    font-weight: 700;
+
+}
+
+.entete-icon-bouton{
+    display: flex;
+    column-gap: 1rem;
+    justify-content: center;
+}
+
+
 
 

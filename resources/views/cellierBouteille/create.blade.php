@@ -6,7 +6,8 @@
 @endif
 
 <div class="entete-page">
-  <h1>Nouveau vin</h1>
+  <h1 class="titre-formulaire">Nouveau vin</h1>
+  <img src="{{URL::asset('/assets/icon/deux-coupe-jaune.svg')}}" alt="Icone deux coupe de vin">
 </div>
 <div class="row">
   <div class="input-field col s12 recherche">
@@ -134,6 +135,9 @@
 
 
 @endsection
+
+
+
 <link href="{{asset('css/autocomplete.css')}}" rel="stylesheet" />
 <link href="{{asset('css/cellierBouteilles.css')}}" rel="stylesheet" />
 <script src="{{asset('js/cellierBouteille_create.js')}}"></script>
