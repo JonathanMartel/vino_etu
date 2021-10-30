@@ -196,9 +196,9 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
 }
 
 .btn-modifier:hover {
-	background-color: #774444;
+	background-color: #AB8A5D;
     color: #E5CB85;
-	border: 1px solid #E5CB85;
+
 }
 
 .btn-supprimer {
@@ -208,8 +208,8 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
 
 .btn-supprimer:hover {
     color: #774444;
-    background-color: #E5CB85;
-	border: 1px solid #774444;
+    background-color: #AC9678;
+
 }
 
 
