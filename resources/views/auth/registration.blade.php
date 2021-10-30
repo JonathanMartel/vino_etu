@@ -54,7 +54,7 @@
               </div>
               
               <div class="input-field col s12">
-                <a href="{{ route('login') }}" class="right">Vous avez déjà un compte? Ouvrir une session</a>
+                <a href="{{ route('login') }}" class="right">Déjà inscrit? Ouvrir une session</a>
               </div>      
             </div>	
           </form>

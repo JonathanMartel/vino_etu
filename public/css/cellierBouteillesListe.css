@@ -73,26 +73,34 @@ section{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color:#778D83;
     border-radius: 50%;
     width: 60px;
     height: 60px;
 }
+
+.bouton-cercle-add a{
+    background-color:#778D83;
+}
+
 
 .bouton-cercle-remove{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color:#7A5958;
     border-radius: 50%;
     width: 60px;
     height: 60px;
 }
 
-.icon-item{
-   color: white;
+.bouton-cercle-remove a {
+
+    background-color:#7A5958;
 }
 
+.bouton-cercle-remove a:hover {
+
+    background-color:#AC9678;
+}
 
   /* Materialize css */
 
@@ -119,9 +127,11 @@ section{
 .bouton-ajout-vin-conteneur{
     display: flex;
     justify-content: center;
-    margin: 0.64rem;
-    margin-top: 0;
+    margin-left: 0.64rem;
+    margin-right: 0.64rem;
+    margin-bottom: 1rem;
 }
+
 
 .bouton-ajout-vin{
     display: flex;
@@ -137,9 +147,14 @@ section{
     color: #343B41;
     font-weight: 700;
     background-color: #CDCED1;
+    transition: all 0.2s ease;
 
 }
 
+.bouton-ajout-vin:hover{
+    background-color:#778D83;
+    color: white;
+}
 .entete-icon-bouton{
     display: flex;
     column-gap: 1rem;

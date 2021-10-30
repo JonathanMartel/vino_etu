@@ -13,7 +13,7 @@
         <span>Cellier | {{ $cellier->nom }}</span>
     </div> -->
     <div class="emplacement">
-        <span>Localisation | {{ $cellier->localisation }}</span>
+        <span><img class="map-icone" src="{{URL::asset('/assets/icon/map-marker-rouge.svg')}}" alt="icone map"> {{ $cellier->localisation }}</span>
     </div>
 
     <!-- La barre de recherche n'est pas fonctionnel -->
@@ -61,7 +61,7 @@
 
             <div class=" flex bouton-conteneur">
                 <div class="bouton-cercle-remove">
-                    <a class="icon-item" name="btnRetirerBouteille" href="{{ route('boireBouteille',[
+                    <a class="btn-floating btn-large waves-effect waves-light " name="btnRetirerBouteille" href="{{ route('boireBouteille',[
                             'idCellier'=>$cellierBouteille->cellier_id,
                             'idBouteille'=>$cellierBouteille->bouteille_id,
                             'millesime'=> $cellierBouteille->millesime,
@@ -70,7 +70,7 @@
                     </a>
                 </div>
                 <div class="bouton-cercle-add" >
-                    <a  class="icon-item" name="btnAjouterBouteille" href="{{ route('ajouterBouteille',[
+                    <a  class="btn-floating btn-large waves-effect waves-light" name="btnAjouterBouteille" href="{{ route('ajouterBouteille',[
                             'idCellier'=>$cellierBouteille->cellier_id,
                             'idBouteille'=>$cellierBouteille->bouteille_id,
                             'millesime'=> $cellierBouteille->millesime
@@ -87,7 +87,6 @@
     @empty
     <div class="list-empty">
         <p>Vous n'avez pour l'instant aucun vin.</p>
-        <a class="btn waves-effect waves-light button" href="{{ route('ajouterVin', $cellier->id) }}">Ajouter un nouveau vin au cellier</a>
     </div>
 
    

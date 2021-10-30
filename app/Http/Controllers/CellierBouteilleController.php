@@ -222,7 +222,7 @@ class CellierBouteilleController extends Controller
         if ($estBue) {
             return response()->json($quantiteBue);
         }
-        return redirect('cellier');
+
     }
 
     /**

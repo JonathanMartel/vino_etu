@@ -15,4 +15,13 @@
     justify-content: center;
 }
 
+.image img {
+    height: 100px;
+    width: 100px;
+}
 
+
+#description {
+    overflow-y:visible;
+    height: 5em;
+}
