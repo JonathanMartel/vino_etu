@@ -38,7 +38,7 @@
 <div id="body_container">
     <header class="flex-row padding-1rem z-depth-1">
             <!-- Voir la navigation !!! -->
-        <a href="{{ route('cellier') }}" class="brand-logo left "><img src="{{asset('assets/logo/logo-vino.svg')}}" alt="logo InVino"></a>
+        <a href="{{ route('cellier') }}" class="brand-logo left "><img class="logo" src="{{asset('assets/logo/logo-vino.svg')}}" alt="logo InVino"></a>
 
         <nav class="nav-extended white z-depth-0">
             <div class="nav-wrapper">
@@ -88,6 +88,9 @@
             <p class="m-0 small">Copyright - In Vino Veritas</p>
         </div>
     </footer>
+
+
+  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="{{asset('js/scripts.js')}}"></script>
     <script src="{{asset('js/app.js')}}"></script>

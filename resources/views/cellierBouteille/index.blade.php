@@ -9,11 +9,11 @@
 
 
 <header>
-    <div class="cellier">
+    <!-- <div class="cellier">
         <span>Cellier | {{ $cellier->nom }}</span>
-    </div>
+    </div> -->
     <div class="emplacement">
-        <span>Emplacement | {{ $cellier->localisation }}</span>
+        <span><img class="map-icone" src="{{URL::asset('/assets/icon/map-marker-rouge.svg')}}" alt="icone map"> {{ $cellier->localisation }}</span>
     </div>
 
     <!-- La barre de recherche n'est pas fonctionnel -->
@@ -32,12 +32,12 @@
 
 <main>
     <div class="entete-page">
-        <h1>Vos vins</h1>
+        <h1>{{ $cellier->nom }}</h1>
         <img src="{{URL::asset('/assets/icon/deux-coupe-jaune.svg')}}" alt="Icone deux coupe de vin">
     </div>
 
-    <div class="bouton-ajout-conteneur">
-        <a class="bouton-cercle-ajout" href="{{ route('ajouterVin', $cellier->id) }}"><i class="material-icons">add</i></a></a>
+    <div class="bouton-ajout-vin-conteneur">
+        <a class="bouton-ajout-vin" href="{{ route('ajouterVin', $cellier->id) }}">Ajouter un vin</a>
     </div>
     @forelse($cellierBouteilles as $cellierBouteille)
     <section>
@@ -56,12 +56,12 @@
                     @endif
                 </p>
                 
-                <p>Qte | <span>{{$cellierBouteille->quantite}}</span></p>
+                <p class="quantite">Qte | <span>{{$cellierBouteille->quantite}}</span></p>
             </div>
 
             <div class=" flex bouton-conteneur">
                 <div class="bouton-cercle-remove">
-                    <a class="icon-item" name="btnRetirerBouteille" href="{{ route('boireBouteille',[
+                    <a class="btn-floating btn-large waves-effect waves-light " name="btnRetirerBouteille" href="{{ route('boireBouteille',[
                             'idCellier'=>$cellierBouteille->cellier_id,
                             'idBouteille'=>$cellierBouteille->bouteille_id,
                             'millesime'=> $cellierBouteille->millesime,
@@ -70,7 +70,7 @@
                     </a>
                 </div>
                 <div class="bouton-cercle-add" >
-                    <a  class="icon-item" name="btnAjouterBouteille" href="{{ route('ajouterBouteille',[
+                    <a  class="btn-floating btn-large waves-effect waves-light" name="btnAjouterBouteille" href="{{ route('ajouterBouteille',[
                             'idCellier'=>$cellierBouteille->cellier_id,
                             'idBouteille'=>$cellierBouteille->bouteille_id,
                             'millesime'=> $cellierBouteille->millesime
@@ -87,7 +87,6 @@
     @empty
     <div class="list-empty">
         <p>Vous n'avez pour l'instant aucun vin.</p>
-        <a class="btn waves-effect waves-light button" href="{{ route('ajouterVin', $cellier->id) }}">Ajouter un nouveau vin au cellier</a>
     </div>
 
    

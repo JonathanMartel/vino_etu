@@ -3,13 +3,17 @@
 
 En général
 
-espacement (px): 5, 10, 20, 50 (dans le doute ceci est une bonne référence)
+espacement voir l'échelle ci-bas!
 
 
 
 Convertion rem->px (échelle typo, tierce majeure)
 
+7.451rem/119.21px
+5.96rem/95.37px	
+4.768rem/76.29px
 3.815rem/61.04px	
+
 3.052rem/48.83px	
 2.441rem/39.06px	
 1.953rem/31.25px	
@@ -17,6 +21,10 @@ Convertion rem->px (échelle typo, tierce majeure)
 1.25rem/20.00px	
 1rem/16.00px	
 0.8rem/12.80px
+
+0.64rem/10.24px	
+0.512rem/8.19px	
+0.41rem/6.55px
 
 
 

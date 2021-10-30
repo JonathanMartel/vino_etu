@@ -6,7 +6,8 @@
 @endif
 
 <div class="entete-page">
-  <h1>Nouveau vin</h1>
+  <h1 class="titre-formulaire">Nouveau vin</h1>
+  <img src="{{URL::asset('/assets/icon/deux-coupe-jaune.svg')}}" alt="Icone deux coupe de vin">
 </div>
 <div class="row">
   <div class="input-field col s12 recherche">
@@ -79,7 +80,7 @@
           <span class="helper-text" data-error="Format invalid"></span>
         </div>
         <div class="input-field col s12">
-          <input id="prix" type="number" pattern="[0-9]+(\\.[0-9][0-9]?)?" name="prix" step=".01" min="0" max="100000" class="@if($errors->first('prix')) invalid @endif validate" value="{{ old('prix')}}">
+          <input id="prix" type="number" pattern="[0-9]+(\\.[0-9][0-9]?)?" name="prix" step=".01" min="0" max="100000" class="@if($errors->first('prix')) invalid @endif validate" value="{{ old('prix') ?? 0 }}">
           <label for="prix">Prix</label>
           <span class="helper-text" data-error="Format invalid"></span>
         </div>
@@ -134,6 +135,9 @@
 
 
 @endsection
+
+
+
 <link href="{{asset('css/autocomplete.css')}}" rel="stylesheet" />
 <link href="{{asset('css/cellierBouteilles.css')}}" rel="stylesheet" />
 <script src="{{asset('js/cellierBouteille_create.js')}}"></script>

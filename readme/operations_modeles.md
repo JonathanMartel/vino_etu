@@ -13,9 +13,10 @@
     - get un vin avec son id
 - obtenirListeSAQ()
     - index global des vins
-- recherchesBouteilles()
+- rechercheBouteillesParMotCle()
     - dans les vins de la SAQ et les vins du user connecté
-
+- rechercheBouteilleExistante()
+    - vérifier si une bouteille existe déjè avant de la créer
 
 ###CellierBouteille
 
@@ -26,11 +27,12 @@
 
 // !!! 2 options pour ajouter ou retirer plusieurs bouteilles dansun cellier en même temps : faire 2 nouvelles méthodes ou réutiliser et modifier les 2 méthode plus haut. -> tester si fonctionne de nouveau
 
-- ajouterBouteilleCellier()     //Ajouter un nouveau vin
+- ajouterBouteilleCellier()     //Ajouter une bouteille dans le cellier
 - supprimerBouteilleCellier()   //Retirer un vin du cellier
 - obtenirListeBouteilles()      //index des bouteilles du cellier
 - rechercherCellierBouteille()
-
+- obtenirMillesimesParBouteille()
+  - obtenir les différents millesime d'une bouteille dans un cellier
 ###Cellier
 
 - ajouterCellier()

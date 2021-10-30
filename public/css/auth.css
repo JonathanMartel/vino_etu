@@ -1,0 +1,12 @@
+
+
+.entete-login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 1rem;
+    padding: 1.25rem;
+    text-align: center;
+}
+
+

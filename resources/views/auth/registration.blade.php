@@ -8,8 +8,8 @@
     
     <div class="col s12 m12">
       <div class="card">
-        <div class="card-content flex-center entete-page">
-          <h4>Créer un compte</h4>
+        <div class="card-content flex-center entete-login">
+          <h1 class="titre-formulaire">Créer un compte</h1>
           <img src="{{asset('assets/icon/bouteille-diagonale.svg')}}" class="center" alt="icone bouteille diagonale"></a>
         </div>
 
@@ -54,7 +54,7 @@
               </div>
               
               <div class="input-field col s12">
-                <a href="{{ route('login') }}" class="right">Vous avez déjà un compte? Ouvrir une session</a>
+                <a href="{{ route('login') }}" class="right">Déjà inscrit? Ouvrir une session</a>
               </div>      
             </div>	
           </form>
@@ -66,3 +66,5 @@
  
 
 @endsection
+
+<link href="{{asset('css/auth.css')}}" rel="stylesheet" />
