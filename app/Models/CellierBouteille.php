@@ -35,13 +35,13 @@ class CellierBouteille extends Model
         ->where('bouteille_id', $idBouteille)
         ->where('millesime', $millesime)
         ->get();
-        
+
         if($quantite[0]->quantite + $modificationQuantite >= 0){
-        DB::table('cellier_bouteilles')
-        ->where('cellier_id', $idCellier)
-        ->where('bouteille_id', $idBouteille)
-        ->where('millesime', $millesime)
-        ->increment('quantite', $modificationQuantite);
+            DB::table('cellier_bouteilles')
+            ->where('cellier_id', $idCellier)
+            ->where('bouteille_id', $idBouteille)
+            ->where('millesime', $millesime)
+            ->increment('quantite', $modificationQuantite);
         }
      
          return true ;

@@ -2,6 +2,7 @@
 @section('content')
 
 <link href="{{asset('css/celliers.css')}}" rel="stylesheet" />
+<script src="{{asset('js/cellier_index.js')}}"></script>
 @if(isset(Auth::user()->id))
 <div class="entete-page">
     <h1>Vos celliers</h1>
@@ -35,11 +36,22 @@
                 <div class="btn-space-col">
                     <a class="btn waves-effect waves-light button btn-modifier" href="{{ route('cellier.edit', $cellier->id)}}"><i class="material-icons">edit</i></a>
                     <!-- <a class="btn waves-effect waves-light button btn-supprimer" href="#"><i class="material-icons">delete</i></a> -->
-                    <form action="{{ route('cellier.destroy', $cellier->id)}}" method="POST">
-                    @method('DELETE')
-                    @csrf
-                    <button class="btn waves-effect waves-light button btn-supprimer"><i class="material-icons">delete</i></button>
-                </form>
+                    <a class="btn waves-effect waves-light button btn-supprimer modal-trigger" href="#{{$cellier->id}}"><i class="material-icons">delete</i></a>
+                    <!-- Modal Structure -->
+                    <div id="{{$cellier->id}}" class="modal">
+                        <div class="modal-content">
+                            <h3>Supprimer ce cellier</h3>
+                            <p>Êtes-vous certain de vouloir le cellier <span>{{ ucfirst($cellier->nom) }}</span>? Tous les bouteilles dans le cellier seront supprimées aussi.</p>
+                        </div>
+                        <div class="modal-footer">
+                        <form action="{{ route('cellier.destroy', $cellier->id)}}" method="POST">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button class="waves-effect waves-green btn-flat">Supprimer</button>
+                                        </form>
+                            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Annuler</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </article>

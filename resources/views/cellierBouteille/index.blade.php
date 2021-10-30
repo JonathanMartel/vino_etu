@@ -58,7 +58,7 @@
                 
                 <p class="quantite">Qte | <span>{{$cellierBouteille->quantite}}</span></p>
             </div>
-
+        
             <div class=" flex bouton-conteneur">
                 <div class="bouton-cercle-remove">
                     <a class="icon-item" name="btnRetirerBouteille" href="{{ route('boireBouteille',[
