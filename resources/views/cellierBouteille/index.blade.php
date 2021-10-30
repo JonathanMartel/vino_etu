@@ -58,10 +58,10 @@
                 
                 <p class="quantite">Qte | <span>{{$cellierBouteille->quantite}}</span></p>
             </div>
-        
+
             <div class=" flex bouton-conteneur">
                 <div class="bouton-cercle-remove">
-                    <a class="icon-item" name="btnRetirerBouteille" href="{{ route('boireBouteille',[
+                    <a class="btn-floating btn-large waves-effect waves-light " name="btnRetirerBouteille" href="{{ route('boireBouteille',[
                             'idCellier'=>$cellierBouteille->cellier_id,
                             'idBouteille'=>$cellierBouteille->bouteille_id,
                             'millesime'=> $cellierBouteille->millesime,
@@ -70,7 +70,7 @@
                     </a>
                 </div>
                 <div class="bouton-cercle-add" >
-                    <a  class="icon-item" name="btnAjouterBouteille" href="{{ route('ajouterBouteille',[
+                    <a  class="btn-floating btn-large waves-effect waves-light" name="btnAjouterBouteille" href="{{ route('ajouterBouteille',[
                             'idCellier'=>$cellierBouteille->cellier_id,
                             'idBouteille'=>$cellierBouteille->bouteille_id,
                             'millesime'=> $cellierBouteille->millesime

@@ -33,7 +33,7 @@ class Bouteille extends Model
         ->where('nom', "LIKE" , "%" .$motCle. "%")
         ->whereIn("user_id", [1, session('user')->id])
         ->join('types', 'bouteilles.type_id', '=', 'types.id')
-        ->join('formats', 'bouteilles.format_id', '=', 'formats.id')
+        
         ->get();
     }
 

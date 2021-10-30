@@ -49,7 +49,7 @@
     <!-- Modal Structure -->
     <div id="{{$cellier->id}}" class="modal">
         <div class="modal-content">
-            <h3>Supprimer ce cellier</h3>
+            <h4>Supprimer ce cellier</h4>
             <p>Êtes-vous certain de vouloir le cellier <span>{{ ucfirst($cellier->nom) }}</span>? Tous les bouteilles dans le cellier seront supprimées aussi.</p>
         </div>
         <div class="modal-footer">
