@@ -13,7 +13,7 @@
         <span>Cellier | {{ $cellier->nom }}</span>
     </div> -->
     <div class="emplacement">
-        <span>Localisation | {{ $cellier->localisation }}</span>
+        <span><img class="map-icone" src="{{URL::asset('/assets/icon/map-marker-rouge.svg')}}" alt="icone map"> {{ $cellier->localisation }}</span>
     </div>
 
     <!-- La barre de recherche n'est pas fonctionnel -->
@@ -87,7 +87,6 @@
     @empty
     <div class="list-empty">
         <p>Vous n'avez pour l'instant aucun vin.</p>
-        <a class="btn waves-effect waves-light button" href="{{ route('ajouterVin', $cellier->id) }}">Ajouter un nouveau vin au cellier</a>
     </div>
 
    

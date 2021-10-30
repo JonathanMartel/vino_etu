@@ -283,3 +283,7 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
 }
 
 
+.map-icone {
+    height: 1.25rem;
+    width: auto;
+}

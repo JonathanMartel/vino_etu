@@ -32,16 +32,16 @@ document.addEventListener('DOMContentLoaded', function() {
      
         
         btnRetirer.addEventListener('click', (e) => {
-            e.preventDefault();
-            //if(quantitePrecedent.innerHTML > 0) {
-                fetch(btnRetirer.href)
-                .then(response => {
-                    return (response.json())
-                })
-                .then(response => {
-                    quantitePrecedent.innerHTML = parseInt(quantitePrecedent.innerHTML) + response;
-                }).catch(error => console.log(error))
-            //}
+            e.preventDefault();  
+                
+            fetch(btnRetirer.href)
+            .then(response => {
+                return (response.json())
+            })
+            .then(response => {
+                if(parseInt(quantitePrecedent.innerHTML) + response >= 0)
+                quantitePrecedent.innerHTML = parseInt(quantitePrecedent.innerHTML) + response;
+            }).catch(error => console.log(error))
         })
     })
     

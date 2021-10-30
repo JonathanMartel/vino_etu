@@ -35,43 +35,19 @@ class CellierBouteille extends Model
         ->where('bouteille_id', $idBouteille)
         ->where('millesime', $millesime)
         ->get();
-     //   if($quantite[0]->quantite !=0){
+        
+        if($quantite[0]->quantite + $modificationQuantite >= 0){
         DB::table('cellier_bouteilles')
         ->where('cellier_id', $idCellier)
         ->where('bouteille_id', $idBouteille)
         ->where('millesime', $millesime)
         ->increment('quantite', $modificationQuantite);
-       // }
-     
-         return true ;
-    }
-
-
-    /**
-     * Ajouter ou diminuer la quantité d'une bouteille dans un cellier
-     */
-    public static function supprimerQuantiteBouteille($idCellier, $idBouteille, $millesime, $modificationQuantite){
-
-        if($millesime == 0) {
-            $millesime = 0000;
-        }
-
-        $quantite = DB::table('cellier_bouteilles')
-        ->select('quantite')
-        ->where('cellier_id', $idCellier)
-        ->where('bouteille_id', $idBouteille)
-        ->where('millesime', $millesime)
-        ->get();
-        if($quantite[0]->quantite !=0){
-        DB::table('cellier_bouteilles')
-        ->where('cellier_id', $idCellier)
-        ->where('bouteille_id', $idBouteille)
-        ->where('millesime', $millesime)
-        ->decrement('quantite', 1);
         }
      
          return true ;
     }
+
+
 
     /**
      * @param idCellier
