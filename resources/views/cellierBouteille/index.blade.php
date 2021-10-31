@@ -29,7 +29,6 @@
     <div class="row">-->
 </header>
 
-
 <main>
     <div class="entete-page">
         <h1>{{ $cellier->nom }}</h1>
@@ -58,8 +57,19 @@
                 
                 <p class="quantite">Qte | <span>{{$cellierBouteille->quantite}}</span></p>
             </div>
-
+     
             <div class=" flex bouton-conteneur">
+         
+          <select class="star-rating" data-id-bouteille="{{$cellierBouteille->bouteille_id}}" data-millesime="{{$cellierBouteille->millesime}}" name="note">
+              <option value="">Choisir une note</option>
+              <option value="5" @if( $cellierBouteille->note == 5) selected @endif>Excellent</option>
+              <option value="4" @if( $cellierBouteille->note == 4) selected @endif>Très bon </option>
+              <option value="3" @if( $cellierBouteille->note == 3) selected @endif>Passable</option>
+              <option value="2" @if( $cellierBouteille->note == 2) selected @endif>Médiocre</option>
+              <option value="1" @if( $cellierBouteille->note == 1) selected @endif>Terrible</option>
+          </select>
+
+
                 <div class="bouton-cercle-remove">
                     <a class="btn-floating btn-large waves-effect waves-light " name="btnRetirerBouteille" href="{{ route('boireBouteille',[
                             'idCellier'=>$cellierBouteille->cellier_id,
