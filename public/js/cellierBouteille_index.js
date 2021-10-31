@@ -62,5 +62,42 @@ document.addEventListener('DOMContentLoaded', function() {
         })
     }
 
+    /**
+     * Note
+     */
+     new StarRating('.star-rating',{
+        maxStars: 5,
+        clearable : true,
+        classNames: {
+            active: 'gl-active',
+            base: 'gl-star-rating',
+            selected: 'gl-selected',
+          },
+          stars: function (el, item, index) {
+            el.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><rect class="gl-star-full" width="19" height="19" x="2.5" y="2.5"/><polygon fill="#FFF" points="12 5.375 13.646 10.417 19 10.417 14.665 13.556 16.313 18.625 11.995 15.476 7.688 18.583 9.333 13.542 5 10.417 10.354 10.417"/></svg>';
+          },
+          tooltip: false,
+          
+    });
+
+    /**
+     * Ajouter un note à une bouteille en cliquant sur une étoile
+     */
+    const notes = document.querySelectorAll('.star-rating');
+
+    notes.forEach(note => {
+        note.addEventListener('change', (e) => {
+    
+            const idBouteille = e.target.dataset.idBouteille;
+            const millesime = e.target.dataset.millesime;
+            const idCellier = location.pathname.split('/')[2];
+            const note = e.target.value;
+
+            fetch(`/ajouterNote/${idCellier}/${idBouteille}/${millesime}/${note}`) 
+            .catch(error => console.log(error))
+        })
+    })
+
+    
 
     })

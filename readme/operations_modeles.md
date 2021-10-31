@@ -33,6 +33,8 @@
 - rechercherCellierBouteille()
 - obtenirMillesimesParBouteille()
   - obtenir les différents millesime d'une bouteille dans un cellier
+- ajouterNote()
+  
 ###Cellier
 
 - ajouterCellier()
