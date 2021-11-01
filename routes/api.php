@@ -2,12 +2,11 @@
 
 use App\Http\Controllers\BouteilleController;
 use App\Http\Controllers\CategorieController;
-use App\Http\Controllers\CellierBouteilleController;
+use App\Http\Controllers\CellierBouteilleAcheteeController;
 use App\Http\Controllers\CellierController;
 use App\Http\Controllers\PaysController;
 use App\Http\Controllers\UnionsController;
 use App\Http\Controllers\UserController;
-use App\Models\Bouteille;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
