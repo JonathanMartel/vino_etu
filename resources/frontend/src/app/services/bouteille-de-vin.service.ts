@@ -50,6 +50,10 @@ export class BouteilleDeVinService {
 
     }
 
+    modifierBouteilleCellier(bouteille_id:any, data:any){
+        
+    }
+
     modifierInventaireCellierBouteille(bouteille_id: any, nouvelInventaire: any) {
 
         let body = {

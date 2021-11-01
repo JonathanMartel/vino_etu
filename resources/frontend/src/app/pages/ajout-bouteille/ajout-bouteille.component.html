@@ -1,3 +1,4 @@
+
 <div class="conteneur">
     <form class="formulaire">
         <header>
@@ -5,31 +6,32 @@
         </header>
         <div class="formulaire-contenu">
             <mat-form-field appearance="fill" class="input-case">
-                <label for="millesime">Millesime</label>
-                <input type="text" id="millesime" name="millesime">
+                <mat-label for="millesime">Millesime</mat-label>
+                <input matInput type="text" id="millesime" name="millesime">
             </mat-form-field>
-            <mat-form-field class="input-case">
-                <label for="Quantite">Quantité</label>
-                <input type="text" id="Quantite" name="Quantite" class="step__input">
+            <mat-form-field appearance="fill" class="input-case">
+                <mat-label for="Quantite">Quantité</mat-label>
+                <input matInput type="text" id="Quantite" name="Quantite" class="step__input">
             </mat-form-field>
-            <mat-form-field class="input-case">
-                <label for="date_achat">Date d'achat</label>
-                <input type="date" id=date_achat name="date_achat" class="step__input" >
+            <mat-form-field  appearance="fill" class="input-case">
+                <mat-label for="date_achat">Date d'achat</mat-label>
+                <input matInput type="date" id=date_achat name="date_achat" class="step__input" >
             </mat-form-field>
-            <mat-form-field class="input-case">
-                <label for="prix">Prix</label>
-                <input type="text" id="prix" name="prix" class="step__input">
+            <mat-form-field appearance="fill" class="input-case">
+                <mat-label for="prix">Prix</mat-label>
+                <input matInput type="text" id="prix" name="prix" class="step__input">
             </mat-form-field>
-            <mat-form-field class="input-case">
-                <label for="conservation">Conservation</label>
-                <input type="text" id=conservation name="conservation" minlength="2" maxlength="50" class="step__input" >
+            <mat-form-field  appearance="fill" class="input-case">
+                <mat-label for="conservation">Conservation</mat-label>
+                <input matInput type="text" id=conservation name="conservation" minlength="2" maxlength="50" class="step__input" >
             </mat-form-field>
-            <mat-form-field class="input-case">
-                <label for="notes">Notes</label>
-                <input type="text" id="notes" name="notes" class="step__input">
+            <mat-form-field appearance="fill" class="input-case">
+                <mat-label for="notes">Notes</mat-label>
+                <input matInput type="text" id="notes" name="notes" class="step__input">
             </mat-form-field>
         </div>
-        <button>Ajouter la bouteille </button>
-
+        <button>Ajouter</button>
     </form>
 </div>
+
+
