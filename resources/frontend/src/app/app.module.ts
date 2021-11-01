@@ -29,6 +29,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -56,6 +57,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
         ReactiveFormsModule,
         MatCardModule,
         MatSnackBarModule,
+        
     ],
     providers: [BouteilleDeVinService, BouteilleResolverServiceService],
     bootstrap: [AppComponent]
