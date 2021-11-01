@@ -20,22 +20,21 @@ class Cellier extends Model
      *
      * @param int|string $cellierId l'id du cellier d'on on veut afficher l'inventaire
      */
-    static public function obtenirBouteillesParCellier(int|string $cellierId, int $limite = 24, array $filtres = null) {
+    static public function obtenirBouteillesParCellier(int $cellierId, int $limite = 24, array $filtres = null) {
         return
-            DB::table('celliers_bouteilles as cb')
-                ->join("bouteilles as b", "bouteilles_id", "=", "b.id")
-                ->join("pays", "b.pays_id", "=", "pays.id")
-                ->join("categories as cat", "b.categories_id", "=", "cat.id")
+            DB::table('celliers_bouteilles_achetees as cba')
+                ->join("bouteilles_achetees as ba", "cba.bouteilles_id", "=", "ba.id")
+                ->join("categories as cat", "ba.categories_id", "=", "cat.id")
                 ->select(
-                    "cb.id as inventaireId",
-                    "cb.inventaire as inventaire",
-                    "b.url_image as imageBouteille",
-                    "b.nom as nom",
-                    "b.url_image as image",
-                    "b.format as format",
+                    "cba.id as inventaireId",
+                    "cba.inventaire as inventaire",
+                    "ba.url_image as imageBouteille",
+                    "ba.nom as nom",
+                    "ba.url_image as image",
+                    "ba.format as format",
                     "pays.nom as pays",
                     "cat.nom as categorie")
-                ->where("cb.celliers_id", $cellierId)
+                ->where("cba.celliers_id", $cellierId)
                 ->paginate($limite);
     }
 }
