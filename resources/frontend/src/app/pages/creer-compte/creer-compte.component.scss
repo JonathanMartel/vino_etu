@@ -1,5 +1,5 @@
 .formulaire {
-    display: flex;
+   
     flex-direction: column;
     align-items: center;
     min-width: 15rem;
@@ -29,7 +29,6 @@ label {
     padding: .4em;
     line-height: 1.4em;
     border-radius: 2px;
-    border-bottom: 1px solid rgb(209, 204, 204);
     box-sizing: border-box;
 }
 
@@ -66,7 +65,7 @@ select {
     width: 10rem;
     display: block;
     padding: 0.875rem 1rem;
-    margin: 1rem 0;
+    margin: 0 auto;
     border-radius: 1.5rem;
     box-shadow: 3px 3px 8px #b1b1b1, -3px -3px 8px #ffffff;
     cursor: pointer;
@@ -77,4 +76,6 @@ a {
     font-size: 14px;
 }
 
-
+.mat-form-field{
+    display: block;
+}

@@ -50,10 +50,6 @@ export class BouteilleDeVinService {
 
     }
 
-    modifierBouteilleCellier(bouteille_id:any, data:any){
-        
-    }
-
     modifierInventaireCellierBouteille(bouteille_id: any, nouvelInventaire: any) {
 
         let body = {
@@ -61,6 +57,19 @@ export class BouteilleDeVinService {
         }
 
         return this.http.put<any>(this.url + '/celliers/modifier-inventaire/' + bouteille_id, body)
+    }
+
+    
+    modifierBouteilleCellier(bouteille_id:any, data:any){
+        
+    }
+
+    ajouterUtilisateur(data:any){
+
+        let body = {
+            'data': data,
+    
+        }
     }
 
 }
