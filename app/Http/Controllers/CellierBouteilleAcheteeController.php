@@ -52,15 +52,15 @@ class CellierBouteilleAcheteeController extends Controller
      *
      * Modifier l'inventaire d'une bouteille dans un cellier.
      *
-     * @param int|string $cellierBouteilleId l'id du pivot où se trouve l'inventaire
+     * @param int|string $cellierBouteilleAcheteeId l'id du pivot où se trouve l'inventaire
      *
      */
-    public function modifierInventaireBouteille(Request $request, int $cellierBouteilleId) {
-        $cellierBouteille = CellierBouteilleAchetee::find($cellierBouteilleId);
+    public function modifierInventaireBouteille(Request $request, int $cellierBouteilleAcheteeId) {
+        $cellierBouteilleAchetee = CellierBouteilleAchetee::find($cellierBouteilleAcheteeId);
 
-        $cellierBouteille->inventaire = $request->inventaire;
+        $cellierBouteilleAchetee->inventaire = $request->inventaire;
 
-        if(!$cellierBouteille->save()) {
+        if(!$cellierBouteilleAchetee->save()) {
             return response()->json([
                 "message" => "Erreur lors de la mise à jour de l'inventaire"
             ], 400);
