@@ -6,6 +6,7 @@ use App\Http\Resources\BouteilleResource;
 use App\Models\Bouteille;
 use App\Models\Cellier;
 use App\Models\CellierBouteille;
+use App\Models\CellierBouteilleAchetee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -55,7 +56,7 @@ class CellierBouteilleAcheteeController extends Controller
      *
      */
     public function modifierInventaireBouteille(Request $request, int $cellierBouteilleId) {
-        $cellierBouteille = CellierBouteille::find($cellierBouteilleId);
+        $cellierBouteille = CellierBouteilleAchetee::find($cellierBouteilleId);
 
         $cellierBouteille->inventaire = $request->inventaire;
 
@@ -78,7 +79,7 @@ class CellierBouteilleAcheteeController extends Controller
      */
     public function store(Request $request)
     {
-        $bouteilleCellier = new CellierBouteille;
+        $bouteilleCellier = new CellierBouteilleAchetee();
         $bouteilleCellier -> bouteilles_id = $request->bouteilles_id;
         $bouteilleCellier -> celliers_id = $request->celliers_id;
         $bouteilleCellier -> inventaire = $request->inventaire;
@@ -95,9 +96,9 @@ class CellierBouteilleAcheteeController extends Controller
      * @param  \App\Models\CellierBouteille  $cellierBouteille
      * @return \Illuminate\Http\Response
      */
-    public function show(CellierBouteille $cellierBouteille)
+    public function show(CellierBouteilleAchetee $cellierBouteilleAchetee)
     {
-        return new BouteilleResource($cellierBouteille);
+        return new BouteilleResource($cellierBouteilleAchetee);
     }
 
     /**
@@ -118,7 +119,7 @@ class CellierBouteilleAcheteeController extends Controller
      * @param  \App\Models\CellierBouteille  $cellierBouteille
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CellierBouteille $cellierBouteille)
+    public function destroy(CellierBouteilleAchetee $cellierBouteilleAchetee)
     {
         //
     }

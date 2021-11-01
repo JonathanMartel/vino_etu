@@ -4,8 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class CellierBouteille extends Pivot
+class CellierBouteilleAchetee extends Pivot
 {
-    protected $table = "celliers_bouteilles";
+    protected $table = "celliers_bouteilles_achetees";
 
 }
