@@ -1,48 +1,32 @@
 <div class="conteneur">
-    <form class="formulaire">
-        <header>
+    <header>
         <h2>Créer un compte</h2>
-        </header>
-        <div class="">
-            <div class="input-case">
-                <label for="courriel">Courriel *</label>
-                <input type="email" id="courriel" name="courriel">
-            </div>
-            <div class="input-case">
-                <label for="motPasse">Mot de passe *</label>
-                <input type="text" id=motPasse name="motPasse" minlength="2" maxlength="50" >
-            </div>
-            <div class="input-case">
-                <label for="ConfirMP">Confirmation du mot de passe *</label>
-                    <input type="text" id=confirmMP name="confirmMP" minlength="2" maxlength="50" >
-            </div>
-            <div>
-                <h3>Informations personnelles</h3>
-            </div>
-            <div>
-                <label for="titre">Titre</label>
-                <select id="titre" class="">
-                    <option disabled="disabled" selected="selected" >Veuillez choisir le titre</option>
-                    <option>Madame</option>
-                    <option>Monsieur</option>
-                    <option>Ne pas préciser</option>
-                </select>
-            </div>
-            <div class="input-case">
-                <label for="prenom">Prénom</label>
-                <input type="text" id="prenom" name="prenom" >
-            </div>
-            <div class="input-case">
-                <label for="nom">Nom</label>
-                <input type="text" id="nom" name="nom" >
-            </div>
-            <div class="input-case">
-                <label for="dateNaissance">Data de naissance</label>
-                <input type="date" id="dateNaissance" name="dateNaissance" >
-            </div>
-        </div>
+    </header>
+    <form class="formulaire" [formGroup] ='ajouterUtilisateur' (ngSubmit)=postUser(ajouterUtilisateur.value)>
+        <mat-form-field appearance="fill" class="input-case">
+            <mat-label for="first_name">Prénom</mat-label>
+            <input matInput type="text" name="first_name" formControlName="first_name">
+        </mat-form-field>
 
-      <button type="submit" routerLink ="/connection">Enregistrer</button>
+        <mat-form-field appearance="fill" class="input-case">
+            <mat-label for="last_name">Nom</mat-label>
+            <input matInput type="text" name="last_name" formControlName="last_name">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="input-case">
+            <mat-label for="email">Courriel</mat-label>
+            <input matInput type="text" name="email" formControlName="email">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="input-case">
+            <mat-label for="password">Mot de passe</mat-label>
+            <input matInput type="text" name="password" formControlName="password">
+        </mat-form-field>   
+
+        <button>Enregistrer</button>
 
     </form>
 </div>
+
+
+
