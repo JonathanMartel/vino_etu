@@ -25,6 +25,8 @@ import { CellierBouteilleComponent } from './components/cellier-bouteille/cellie
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ModifierCellierBouteilleComponent } from './pages/modifier-cellier-bouteille/modifier-cellier-bouteille.component';
+
 
 
 
@@ -42,6 +44,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
         CreerCompteComponent,
         FicheBouteilleComponent,
         CellierBouteilleComponent,
+        ModifierCellierBouteilleComponent,
     ],
     imports: [
         BrowserModule,
@@ -56,6 +59,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
         ReactiveFormsModule,
         MatCardModule,
         MatSnackBarModule,
+        
     ],
     providers: [BouteilleDeVinService, BouteilleResolverServiceService],
     bootstrap: [AppComponent]

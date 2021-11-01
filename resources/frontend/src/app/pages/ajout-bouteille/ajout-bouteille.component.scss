@@ -33,7 +33,6 @@ label {
     padding: .4em;
     line-height: 1.4em;
     border-radius: 2px;
-    border-bottom: 1px solid rgb(209, 204, 204);
     box-sizing: border-box;
 }
 
@@ -82,4 +81,6 @@ a {
     font-size: 14px;
 }
 
-
+.mat-form-field{
+    display: block;
+}

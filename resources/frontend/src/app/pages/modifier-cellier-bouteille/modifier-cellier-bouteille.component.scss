@@ -1,5 +1,5 @@
 .formulaire {
-   
+    display: flex;
     flex-direction: column;
     align-items: center;
     min-width: 15rem;
@@ -8,6 +8,10 @@
     border-radius: .5rem;
     color: black;
     margin-top: 3rem;
+}
+
+.formulaire-contenu {
+    width: 100%;
 }
 
 div {
@@ -40,7 +44,7 @@ select{
     background-color: #fff;
 }
 
-input[type=date] {
+input[type=date] { 
     color: #000;
     background-color: #fff;
 }
@@ -56,6 +60,7 @@ select {
 }
 
 .formulaire button {
+    display: flex;
     text-transform: uppercase;
     border: none;
     font-size: 0.725rem;
@@ -65,7 +70,7 @@ select {
     width: 10rem;
     display: block;
     padding: 0.875rem 1rem;
-    margin: 0 auto;
+    margin: 1rem 0;
     border-radius: 1.5rem;
     box-shadow: 3px 3px 8px #b1b1b1, -3px -3px 8px #ffffff;
     cursor: pointer;
@@ -79,3 +84,8 @@ a {
 .mat-form-field{
     display: block;
 }
+
+.mat-input-element{
+    caret-color: #4c1920;
+}
+

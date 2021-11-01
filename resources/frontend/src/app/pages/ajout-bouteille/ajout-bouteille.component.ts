@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
+import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 
 @Component({
   selector: 'app-ajout-bouteille',
@@ -7,11 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AjoutBouteilleComponent implements OnInit {
 
-  constructor() { }
+  constructor(private servBouteilleDeVin:BouteilleDeVinService, private actRoute: ActivatedRoute, private snackBar:MatSnackBar){ }
 
   ngOnInit(): void {
   }
 
+
+  ajouterBouteilleCellier(bouteilleId:any){
+
+    this.servBouteilleDeVin.ajoutBouteilleCellier(bouteilleId).subscribe(()=> {});
+
+  }
 
 
 }

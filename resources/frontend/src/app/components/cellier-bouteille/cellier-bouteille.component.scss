@@ -1,11 +1,3 @@
-.content {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    padding: 3rem 1rem 5.25rem;
-    margin-bottom: 1rem;
-}
-
 .wrapper{
     display: flex;
     border-top: 1px solid #e9e8e5;
@@ -14,7 +6,6 @@
 }
 
 .resultat {
-    display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
@@ -34,11 +25,6 @@
     padding: 10px 10px;
 }
 
-.titre {
-    display: flex;
-    justify-content: center;
-}
-
 .btn-vin {
     float: left;
     margin: 2px 12px 10px 0;
@@ -51,7 +37,7 @@
 }
 
 .resultat-vin-data {
-    padding-right: 25px;
+    padding-right: 0;
 }
 
 .vin-data-droit {
@@ -112,3 +98,13 @@ input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
   opacity: 0;
 }
+
+
+.boutons-actions{
+    margin: 0 auto;
+}
+
+.boutons-actions button{
+    margin: .5rem;
+}
+

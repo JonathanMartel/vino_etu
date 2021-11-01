@@ -1,37 +1,34 @@
 
-<div class="conteneur">
-    <form class="formulaire">
+
+    <form class="formulaire" [formGroup]="modifierBouteilleCellier" (ngSubmit)=putBouteille(modifierBouteilleCellier.value)>
         <header>
-            <h2>Ajouter une bouteille</h2>
+            <h2>Modifer une bouteille</h2>
         </header>
         <div class="formulaire-contenu">
             <mat-form-field appearance="fill" class="input-case">
                 <mat-label for="millesime">Millesime</mat-label>
-                <input matInput type="text" id="millesime" name="millesime">
+                <input matInput type="text" id="millesime" name="millesime" formControlName="millesime">
             </mat-form-field>
             <mat-form-field appearance="fill" class="input-case">
                 <mat-label for="Quantite">Quantité</mat-label>
-                <input matInput type="text" id="Quantite" name="Quantite" class="step__input">
+                <input matInput type="text" id="Quantite" name="Quantite" class="step__input" formControlName="quantite">
             </mat-form-field>
             <mat-form-field  appearance="fill" class="input-case">
                 <mat-label for="date_achat">Date d'achat</mat-label>
-                <input matInput type="date" id=date_achat name="date_achat" class="step__input" >
+                <input matInput type="date" id=date_achat name="date_achat" class="step__input" formControlName="date_achat" >
             </mat-form-field>
             <mat-form-field appearance="fill" class="input-case">
                 <mat-label for="prix">Prix</mat-label>
-                <input matInput type="text" id="prix" name="prix" class="step__input">
+                <input matInput type="text" id="prix" name="prix" class="step__input" formControlName="prix">
             </mat-form-field>
             <mat-form-field  appearance="fill" class="input-case">
                 <mat-label for="conservation">Conservation</mat-label>
-                <input matInput type="text" id=conservation name="conservation" minlength="2" maxlength="50" class="step__input" >
+                <input matInput type="text" id=conservation name="conservation" minlength="2" maxlength="50" class="step__input" formControlName="conservation">
             </mat-form-field>
             <mat-form-field appearance="fill" class="input-case">
                 <mat-label for="notes">Notes</mat-label>
-                <input matInput type="text" id="notes" name="notes" class="step__input">
+                <input matInput type="text" id="notes" name="notes" class="step__input" formControlName="notes">
             </mat-form-field>
         </div>
-        <button>Ajouter</button>
+        <button>Modifier</button>
     </form>
-</div>
-
-
