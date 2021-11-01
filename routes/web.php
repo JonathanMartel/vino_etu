@@ -68,6 +68,7 @@ Route::get('/boireBouteille/{idCellier}/{idBouteille}/{millesime}', [CellierBout
 Route::get('/cellier/{idCellier}/ajouterVin', [CellierBouteilleController::class, 'create'])->name('ajouterVin')->middleware('auth');
 Route::post('/cellierBouteille/store', [CellierBouteilleController::class, 'store'])->name('cellierBouteille.store')->middleware('auth');
 Route::get('/obtenirMillesimesParBouteille/{idCellier}/{idBouteille}', [CellierBouteilleController::class, 'obtenirMillesimesParBouteille'])->name('obtenirMillesimesParBouteille')->middleware('auth');
+Route::get('/ajouterNote/{idCellier}/{idBouteille}/{millesime}/{note}', [CellierBouteilleController::class, 'ajouterNote'])->name('ajouterNote')->middleware('auth');
 
 /*
 |--------------------------------------------------------------------------

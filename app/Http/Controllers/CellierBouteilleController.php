@@ -193,6 +193,20 @@ class CellierBouteilleController extends Controller
     }
 
     /**
+     * @param idCellier
+     * @param idBouteille
+     * @param millesime
+     * @param note
+     * ajouter une note de dégustation à une bouteille
+     */
+    public function ajouterNote($idCellier, $idBouteille, $millesime, $note)
+    {
+        CellierBouteille::ajouterNote($idCellier, $idBouteille, $millesime, $note);
+        
+    }
+
+
+    /**
      * https://stackoverflow.com/questions/37666135/how-to-increment-and-update-column-in-one-eloquent-query
      * Incrémenter de 1 la quantité de la bouteille dans un cellier
      * @return la quantité à incrémenter
