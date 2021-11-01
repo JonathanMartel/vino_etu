@@ -23,7 +23,7 @@ class Cellier extends Model
     static public function obtenirBouteillesParCellier(int $cellierId, int $limite = 24, array $filtres = null) {
         return
             DB::table('celliers_bouteilles_achetees as cba')
-                ->join("bouteilles_achetees as ba", "cba.bouteilles_id", "=", "ba.id")
+                ->join("bouteilles_achetees as ba", "cba.bouteilles_achetees_id", "=", "ba.id")
                 ->join("categories as cat", "ba.categories_id", "=", "cat.id")
                 ->select(
                     "cba.id as inventaireId",

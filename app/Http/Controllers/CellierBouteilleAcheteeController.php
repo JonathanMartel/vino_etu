@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\BouteilleResource;
 use App\Models\Bouteille;
+use App\Models\BouteilleAchetee;
 use App\Models\Cellier;
 use App\Models\CellierBouteille;
 use App\Models\CellierBouteilleAchetee;
@@ -55,8 +56,10 @@ class CellierBouteilleAcheteeController extends Controller
      */
     public function store(Request $request)
     {
+        $bouteilleAchetee = new BouteilleAchetee();
+
         $bouteilleCellier = new CellierBouteilleAchetee();
-        $bouteilleCellier -> bouteilles_id = $request->bouteilles_id;
+        $bouteilleCellier -> bouteilles_achetees_id = $request->bouteilles_id;
         $bouteilleCellier -> celliers_id = $request->celliers_id;
         $bouteilleCellier -> inventaire = $request->inventaire;
         $newBouteilleCellier = $bouteilleCellier -> save();
