@@ -42,7 +42,9 @@ export class FicheBouteilleComponent implements OnInit {
             format: this.bouteille.format,
             categories_id: this.bouteille.categories_id,
             inventaire: 4,
+            celliers_id: 1,
         }
+
         this.servBouteilleDeVin.ajoutBouteilleCellier(bouteilleAchetee).subscribe(() => { this.openSnackBar('Vous avez ajouté une bouteille à votre cellier', 'dismiss') });
     }
 

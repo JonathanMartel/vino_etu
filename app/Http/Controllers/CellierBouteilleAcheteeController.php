@@ -52,7 +52,22 @@ class CellierBouteilleAcheteeController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        $bouteilleAchetee = new BouteilleAchetee($request->post());
+        $bouteilleAchetee = new BouteilleAchetee();
+
+        $bouteilleAchetee->nom =  $request->nom;
+        $bouteilleAchetee->description =  $request->description;
+        $bouteilleAchetee->url_image =  $request->url_image;
+        $bouteilleAchetee->url_achat =  $request->url_achat;
+        $bouteilleAchetee->url_info =  $request->url_info;
+        $bouteilleAchetee->origine =  $request->origine;
+        $bouteilleAchetee->millesime =  $request->millesime;
+        $bouteilleAchetee->date_acquisition =  $request->date_acquisition;
+        $bouteilleAchetee->prix_paye =  $request->prix_paye;
+        $bouteilleAchetee->conservation =  $request->conservation;
+        $bouteilleAchetee->notes_personnelles =  $request->notes_personnelles;
+        $bouteilleAchetee->format =  $request->format;
+        $bouteilleAchetee->categories_id =  $request->categories_id;
+        $bouteilleAchetee->save();
 
         return response($bouteilleAchetee);
 
@@ -60,7 +75,7 @@ class CellierBouteilleAcheteeController extends Controller {
         $bouteilleCellier->bouteilles_achetees_id = $bouteilleAchetee->id;
         $bouteilleCellier->celliers_id = $request->celliers_id;
         $bouteilleCellier->inventaire = $request->inventaire;
-        $newBouteilleCellier = $bouteilleCellier->save();
+        $bouteilleCellier->save();
 
         return response()->json([
             "message" => "ajout réussi !"
