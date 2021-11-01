@@ -48,10 +48,10 @@ Route::get("catalogue-bouteilles", [UnionsController::class, "obtenirCatalogueBo
 Route::get('celliers/{cellierId}/bouteilles', [CellierController::class, "obtenirBouteilles"]);
 
 // Ajout d'une bouteille à un cellier
-Route::post('celliers/{cellier}/bouteilles', [CellierBouteilleAcheteesController::class, "store"]);
+Route::post('celliers/{cellier}/bouteilles', [CellierBouteilleAcheteeController::class, "store"]);
 
 // Mise à jour de l'inventaire d'une bouteille dans un cellier donné
-Route::put("celliers/modifier-inventaire/{cellierBouteilleId}", [CellierBouteilleController::class, "modifierInventaireBouteille"]);
+Route::put("celliers/modifier-inventaire/{cellierBouteilleId}", [CellierBouteilleAcheteeController::class, "modifierInventaireBouteille"]);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

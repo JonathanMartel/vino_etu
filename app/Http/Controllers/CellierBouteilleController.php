@@ -9,7 +9,7 @@ use App\Models\CellierBouteille;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class CellierBouteilleController extends Controller
+class CellierBouteilleAcheteeController extends Controller
 {
     /**
      * Display a listing of the resource.
