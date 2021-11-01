@@ -33,5 +33,4 @@ export class FicheBouteilleComponent implements OnInit {
 
   }
 
-  
 }

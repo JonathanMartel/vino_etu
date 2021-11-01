@@ -30,6 +30,7 @@ import { ModifierCellierBouteilleComponent } from './pages/modifier-cellier-bout
 
 
 
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -58,6 +59,7 @@ import { ModifierCellierBouteilleComponent } from './pages/modifier-cellier-bout
         ReactiveFormsModule,
         MatCardModule,
         MatSnackBarModule,
+        
     ],
     providers: [BouteilleDeVinService, BouteilleResolverServiceService],
     bootstrap: [AppComponent]
