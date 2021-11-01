@@ -18,7 +18,7 @@
             </div>
         </mat-card-content>
         <mat-card-actions class="card-action">
-            <button (click)='ajouterBouteilleCellier(bouteille.id)'>ajouter au cellier</button>
+            <button [routerLink] = "['/ajouterNouvelleBouteille/'+bouteille.id]">ajouter au cellier</button>
         </mat-card-actions>
     </mat-card>
 </div>

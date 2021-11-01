@@ -4,76 +4,32 @@
             <h2>Ajouter une bouteille</h2>
         </header>
         <div class="formulaire-contenu">
-            <div class="input-case">
-                <label for="nom">Nom</label>
-                <input type="text" id="nom" name="nom">
-            </div>
-            <div class="input-case">
-                <label for="producteur">Producteur</label>
-                <input type="text" id="producteur" name="producteur" class="step__input">
-            </div>
-            <div class="input-case">
-                <label for="categorie">Catégotie</label>
-                <select id="categorie" class="">
-                    <option disabled="disabled" selected="selected" >Selectionnez la catégorie</option>
-                    <option>Rouge</option>
-                    <option>Rosé</option>
-                    <option>Blanc</option>
-                    <option>Dessert Rouge</option>
-                    <option>Dessert Blanc</option>
-                    <option>Mousseux</option>
-                </select>
-            </div>
-            <div class="input-case">
-                <label for="annee">Année</label>
-                <input type="text" id=annee name="annee" minlength="2" maxlength="50" class="step__input" >
-            </div>
-            <div class="input-case">
-                <label for="format">Format</label>
-                <select id="format" class="">
-                    <option disabled="disabled" selected="selected" >Selectionnez le format</option>
-                    <option>1 L</option>
-                    <option>1,5 L</option>
-                    <option>200 ml</option>
-                    <option>3 L</option>
-                    <option>375 ml</option>
-                    <option>500 ml</option>
-                    <option>4 L</option>
-                    <option>5 L</option>
-                    <option>6 L</option>
-                    <option>750 ml</option>
-                </select>
-            </div>
-            <div class="input-case">
-                <label for="alcool">Degré d'alcool</label>
-                <input type="text" id="alcool" name="alcool" class="step__input">
-            </div>
-            <div class="input-case">
-                <label for="quantite">Quantité</label>
-                <input type="text" id=quantite name="quantite" minlength="2" maxlength="50" class="step__input" >
-            </div>
-            <div class="input-case">
-                <label for="pays">Pays</label>
-                <select id="pays" class="">
-                    <option disabled="disabled" selected="selected" >Selectionnez le pays</option>
-                    <option>France</option>
-                    <option>Italie</option>
-                    <option>Espagne</option>
-                    <option>Portugal</option>
-                    <option>États-Unis</option>
-                    <option>Canada</option>
-                    <option>Chili</option>
-                    <option>Australie</option>
-                    <option>Argentine</option>
-                </select>
-            </div>
-            <div class="input-case">
+            <mat-form-field appearance="fill" class="input-case">
+                <label for="millesime">Millesime</label>
+                <input type="text" id="millesime" name="millesime">
+            </mat-form-field>
+            <mat-form-field class="input-case">
+                <label for="Quantite">Quantité</label>
+                <input type="text" id="Quantite" name="Quantite" class="step__input">
+            </mat-form-field>
+            <mat-form-field class="input-case">
+                <label for="date_achat">Date d'achat</label>
+                <input type="date" id=date_achat name="date_achat" class="step__input" >
+            </mat-form-field>
+            <mat-form-field class="input-case">
+                <label for="prix">Prix</label>
+                <input type="text" id="prix" name="prix" class="step__input">
+            </mat-form-field>
+            <mat-form-field class="input-case">
                 <label for="conservation">Conservation</label>
-                <input type="text" id="conservation" name="conservation" class="step__input">
-            </div>
-            
+                <input type="text" id=conservation name="conservation" minlength="2" maxlength="50" class="step__input" >
+            </mat-form-field>
+            <mat-form-field class="input-case">
+                <label for="notes">Notes</label>
+                <input type="text" id="notes" name="notes" class="step__input">
+            </mat-form-field>
         </div>
-        <button>Enregistrer </button>
+        <button>Ajouter la bouteille </button>
 
     </form>
 </div>
