@@ -6,20 +6,17 @@ use App\Http\Resources\BouteilleResource;
 use App\Models\Bouteille;
 use App\Models\BouteilleAchetee;
 use App\Models\Cellier;
-use App\Models\CellierBouteille;
 use App\Models\CellierBouteilleAchetee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class CellierBouteilleAcheteeController extends Controller
-{
+class CellierBouteilleAcheteeController extends Controller {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
 
         //
 
@@ -37,7 +34,7 @@ class CellierBouteilleAcheteeController extends Controller
 
         $cellierBouteilleAchetee->inventaire = $request->inventaire;
 
-        if(!$cellierBouteilleAchetee->save()) {
+        if (!$cellierBouteilleAchetee->save()) {
             return response()->json([
                 "message" => "Erreur lors de la mise à jour de l'inventaire"
             ], 400);
@@ -54,15 +51,16 @@ class CellierBouteilleAcheteeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $bouteilleAchetee = new BouteilleAchetee();
+    public function store(Request $request) {
+        $bouteilleAchetee = new BouteilleAchetee($request->post());
+
+        return response($bouteilleAchetee);
 
         $bouteilleCellier = new CellierBouteilleAchetee();
-        $bouteilleCellier -> bouteilles_achetees_id = $request->bouteilles_id;
-        $bouteilleCellier -> celliers_id = $request->celliers_id;
-        $bouteilleCellier -> inventaire = $request->inventaire;
-        $newBouteilleCellier = $bouteilleCellier -> save();
+        $bouteilleCellier->bouteilles_achetees_id = $bouteilleAchetee->id;
+        $bouteilleCellier->celliers_id = $request->celliers_id;
+        $bouteilleCellier->inventaire = $request->inventaire;
+        $newBouteilleCellier = $bouteilleCellier->save();
 
         return response()->json([
             "message" => "ajout réussi !"
@@ -75,8 +73,7 @@ class CellierBouteilleAcheteeController extends Controller
      * @param  \App\Models\CellierBouteille  $cellierBouteille
      * @return \Illuminate\Http\Response
      */
-    public function show(CellierBouteilleAchetee $cellierBouteilleAchetee)
-    {
+    public function show(CellierBouteilleAchetee $cellierBouteilleAchetee) {
         return new BouteilleResource($cellierBouteilleAchetee);
     }
 
@@ -87,9 +84,7 @@ class CellierBouteilleAcheteeController extends Controller
      * @param  \App\Models\CellierBouteille  $cellierBouteille
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cellier $cellier, Bouteille $bouteille)
-    {
-
+    public function update(Request $request, Cellier $cellier, Bouteille $bouteille) {
     }
 
     /**
@@ -98,9 +93,7 @@ class CellierBouteilleAcheteeController extends Controller
      * @param  \App\Models\CellierBouteille  $cellierBouteille
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CellierBouteilleAchetee $cellierBouteilleAchetee)
-    {
+    public function destroy(CellierBouteilleAchetee $cellierBouteilleAchetee) {
         //
     }
-
 }

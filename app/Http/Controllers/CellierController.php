@@ -24,7 +24,7 @@ class CellierController extends Controller
      *
      * @param int|string $cellierId l'id du cellier d'on on veut afficher l'inventaire
      */
-    public function obtenirBouteilles(int|string $cellierId, array $filtres = null) {
+    public function obtenirBouteilles(int $cellierId, array $filtres = null) {
         return Cellier::obtenirBouteillesParCellier($cellierId);
     }
 

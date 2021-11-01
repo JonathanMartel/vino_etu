@@ -38,15 +38,8 @@ export class BouteilleDeVinService {
         return this.http.get<any>(this.url + '/bouteilles/' + id_bouteille);
     }
 
-    ajoutBouteilleCellier(bouteille_id: any) {
-
-        let body = {
-            'celliers_id': 1,
-            'bouteilles_id': bouteille_id,
-            'inventaire': 1,
-        }
-
-        return this.http.post<any>(this.url + '/celliers/' + 1 + '/bouteilles', body);
+    ajoutBouteilleCellier(bouteilleAchetee: any) {
+        return this.http.post<any>(this.url + '/celliers/' + 1 + '/bouteilles', bouteilleAchetee);
 
     }
 
@@ -59,16 +52,16 @@ export class BouteilleDeVinService {
         return this.http.put<any>(this.url + '/celliers/modifier-inventaire/' + bouteille_id, body)
     }
 
-    
+
     modifierBouteilleCellier(bouteille_id:any, data:any){
-        
+
     }
 
     ajouterUtilisateur(data:any){
 
         let body = {
             'data': data,
-    
+
         }
     }
 
