@@ -1,1 +1,35 @@
-<p>modifier-cellier-bouteille works!</p>
+<form [formGroup]="modifierBouteilleCellier" (ngSubmit)=putBouteille(modifierBouteilleCellier.value)>
+    <header>
+        <h2>Modifer une bouteille</h2>
+    </header>
+    <div class="formulaire-contenu">
+        <mat-form-field appearance="fill">
+            <mat-label for="millesime">Millesime</mat-label>
+            <input matInput type="text" id="millesime" name="millesime" formControlName="millesime">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label for="Quantite">Quantité</mat-label>
+            <input matInput type="text" id="Quantite" name="Quantite" formControlName="quantite">
+        </mat-form-field>
+        <mat-form-field  appearance="fill">
+            <mat-label for="date_achat">Date d'achat</mat-label>
+            <input matInput type="date" id=date_achat name="date_achat" formControlName="date_achat" >
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label for="prix">Prix</mat-label>
+            <input matInput type="text" id="prix" name="prix" formControlName="prix">
+        </mat-form-field>
+        <mat-form-field  appearance="fill">
+            <mat-label for="conservation">Conservation</mat-label>
+            <input matInput type="text" id=conservation name="conservation" formControlName="conservation">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label for="notes">Notes</mat-label>
+            <input matInput type="text" id="notes" name="notes" formControlName="notes">
+        </mat-form-field>
+    </div>
+    <mat-dialog-actions>
+        <button type="submit" mat-raised-button>Modifier</button>
+    </mat-dialog-actions>
+</form>
+

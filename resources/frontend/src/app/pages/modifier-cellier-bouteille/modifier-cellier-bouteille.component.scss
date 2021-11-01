@@ -1,3 +1,14 @@
-p{
-    padding-top: 50px;
+
+.mat-form-field {
+    display: block;
 }
+
+.mat-dialog-actions {
+    justify-content: center;
+}
+
+.mat-dialog-actions button[type=submit] {
+    background-color: #4c1920;
+    color: white;
+}
+
