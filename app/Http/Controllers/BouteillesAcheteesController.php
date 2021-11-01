@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BouteillePersonnalisee;
+use App\Models\BouteillesAchetees;
 use Illuminate\Http\Request;
 
-class BouteillesPersonnaliseeController extends Controller
+class BouteillesAcheteesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,10 +31,10 @@ class BouteillesPersonnaliseeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\BouteillePersonnalisee  $bouteillePersonnalisee
+     * @param  \App\Models\BouteillesAchetees  $bouteillesAchetees
      * @return \Illuminate\Http\Response
      */
-    public function show(BouteillePersonnalisee $bouteillePersonnalisee)
+    public function show(BouteillesAchetees $bouteillesAchetees)
     {
         //
     }
@@ -43,10 +43,10 @@ class BouteillesPersonnaliseeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\BouteillePersonnalisee  $bouteillePersonnalisee
+     * @param  \App\Models\BouteillesAchetees  $bouteillesAchetees
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, bouteillePersonnalisee $bouteillePersonnalisee)
+    public function update(Request $request, BouteillesAchetees $bouteillesAchetees)
     {
         //
     }
@@ -54,10 +54,10 @@ class BouteillesPersonnaliseeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\BouteillePersonnalisee  $bouteillePersonnalisee
+     * @param  \App\Models\BouteillesAchetees  $bouteillesAchetees
      * @return \Illuminate\Http\Response
      */
-    public function destroy(bouteillePersonnalisee $bouteillePersonnalisee)
+    public function destroy(BouteillesAchetees $bouteillesAchetees)
     {
         //
     }
