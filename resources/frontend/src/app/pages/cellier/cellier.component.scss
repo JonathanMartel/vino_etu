@@ -1,0 +1,36 @@
+.content{
+    margin: 60px 0;
+    overflow: hidden;
+}
+
+.content-header{
+    display: flex;
+    justify-content: space-around;
+}
+
+.content h2{
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    margin: 15px 0;
+    color: #4c1920;
+}
+
+.content button{
+    background-color: #4c1920;
+    color: #fff;
+}
+
+.example-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.sidenav-content {
+    display: block;
+    border: 1px solid #555;
+    margin: 20px;
+    padding: 10px;
+}

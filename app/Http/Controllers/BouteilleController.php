@@ -16,7 +16,7 @@ class BouteilleController extends Controller {
     public function index(Request $request) {
         $request->limite = 24;
 
-        $orderBy = $request->orderBy = "nomBouteille";
+        $orderBy = $request->orderBy = "b.nom";
         $orderDirection = $request->orderDirection = "asc";
         $request->texteRecherche = "rouge";
 
@@ -31,7 +31,7 @@ class BouteilleController extends Controller {
             $requete = DB::table("bouteilles as b")
                             ->join("pays as p", "p.id", "=", "b.pays_id")
                             ->join("categories as c", "c.id", "=", "b.categories_id")
-                            ->select("*", "p.nom as pays", "c.nom as categorie", "b.nom as nomBouteille")
+                            ->select("*", "p.nom as pays", "c.nom as categorie", "b.nom as nom")
                             ->whereRaw("MATCH(b.nom,description,b.format) against (? in natural language mode)", [$recherche])
                             ->orWhereRaw("MATCH(p.nom) against (? in natural language mode)", [$recherche])
                             ->orWhereRaw("MATCH(c.nom) against (? in natural language mode)", [$recherche])

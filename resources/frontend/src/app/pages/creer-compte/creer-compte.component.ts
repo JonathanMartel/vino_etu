@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 
-
 @Component({
   selector: 'app-creer-compte',
   templateUrl: './creer-compte.component.html',
@@ -18,6 +17,7 @@ export class CreerCompteComponent implements OnInit {
 
   });
 
+
   constructor(private servBouteilleDeVin:BouteilleDeVinService) { }
 
   ngOnInit(): void {
@@ -25,7 +25,6 @@ export class CreerCompteComponent implements OnInit {
 
   postUser(data:any){
     console.log(data);
-    
   }
 
 }

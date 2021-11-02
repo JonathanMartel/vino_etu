@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BouteilleDeVinService} from '@services/bouteille-de-vin.service';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-cellier',
@@ -8,6 +9,8 @@ import { BouteilleDeVinService} from '@services/bouteille-de-vin.service';
 })
 export class CellierComponent implements OnInit {
   cellier:any;
+  mode = new FormControl('over');
+  shouldRun = [/(^|\.)plnkr\.co$/, /(^|\.)stackblitz\.io$/].some(h => h.test(window.location.host));
 
 
   constructor(private servBouteilleDeVin:BouteilleDeVinService) {
@@ -21,6 +24,6 @@ export class CellierComponent implements OnInit {
 
   }
 
-
+  
 
 }

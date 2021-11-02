@@ -26,7 +26,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ModifierCellierBouteilleComponent } from './pages/modifier-cellier-bouteille/modifier-cellier-bouteille.component';
-
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatDialogModule} from '@angular/material/dialog';
 
 
 
@@ -59,7 +60,8 @@ import { ModifierCellierBouteilleComponent } from './pages/modifier-cellier-bout
         ReactiveFormsModule,
         MatCardModule,
         MatSnackBarModule,
-        
+        MatSidenavModule,
+        MatDialogModule,
     ],
     providers: [BouteilleDeVinService, BouteilleResolverServiceService],
     bootstrap: [AppComponent]
