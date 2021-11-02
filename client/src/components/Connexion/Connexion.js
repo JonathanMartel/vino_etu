@@ -82,12 +82,12 @@ export default class Connexion extends React.Component{
 
                 <div>
                     <p>Courriel</p>
-                    <input name="courriel" onKeyUp={evt => this.setState({ courriel: evt.target.value})} placeholder="Entrez son courriel" type="email" />
+                    <input name="courriel" onKeyUp={evt => this.setState({ courriel: evt.target.value})} placeholder="bobus@gmail.com" type="email" />
                 </div>
 
                 <div>
                     <p>Mot de passe</p>
-                    <input name="mot_passe" onKeyUp={evt => this.setState({ mot_passe: evt.target.value})} placeholder="Entrez son mot_passe" type="password" />
+                    <input name="mot_passe" onKeyUp={evt => this.setState({ mot_passe: evt.target.value})} placeholder="12345" type="password" />
                 </div>
 
                 <br/> <br/>
