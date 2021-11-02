@@ -16,23 +16,27 @@ class BouteilleController extends Controller {
     public function index(Request $request) {
         $request->limite = 24;
 
-        $request->orderBy = "nom";
-        $request->orderDirection = "asc";
-        $request->texteRecherche = "États";
+        $orderBy = $request->orderBy = "nomBouteille";
+        $orderDirection = $request->orderDirection = "asc";
+        $request->texteRecherche = "rouge";
 
         /* return BouteilleResource::collection(
             Bouteille::orderBy($request->orderBy, $request->orderDirection)
                      ->paginate($request->limite)); */
         if($recherche = $request->texteRecherche) {
-            $sousReqPays = DB::table("pays")
-                             ->select("id", "nom")
-                             ->whereRaw("MATCH(nom) against (? in natural language mode)", [$recherche]);
+            /* $sousReqPays = DB::table("pays")
+                             ->select("id", "nom as pays")
+                             ->whereRaw("MATCH(nom) against (? in natural language mode)", [$recherche]); */
 
-            $requete = DB::table("bouteilles")
-                         ->joinSub($sousReqPays, "pays", function($join) {
-                            $join->on("pays.id", "=", "bouteilles.pays_id");
-                        })
-                        ->paginate($request->limite);
+            $requete = DB::table("bouteilles as b")
+                            ->join("pays as p", "p.id", "=", "b.pays_id")
+                            ->join("categories as c", "c.id", "=", "b.categories_id")
+                            ->select("*", "p.nom as pays", "c.nom as categorie", "b.nom as nomBouteille")
+                            ->whereRaw("MATCH(b.nom,description,b.format) against (? in natural language mode)", [$recherche])
+                            ->orWhereRaw("MATCH(p.nom) against (? in natural language mode)", [$recherche])
+                            ->orWhereRaw("MATCH(c.nom) against (? in natural language mode)", [$recherche])
+                            ->orderBy($orderBy, $orderDirection)
+                            ->paginate($request->limite);
 
             return $requete;
         }

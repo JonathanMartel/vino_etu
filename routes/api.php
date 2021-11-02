@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BouteilleAcheteeController;
 use App\Http\Controllers\BouteilleController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\CellierBouteilleAcheteeController;
@@ -48,6 +49,12 @@ Route::get('celliers/{cellierId}/bouteilles', [CellierController::class, "obteni
 
 // Ajout d'une bouteille à un cellier
 Route::post('celliers/{cellier}/bouteilles', [CellierBouteilleAcheteeController::class, "store"]);
+
+// Récupérer le data d'une bouteille achetée
+Route::get('bouteilles-achetees/{bouteilleAchetee}', [BouteilleAcheteeController::class, "show"]);
+
+// Mise à jour de l'inventaire d'une bouteille dans un cellier donné
+Route::put("celliers/modifier-bouteille/{bouteilleAchetee}", [CellierBouteilleAcheteeController::class, "modifierInventaireBouteille"]);
 
 // Mise à jour de l'inventaire d'une bouteille dans un cellier donné
 Route::put("celliers/modifier-inventaire/{cellierBouteilleId}", [CellierBouteilleAcheteeController::class, "modifierInventaireBouteille"]);
