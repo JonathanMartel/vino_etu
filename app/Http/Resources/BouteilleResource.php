@@ -21,8 +21,6 @@ class BouteilleResource extends JsonResource
             "url_image"     => $this->url_image,
             "url_achat"     => $this->url_achat,
             "url_infos"     => $this->url_infos,
-            "conservation"  => $this->conservation,
-            "notes"         => $this->notes,
             "format"        => $this->format,
             "pays"          => $this->pays->nom,
             "categories_id" => $this->categories_id,

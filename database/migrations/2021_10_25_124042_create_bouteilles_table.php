@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateBouteillesTable extends Migration
@@ -21,14 +22,13 @@ class CreateBouteillesTable extends Migration
             $table->string("url_achat")->nullable();
             $table->string("url_infos")->nullable();
             $table->date("date_achat")->nullable();
-            $table->string("conservation")->nullable();
-            $table->year("millesime")->nullable();
-            $table->text("notes")->nullable();
             $table->string("format")->nullable();
             $table->foreignId("pays_id")->constrained();
             $table->foreignId("categories_id")->constrained();
             $table->timestamps();
         });
+
+        DB::statement('ALTER TABLE bouteilles ADD FULLTEXT search(nom, description, format)');
     }
 
     /**

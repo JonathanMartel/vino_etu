@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreatePaysTable extends Migration
@@ -18,6 +19,8 @@ class CreatePaysTable extends Migration
             $table->string("nom");
             $table->timestamps();
         });
+
+        DB::statement('ALTER TABLE pays ADD FULLTEXT search(nom)');
     }
 
     /**
