@@ -51,7 +51,7 @@ foreach ($cellierBouteillesIDs as $bouteilleID){
             "dataCellier" => $dataCellierBouteillesByIDs,
     ];
 
-    var_dump($cellierBouteillesByIDs);
+    // var_dump($cellierBouteillesByIDs);
 }
 
 
@@ -212,10 +212,15 @@ foreach ($cellierBouteillesIDs as $bouteilleID){
      * @param  \App\Models\CellierBouteille  $cellierBouteille
      * @return \Illuminate\Http\Response
      */
-    public function show(CellierBouteille $cellierBouteille)
+    public function show($idCellier, $idBouteille)
     {
-        //
+        $bouteille = Bouteille::getDataBouteilleByID($idBouteille);
+        return view('ficheVin.index', [
+            'bouteille' => $bouteille
+        ]);
     }
+
+ 
 
     /**
      * Show the form for editing the specified resource.

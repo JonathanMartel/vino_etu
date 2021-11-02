@@ -93,7 +93,12 @@
             </div>
         </div>
         <div class="nomVin">
-            <p>{{$cellierBouteille->nom}}</p>
+            <a href="{{route('ficheVin', [
+                        'idCellier'=>$cellierBouteille->cellier_id,
+                        'idBouteille'=>$cellierBouteille->bouteille_id,
+                        ]) }}">
+                <p>{{$cellierBouteille->nom}}</p>
+            </a>
         </div>
     </section>
     @empty
