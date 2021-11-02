@@ -61,12 +61,13 @@ export default class Dialogue extends React.Component {
 							type="number"
 							fullWidth
 							variant="standard"
-							onChange={(e) => this.setState({valeur : e.target.value })}
+							onBlur={(e) => this.setState({valeur : e.target.value })}
+							//onChange={(e) => this.setState({valeur : e.target.value })}
 						/>
 					</DialogContent>
 					<DialogActions>
 						<Button onClick={this.handleClose}>Annuler</Button>
-						<Button onClick={() => {this.props.valeurChamps(this.state.valeur); this.props.changerQuantite();}}>OK</Button>
+						<Button onClick={() => {this.props.changerQuantite(this.state.valeur) }}>OK</Button>
 					</DialogActions>
 				</Dialog>
 			</div>
