@@ -24,7 +24,9 @@ export class FicheBouteilleComponent implements OnInit {
     }
 
     openSnackBar(message: any, action: any) {
-        this.snackBar.open(message, action);
+        this.snackBar.open(message, action, {
+            duration: 3000
+        });
     }
 
     ajouterBouteilleCellier() {
@@ -45,7 +47,7 @@ export class FicheBouteilleComponent implements OnInit {
             celliers_id     : 1,
         }
 
-        this.servBouteilleDeVin.ajoutBouteilleCellier(bouteilleAchetee).subscribe(() => { this.openSnackBar('Vous avez ajouté une bouteille à votre cellier', 'dismiss') });
+        this.servBouteilleDeVin.ajoutBouteilleCellier(bouteilleAchetee).subscribe(() => { this.openSnackBar('Vous avez ajouté une bouteille à votre cellier', 'Fermer') });
     }
 
 }
