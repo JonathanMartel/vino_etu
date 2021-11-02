@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <title>In Vino Veritas</title>
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     
@@ -67,6 +70,7 @@
             <div class="nav-content row white">
                 <div class="col s6">
                     <ul class="tabs tabs-transparent hide-on-med-and-down">
+                    <li class="tab"><a href="{{ route('importerBouteille') }}"><span class="black-text">Importer bouteille</span></a></li>
                     @guest
                     @else
                         <li class="tab"><a href="{{ route('cellier') }}"><span class="black-text">Vos celliers</span></a></li>

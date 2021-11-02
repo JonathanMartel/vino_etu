@@ -80,4 +80,4 @@ Route::get('/ajouterNote/{idCellier}/{idBouteille}/{millesime}/{note}', [Cellier
 /* Recherche */
 
 Route::get('/rechercheBouteillesParMotCle/{motCle}', [BouteilleController::class, 'rechercheBouteillesParMotCle'])->name('rechercheBouteillesParMotCle')->middleware('auth');
-
+Route::get('/importerBouteille', [BouteilleController::class, 'index'])->name('importerBouteille')->middleware('auth');

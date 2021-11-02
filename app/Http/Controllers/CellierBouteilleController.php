@@ -60,7 +60,9 @@ class CellierBouteilleController extends Controller
         if (isset($request->date_achat)) {
             $date_achat = date('Y-m-d', strtotime($request->date_achat));
         }
+
         $millesime = 0;
+        
         if (!empty($request->millesime)) {
             $millesime = $request->millesime;
         }
