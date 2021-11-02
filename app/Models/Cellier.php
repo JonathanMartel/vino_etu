@@ -28,11 +28,18 @@ class Cellier extends Model
                 ->select(
                     "cba.id as inventaireId",
                     "cba.inventaire as inventaire",
-                    "ba.url_image as imageBouteille",
                     "ba.nom as nom",
+                    "ba.description as description",
                     "ba.url_image as image",
-                    "ba.format as format",
-                    "pays.nom as pays",
+                    "ba.url_achat",
+                    "ba.url_info",
+                    "ba.format",
+                    "ba.origine",
+                    "ba.millesime",
+                    "ba.prix_paye",
+                    "ba.date_acquisition",
+                    "ba.conservation",
+                    "ba.notes_personnelles",
                     "cat.nom as categorie")
                 ->where("cba.celliers_id", $cellierId)
                 ->paginate($limite);

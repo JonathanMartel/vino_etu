@@ -69,8 +69,6 @@ class CellierBouteilleAcheteeController extends Controller {
         $bouteilleAchetee->categories_id =  $request->categories_id;
         $bouteilleAchetee->save();
 
-        return response($bouteilleAchetee);
-
         $bouteilleCellier = new CellierBouteilleAchetee();
         $bouteilleCellier->bouteilles_achetees_id = $bouteilleAchetee->id;
         $bouteilleCellier->celliers_id = $request->celliers_id;
@@ -78,7 +76,7 @@ class CellierBouteilleAcheteeController extends Controller {
         $bouteilleCellier->save();
 
         return response()->json([
-            "message" => "ajout réussi !"
+            "message" => "ajout réussi ! id : $bouteilleCellier->id"
         ], 200);
     }
 
