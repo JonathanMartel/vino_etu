@@ -7,8 +7,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class BouteilleDeVinService {
 
-    // private url:string = "http://127.0.0.1:8000/api";
-    private url:string = "http://kalimotxo-vino.akira.dev/api";
+    private url:string = "http://127.0.0.1:8000/api";
+    //private url:string = "http://kalimotxo-vino.akira.dev/api";
     // private url: string = new URL(window.location.href).origin + "/api";
 
     constructor(private http: HttpClient) {
@@ -17,18 +17,15 @@ export class BouteilleDeVinService {
 
     getCellier() {
 
-
         return this.http.get<any>(this.url + '/celliers/' + 1 + '/bouteilles');
-
-
     }
 
     getBouteillesCellier() {
+
         return this.http.get<any>(this.url + '/celliers/' + 1 + '/bouteilles');
     }
 
     getListeBouteille() {
-
 
         return this.http.get<any>(this.url + '/catalogue-bouteilles');
     }
@@ -53,7 +50,13 @@ export class BouteilleDeVinService {
     }
 
 
-    modifierBouteilleCellier(bouteille_id:any, data:any){
+    modifierBouteilleCellier(bouteilleAchetee_id:any, data:any){
+
+        let body = {
+            
+        }
+
+        return this.http.put<any>(this.url + '/celliers/modifier-bouteille/' + bouteilleAchetee_id, body)
 
     }
 

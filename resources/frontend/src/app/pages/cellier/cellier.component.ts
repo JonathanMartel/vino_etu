@@ -21,6 +21,6 @@ export class CellierComponent implements OnInit {
 
   }
 
-
+  
 
 }

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { Component, Inject, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 
@@ -11,21 +12,42 @@ import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 export class AjoutBouteilleComponent implements OnInit {
     bouteilleAchetee: any;
 
-    constructor(
-        private servBouteilleDeVin: BouteilleDeVinService,
-        private actRoute: ActivatedRoute,
-        private snackBar: MatSnackBar
-    ) { }
+  ajoutBouteille = new FormGroup({
+    millesime: new FormControl(''),
+    inventaire: new FormControl(''),
+    date_acquisition: new FormControl(''),
+    prix_paye: new FormControl(''),
+    conservation: new FormControl(''),
+    notes_personnelles: new FormControl(''),
+  });
 
-    ngOnInit(): void {
-    }
+  constructor(private servBouteilleDeVin:BouteilleDeVinService,
+              private actRoute: ActivatedRoute,
+              public formulaireRef: MatDialogRef<AjoutBouteilleComponent>,
+              @Inject(MAT_DIALOG_DATA) public data:any){ }
+
+  ngOnInit(): void {
+    this.data;
+    console.log(this.data.pays);
+  }
 
 
-    ajouterBouteilleCellier(bouteilleId: any) {
+  postBouteilleCellier(bouteille:any){
 
-        this.servBouteilleDeVin.ajoutBouteilleCellier(bouteilleId).subscribe(() => { });
+    this.bouteilleAchetee= {...this.data, ...bouteille}
 
-    }
+    this.bouteilleAchetee.origine = this.data.pays;
+    this.bouteilleAchetee.celliers_id = 1;
+
+    console.log(this.bouteilleAchetee);
+
+    this.servBouteilleDeVin.ajoutBouteilleCellier(this.bouteilleAchetee).subscribe(()=> {});
+
+    setTimeout(() => {
+      this.formulaireRef.close();
+    }, 2000)
+
+  }
 
 
 }
