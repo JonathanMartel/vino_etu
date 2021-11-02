@@ -50,10 +50,11 @@ foreach ($cellierBouteillesIDs as $bouteilleID){
             "format" => $bouteille[0]->format,
             "taille" => $bouteille[0]->taille,
             "url_img" => $bouteille[0]->url_img,
+            "url_saq" => $bouteille[0]->url_saq,
             "dataCellier" => $dataCellierBouteillesByIDs,
     ];
 
-    var_dump($cellierBouteillesByIDs);
+    //var_dump($cellierBouteillesByIDs);
 }
 
 

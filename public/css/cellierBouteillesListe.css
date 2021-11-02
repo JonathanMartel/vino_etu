@@ -1,54 +1,136 @@
-.cellier{
+.cellier {
     text-align: center;
     padding-top: 5px;
     padding-bottom: 5px;
     font-size: 1.25rem;
-    color: #343B41;
+    font-weight: 700;
+    color: #7A5958;
     background-color: #E0CFA0;
 }
 
-.emplacement{
+.localisation {
     text-align: center;
     padding-top: 5px;
     padding-bottom: 5px;
     color: #343B41;
-    background-color: #E0CFA0;
+    background-color: #CDCED1;
 }
 
-
-
-.flex{
+.flex {
     display: flex;
 }
 
-.info{
-    display: flex;
-    flex-direction: column;
-    align-self: center;
-    padding: 0.64rem;
-}
 
-* + *, p {
+
+*+*, p {
     margin: 0;
     padding: 0;
 }
 
-.image{
+.articlesConteneur {
     margin: 0.64rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.64rem;
+}
+
+.articleVin {
+    border: 2px solid;
+    display: flex;
+    flex-direction: column;
+}
+
+.nomVinConteneur {
+    padding: 0.64rem;
+    /* font-size: 1.25rem;
+    font-weight: 700;
+    color: #343B41; */
+    background-color: #7A5958;
+}
+
+.nomVinConteneur>h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: white;
+}
+
+.infoBouteilleConteneur {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.image {
+    margin: 0.64rem;
+    margin-left: 1.5rem;
     width: 30px;
-    height: 112px;
+    height: 83px;
     object-fit: cover;
 }
 
-.nomVin{
+.info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-self: stretch;
     padding: 0.64rem;
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: #343B41;
-    background-color: #99AAA2;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+.bouteilleSAQConteneur {
+    display: flex;
+    align-items: center;
+    gap: 0.64rem;
+    padding: 0.64rem;
 }
 
-section{
+.lienSAQ {
+    color: #7A5958;
+    font-weight: 700;
+    padding: 0.64rem;
+}
+
+.cercle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    border: 1px solid #7A5958;
+}
+
+.check {
+    color: #778D83;
+}
+
+.infoCellierBouteilleConteneur {
+    display: flex;
+    flex-direction: column;
+    
+    gap: 0.64rem;
+}
+
+.infoCellierBouteille {
+    display: flex;
+    
+    padding: 0.64rem;
+    padding-left: 1.5rem;
+    background-color: #CDCED1;
+}
+
+.infoUnitaires p {
+
+color: #343B41;
+
+}
+
+.infoUnitaires .select {
+    padding-top: 0.41rem;
+    padding-bottom: 0.41rem;
+}
+
+/* section {
     border-style: solid;
     border-color: #99AAA2;
     border-width: 1px;
@@ -56,21 +138,18 @@ section{
     border-bottom: none;
     border-left: none;
     border-right: none;
-}
-
-
+} */
 
 /*** boutons ajout et retrait d'un vin existant ****/
 
-.bouton-conteneur{
+.bouton-conteneur {
     align-self: center;
     margin-left: auto;
-    padding-right: 0.64rem;
-    column-gap: 0.64rem;
     
+    column-gap: 0.64rem;
 }
 
-.bouton-cercle-add{
+.bouton-cercle-add {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -80,16 +159,15 @@ section{
     transition: all 0.2s ease;
 }
 
-.bouton-cercle-add:hover{
+.bouton-cercle-add:hover {
     background-color: #99AAA2;
 }
 
-.bouton-cercle-add a{
-    background-color:#778D83;
+.bouton-cercle-add a {
+    background-color: #778D83;
 }
 
-
-.bouton-cercle-remove{
+.bouton-cercle-remove {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -99,25 +177,22 @@ section{
     transition: all 0.2s ease;
 }
 
-.bouton-cercle-remove:hover{
+.bouton-cercle-remove:hover {
     background-color: #99AAA2;
 }
 
 .bouton-cercle-remove a {
-
-    background-color:#7A5958;
+    background-color: #7A5958;
 }
 
 .bouton-cercle-remove a:hover {
-
-    background-color:#AC9678;
+    background-color: #AC9678;
 }
 
-  /* Materialize css */
-
+/* Materialize css */
 
 .material-icon {
-    color: white;
+    
     font-family: 'Material Icons';
     font-weight: normal;
     font-style: normal;
@@ -135,16 +210,16 @@ section{
 
 /* bouton ajout */
 
-.bouton-ajout-vin-conteneur{
+.bouton-ajout-vin-conteneur {
     display: flex;
     justify-content: center;
+    margin-top: 0.64rem;
     margin-left: 0.64rem;
     margin-right: 0.64rem;
     margin-bottom: 1rem;
 }
 
-
-.bouton-ajout-vin{
+.bouton-ajout-vin {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -157,22 +232,28 @@ section{
     border-radius: 30px;
     color: #343B41;
     font-weight: 700;
-    background-color: #CDCED1;
+    background-color: #99AAA2;
     transition: all 0.2s ease;
-
 }
 
-.bouton-ajout-vin:hover{
-    background-color:#778D83;
+.bouton-ajout-vin>i {
+    color: #343B41;
+}
+
+.bouton-ajout-vin:hover {
+    background-color: #778D83;
     color: white;
 }
 
-.entete-icon-bouton{
+/* .bouton-ajout-vin:hover>i {
+    color: white;
+} */
+
+.entete-icon-bouton {
     display: flex;
     column-gap: 1rem;
     justify-content: center;
 }
-
 
 /*  pour alterner de couleur */
 
