@@ -4,23 +4,28 @@ import { ActivatedRoute } from '@angular/router';
 import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 
 @Component({
-  selector: 'app-ajout-bouteille',
-  templateUrl: './ajout-bouteille.component.html',
-  styleUrls: ['./ajout-bouteille.component.scss']
+    selector: 'app-ajout-bouteille',
+    templateUrl: './ajout-bouteille.component.html',
+    styleUrls: ['./ajout-bouteille.component.scss']
 })
 export class AjoutBouteilleComponent implements OnInit {
+    bouteilleAchetee: any;
 
-  constructor(private servBouteilleDeVin:BouteilleDeVinService, private actRoute: ActivatedRoute, private snackBar:MatSnackBar){ }
+    constructor(
+        private servBouteilleDeVin: BouteilleDeVinService,
+        private actRoute: ActivatedRoute,
+        private snackBar: MatSnackBar
+    ) { }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+    }
 
 
-  ajouterBouteilleCellier(bouteilleId:any){
+    ajouterBouteilleCellier(bouteilleId: any) {
 
-    this.servBouteilleDeVin.ajoutBouteilleCellier(bouteilleId).subscribe(()=> {});
+        this.servBouteilleDeVin.ajoutBouteilleCellier(bouteilleId).subscribe(() => { });
 
-  }
+    }
 
 
 }
