@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBouteillesPersonnaliseesTable extends Migration
+class CreateBouteillesAcheteesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,21 +13,21 @@ class CreateBouteillesPersonnaliseesTable extends Migration
      */
     public function up()
     {
-        Schema::create('bouteilles_personnalisees', function (Blueprint $table) {
+        Schema::create('bouteilles_achetees', function (Blueprint $table) {
             $table->id();
             $table->string("nom");
             $table->text("description")->nullable();
             $table->string("url_image")->nullable();
             $table->string("url_achat")->nullable();
-            $table->string("url_infos")->nullable();
-            $table->date("date_achat")->nullable();
-            $table->string("conservation")->nullable();
-            $table->year("millesime")->nullable();
-            $table->text("notes")->nullable();
+            $table->string("url_info")->nullable();
+            $table->string("origine");
+            $table->smallInteger("millesime")->unsigned();
+            $table->date("date_acquisition")->nullable();
+            $table->float("prix_paye", 8, 2, true)->nullable();
+            $table->string("conservation", 500)->nullable();
+            $table->text("notes_personnelles")->nullable();
             $table->string("format")->nullable();
-            $table->foreignId("pays_id")->constrained();
-            $table->foreignId("categories_id")->constrained();
-            $table->foreignId("users_id")->constrained();
+            $table->foreignId("categories_id")->constrained("categories");
             $table->timestamps();
         });
     }
@@ -39,6 +39,6 @@ class CreateBouteillesPersonnaliseesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bouteilles_personnalisees');
+        Schema::dropIfExists('bouteilles_achetees');
     }
 }

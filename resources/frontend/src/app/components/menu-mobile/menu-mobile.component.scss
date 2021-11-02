@@ -13,7 +13,7 @@
     padding: 12px 20px;
     margin: 0;
     justify-content: space-around;
-    flex-grow: 1;  
+    flex-grow: 1;
 }
 
 .mat-toolbar a{
@@ -30,6 +30,12 @@
     display: none;
 }
 
-.icon-catalogue{
-    transform: scale(1.2);
+.menu-mobile mat-icon[data-mat-icon-type="font"] {
+    width: 32px;
+    height: 32px;
+    font-size: 32px;
+}
+
+.menu-mobile mat-icon[data-mat-icon-type="svg"] {
+    transform: scale(1.5);
 }
