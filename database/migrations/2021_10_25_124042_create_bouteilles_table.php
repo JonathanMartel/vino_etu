@@ -28,7 +28,7 @@ class CreateBouteillesTable extends Migration
             $table->timestamps();
         });
 
-        DB::statement('ALTER TABLE bouteilles as b ADD FULLTEXT search(b.nom, b.description, b.format)');
+        DB::statement('ALTER TABLE bouteilles ADD FULLTEXT search(nom, description, format)');
     }
 
     /**

@@ -20,7 +20,7 @@ class CreateCategoriesTable extends Migration
             $table->timestamps();
         });
 
-        DB::statement('ALTER TABLE categories as c ADD FULLTEXT search(c.nom)');
+        DB::statement('ALTER TABLE categories ADD FULLTEXT search(nom)');
     }
 
     /**

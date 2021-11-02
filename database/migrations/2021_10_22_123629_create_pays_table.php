@@ -20,7 +20,7 @@ class CreatePaysTable extends Migration
             $table->timestamps();
         });
 
-        DB::statement('ALTER TABLE pays as p ADD FULLTEXT search(p.nom)');
+        DB::statement('ALTER TABLE pays ADD FULLTEXT search(nom)');
     }
 
     /**
