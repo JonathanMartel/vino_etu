@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1
--- Généré le : jeu. 21 oct. 2021 à 21:49
--- Version du serveur : 10.4.20-MariaDB
--- Version de PHP : 8.0.8
+-- Host: 127.0.0.1
+-- Generation Time: Nov 01, 2021 at 07:20 PM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 8.0.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `in_vino`
+-- Database: `vinodb`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `bouteilles`
+-- Table structure for table `bouteilles`
 --
 
 CREATE TABLE `bouteilles` (
@@ -44,7 +44,7 @@ CREATE TABLE `bouteilles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Déchargement des données de la table `bouteilles`
+-- Dumping data for table `bouteilles`
 --
 
 INSERT INTO `bouteilles` (`id`, `nom`, `pays`, `url_img`, `description`, `code_saq`, `prix_saq`, `url_saq`, `created_at`, `updated_at`, `type_id`, `format_id`, `user_id`) VALUES
@@ -73,20 +73,45 @@ INSERT INTO `bouteilles` (`id`, `nom`, `pays`, `url_img`, `description`, `code_s
 (23, '3 de Valandraud 2016', 'France', 'https://www.saq.com/media/catalog/product/1/3/13392031-1_1578535218.png?quality=80&fit=bounds&height=166&width=111&canvas=111:166', 'Vin rouge | 750 ml | France', '13392031', 53.00, 'https://www.saq.com/fr/13392031', NULL, NULL, 1, 1, 1),
 (24, '3 de Valandraud St-Émilion Grand Cru 2015', 'France', 'https://www.saq.com/media/catalog/product/1/4/14767624-1_1631204434.png?quality=80&fit=bounds&height=166&width=111&canvas=111:166', 'Vin rouge | 1,5 L | France', '14767624', 98.00, 'https://www.saq.com/fr/14767624', NULL, NULL, 1, 8, 1),
 (25, '3 Rings Shiraz 2017', 'Australie', 'https://www.saq.com/media/catalog/product/1/2/12815725-1_1603713617.png?quality=80&fit=bounds&height=166&width=111&canvas=111:166', 'Vin rouge | 750 ml | Australie', '12815725', 22.00, 'https://www.saq.com/fr/12815725', NULL, NULL, 1, 1, 1),
-(26, '655 Miles Cabernet Sauvignon Lodi', 'États-Unis', 'https://www.saq.com/media/wysiwyg/product_tags/pastille_gout/as_small.png?width=20&height=20', 'Vin rouge | 750 ml | États-Unis', '14139863', 15.00, 'https://www.saq.com/fr/14139863', NULL, NULL, 1, 1, NULL),
-(27, '7Colores Gran Reserva Valle Casablanca 2017', 'Chili', 'https://www.saq.com/media/catalog/product/1/4/14208427-1_1606227648.png?quality=80&fit=bounds&height=166&width=111&canvas=111:166', 'Vin rouge | 750 ml | Chili', '14208427', 19.00, 'https://www.saq.com/fr/14208427', NULL, NULL, 1, 1, NULL),
-(28, 'A Mandria di Signadore Patrimonio 2019', 'France', 'https://www.saq.com/media/catalog/product/1/4/14736271-1_1624654560.png?quality=80&fit=bounds&height=166&width=111&canvas=111:166', 'Vin rouge | 750 ml | France', '14736271', 42.00, 'https://www.saq.com/fr/14736271', NULL, NULL, 1, 1, NULL),
-(29, 'A Mandria di Signadore Patrimonio 2018', 'France', 'https://www.saq.com/media/catalog/product/1/1/11908161-1_1580629223.png?quality=80&fit=bounds&height=166&width=111&canvas=111:166', 'Vin rouge | 750 ml | France', '11908161', 41.00, 'https://www.saq.com/fr/11908161', NULL, NULL, 1, 1, NULL),
-(30, 'A Occhipinti Rosso Arcaico 2019', 'Italie', 'https://www.saq.com/media/catalog/product/1/4/14651867-1_1612271137.png?quality=80&fit=bounds&height=166&width=111&canvas=111:166', 'Vin rouge | 750 ml | Italie', '14651867', 30.00, 'https://www.saq.com/fr/14651867', NULL, NULL, 1, 1, NULL),
-(31, 'A thousand Lives Cabernet-Sauvignon Mendoza', 'Argentine', 'https://www.saq.com/media/wysiwyg/product_tags/pastille_gout/as_small.png?width=20&height=20', 'Vin rouge | 750 ml | Argentine', '14250211', 9.00, 'https://www.saq.com/fr/14250211', NULL, NULL, 1, 1, NULL),
-(32, 'A.A. Badenhorst Family Blend 2018', 'Afrique du Sud', 'https://www.saq.com/media/catalog/product/1/2/12275298-1_1581958830.png?quality=80&fit=bounds&height=166&width=111&canvas=111:166', 'Vin rouge | 750 ml | Afrique du Sud', '12275298', 41.00, 'https://www.saq.com/fr/12275298', NULL, NULL, 1, 1, NULL),
-(33, 'A.A. Badenhorst The Curator 2019', 'Afrique du Sud', 'https://www.saq.com/media/catalog/product/1/2/12819435-1_1589314084.png?quality=80&fit=bounds&height=166&width=111&canvas=111:166', 'Vin rouge | 750 ml | Afrique du Sud', '12819435', 13.00, 'https://www.saq.com/fr/12819435', NULL, NULL, 1, 1, NULL),
-(34, 'AA Badenhorst Swartland Papegaai 2019', 'Afrique du Sud', 'https://www.saq.com/media/catalog/product/1/3/13632306-1_1578539713.png?quality=80&fit=bounds&height=166&width=111&canvas=111:166', 'Vin rouge | 750 ml | Afrique du Sud', '13632306', 19.00, 'https://www.saq.com/fr/13632306', NULL, NULL, 1, 1, NULL);
+(26, '655 Miles Cabernet Sauvignon Lodi', 'États-Unis', 'https://www.saq.com/media/wysiwyg/product_tags/pastille_gout/as_small.png?width=20&height=20', 'Vin rouge | 750 ml | États-Unis', '14139863', 15.00, 'https://www.saq.com/fr/14139863', NULL, NULL, 1, 1, 1),
+(27, '7Colores Gran Reserva Valle Casablanca 2017', 'Chili', 'https://www.saq.com/media/catalog/product/1/4/14208427-1_1606227648.png?quality=80&fit=bounds&height=166&width=111&canvas=111:166', 'Vin rouge | 750 ml | Chili', '14208427', 19.00, 'https://www.saq.com/fr/14208427', NULL, NULL, 1, 1, 1),
+(28, 'A Mandria di Signadore Patrimonio 2019', 'France', 'https://www.saq.com/media/catalog/product/1/4/14736271-1_1624654560.png?quality=80&fit=bounds&height=166&width=111&canvas=111:166', 'Vin rouge | 750 ml | France', '14736271', 42.00, 'https://www.saq.com/fr/14736271', NULL, NULL, 1, 1, 1),
+(29, 'A Mandria di Signadore Patrimonio 2018', 'France', 'https://www.saq.com/media/catalog/product/1/1/11908161-1_1580629223.png?quality=80&fit=bounds&height=166&width=111&canvas=111:166', 'Vin rouge | 750 ml | France', '11908161', 41.00, 'https://www.saq.com/fr/11908161', NULL, NULL, 1, 1, 1),
+(30, 'A Occhipinti Rosso Arcaico 2019', 'Italie', 'https://www.saq.com/media/catalog/product/1/4/14651867-1_1612271137.png?quality=80&fit=bounds&height=166&width=111&canvas=111:166', 'Vin rouge | 750 ml | Italie', '14651867', 30.00, 'https://www.saq.com/fr/14651867', NULL, NULL, 1, 1, 1),
+(31, 'A thousand Lives Cabernet-Sauvignon Mendoza', 'Argentine', 'https://www.saq.com/media/wysiwyg/product_tags/pastille_gout/as_small.png?width=20&height=20', 'Vin rouge | 750 ml | Argentine', '14250211', 9.00, 'https://www.saq.com/fr/14250211', NULL, NULL, 1, 1, 1),
+(32, 'A.A. Badenhorst Family Blend 2018', 'Afrique du Sud', 'https://www.saq.com/media/catalog/product/1/2/12275298-1_1581958830.png?quality=80&fit=bounds&height=166&width=111&canvas=111:166', 'Vin rouge | 750 ml | Afrique du Sud', '12275298', 41.00, 'https://www.saq.com/fr/12275298', NULL, NULL, 1, 1, 1),
+(33, 'A.A. Badenhorst The Curator 2019', 'Afrique du Sud', 'https://www.saq.com/media/catalog/product/1/2/12819435-1_1589314084.png?quality=80&fit=bounds&height=166&width=111&canvas=111:166', 'Vin rouge | 750 ml | Afrique du Sud', '12819435', 13.00, 'https://www.saq.com/fr/12819435', NULL, NULL, 1, 1, 1),
+(34, 'AA Badenhorst Swartland Papegaai 2019', 'Afrique du Sud', 'https://www.saq.com/media/catalog/product/1/3/13632306-1_1578539713.png?quality=80&fit=bounds&height=166&width=111&canvas=111:166', 'Vin rouge | 750 ml | Afrique du Sud', '13632306', 19.00, 'https://www.saq.com/fr/13632306', NULL, NULL, 1, 1, 1),
+(89, 'Castano Hecula', 'Espagne', 'http://127.0.0.1:8000/storage/uploads/1635281758_red-wine-poured-into-glass-260nw-1612805212.jpg', 'Vin rouge\r\n         \r\n      \r\n      \r\n      Espagne, 750 ml\r\n      \r\n      \r\n      Code SAQ : 11676671', NULL, NULL, NULL, '2021-10-27 00:55:58', '2021-10-27 00:55:58', 2, 1, 2),
+(90, 'Borsao Seleccion', 'Espagne', 'http://127.0.0.1:8000/storage/uploads/1635358467_red-wine-poured-into-glass-260nw-1612805212.jpg', 'Vin rouge\r\n         \r\n      \r\n      \r\n      Espagne, 750 ml\r\n      \r\n      \r\n      Code SAQ : 10324623', NULL, NULL, NULL, '2021-10-27 22:14:27', '2021-10-27 22:14:27', 2, 1, 5),
+(91, '12', 'asa', NULL, NULL, NULL, NULL, NULL, '2021-10-28 01:04:10', '2021-10-28 01:04:10', 1, 1, 5),
+(92, '4343', 'Espag', '//s7d9.scene7.com/is/image/SAQ/10324623_is?$saq-rech-prod-gril$', 'Vin rouge', NULL, NULL, NULL, '2021-10-28 01:43:41', '2021-10-28 01:43:41', 7, 11, 5),
+(93, '1', 'jj', 'http://127.0.0.1:8000/assets/icon/bouteille-cellier.svg', 'jj', NULL, NULL, NULL, '2021-10-28 02:25:52', '2021-10-28 02:25:52', 1, 13, 5),
+(94, 'a', 'gg', 'http://127.0.0.1:8000/assets/icon/bouteille-cellier.svg', '33', NULL, NULL, NULL, '2021-10-28 02:26:32', '2021-10-28 02:26:32', 1, 14, 5),
+(95, 'Borsao', 'Espagne', '//s7d9.scene7.com/is/image/SAQ/10324623_is?$saq-rech-prod-gril$', 'Vin \r\n         \r\n      \r\n      \r\n      Espagne, \r\n      \r\n      Code SAQ : 10324623', NULL, NULL, NULL, '2021-10-28 06:31:06', '2021-10-28 06:31:06', 1, 8, 5),
+(96, 'Castano Hecula', 'Espagne', '//s7d9.scene7.com/is/image/SAQ/11676671_is?$saq-rech-prod-gril$', 'Vin rouge\r\n         \r\n      \r\n      \r\n      Espagne, 750 ml\r\n      \r\n      \r\n      Code SAQ : 11676671', NULL, NULL, NULL, '2021-10-28 17:59:12', '2021-10-28 17:59:12', 7, 11, 5),
+(97, 'Castano Heculawww', 'Espagne', '//s7d9.scene7.com/is/image/SAQ/11676671_is?$saq-rech-prod-gril$', 'Vin rouge\r\n         \r\n      \r\n      \r\n      Espagne, 750 ml\r\n      \r\n      \r\n      Code SAQ : 11676671', NULL, NULL, NULL, '2021-10-28 18:02:49', '2021-10-28 18:02:49', 8, 11, 5),
+(98, 'Bodegas Atalaya Laya 2017', 'Espagne', '//s7d9.scene7.com/is/image/SAQ/12375942_is?$saq-rech-prod-gril$', 'Vin rouge\r\n         \r\n      \r\n      \r\n      Espagne, 750 ml\r\n      \r\n      \r\n      Code SAQ : 12375942', NULL, NULL, NULL, '2021-10-28 18:45:57', '2021-10-28 18:45:57', 5, 1, 5),
+(99, 'Dominio de Tares Estay Castilla y Léon 2015', 'Espagne', '//s7d9.scene7.com/is/image/SAQ/13802571_is?$saq-rech-prod-gril$', 'Vin rouge\r\n         \r\n      \r\n      \r\n      Espagne, 750 ml\r\n      \r\n      \r\n      Code SAQ : 13802571', NULL, NULL, NULL, '2021-10-29 00:20:22', '2021-10-29 00:20:22', 1, 9, 5),
+(100, '21', 'États-Unis', 'http://localhost:8000/storage/uploads/1635460748_red-wine-poured-into-glass-260nw-1612805212.jpg', '1', NULL, NULL, NULL, '2021-10-29 02:39:08', '2021-10-29 02:39:08', 1, 5, 5),
+(101, 'aa', 'a', 'http://localhost:8000/storage/uploads/1635461051_red-wine-poured-into-glass-260nw-1612805212.jpg', 'a', NULL, NULL, NULL, '2021-10-29 02:44:11', '2021-10-29 02:44:11', 1, 15, 5),
+(102, 'aa', 'États-Unis', NULL, 'a', NULL, NULL, NULL, '2021-10-29 03:04:20', '2021-10-29 03:04:20', 2, 15, 5),
+(103, 'aa', 'aa', 'http://localhost:8000/uploads/1635462415_pw2-mcd.png', 'a', NULL, NULL, NULL, '2021-10-29 03:06:55', '2021-10-29 03:06:55', 1, 5, 5),
+(104, 'aa', 'Australie', 'http://localhost:8000/uploads/1635463202_pw2-mcd.png', 'aa', NULL, NULL, NULL, '2021-10-29 03:20:02', '2021-10-29 03:20:02', 2, 14, 5),
+(105, 'q', 'États-Unis', 'http://localhost:8000/uploads/1635463261_pw2-mcd.png', 'qq', NULL, NULL, NULL, '2021-10-29 03:21:01', '2021-10-29 03:21:01', 2, 14, 5),
+(106, '1', 'Espagne', 'http://localhost:8000/storage/uploads/1635464891_pw2-mcd.png', 'wq', NULL, NULL, NULL, '2021-10-29 03:48:11', '2021-10-29 03:48:11', 1, 15, 5),
+(107, 'e', 'Espagne', 'http://localhost:8000/storage/uploads/1635465069_pw2-mcd.png', 're', NULL, NULL, NULL, '2021-10-29 03:51:09', '2021-10-29 03:51:09', 1, 5, 5),
+(108, 'qq', 'a', 'http://localhost:8000/storage/uploads/1635465126_pw2-mcd.png', 'sa', NULL, NULL, NULL, '2021-10-29 03:52:06', '2021-10-29 03:52:06', 1, 15, 5),
+(109, 'saa', 'États-Unis', 'C:\\Users\\Brian\\Desktop\\ecole\\projet-web-2\\vino_etu\\public/img/1635465518_red-wine-poured-into-glass-260nw-1612805212.jpg', 'asa', NULL, NULL, NULL, '2021-10-29 03:58:38', '2021-10-29 03:58:38', 1, 6, 5),
+(110, '43', 'États-Unis', 'http://localhost:8000/img/1635465687_pw2-mcd.png', 'w', NULL, NULL, NULL, '2021-10-29 04:01:27', '2021-10-29 04:01:27', 1, 5, 5),
+(111, 'qw', 'Espagne', 'http://localhost:8000/img/1635466712_pw2-mcd.png', 'qw', NULL, NULL, NULL, '2021-10-29 04:18:32', '2021-10-29 04:18:32', 1, 15, 5),
+(112, 'Tessellae Old Vines Côtes du Roussillon 2016', 'France', '//s7d9.scene7.com/is/image/SAQ/12216562_is?$saq-rech-prod-gril$', 'Vin rouge\r\n         \r\n      \r\n      \r\n      France, 750 ml\r\n      \r\n      \r\n      Code SAQ : 12216562', NULL, NULL, NULL, '2021-10-30 00:58:56', '2021-10-30 00:58:56', 6, 1, 6),
+(113, '3 de Val016', 'France', 'https://www.saq.com/media/catalog/product/1/3/13392031-1_1578535218.png?quality=80&fit=bounds&height=166&width=111&canvas=111:166', 'Vin rouge | 750 ml | France', NULL, NULL, NULL, '2021-10-30 02:17:58', '2021-10-30 02:17:58', 6, 10, 6);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `celliers`
+-- Table structure for table `celliers`
 --
 
 CREATE TABLE `celliers` (
@@ -99,18 +124,23 @@ CREATE TABLE `celliers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Déchargement des données de la table `celliers`
+-- Dumping data for table `celliers`
 --
 
 INSERT INTO `celliers` (`id`, `nom`, `localisation`, `created_at`, `updated_at`, `user_id`) VALUES
 (1, 'Rouges', 'Maison Montreal', NULL, NULL, 2),
 (2, 'Blanc', 'Chalet Saint lin', NULL, NULL, 2),
-(3, 'Premier cellier de Brian', 'Montreal', NULL, NULL, 3);
+(3, 'Premier cellier de Brian', 'Montreal', NULL, NULL, 3),
+(12, 'Castano Hecula', 'qqw', '2021-10-28 19:49:49', '2021-10-28 19:49:49', 5),
+(13, '12', '12', '2021-10-28 20:39:04', '2021-10-28 20:39:04', 5),
+(14, 'qq', 'ww', '2021-10-29 04:18:14', '2021-10-29 04:18:14', 5),
+(15, 'asa', 'asda', '2021-10-29 06:52:19', '2021-10-29 06:52:19', 5),
+(18, '11th Hour Cellars Pinot Noir', '1', '2021-10-30 05:00:45', '2021-10-30 06:10:13', 6);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `cellier_bouteilles`
+-- Table structure for table `cellier_bouteilles`
 --
 
 CREATE TABLE `cellier_bouteilles` (
@@ -128,24 +158,31 @@ CREATE TABLE `cellier_bouteilles` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Déchargement des données de la table `cellier_bouteilles`
+-- Dumping data for table `cellier_bouteilles`
 --
 
 INSERT INTO `cellier_bouteilles` (`date_achat`, `garde_jusqua`, `note`, `commentaire`, `prix`, `quantite`, `millesime`, `created_at`, `updated_at`, `cellier_id`, `bouteille_id`) VALUES
-('2019-01-26', 'non', NULL, '2019-01-26', 23.52, 19, 2015, NULL, NULL, 1, 3),
-('0000-00-00', '', NULL, '', 0.00, 9, 0000, NULL, NULL, 1, 5),
-('0000-00-00', '', NULL, '', 0.00, 10, 2000, NULL, NULL, 1, 8),
-('2019-01-16', '2020', NULL, '2019-01-16', 22.00, 11, 1999, NULL, NULL, 1, 9),
-('0000-00-00', '', NULL, '', 0.00, 3, 0000, NULL, NULL, 1, 10),
-('0000-00-00', '', NULL, '', 0.00, 1, 0000, NULL, NULL, 1, 12),
-('0000-00-00', '', NULL, '', 0.00, 1, 0000, NULL, NULL, 2, 5),
-('0000-00-00', '', NULL, '', 0.00, 1, 0000, NULL, NULL, 2, 10),
-('0000-00-00', '', NULL, '', 0.00, 1, 0000, NULL, NULL, 2, 12);
+('2021-10-25', NULL, NULL, NULL, 0.00, 0, 2012, '2021-10-29 03:18:58', '2021-10-29 03:18:58', 12, 5),
+('2021-10-24', NULL, 4, 'a', 0.00, 0, 2014, '2021-10-29 03:19:29', '2021-10-29 03:19:29', 12, 10),
+('2021-10-18', NULL, 3, NULL, 0.00, 0, 2011, '2021-10-29 03:20:02', '2021-10-29 03:20:02', 12, 104),
+('2021-10-12', 'q', NULL, 'q', 0.00, 0, 2009, '2021-10-29 03:21:01', '2021-10-29 03:21:01', 12, 105),
+('2021-10-26', NULL, NULL, NULL, 0.00, 0, 2010, '2021-10-29 03:48:11', '2021-10-29 03:48:11', 12, 106),
+('2021-10-19', NULL, NULL, NULL, 0.00, 0, 2010, '2021-10-29 03:51:09', '2021-10-29 03:51:09', 12, 107),
+('2021-10-25', NULL, NULL, NULL, 0.00, 0, 2011, '2021-10-29 03:52:06', '2021-10-29 03:52:06', 12, 108),
+('2021-10-18', NULL, NULL, NULL, 0.00, 0, 2012, '2021-10-29 03:58:38', '2021-10-29 03:58:38', 12, 109),
+('2021-10-18', 'ww', NULL, 'ww', 0.00, 0, 2009, '2021-10-29 04:01:27', '2021-10-29 04:01:27', 12, 110),
+('0000-00-00', NULL, NULL, NULL, 0.00, 1, 0000, '2021-10-28 20:42:11', '2021-10-28 20:42:11', 13, 5),
+(NULL, NULL, NULL, NULL, 0.00, 0, 2010, '2021-10-29 04:18:32', '2021-10-29 04:18:32', 14, 111),
+(NULL, NULL, NULL, NULL, 0.00, 0, 0000, '2021-10-29 06:52:31', '2021-10-29 06:52:31', 15, 5),
+('2021-10-29', NULL, 3, NULL, 17.00, 2, 0000, '2021-10-30 05:36:44', '2021-10-30 05:36:44', 18, 5),
+('2021-10-29', NULL, 3, NULL, 17.00, 1, 2016, '2021-10-30 06:08:44', '2021-10-30 06:08:44', 18, 5),
+('2021-10-25', NULL, 3, NULL, 17.00, 3, 2019, '2021-10-30 08:56:19', '2021-10-30 08:56:19', 18, 5),
+('2021-10-30', NULL, 2, NULL, 20.00, 1, 0000, '2021-10-31 06:26:00', '2021-10-31 06:26:00', 18, 13);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `failed_jobs`
+-- Table structure for table `failed_jobs`
 --
 
 CREATE TABLE `failed_jobs` (
@@ -161,7 +198,7 @@ CREATE TABLE `failed_jobs` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `formats`
+-- Table structure for table `formats`
 --
 
 CREATE TABLE `formats` (
@@ -173,7 +210,7 @@ CREATE TABLE `formats` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Déchargement des données de la table `formats`
+-- Dumping data for table `formats`
 --
 
 INSERT INTO `formats` (`id`, `nom`, `taille`, `created_at`, `updated_at`) VALUES
@@ -196,7 +233,7 @@ INSERT INTO `formats` (`id`, `nom`, `taille`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `migrations`
+-- Table structure for table `migrations`
 --
 
 CREATE TABLE `migrations` (
@@ -206,7 +243,7 @@ CREATE TABLE `migrations` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Déchargement des données de la table `migrations`
+-- Dumping data for table `migrations`
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
@@ -223,7 +260,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `mot_de_passe_resets`
+-- Table structure for table `mot_de_passe_resets`
 --
 
 CREATE TABLE `mot_de_passe_resets` (
@@ -235,7 +272,7 @@ CREATE TABLE `mot_de_passe_resets` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `personal_access_tokens`
+-- Table structure for table `personal_access_tokens`
 --
 
 CREATE TABLE `personal_access_tokens` (
@@ -253,7 +290,7 @@ CREATE TABLE `personal_access_tokens` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `types`
+-- Table structure for table `types`
 --
 
 CREATE TABLE `types` (
@@ -264,7 +301,7 @@ CREATE TABLE `types` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Déchargement des données de la table `types`
+-- Dumping data for table `types`
 --
 
 INSERT INTO `types` (`id`, `type`, `created_at`, `updated_at`) VALUES
@@ -278,7 +315,7 @@ INSERT INTO `types` (`id`, `type`, `created_at`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -286,7 +323,7 @@ CREATE TABLE `users` (
   `nom` char(45) COLLATE utf8mb4_unicode_ci NOT NULL,
   `courriel` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `courriel_verified_at` timestamp NULL DEFAULT NULL,
-  `mot_de_passe` char(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` char(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `date_naissance` date NOT NULL,
   `admin` tinyint(1) DEFAULT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -295,20 +332,22 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Déchargement des données de la table `users`
+-- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `nom`, `courriel`, `courriel_verified_at`, `mot_de_passe`, `date_naissance`, `admin`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'test@test.ca', NULL, '123456', '2021-10-01', 1, NULL, NULL, NULL),
+INSERT INTO `users` (`id`, `nom`, `courriel`, `courriel_verified_at`, `password`, `date_naissance`, `admin`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Admin', 'admin@admin.ca', NULL, '$2y$10$ykrLJaVjSPAeQaiUDXMGQe4B/xOMKPQuN/b1AJ.TGQEnIK.Me120a', '0000-00-00', 1, NULL, '2021-10-27 00:04:37', '2021-10-27 00:04:37'),
 (2, 'Julian', 'julian@julian.ca', NULL, '123456', '2000-10-01', NULL, NULL, NULL, NULL),
-(3, 'Brian', 'brian@brian.ca', NULL, '123456', '2000-01-01', NULL, NULL, NULL, NULL);
+(3, 'Brian', 'brian@brian.ca', NULL, '123456', '2000-01-01', NULL, NULL, NULL, NULL),
+(5, '123', '123@dfg.s', NULL, '$2y$10$emidyF/IvQNsFX/fbc1YYOT8Wbin7Hi7Uq29AzfXAPhOVyh7LVUdq', '0000-00-00', NULL, NULL, '2021-10-27 02:38:49', '2021-10-27 02:38:49'),
+(6, 'Castano Hecula', 'brian@brian.com', NULL, '$2y$10$YZIUNesB2ulkXKzEp26zUeTvDofmfhlL1Ep0cHDZvMemhUIvxfRxu', '1234-09-09', NULL, NULL, '2021-10-29 18:41:08', '2021-10-29 18:41:08');
 
 --
--- Index pour les tables déchargées
+-- Indexes for dumped tables
 --
 
 --
--- Index pour la table `bouteilles`
+-- Indexes for table `bouteilles`
 --
 ALTER TABLE `bouteilles`
   ADD PRIMARY KEY (`id`),
@@ -317,14 +356,14 @@ ALTER TABLE `bouteilles`
   ADD KEY `bouteilles_user_id_foreign` (`user_id`);
 
 --
--- Index pour la table `celliers`
+-- Indexes for table `celliers`
 --
 ALTER TABLE `celliers`
   ADD PRIMARY KEY (`id`),
   ADD KEY `celliers_user_id_foreign` (`user_id`);
 
 --
--- Index pour la table `cellier_bouteilles`
+-- Indexes for table `cellier_bouteilles`
 --
 ALTER TABLE `cellier_bouteilles`
   ADD PRIMARY KEY (`cellier_id`,`bouteille_id`,`millesime`) USING BTREE,
@@ -332,32 +371,32 @@ ALTER TABLE `cellier_bouteilles`
   ADD KEY `fk_cellier_bouteilles_bouteilles1_idx` (`bouteille_id`);
 
 --
--- Index pour la table `failed_jobs`
+-- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
 
 --
--- Index pour la table `formats`
+-- Indexes for table `formats`
 --
 ALTER TABLE `formats`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `migrations`
+-- Indexes for table `migrations`
 --
 ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `mot_de_passe_resets`
+-- Indexes for table `mot_de_passe_resets`
 --
 ALTER TABLE `mot_de_passe_resets`
   ADD KEY `mot_de_passe_resets_courriel_index` (`courriel`);
 
 --
--- Index pour la table `personal_access_tokens`
+-- Indexes for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   ADD PRIMARY KEY (`id`),
@@ -365,76 +404,76 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
--- Index pour la table `types`
+-- Indexes for table `types`
 --
 ALTER TABLE `types`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `users_courriel_unique` (`courriel`);
 
 --
--- AUTO_INCREMENT pour les tables déchargées
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT pour la table `bouteilles`
+-- AUTO_INCREMENT for table `bouteilles`
 --
 ALTER TABLE `bouteilles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
 
 --
--- AUTO_INCREMENT pour la table `celliers`
+-- AUTO_INCREMENT for table `celliers`
 --
 ALTER TABLE `celliers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
--- AUTO_INCREMENT pour la table `failed_jobs`
+-- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `formats`
+-- AUTO_INCREMENT for table `formats`
 --
 ALTER TABLE `formats`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
--- AUTO_INCREMENT pour la table `migrations`
+-- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT pour la table `personal_access_tokens`
+-- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT pour la table `types`
+-- AUTO_INCREMENT for table `types`
 --
 ALTER TABLE `types`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT pour la table `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- Contraintes pour les tables déchargées
+-- Constraints for dumped tables
 --
 
 --
--- Contraintes pour la table `bouteilles`
+-- Constraints for table `bouteilles`
 --
 ALTER TABLE `bouteilles`
   ADD CONSTRAINT `bouteilles_format_id_foreign` FOREIGN KEY (`format_id`) REFERENCES `formats` (`id`),
@@ -442,17 +481,17 @@ ALTER TABLE `bouteilles`
   ADD CONSTRAINT `bouteilles_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL;
 
 --
--- Contraintes pour la table `celliers`
+-- Constraints for table `celliers`
 --
 ALTER TABLE `celliers`
   ADD CONSTRAINT `celliers_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
--- Contraintes pour la table `cellier_bouteilles`
+-- Constraints for table `cellier_bouteilles`
 --
 ALTER TABLE `cellier_bouteilles`
-  ADD CONSTRAINT `fk_cellier_bouteilles_bouteilles1` FOREIGN KEY (`bouteille_id`) REFERENCES `bouteilles` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_cellier_bouteilles_celliers1` FOREIGN KEY (`cellier_id`) REFERENCES `celliers` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_cellier_bouteilles_bouteilles1` FOREIGN KEY (`bouteille_id`) REFERENCES `bouteilles` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_cellier_bouteilles_celliers1` FOREIGN KEY (`cellier_id`) REFERENCES `celliers` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
