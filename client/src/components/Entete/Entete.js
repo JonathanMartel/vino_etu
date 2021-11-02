@@ -15,7 +15,7 @@ const appBarStyles = {
 const toolBarStyles = {
 	display: 'flex',
 	justifyContent: 'space-between',
-	height: 100
+	height: 75
 
 }
 
@@ -25,14 +25,25 @@ export default class Entete extends React.Component {
 		super(props);
 	}
 
+
+
 	render() {
+		// return (
+		// 	<Box>
+		// 		<AppBar sx={appBarStyles}>
+		// 			<Toolbar sx={toolBarStyles}>
+		// 				<img className="logo" src={logo} alt="Logo" />
+		// 				<img className="menu" src={menu} alt="Menu" />
+		// 			</Toolbar>
+		// 		</AppBar>
+		// 	</Box>
+		// );
 
 		return (
-			<Box>
+			<Box sx={{ paddingBottom: '2rem' }}>
 				<AppBar sx={appBarStyles}>
 					<Toolbar sx={toolBarStyles}>
 						<img className="logo" src={logo} alt="Logo" />
-						<img className="menu" src={menu} alt="Menu" />
 					</Toolbar>
 				</AppBar>
 			</Box>

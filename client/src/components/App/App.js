@@ -18,6 +18,13 @@ export default class App extends React.Component {
 	constructor(props) {
 		super(props);
 
+		this.state = {
+			
+		}
+	}
+
+	login() {
+
 	}
 
 	render() {
@@ -26,7 +33,7 @@ export default class App extends React.Component {
 			<Router>
 				<Entete />
 				<Switch>
-					<Route exact path="/" component={Connexion} />
+					<Route exact path="/" component={(props) => <Connexion title="Se connecter"/>} />
 					<Route exact path="/ajoutBouteille" component={AjoutBouteille} />
 
 					<Route exact path="/inscription" component={Inscription} />
