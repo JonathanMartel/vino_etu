@@ -18,9 +18,12 @@ class BouteilleController extends Controller {
         $request->orderBy = "nom";
         $request->orderDirection = "asc";
 
-        return BouteilleResource::collection(
+        /* return BouteilleResource::collection(
             Bouteille::orderBy($request->orderBy, $request->orderDirection)
-                     ->paginate($request->limite));
+                     ->paginate($request->limite)); */
+        if($request->texteRecherche) {
+            Bouteille::
+        }
     }
 
     /**
