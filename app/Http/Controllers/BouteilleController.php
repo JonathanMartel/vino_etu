@@ -12,9 +12,15 @@ class BouteilleController extends Controller {
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
+    public function index(Request $request) {
+        $request->limite = 24;
 
-        return BouteilleResource::collection(Bouteille::all());
+        $request->orderBy = "nom";
+        $request->orderDirection = "asc";
+
+        return BouteilleResource::collection(
+            Bouteille::orderBy($request->orderBy, $request->orderDirection)
+                     ->paginate($request->limite));
     }
 
     /**
@@ -37,7 +43,6 @@ class BouteilleController extends Controller {
     public function show(Bouteille $bouteille) {
 
         return BouteilleResource::make($bouteille);
-
     }
 
     /**

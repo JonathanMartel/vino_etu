@@ -41,7 +41,7 @@ Route::apiResource("bouteilles", BouteilleController::class)->only([
     "show",
 ]);
 
-Route::get("catalogue-bouteilles", [UnionsController::class, "obtenirCatalogueBouteilles"]);
+Route::get("catalogue-bouteilles", [BouteilleController::class, "index"]);
 
 // Afficher les bouteilles d'un cellier
 Route::get('celliers/{cellierId}/bouteilles', [CellierController::class, "obtenirBouteilles"]);
