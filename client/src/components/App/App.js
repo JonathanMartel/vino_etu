@@ -19,7 +19,6 @@ export default class App extends React.Component {
 		super(props);
 
 		this.state = {
-			
 		}
 	}
 
@@ -45,11 +44,8 @@ export default class App extends React.Component {
 					<Route exact path="/ajoutcellier" component={AjoutCellier} />
 					<Route exact path="/cellier/:id" render={(param_route)=> 
 							<ListeBouteilles {...param_route} id={param_route?.match?.params?.id} param={param_route} />} />
-					{/* <Route exact path="/bouteilles/:id" component={DetailsBouteille} /> */}
 					<Route exact path="/bouteilles/:id" render={(param_route)=> 
 							<DetailsBouteille {...param_route} bouteille_id={param_route?.match?.params?.bouteille_id} param={param_route} />} />
-
-
 					<Route exact path="*" component={Page404} />
 				</Switch>
 				<Pied />

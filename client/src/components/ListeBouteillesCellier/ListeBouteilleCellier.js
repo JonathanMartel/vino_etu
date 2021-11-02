@@ -11,32 +11,34 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 
 import './ListeBouteilleCellier.css';
-import Dialogue from "../Dialogue/Dialog_test";
+import Dialogue from "../Dialogue/Dialogue";
 
 export default class ListeBouteilleCellier extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			qteModif: "",
-			qteInventaire: "",
-			items: [],
-			message: "",
-			open: false,
-		}
+	constructor(props){
+	  super(props);
+	  this.state = {
+		qteModif: "",
+		qteInventaire: "",
+		items: [],
+		item: undefined,
+		message: "",
+		open: false,
+		titre: "",
+		action: "",
+	  }
 
-		this.fetchBouteilles = this.fetchBouteilles.bind(this);
-		this.ajouter = this.ajouter.bind(this);
-		this.retirer = this.retirer.bind(this);
-		this.handleClickOpen = this.handleClickOpen.bind(this);
-		this.handleClose = this.handleClose.bind(this);
+	  this.fetchBouteilles = this.fetchBouteilles.bind(this);
+	  this.ajouter = this.ajouter.bind(this);
+	  this.retirer = this.retirer.bind(this);
+	  this.quantiteModif = this.quantiteModif.bind(this);
+	  this.changerTitreDialogue = this.changerTitreDialogue.bind(this);
+	  this.ajouterAction = this.ajouterAction.bind(this);
+	  this.retirerAction = this.retirerAction.bind(this);
+	  this.ajusterQuantite = this.ajusterQuantite.bind(this);
+	
 	}
 
-	handleClickOpen() {
-		this.setState({ setOpen: true });
-	}
-
-	handleClose() {
-		this.setState({ setOpen: false });
+	componentDidUpdate(){
 	}
 
 	fetchBouteilles() {
@@ -54,12 +56,38 @@ export default class ListeBouteilleCellier extends React.Component {
 			});
 	}
 
-	ajouter(idItem) {
-		this.setState({ open: true });
+	quantiteModif(valeur){
+		this.setState({qteModif: valeur});
+	}
 
+	ajouterAction(item) {
+		this.setState({item: item.id, action: "ajouter", action: "ajouter", open: true});
+		this.changerTitreDialogue("Ajouter à l'inventaire");
+	}
+
+	retirerAction() {
+		this.setState({action: "retirer"});
+		this.changerTitreDialogue("Retirer de l'inventaire");
+		this.setState({action: "retirer"});
+		this.setState({open: true});
+	}
+
+	ajusterQuantite() {
+		if(this.state.action == "ajouter"){
+			this.ajouter(this.state.item);
+		}
+	}
+
+	changerTitreDialogue(titre){
+		this.setState({titre: titre});
+	}
+
+	ajouter(idItem) {
+		console.log(this.state.qteModif);
+		this.setState({open: false});
 		const donnes = {
-			id: idItem.id,
-			quantite: 1
+			id : idItem.id,
+			quantite : this.state.qteModif
 		}
 
 		const postMethod = {
@@ -84,11 +112,13 @@ export default class ListeBouteilleCellier extends React.Component {
 		this.setState({ message: "" });
 	}
 
-	retirer(idItem) {
-		if (idItem.quantite >= 1) {
+	retirer(idItem){
+
+		if (idItem.quantite >= this.state.qteModif) {
+			this.setState({qteModif: (-this.state.qteModif)});
 			const donnes = {
-				id: idItem.id,
-				quantite: -1
+				id : idItem.id,
+				quantite : this.state.qteModif
 			}
 
 			const postMethod = {
@@ -123,21 +153,18 @@ export default class ListeBouteilleCellier extends React.Component {
 
 	render() {
 		const bouteilles = this.state.items
-			.map((item, index) => {
-				return (
-					<div key={index}>
-						{/* <p className="messagRouge"> {this.state.message} </p> */}
-						<BouteilleCellier info={item} />
-						{/*<button type="button" onClick={(e) => this.ajouter(item)}>Ajouter une bouteille</button>*/}
-						{/*<button type="button" onClick={(e) => this.retirer(item)}>Retirer une bouteille</button>*/}
+								.map((item, index)=>{
+									return (
+										<div key={index}>
+											{/* <p className="messagRouge"> {this.state.message} </p> */}
+											<BouteilleCellier info={item} />
+											<button onClick={(e) => this.ajouterAction(item)}>Ajouter une bouteille</button>
+											<button onClick={(e) => this.retirer(item)}>Retirer une bouteille</button>
+										</div>
+									);
+								})
 
-						<button type="button" onClick={(e) => this.ajouter(item)}>Ajouter une bouteille</button>
-						<button type="button" onClick={(e) => this.retirer(item)}>Retirer une bouteille</button>
-					</div>
-				);
-			})
-
-
+								
 		return (
 			<section>
 				<Link to={"/ajoutBouteille"}>
@@ -145,7 +172,7 @@ export default class ListeBouteilleCellier extends React.Component {
 				</Link>
 
 				<div>
-					<Dialogue open={this.state.open} />
+					<Dialogue open={this.state.open} titre={this.state.titre} action={this.state.action} valeurChamps={this.quantiteModif} changerQuantite={this.ajusterQuantite} />
 					{bouteilles}
 
 
