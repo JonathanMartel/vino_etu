@@ -22,7 +22,6 @@ export default class ListeBouteilleCellier extends React.Component {
 		items: [],
 		message: "",
 		open: false,
-		setOpen: false,
 	  }
 
 	  this.fetchBouteilles = this.fetchBouteilles.bind(this);
@@ -56,11 +55,7 @@ export default class ListeBouteilleCellier extends React.Component {
 	}
 
 	ajouter(idItem) {
-		console.log("Ajouter 1 bouteille");
-		console.log("Ajouter :", idItem.id);
-		console.log("Ajouter :", idItem.nom);
-
-		this.setState({setOpen: true});
+		this.setState({open: true});
         
 		const donnes = {
 			id : idItem.id,
@@ -89,12 +84,7 @@ export default class ListeBouteilleCellier extends React.Component {
 			this.setState({message: ""});
 	}
 
-	retirer(idItem){
-		console.log("Retirer 1 bouteille");
-		console.log("Retirer Diana", idItem.id);
-		console.log("Retirer Diana", idItem.nom);
-		console.log("Retirer quantite", idItem.quantite);
-		
+	retirer(idItem){	
 		if (idItem.quantite >= 1) {
 			const donnes = {
 				id : idItem.id,
@@ -148,6 +138,7 @@ export default class ListeBouteilleCellier extends React.Component {
 									);
 								})
 
+								
 		return (
 			<section>
 				<Link to={"/ajoutBouteille"}>
@@ -156,7 +147,7 @@ export default class ListeBouteilleCellier extends React.Component {
 				
 
 				<div>
-					<Dialogue open={this.state.setOpen} />
+					<Dialogue open={this.state.open} />
 					{bouteilles}
 					
 					

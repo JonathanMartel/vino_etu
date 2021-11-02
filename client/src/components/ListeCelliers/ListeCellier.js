@@ -1,5 +1,9 @@
+import { Breadcrumbs, Link, Typography } from '@mui/material';
 import React from 'react';
 import Cellier from "../Cellier/Cellier";
+import './ListeCellier.css'
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import { Box } from '@mui/system';
 /* import ListeBouteilleCellier from '../ListeBouteillesCellier/ListeBouteilleCellier'; */
 
 export default class ListeCellier extends React.Component {
@@ -8,18 +12,18 @@ export default class ListeCellier extends React.Component {
 		this.state = {
 			celliers: [],
 			id_usager: 0,
-			items :[]
+			items: []
 		}
 
 		this.fetchCelliers = this.fetchCelliers.bind(this);
 	}
 
-	cliquer(){
+	cliquer() {
 		console.log("cliquer: ", this);
 		//this.props.history.push("/ListeBouteilleCellier");
 	}
 
-	fetchCelliers(){
+	fetchCelliers() {
 
 		console.log('this.props.match.params.id : ', this.props.match.params.id);
 		//Pour quoi ne fonctionne pas ???
@@ -27,11 +31,11 @@ export default class ListeCellier extends React.Component {
 		console.log('id_usager : ', this.state.id_usager); */
 
 		const donnes = {
-			usager_id : null
+			usager_id: null
 		}
 
 		const getMethod = {
-			method: 'GET', 
+			method: 'GET',
 			headers: {
 				'Content-type': 'application/json',
 				'authorization': 'Basic ' + btoa('vino:vino')
@@ -42,41 +46,44 @@ export default class ListeCellier extends React.Component {
 		console.log("this.state.id_usager: ", this.state.id_usager);
 		fetch("https://rmpdwebservices.ca/webservice/php/celliers/usager/" + this.props.match.params.id, getMethod)
 			.then(reponse => reponse.json())
-        	.then((donnees)=>{
-				this.setState({items: donnees.data})
-				console.log("Celliers: ", this.state.items )
-        });
+			.then((donnees) => {
+				this.setState({ items: donnees.data })
+				console.log("Celliers: ", this.state.items)
+			});
 	}
 
-	componentDidMount(){
-		
+	componentDidMount() {
 		this.fetchCelliers();
 	}
 
 	render() {
-		{/* <Cellier info={item} onClick={this.cliquer.bind(item)} key={index} /> */}
+		{/* <Cellier info={item} onClick={this.cliquer.bind(item)} key={index} /> */ }
 		console.log('this.props : ', this.props);
 
 		const celliers = this.state.items
-							.map((item, index)=>{
-								return (
-									<Cellier info={item} onClick={this.cliquer.bind(item)} key={index} />
-								);
-							})
+			.map((item, index) => {
+				return (
+					<Cellier info={item} onClick={this.cliquer.bind(item)} key={index} />
+				);
+			})
 
 		console.log("Celliers del render: ", celliers);
-		
+
 		return (
-			<section>
-				<div>
-					<h2>Liste de vos celliers</h2>
-					<h3>Veuillez cliquer sur le cellier que vous voulez consulter</h3>
-				</div>
-				
+			<Box>
+				<Breadcrumbs aria-label="breadcrumb" sx={{ display: 'flex', margin: '0 1.5rem' }}>
+					<Link underline="hover" color="inherit" href="/">
+						Celliers
+					</Link>
+					<Typography color="text.primary">Liste des celliers</Typography>
+
+				</Breadcrumbs>
+				<AddCircleIcon sx={{ color: '#641B30' }}/>
+
 				<section className="liste_celliers">
 					{celliers}
 				</section>
-			</section>
+			</Box>
 		);
 	}
 }
