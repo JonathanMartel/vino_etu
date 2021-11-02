@@ -70,9 +70,12 @@
             <div class="nav-content row white">
                 <div class="col s6">
                     <ul class="tabs tabs-transparent hide-on-med-and-down">
-                    <li class="tab"><a href="{{ route('importerBouteille') }}"><span class="black-text">Importer bouteille</span></a></li>
+                   
                     @guest
                     @else
+                    @if( session('user')->admin == 1)
+                    <li class="tab"><a href="{{ route('importerBouteille') }}"><span class="black-text">Importer bouteille</span></a></li>
+                    @endif
                         <li class="tab"><a href="{{ route('cellier') }}"><span class="black-text">Vos celliers</span></a></li>
                          <li class="tab"><a href="{{ route('dashboard') }}"><span class="black-text">Mon Compte</span></a></li>
                     @endguest
