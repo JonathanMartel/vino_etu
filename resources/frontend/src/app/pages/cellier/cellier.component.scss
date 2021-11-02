@@ -3,23 +3,21 @@
     overflow: hidden;
 }
 
+.content-header{
+    display: flex;
+    justify-content: space-around;
+}
+
 .content h2{
-    text-align: center;
     font-family: 'Dancing Script', cursive;
     font-size: 2rem;
     margin: 15px 0;
     color: #4c1920;
-
-}
-
-.bouton-filtre{
-    text-align: center;
 }
 
 .content button{
     background-color: #4c1920;
     color: #fff;
-    margin-bottom: 15px;
 }
 
 .example-container {

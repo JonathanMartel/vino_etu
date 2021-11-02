@@ -7,8 +7,10 @@
   
     <mat-sidenav-content>
       <div class="content">
-        <h2 class="titre">Mon Cellier</h2>
-        <p class="bouton-filtre"><button mat-button (click)="sidenav.toggle()">Filtrer</button></p>
+        <div class="content-header">
+            <h2 class="titre">Mon Cellier</h2>
+            <p class="bouton-filtre"><button mat-button (click)="sidenav.toggle()">Filtrer</button></p>
+        </div>
         <section *ngFor="let uneBouteille of cellier" class="resultat">
         <app-cellier-bouteille [uneBouteille] = 'uneBouteille'></app-cellier-bouteille>
         </section>
