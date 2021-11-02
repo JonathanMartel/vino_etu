@@ -21,7 +21,6 @@
 
 .resultat-vin {
     min-height: 45px;
-    margin: 0 -10px;
     padding: 10px 10px;
 }
 
@@ -99,12 +98,6 @@ input[type=number]::-webkit-outer-spin-button {
   opacity: 0;
 }
 
-
 .boutons-actions{
-    margin: 0 auto;
+    margin-left: 3.5rem;
 }
-
-.boutons-actions button{
-    margin: .5rem;
-}
-
