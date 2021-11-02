@@ -35,6 +35,11 @@ export class BouteilleDeVinService {
         return this.http.get<any>(this.url + '/bouteilles/' + id_bouteille);
     }
 
+    getBouteilleAcheteeParId(id_bouteille: any) {
+
+        return this.http.get<any>(this.url + '/bouteilles-achetee/' + id_bouteille);
+    }
+
     ajoutBouteilleCellier(bouteilleAchetee: any) {
         return this.http.post<any>(this.url + '/celliers/' + 1 + '/bouteilles', bouteilleAchetee);
 
@@ -53,7 +58,7 @@ export class BouteilleDeVinService {
     modifierBouteilleCellier(bouteilleAchetee_id:any, data:any){
 
         let body = {
-            
+
         }
 
         return this.http.put<any>(this.url + '/celliers/modifier-bouteille/' + bouteilleAchetee_id, body)
