@@ -9,6 +9,7 @@ import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
   styleUrls: ['./modifier-cellier-bouteille.component.scss']
 })
 export class ModifierCellierBouteilleComponent implements OnInit {
+  bouteille: any;
 
   modifierBouteilleCellier = new FormGroup({
 

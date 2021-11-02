@@ -2,12 +2,11 @@
 
 use App\Http\Controllers\BouteilleController;
 use App\Http\Controllers\CategorieController;
-use App\Http\Controllers\CellierBouteilleController;
+use App\Http\Controllers\CellierBouteilleAcheteeController;
 use App\Http\Controllers\CellierController;
 use App\Http\Controllers\PaysController;
 use App\Http\Controllers\UnionsController;
 use App\Http\Controllers\UserController;
-use App\Models\Bouteille;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -42,16 +41,16 @@ Route::apiResource("bouteilles", BouteilleController::class)->only([
     "show",
 ]);
 
-Route::get("catalogue-bouteilles", [UnionsController::class, "obtenirCatalogueBouteilles"]);
+Route::get("catalogue-bouteilles", [BouteilleController::class, "index"]);
 
 // Afficher les bouteilles d'un cellier
-Route::get('celliers/{cellierId}/bouteilles', [CellierBouteilleController::class, "obtenirBouteillesParCellier"]);
+Route::get('celliers/{cellierId}/bouteilles', [CellierController::class, "obtenirBouteilles"]);
 
 // Ajout d'une bouteille à un cellier
-Route::post('celliers/{cellier}/bouteilles', [CellierBouteilleController::class, "store"]);
+Route::post('celliers/{cellier}/bouteilles', [CellierBouteilleAcheteeController::class, "store"]);
 
 // Mise à jour de l'inventaire d'une bouteille dans un cellier donné
-Route::put("celliers/modifier-inventaire/{cellierBouteilleId}", [CellierBouteilleController::class, "modifierInventaireBouteille"]);
+Route::put("celliers/modifier-inventaire/{cellierBouteilleId}", [CellierBouteilleAcheteeController::class, "modifierInventaireBouteille"]);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

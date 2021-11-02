@@ -1,9 +1,14 @@
-<div>
+
+
+<div class="conteneur">
+
     <header>
         <h2>Créer un compte</h2>
     </header>
     <form class="formulaire" [formGroup] ='ajouterUtilisateur' (ngSubmit)=postUser(ajouterUtilisateur.value)>
+
         <mat-form-field appearance="fill">
+
             <mat-label for="first_name">Prénom</mat-label>
             <input matInput type="text" name="first_name" formControlName="first_name">
         </mat-form-field>

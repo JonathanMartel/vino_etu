@@ -40,6 +40,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 :root {
   --couleur-primaire: #4c1920;
+  --espacement-petit: .4rem;
 }
 
 .mat-form-field-appearance-fill .mat-form-field-flex{
@@ -48,3 +49,4 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mat-mini-fab:not([class*=mat-elevation-z]){
   box-shadow: none;
 }
+

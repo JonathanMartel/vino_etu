@@ -8,7 +8,6 @@ import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
   styleUrls: ['./creer-compte.component.scss']
 })
 export class CreerCompteComponent implements OnInit {
-
   ajouterUtilisateur = new FormGroup({
 
     first_name: new FormControl(''),
@@ -26,7 +25,6 @@ export class CreerCompteComponent implements OnInit {
 
   postUser(data:any){
     console.log(data);
-    
   }
 
 }

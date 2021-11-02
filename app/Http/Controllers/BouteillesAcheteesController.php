@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CellierBouteillePersonnalisee;
+use App\Models\BouteilleAchetee;
 use Illuminate\Http\Request;
 
-class CellierBouteillePersonnaliseeController extends Controller
+class BouteilleAcheteeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -31,10 +31,10 @@ class CellierBouteillePersonnaliseeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\CellierBouteillePersonnalisee  $cellierBouteillePersonnalisee
+     * @param  \App\Models\BouteilleAchetee  $bouteilleAchetee
      * @return \Illuminate\Http\Response
      */
-    public function show(CellierBouteillePersonnalisee $cellierBouteillePersonnalisee)
+    public function show(BouteilleAchetee $bouteilleAchetee)
     {
         //
     }
@@ -43,10 +43,10 @@ class CellierBouteillePersonnaliseeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\CellierBouteillePersonnalisee  $cellierBouteillePersonnalisee
+     * @param  \App\Models\BouteilleAchetee  $bouteilleAchetee
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CellierBouteillePersonnalisee $cellierBouteillePersonnalisee)
+    public function update(Request $request, BouteilleAchetee $bouteilleAchetee)
     {
         //
     }
@@ -54,10 +54,10 @@ class CellierBouteillePersonnaliseeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\CellierBouteillePersonnalisee  $cellierBouteillePersonnalisee
+     * @param  \App\Models\BouteilleAchetee  $bouteilleAchetee
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CellierBouteillePersonnalisee $cellierBouteillePersonnalisee)
+    public function destroy(BouteilleAchetee $bouteilleAchetee)
     {
         //
     }

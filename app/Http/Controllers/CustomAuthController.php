@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BouteillePersonnalisee;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class BouteillesPersonnaliseeController extends Controller
+class CustomAuthController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,6 +13,16 @@ class BouteillesPersonnaliseeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+    {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
     {
         //
     }
@@ -31,10 +41,21 @@ class BouteillesPersonnaliseeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\BouteillePersonnalisee  $bouteillePersonnalisee
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(BouteillePersonnalisee $bouteillePersonnalisee)
+    public function show(User $user)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(User $user)
     {
         //
     }
@@ -43,10 +64,10 @@ class BouteillesPersonnaliseeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\BouteillePersonnalisee  $bouteillePersonnalisee
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, bouteillePersonnalisee $bouteillePersonnalisee)
+    public function update(Request $request, User $user)
     {
         //
     }
@@ -54,10 +75,10 @@ class BouteillesPersonnaliseeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\BouteillePersonnalisee  $bouteillePersonnalisee
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(bouteillePersonnalisee $bouteillePersonnalisee)
+    public function destroy(User $user)
     {
         //
     }

@@ -6,11 +6,12 @@ import { ActivatedRoute } from '@angular/router';
 import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 
 @Component({
-  selector: 'app-ajout-bouteille',
-  templateUrl: './ajout-bouteille.component.html',
-  styleUrls: ['./ajout-bouteille.component.scss']
+    selector: 'app-ajout-bouteille',
+    templateUrl: './ajout-bouteille.component.html',
+    styleUrls: ['./ajout-bouteille.component.scss']
 })
 export class AjoutBouteilleComponent implements OnInit {
+    bouteilleAchetee: any;
 
   ajoutBouteille = new FormGroup({
     millesime: new FormControl(''),
@@ -42,7 +43,7 @@ export class AjoutBouteilleComponent implements OnInit {
       this.formulaireRef.close();
     }, 2000) */
 
-  }
+    }
 
 
 }
