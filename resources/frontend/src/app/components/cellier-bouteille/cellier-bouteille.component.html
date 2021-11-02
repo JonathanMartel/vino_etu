@@ -12,6 +12,7 @@
             </div>
         </div>
 
+
         <div class="boutons-inventaire">
             <div *ngIf="inventaire.errors?.min">
                 L'inventaire ne doit pas être inférieur à 0
@@ -24,7 +25,7 @@
                 <button mat-mini-fab (click)="augmenter()"><mat-icon>add</mat-icon></button>
             </div>
             <div class="boutons-actions">
-                <a (click)="formulaireModification(bouteille)"><button mat-mini-fab class="edit" ><mat-icon>edit</mat-icon></button></a>
+                <a routerLink="modifier-cellier/{{bouteille.id}}"><button mat-mini-fab class="edit" ><mat-icon>edit</mat-icon></button></a>
             </div>
         </div>
  

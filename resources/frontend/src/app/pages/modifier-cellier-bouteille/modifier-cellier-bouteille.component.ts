@@ -27,7 +27,6 @@ export class ModifierCellierBouteilleComponent implements OnInit {
 
 
   constructor(private servBouteilleDeVin:BouteilleDeVinService,
-              public formulaireRef: MatDialogRef<ModifierCellierBouteilleComponent>,
               @Inject(MAT_DIALOG_DATA) public data:any) { }
 
   ngOnInit(): void {
