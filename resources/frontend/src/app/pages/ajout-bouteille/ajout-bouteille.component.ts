@@ -12,42 +12,60 @@ import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 export class AjoutBouteilleComponent implements OnInit {
     bouteilleAchetee: any;
 
-  ajoutBouteille = new FormGroup({
-    millesime: new FormControl(''),
-    inventaire: new FormControl(''),
-    date_acquisition: new FormControl(''),
-    prix_paye: new FormControl(''),
-    conservation: new FormControl(''),
-    notes_personnelles: new FormControl(''),
-  });
+    ajoutBouteille = new FormGroup({
+        millesime: new FormControl(''),
+        inventaire: new FormControl(''),
+        date_acquisition: new FormControl(''),
+        prix_paye: new FormControl(''),
+        conservation: new FormControl(''),
+        notes_personnelles: new FormControl(''),
+    });
 
-  constructor(private servBouteilleDeVin:BouteilleDeVinService,
-              private actRoute: ActivatedRoute,
-              public formulaireRef: MatDialogRef<AjoutBouteilleComponent>,
-              @Inject(MAT_DIALOG_DATA) public data:any){ }
+    constructor(private servBouteilleDeVin: BouteilleDeVinService,
+        private actRoute: ActivatedRoute,
+        public formulaireRef: MatDialogRef<AjoutBouteilleComponent>,
+        @Inject(MAT_DIALOG_DATA) public data: any) { }
 
-  ngOnInit(): void {
-    this.data;
-    console.log(this.data.pays);
-  }
+    ngOnInit(): void {
+        this.data;
+        console.log(this.data.pays);
+    }
 
 
-  postBouteilleCellier(bouteille:any){
+    postBouteilleCellier(bouteille: any) {
+        /* const bouteilleAchetee = {
+            nom: this.bouteille.nom,
+            description: this.bouteille.description,
+            url_image: this.bouteille.url_image,
+            url_achat: this.bouteille.url_achat,
+            url_info: this.bouteille.url_info,
+            origine: this.bouteille.pays,
+            millesime: 1980,
+            date_acquisition: "2021-11-01",
+            prix_paye: 25.58,
+            conservation: "4 ans",
+            format: this.bouteille.format,
+            categories_id: this.bouteille.categories_id,
+            inventaire: 4,
+            celliers_id: 1,
+            users_id: 1,
+        } */
 
-    this.bouteilleAchetee= {...this.data, ...bouteille}
+        this.bouteilleAchetee = { ...this.data, ...bouteille }
 
-    this.bouteilleAchetee.origine = this.data.pays;
-    this.bouteilleAchetee.celliers_id = 1;
+        this.bouteilleAchetee.origine = this.data.pays;
+        this.bouteilleAchetee.celliers_id = 1;
+        this.bouteilleAchetee.users_id = 1;
 
-    console.log(this.bouteilleAchetee);
+        console.log(this.bouteilleAchetee);
 
-    this.servBouteilleDeVin.ajoutBouteilleCellier(this.bouteilleAchetee).subscribe(()=> {});
+        this.servBouteilleDeVin.ajoutBouteilleCellier(this.bouteilleAchetee).subscribe(() => { });
 
-    setTimeout(() => {
-      this.formulaireRef.close();
-    }, 2000)
+        setTimeout(() => {
+            this.formulaireRef.close();
+        }, 2000)
 
-  }
+    }
 
 
 }

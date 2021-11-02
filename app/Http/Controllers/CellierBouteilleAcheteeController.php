@@ -67,6 +67,7 @@ class CellierBouteilleAcheteeController extends Controller {
         $bouteilleAchetee->notes_personnelles =  $request->notes_personnelles;
         $bouteilleAchetee->format =  $request->format;
         $bouteilleAchetee->categories_id =  $request->categories_id;
+        $bouteilleAchetee->users_id =  $request->users_id;
         $bouteilleAchetee->save();
 
         $bouteilleCellier = new CellierBouteilleAchetee();

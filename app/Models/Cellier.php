@@ -28,6 +28,7 @@ class Cellier extends Model
                 ->select(
                     "cba.id as inventaireId",
                     "cba.inventaire as inventaire",
+                    "ba.id as bouteilleId",
                     "ba.nom as nom",
                     "ba.description as description",
                     "ba.url_image as image",

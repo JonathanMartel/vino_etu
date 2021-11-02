@@ -20,14 +20,15 @@ class CreateBouteillesAcheteesTable extends Migration
             $table->string("url_image")->nullable();
             $table->string("url_achat")->nullable();
             $table->string("url_info")->nullable();
-            $table->string("origine");
-            $table->smallInteger("millesime")->unsigned();
+            $table->string("origine")->nullable();
+            $table->smallInteger("millesime")->unsigned()->nullable();
             $table->date("date_acquisition")->nullable();
             $table->float("prix_paye", 8, 2, true)->nullable();
             $table->string("conservation", 500)->nullable();
             $table->text("notes_personnelles")->nullable();
             $table->string("format")->nullable();
             $table->foreignId("categories_id")->constrained("categories");
+            $table->foreignId("users_id")->constrained();
             $table->timestamps();
         });
     }
