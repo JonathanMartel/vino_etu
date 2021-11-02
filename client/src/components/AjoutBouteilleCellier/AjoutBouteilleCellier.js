@@ -52,14 +52,14 @@ export default class AjoutBouteille extends React.Component {
 			.then(reponse => reponse.json())
 			.then((donnees) => {
 				this.setState({ bouteillesSAQ: donnees.data })
-				
+
 			});
 	}
 
 	choixBouteille(info) {
 		console.log(info.nom);
 		this.setState({ nomBouteilleSAQ: info.nom, prixBouteilleSAQ: info.prix_saq });
-		this.setState({bouteillesSAQ: []});	
+		this.setState({ bouteillesSAQ: [] });
 	}
 
 	ajouterBouteilleCellier() {
@@ -96,7 +96,7 @@ export default class AjoutBouteille extends React.Component {
 			});
 
 	}
-	
+
 
 	render() {
 		console.log(this.state.bouteillesSAQ);
@@ -104,30 +104,26 @@ export default class AjoutBouteille extends React.Component {
 			.map((bouteille, index) => {
 				return (
 					<BouteilleSAQ info={bouteille} choixBouteille={this.choixBouteille} key={index} />
-					
+
 				)
 			})
 
 		return (
-			
-			<div className="nouvelleBouteille">
-				
-				<p>Recherche : <input onKeyUp={(event) => this.fetchBouteillesSAQ(event)} type="text" name="nom_bouteille" /></p>
-				<ul>
-					{bouteilles}
-				</ul>
-				<div>
-					<p>Nom : <input name="nom" value={this.state.nomBouteilleSAQ} onChange={e => this.setState({ nom: e.target.value })} /></p>
-					<p>Millesime : <input name="millesime" value={this.state.millesime} onChange={e => this.setState({ millesime: e.target.value })} /></p>
-					<p>Quantité : <input name="quantite" value={this.state.quantite} onChange={e => this.setState({ quantite: e.target.value })} /></p>
-					<p>Date d'achat : <input name="date_achat" value={this.state.date_achat} onChange={e => this.setState({ date_achat: e.target.value })} /></p>
-					<p>Prix : <input name="prix" value={this.state.prixBouteilleSAQ} onChange={e => this.setState({ prix: e.target.value })} /></p>
-					<p>Peux être garder ? : <input name="garde_jusqua" value={this.state.garde} onChange={e => this.setState({ garde: e.target.value })} /></p>
-					<p>Commentaires: <input name="notes" value={this.state.commentaires} onChange={e => this.setState({ commentaires: e.target.value })} /></p>
-					
+
+			<div className="flex-parent">
+				<div className="enfants">
+					<h3>Ajouter une bouteille au cellier</h3>
+					<input className="recherche" placeholder="Recherche" onKeyUp={(event) => this.fetchBouteillesSAQ(event)} type="text" name="nom_bouteille" />
+					<p>{bouteilles}</p>
+					<p><input placeholder="Nom" name="nom" value={this.state.nomBouteilleSAQ} onChange={e => this.setState({ nom: e.target.value })} /></p>
+					<p><input placeholder="Millesime" name="millesime" value={this.state.millesime} onChange={e => this.setState({ millesime: e.target.value })} /></p>
+					<p><input placeholder="Quantité" name="quantite" value={this.state.quantite} onChange={e => this.setState({ quantite: e.target.value })} /></p>
+					<p><input type="date" className="date" name="date_achat" value={this.state.date_achat} onChange={e => this.setState({ date_achat: e.target.value })} /></p>
+					<p><input placeholder="Prix" name="prix" value={this.state.prixBouteilleSAQ} onChange={e => this.setState({ prix: e.target.value })} /></p>
+					<p><input placeholder="À conserver?" name="garde_jusqua" value={this.state.garde} onChange={e => this.setState({ garde: e.target.value })} /></p>
+					<p><input placeholder="Commentaires" name="notes" value={this.state.commentaires} onChange={e => this.setState({ commentaires: e.target.value })} /></p>
+					<button className="ajouter" onClick={this.ajouterBouteilleCellier} name="ajouterBouteilleCellier">Ajouter une bouteille</button>
 				</div>
-				
-				<button onClick={this.ajouterBouteilleCellier} name="ajouterBouteilleCellier">Ajouter la bouteille au cellier</button>
 			</div>
 		);
 	}

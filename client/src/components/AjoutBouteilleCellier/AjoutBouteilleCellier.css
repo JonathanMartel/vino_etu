@@ -1,9 +1,8 @@
-.fondEcran {
-    width: 100%;
-    height: 100vh;
-    position: absolute;
-    object-fit: cover;
-    top: 0;
-    left: 0;
-    object-position: 69% 100%;
+.flex-parent {
+    padding: 20px;
+    width: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: dashed 1px black;
 }
