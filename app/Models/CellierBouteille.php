@@ -24,17 +24,27 @@ class CellierBouteille extends Model
      * Ajouter ou diminuer la quantité d'une bouteille dans un cellier
      */
     public static function modifierQuantiteBouteille($idCellier, $idBouteille, $millesime, $modificationQuantite){
-      
+
         if($millesime == 0) {
             $millesime = 0000;
         }
-        DB::table('cellier_bouteilles')
+
+        $quantite = DB::table('cellier_bouteilles')
+        ->select('quantite')
         ->where('cellier_id', $idCellier)
         ->where('bouteille_id', $idBouteille)
         ->where('millesime', $millesime)
-        ->increment('quantite', $modificationQuantite);
-    
-         return true;
+        ->get();
+
+        if($quantite[0]->quantite + $modificationQuantite >= 0){
+            DB::table('cellier_bouteilles')
+            ->where('cellier_id', $idCellier)
+            ->where('bouteille_id', $idBouteille)
+            ->where('millesime', $millesime)
+            ->increment('quantite', $modificationQuantite);
+        }
+     
+         return true ;
     }
 
 
@@ -76,12 +86,34 @@ class CellierBouteille extends Model
     public static function obtenirListeBouteilleCellier($idCellier)
     {
         return DB::table('cellier_bouteilles')
-        ->select('pays', 'type', 'millesime', 'taille', 'bouteilles.nom', 'quantite', 'url_img', 'cellier_id', 'bouteille_id' )
+        ->select('pays', 'type', 'millesime', 'taille', 'bouteilles.nom', 'quantite', 'url_img', 'cellier_id', 'bouteille_id', 'note' )
         ->where('cellier_id', $idCellier)
         ->join('bouteilles', 'bouteilles.id', '=', 'cellier_bouteilles.bouteille_id')
         ->join('types', 'types.id', '=', 'bouteilles.type_id')
         ->join('formats', 'formats.id', '=', 'bouteilles.format_id')
         ->get();
+    }
+    
+
+     /**
+      *@param idCellier
+     * @param idBouteille
+     * @param millesime
+     * @param note
+     * ajouter une note de dégustation à une bouteille
+     */
+    public static function ajouterNote($idCellier, $idBouteille, $millesime, $note)
+    {
+        if($millesime == 0) {
+            $millesime = 0000;
+        }
+        
+         DB::table('cellier_bouteilles')
+        ->where('cellier_id', $idCellier)
+        ->where('bouteille_id', $idBouteille)
+        ->where('millesime', $millesime)
+        ->update(['note' => $note]);
+        
     }
     
 }

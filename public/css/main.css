@@ -196,9 +196,9 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
 }
 
 .btn-modifier:hover {
-	background-color: #774444;
+	background-color: #AB8A5D;
     color: #E5CB85;
-	border: 1px solid #E5CB85;
+
 }
 
 .btn-supprimer {
@@ -208,8 +208,8 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
 
 .btn-supprimer:hover {
     color: #774444;
-    background-color: white;
-	border: 1px solid #774444;
+    background-color: #AC9678;
+
 }
 
 
@@ -263,6 +263,26 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
 }
 
 
+.modal h4 {
+    margin-bottom: 0.8em;
+    text-align: center;
+}
+
+.modal span {
+    font-weight: 600;
+}
+
+.modal-footer form {
+    display: inline;
+}
+
+.modal-footer a:hover,
+.modal-footer button:hover{
+   background-color: #CDCED1;
+   color: white;
+}
+
+
 /* entete pour le titre et icon */
 
 .entete-page {
@@ -283,3 +303,7 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
 }
 
 
+.map-icone {
+    height: 1.25rem;
+    width: auto;
+}
