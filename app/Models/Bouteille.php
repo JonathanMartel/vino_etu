@@ -51,7 +51,6 @@ class Bouteille extends Model
         ->where('format_id', $request->format_id)
         ->whereIn("user_id",  [1, session('user')->id])
         ->get();
-        
     }
 
        /**
@@ -61,24 +60,22 @@ class Bouteille extends Model
      */
     public static function getDataBouteilleByID($IDBouteille) {
         return DB::table('bouteilles')
-        ->select('bouteilles.nom as nom','pays', 'formats.nom as format', 'formats.taille as taille', 'url_img')
+        ->select('bouteilles.nom as nom','pays', 'formats.nom as format', 'type', 'formats.taille as taille', 'url_img')
+        ->join('types', 'types.id', '=', 'bouteilles.type_id')
         ->join('formats', 'formats.id', '=', 'bouteilles.format_id')
         ->where('bouteilles.id', $IDBouteille)
         ->get();
-        
     }
     public static function supprimerDoublons($array)
-    {  
+    {
         foreach($array as $key => $element) {
-     
             $bouteille = DB::table('bouteilles')
             ->where('code_saq', $element->desc->code_SAQ)
             ->get();
            // print_r($bouteille);
             if(!$bouteille->isEmpty()){
-                unset($array[$key]);       
+                unset($array[$key]);
             }else {
- 
                 $idType = DB::table('types')
                 ->select('id')
                 ->where('type', "LIKE" , "%" . explode(' ', $element->desc->type)[1]. "%")
