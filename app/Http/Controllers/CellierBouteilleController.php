@@ -22,9 +22,43 @@ class CellierBouteilleController extends Controller
         $cellierBouteilles = CellierBouteille::obtenirListeBouteilleCellier($idCellier);
         $cellier = Cellier::find($idCellier);
 
+$cellierBouteillesIDs = CellierBouteille::getCellierBouteillesIDs($idCellier);
+
+$cellierBouteillesByIDs = [
+    "bouteille_data" => [
+        "nom" => "",
+        "pays" => "",
+        "format" => "",
+        "taille" => "",
+        "url_img" => "",
+    ],
+    "cellier_bouteille_data" => [],
+];
+
+
+
+foreach ($cellierBouteillesIDs as $bouteilleID){
+
+    $bouteille = Bouteille::getDataBouteilleByID($bouteilleID->bouteille_id); //infos générales de la bouteille obtenue grace a son ID
+    $dataCellierBouteillesByIDs = CellierBouteille::getDataCellierBouteillesByID($idCellier, $bouteilleID->bouteille_id); //
+
+    $cellierBouteillesByIDs[$bouteilleID->bouteille_id] = [
+            "nom" => $bouteille[0]->nom,
+            "pays" => $bouteille[0]->pays,
+            "format" => $bouteille[0]->format,
+            "taille" => $bouteille[0]->taille,
+            "url_img" => $bouteille[0]->url_img,
+            "dataCellier" => $dataCellierBouteillesByIDs,
+    ];
+
+    var_dump($cellierBouteillesByIDs);
+}
+
+
         return view('cellierBouteille.index', [
             'cellierBouteilles' => $cellierBouteilles,
             'cellier' => $cellier,
+            /* 'cellierBouteilleByIDs' => $cellierBouteillesByIDs */
         ]);
     }
 

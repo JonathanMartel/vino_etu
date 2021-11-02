@@ -38,6 +38,8 @@
     <div class="bouton-ajout-vin-conteneur">
         <a class="bouton-ajout-vin" href="{{ route('ajouterVin', $cellier->id) }}">Ajouter un vin</a>
     </div>
+
+    
     @forelse($cellierBouteilles as $cellierBouteille)
     <section>
         <div class="flex">

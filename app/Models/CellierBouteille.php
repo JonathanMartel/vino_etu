@@ -85,15 +85,51 @@ class CellierBouteille extends Model
      */
     public static function obtenirListeBouteilleCellier($idCellier)
     {
+
+
         return DB::table('cellier_bouteilles')
         ->select('pays', 'type', 'millesime', 'taille', 'bouteilles.nom', 'quantite', 'url_img', 'cellier_id', 'bouteille_id', 'note' )
         ->where('cellier_id', $idCellier)
         ->join('bouteilles', 'bouteilles.id', '=', 'cellier_bouteilles.bouteille_id')
         ->join('types', 'types.id', '=', 'bouteilles.type_id')
         ->join('formats', 'formats.id', '=', 'bouteilles.format_id')
+        ->orderBy('bouteilles.id')
         ->get();
     }
     
+    /**
+     * @param idCellier
+     * Obtenir une liste des id des bouteilles équivalent à idCellier
+     * @return rows des lignes de la table cellier_bouteilles équivalent à idCellier avec seulement le champ ID
+     */
+    public static function getCellierBouteillesIDs($idCellier)
+    {
+
+
+        return DB::table('cellier_bouteilles')
+        ->select('bouteille_id')
+        ->where('cellier_id', $idCellier)
+        ->groupBy('bouteille_id')
+        ->get();
+    }
+
+/**
+     * @param idCellier
+     * Obtenir une liste des id des bouteilles équivalent à idCellier
+     * @return rows des lignes de la table cellier_bouteilles équivalent à idCellier avec seulement le champ ID
+     */
+    public static function getDataCellierBouteillesByID($idCellier, $idBouteille)
+    {
+
+
+        return DB::table('cellier_bouteilles')
+        ->select('millesime', 'quantite', 'note')
+        ->where('cellier_id', $idCellier)
+        ->where('bouteille_id', $idBouteille)
+        ->get();
+    }
+
+
 
      /**
       *@param idCellier

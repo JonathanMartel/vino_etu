@@ -40,7 +40,7 @@ class Bouteille extends Model
         /**
      * @param $request
      * Rechercher dans la table bouteilles pour vérifier si une bouteille existe déjà
-     * @return row une ligne de la table cellier_bouteilles
+     * @return row une ligne de la table bouteilles
      */
     public static function rechercheBouteilleExistante($request) {
         return DB::table('bouteilles')
@@ -54,6 +54,19 @@ class Bouteille extends Model
         
     }
 
+       /**
+     * @param $request
+     * obtenir les informations d'une bouteille avec son ID
+     * @return row une ligne de la table bouteilles
+     */
+    public static function getDataBouteilleByID($IDBouteille) {
+        return DB::table('bouteilles')
+        ->select('bouteilles.nom as nom','pays', 'formats.nom as format', 'formats.taille as taille', 'url_img')
+        ->join('formats', 'formats.id', '=', 'bouteilles.format_id')
+        ->where('bouteilles.id', $IDBouteille)
+        ->get();
+        
+    }
     public static function supprimerDoublons($array)
     {  
         foreach($array as $key => $element) {
