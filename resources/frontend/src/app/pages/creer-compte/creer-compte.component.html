@@ -1,32 +1,34 @@
+
+
 <div class="conteneur">
+
     <header>
         <h2>Créer un compte</h2>
     </header>
     <form class="formulaire" [formGroup] ='ajouterUtilisateur' (ngSubmit)=postUser(ajouterUtilisateur.value)>
-        <mat-form-field appearance="fill" class="input-case">
+
+        <mat-form-field appearance="fill">
+
             <mat-label for="first_name">Prénom</mat-label>
             <input matInput type="text" name="first_name" formControlName="first_name">
         </mat-form-field>
 
-        <mat-form-field appearance="fill" class="input-case">
+        <mat-form-field appearance="fill">
             <mat-label for="last_name">Nom</mat-label>
             <input matInput type="text" name="last_name" formControlName="last_name">
         </mat-form-field>
 
-        <mat-form-field appearance="fill" class="input-case">
+        <mat-form-field appearance="fill">
             <mat-label for="email">Courriel</mat-label>
             <input matInput type="text" name="email" formControlName="email">
         </mat-form-field>
 
-        <mat-form-field appearance="fill" class="input-case">
+        <mat-form-field appearance="fill">
             <mat-label for="password">Mot de passe</mat-label>
             <input matInput type="text" name="password" formControlName="password">
-        </mat-form-field>   
+        </mat-form-field>
 
         <button>Enregistrer</button>
 
     </form>
 </div>
-
-
-

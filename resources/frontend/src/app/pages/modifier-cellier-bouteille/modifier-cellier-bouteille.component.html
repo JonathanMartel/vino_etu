@@ -1,34 +1,53 @@
+<form [formGroup]="modifierBouteilleCellier" (ngSubmit)=putBouteille(modifierBouteilleCellier.value)>
+    <div class="formulaire-contenu">
+        <mat-form-field appearance="fill">
+            <mat-label for="nom">Nom</mat-label>
+            <input matInput type="text" id="nom" name="nom" formControlName="nom">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label for="description">Description</mat-label>
+            <input matInput type="text" id="description" name="description" formControlName="description">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label for="format">Format</mat-label>
+            <input matInput type="text" id="format" name="format" formControlName="format">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label for="url_achat">Lieu d'achat</mat-label>
+            <input matInput type="text" id="url_achat" name="url_achat" formControlName="url_achat">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label for="origine">Origine</mat-label>
+            <input matInput type="text" id="origine" name="origine" formControlName="origine">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label for="millesime">Millesime</mat-label>
+            <input matInput type="text" id="millesime" name="millesime" formControlName="millesime">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label for="inventaire">Quantité</mat-label>
+            <input matInput type="text" id="inventaire" name="inventaire" formControlName="inventaire">
+        </mat-form-field>
+        <mat-form-field  appearance="fill">
+            <mat-label for="date_acquisition">Date d'achat</mat-label>
+            <input matInput type="date" id=date_acquisition name="date_acquisition" formControlName="date_acquisition" >
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label for="prix_paye">Prix</mat-label>
+            <input matInput type="text" id="prix_paye" name="prix_paye" formControlName="prix_paye">
+        </mat-form-field>
+        <mat-form-field  appearance="fill">
+            <mat-label for="conservation">Conservation</mat-label>
+            <input matInput type="text" id=conservation name="conservation" formControlName="conservation">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label for="notes_personnelles">Notes personnelles</mat-label>
+            <input matInput type="text" id="notes_personnelles" name="notes_personnelles" formControlName="notes_personnelles">
+        </mat-form-field>
 
+    </div>
+    <mat-dialog-actions>
+        <button type="submit" mat-raised-button>Modifier</button>
+    </mat-dialog-actions>
+</form>
 
-    <form class="formulaire" [formGroup]="modifierBouteilleCellier" (ngSubmit)=putBouteille(modifierBouteilleCellier.value)>
-        <header>
-            <h2>Modifer une bouteille</h2>
-        </header>
-        <div class="formulaire-contenu">
-            <mat-form-field appearance="fill" class="input-case">
-                <mat-label for="millesime">Millesime</mat-label>
-                <input matInput type="text" id="millesime" name="millesime" formControlName="millesime">
-            </mat-form-field>
-            <mat-form-field appearance="fill" class="input-case">
-                <mat-label for="Quantite">Quantité</mat-label>
-                <input matInput type="text" id="Quantite" name="Quantite" class="step__input" formControlName="quantite">
-            </mat-form-field>
-            <mat-form-field  appearance="fill" class="input-case">
-                <mat-label for="date_achat">Date d'achat</mat-label>
-                <input matInput type="date" id=date_achat name="date_achat" class="step__input" formControlName="date_achat" >
-            </mat-form-field>
-            <mat-form-field appearance="fill" class="input-case">
-                <mat-label for="prix">Prix</mat-label>
-                <input matInput type="text" id="prix" name="prix" class="step__input" formControlName="prix">
-            </mat-form-field>
-            <mat-form-field  appearance="fill" class="input-case">
-                <mat-label for="conservation">Conservation</mat-label>
-                <input matInput type="text" id=conservation name="conservation" minlength="2" maxlength="50" class="step__input" formControlName="conservation">
-            </mat-form-field>
-            <mat-form-field appearance="fill" class="input-case">
-                <mat-label for="notes">Notes</mat-label>
-                <input matInput type="text" id="notes" name="notes" class="step__input" formControlName="notes">
-            </mat-form-field>
-        </div>
-        <button>Modifier</button>
-    </form>

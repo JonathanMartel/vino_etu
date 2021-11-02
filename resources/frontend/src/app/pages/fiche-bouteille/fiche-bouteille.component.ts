@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 import { ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { AjoutBouteilleComponent } from '@pages/ajout-bouteille/ajout-bouteille.component';
 
 @Component({
     selector: 'app-fiche-bouteille',
@@ -9,43 +11,41 @@ import { MatSnackBar } from '@angular/material/snack-bar';
     styleUrls: ['./fiche-bouteille.component.scss']
 })
 export class FicheBouteilleComponent implements OnInit {
-    bouteille: any;
-    bouteilleId: any;
+  bouteille:any;
+  bouteilleId:any;
 
-    constructor(private servBouteilleDeVin: BouteilleDeVinService, private actRoute: ActivatedRoute, private snackBar: MatSnackBar) { }
+  constructor(private servBouteilleDeVin:BouteilleDeVinService, private actRoute: ActivatedRoute, private snackBar:MatSnackBar, public formAjout: MatDialog) { }
 
-    ngOnInit(): void {
+  ngOnInit(): void {
 
-        this.bouteilleId = this.actRoute.snapshot.paramMap.get('id');
+    this.bouteilleId = this.actRoute.snapshot.paramMap.get('id');
 
-        this.servBouteilleDeVin.getBouteilleParId(this.bouteilleId).subscribe(bouteille => this.bouteille = bouteille.data);
+    this.servBouteilleDeVin.getBouteilleParId(this.bouteilleId).subscribe(bouteille => this.bouteille = bouteille.data);
 
-        this.actRoute.data.subscribe(data => { this.bouteille = data.bouteille; });
-    }
+    this.actRoute.data.subscribe(data => { this.bouteille = data.bouteille; });
+  }
 
-    openSnackBar(message: any, action: any) {
-        this.snackBar.open(message, action);
-    }
+  openSnackBar(message:any, action:any){
+    this.snackBar.open(message, action);
+  }
 
-    ajouterBouteilleCellier() {
-        const bouteilleAchetee = {
-            nom             : this.bouteille.nom,
-            description     : this.bouteille.description,
-            url_image       : this.bouteille.url_image,
-            url_achat       : this.bouteille.url_achat,
-            url_info        : this.bouteille.url_info,
-            origine         : this.bouteille.pays,
-            millesime       : 1980,
-            date_acquisition: "2021-11-01",
-            prix_paye       : 25.58,
-            conservation    : "4 ans",
-            format          : this.bouteille.format,
-            categories_id   : this.bouteille.categories_id,
-            inventaire      : 4,
-            celliers_id     : 1,
-        }
+  ajouterBouteilleCellier(bouteilleId:any){
 
-        this.servBouteilleDeVin.ajoutBouteilleCellier(bouteilleAchetee).subscribe(() => { this.openSnackBar('Vous avez ajouté une bouteille à votre cellier', 'dismiss') });
-    }
+    this.servBouteilleDeVin.ajoutBouteilleCellier(bouteilleId).subscribe(()=> {this.openSnackBar('Vous avez ajouté une bouteille à votre cellier', 'dismiss')});
+
+  }
+
+
+  formulaireAjout(data:any): void {
+    let formulaire = this.formAjout.open(AjoutBouteilleComponent, {
+      data
+    });
+
+    formulaire.afterClosed().subscribe(result => {
+      console.log('formulaire rempli')
+    })
+  }
+
+
 
 }

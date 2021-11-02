@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { ModifierCellierBouteilleComponent } from '@pages/modifier-cellier-bouteille/modifier-cellier-bouteille.component';
 import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 
 @Component({
@@ -29,7 +31,7 @@ export class CellierBouteilleComponent implements OnInit {
 
 };
 
-  constructor(private servBouteilleDeVin:BouteilleDeVinService) { }
+  constructor(private servBouteilleDeVin:BouteilleDeVinService, public formModifierBouteille: MatDialog) { }
 
   ngOnInit(): void {
 
@@ -54,14 +56,22 @@ export class CellierBouteilleComponent implements OnInit {
 
     this.inventaire.setValue(this.inventaire.value - 1);
 
-   
-
   }
 
 
   enregistrerNouvelInventaire() {
     this.servBouteilleDeVin.modifierInventaireCellierBouteille(this.bouteille.inventaireId, this.inventaire.value)
           .subscribe()
+  }
+
+  formulaireModification(data:any): void {
+    let formulaire = this.formModifierBouteille.open(ModifierCellierBouteilleComponent, {
+      data
+    });
+
+    formulaire.afterClosed().subscribe(result => {
+      console.log('formulaire rempli')
+    })
   }
 
 }
