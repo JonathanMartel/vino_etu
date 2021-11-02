@@ -41,7 +41,7 @@ export default class ListeBouteilleCellier extends React.Component {
 	componentDidUpdate(){
 	}
 
-	fetchBouteilles(){
+	fetchBouteilles() {
 		fetch("https://rmpdwebservices.ca/webservice/php/celliers/" + this.props.match.params.id, {
 			method: 'GET',
 			headers: new Headers({
@@ -49,11 +49,11 @@ export default class ListeBouteilleCellier extends React.Component {
 				"authorization": "Basic " + btoa("vino:vino"),
 			}),
 		})
-            .then(reponse => reponse.json())
-            .then((donnees)=>{
+			.then(reponse => reponse.json())
+			.then((donnees) => {
 				console.log('Diana : ', donnees)
-                this.setState({items:donnees.data});
-            });
+				this.setState({ items: donnees.data });
+			});
 	}
 
 	quantiteModif(valeur){
@@ -91,25 +91,25 @@ export default class ListeBouteilleCellier extends React.Component {
 		}
 
 		const postMethod = {
-			method: 'PUT', 
+			method: 'PUT',
 			headers: {
 				'Content-type': 'application/json',
 				'authorization': 'Basic ' + btoa('vino:vino')
 			},
-			body: JSON.stringify(donnes) 
+			body: JSON.stringify(donnes)
 		}
-    
+
 		fetch("https://rmpdwebservices.ca/webservice/php/bouteilles/quantite", postMethod)
-			.then(res => res.json()) 
+			.then(res => res.json())
 			.then((res) => {
-				this.setState({id_usager: res.data})
+				this.setState({ id_usager: res.data })
 				if (res.data) {
 					this.fetchBouteilles();
-				} else { 
+				} else {
 					console.log("Erreur.")
 				}
 			});
-			this.setState({message: ""});
+		this.setState({ message: "" });
 	}
 
 	retirer(idItem){
@@ -120,37 +120,36 @@ export default class ListeBouteilleCellier extends React.Component {
 				id : idItem.id,
 				quantite : this.state.qteModif
 			}
-	
+
 			const postMethod = {
-				method: 'PUT', 
+				method: 'PUT',
 				headers: {
 					'Content-type': 'application/json',
 					'authorization': 'Basic ' + btoa('vino:vino')
 				},
-				body: JSON.stringify(donnes) 
+				body: JSON.stringify(donnes)
 			}
-	
+
 			fetch("https://rmpdwebservices.ca/webservice/php/bouteilles/quantite", postMethod)
-				.then(res => res.json()) 
+				.then(res => res.json())
 				.then((res) => {
-					this.setState({id_usager: res.data})
+					this.setState({ id_usager: res.data })
 					if (res.data) {
 						this.fetchBouteilles();
 					} else {
 						console.log("Erreur.")
 					}
 				});
-			this.setState({message: ""});
+			this.setState({ message: "" });
 		} else {
-			console.log("Il n'y a pas de bouteilles pour retirer");
-			this.setState({message: "Il n'y a pas de bouteilles pour retirer"});
+			this.setState({ message: "Il n'y a pas de bouteilles pour retirer" });
 		}
-		
+
 	}
 
-	componentDidMount(){
+	componentDidMount() {
 		this.fetchBouteilles();
-    }
+	}
 
 	render() {
 		const bouteilles = this.state.items
@@ -171,13 +170,12 @@ export default class ListeBouteilleCellier extends React.Component {
 				<Link to={"/ajoutBouteille"}>
 					<span>Ajouter une nouvelle bouteille à votre cellier</span>
 				</Link>
-				
 
 				<div>
 					<Dialogue open={this.state.open} titre={this.state.titre} action={this.state.action} valeurChamps={this.quantiteModif} changerQuantite={this.ajusterQuantite} />
 					{bouteilles}
-					
-					
+
+
 				</div>
 			</section>
 		);
