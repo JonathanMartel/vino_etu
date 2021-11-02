@@ -67,6 +67,7 @@ section{
     margin-left: auto;
     padding-right: 0.64rem;
     column-gap: 0.64rem;
+    
 }
 
 .bouton-cercle-add{
@@ -76,6 +77,11 @@ section{
     border-radius: 50%;
     width: 60px;
     height: 60px;
+    transition: all 0.2s ease;
+}
+
+.bouton-cercle-add:hover{
+    background-color: #99AAA2;
 }
 
 .bouton-cercle-add a{
@@ -90,6 +96,11 @@ section{
     border-radius: 50%;
     width: 60px;
     height: 60px;
+    transition: all 0.2s ease;
+}
+
+.bouton-cercle-remove:hover{
+    background-color: #99AAA2;
 }
 
 .bouton-cercle-remove a {
@@ -155,6 +166,7 @@ section{
     background-color:#778D83;
     color: white;
 }
+
 .entete-icon-bouton{
     display: flex;
     column-gap: 1rem;
@@ -162,3 +174,12 @@ section{
 }
 
 
+/*  pour alterner de couleur */
+
+/* section{
+    background-color: aqua;
+}
+
+section:nth-child(even) {
+    background-color: Lightgreen;
+} */
