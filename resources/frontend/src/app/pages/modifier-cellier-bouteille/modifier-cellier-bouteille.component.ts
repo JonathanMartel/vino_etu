@@ -1,6 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 
@@ -38,11 +37,15 @@ export class ModifierCellierBouteilleComponent implements OnInit {
     this.bouteilleId = this.actRoute.snapshot.params.id;
     console.log(this.bouteilleId);
     this.servBouteilleDeVin.getBouteilleAcheteeParId(this.bouteilleId).subscribe(rep => {
-      console.log(rep);
+      this.bouteille = rep.data;
+      console.log(this.bouteille);
+      this.initChampsModification();
     })
 
+  }
 
-   /*  this.modifierBouteilleCellier.patchValue({
+  initChampsModification(){
+    this.modifierBouteilleCellier.patchValue({
       nom: this.bouteille.nom,
       description: this.bouteille.description,
       format: this.bouteille.format,
@@ -54,7 +57,7 @@ export class ModifierCellierBouteilleComponent implements OnInit {
       prix_paye: this.bouteille.prix_paye,
       conservation: this.bouteille.conservation,
       notes_personnelles: this.bouteille.notes_personnelles,
-    }) */
+    })
   }
 
   putBouteille(nouvellesDonnes:any){
