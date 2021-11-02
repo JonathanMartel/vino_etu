@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\BouteilleAcheteeResource;
 use App\Models\BouteilleAchetee;
 use Illuminate\Http\Request;
 
@@ -36,7 +37,7 @@ class BouteilleAcheteeController extends Controller
      */
     public function show(BouteilleAchetee $bouteilleAchetee)
     {
-        //
+        return BouteilleAcheteeResource::make($bouteilleAchetee);
     }
 
     /**

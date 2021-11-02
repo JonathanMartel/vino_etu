@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\BouteilleResource;
 use App\Models\Bouteille;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BouteilleController extends Controller {
     /**
@@ -15,12 +16,35 @@ class BouteilleController extends Controller {
     public function index(Request $request) {
         $request->limite = 24;
 
-        $request->orderBy = "nom";
-        $request->orderDirection = "asc";
+        $orderBy = $request->orderBy = "b.nom";
+        $orderDirection = $request->orderDirection = "asc";
+        // $request->texteRecherche = "";
 
-        return BouteilleResource::collection(
+        /* return BouteilleResource::collection(
             Bouteille::orderBy($request->orderBy, $request->orderDirection)
-                     ->paginate($request->limite));
+                     ->paginate($request->limite)); */
+
+        $requete = DB::table("bouteilles as b")
+                        ->join("pays as p", "p.id", "=", "b.pays_id")
+                        ->join("categories as c", "c.id", "=", "b.categories_id")
+                        ->select("*", "p.nom as pays", "c.nom as categorie", "b.nom as nom", "b.id as id");
+
+        if($recherche = $request->texteRecherche) {
+            /* $sousReqPays = DB::table("pays")
+                             ->select("id", "nom as pays")
+                             ->whereRaw("MATCH(nom) against (? in natural language mode)", [$recherche]); */
+
+            $requete = $requete
+                            ->whereRaw("MATCH(b.nom,description,b.format) against (? in natural language mode)", [$recherche])
+                            ->orWhereRaw("MATCH(p.nom) against (? in natural language mode)", [$recherche])
+                            ->orWhereRaw("MATCH(c.nom) against (? in natural language mode)", [$recherche]);
+        }
+
+
+
+        return $requete
+                        ->orderBy($orderBy, $orderDirection)
+                        ->paginate($request->limite);
     }
 
     /**

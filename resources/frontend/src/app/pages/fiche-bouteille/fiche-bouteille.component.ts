@@ -11,41 +11,42 @@ import { AjoutBouteilleComponent } from '@pages/ajout-bouteille/ajout-bouteille.
     styleUrls: ['./fiche-bouteille.component.scss']
 })
 export class FicheBouteilleComponent implements OnInit {
-  bouteille:any;
-  bouteilleId:any;
+    bouteille: any;
+    bouteilleId: any;
 
-  constructor(private servBouteilleDeVin:BouteilleDeVinService, private actRoute: ActivatedRoute, private snackBar:MatSnackBar, public formAjout: MatDialog) { }
+    constructor(private servBouteilleDeVin: BouteilleDeVinService, private actRoute: ActivatedRoute, private snackBar: MatSnackBar, public formAjout: MatDialog) { }
 
-  ngOnInit(): void {
+    ngOnInit(): void {
 
-    this.bouteilleId = this.actRoute.snapshot.paramMap.get('id');
+        this.bouteilleId = this.actRoute.snapshot.paramMap.get('id');
 
-    this.servBouteilleDeVin.getBouteilleParId(this.bouteilleId).subscribe(bouteille => this.bouteille = bouteille.data);
+        this.servBouteilleDeVin.getBouteilleParId(this.bouteilleId).subscribe(bouteille => this.bouteille = bouteille.data);
 
-    this.actRoute.data.subscribe(data => { this.bouteille = data.bouteille; });
-  }
+        this.actRoute.data.subscribe(data => { this.bouteille = data.bouteille; });
+    }
 
-  openSnackBar(message:any, action:any){
-    this.snackBar.open(message, action);
-  }
-
-  ajouterBouteilleCellier(bouteilleId:any){
-
-    this.servBouteilleDeVin.ajoutBouteilleCellier(bouteilleId).subscribe(()=> {this.openSnackBar('Vous avez ajouté une bouteille à votre cellier', 'dismiss')});
-
-  }
+    openSnackBar(message: any, action: any) {
+        this.snackBar.open(message, action, {
+            duration: 3000
+        });
+    }
 
 
-  formulaireAjout(data:any): void {
-    let formulaire = this.formAjout.open(AjoutBouteilleComponent, {
-      data
-    });
+    ajouterBouteilleCellier(bouteilleId: any) {
 
-    formulaire.afterClosed().subscribe(result => {
-      console.log('formulaire rempli')
-    })
-  }
+        this.servBouteilleDeVin.ajoutBouteilleCellier(bouteilleId).subscribe(() => { this.openSnackBar('Vous avez ajouté une bouteille à votre cellier', 'dismiss') });
+
+    }
 
 
+    formulaireAjout(data: any): void {
+        let formulaire = this.formAjout.open(AjoutBouteilleComponent, {
+            data
+        });
+
+        formulaire.afterClosed().subscribe(result => {
+            console.log('formulaire rempli')
+        })
+    }
 
 }
