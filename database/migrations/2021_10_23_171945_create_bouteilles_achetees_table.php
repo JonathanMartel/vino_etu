@@ -28,6 +28,7 @@ class CreateBouteillesAcheteesTable extends Migration
             $table->text("notes_personnelles")->nullable();
             $table->string("format")->nullable();
             $table->foreignId("categories_id")->constrained("categories");
+            $table->foreignId("users_id")->constrained();
             $table->timestamps();
         });
     }
