@@ -25,3 +25,7 @@
     overflow-y:visible;
     height: 5em;
 }
+
+.input-field .prefix ~ label.labelRecherche {
+    z-index: -1;
+}

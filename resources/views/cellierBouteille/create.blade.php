@@ -13,7 +13,7 @@
   <div class="input-field col s12 recherche">
       <i class="material-icons prefix">search</i>
       <input type="text"  name="recherche" autocomplete="off">
-      <label for="recherche">Rechercher un vin</label>
+      <label class="labelRecherche" for="recherche">Rechercher un vin</label>
       <div class="autocomplete z-depth-2"></div>
     </div>
   </div>

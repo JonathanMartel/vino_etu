@@ -53,4 +53,52 @@ class Bouteille extends Model
         ->get();
         
     }
+
+    public static function supprimerDoublons($array)
+    {  
+        foreach($array as $key => $element) {
+     
+            $bouteille = DB::table('bouteilles')
+            ->where('code_saq', $element->desc->code_SAQ)
+            ->get();
+           // print_r($bouteille);
+            if(!$bouteille->isEmpty()){
+                unset($array[$key]);       
+            }else {
+ 
+                $idType = DB::table('types')
+                ->select('id')
+                ->where('type', "LIKE" , "%" . explode(' ', $element->desc->type)[1]. "%")
+                ->get();
+               print_r($idType);
+                if( explode(' ', $element->desc->format)[1] == "L") {
+                    $format = explode(' ', str_replace(',', '.', $element->desc->format))[0] * 100;
+                   echo $format;
+                }else if (explode(' ', $element->desc->format)[1] == "ml"){
+                    $format = explode(' ', str_replace(',', '.', $element->desc->format))[0] / 10;
+                }
+                $idFormat = DB::table('formats')
+                ->select('id')
+                ->where('taille',  $format)
+                ->get();
+          
+                DB::table('bouteilles')->insert(
+                    ['nom' => $element->nom,
+                     'url_img' => $element->img,
+                     'description' => $element->desc->texte,
+                     'code_saq' => $element->desc->code_SAQ,
+                     'pays' => $element->desc->pays,
+                     'prix_saq' => explode('$', str_replace(',', '.', $element->prix))[0],
+                     'format_id' => $idFormat[0]->id,
+                     'type_id' => $idType[0]->id,
+                     'user_id' => 1,
+                     'url_saq' => $element->url
+                    ]
+                );
+            }
+        }
+       print_r($array);
+       // return $array;
+    }
+
 }
