@@ -1,6 +1,10 @@
 <form class="formulaire" [formGroup]="modifierBouteilleCellier" (ngSubmit)=putBouteille(modifierBouteilleCellier.value)>
     <div class="formulaire-contenu">
         <mat-form-field appearance="fill">
+            <mat-label for="url_image">Image</mat-label>
+            <input matInput type="text" id="url_image" name="url_image" formControlName="url_image">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
             <mat-label for="nom">Nom</mat-label>
             <input matInput type="text" id="nom" name="nom" formControlName="nom">
         </mat-form-field>

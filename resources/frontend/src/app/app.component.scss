@@ -2,6 +2,10 @@
      --couleur-primaire: #4c1920;
 }
 
+* {
+     box-sizing: border-box;
+}
+
 main {
      padding: 65px 0;
 }

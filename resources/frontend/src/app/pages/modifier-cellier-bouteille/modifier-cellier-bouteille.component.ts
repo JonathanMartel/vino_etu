@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 
@@ -14,6 +15,7 @@ export class ModifierCellierBouteilleComponent implements OnInit {
   
 
   modifierBouteilleCellier = new FormGroup({
+    url_image: new FormControl(''),
     nom: new FormControl(''),
     description: new FormControl(''),
     format: new FormControl(''),
@@ -29,6 +31,7 @@ export class ModifierCellierBouteilleComponent implements OnInit {
 
 
   constructor(private servBouteilleDeVin:BouteilleDeVinService, private actRoute: ActivatedRoute,
+              private snackBar: MatSnackBar
               /* public formulaireRef: MatDialogRef<ModifierCellierBouteilleComponent>,
               @Inject(MAT_DIALOG_DATA) public data:any */) { }
 
@@ -46,6 +49,7 @@ export class ModifierCellierBouteilleComponent implements OnInit {
 
   initChampsModification(){
     this.modifierBouteilleCellier.patchValue({
+      url_image: this.bouteille.url_image,
       nom: this.bouteille.nom,
       description: this.bouteille.description,
       format: this.bouteille.format,
@@ -60,7 +64,17 @@ export class ModifierCellierBouteilleComponent implements OnInit {
     })
   }
 
+  openSnackBar(message: any, action: any) {
+    this.snackBar.open(message, action, {
+        duration: 3000
+    });
+}
+
   putBouteille(nouvellesDonnes:any){
+
+    this.servBouteilleDeVin.modifierBouteilleCellier(this.bouteilleId, nouvellesDonnes).subscribe(() => {
+      this.openSnackBar('Vous avez modifer la bouteille avec succès', 'Fermer');
+    });
 
     console.log(nouvellesDonnes);
   }

@@ -24,9 +24,9 @@ export class AjoutBouteilleComponent implements OnInit {
 
     constructor(private servBouteilleDeVin: BouteilleDeVinService,
         private actRoute: ActivatedRoute,
-        private snackBar: MatSnackBar,
         public formulaireRef: MatDialogRef<AjoutBouteilleComponent>,
-        @Inject(MAT_DIALOG_DATA) public data: any) { }
+        @Inject(MAT_DIALOG_DATA) public data: any,
+        private snackBar: MatSnackBar) { }
 
     ngOnInit(): void {
         this.data;
