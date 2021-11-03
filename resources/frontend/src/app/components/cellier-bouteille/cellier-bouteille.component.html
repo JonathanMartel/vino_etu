@@ -41,7 +41,14 @@
                 <dt>Description</dt>
                 <dl>{{ bouteille.description }}</dl>
             </div>
+
+            <div>
+                <dt>Description</dt>
+                <dl>{{ bouteille.description }}</dl>
+            </div>
         </dl>
+
+        <a *ngIf="bouteille.url_achat" href="{{ bouteille.url_achat }}">Acheter en ligne</a>
 
         <div class="actions">
             <a mat-flat-button routerLink="/modifier-cellier/{{bouteille.bouteilleId}}"><mat-icon>edit</mat-icon> Modifier</a>
