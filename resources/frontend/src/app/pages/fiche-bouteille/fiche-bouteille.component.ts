@@ -14,7 +14,7 @@ export class FicheBouteilleComponent implements OnInit {
     bouteille: any;
     bouteilleId: any;
 
-    constructor(private servBouteilleDeVin: BouteilleDeVinService, private actRoute: ActivatedRoute, private snackBar: MatSnackBar, public formAjout: MatDialog) { }
+    constructor(private servBouteilleDeVin: BouteilleDeVinService, private actRoute: ActivatedRoute, public formAjout: MatDialog) { }
 
     ngOnInit(): void {
 
@@ -25,20 +25,20 @@ export class FicheBouteilleComponent implements OnInit {
         this.actRoute.data.subscribe(data => { this.bouteille = data.bouteille; });
     }
 
-    openSnackBar(message: any, action: any) {
+   /* openSnackBar(message: any, action: any) {
         this.snackBar.open(message, action, {
             duration: 3000
         });
-    }
+    } */
 
 
-    ajouterBouteilleCellier(bouteilleId: any) {
+   /* ajouterBouteilleCellier(bouteilleId: any) {
 
         this.servBouteilleDeVin.ajoutBouteilleCellier(bouteilleId).subscribe(() => {
             this.openSnackBar('Vous avez ajouté une bouteille à votre cellier', 'Fermer')
         });
 
-    }
+    } */
 
 
     formulaireAjout(data: any): void {
@@ -47,7 +47,8 @@ export class FicheBouteilleComponent implements OnInit {
         });
 
         formulaire.afterClosed().subscribe(result => {
-            console.log('formulaire rempli')
+            console.log('formulaire rempli');
+
         })
     }
 
