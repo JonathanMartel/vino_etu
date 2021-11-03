@@ -21,16 +21,15 @@ export default class AjoutBouteille extends React.Component {
 			commentaires: '',
 			usager_id: '1',
 			vino__type_id: '',
-			id_cellier: '3'
+			id_cellier: '3',
+			url_img: '',
+			url_saq: '',
 		};
 
 		// Binding des fonctions
 		this.fetchBouteillesSAQ = this.fetchBouteillesSAQ.bind(this);
 		this.ajouterBouteilleCellier = this.ajouterBouteilleCellier.bind(this);
 		this.choixBouteille = this.choixBouteille.bind(this);
-	}
-
-	componentDidUpdate() {
 	}
 
 	fetchBouteillesSAQ(event) {
@@ -53,7 +52,7 @@ export default class AjoutBouteille extends React.Component {
 	}
 
 	choixBouteille(info) {
-		this.setState({ nomBouteilleSAQ: info.nom, prixBouteilleSAQ: info.prix_saq, pays: info.pays, type__type_id: info.type });
+		this.setState({ nomBouteilleSAQ: info.nom, prixBouteilleSAQ: info.prix_saq, pays: info.pays, type__type_id: info.type, url_img: info.url_img, url_saq: info.url_saq });
 		this.setState({ bouteillesSAQ: [] });
 	}
 
@@ -72,7 +71,9 @@ export default class AjoutBouteille extends React.Component {
 			usager_id: this.state.usager_id,
 			vino__type_id: this.state.vino__type_id,
 			id_cellier: this.state.id_cellier,
-			pays: this.state.pays
+			pays: this.state.pays,
+			url_img: this.state.url_img,
+			url_saq: this.state.url_saq,
 		};
 
 		entete.append('Content-Type', 'application/json');
