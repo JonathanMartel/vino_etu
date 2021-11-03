@@ -64,6 +64,10 @@
     background-color: var(--couleur-primaire);
 }
 
+.mat-mini-fab.mat-accent:disabled{
+    background-color: #ababab;
+}
+
 
 .mat-form-field {
     max-width: 4ch;
@@ -81,7 +85,7 @@
 
 .resultat-vin{
     flex: 1;
-    
+
 }
 
 .boutons-inventaire{
@@ -89,7 +93,7 @@
   display: flex;
   align-items: center;
   gap: 5px;
-  
+
 }
 
 
