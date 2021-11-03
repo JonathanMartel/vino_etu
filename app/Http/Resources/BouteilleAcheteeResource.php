@@ -27,7 +27,7 @@ class BouteilleAcheteeResource extends JsonResource
             "notes_personnelles" => $this->notes_personnelles,
             "format"             => $this->format,
             "origine"            => $this->origine,
-            "prix_paye"            => $this->prix_paye,
+            "prix_paye"          => $this->prix_paye,
             /* "categories_id"      => $this->categories_id,
             "categories"         => $this->categorie->nom, */
             "created_at"         => $this->created_at,
