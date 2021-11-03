@@ -1,4 +1,14 @@
 import React from "react";
+import Page404 from "../Page404/Page404";
+import {
+  Route,
+  Redirect,
+  withRouter,
+  Switch,
+  BrowserRouter as Router,
+} from "react-router-dom";
+import { Box } from "@mui/system";
+import { TextField } from "@mui/material";
 import "./Connexion.css";
 
 export default class Connexion extends React.Component{
@@ -69,30 +79,60 @@ export default class Connexion extends React.Component{
         }
     }
 
+
   render() {
         /* const connectado = this.state.seConnecter; */
         console.log("Usager connecté : ", this.state.id_usager); //Retourne false si ne trouve pas l'usager
         console.log("this.props.id_usager: ", this.props.id_usager);
 
-		return (
-            <section>
-                <h2>Se connecter</h2>
+    return (
+      <Box
+        className="login_container"
+        sx={{
+          backgroundColor: "rgba(0, 0, 0, 0.8)",
+          display: "flex",
+          justfyContent: "center",
+          alignItems: "center",
+          gap: "1rem",
+          width: "85vw",
+          flexDirection: "column",
+          borderRadius: "1rem",
+          margin: "0 auto",
+          marginTop: "20vh",
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            width: "80%",
+            flexDirection: "column",
+            gap: "2rem",
+          }}
+        >
+          <span className="login_title">Bienvenue dans votre cellier</span>
 
-                <div>
-                    <p>Courriel</p>
-                    <input name="courriel" onKeyUp={evt => this.setState({ courriel: evt.target.value})} placeholder="Entrez son courriel" type="email" />
-                </div>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "1rem",
+            }}
+          >
+            <TextField label="Courriel" variant="outlined" />
+            <TextField
+              label="Mot de passe"
+              type="password"
+              variant="outlined"
+            />
+            {/* <input name="courriel" onKeyUp={evt => this.setState({ courriel: evt.target.value })} placeholder="bobus@gmail.com" type="email" />
+                        <input name="mot_passe" onKeyUp={evt => this.setState({ mot_passe: evt.target.value })} placeholder="12345" type="password" /> */}
+          </Box>
 
-                <div>
-                    <p>Mot de passe</p>
-                    <input name="mot_passe" onKeyUp={evt => this.setState({ mot_passe: evt.target.value})} placeholder="Entrez son mot_passe" type="password" />
-                </div>
+          <button onClick={this.seConnecter}>Se connecter</button>
+        </Box>
 
-                <br/> <br/>
-                <div>
-                    <button onClick={()=>this.seConnecter()} >Se connecter</button>
-                </div>
-            </section>
-		);
+        {/* <button onClick={this.seConnecter}>{(this.state.seConnecter ? "Se déconnecter" : "Se connecter")}</button> */}
+      </Box>
+    );
   }
 }

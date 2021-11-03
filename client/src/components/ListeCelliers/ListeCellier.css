@@ -1,0 +1,10 @@
+.liste_celliers {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+    margin: 0 auto;
+    padding-top: 1rem;
+}

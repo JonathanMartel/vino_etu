@@ -1,7 +1,7 @@
 import React from "react";
-import Entete from '../Entete/Entete';
-import Accueil from '../Accueil/Accueil';
-import Pied from '../Pied/Pied';
+import Entete from "../Entete/Entete";
+import Accueil from "../Accueil/Accueil";
+import Pied from "../Pied/Pied";
 import Page404 from "../Page404/Page404";
 import AjoutBouteille from "../AjoutBouteilleCellier/AjoutBouteilleCellier";
 import ListeBouteilles from "../ListeBouteillesCellier/ListeBouteilleCellier";
@@ -36,7 +36,13 @@ export default class App extends React.Component {
 				<Switch>
 					<Route exact path="/ajoutBouteille" component={AjoutBouteille} />
 
-					<Route exact path="/inscription" component={Inscription} />
+					<Route
+						exact
+						path="/inscription"
+						component={(props) => (
+						<Inscription title="S'enregistrer" {...props} />
+						)}
+					/>
 					<Route exact path="/" component={(props)=> <Connexion test={this.seConnecter} esConnecte={this.state.esConnecte} id_usager={this.state.id_usager} {...props} /> } />
 					
 					<Route exact path="/listecelliers" component={(props)=> <ListeCelliers esConnecte={this.state.esConnecte} id_usager={this.state.id_usager} {...props} /> } />	
@@ -47,13 +53,11 @@ export default class App extends React.Component {
 
 					<Route exact path="/bouteilles/:id" render={(param_route)=> 
 							<DetailsBouteille {...param_route} bouteille_id={param_route?.match?.params?.bouteille_id} param={param_route} />} />
-
-
-					<Route exact path="*" component={Page404} />
-				</Switch>
-				<Pied />
-			</Router>
-
-		);
-	}
+	
+    			    <Route exact path="*" component={Page404} />
+        		</Switch>
+        		<Pied />
+      		</Router>
+    );
+  }
 }
