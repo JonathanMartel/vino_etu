@@ -4,11 +4,7 @@
       <p><button mat-button (click)="sidenav.toggle()">Toggle</button></p>
 
       <mat-sidenav-content class="sidenav-content">
-        <h2>Recherche</h2>
-        <mat-form-field appearance="fill" class="input-case">
-          <mat-label><mat-icon>search</mat-icon>Recherche</mat-label>
-          <input matInput type="text">
-        </mat-form-field>
+
         
 
 
@@ -21,7 +17,7 @@
       <div class="content">
         <div class="content-header">
             <h2 class="titre">Mon Cellier</h2>
-            <p class="bouton-filtre"><button mat-button (click)="sidenav.toggle()"><mat-icon>search</mat-icon></button></p>
+            <p class="bouton-filtre"><button mat-button (click)="sidenav.toggle()">Filtrer</button></p>
 
         </div>
         <section *ngFor="let uneBouteille of cellier" class="resultat">

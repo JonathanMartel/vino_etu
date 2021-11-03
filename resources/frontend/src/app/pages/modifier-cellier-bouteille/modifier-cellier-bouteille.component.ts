@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
 import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 
 @Component({
@@ -10,6 +10,8 @@ import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 })
 export class ModifierCellierBouteilleComponent implements OnInit {
   bouteille: any;
+  bouteilleId: any;
+  
 
   modifierBouteilleCellier = new FormGroup({
     nom: new FormControl(''),
@@ -26,26 +28,35 @@ export class ModifierCellierBouteilleComponent implements OnInit {
   });
 
 
-  constructor(private servBouteilleDeVin:BouteilleDeVinService,
-              @Inject(MAT_DIALOG_DATA) public data:any) { }
+  constructor(private servBouteilleDeVin:BouteilleDeVinService, private actRoute: ActivatedRoute,
+              /* public formulaireRef: MatDialogRef<ModifierCellierBouteilleComponent>,
+              @Inject(MAT_DIALOG_DATA) public data:any */) { }
 
   ngOnInit(): void {
 
-    this.data;
-    console.log(this.data);
+    this.bouteilleId = this.actRoute.snapshot.params.id;
+    console.log(this.bouteilleId);
+    this.servBouteilleDeVin.getBouteilleAcheteeParId(this.bouteilleId).subscribe(rep => {
+      this.bouteille = rep.data;
+      console.log(this.bouteille);
+      this.initChampsModification();
+    })
 
+  }
+
+  initChampsModification(){
     this.modifierBouteilleCellier.patchValue({
-      nom: this.data.nom,
-      description: this.data.description,
-      format: this.data.format,
-      origine: this.data.origine,
-      url_achat: this.data.url_achat,
-      millesime: this.data.millesime,
-      inventaire: this.data.inventaire,
-      date_acquisition: this.data.date_acquisition,
-      prix_paye: this.data.prix_paye,
-      conservation: this.data.conservation,
-      notes_personnelles: this.data.notes_personnelles,
+      nom: this.bouteille.nom,
+      description: this.bouteille.description,
+      format: this.bouteille.format,
+      origine: this.bouteille.origine,
+      url_achat: this.bouteille.url_achat,
+      millesime: this.bouteille.millesime,
+      inventaire: this.bouteille.inventaire,
+      date_acquisition: this.bouteille.date_acquisition,
+      prix_paye: this.bouteille.prix_paye,
+      conservation: this.bouteille.conservation,
+      notes_personnelles: this.bouteille.notes_personnelles,
     })
   }
 
