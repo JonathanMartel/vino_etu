@@ -55,6 +55,8 @@ Route::get('/registration', [CustomAuthController::class, 'create'])->name('regi
 Route::post('custom-registration', [CustomAuthController::class, 'store'])->name('register.custom');
 Route::get('logout', [CustomAuthController::class, 'logout'])->name('logout');
 Route::get('dashboard', [CustomAuthController::class, 'dashboard'])->middleware('auth')->name('dashboard');
+Route::get('/user/{user}/edit', [CustomAuthController::class, 'edit'])->middleware('auth')->name('custom.edit');
+Route::put('/user/{user}/edit', [CustomAuthController::class, 'update'])->middleware('auth')->name('custom.update');
 
 /*
 |--------------------------------------------------------------------------

@@ -15,3 +15,7 @@
 .card a {
     color: #343B41;
 }
+
+.hoverclass:hover {
+    background-color: rgba(0,0,0,0.05);
+}
