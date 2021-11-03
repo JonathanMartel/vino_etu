@@ -31,7 +31,6 @@ export default class AjoutBouteille extends React.Component {
 	}
 
 	componentDidUpdate() {
-		console.log(this.state.nomBouteilleSAQ);
 	}
 
 	fetchBouteillesSAQ(event) {
@@ -40,7 +39,6 @@ export default class AjoutBouteille extends React.Component {
 			return;
 		}
 
-		console.log(event.target.value);
 		fetch('https://rmpdwebservices.ca/webservice/php/saq/' + event.target.value, {
 			method: 'GET',
 			headers: new Headers({
@@ -55,7 +53,6 @@ export default class AjoutBouteille extends React.Component {
 	}
 
 	choixBouteille(info) {
-		console.log(info.nom);
 		this.setState({ nomBouteilleSAQ: info.nom, prixBouteilleSAQ: info.prix_saq, pays: info.pays, type__type_id: info.type });
 		this.setState({ bouteillesSAQ: [] });
 	}
@@ -89,8 +86,6 @@ export default class AjoutBouteille extends React.Component {
 		})
 			.then((reponse) => reponse.json())
 			.then(() => {
-				//this.setState({pays: })
-				console.log(nouvelleBouteille.pays);
 				this.props.history.push('/cellier/' + this.state.id_cellier);
 			});
 	}
