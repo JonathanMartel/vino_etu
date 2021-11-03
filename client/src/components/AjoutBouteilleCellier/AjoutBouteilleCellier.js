@@ -19,7 +19,7 @@ export default class AjoutBouteille extends React.Component {
 			garde: '',
 			commentaires: '',
 			usager_id: '1',
-			vino__type_id: '1',
+			vino__type_id: '',
 			id_cellier: '3'
 		};
 
@@ -55,7 +55,7 @@ export default class AjoutBouteille extends React.Component {
 
 	choixBouteille(info) {
 		console.log(info.nom);
-		this.setState({ nomBouteilleSAQ: info.nom, prixBouteilleSAQ: info.prix_saq, pays: info.pays });
+		this.setState({ nomBouteilleSAQ: info.nom, prixBouteilleSAQ: info.prix_saq, pays: info.pays, type__type_id: info.type });
 		this.setState({ bouteillesSAQ: [] });
 	}
 
@@ -127,6 +127,15 @@ export default class AjoutBouteille extends React.Component {
 							name="pays"
 							value={this.state.pays}
 							onChange={(e) => this.setState({ pays: e.target.value })}
+						/>
+					</p>
+					<p>
+						Type de vin :{' '} {/* Il faut changer le input pour un select */}
+						<input
+							type="text"
+							name="type"
+							value={this.state.vino__type_id}
+							onChange={(e) => this.setState({ vino__type_id: e.target.value })}
 						/>
 					</p>
 					<p>
