@@ -49,7 +49,26 @@ class BouteilleAcheteeController extends Controller
      */
     public function update(Request $request, BouteilleAchetee $bouteilleAchetee)
     {
-        //
+        $bouteilleAchetee->nom                = $request->nom;
+        $bouteilleAchetee->description        = $request->description;
+        $bouteilleAchetee->url_image          = $request->url_image;
+        $bouteilleAchetee->url_info           = $request->url_info;
+        $bouteilleAchetee->url_achat          = $request->url_achat;
+        $bouteilleAchetee->millesime          = $request->millesime;
+        $bouteilleAchetee->format             = $request->format;
+        $bouteilleAchetee->notes_personnelles = $request->notes_personnelles;
+        $bouteilleAchetee->prix_paye          = $request->prix_paye;
+        $bouteilleAchetee->conservation       = $request->conservation;
+
+        if(!$bouteilleAchetee->save()) {
+            return response()->json([
+                "message" => "Erreur lors de la mise à jour"
+            ], 501);
+        }
+
+        return response()->json([
+           "message"  => "Mise à jour réussie"
+        ], 200);
     }
 
     /**
