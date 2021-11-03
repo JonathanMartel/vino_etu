@@ -12,11 +12,12 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 export default class Pied extends React.Component {
 	constructor(props) {
 		super(props);
-
-		console.log(document.title)
 	}
 
 	render() {
+		console.log("Est connecté: ", this.props.estConnecte);
+		console.log("Usager: ", this.props.id_usager);
+
 		if (!this.props.estConnecte) {
 			return (
 				<BottomNavigation showLabels sx={{ width: '100vw', position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 1, backgroundColor: '#641B30' }}>
@@ -24,12 +25,14 @@ export default class Pied extends React.Component {
 						label="Se connecter"
 						value="favorites"
 						icon={<LoginIcon />}
+						onClick={()=> this.props.history.push("/")}
 					/>
 
 					<BottomNavigationAction
 						label="S'enregistrer"
 						value="folder"
-						icon={<PersonAddIcon />} />
+						icon={<PersonAddIcon />} 
+						onClick={()=> this.props.history.push("/inscription")} />
 				</BottomNavigation>
 			);
 		} else {
