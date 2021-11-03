@@ -28,7 +28,8 @@
         <li>Taille: {{ $cellierBouteille->taille }}</li>
         <li>Prix: {{ $cellierBouteille->garde_jusqua }}</li>
         <li>Commentaire: {{ $cellierBouteille->commentaire }}</li>
-        <li>Prix: {{ $cellierBouteille->date_achat }}</li>
+        <li>Date: {{ $cellierBouteille->date_achat }}</li>
+        <li>Garder:{{ $cellierBouteille->garde_jusqua }}</li>
     </ul>
 </div>
 

@@ -54,11 +54,7 @@ foreach ($cellierBouteillesIDs as $bouteilleID){
             "dataCellier" => $dataCellierBouteillesByIDs,
     ];
 
-<<<<<<< HEAD
     // var_dump($cellierBouteillesByIDs);
-=======
-    //var_dump($cellierBouteillesByIDs);
->>>>>>> bdaaf048c3de4b6cab9f2d8225b86130a7430fbb
 }
 
 
