@@ -116,7 +116,7 @@ export default class AjoutBouteille extends React.Component {
 						<input
 							type="text"
 							name="nom"
-							value={this.state.nomBouteilleSAQ}
+							defaultValue={this.state.nomBouteilleSAQ}
 							onChange={(e) => this.setState({ nom: e.target.value })}
 						/>
 					</p>
@@ -125,7 +125,7 @@ export default class AjoutBouteille extends React.Component {
 						<input
 							type="text"
 							name="pays"
-							value={this.state.pays}
+							defaultValue={this.state.pays}
 							onChange={(e) => this.setState({ pays: e.target.value })}
 						/>
 					</p>
@@ -134,7 +134,7 @@ export default class AjoutBouteille extends React.Component {
 						<input
 							type="text"
 							name="type"
-							value={this.state.vino__type_id}
+							defaultValue={this.state.vino__type_id}
 							onChange={(e) => this.setState({ vino__type_id: e.target.value })}
 						/>
 					</p>
@@ -143,7 +143,7 @@ export default class AjoutBouteille extends React.Component {
 						<input
 							type="text"
 							name="millesime"
-							value={this.state.millesime}
+							defaultValue={this.state.millesime}
 							onChange={(e) => this.setState({ millesime: e.target.value })}
 						/>
 					</p>
@@ -152,7 +152,7 @@ export default class AjoutBouteille extends React.Component {
 						<input
 							type="number"
 							name="quantite"
-							value={this.state.quantite}
+							defaultValue={this.state.quantite}
 							onChange={(e) => this.setState({ quantite: e.target.value })}
 						/>
 					</p>
@@ -170,7 +170,7 @@ export default class AjoutBouteille extends React.Component {
 						<input
 							type="text"
 							name="prix"
-							value={this.state.prixBouteilleSAQ}
+							defaultValue={this.state.prixBouteilleSAQ}
 							onChange={(e) => this.setState({ prix: e.target.value })}
 						/>
 					</p>
@@ -179,7 +179,7 @@ export default class AjoutBouteille extends React.Component {
 						<input
 							type="text"
 							name="garde_jusqua"
-							value={this.state.garde}
+							defaultValue={this.state.garde}
 							onChange={(e) => this.setState({ garde: e.target.value })}
 						/>
 					</p>
@@ -188,7 +188,7 @@ export default class AjoutBouteille extends React.Component {
 						<input
 							type="text"
 							name="notes"
-							value={this.state.commentaires}
+							defaultValue={this.state.commentaires}
 							onChange={(e) => this.setState({ commentaires: e.target.value })}
 						/>
 					</p>
