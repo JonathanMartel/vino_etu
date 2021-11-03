@@ -1,8 +1,10 @@
 
 <mat-sidenav-container class="example-container">
     <mat-sidenav #sidenav [mode]="mode.value">
-      <p><button mat-button (click)="sidenav.toggle()">Toggle</button></p>
-      <p class="sidenav-content">Filtrer votre cellier</p>
+      <mat-sidenav-content class="sidenav-content">
+        <p><button mat-button (click)="sidenav.toggle()">Toggle</button></p>
+      </mat-sidenav-content>
+
     </mat-sidenav>
   
     <mat-sidenav-content>
@@ -10,9 +12,10 @@
         <div class="content-header">
             <h2 class="titre">Mon Cellier</h2>
             <p class="bouton-filtre"><button mat-button (click)="sidenav.toggle()">Filtrer</button></p>
+
         </div>
         <section *ngFor="let uneBouteille of cellier" class="resultat">
-        <app-cellier-bouteille [uneBouteille] = 'uneBouteille'></app-cellier-bouteille>
+          <app-cellier-bouteille [uneBouteille] = 'uneBouteille'></app-cellier-bouteille>
         </section>
     </div>
     </mat-sidenav-content>

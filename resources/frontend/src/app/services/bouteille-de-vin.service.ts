@@ -57,11 +57,7 @@ export class BouteilleDeVinService {
 
     modifierBouteilleCellier(bouteilleAchetee_id:any, data:any){
 
-        let body = {
-
-        }
-
-        return this.http.put<any>(this.url + '/celliers/modifier-bouteille/' + bouteilleAchetee_id, body)
+        return this.http.put<any>(this.url + '/bouteilles-achetees/' + bouteilleAchetee_id, data)
 
     }
 
