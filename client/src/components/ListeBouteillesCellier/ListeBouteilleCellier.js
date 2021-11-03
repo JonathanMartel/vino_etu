@@ -36,7 +36,7 @@ export default class ListeBouteilleCellier extends React.Component {
   fetchBouteilles() {
     fetch(
       "https://rmpdwebservices.ca/webservice/php/celliers/" +
-        this.props.match.params.id,
+      this.props.match.params.id,
       {
         method: "GET",
         headers: new Headers({
@@ -137,9 +137,7 @@ export default class ListeBouteilleCellier extends React.Component {
       };
 
       fetch(
-        "https://rmpdwebservices.ca/webservice/php/bouteilles/quantite",
-        postMethod
-      )
+        "https://rmpdwebservices.ca/webservice/php/bouteilles/quantite", postMethod)
         .then((res) => res.json())
         .then((res) => {
           this.setState({ id_usager: res.data });
