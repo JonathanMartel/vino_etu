@@ -216,10 +216,18 @@ foreach ($cellierBouteillesIDs as $bouteilleID){
      */
     public function show($idCellier, $idBouteille)
     {
+        $cellier = Cellier::find($idCellier);
         $bouteille = Bouteille::getDataBouteilleByID($idBouteille);
-        return view('ficheVin.index', [
-            'bouteille' => $bouteille
+        $cellierBouteille = CellierBouteille::obtenirListeBouteilleCellier($idCellier);
+        
+        // print_r ($cellierBouteille);
+
+        return view('cellierBouteille.show', [
+            'bouteille' => $bouteille[0],
+            'cellierBouteille' => $cellierBouteille[0],
+            'cellier' => $cellier,
         ]);
+        
     }
 
  

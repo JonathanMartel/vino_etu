@@ -60,12 +60,8 @@ class Bouteille extends Model
      */
     public static function getDataBouteilleByID($IDBouteille) {
         return DB::table('bouteilles')
-<<<<<<< HEAD
-        ->select('bouteilles.nom as nom','pays', 'formats.nom as format', 'formats.taille as taille', 'url_img', 'description')
-=======
-        ->select('bouteilles.nom as nom','pays', 'formats.nom as format', 'type', 'formats.taille as taille', 'url_img')
+        ->select('bouteilles.nom as nom','pays', 'formats.nom as format', 'type', 'formats.taille as taille', 'url_img', 'description', 'prix_saq', 'code_saq', 'url_saq')
         ->join('types', 'types.id', '=', 'bouteilles.type_id')
->>>>>>> 19c616e2e87ad77f9aea27361aaeca3ea835e99d
         ->join('formats', 'formats.id', '=', 'bouteilles.format_id')
         ->where('bouteilles.id', $IDBouteille)
         ->get();
