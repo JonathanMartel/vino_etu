@@ -55,6 +55,8 @@ Route::get('/registration', [CustomAuthController::class, 'create'])->name('regi
 Route::post('custom-registration', [CustomAuthController::class, 'store'])->name('register.custom')->middleware('prevent-back-history');
 Route::get('logout', [CustomAuthController::class, 'logout'])->name('logout');
 Route::get('dashboard', [CustomAuthController::class, 'dashboard'])->middleware('auth')->name('dashboard')->middleware('prevent-back-history');
+Route::get('/user/{user}/edit', [CustomAuthController::class, 'edit'])->middleware('auth')->name('custom.edit')->middleware('prevent-back-history');
+Route::put('/user/{user}/edit', [CustomAuthController::class, 'update'])->middleware('auth')->name('custom.update')->middleware('prevent-back-history');
 
 /*
 |--------------------------------------------------------------------------

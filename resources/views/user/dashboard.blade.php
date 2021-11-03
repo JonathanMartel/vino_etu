@@ -24,17 +24,18 @@
             </div>
 
             <div class="card">
-                <div class="card-content">
-                    
-                    <div class="flex-row">    
-                      <i class="small material-icons black-text">account_box</i>
-                      <h6>Gérer mon compte</h6>      
-                    </div>      
+                <div class="card-content hoverclass">
+                    <a href="{{ route('custom.edit', $id)}}">
+                        <div class="flex-row">    
+                        <i class="small material-icons black-text">account_box</i>
+                        <h6>Gérer mon compte</h6>      
+                        </div>      
+                    </a>
                 </div>
             </div>
 
             <div class="card">
-                <div class="card-content">
+                <div class="card-content hoverclass">
                     <a href="/cellier">
                     <div class="flex-row space">  
                         <h6>Vos celliers</h6>   

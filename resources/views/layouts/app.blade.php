@@ -60,9 +60,13 @@
                     <li><a href="{{ route('register') }}">S'inscrire</a></li>
                     <li><a href="{{ route('login') }}">Se connecter</a></li>
                 @else
+                    @if( session('user')->admin == 1)
+                    <li><a href="{{ route('importerBouteille') }}">Importer bouteille</a></li>
+                    @else
                     <li><a href="{{ route('cellier') }}">Vos celliers</a></li>
-               <li><a href="{{ route('dashboard') }}"><span class="black-text">Mon Compte</span></a></li>
-                <li><a href="{{ route('logout') }}"><span class="black-text">Se déconnecter</span></a></li>
+                    <li><a href="{{ route('dashboard') }}"><span class="black-text">Mon Compte</span></a></li>
+                    @endif
+                    <li><a href="{{ route('logout') }}"><span class="black-text">Se déconnecter</span></a></li>
                 @endguest
             </ul>
             <div class="nav-content row white">
@@ -73,9 +77,10 @@
                     @else
                     @if( session('user')->admin == 1)
                     <li class="tab"><a href="{{ route('importerBouteille') }}"><span class="black-text">Importer bouteille</span></a></li>
-                    @endif
+                    @else
                         <li class="tab"><a href="{{ route('cellier') }}"><span class="black-text">Vos celliers</span></a></li>
                          <li class="tab"><a href="{{ route('dashboard') }}"><span class="black-text">Mon Compte</span></a></li>
+                    @endif
                     @endguest
                     </ul>
                 </div>
