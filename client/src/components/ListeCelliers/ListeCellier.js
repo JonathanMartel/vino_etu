@@ -57,19 +57,19 @@ export default class ListeCellier extends React.Component {
 		
 		return (
 			<Box>
-			<Breadcrumbs aria-label="breadcrumb" sx={{ display: 'flex', margin: '0 1.5rem' }}>
-				<Link underline="hover" color="inherit" href="/">
-					Celliers
-				</Link>
-				<Typography color="text.primary">Liste des celliers</Typography>
+				<Breadcrumbs aria-label="breadcrumb" sx={{ display: 'flex', margin: '0 1.5rem' }}>
+					<Link underline="hover" color="inherit" href="/">
+						Celliers
+					</Link>
+					<Typography color="text.primary">Liste des celliers</Typography>
 
-			</Breadcrumbs>
-			<AddCircleIcon sx={{ color: '#641B30' }}/>
+				</Breadcrumbs>
+				<AddCircleIcon sx={{ color: '#641B30' }}/>
 
-			<section className="liste_celliers">
-				{celliers}
-			</section>
-		</Box>
+				<section className="liste_celliers">
+					{celliers}
+				</section>
+			</Box>
 		);
 	}
 }

@@ -15,6 +15,12 @@ export default class Cellier extends React.Component {
 
 	}
 
+	componentDidMount() {
+		/* if (!this.props.estConnecte) {
+			return this.props.history.push("/");
+		} */
+	}
+
 	render() {
 
 		return (

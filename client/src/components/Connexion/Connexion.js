@@ -66,11 +66,10 @@ export default class Connexion extends React.Component {
 
             fetch("https://rmpdwebservices.ca/webservice/php/usagers/login/", putMethod)
                 .then(res => res.json())
-                .then((res) => {
-                    if (res.data) {
-                        this.setState({ id_usager: res.data })
-                        this.props.test(res.data)
-                        console.log("Connexion avec succès!!!", res.data)
+                .then((data) => {
+                    if (data.data) {
+                        this.props.login(data.data)
+                        console.log("Connexion avec succès!!!", data.data)
                         this.props.history.push("/listecelliers");
                     } else {
                         console.log("Courriel ou mot de passe incorrect.")
@@ -82,7 +81,6 @@ export default class Connexion extends React.Component {
 
     render() {
         /* const connectado = this.state.seConnecter; */
-        console.log("Usager connecté : ", this.state.id_usager); //Retourne false si ne trouve pas l'usager
         console.log("this.props.id_usager: ", this.props.id_usager);
 
         return (
