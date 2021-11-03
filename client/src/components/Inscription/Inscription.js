@@ -170,7 +170,7 @@ export default class Inscription extends React.Component {
                         <input name="mot_passe" onKeyUp={evt => this.setState({ mot_passe: evt.target.value })} placeholder="12345" type="password" /> */}
           </Box>
 
-          <button onClick={this.seConnecter}>Se connecter</button>
+          <button>S'inscrire</button>
         </Box>
 
         {/* <button onClick={this.seConnecter}>{(this.state.seConnecter ? "Se déconnecter" : "Se connecter")}</button> */}
