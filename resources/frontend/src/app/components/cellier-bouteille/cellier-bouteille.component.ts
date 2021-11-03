@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { startWith, pairwise} from "rxjs/operators"
+import { startWith, pairwise, debounceTime, distinctUntilChanged } from "rxjs/operators"
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ModifierCellierBouteilleComponent } from '@pages/modifier-cellier-bouteille/modifier-cellier-bouteille.component';
 import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
+import { Subject } from 'rxjs';
 
 @Component({
     selector: 'app-cellier-bouteille',
@@ -14,8 +15,11 @@ export class CellierBouteilleComponent implements OnInit {
 
     bouteille: any;
 
+    // Sujet (observable) permettant de "debouncer" l'envoi de la modification à la base de données
+    inventaireSubject: Subject<number> = new Subject<number>();
+
     // Propriété permettant de rapidement savoir si la bouteille est en stock ou non
-    enStock: boolean = true;
+    enStock !: boolean;
 
     inventaire: FormControl = new FormControl("", [
         Validators.min(0)
@@ -25,6 +29,7 @@ export class CellierBouteilleComponent implements OnInit {
         this.bouteille = bouteille
         if (bouteille) {
             this.inventaire.setValue(bouteille.inventaire);
+            this.enStock = bouteille.inventaire > 0;
             this.inventaire.valueChanges
                 .pipe(startWith(undefined), pairwise())
                 .subscribe(valeurs => {
@@ -36,8 +41,19 @@ export class CellierBouteilleComponent implements OnInit {
                         return;
                     }
 
-                    if(newValeur !== oldValeur) {
-                        this.enregistrerNouvelInventaire();
+                    // Ajuster la "disponibilité" selon la nouvelle valeur reçue
+                    this.enStock = newValeur > 0;
+
+                    if (newValeur !== oldValeur) {
+                        if (this.inventaireSubject.observers.length === 0) {
+                            this.inventaireSubject
+                                .pipe(debounceTime(700), distinctUntilChanged())
+                                .subscribe(inventaire => {
+                                    this.enregistrerNouvelInventaire();
+                                });
+                        }
+
+                        this.inventaireSubject.next(newValeur);
                     }
                 })
         }
@@ -52,27 +68,11 @@ export class CellierBouteilleComponent implements OnInit {
 
 
     augmenter() {
-
         this.inventaire.setValue(this.inventaire.value + 1);
-
-        // Si l'inventaire est au moins à 1, ajuster la propriété
-        if (this.inventaire.value > 0) {
-            this.enStock = true;
-        }
     }
 
     diminuer() {
-        if (this.inventaire.value - 1 < 0) {
-            this.inventaire.setValue(0)
-            return;
-        }
-
         this.inventaire.setValue(this.inventaire.value - 1);
-
-        // Si l'inventaire tombe a zéro, ajuster la propriété qui permettra de désactiver le bouton "-"
-        if (this.inventaire.value === 0) {
-            this.enStock = false;
-        }
     }
 
 
