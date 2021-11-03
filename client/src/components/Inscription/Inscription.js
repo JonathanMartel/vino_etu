@@ -15,8 +15,6 @@ export default class Inscription extends React.Component {
       prenom: "",
       nom: "",
       courriel: "",
-      telephone: "",
-      /* utilisateur : "", */
       mot_passe: "",
       est_admin: false,
       sinscrire: false,
@@ -25,12 +23,6 @@ export default class Inscription extends React.Component {
 
     this.validation = this.validation.bind(this);
     this.sinscrire = this.sinscrire.bind(this);
-  }
-
-  componentDidMount() {
-      if (!this.props.estConnecte) {
-        this.props.history.push("/connexion");
-      }
   }
 
   validation() {
@@ -44,8 +36,6 @@ export default class Inscription extends React.Component {
       this.state.nom.trim() !== "" &&
       this.state.courriel &&
       this.state.courriel.trim() !== "" &&
-      this.state.telephone &&
-      this.state.telephone.trim() !== "" &&
       this.state.mot_passe &&
       this.state.mot_passe.trim() !== "" &&
       this.state.mot_passe_verif &&
@@ -58,11 +48,10 @@ export default class Inscription extends React.Component {
 
       if (bRegex) {
         if (this.state.mot_passe === this.state.mot_passe_verif) {
-          // chiffrer le mot de passe  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-          let mot_passe_chiffre = Bcryptjs.hashSync(
+          /* let mot_passe_chiffre = Bcryptjs.hashSync(
             this.state.mot_passe
           ).toString();
-          console.log("mot_passe_chiffre: ", mot_passe_chiffre);
+          console.log("mot_passe_chiffre: ", mot_passe_chiffre); */
           bValidation = true;
         }
       }
@@ -72,19 +61,14 @@ export default class Inscription extends React.Component {
   }
 
   sinscrire() {
-    console.log("Click sur bouton S'inscrire!!!");
 
     if (this.validation()) {
-      console.log("Inscrire usager!!!");
-
-      //Vérifier s'il existe un usager avec le même courriel ? On dois valider cela ?
+      //Vérifier s'il existe un usager avec le même courriel ? On dois valider cela ? SQL courriel UNIQUE
 
       const donnes = {
         prenom: this.state.prenom,
         nom: this.state.nom,
         courriel: this.state.courriel,
-        telephone: this.state.telephone,
-        /* utilisateur : this.state.utilisateur, */
         mot_passe: this.state.mot_passe,
         est_admin: 0,
       };
@@ -98,17 +82,22 @@ export default class Inscription extends React.Component {
         body: JSON.stringify(donnes),
       };
 
-      /* fetch("http://127.0.0.1:8000/webservice/php/usagers/", postMethod)
-                .then(res => res.json())  */
-
-      //Si le POST est correct, vers la page de connexion
+      fetch("https://rmpdwebservices.ca/webservice/php/usagers/", postMethod)
+                .then(res => res.json()) 
+                .then((data) => {
+                    if (data.data) {
+                      this.props.history.push("/");
+                    } else {
+                      console.log("Erreur à l'inscription d'usager");
+                    }
+                });
     } else {
-      console.log("NOOOOOO inscrire usager!!!");
+      console.log("Validation incorrecte!!!");
     }
   }
 
   render() {
-    //console.log("Inscription");
+    console.log("Inscription");
 
     return (
       <Box
@@ -146,35 +135,36 @@ export default class Inscription extends React.Component {
             <TextField
               label="Nom"
               variant="outlined"
+              onBlur={evt => this.setState({ nom: evt.target.value })}
             />
             <TextField
               label="Prénom"
               variant="outlined"
+              onBlur={evt => this.setState({ prenom: evt.target.value })}
             />
             <TextField
               label="Courriel"
               variant="outlined"
               type="email"
+              onBlur={evt => this.setState({ courriel: evt.target.value })}
             />
             <TextField
               label="Mot de passe"
               variant="outlined"
               type="password"
+              onBlur={evt => this.setState({ mot_passe: evt.target.value })}
             />
             <TextField
               label="Confirmer mot de passe"
               variant="outlined"
               type="password"
+              onBlur={evt => this.setState({ mot_passe_verif: evt.target.value })}
             />
 
-            {/* <input name="courriel" onKeyUp={evt => this.setState({ courriel: evt.target.value })} placeholder="bobus@gmail.com" type="email" />
-                        <input name="mot_passe" onKeyUp={evt => this.setState({ mot_passe: evt.target.value })} placeholder="12345" type="password" /> */}
           </Box>
 
-          <button onClick={this.seConnecter}>Se connecter</button>
+          <button onClick={() => this.sinscrire()}>S'inscrire</button>
         </Box>
-
-        {/* <button onClick={this.seConnecter}>{(this.state.seConnecter ? "Se déconnecter" : "Se connecter")}</button> */}
       </Box>
     );
   }
