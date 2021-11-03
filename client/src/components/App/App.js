@@ -11,6 +11,7 @@ import ListeCelliers from "../ListeCelliers/ListeCellier";
 import AjoutCellier from "../AjoutCellier/AjoutCellier";
 import DetailsBouteille from "../DetailsBouteille/DetailsBouteille";
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
+import ModifieCompte from "../ModifieCompte/ModifieCompte";
 import './App.css';
 
 export default class App extends React.Component {
@@ -28,7 +29,7 @@ export default class App extends React.Component {
 	seConnecter(id) {
 		this.setState({id_usager: id, estConnecte: true});
 	}
-	
+
 	render() {
 		return (
 			<Router>
@@ -40,10 +41,19 @@ export default class App extends React.Component {
 						exact
 						path="/inscription"
 						component={(props) => (
-						<Inscription title="S'enregistrer" {...props} />
+							<Inscription title="S'inscrire" {...props} />
 						)}
 					/>
-					<Route exact path="/" component={(props)=> 
+
+					<Route
+						exact
+						path="/modifieCompte"
+						component={(props) => (
+							<ModifieCompte title="Modifier son compte" {...props} />
+						)}
+					/>
+
+				<Route exact path="/" component={(props)=> 
 						<Connexion login={this.seConnecter} 
 							estConnecte={this.state.estConnecte} 
 							id_usager={this.state.id_usager} 
@@ -72,4 +82,5 @@ export default class App extends React.Component {
       		</Router>
     );
   }
+
 }
