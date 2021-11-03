@@ -17,7 +17,7 @@ export default class Pied extends React.Component {
 	}
 
 	render() {
-		if (document.title == 'Se connecter') {
+		if (!this.props.estConnecte) {
 			return (
 				<BottomNavigation showLabels sx={{ width: '100vw', position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 1, backgroundColor: '#641B30' }}>
 					<BottomNavigationAction
