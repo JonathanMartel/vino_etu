@@ -21,6 +21,7 @@ class CellierBouteilleController extends Controller
     {
         $cellierBouteilles = CellierBouteille::obtenirListeBouteilleCellier($idCellier);
         $cellier = Cellier::find($idCellier);
+        $celliers = Cellier::getCelliersByUser(session('user')->id);
 
 $cellierBouteillesIDs = CellierBouteille::getCellierBouteillesIDs($idCellier);
 
@@ -61,7 +62,8 @@ foreach ($cellierBouteillesIDs as $bouteilleID){
         return view('cellierBouteille.index', [
             'cellierBouteilles' => $cellierBouteilles,
             'cellier' => $cellier,
-            'cellierBouteillesByIDs' => $cellierBouteillesByIDs
+          'cellierBouteillesByIDs' => $cellierBouteillesByIDs ?? [],
+            'celliers' => $celliers
         ]);
     }
 

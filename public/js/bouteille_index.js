@@ -5,8 +5,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const tbody = table.querySelector('tbody');
     const message = document.querySelector('.message');
     btnImport.addEventListener('click', (e) => {
-     
         e.preventDefault();
+        table.style.display = 'none';
+        message.textContent = "";
         preloader.classList.add('active');
         btnImport.classList.add('disabled');
         fetch(btnImport.href)

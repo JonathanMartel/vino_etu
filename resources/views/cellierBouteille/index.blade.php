@@ -9,11 +9,12 @@
 
 <header>
     <div class="cellier">
-        <span>{{ $cellier->nom }}</span>
-        <select name="cellier" id="cellier">
-            <option value="{{ $cellier->id }}">{{ $cellier->nom }}</option>
-            <!-- Ajouter les options du select de cellier !!! -->
-        </select>
+        <select class="select-celliers" name ="id">
+            
+            @foreach($celliers as $unCellier)
+            <option value="{{ $unCellier->id }}" @if( $unCellier->id == $cellier->id) selected @endif>{{ $unCellier->nom}} </option>
+            @endforeach
+          </select>
     </div>
     <div class="localisation">
         <span><img class="map-icone" src="{{URL::asset('/assets/icon/map-marker-rouge.svg')}}" alt="icone map"> {{ $cellier->localisation }}</span>
@@ -39,7 +40,7 @@
 
     </div>
     <div class="articlesConteneur">
-        @foreach ($cellierBouteillesByIDs as $vin)
+        @forelse ($cellierBouteillesByIDs as $vin)
         <article class="articleVin">
             <div class="nomVinConteneur">
                 <h2>{{$vin['nom']}}</h2>
@@ -77,7 +78,7 @@
                 <section class="infoCellierBouteille">
                     <div class="infoUnitaires">
                     
-                        @if($bouteille->millesime != 0)
+                        @if($bouteille->millesime > 0)
                         <p>{{$bouteille->millesime }}</p>
                         @else
                         <p>Non millisimé</p>
@@ -118,9 +119,12 @@
                 </section>
                 @endforeach
             </div>
-
+            @empty
+    <div class="list-empty">
+        <p>Vous n'avez pour l'instant aucun vin.</p>
+    </div>
         </article>
-        @endforeach
+        @endforelse
     </div>
 
 

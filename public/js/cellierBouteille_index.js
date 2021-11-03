@@ -98,6 +98,16 @@ document.addEventListener('DOMContentLoaded', function() {
         })
     })
 
-    
 
+    /**
+     * Un select permettant de changer de cellier
+     */
+    var selectCellier = document.querySelector('[name="id"]');
+    M.FormSelect.init(selectCellier);
+
+
+    selectCellier.addEventListener('change', (e) => {
+        location.href = location.origin + "/cellier/" + e.target.value;
+
+    })
     })
