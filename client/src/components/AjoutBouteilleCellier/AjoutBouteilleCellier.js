@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import fondEcran from '../../fondEcran.svg';
 import BouteilleSAQ from '../BouteilleSAQ/BouteilleSAQ';
 import './AjoutBouteilleCellier.css';
@@ -95,10 +96,6 @@ export default class AjoutBouteille extends React.Component {
 	}
 
 	render() {
-		var someDate = new Date();
-		var numberOfDaysToAdd = 3;
-		var date = someDate.setDate(someDate.getDate() + numberOfDaysToAdd);
-		console.log(this.state.bouteillesSAQ);
 		const bouteilles = this.state.bouteillesSAQ.map((bouteille, index) => {
 			return <BouteilleSAQ info={bouteille} choixBouteille={this.choixBouteille} key={index} />;
 		});
@@ -161,7 +158,7 @@ export default class AjoutBouteille extends React.Component {
 						<input
 							type="date"
 							name="date_achat"
-							defaultValue={date}
+							defaultValue={moment().format('YYYY-MM-DD')}
 							onBlur={(e) => this.setState({ date_achat: e.target.value })}
 						/>
 					</p>
