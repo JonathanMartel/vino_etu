@@ -1,8 +1,5 @@
 import React from "react";
 import "./Connexion.css";
-import Page404 from "../Page404/Page404";
-import {Route, Redirect, withRouter, Switch, BrowserRouter as Router} from 'react-router-dom'; 
-import ListeCelliers from "../ListeCelliers/ListeCellier"
 
 export default class Connexion extends React.Component{
 	constructor(props){
@@ -11,12 +8,13 @@ export default class Connexion extends React.Component{
         this.state = {
             courriel : "",
             mot_passe : "",
-            id_usager : undefined,
-            estConnecte : false
+            id_usager : undefined
         }
         
         this.validation = this.validation.bind(this);
         this.seConnecter = this.seConnecter.bind(this);
+
+        console.log("Mon props: ", this.props);
 	}
 
     validation() {
@@ -32,7 +30,7 @@ export default class Connexion extends React.Component{
             if (bRegex) {
                 bValidation =true;
             } else {
-                console.log("Courriel non admissible")
+                console.log("Courriel non admissible");
             }
         }
         
@@ -46,7 +44,7 @@ export default class Connexion extends React.Component{
                 mot_passe : this.state.mot_passe
             }
 
-            const postMethod = {
+            const putMethod = {
                 method: 'PUT', 
                 headers: {
                     'Content-type': 'application/json',
@@ -56,18 +54,17 @@ export default class Connexion extends React.Component{
             }
     
 
-            fetch("https://rmpdwebservices.ca/webservice/php/usagers/login/", postMethod)
+            fetch("https://rmpdwebservices.ca/webservice/php/usagers/login/", putMethod)
                 .then(res => res.json()) 
                 .then((res) => {
                     if (res.data) {
                         this.setState({id_usager: res.data})
+                        this.props.test(res.data)
                         console.log("Connexion avec succès!!!", res.data)
-                        /* this.props.history.push("/"); */
-                        this.props.history.push("/ListeCelliers/" + res.data);
+                        this.props.history.push("/listecelliers");
                     } else {
                         console.log("Courriel ou mot de passe incorrect.")
                     }
-                    /* console.log("Connexion ?", res) */
                 });
         }
     }
@@ -75,6 +72,7 @@ export default class Connexion extends React.Component{
   render() {
         /* const connectado = this.state.seConnecter; */
         console.log("Usager connecté : ", this.state.id_usager); //Retourne false si ne trouve pas l'usager
+        console.log("this.props.id_usager: ", this.props.id_usager);
 
 		return (
             <section>
@@ -92,8 +90,7 @@ export default class Connexion extends React.Component{
 
                 <br/> <br/>
                 <div>
-                    <button onClick={this.seConnecter}>Se connecter</button>
-                    {/* <button onClick={this.seConnecter}>{(this.state.seConnecter ? "Se déconnecter" : "Se connecter")}</button> */}
+                    <button onClick={()=>this.seConnecter()} >Se connecter</button>
                 </div>
             </section>
 		);

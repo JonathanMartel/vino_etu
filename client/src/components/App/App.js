@@ -13,39 +13,38 @@ import DetailsBouteille from "../DetailsBouteille/DetailsBouteille";
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import './App.css';
 
-
 export default class App extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			
+			esConnecte: false,
+			id_usager: undefined
 		}
+
+		this.seConnecter = this.seConnecter.bind(this);
 	}
 
-	login() {
-
+	seConnecter(id) {
+		this.setState({id_usager: id, esConnecte: true});
 	}
-
+	
 	render() {
-
 		return (
 			<Router>
 				<Entete />
 				<Switch>
-					<Route exact path="/" component={Connexion} />
 					<Route exact path="/ajoutBouteille" component={AjoutBouteille} />
 
 					<Route exact path="/inscription" component={Inscription} />
-					<Route exact path="/connexion" component={Connexion} />
-
-					{/* <Route exact path="/connexion" component={() => <Connexion /> } />	 */}
-					<Route exact path="/listecelliers/:id" component={ListeCelliers} />	
+					<Route exact path="/" component={(props)=> <Connexion test={this.seConnecter} esConnecte={this.state.esConnecte} id_usager={this.state.id_usager} {...props} /> } />
+					
+					<Route exact path="/listecelliers" component={(props)=> <ListeCelliers esConnecte={this.state.esConnecte} id_usager={this.state.id_usager} {...props} /> } />	
 
 					<Route exact path="/ajoutcellier" component={AjoutCellier} />
 					<Route exact path="/cellier/:id" render={(param_route)=> 
 							<ListeBouteilles {...param_route} id={param_route?.match?.params?.id} param={param_route} />} />
-					{/* <Route exact path="/bouteilles/:id" component={DetailsBouteille} /> */}
+
 					<Route exact path="/bouteilles/:id" render={(param_route)=> 
 							<DetailsBouteille {...param_route} bouteille_id={param_route?.match?.params?.bouteille_id} param={param_route} />} />
 
