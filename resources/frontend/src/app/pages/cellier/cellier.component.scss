@@ -1,6 +1,7 @@
 .content{
   //  margin: 60px 0;
     overflow: hidden;
+    padding-bottom: 3.75rem;
 }
 
 .content-header{
@@ -42,5 +43,5 @@
 }
 
 .mat-drawer-content{
-    height: auto;
+   // height: auto; brise le scroll du cellier
 }
