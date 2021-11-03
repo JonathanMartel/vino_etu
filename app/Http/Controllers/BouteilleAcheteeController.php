@@ -81,30 +81,4 @@ class BouteilleAcheteeController extends Controller
     {
         //
     }
-
-    public function modifierBouteilleAchetee(Request $request, int $BouteilleAcheteeId) {
-        $bouteilleAchetee = BouteilleAchetee::find($BouteilleAcheteeId);
-
-        $bouteilleAchetee->nom = $request->nom;
-        $bouteilleAchetee->description = $request->description;
-        $bouteilleAchetee->format = $request->format;
-        $bouteilleAchetee->origine = $request->origine;
-        $bouteilleAchetee->url_achat = $request->url_achat;
-        $bouteilleAchetee->millesime = $request->millesime;
-        $bouteilleAchetee->date_acquisition = $request->date_acquisition;
-        $bouteilleAchetee->prix_paye = $request->prix_paye;
-        $bouteilleAchetee->conservation = $request->conservation;
-        $bouteilleAchetee->note_personnelles = $request->note_personnelles;
-
-
-        if (!$bouteilleAchetee->save()) {
-            return response()->json([
-                "message" => "Erreur lors de la mise à jour des informations de la bouteille"
-            ], 400);
-        };
-
-        return response()->json([
-            "message" => "Modification réussie"
-        ], 201);
-    }
 }

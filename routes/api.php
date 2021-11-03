@@ -53,6 +53,9 @@ Route::post('celliers/{cellier}/bouteilles', [CellierBouteilleAcheteeController:
 // Récupérer le data d'une bouteille achetée
 Route::get('bouteilles-achetees/{bouteilleAchetee}', [BouteilleAcheteeController::class, "show"]);
 
+// Modifier le data d'une bouteille achetée
+Route::put('bouteilles-achetees/{bouteilleAchetee}', [BouteilleAcheteeController::class, "update"]);
+
 // Mise à jour de l'inventaire d'une bouteille dans un cellier donné
 Route::put("celliers/modifier-bouteille/{bouteilleAchetee}", [CellierBouteilleAcheteeController::class, "modifierInventaireBouteille"]);
 

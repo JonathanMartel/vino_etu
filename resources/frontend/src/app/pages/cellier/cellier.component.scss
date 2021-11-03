@@ -1,5 +1,5 @@
 .content{
-    margin: 60px 0;
+  //  margin: 60px 0;
     overflow: hidden;
 }
 
@@ -20,9 +20,11 @@
     color: #fff;
 }
 
+/* css pour le side-nav */
+
 .example-container {
     position: absolute;
-    top: 0;
+    top: 3.75rem;
     bottom: 0;
     left: 0;
     right: 0;
@@ -33,7 +35,12 @@
     padding: 10px;
 }
 
-
 .mat-drawer{
     width: 75%;
+    overflow: hidden;
+    bottom: 3.75rem;
+}
+
+.mat-drawer-content{
+    height: auto;
 }
