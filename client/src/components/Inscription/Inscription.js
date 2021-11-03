@@ -29,7 +29,7 @@ export default class Inscription extends React.Component {
 
   componentDidMount() {
       if (!this.props.estConnecte) {
-        this.props.history.push("/connexion");
+        return this.props.history.push("/connexion");
       }
   }
 
@@ -58,7 +58,6 @@ export default class Inscription extends React.Component {
 
       if (bRegex) {
         if (this.state.mot_passe === this.state.mot_passe_verif) {
-          // chiffrer le mot de passe  !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
           let mot_passe_chiffre = Bcryptjs.hashSync(
             this.state.mot_passe
           ).toString();
@@ -84,7 +83,6 @@ export default class Inscription extends React.Component {
         nom: this.state.nom,
         courriel: this.state.courriel,
         telephone: this.state.telephone,
-        /* utilisateur : this.state.utilisateur, */
         mot_passe: this.state.mot_passe,
         est_admin: 0,
       };
@@ -98,10 +96,11 @@ export default class Inscription extends React.Component {
         body: JSON.stringify(donnes),
       };
 
-      /* fetch("http://127.0.0.1:8000/webservice/php/usagers/", postMethod)
-                .then(res => res.json())  */
+      fetch("https://rmpdwebservices.ca/webservice/php/usagers/", postMethod)
+                .then(res => res.json()) 
 
       //Si le POST est correct, vers la page de connexion
+      //return this.props.history.push("/");
     } else {
       console.log("NOOOOOO inscrire usager!!!");
     }
