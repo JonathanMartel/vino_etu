@@ -6,9 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-    <meta http-equiv="Pragma" content="no-cache" />
-    <meta http-equiv="Expires" content="0" />
+    
     <title>In Vino Veritas</title>
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     
@@ -62,20 +60,27 @@
                     <li><a href="{{ route('register') }}">S'inscrire</a></li>
                     <li><a href="{{ route('login') }}">Se connecter</a></li>
                 @else
+                    @if( session('user')->admin == 1)
                     <li><a href="{{ route('importerBouteille') }}">Importer bouteille</a></li>
+                    @else
                     <li><a href="{{ route('cellier') }}">Vos celliers</a></li>
                     <li><a href="{{ route('dashboard') }}"><span class="black-text">Mon Compte</span></a></li>
+                    @endif
                     <li><a href="{{ route('logout') }}"><span class="black-text">Se déconnecter</span></a></li>
                 @endguest
             </ul>
             <div class="nav-content row white">
                 <div class="col s6">
                     <ul class="tabs tabs-transparent hide-on-med-and-down">
-                    <li class="tab"><a href="{{ route('importerBouteille') }}"><span class="black-text">Importer bouteille</span></a></li>
+                   
                     @guest
+                    @else
+                    @if( session('user')->admin == 1)
+                    <li class="tab"><a href="{{ route('importerBouteille') }}"><span class="black-text">Importer bouteille</span></a></li>
                     @else
                         <li class="tab"><a href="{{ route('cellier') }}"><span class="black-text">Vos celliers</span></a></li>
                          <li class="tab"><a href="{{ route('dashboard') }}"><span class="black-text">Mon Compte</span></a></li>
+                    @endif
                     @endguest
                     </ul>
                 </div>
