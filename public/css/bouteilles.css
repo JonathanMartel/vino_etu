@@ -1,0 +1,26 @@
+.table {
+    display: none;
+}
+
+h1.titre {
+    font-size: 4rem;
+    margin: 1em;
+}
+
+
+.waves-effect.waves-light.btn-large {
+    margin-bottom: 2em;
+}
+
+.message {
+    display: table;
+    margin-top: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: 700;
+}
+
+.image {
+    width: 80px;
+    height: 80px;
+}
