@@ -1,13 +1,27 @@
 <form [formGroup]="modifierBouteilleCellier" (ngSubmit)=putBouteille(modifierBouteilleCellier.value)>
     <div class="formulaire-contenu">
+
         <mat-form-field appearance="fill">
             <mat-label for="url_image">Image</mat-label>
             <input matInput type="text" id="url_image" name="url_image" formControlName="url_image">
         </mat-form-field>
-        <mat-form-field appearance="fill">
-            <mat-label for="nom">Nom</mat-label>
-            <input matInput type="text" id="nom" name="nom" formControlName="nom">
-        </mat-form-field>
+
+        <ng-container *ngIf="estModifiable('nom'); then nomModifiable; else nomFixe">{{ bouteille.nom }}</ng-container>
+        <ng-template #nomModifiable>
+            <mat-form-field appearance="fill">
+                <mat-label for="nom">Nom</mat-label>
+                <input (blur)="resetModifiable($event)" matInput type="text" id="nom" name="nom" formControlName="nom" autofocus="{{ estModifiable('nom') }}">
+            </mat-form-field>
+        </ng-template>
+        <ng-template #nomFixe>
+            <h2 class="nom-bouteille">
+                <span>{{ bouteille.nom }}</span>
+                <button mat-mini-fab aria-label="Rendre le nom de la bouteille modifiable" (click)="setModifiable('nom')"><mat-icon>edit</mat-icon></button>
+            </h2>
+        </ng-template>
+
+
+
         <mat-form-field appearance="fill">
             <mat-label for="description">Description</mat-label>
             <input matInput type="text" id="description" name="description" formControlName="description">
@@ -28,21 +42,22 @@
             <mat-label for="millesime">Millesime</mat-label>
             <input matInput type="text" id="millesime" name="millesime" formControlName="millesime">
         </mat-form-field>
-        <mat-form-field  appearance="fill">
+        <mat-form-field appearance="fill">
             <mat-label for="date_acquisition">Date d'achat</mat-label>
-            <input matInput type="date" id=date_acquisition name="date_acquisition" formControlName="date_acquisition" >
+            <input matInput type="date" id=date_acquisition name="date_acquisition" formControlName="date_acquisition">
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label for="prix_paye">Prix</mat-label>
             <input matInput type="text" id="prix_paye" name="prix_paye" formControlName="prix_paye">
         </mat-form-field>
-        <mat-form-field  appearance="fill">
+        <mat-form-field appearance="fill">
             <mat-label for="conservation">Conservation</mat-label>
             <input matInput type="text" id=conservation name="conservation" formControlName="conservation">
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label for="notes_personnelles">Notes personnelles</mat-label>
-            <input matInput type="text" id="notes_personnelles" name="notes_personnelles" formControlName="notes_personnelles">
+            <input matInput type="text" id="notes_personnelles" name="notes_personnelles"
+                formControlName="notes_personnelles">
         </mat-form-field>
 
     </div>
@@ -50,4 +65,3 @@
         <button type="submit" mat-raised-button>Modifier</button>
     </mat-dialog-actions>
 </form>
-
