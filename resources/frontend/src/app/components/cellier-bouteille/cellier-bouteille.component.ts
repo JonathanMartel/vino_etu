@@ -27,17 +27,19 @@ export class CellierBouteilleComponent implements OnInit {
             this.inventaire.setValue(bouteille.inventaire);
             this.inventaire.valueChanges
                 .pipe(startWith(undefined), pairwise())
-                .subscribe(valeur => {
-                        console.log(valeur);
+                .subscribe(valeurs => {
+                    const oldValeur = valeurs[0];
+                    const newValeur = valeurs[1];
 
-                        if (valeur < 0) {
-                            this.inventaire.setValue(0);
-                            return;
-                        }
+                    if (newValeur < 0) {
+                        this.inventaire.setValue(0);
+                        return;
+                    }
 
+                    if(newValeur !== oldValeur) {
                         this.enregistrerNouvelInventaire();
                     }
-                )
+                })
         }
 
     };
