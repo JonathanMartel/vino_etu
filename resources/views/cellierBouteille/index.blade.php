@@ -82,7 +82,12 @@
                 @foreach ($vin['dataCellier'] as $bouteille)
                 <section class="infoCellierBouteille">
                     <div class="infoUnitaires">
-                        <p>{{$bouteille->millesime}}</p>
+                    
+                        @if($bouteille->millesime != 0)
+                        <p>{{$bouteille->millesime }}</p>
+                        @else
+                        <p>Non millisimé</p>
+                        @endif
                         <div class="select">
                             <select class="star-rating" data-id-bouteille="{{$vin['id']}}" data-millesime="{{$bouteille->millesime}}" name="note">
                                 <option value="">Choisir une note</option>

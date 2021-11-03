@@ -41,7 +41,7 @@ class CustomAuthController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nom' =>'required|max:50|min:2|unique:users',
+            'nom' =>'required|max:25|min:2|unique:users',
             'courriel' => 'required|email:rfc,filter|unique:users',
             'password' => 'required|min:6|max:20',
             'date_naissance' => 'required|date_format:Y-m-d|before:' . Carbon::now()->subYears(18)->format('Y-m-d')         
@@ -84,17 +84,17 @@ class CustomAuthController extends Controller
 
   public function dashboard(){
 
-    $nom = null;
     if(Auth::check()){
+      $id = Auth::user()->id;
       $nom = Auth::user()->nom;
       $courriel = Auth::user()->courriel;
       $date_naissance = Auth::user()->date_naissance;
-
     }
 
       return view('user.dashboard', ['nom' => $nom,
                                      'courriel' => $courriel,
-                                     'date_naissance' => $date_naissance
+                                     'date_naissance' => $date_naissance,
+                                     'id'=> $id
                                     ]);
 }
 
@@ -117,7 +117,7 @@ class CustomAuthController extends Controller
      */
     public function show(user $user)
     {
-        //
+      //
     }
 
     /**
@@ -128,7 +128,16 @@ class CustomAuthController extends Controller
      */
     public function edit(user $user)
     {
-        //
+      $id = $user->id;
+      $nom = $user->nom;
+      $courriel = $user->courriel;
+      $date_naissance = $user->date_naissance;
+
+      return view('user.usermodifie', ['nom' => $nom,
+                                       'courriel' => $courriel,
+                                       'date_naissance' => $date_naissance,
+                                       'id' => $id
+                                      ]);
     }
 
     /**
@@ -140,7 +149,37 @@ class CustomAuthController extends Controller
      */
     public function update(Request $request, user $user)
     {
-        //
+      $request->validate([
+        'nom' =>'required|max:25|min:2',
+        'courriel' => 'required|email:rfc,filter',
+        'password' => 'required|min:6|max:20',
+        'nouveauMotDePasse' => 'required|min:6|max:20',
+        'date_naissance' => 'required|date_format:Y-m-d|before:' . Carbon::now()->subYears(18)->format('Y-m-d')         
+    ]);
+
+      $oldPassword = $user->password;
+      $password = $request->password;
+      $id = $user->id;
+      $bool = Hash::check($password, $oldPassword);
+      if ($bool) {
+        $user->fill($request->all());
+        $nouveauMotDePasse = Hash::make($request->nouveauMotDePasse);
+        $user->update([
+          'nom' => $request->nom,
+          'courriel' => $request->courriel,
+          'password' => $nouveauMotDePasse,
+          'date_naissance' => $request->date_naissance
+        ]);
+        return redirect('dashboard');
+        // return redirect()->intended('dashboard');
+      }
+
+      return redirect('/user/'.$id.'/edit')->withSuccess('Le mot de passe original n\'est pas valides!');
+
+
+      
+      
+
     }
 
     /**
