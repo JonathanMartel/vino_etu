@@ -81,6 +81,7 @@ Route::get('/ajouterNote/{idCellier}/{idBouteille}/{millesime}/{note}', [Cellier
 
 Route::get('/rechercheBouteillesParMotCle/{motCle}', [BouteilleController::class, 'rechercheBouteillesParMotCle'])->name('rechercheBouteillesParMotCle')->middleware('auth')->middleware('prevent-back-history');
 Route::get('/importerBouteille', [BouteilleController::class, 'index'])->name('importerBouteille')->middleware('admin')->middleware('prevent-back-history');
+Route::get('/obtenirListeSAQ', [BouteilleController::class, 'obtenirListeSAQ'])->name('obtenirListeSAQ')->middleware('admin')->middleware('prevent-back-history');
 
 
 

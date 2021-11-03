@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use DOMDocument;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use stdClass;
 
 class Bouteille extends Model
 {
@@ -67,26 +70,33 @@ class Bouteille extends Model
         ->get();
         
     }
-    public static function supprimerDoublons($array)
+
+    /**
+     * Ajouter les nouvelles bouteilles qui n'étaient pas dans la BD
+     * @param collection un tableau de bouteilles venant du site de la SAQ après être nettoyé
+     * @return nouvellesBouteilles les bouteilles qui on été ajoutées dans la BD
+     */
+    public static function ajouterNouvellesBouteilles($collection)
     {  
-        foreach($array as $key => $element) {
+        $nouvellesBouteilles = [];
+        
+        foreach($collection as $element) {
      
             $bouteille = DB::table('bouteilles')
             ->where('code_saq', $element->desc->code_SAQ)
             ->get();
-           // print_r($bouteille);
-            if(!$bouteille->isEmpty()){
-                unset($array[$key]);       
-            }else {
- 
+
+
+            if($bouteille->isEmpty()){
+                          
                 $idType = DB::table('types')
                 ->select('id')
                 ->where('type', "LIKE" , "%" . explode(' ', $element->desc->type)[1]. "%")
                 ->get();
-               print_r($idType);
+
                 if( explode(' ', $element->desc->format)[1] == "L") {
                     $format = explode(' ', str_replace(',', '.', $element->desc->format))[0] * 100;
-                   echo $format;
+
                 }else if (explode(' ', $element->desc->format)[1] == "ml"){
                     $format = explode(' ', str_replace(',', '.', $element->desc->format))[0] / 10;
                 }
@@ -101,17 +111,132 @@ class Bouteille extends Model
                      'description' => $element->desc->texte,
                      'code_saq' => $element->desc->code_SAQ,
                      'pays' => $element->desc->pays,
-                     'prix_saq' => explode('$', str_replace(',', '.', $element->prix))[0],
+                     'prix_saq' => (double)explode('$', str_replace(',', '.', $element->prix))[0],
                      'format_id' => $idFormat[0]->id,
                      'type_id' => $idType[0]->id,
                      'user_id' => 1,
                      'url_saq' => $element->url
                     ]
                 );
+
+                array_push($nouvellesBouteilles, ["nom" => $element->nom,
+                                              'url_img' =>$element->img ,
+                                              'description' =>$element->desc->texte,
+                                              'code_saq' => $element->desc->code_SAQ,
+                                              'pays' => $element->desc->pays,
+                                              'prix_saq' => number_format((float)explode('$', str_replace(',', '.', $element->prix))[0], 2, '.', '') . " $",
+                                              'format' => $format . " cL",
+                                              'type' => ucfirst(explode(' ', $element->desc->type)[1]),
+                                              'url_saq' => $element->url ]);
             }
         }
-       print_r($array);
-       // return $array;
+        
+        return $nouvellesBouteilles;
     }
+
+    /**
+	 * Faire un curl pour obtenir des bouteilles du site de la SAQ
+	 * @param int $nombre
+	 * @param int $debut
+     * @return ajouterNouvellesBouteilles un tableau contant les bouteilles ajoutées
+	 */
+	public static function obtenirListeSAQ($nombre = 24, $page = 1) {
+		$s = curl_init();
+		$url = "https://www.saq.com/fr/produits/vin/vin-rouge?p=1&product_list_limit=24&product_list_order=name_asc";
+
+        curl_setopt_array($s,array(
+            CURLOPT_URL => $url,
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_USERAGENT=>'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:60.0) Gecko/20100101 Firefox/60.0',
+            CURLOPT_ENCODING=>'gzip, deflate',
+            CURLOPT_HTTPHEADER=>array(
+                    'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+                    'Accept-Language: en-US,en;q=0.5',
+                    'Accept-Encoding: gzip, deflate',
+                    'Connection: keep-alive',
+                    'Upgrade-Insecure-Requests: 1',
+            ),
+        ));
+
+		$_webpage = curl_exec($s);
+	
+		curl_close($s);
+
+		$doc = new DOMDocument();
+		$doc -> recover = true;
+		$doc -> strictErrorChecking = false;
+		@$doc -> loadHTML($_webpage);
+		$elements = $doc -> getElementsByTagName("li");
+	
+        $collection = new Collection();
+		foreach ($elements as $noeud) {		
+			if (strpos($noeud -> getAttribute('class'), "product-item") !== false) {
+
+				$info = self::recupereInfo($noeud);
+			
+               $collection->push($info);
+            }
+		}
+      
+		return self::ajouterNouvellesBouteilles($collection);
+	}
+
+	private static function nettoyerEspace($chaine)
+	{
+		return preg_replace('/\s+/', ' ',$chaine);
+	}
+
+    private static function recupereInfo($noeud) {
+		
+		$info = new stdClass();
+		$info -> img = $noeud -> getElementsByTagName("img") -> item(0) -> getAttribute('src'); //TODO : Nettoyer le lien
+		;
+		$a_titre = $noeud -> getElementsByTagName("a") -> item(0);
+		$info -> url = $a_titre->getAttribute('href');
+		
+        $nom = $noeud -> getElementsByTagName("a")->item(1)->textContent;
+       
+		$info -> nom = self::nettoyerEspace(trim($nom));
+	
+		$aElements = $noeud -> getElementsByTagName("strong");
+		
+        foreach ($aElements as $node) {
+			if ($node -> getAttribute('class') == 'product product-item-identity-format') {
+				$info -> desc = new stdClass();
+				$info -> desc -> texte = $node -> textContent;
+				$info->desc->texte = self::nettoyerEspace($info->desc->texte);
+				$aDesc = explode("|", $info->desc->texte); // Type, Format, Pays
+				if (count ($aDesc) == 3) {
+					
+					$info -> desc -> type = trim($aDesc[0]);
+					$info -> desc -> format = trim($aDesc[1]);
+					$info -> desc -> pays = trim($aDesc[2]);
+				}
+				
+				$info -> desc -> texte = trim($info -> desc -> texte);
+			}
+		}
+
+		//Code SAQ
+		$aElements = $noeud -> getElementsByTagName("div");
+		foreach ($aElements as $node) {
+			if ($node -> getAttribute('class') == 'saq-code') {
+				if(preg_match("/\d+/", $node -> textContent, $aRes))
+				{
+					$info -> desc -> code_SAQ = trim($aRes[0]);
+				}	
+				
+			}
+		}
+
+		$aElements = $noeud -> getElementsByTagName("span");
+		foreach ($aElements as $node) {
+			if ($node -> getAttribute('class') == 'price') {
+				$info -> prix = trim($node -> textContent);
+			}
+		}
+
+		return $info;
+	}
 
 }
