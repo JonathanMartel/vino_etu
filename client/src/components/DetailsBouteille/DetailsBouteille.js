@@ -11,7 +11,6 @@ export default class DetailsBouteille extends React.Component {
 			description: "",
 			pays: "",
 			millesime: "",
-			codSaq: "",
 			format: "",
 			typeId: "",
 			garder: "",
@@ -44,7 +43,6 @@ export default class DetailsBouteille extends React.Component {
 					description: donnees.data[0].description,
 					pays: donnees.data[0].pays,
 					millesime: donnees.data[0].millesime,
-					codSaq: donnees.data[0].code_saq,
 					format: donnees.data[0].format,
 					garder: donnees.data[0].garder_jusqua,
 					note: donnees.data[0].note_degustation,
@@ -60,7 +58,6 @@ export default class DetailsBouteille extends React.Component {
 			description: this.state.description,
 			pays: this.state.pays,
 			millesime: this.state.millesime,
-			codSaq: this.state.codSaq,
 			format: this.state.format,
 			garder: this.state.garder,
 			note: this.state.note,
@@ -97,7 +94,6 @@ export default class DetailsBouteille extends React.Component {
 				<p>Description : <input name="description" value={this.state.description} onChange={e => this.setState({ description: e.target.value })} /></p>
 				<p>Pays : <input name="pays" value={this.state.pays} onChange={e => this.setState({ pays: e.target.value })} /></p>
 				<p>Millesime : <input name="millesime" value={this.state.millesime} onChange={e => this.setState({ millesime: e.target.value })} /></p>
-				<p>Cod. Saq : <input name="codSaq" value={this.state.cod_saq} onChange={e => this.setState({ codSaq: e.target.value })} /></p>
 				<p>Format : <input name="format" value={this.state.format} onChange={e => this.setState({ format: e.target.value })} /></p>
 				{/* <p>Type Id : <input name="typeId" value={bouteille.vinop__type_id} onChange={e => this.setState({ typeId: e.target.value })} /></p> */}
 				<p>Garder jusqu'à : <input name="garder" value={this.state.garder_jusqua} onChange={e => this.setState({ garder: e.target.value })} /></p>
