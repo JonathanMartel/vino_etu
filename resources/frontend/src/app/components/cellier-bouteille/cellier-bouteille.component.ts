@@ -76,19 +76,21 @@ export class CellierBouteilleComponent implements OnInit {
     }
 
 
-    enregistrerNouvelInventaire() {
+   enregistrerNouvelInventaire() {
         this.servBouteilleDeVin.modifierInventaireCellierBouteille(this.bouteille.inventaireId, this.inventaire.value)
             .subscribe()
     }
 
-    formulaireModification(data: any): void {
-        let formulaire = this.formModifierBouteille.open(ModifierCellierBouteilleComponent, {
-            data
-        });
 
-        formulaire.afterClosed().subscribe(result => {
-            console.log('formulaire rempli')
-        })
-    }
+  /* formulaireModification(data:any): void {
+    let formulaire = this.formModifierBouteille.open(ModifierCellierBouteilleComponent, {
+      data
+    });
+
+    formulaire.afterClosed().subscribe(result => {
+      console.log('formulaire rempli')
+    })
+  } */
+
 
 }
