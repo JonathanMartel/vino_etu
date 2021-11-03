@@ -117,7 +117,7 @@ export default class AjoutBouteille extends React.Component {
 							type="text"
 							name="nom"
 							defaultValue={this.state.nomBouteilleSAQ}
-							onChange={(e) => this.setState({ nom: e.target.value })}
+							onBlur={(e) => this.setState({ nom: e.target.value })}
 						/>
 					</p>
 					<p>
@@ -126,7 +126,7 @@ export default class AjoutBouteille extends React.Component {
 							type="text"
 							name="pays"
 							defaultValue={this.state.pays}
-							onChange={(e) => this.setState({ pays: e.target.value })}
+							onBlur={(e) => this.setState({ pays: e.target.value })}
 						/>
 					</p>
 					<p>
@@ -135,7 +135,7 @@ export default class AjoutBouteille extends React.Component {
 							type="text"
 							name="type"
 							defaultValue={this.state.vino__type_id}
-							onChange={(e) => this.setState({ vino__type_id: e.target.value })}
+							onBlur={(e) => this.setState({ vino__type_id: e.target.value })}
 						/>
 					</p>
 					<p>
@@ -144,7 +144,7 @@ export default class AjoutBouteille extends React.Component {
 							type="text"
 							name="millesime"
 							defaultValue={this.state.millesime}
-							onChange={(e) => this.setState({ millesime: e.target.value })}
+							onBlur={(e) => this.setState({ millesime: e.target.value })}
 						/>
 					</p>
 					<p>
@@ -153,7 +153,7 @@ export default class AjoutBouteille extends React.Component {
 							type="number"
 							name="quantite"
 							defaultValue={this.state.quantite}
-							onChange={(e) => this.setState({ quantite: e.target.value })}
+							onBlur={(e) => this.setState({ quantite: e.target.value })}
 						/>
 					</p>
 					<p>
@@ -162,7 +162,7 @@ export default class AjoutBouteille extends React.Component {
 							type="date"
 							name="date_achat"
 							defaultValue={date}
-							onChange={(e) => this.setState({ date_achat: e.target.value })}
+							onBlur={(e) => this.setState({ date_achat: e.target.value })}
 						/>
 					</p>
 					<p>
@@ -171,7 +171,7 @@ export default class AjoutBouteille extends React.Component {
 							type="text"
 							name="prix"
 							defaultValue={this.state.prixBouteilleSAQ}
-							onChange={(e) => this.setState({ prix: e.target.value })}
+							onBlur={(e) => this.setState({ prix: e.target.value })}
 						/>
 					</p>
 					<p>
@@ -180,7 +180,7 @@ export default class AjoutBouteille extends React.Component {
 							type="text"
 							name="garde_jusqua"
 							defaultValue={this.state.garde}
-							onChange={(e) => this.setState({ garde: e.target.value })}
+							onBlur={(e) => this.setState({ garde: e.target.value })}
 						/>
 					</p>
 					<p>
@@ -189,7 +189,7 @@ export default class AjoutBouteille extends React.Component {
 							type="text"
 							name="notes"
 							defaultValue={this.state.commentaires}
-							onChange={(e) => this.setState({ commentaires: e.target.value })}
+							onBlur={(e) => this.setState({ commentaires: e.target.value })}
 						/>
 					</p>
 				</div>
