@@ -11,6 +11,7 @@ import ListeCelliers from "../ListeCelliers/ListeCellier";
 import AjoutCellier from "../AjoutCellier/AjoutCellier";
 import DetailsBouteille from "../DetailsBouteille/DetailsBouteille";
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
+import ModifieCompte from "../ModifieCompte/ModifieCompte";
 import './App.css';
 
 export default class App extends React.Component {
@@ -26,9 +27,9 @@ export default class App extends React.Component {
 	}
 
 	seConnecter(id) {
-		this.setState({id_usager: id, esConnecte: true});
+		this.setState({ id_usager: id, esConnecte: true });
 	}
-	
+
 	render() {
 		return (
 			<Router>
@@ -40,24 +41,34 @@ export default class App extends React.Component {
 						exact
 						path="/inscription"
 						component={(props) => (
-						<Inscription title="S'enregistrer" {...props} />
+							<Inscription title="S'inscrire" {...props} />
 						)}
 					/>
-					<Route exact path="/" component={(props)=> <Connexion test={this.seConnecter} esConnecte={this.state.esConnecte} id_usager={this.state.id_usager} {...props} /> } />
-					
-					<Route exact path="/listecelliers" component={(props)=> <ListeCelliers esConnecte={this.state.esConnecte} id_usager={this.state.id_usager} {...props} /> } />	
+
+					<Route
+						exact
+						path="/modifieCompte"
+						component={(props) => (
+							<ModifieCompte title="Modifier son compte" {...props} />
+						)}
+					/>
+
+
+					<Route exact path="/" component={(props) => <Connexion test={this.seConnecter} esConnecte={this.state.esConnecte} id_usager={this.state.id_usager} {...props} />} />
+
+					<Route exact path="/listecelliers" component={(props) => <ListeCelliers esConnecte={this.state.esConnecte} id_usager={this.state.id_usager} {...props} />} />
 
 					<Route exact path="/ajoutcellier" component={AjoutCellier} />
-					<Route exact path="/cellier/:id" render={(param_route)=> 
-							<ListeBouteilles {...param_route} id={param_route?.match?.params?.id} param={param_route} />} />
+					<Route exact path="/cellier/:id" render={(param_route) =>
+						<ListeBouteilles {...param_route} id={param_route?.match?.params?.id} param={param_route} />} />
 
-					<Route exact path="/bouteilles/:id" render={(param_route)=> 
-							<DetailsBouteille {...param_route} bouteille_id={param_route?.match?.params?.bouteille_id} param={param_route} />} />
-	
-    			    <Route exact path="*" component={Page404} />
-        		</Switch>
-        		<Pied />
-      		</Router>
-    );
-  }
+					<Route exact path="/bouteilles/:id" render={(param_route) =>
+						<DetailsBouteille {...param_route} bouteille_id={param_route?.match?.params?.bouteille_id} param={param_route} />} />
+
+					<Route exact path="*" component={Page404} />
+				</Switch>
+				<Pied />
+			</Router>
+		);
+	}
 }

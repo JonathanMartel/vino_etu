@@ -1,7 +1,8 @@
 import React from "react";
-import fondEcran from '../../fondEcran.svg';
-import BouteilleSAQ from "../BouteilleSAQ/BouteilleSAQ";
 import './AjoutBouteilleCellier.css';
+import BouteilleSAQ from "../BouteilleSAQ/BouteilleSAQ";
+import { Box } from "@mui/system";
+import { TextField } from "@mui/material";
 
 export default class AjoutBouteille extends React.Component {
 	constructor(props) {
@@ -58,8 +59,8 @@ export default class AjoutBouteille extends React.Component {
 
 	choixBouteille(info) {
 		console.log(info.nom);
-		this.setState({ nomBouteilleSAQ: info.nom, prixBouteilleSAQ: info.prix_saq, pays: info.pays});
-		this.setState({bouteillesSAQ: []});
+		this.setState({ nomBouteilleSAQ: info.nom, prixBouteilleSAQ: info.prix_saq, pays: info.pays });
+		this.setState({ bouteillesSAQ: [] });
 	}
 
 	ajouterBouteilleCellier() {
@@ -110,25 +111,108 @@ export default class AjoutBouteille extends React.Component {
 			})
 
 		return (
-			
-			<div className="nouvelleBouteille">
-				
-				<p>Recherche : <input onKeyUp={(event) => this.fetchBouteillesSAQ(event)} type="text" name="nom_bouteille" /></p>
-				<ul>
-					{bouteilles}
-				</ul>
-				<div>
-					<p>Nom : <input name="nom" value={this.state.nomBouteilleSAQ} onChange={e => this.setState({ nom: e.target.value })} /></p>
-					<p>Pays : <input name="pays" value={this.state.pays} onChange={e => this.setState({ pays: e.target.value })} /></p>
-					<p>Millesime : <input name="millesime" value={this.state.millesime} onChange={e => this.setState({ millesime: e.target.value })} /></p>
-					<p>Quantité : <input name="quantite" value={this.state.quantite} onChange={e => this.setState({ quantite: e.target.value })} /></p>
-					<p>Date d'achat : <input name="date_achat" value={this.state.date_achat} onChange={e => this.setState({ date_achat: e.target.value })} /></p>
-					<p>Prix : <input name="prix" value={this.state.prixBouteilleSAQ} onChange={e => this.setState({ prix: e.target.value })} /></p>
-					<p>Peux être garder ? : <input name="garde_jusqua" value={this.state.garde} onChange={e => this.setState({ garde: e.target.value })} /></p>
-					<p>Commentaires: <input name="notes" value={this.state.commentaires} onChange={e => this.setState({ commentaires: e.target.value })} /></p>
-					
-				</div>
-			</div>
+
+			<Box className="formulaire_ajout_bouteille_cellier" sx={{
+				backgroundColor: 'rgba(0, 0, 0, 0.8)',
+				display: 'flex',
+				justfyContent: 'center',
+				alignItems: 'center',
+				gap: '1rem',
+				width: '85vw',
+				flexDirection: 'column',
+				borderRadius: '1rem',
+				margin: '0 auto'
+			}}>
+
+				<Box sx={{
+					display: 'flex',
+					width: '80%',
+					flexDirection: 'column',
+					gap: '2rem'
+				}}>
+					<span className="ajout_bouteille_cellier_titre">Ajouter une bouteille au cellier</span>
+
+					<Box sx={{
+						display: 'flex',
+						flexDirection: 'column',
+						gap: '1rem'
+					}}>
+						{/* <p>Recherche : <input onKeyUp={(event) => this.fetchBouteillesSAQ(event)} type="text" name="nom_bouteille" /></p> */}
+						{/* {bouteilles} */}
+						{/* <p>Nom : <input name="nom" value={this.state.nomBouteilleSAQ} onChange={e => this.setState({ nom: e.target.value })} /></p> */}
+						<TextField label="Nom" variant="outlined"
+							InputLabelProps={{
+								className: "ajout_bouteille_input"
+							}}
+						/>
+
+						{/* <p>Pays : <input name="pays" value={this.state.pays} onChange={e => this.setState({ pays: e.target.value })} /></p> */}
+						<TextField label="Origine" variant="outlined" value={this.state.pays} name="pays"
+							onChange={e => this.setState({ pays: e.target.value })}
+							InputLabelProps={{
+								className: "ajout_bouteille_input"
+							}}
+						/>
+
+						{/* <p>Quantité : <input name="quantite" value={this.state.quantite} onChange={e => this.setState({ quantite: e.target.value })} /></p> */}
+						<TextField label="Quantité" variant="outlined" value={this.state.quantite} name="quantite"
+							onChange={e => this.setState({ quantite: e.target.value })}
+							InputLabelProps={{
+								className: "ajout_bouteille_input"
+							}}
+						/>
+
+						{/* <p>Millesime : <input name="millesime" value={this.state.millesime} onChange={e => this.setState({ millesime: e.target.value })} /></p> */}
+						<TextField label="Millesime" variant="outlined" value={this.state.millesime} name="millesime"
+							onChange={e => this.setState({ millesime: e.target.value })}
+							InputLabelProps={{
+								className: "ajout_bouteille_input"
+							}}
+						/>
+
+						{/* <p>Date d'achat : <input name="date_achat" value={this.state.date_achat} onChange={e => this.setState({ date_achat: e.target.value })} /></p> */}
+						<TextField label="Date d'achat" variant="outlined" value={this.state.date_achat} name="date_achat"
+							onChange={e => this.setState({ date_achat: e.target.value })}
+							InputLabelProps={{
+								className: "ajout_bouteille_input"
+							}}
+						/>
+
+						{/* <p>Prix : <input name="prix" value={this.state.prixBouteilleSAQ} onChange={e => this.setState({ prix: e.target.value })} /></p> */}
+						<TextField label="Prix" variant="outlined" value={this.state.prixBouteilleSAQ} name="prix"
+							onChange={e => this.setState({ prix: e.target.value })}
+							InputLabelProps={{
+								className: "ajout_bouteille_input"
+							}}
+						/>
+
+						{/* <p>Peux être garder ? : <input name="garde_jusqua" value={this.state.garde} onChange={e => this.setState({ garde: e.target.value })} /></p> */}
+						<TextField label="À conserver?" variant="outlined" value={this.state.garde} name="garde_jusqua"
+							onChange={e => this.setState({ garde: e.target.value })}
+							InputLabelProps={{
+								className: "ajout_bouteille_input"
+							}}
+						/>
+
+						{/* <p>Commentaires: <input name="notes" value={this.state.commentaires} onChange={e => this.setState({ commentaires: e.target.value })} /></p> */}
+						<TextField label="Commentaires" variant="outlined" value={this.state.commentaires} name="notes"
+							onChange={e => this.setState({ commentaires: e.target.value })}
+							InputLabelProps={{
+								className: "ajout_bouteille_input"
+							}}
+						/>
+
+						{/* <input name="courriel" onKeyUp={evt => this.setState({ courriel: evt.target.value })} placeholder="bobus@gmail.com" type="email" />
+                        <input name="mot_passe" onKeyUp={evt => this.setState({ mot_passe: evt.target.value })} placeholder="12345" type="password" /> */}
+					</Box>
+
+					<button onClick={this.ajouterBouteilleCellier}>Ajouter une bouteille au cellier</button>
+				</Box>
+
+
+				{/* <button onClick={this.seConnecter}>{(this.state.seConnecter ? "Se déconnecter" : "Se connecter")}</button> */}
+
+			</Box>
 		);
 	}
 }
