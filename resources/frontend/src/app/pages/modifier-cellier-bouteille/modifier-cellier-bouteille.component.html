@@ -1,13 +1,19 @@
+<img *ngIf='bouteille' mat-card-image src="{{bouteille.url_image}}" alt="Photo of a Shiba Inu">
+<mat-card class="example-card">
+    <h2>{{bouteille.nom}}</h2>
+    <mat-card-subtitle></mat-card-subtitle>
+</mat-card>
+
 <form [formGroup]="modifierBouteilleCellier" (ngSubmit)=putBouteille(modifierBouteilleCellier.value)>
     <div class="formulaire-contenu">
 
         <mat-form-field appearance="fill">
-            <mat-label for="url_image">Image</mat-label>
-            <input matInput type="text" id="url_image" name="url_image" formControlName="url_image">
+            <mat-label for="url_image">Nom</mat-label>
+            <input matInput type="text" id="nom" name="nom" formControlName="nom">
         </mat-form-field>
         <mat-form-field appearance="fill">
-            <mat-label for="nom">Nom</mat-label>
-            <input matInput type="text" id="nom" name="nom" formControlName="nom">
+            <mat-label for="url_image">Image</mat-label>
+            <input matInput type="text" id="url_image" name="url_image" formControlName="url_image">
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label for="description">Description</mat-label>

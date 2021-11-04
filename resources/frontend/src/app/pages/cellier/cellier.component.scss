@@ -9,6 +9,7 @@ main[_ngcontent-vfb-c129] {
 .content{
   //  margin: 60px 0;
     overflow: hidden;
+    padding-bottom: 3.75rem;
 }
 
 .content-header{
@@ -49,5 +50,5 @@ main[_ngcontent-vfb-c129] {
 }
 
 .mat-drawer-content{
-    height: auto;
+   // height: auto; brise le scroll du cellier
 }
