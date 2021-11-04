@@ -46,13 +46,11 @@
                     'idBouteille'=>$vin['id'],
                     ]) }}">
                 <div class="nomVinConteneur">
-                    <h2>{{$vin['nom']}}</h2>
+                    <h2>{{$vin['bouteille']->nom}}</h2>
                 </div>
             </a>
 
-            <div class="nomVinConteneur">
-                <h2>{{$vin['bouteille']->nom}}</h2>
-            </div>
+           
             <div class="infoBouteilleConteneur">
                 <img class="image" src="{{$vin['bouteille']->url_img}}" alt="Image {{$vin['bouteille']->nom}}">
                 <div class="info">
@@ -134,79 +132,7 @@
 
 
 
-<<<<<<< HEAD
-    <!-- @forelse($cellierBouteilles as $cellierBouteille)
-    <section>
-        <div class="flex">
-            <div class="img-conteneur ">
-                <img class="image" src="{{ asset($cellierBouteille->url_img) }}" alt="{{$cellierBouteille->nom}}">
-            </div>
-            <div class="info">
-                <p>{{$cellierBouteille->pays}}</p>
-                <p>{{$cellierBouteille->type}}</p>
-                <p>{{$cellierBouteille->taille}} cl</p>
-                <p> @if( $cellierBouteille->millesime != 0)
-                    {{$cellierBouteille->millesime}}
-                    @else
-                    Non millisimé
-                    @endif
-                </p>
-
-                <p class="quantite">Qte | <span>{{$cellierBouteille->quantite}}</span></p>
-            </div>
-
-            <div class=" flex bouton-conteneur">
-
-                <select class="star-rating" data-id-bouteille="{{$cellierBouteille->bouteille_id}}" data-millesime="{{$cellierBouteille->millesime}}" name="note">
-                    <option value="">Choisir une note</option>
-                    <option value="5" @if( $cellierBouteille->note == 5) selected @endif>Excellent</option>
-                    <option value="4" @if( $cellierBouteille->note == 4) selected @endif>Très bon </option>
-                    <option value="3" @if( $cellierBouteille->note == 3) selected @endif>Passable</option>
-                    <option value="2" @if( $cellierBouteille->note == 2) selected @endif>Médiocre</option>
-                    <option value="1" @if( $cellierBouteille->note == 1) selected @endif>Terrible</option>
-                </select>
-
-
-                <div class="bouton-cercle-remove">
-                    <a class="btn-floating btn-large waves-effect waves-light " name="btnRetirerBouteille" href="{{ route('boireBouteille',[
-                            'idCellier'=>$cellierBouteille->cellier_id,
-                            'idBouteille'=>$cellierBouteille->bouteille_id,
-                            'millesime'=> $cellierBouteille->millesime,
-                            ])}}">
-                        <i class="material-icon">remove</i>
-                    </a>
-                </div>
-                <div class="bouton-cercle-add">
-                    <a class="btn-floating btn-large waves-effect waves-light" name="btnAjouterBouteille" href="{{ route('ajouterBouteille',[
-                            'idCellier'=>$cellierBouteille->cellier_id,
-                            'idBouteille'=>$cellierBouteille->bouteille_id,
-                            'millesime'=> $cellierBouteille->millesime
-                            ])}}">
-                        <i class="material-icon">add</i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="nomVin">
-            <a href="{{route('ficheVin', [
-                        'idCellier'=>$cellierBouteille->cellier_id,
-                        'idBouteille'=>$cellierBouteille->bouteille_id,
-                        ]) }}">
-                <p>{{$cellierBouteille->nom}}</p>
-            </a>
-        </div>
-    </section>
-    @empty
-    <div class="list-empty">
-        <p>Vous n'avez pour l'instant aucun vin.</p>
-    </div>
-
-
-
-    @endforelse -->
-=======
     
->>>>>>> 91186de77ab1d2d562c2673425a0ab41a3f59006
 
 </main>
 @endsection
