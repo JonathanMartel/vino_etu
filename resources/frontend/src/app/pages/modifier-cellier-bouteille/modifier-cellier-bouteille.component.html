@@ -1,8 +1,4 @@
 <img *ngIf='bouteille' mat-card-image src="{{bouteille.url_image}}" alt="Photo of a Shiba Inu">
-<mat-card class="example-card">
-    <h2></h2>
-    <mat-card-subtitle></mat-card-subtitle>
-</mat-card>
 
 <form [formGroup]="modifierBouteilleCellier" (ngSubmit)=putBouteille(modifierBouteilleCellier.value)>
     <div class="formulaire-contenu">
@@ -54,5 +50,8 @@
         </mat-form-field>
 
     </div>
-        <button type="submit" mat-raised-button>Modifier</button>
+
+    <div class="modifier-cellier">
+        <button class="bouton-modifier-cellier" type="submit" mat-flat-button>Modifier</button>
+    </div>
 </form>

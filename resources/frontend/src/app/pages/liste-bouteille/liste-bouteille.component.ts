@@ -18,17 +18,9 @@ export class ListeBouteilleComponent implements OnInit {
   }
 
   // recherche dans la liste
-  recherche(bouteilleRecherche: string) {
-
-    console.log(bouteilleRecherche);
-
-    this.servBouteilleDeVin.rechercheBouteille(bouteilleRecherche).subscribe(reponse => {
-      this.bouteille = reponse
-    })
-
-  }
-
-
-
+    recherche(bouteilleRecherche: string) {
+      console.log(bouteilleRecherche);
+  
+    }
 
 }
