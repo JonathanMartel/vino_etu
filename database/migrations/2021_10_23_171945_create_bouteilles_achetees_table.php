@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateBouteillesAcheteesTable extends Migration
@@ -31,6 +32,8 @@ class CreateBouteillesAcheteesTable extends Migration
             $table->foreignId("users_id")->constrained();
             $table->timestamps();
         });
+
+        DB::statement('ALTER TABLE bouteilles_achetees ADD FULLTEXT search(nom, description, format, origine, conservation, notes_personnelles)');
     }
 
     /**
