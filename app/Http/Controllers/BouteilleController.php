@@ -47,6 +47,7 @@ class BouteilleController extends Controller {
                         ->paginate($request->limite);
     }
 
+
     /**
      * Store a newly created resource in storage.
      *
