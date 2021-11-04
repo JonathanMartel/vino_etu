@@ -10,6 +10,10 @@
             <h2 class="titre">Mon Cellier</h2>
             <p class="bouton-filtre"><button mat-button (click)="sidenav.toggle()">Filtrer</button></p>
         </div>
+        <mat-form-field>
+            <mat-label>Trouvez une bouteille</mat-label>
+            <input matInput (keyup)="recherche($event)">
+        </mat-form-field>
         <section *ngFor="let uneBouteille of cellier" class="resultat">
             <app-cellier-bouteille [uneBouteille]='uneBouteille'></app-cellier-bouteille>
         </section>
