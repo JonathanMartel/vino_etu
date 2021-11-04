@@ -79,6 +79,20 @@ Route::get('/ajouterNote/{idCellier}/{idBouteille}/{millesime}/{note}', [Cellier
 |
 */
 
+/*
+|--------------------------------------------------------------------------
+|Fiche Vin
+|--------------------------------------------------------------------------
+|
+*/
+
+Route::get('/cellier/{idCellier}/{idBouteille}', [CellierBouteilleController::class, 'show'])->name('ficheVin')->middleware('auth');
+
+
+
+
+
+
 /* Recherche */
 
 Route::get('/rechercheBouteillesParMotCle/{motCle}', [BouteilleController::class, 'rechercheBouteillesParMotCle'])->name('rechercheBouteillesParMotCle')->middleware('auth')->middleware('prevent-back-history');
