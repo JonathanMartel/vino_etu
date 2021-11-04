@@ -40,7 +40,9 @@ export class ListeBouteilleComponent implements OnInit {
             this.rechercheSujet
                 .pipe(debounceTime(700), distinctUntilChanged())
                 .subscribe(recherche => {
-                    this.effectuerRechercheFiltree();
+                    if (this.texteRecherche.value.length >= 3) {
+                        this.effectuerRechercheFiltree();
+                    }
                 });
         }
 
@@ -50,7 +52,7 @@ export class ListeBouteilleComponent implements OnInit {
     effectuerRechercheFiltree(): void {
         this.servBouteilleDeVin
             .getListeBouteille({
-                texteRecherche: this.texteRecherche.value
+                texteRecherche: this.texteRecherche.value.replace("-", " ")
             })
             .subscribe(bouteille => {
                 this.bouteille = bouteille.data;
