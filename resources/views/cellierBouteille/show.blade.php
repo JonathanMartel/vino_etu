@@ -41,7 +41,7 @@
 
     <section class="millesime-conteneur">
          @foreach($cellierBouteilleMillesime as $cellierBouteille)
-            <div class="millesime-item">
+            <div class="millesime-item" data-js-bouton>
                 @if($cellierBouteille->millesime  != 0)
                     <p>{{$cellierBouteille->millesime }}</p>
                 @else
@@ -112,5 +112,5 @@
 </div> -->
 
 @endsection
-
+<script src="{{asset('js/cellierBouteille_show.js')}}"></script> 
 <link href="{{asset('css/cellierBouteillesListe.css')}}" rel="stylesheet" />
