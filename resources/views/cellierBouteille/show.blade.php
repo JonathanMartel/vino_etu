@@ -1,4 +1,6 @@
+
 @extends('layouts.app')
+<link href="{{asset('css/fiche-vin.css')}}" rel="stylesheet" />
 @section('content')
 
 <header>
@@ -14,7 +16,7 @@
     </div>
     <div class="bouteille-nom">
         <span>{{ $bouteille->nom }}</span>
-        <a class="" href="{{ route('cellier.edit', $cellier->id)}}"><i class="material-icons">edit</i></a>
+        <a class="" href="{{ route('cellierBouteille.edit', $cellier->id)}}"><i class="material-icons">edit</i></a>
     </div>
 </header>
 <main>
@@ -39,46 +41,59 @@
         </article>
     </section>
 
+    
+         <section class="millesime-conteneur">
+             @foreach($cellierBouteilleMillesime as $cellierBouteille)
+                     <div data-js-bouton="{{ $cellierBouteille->millesime }}">
+                <div class="millesime-item" >
+                    @if($cellierBouteille->millesime  != 0)
+                        <p>{{ $cellierBouteille->millesime }}</p>
+                    @else
+                        <p>N/A</p>
+                    @endif
+                </div>
+                     </div>       
+                     @endforeach
+         </section>
+    
     <section class="millesime-conteneur">
-         @foreach($cellierBouteilleMillesime as $cellierBouteille)
-            <div class="millesime-item" data-js-bouton>
-                @if($cellierBouteille->millesime  != 0)
-                    <p>{{$cellierBouteille->millesime }}</p>
-                @else
-                    <p>N/A</p>
-                @endif
-            </div>
-        @endforeach 
-    </section>
-    <section>
-        <img class="image" src="{{ $bouteille->url_img}}" alt="">
-        <div class="form-modifier">
-            <form id="" action="" method="POST" class="form-modifier">
+        <div>
+            <img class="image-fiche" src="{{ $bouteille->url_img}}" alt="">
+        </div>
+        <div class="form-modifier form">
+            <form id="" action="" method="POST" class="form-modifier" data-js-form>
                 @method('PUT')
                  @csrf
-                <div class="form-modifier-item" >
-                    <label for="quantite">Quantité :</label>
-                    <input type="number" name="quantite" id="quantite" class="" value="{!! $cellierBouteille->quantite !!}"/>
-                </div>
-                <div class="form-modifier-item" >
-                    <label for="note">Note :</label>
-                    <input type="number" name="note" id="note" class="" value="{!! $cellierBouteille->note !!}"/>
-                </div>
-                <div class="form-modifier-item" >
-                    <label for="prix">Prix :</label>
-                    <input type="number" name="prix" id="prix" class="" value="{!! $cellierBouteille->prix !!}"/>
-                </div>
+                 <div>
+                    <div class="form-modifier-item " >
+                        <label for="note">Note :</label>
+                        <input type="number" name="note" id="note" class="input-fiche-cercle" value="{!! $cellierBouteille->note !!}"/>
+                    </div>
+                    <div class="form-modifier-item" >
+                        <label for="millesime">Millésime:</label>
+                        <input type="number" name="millesime" id="millesime" class="" value="{!! $cellierBouteille->millesime !!}"/>
+                    </div>
+
+                    <div class="form-modifier-item" >
+                        <label for="prix">Prix d'achat :</label>
+                        <input type="number" name="prix" id="prix" class="" value="{!! $cellierBouteille->prix !!}"/>
+                    </div>
+                    <div class="form-modifier-item" >
+                        <label for="quantite">Qte :</label>
+                        <input type="number" name="quantite" id="quantite" class="" value="{!! $cellierBouteille->quantite !!}"/>
+                    </div>
+                 </div>
                 <div class="form-modifier-item" >
                     <label for="commentaire">commentaire :</label>
                     <input type="textarea" name="commentaire" id="commentaire" class="" value="{!! $cellierBouteille->commentaire !!}"/>
                 </div>
                 <div class="form-modifier-item" >
-                    <label for="date_achat">Date d'achat :</label>
-                    <input type="date" name="date_achat" id="date_achat" class="" value="{!! $cellierBouteille->date_achat !!}"/>
-                </div>
-                <div class="form-modifier-item" >
                     <label for="garde_jusqua">À conserver :</label>
                     <input type="textarea" name="garde_jusqua" id="garde_jusqua" class="" value="{!! $cellierBouteille->garde_jusqua !!}"/>
+                </div>
+                <div class="form-modifier-item" >
+                    <label for="date_achat">Date d'achat :</label>
+                    <input type="date" name="date_achat" id="date_achat" class="" value="{!! $cellierBouteille->date_achat !!}"/>
                 </div>
             </form>
         </div>
@@ -114,3 +129,4 @@
 @endsection
 <script src="{{asset('js/cellierBouteille_show.js')}}"></script> 
 <link href="{{asset('css/cellierBouteillesListe.css')}}" rel="stylesheet" />
+
