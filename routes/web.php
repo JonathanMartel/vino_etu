@@ -85,7 +85,8 @@ Route::get('/rechercheBouteillesParMotCle/{motCle}', [BouteilleController::class
 Route::get('/importerBouteille', [BouteilleController::class, 'index'])->name('importerBouteille')->middleware('admin')->middleware('prevent-back-history');
 Route::get('/obtenirListeSAQ', [BouteilleController::class, 'obtenirListeSAQ'])->name('obtenirListeSAQ')->middleware('admin')->middleware('prevent-back-history');
 
-
+Route::get('/vin/{bouteille}/edit', [BouteilleController::class, 'edit'])->middleware('auth');
+//Route::put('/vin/{bouteille}/edit', [BouteilleController::class, 'update'])->middleware('auth');
 
 
 
