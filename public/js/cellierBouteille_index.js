@@ -98,6 +98,46 @@ document.addEventListener('DOMContentLoaded', function() {
         })
     })
 
-    
 
+    /**
+     * Un select permettant de changer de cellier
+     */
+    var selectCellier = document.querySelector('[name="id"]');
+    M.FormSelect.init(selectCellier);
+
+
+    selectCellier.addEventListener('change', (e) => {
+        location.href = location.origin + "/cellier/" + e.target.value;
+
+    })
+
+    const btnRecherche = document.querySelector('.searchbutton');
+    const barreRecherche = document.querySelector('.search');
+    const btnAjouterVin = document.querySelector('.bouton-ajout-vin');
+
+    btnRecherche.addEventListener('click', (e)=> {
+        e.preventDefault();
+        
+       btnRecherche.classList.toggle('focus');
+
+       if(btnRecherche.classList.contains('focus')) {
+           btnAjouterVin.style.visibility = "hidden";
+           barreRecherche.focus();
+       }else {
+        barreRecherche.blur();
+        btnAjouterVin.style.visibility = "visible";
+       }
+        
+    })
+
+    window.addEventListener('click', (e) => {
+        if(!btnRecherche.contains(e.target)){
+            btnRecherche.classList.remove('focus');
+             btnAjouterVin.style.visibility = "visible";
+        }
+    })
+
+    barreRecherche.addEventListener('input', () => {
+
+    })
     })

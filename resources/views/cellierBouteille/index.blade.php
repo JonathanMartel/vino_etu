@@ -9,11 +9,12 @@
 
 <header>
     <div class="cellier">
-        <span>{{ $cellier->nom }}</span>
-        <select name="cellier" id="cellier">
-            <option value="{{ $cellier->id }}">{{ $cellier->nom }}</option>
-            <!-- Ajouter les options du select de cellier !!! -->
-        </select>
+        <select class="select-celliers" name ="id">
+            
+            @foreach($celliers as $unCellier)
+            <option value="{{ $unCellier->id }}" @if( $unCellier->id == $cellier->id) selected @endif>{{ $unCellier->nom}} </option>
+            @endforeach
+          </select>
     </div>
     <div class="localisation">
         <span><img class="map-icone" src="{{URL::asset('/assets/icon/map-marker-rouge.svg')}}" alt="icone map"> {{ $cellier->localisation }}</span>
@@ -26,20 +27,18 @@
     <div class="bouton-ajout-vin-conteneur">
         <a class="bouton-ajout-vin" href="{{ route('ajouterVin', $cellier->id) }}"><i class="material-icon">add</i> Ajouter un vin</a>
 
-        <!-- La barre de recherche n'est pas fonctionnel -->
-
-      <!--   <div class="row">
-      <div class="input-field col s12 recherche">
-          <i class="material-icons prefix">search</i>
-          <input type="text"  name="recherche" autocomplete="off">
-          <label for="recherche">Rechercher un vin</label>
-          <div class="autocomplete z-depth-2"></div>
+        <div class="search-container">
+            <form action="/search" method="get">
+                <input class="search expandright" id="searchright" type="search" name="q" placeholder="Rechercher une bouteille">
+                <label class="button searchbutton" for="searchright"><span class="mglass">&#9906;</span></label>
+            </form>
         </div>
-      </div> -->
-
+    
     </div>
+
+
     <div class="articlesConteneur">
-        @foreach ($cellierBouteillesByIDs as $vin)
+        @forelse ($cellierBouteillesByIDs as $vin)
         <article class="articleVin">
             <a href="{{route('ficheVin', [
                     'idCellier'=>$cellier->id,
@@ -84,7 +83,7 @@
                 <section class="infoCellierBouteille">
                     <div class="infoUnitaires">
                     
-                        @if($bouteille->millesime != 0)
+                        @if($bouteille->millesime > 0)
                         <p>{{$bouteille->millesime }}</p>
                         @else
                         <p>Non millisimé</p>
@@ -125,9 +124,12 @@
                 </section>
                 @endforeach
             </div>
-
+            @empty
+    <div class="list-empty">
+        <p>Vous n'avez pour l'instant aucun vin.</p>
+    </div>
         </article>
-        @endforeach
+        @endforelse
     </div>
 
 
@@ -142,3 +144,4 @@
 <link href="{{asset('css/star-rating.css')}}" rel="stylesheet" />
 <script src="{{asset('js/star-rating.js')}}"></script>
 <link href="{{asset('css/autocomplete.css')}}" rel="stylesheet" />
+<link href="{{asset('css/barre-recherche.css')}}" rel="stylesheet" />

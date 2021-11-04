@@ -70,8 +70,8 @@ document.addEventListener('DOMContentLoaded', function() {
             inputNom.className = 'valid';
             
             imgUrl.value = e.target.dataset.imgurl;
-            
-            prix.value = e.target.dataset.prix
+
+            prix.value = parseFloat(e.target.dataset.prix).toFixed(2);
 
             if(e.target.dataset?.description != ''){
                 description.value = e.target.dataset.description;
