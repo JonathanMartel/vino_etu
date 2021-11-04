@@ -32,9 +32,8 @@ export class ListeBouteilleComponent implements OnInit {
 
   // recherche dans la liste
   recherche(bouteilleRecherche: string) {
-    console.log(bouteilleRecherche);
+    console.log(encodeURIComponent(bouteilleRecherche));
 
-    
 
   }
 
