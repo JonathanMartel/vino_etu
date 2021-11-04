@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class BouteilleDeVinService {
 
-    private url:string = "http://127.0.0.1:8000/api";
+     private url:string = "http://127.0.0.1:8000/api";
     //private url:string = "http://kalimotxo-vino.akira.dev/api";
     // private url: string = new URL(window.location.href).origin + "/api";
 
@@ -25,7 +25,7 @@ export class BouteilleDeVinService {
         return this.http.get<any>(this.url + '/celliers/' + 1 + '/bouteilles');
     }
 
-    getListeBouteille() {
+    getListeBouteille(filtre = null) {
 
         return this.http.get<any>(this.url + '/catalogue-bouteilles');
     }

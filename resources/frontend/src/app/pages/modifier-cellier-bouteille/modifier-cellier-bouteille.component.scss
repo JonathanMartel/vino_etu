@@ -1,4 +1,4 @@
-.formulaire {
+.formulaire-contenu {
     display: flex;
     flex-direction: column;
     border-radius: .5rem;
@@ -10,12 +10,44 @@
     font-size: 0.815rem;
 }
 
-button {
-    background-color: var(--couleur-primaire);
+.mat-dialog-actions {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 1.34375em;
+}
+
+.mat-dialog-actions button[type=submit] {
+    background-color: #4c1920;
     color: white;
 }
 
-form{
-    padding: 60px 0;
+.example-card {
+    box-shadow: none;
 }
 
+.card-header{
+    display: block;
+}
+
+.card-content{
+    font-weight: bold;
+}
+
+.card-action{
+    display: flex;
+    justify-content: center;
+}
+
+.mat-card-image{
+    width: 40vw;
+    display: block;
+    margin: 0 auto;
+}
+
+.mat-card-image:first-child{
+    margin-top: 0;
+}
+
+.mat-form-field-underline{
+    display: none;
+}
