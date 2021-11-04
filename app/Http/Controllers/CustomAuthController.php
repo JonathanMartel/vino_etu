@@ -44,7 +44,8 @@ class CustomAuthController extends Controller
             'nom' =>'required|max:25|min:2|unique:users',
             'courriel' => 'required|email:rfc,filter|unique:users',
             'password' => 'required|min:6|max:20',
-            'date_naissance' => 'required|date_format:Y-m-d|before:' . Carbon::now()->subYears(18)->format('Y-m-d')         
+            'date_naissance' => 'required|date_format:Y-m-d|before:'.Carbon::now()->subYears(18)->format('Y-m-d').'|after:'. Carbon::now()->subYears(100)->format('Y-m-d')     
+
         ]);
    
           $user = new User;
@@ -154,7 +155,7 @@ class CustomAuthController extends Controller
         'courriel' => 'required|email:rfc,filter',
         'password' => 'required|min:6|max:20',
         'nouveauMotDePasse' => 'required|min:6|max:20',
-        'date_naissance' => 'required|date_format:Y-m-d|before:' . Carbon::now()->subYears(18)->format('Y-m-d')         
+        'date_naissance' => 'required|date_format:Y-m-d|before:'.Carbon::now()->subYears(18)->format('Y-m-d').'|after:'. Carbon::now()->subYears(100)->format('Y-m-d')     
     ]);
 
       $oldPassword = $user->password;
