@@ -154,7 +154,6 @@ class CustomAuthController extends Controller
         'nom' =>'required|max:25|min:2',
         'courriel' => 'required|email:rfc,filter',
         'password' => 'required|min:6|max:20',
-        'nouveauMotDePasse' => 'required|min:6|max:20',
         'date_naissance' => 'required|date_format:Y-m-d|before:'.Carbon::now()->subYears(18)->format('Y-m-d').'|after:'. Carbon::now()->subYears(100)->format('Y-m-d')     
     ]);
 
@@ -164,18 +163,16 @@ class CustomAuthController extends Controller
       $bool = Hash::check($password, $oldPassword);
       if ($bool) {
         $user->fill($request->all());
-        $nouveauMotDePasse = Hash::make($request->nouveauMotDePasse);
         $user->update([
           'nom' => $request->nom,
           'courriel' => $request->courriel,
-          'password' => $nouveauMotDePasse,
           'date_naissance' => $request->date_naissance
         ]);
         return redirect('dashboard');
         // return redirect()->intended('dashboard');
       }
 
-      return redirect('/user/'.$id.'/edit')->withSuccess('Le mot de passe original n\'est pas valides!');
+      return redirect('/user/'.$id.'/edit')->withSuccess('Le mot de passe n\'est pas valides!');
 
 
       

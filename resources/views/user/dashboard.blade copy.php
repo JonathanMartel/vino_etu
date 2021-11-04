@@ -17,51 +17,38 @@
                             <i class="small material-icons black-text">account_circle</i>
                             <p>{{$nom}}</p>
                         </div>    
-                        <!-- <i class="small material-icons black-text" data-js-modifie>edit</i> -->
+                        <i class="small material-icons black-text" data-js-modifie>edit</i>
                     </div>
-                    <!-- <div class="flex-row space hidden" data-js-button>
+                    <div class="flex-row space hidden" data-js-button>
                         <input type="text" name="nom" data-js-inputNom>
                         <button class="waves-effect waves-light btn-small" data-js-btnNom>Modifier</button>
-                    </div> 
-                    <span class="red-text"></span>-->
+                    </div>
+                    <span class="red-text"></span>
 
                     <div class="flex-row space">    
                         <div  class="flex-row">
                             <i class="small material-icons black-text">email</i>
                             <p>{{$courriel}}</p>    
                         </div>    
-                        <!-- <i class="small material-icons black-text" data-js-modifie>edit</i>     -->
+                        <i class="small material-icons black-text" data-js-modifie>edit</i>    
                     </div>
-                    <!-- <div class="flex-row space hidden" data-js-button>
+                    <div class="flex-row space hidden" data-js-button>
                         <input type="text" name="courriel" data-js-inputCourriel>
                         <button class="waves-effect waves-light btn-small" data-js-btnCourriel>Modifier</button>
-                    </div> -->
+                    </div>
 
                     <div class="flex-row space">    
                         <div  class="flex-row">
                             <i class="small material-icons black-text">cake</i>
                             <p>{{$date_naissance}}</p>  
                         </div>    
-                        <!-- <i class="small material-icons black-text" data-js-modifie>edit</i>  -->
+                        <i class="small material-icons black-text" data-js-modifie>edit</i> 
                     </div>    
-                    <!-- <div class="flex-row space hidden" data-js-button>
+                    <div class="flex-row space hidden" data-js-button>
                         <input type="text" name="date_naissance" data-js-inputDateNaissance>
                         <button class="waves-effect waves-light btn-small" data-js-btnDateNaissance>Modifier</button>
-                    </div>-->    
-                    <div class="flex-row space">    
-                            <div></div>
-                            <a href="{{ route('custom.edit', $id)}}">
-                            <button class="btn waves-effect waves-light" type="submit" name="action">Modifier
-                            <i class="material-icons right">chevron_right</i>
-                            </button></a>
-                            <!-- <button class="waves-effect waves-light btn-small right">Modifier</button>  -->
-                        <!-- <i class="small material-icons black-text" data-js-modifie>edit</i>  -->
-                    </div>   
-                    
-                    <!-- <i class="small material-icons black-text">chevron_right</i>  -->
+                    </div>     
                 </div>
-                
-
             </div>
 
             <div class="card">
