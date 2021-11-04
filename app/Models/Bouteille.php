@@ -24,6 +24,11 @@ class Bouteille extends Model
         return $this->belongsTo(Type::class);
     }
 
+    public function format()
+    {
+        return $this->belongsTo(Format::class);
+    }
+
     /**
      * @param motCle
      * Rechercher dans la table bouteilles les noms qui contiennent le motCle

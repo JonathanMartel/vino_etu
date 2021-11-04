@@ -37,22 +37,26 @@
         <label for="nom">Nom</label>
         <span class="helper-text" data-error="Champ obligatoire"></span>
     </div>
+    <div class="input-field col s12">
+        <input id="pays" type="text" name="pays" pattern="^[-a-zA-ZáéíóúÁÉÍÓÚÑñÇç]*$" class="@if($errors->first('pays')) invalid @endif validate" value="{{$bouteille->pays}}">
+        <label for="pays">Pays</label>
+        <span class="helper-text" data-error="Format invalid"></span>
+    </div>
     <div class="input-field col s12 ">
         <select name="type_id">
-            <option value="{{$bouteille->type_id}}" disabled selected>{{$bouteille->type}}</option>
+            <option value="{{$bouteille->type_id}}" disabled selected>{{$bouteille->type->type}}</option>
             @foreach($types as $type)
-            <option value="{{ $type->id }}" @if( old('type_id')==$type->id) selected @endif> {{ $type->type}}</option>
+            <option value="{{ $type->id }}" @if( '$bouteille->type_id'==$type->id) selected @endif> {{ $type->type}}</option>
             @endforeach
         </select>
         <label>Type</label>
         @if($errors->first('type_id')) <span class="helper-text erreur" data-error="Format invalid">Champ obligatoire</span> @endif
-
-    </div><br><br>
+    </div>
     <div class="input-field col s12">
         <select name="format_id">
-            <option value="{{$bouteille->format_id}}" selected>{{$bouteille->format_id}}</option>
+            <option value="{{$bouteille->format_id}}" selected>{{$bouteille->format->nom}} - {{$bouteille->format->taille}} cl</option>
             @foreach($formats as $format)
-            <option value="{{ $format->id }}" @if( old('format_id')==$format->id) selected @endif>{{ $format->nom}} - {{$format->taille}} cL </option>
+            <option value="{{ $format->id }}" @if( '$bouteille->format_id'==$format->id) selected @endif>{{ $format->nom}} - {{$format->taille}} cL </option>
             @endforeach
         </select>
         <label>Format</label>
@@ -63,11 +67,7 @@
         <label for="description">Description</label>
         <span class="helper-text" data-error="Format invalid"></span>
     </div>
-    <div class="input-field col s12">
-        <input id="pays" type="text" name="pays" pattern="^[-a-zA-ZáéíóúÁÉÍÓÚÑñÇç]*$" class="@if($errors->first('pays')) invalid @endif validate" value="{{$bouteille->pays}}">
-        <label for="pays">Pays</label>
-        <span class="helper-text" data-error="Format invalid"></span>
-    </div>
+    
     <div class="file-field input-field col s12">
         <div class="btn">
             <span>Image</span>
@@ -100,3 +100,5 @@
 @endif
 
 @endsection
+<link href="{{asset('css/bouteille_edit.css')}}" rel="stylesheet" />
+<script src="{{asset('js/bouteille_edit.js')}}"></script>

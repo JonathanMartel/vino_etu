@@ -85,7 +85,7 @@ class BouteilleController extends Controller
     {
         $types = Type::all();
         $formats = Format::all();
-        /* var_dump($bouteille->nom); */
+        /* var_dump($bouteille->format); */
         return view('bouteille.edit', [
                                         'bouteille'=> $bouteille,
                                         'types' => $types,
