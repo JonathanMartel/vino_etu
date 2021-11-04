@@ -1,34 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { BouteilleDeVinService} from '@services/bouteille-de-vin.service';
+import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 
 
 @Component({
-  selector: 'app-liste-bouteille',
-  templateUrl: './liste-bouteille.component.html',
-  styleUrls: ['./liste-bouteille.component.scss']
+    selector: 'app-liste-bouteille',
+    templateUrl: './liste-bouteille.component.html',
+    styleUrls: ['./liste-bouteille.component.scss']
 })
 export class ListeBouteilleComponent implements OnInit {
-  bouteille:any;
+    bouteille: any;
 
-  constructor(private servBouteilleDeVin:BouteilleDeVinService) { }
+    constructor(private servBouteilleDeVin: BouteilleDeVinService) { }
 
-  ngOnInit(): void {
+    ngOnInit(): void {
 
-    this.servBouteilleDeVin.getListeBouteille().subscribe(bouteille => this.bouteille = bouteille.data);
-  }
+        this.servBouteilleDeVin.getListeBouteille().subscribe(bouteille => this.bouteille = bouteille.data);
+    }
 
-  // recherche dans la liste
-  recherche(bouteilleRecherche: string) {
+    recherche(recherche: string): void {
 
-    console.log(bouteilleRecherche);
-
-    this.servBouteilleDeVin.rechercheBouteille(bouteilleRecherche).subscribe(reponse => {
-      this.bouteille = reponse
-    })
-
-  }
-
-
-
+    }
 
 }
