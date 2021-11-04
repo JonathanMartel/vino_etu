@@ -16,13 +16,12 @@ export default class Cellier extends React.Component {
 	}
 
 	componentDidMount() {
-		/* if (!this.props.estConnecte) {
-			return this.props.history.push("/");
-		} */
+		if (!this.props.estConnecte) {
+			//return this.props.history.push("/");
+		}
 	}
 
 	render() {
-
 		return (
 			<Link to={"/cellier/" + this.props.info.id_cellier} className="cellier_container_parent"> {/* ListeBouteilleCellier */}
 				<div className="cellier_container">
