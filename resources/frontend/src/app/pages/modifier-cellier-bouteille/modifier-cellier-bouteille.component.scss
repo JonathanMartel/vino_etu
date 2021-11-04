@@ -1,5 +1,8 @@
-.formulaire-contenu {
-    padding-top: 3rem;
+.formulaire-contenu {
+    display: flex;
+    flex-direction: column;
+    border-radius: .5rem;
+    margin: 1rem 0;
 }
 
 .mat-form-field {
