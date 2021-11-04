@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Bouteille;
 
 use Illuminate\Http\Request;
+use App\Models\Type;
+use App\Models\Format;
 
 
 class BouteilleController extends Controller
@@ -16,8 +18,7 @@ class BouteilleController extends Controller
      */
     public function index()
     {
-         return view('bouteille.index', [    
-        ]); 
+         return view('bouteille.index', []);
     }
 
 
@@ -82,7 +83,14 @@ class BouteilleController extends Controller
      */
     public function edit(Bouteille $bouteille)
     {
-        //
+        $types = Type::all();
+        $formats = Format::all();
+        /* var_dump($bouteille->nom); */
+        return view('bouteille.edit', [
+                                        'bouteille'=> $bouteille,
+                                        'types' => $types,
+                                        'formats' => $formats,
+    ]);
     }
 
     /**

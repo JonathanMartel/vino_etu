@@ -19,51 +19,29 @@ class CellierBouteilleController extends Controller
      */
     public static function index($idCellier)
     {
-        $cellierBouteilles = CellierBouteille::obtenirListeBouteilleCellier($idCellier);
         $cellier = Cellier::find($idCellier);
         $celliers = Cellier::getCelliersByUser(session('user')->id);
+        $cellierBouteillesIDs = CellierBouteille::getCellierBouteillesIDs($idCellier);
 
-$cellierBouteillesIDs = CellierBouteille::getCellierBouteillesIDs($idCellier);
+        foreach ($cellierBouteillesIDs as $bouteilleID) {
 
-/* $cellierBouteillesByIDs = [
-        "id" => '',
-        "nom" => "",
-        "pays" => "",
-        "format" => "",
-        "taille" => "",
-        "url_img" => "",
-    
-    "dataCellier" => [],
-]; */
+            $bouteille = Bouteille::getDataBouteilleByID($bouteilleID->bouteille_id); //infos générales de la bouteille obtenue grace a son ID
+            $dataCellierBouteillesByIDs = CellierBouteille::getDataCellierBouteillesByID($idCellier, $bouteilleID->bouteille_id);
 
+            $cellierBouteillesByIDs[$bouteilleID->bouteille_id] = [
+                "bouteille" => $bouteille[0],
+                "id" => $bouteilleID->bouteille_id,
+                "dataCellier" => $dataCellierBouteillesByIDs,
+            ];
 
-
-foreach ($cellierBouteillesIDs as $bouteilleID){
-
-    $bouteille = Bouteille::getDataBouteilleByID($bouteilleID->bouteille_id); //infos générales de la bouteille obtenue grace a son ID
-    $dataCellierBouteillesByIDs = CellierBouteille::getDataCellierBouteillesByID($idCellier, $bouteilleID->bouteille_id); //
-
-    $cellierBouteillesByIDs[$bouteilleID->bouteille_id] = [
-            "id" => $bouteilleID->bouteille_id,
-            "nom" => $bouteille[0]->nom,
-            "pays" => $bouteille[0]->pays,
-            "type" => $bouteille[0]->type,
-            "format" => $bouteille[0]->format,
-            "taille" => $bouteille[0]->taille,
-            "url_img" => $bouteille[0]->url_img,
-            "url_saq" => $bouteille[0]->url_saq,
-            "dataCellier" => $dataCellierBouteillesByIDs,
-    ];
-
-    //var_dump($cellierBouteillesByIDs);
-}
+            //var_dump($cellierBouteillesByIDs);
+        }
 
 
         return view('cellierBouteille.index', [
-            'cellierBouteilles' => $cellierBouteilles,
             'cellier' => $cellier,
           'cellierBouteillesByIDs' => $cellierBouteillesByIDs ?? [],
-            'celliers' => $celliers
+            'celliers' => $celliers,
         ]);
     }
 
@@ -101,7 +79,7 @@ foreach ($cellierBouteillesIDs as $bouteilleID){
         }
 
         $millesime = 0;
-        
+
         if (!empty($request->millesime)) {
             $millesime = $request->millesime;
         }
@@ -217,10 +195,25 @@ foreach ($cellierBouteillesIDs as $bouteilleID){
      * @param  \App\Models\CellierBouteille  $cellierBouteille
      * @return \Illuminate\Http\Response
      */
-    public function show(CellierBouteille $cellierBouteille)
+    public function show($idCellier, $idBouteille)
     {
-        //
+        $cellier = Cellier::find($idCellier);
+        $bouteille = Bouteille::getDataBouteilleByID($idBouteille);
+        $cellierBouteille = CellierBouteille::obtenirListeBouteilleCellier($idCellier);
+        $cellierBouteilleMillesime = CellierBouteille::obtenirMillesimesParBouteille($idCellier, $idBouteille);
+        
+        // print_r ($cellierBouteille);
+
+        return view('cellierBouteille.show', [
+            'bouteille' => $bouteille[0],
+            'cellierBouteille' => $cellierBouteille[0],
+            'cellier' => $cellier,
+            'cellierBouteilleMillesime' =>  $cellierBouteilleMillesime,
+        ]);
+        
     }
+
+ 
 
     /**
      * Show the form for editing the specified resource.
@@ -243,7 +236,6 @@ foreach ($cellierBouteillesIDs as $bouteilleID){
     public function ajouterNote($idCellier, $idBouteille, $millesime, $note)
     {
         CellierBouteille::ajouterNote($idCellier, $idBouteille, $millesime, $note);
-        
     }
 
 
@@ -277,7 +269,6 @@ foreach ($cellierBouteillesIDs as $bouteilleID){
         if ($estBue) {
             return response()->json($quantiteBue);
         }
-
     }
 
     /**

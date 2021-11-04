@@ -107,7 +107,6 @@
 .infoCellierBouteilleConteneur {
     display: flex;
     flex-direction: column;
-    
     gap: 0.64rem;
 }
 
@@ -150,12 +149,7 @@ color: #343B41;
 }
 
 .bouton-cercle-add {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
+    
     transition: all 0.2s ease;
 }
 
@@ -168,12 +162,7 @@ color: #343B41;
 }
 
 .bouton-cercle-remove {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
+    
     transition: all 0.2s ease;
 }
 
@@ -289,4 +278,62 @@ section:nth-child(even) {
 .cellier .dropdown-content li>span {
     color: #7A5958;
     text-align: center;
+}
+
+/**** fiche d'un vin ****/
+
+.bouteille-nom{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #7A5958;
+    color: white;
+    font-size: 1.25rem;
+    font-weight: 700;
+    padding: 0.64rem;
+}
+
+
+.description-titre{
+    font-size: 1.25rem;
+    font-weight: 500;
+    padding-top: 0.64rem;
+}
+
+.millesime-conteneur{
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 0.64rem;
+    column-gap: 0.64rem;
+    padding-left:0.64rem;
+
+}
+
+.millesime-item{
+    display: flex;
+    width: 113px;
+    height: 36px; 
+    background-color: #7A5958;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+}
+
+.form-modifier{
+    padding:1.563rem;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.form-modifier-item{
+    display: flex;
+    align-items: center;
+}
+
+.form-modifier-item label{
+    padding: 1rem;
 }
