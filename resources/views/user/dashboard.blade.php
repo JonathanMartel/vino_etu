@@ -12,14 +12,42 @@
                 </div>
                 <div class="card-content">
                     <h6>Tableau de bord des comptes</h6>
-                    <div class="flex-row">    
-                        <i class="small material-icons black-text">email</i>
-                        <p>{{$courriel}}</p>    
+                    <div class="flex-row space">   
+                        <div  class="flex-row"> 
+                            <i class="small material-icons black-text">account_circle</i>
+                            <p>{{$nom}}</p>
+                        </div>    
+                        <i class="small material-icons black-text" data-js-modifie>edit</i>
                     </div>
-                    <div class="flex-row">    
-                        <i class="small material-icons black-text">cake</i>
-                        <p>{{$date_naissance}}</p>   
-                    </div>         
+                    <div class="flex-row space hidden" data-js-button>
+                        <input type="text" name="nom" data-js-inputNom>
+                        <button class="waves-effect waves-light btn-small" data-js-btnNom>Modifier</button>
+                    </div>
+                    <span class="red-text"></span>
+                    
+                    <div class="flex-row space">    
+                        <div  class="flex-row">
+                            <i class="small material-icons black-text">email</i>
+                            <p>{{$courriel}}</p>    
+                        </div>    
+                        <i class="small material-icons black-text" data-js-modifie>edit</i>    
+                    </div>
+                    <div class="flex-row space hidden" data-js-button>
+                        <input type="text" name="courriel" data-js-inputCourriel>
+                        <button class="waves-effect waves-light btn-small" data-js-btnCourriel>Modifier</button>
+                    </div>
+
+                    <div class="flex-row space">    
+                        <div  class="flex-row">
+                            <i class="small material-icons black-text">cake</i>
+                            <p>{{$date_naissance}}</p>  
+                        </div>    
+                        <i class="small material-icons black-text" data-js-modifie>edit</i> 
+                    </div>    
+                    <div class="flex-row space hidden" data-js-button>
+                        <input type="text" name="date_naissance" data-js-inputDateNaissance>
+                        <button class="waves-effect waves-light btn-small" data-js-btnDateNaissance>Modifier</button>
+                    </div>     
                 </div>
             </div>
 
@@ -63,3 +91,5 @@
 
 
 @endsection
+
+<script src="{{asset('js/dashboard.js')}}"></script>
