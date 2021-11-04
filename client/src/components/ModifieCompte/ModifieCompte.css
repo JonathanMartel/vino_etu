@@ -1,21 +1,21 @@
-.ajout_bouteille_cellier_titre {
+.modification_titre {
     color: white;
     font-weight: 700;
     text-align: center;
     margin-top: 2rem;
 }
 
-.formulaire_ajout_bouteille_cellier input {
+.modification_contenu input {
     padding: .7rem;
     border-radius: .5rem;
     border: none;
 }
 
-.formulaire_ajout_bouteille_cellier input:focus {
+.modification_contenu input:focus {
     outline: unset;
 }
 
-.formulaire_ajout_bouteille_cellier button {
+.modification_contenu button {
     width: 100%;
     color: white;
     outline: unset;
@@ -28,10 +28,11 @@
     background-color: #641B30;
 }
 
-.formulaire_ajout_bouteille_cellier fieldset {
-   border-color: white !important;
+.modification_contenu fieldset {
+    border-color: white !important;
 }
 
-.formulaire_ajout_bouteille_cellier label, .formulaire_ajout_bouteille_cellier input {
+.modification_contenu label,
+.modification_contenu input {
     color: white !important;
 }

@@ -20,7 +20,6 @@ export default class DetailsBouteille extends React.Component {
 
 		this.recupereBouteille = this.recupereBouteille.bind(this);
 		this.modifier = this.modifier.bind(this);
-
 	}
 
 	recupereBouteille() {
@@ -28,7 +27,7 @@ export default class DetailsBouteille extends React.Component {
 			method: 'GET',
 			headers: {
 				'Content-type': 'application/json',
-				'authorization': 'Basic ' + btoa('vino:vino')
+				authorization: 'Basic ' + btoa('vino:vino')
 			}
 		}
 		fetch("https://rmpdwebservices.ca/webservice/php/bouteilles/" + this.props.param.match.params.id, getMethod)
@@ -69,13 +68,13 @@ export default class DetailsBouteille extends React.Component {
 			method: 'PUT',
 			headers: {
 				'Content-type': 'application/json',
-				'authorization': 'Basic ' + btoa('vino:vino')
+				authorization: 'Basic ' + btoa('vino:vino')
 			},
 			body: JSON.stringify(donnes)
-		}
+		};
 
-		fetch("https://rmpdwebservices.ca/webservice/php/bouteilles/", putMethod)
-			.then(reponse => reponse.json())
+		fetch('https://rmpdwebservices.ca/webservice/php/bouteilles/', putMethod)
+			.then((reponse) => reponse.json())
 			.then((donnees) => {
 				if (donnees.data) return this.props.history.push("/ListeCelliers/");
 			});
@@ -103,7 +102,6 @@ export default class DetailsBouteille extends React.Component {
 				<button type="button" onClick={(e) => this.modifier()}>Modifier</button>
 
 			</form>
-		)
+		);
 	}
-};
-
+}
