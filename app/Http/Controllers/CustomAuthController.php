@@ -166,7 +166,8 @@ class CustomAuthController extends Controller
         $user->update([
           'nom' => $request->nom,
           'courriel' => $request->courriel,
-          'date_naissance' => $request->date_naissance
+          'date_naissance' => $request->date_naissance,
+          'password'=> $oldPassword
         ]);
         return redirect('dashboard');
         // return redirect()->intended('dashboard');
@@ -174,11 +175,40 @@ class CustomAuthController extends Controller
 
       return redirect('/user/'.$id.'/edit')->withSuccess('Le mot de passe n\'est pas valides!');
 
+    }
 
-      
-      
+    public function modifiePassword(user $user)
+    {
+      $id = $user->id;
+      return view('user.passwordmodifie', ['id' => $id,'user' => $user]);
+    }
+
+    public function passwordupdate(Request $request, user $user)
+    {
+      $request->validate([
+        'old_password' => 'required|min:6|max:20',
+        'nouveau_password' => 'required|min:6|max:20|confirmed',
+        // 'password_confirmation' => 'required|min:6|max:20'
+
+    ]);
+
+      $oldPassword = $user->password;
+      $password = $request->password;
+      $bool = Hash::check($password, $oldPassword);
+      if ($bool) {
+        $user->fill($request->all());
+        $user->update([
+
+          'password'=> $newPassword
+        ]);
+        return redirect('dashboard');
+        // return redirect()->intended('dashboard');
+      }
+
+      return redirect('/user/'.$id.'/edit')->withSuccess('Le mot de passe n\'est pas valides!');
 
     }
+
 
     /**
      * Remove the specified resource from storage.

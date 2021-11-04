@@ -66,10 +66,14 @@
 
             <div class="card">
                 <div class="card-content hoverclass">
-                    <a href="{{ route('custom.edit', $id)}}">
-                        <div class="flex-row">    
-                        <i class="small material-icons black-text">account_box</i>
-                        <h6>Gérer mon mot de passe</h6>      
+                    <a href="{{ route('password.edit', $id)}}">
+                        <div class="flex-row space" >    
+                            <div class="flex-row">
+                                <i class="small material-icons black-text">account_box</i>
+                                <h6>Gérer mon mot de passe</h6>   
+                            </div>  
+                        <i class="small material-icons black-text">chevron_right</i>   
+
                         </div>      
                     </a>
                 </div>

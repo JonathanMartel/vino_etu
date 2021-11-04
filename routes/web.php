@@ -57,6 +57,9 @@ Route::get('logout', [CustomAuthController::class, 'logout'])->name('logout');
 Route::get('dashboard', [CustomAuthController::class, 'dashboard'])->middleware('auth')->name('dashboard')->middleware('prevent-back-history');
 Route::get('/user/{user}/edit', [CustomAuthController::class, 'edit'])->middleware('auth')->name('custom.edit')->middleware('prevent-back-history');
 Route::put('/user/{user}/edit', [CustomAuthController::class, 'update'])->middleware('auth')->name('custom.update')->middleware('prevent-back-history');
+Route::get('/user/{user}/modifie', [CustomAuthController::class, 'modifiePassword'])->middleware('auth')->name('password.edit')->middleware('prevent-back-history');
+Route::put('/user/{user}/modifie', [CustomAuthController::class, 'passwordupdate'])->middleware('auth')->name('password.update')->middleware('prevent-back-history');
+
 
 /*
 |--------------------------------------------------------------------------
