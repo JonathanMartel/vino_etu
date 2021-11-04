@@ -1,0 +1,121 @@
+/* https://codepen.io/k185/pen/PQajXE */
+
+.search-container .button {
+	display: inline-block;
+	margin: 4px 2px;
+	background-color: #444;
+	font-size: 14px;
+	padding-left: 32px;
+	padding-right: 32px;
+	height: 50px;
+	line-height: 50px;
+	text-align: center;
+	color: white;
+	text-decoration: none;
+	cursor: pointer;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.search-container .button:hover {
+	transition-duration: 0.4s;
+	-moz-transition-duration: 0.4s;
+	-webkit-transition-duration: 0.4s;
+	-o-transition-duration: 0.4s;
+	background-color: white;
+	color: black;
+}
+
+.search-container {
+	position: relative;
+	display: inline-block;
+	margin-left: 2em;
+	height: 50px;
+	width: 50px;
+	vertical-align: bottom;
+}
+
+.search-container .mglass {
+	display: inline-block;
+	pointer-events: none;
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+}
+
+.search-container .searchbutton {
+	position: absolute;
+	font-size: 22px;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+    border: 1px solid black;
+    height: 50px;
+    border-radius: initial;
+}
+
+
+
+
+div.search-container form .expandright.search:focus + .searchbutton {
+	transition-duration: 0.4s;
+	-moz-transition-duration: 0.4s;
+	-webkit-transition-duration: 0.4s;
+	-o-transition-duration: 0.4s;
+	background-color: white;
+	color: black;
+}
+
+div.search-container form .search {
+	position: absolute;
+	left: 49px; /* Button width-1px (Not 50px/100% because that will sometimes show a 1px line between the search box and button) */
+	background-color: white;
+	outline: none;
+	border: 1px solid black;
+    border-right: none;
+	padding: 0;
+	width: 0;
+	height: 48px;
+	z-index: 10;
+	transition-duration: 0.4s;
+	-moz-transition-duration: 0.4s;
+	-webkit-transition-duration: 0.4s;
+	-o-transition-duration: 0.4s;
+
+}
+
+
+.search-container .search:focus {
+	width: 12em; /* Bar width+1px */
+	padding: 0 16px 0 0;
+}
+
+div.search-container form .expandright {
+	left: auto;
+	right: 49px; /* Button width-1px */
+}
+
+.search-container .expandright:focus {
+	padding: 0 0 0 16px;
+}
+
+
+div.search-container form input[type=search]:not(.browser-default) {
+    transition: width 0.4s
+}
+
+input[type=search]::-webkit-search-cancel-button, 
+input[type=search]::-webkit-search-decoration {
+    -webkit-appearance: searchfield-cancel-button !important;
+    cursor: pointer;
+}
+
+div.search-container form input[type=search]:not(.browser-default):focus:not([readonly]){
+    box-shadow: none;
+    border: 1px solid black;
+    border-right: none;
+}

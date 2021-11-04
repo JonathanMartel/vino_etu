@@ -20,6 +20,7 @@ class CellierBouteilleController extends Controller
     public static function index($idCellier)
     {
         $cellier = Cellier::find($idCellier);
+        $celliers = Cellier::getCelliersByUser(session('user')->id);
         $cellierBouteillesIDs = CellierBouteille::getCellierBouteillesIDs($idCellier);
 
         foreach ($cellierBouteillesIDs as $bouteilleID) {
@@ -39,7 +40,8 @@ class CellierBouteilleController extends Controller
 
         return view('cellierBouteille.index', [
             'cellier' => $cellier,
-            'cellierBouteillesByIDs' => $cellierBouteillesByIDs ?? []
+          'cellierBouteillesByIDs' => $cellierBouteillesByIDs ?? [],
+            'celliers' => $celliers,
         ]);
     }
 
