@@ -12,18 +12,6 @@ export class ListeBouteilleComponent implements OnInit {
 
   constructor(private servBouteilleDeVin:BouteilleDeVinService, private http: HttpClient) { }
 
-  /* this.http.get('/url', {
-    params: {
-
-    },
-    observe: 'response'
-  })
-  .toPromise()
-  .then(response => {
-    console.log(response);
-  })
-  .chatch(console.log); */
-
 
   ngOnInit(): void {
 
@@ -32,8 +20,7 @@ export class ListeBouteilleComponent implements OnInit {
 
   // recherche dans la liste
   recherche(bouteilleRecherche: string) {
-    console.log(encodeURIComponent(bouteilleRecherche));
-
+   
 
   }
 
