@@ -19,7 +19,7 @@ export default class ListeCellier extends React.Component {
 
 	componentDidMount() {
 		if (!this.props.estConnecte) {
-			return this.props.history.push("/");
+			return this.props.history.push('/connexion');
 		}
 		this.fetchCelliers();
 	}
