@@ -6,6 +6,7 @@
 
 <form [formGroup]="modifierBouteilleCellier" (ngSubmit)=putBouteille(modifierBouteilleCellier.value)>
     <div class="formulaire-contenu">
+
         <mat-form-field appearance="fill">
             <mat-label for="url_image">Nom</mat-label>
             <input matInput type="text" id="nom" name="nom" formControlName="nom">
@@ -34,24 +35,24 @@
             <mat-label for="millesime">Millesime</mat-label>
             <input matInput type="text" id="millesime" name="millesime" formControlName="millesime">
         </mat-form-field>
-        <mat-form-field  appearance="fill">
+        <mat-form-field appearance="fill">
             <mat-label for="date_acquisition">Date d'achat</mat-label>
-            <input matInput type="date" id=date_acquisition name="date_acquisition" formControlName="date_acquisition" >
+            <input matInput type="date" id=date_acquisition name="date_acquisition" formControlName="date_acquisition">
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label for="prix_paye">Prix</mat-label>
             <input matInput type="text" id="prix_paye" name="prix_paye" formControlName="prix_paye">
         </mat-form-field>
-        <mat-form-field  appearance="fill">
+        <mat-form-field appearance="fill">
             <mat-label for="conservation">Conservation</mat-label>
             <input matInput type="text" id=conservation name="conservation" formControlName="conservation">
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label for="notes_personnelles">Notes personnelles</mat-label>
-            <input matInput type="text" id="notes_personnelles" name="notes_personnelles" formControlName="notes_personnelles">
+            <input matInput type="text" id="notes_personnelles" name="notes_personnelles"
+                formControlName="notes_personnelles">
         </mat-form-field>
 
     </div>
         <button type="submit" mat-raised-button>Modifier</button>
 </form>
-
