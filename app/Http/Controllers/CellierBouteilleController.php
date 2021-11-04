@@ -220,6 +220,7 @@ foreach ($cellierBouteillesIDs as $bouteilleID){
         $cellier = Cellier::find($idCellier);
         $bouteille = Bouteille::getDataBouteilleByID($idBouteille);
         $cellierBouteille = CellierBouteille::obtenirListeBouteilleCellier($idCellier);
+        $cellierBouteilleMillesime = CellierBouteille::obtenirMillesimesParBouteille($idCellier, $idBouteille);
         
         // print_r ($cellierBouteille);
 
@@ -227,6 +228,7 @@ foreach ($cellierBouteillesIDs as $bouteilleID){
             'bouteille' => $bouteille[0],
             'cellierBouteille' => $cellierBouteille[0],
             'cellier' => $cellier,
+            'cellierBouteilleMillesime' =>  $cellierBouteilleMillesime,
         ]);
         
     }

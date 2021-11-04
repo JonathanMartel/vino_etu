@@ -107,7 +107,6 @@
 .infoCellierBouteilleConteneur {
     display: flex;
     flex-direction: column;
-    
     gap: 0.64rem;
 }
 
@@ -264,3 +263,62 @@ color: #343B41;
 section:nth-child(even) {
     background-color: Lightgreen;
 } */
+
+
+/**** fiche d'un vin ****/
+
+.bouteille-nom{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #7A5958;
+    color: white;
+    font-size: 1.25rem;
+    font-weight: 700;
+    padding: 0.64rem;
+}
+
+
+.description-titre{
+    font-size: 1.25rem;
+    font-weight: 500;
+    padding-top: 0.64rem;
+}
+
+.millesime-conteneur{
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 0.64rem;
+    column-gap: 0.64rem;
+    padding-left:0.64rem;
+
+}
+
+.millesime-item{
+    display: flex;
+    width: 113px;
+    height: 36px; 
+    background-color: #7A5958;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+}
+
+.form-modifier{
+    padding:1.563rem;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.form-modifier-item{
+    display: flex;
+    align-items: center;
+}
+
+.form-modifier-item label{
+    padding: 1rem;
+}

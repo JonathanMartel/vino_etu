@@ -19,10 +19,6 @@
       </div>
 </div>
 
-<<<<<<< HEAD
-
-
-=======
 <table class="table striped responsive-table">
         <thead>
           <tr>
@@ -43,7 +39,6 @@
         </tbody>
       </table>
 <span class="message"></span>
->>>>>>> e41a7478f4d045bf696f2859275a3cb78e4025db
 @endsection
 
 <link href="{{asset('css/bouteilles.css')}}" rel="stylesheet" />
