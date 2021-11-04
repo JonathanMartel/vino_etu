@@ -1,32 +1,58 @@
-<section class="wrapper">
-    <div class="resultat-img">
-        <img src="{{bouteille.image}}" alt="une bouteille">
+<section>
+    <div class="wrapper">
+        <div class="resultat-img">
+            <a class="btn-vin"><img src="{{bouteille.image}}" alt="une bouteille"></a>
+        </div>
+        <div class="resultat-vin">
+            <div class="resultat-vin-data">
+                <a class="target-link">{{bouteille.nom}}</a>
+                <div>
+                    <span class="subtexte">{{bouteille.categorie}}</span>
+                    <span class="subtexte">{{bouteille.format}}</span>
+                    <span class="subtexte">{{bouteille.pays}}</span>
+                </div>
+            </div>
+            <div class="boutons-inventaire">
+                <div *ngIf="inventaire.errors?.min">
+                    L'inventaire ne doit pas être inférieur à 0
+                </div>
+                <div>
+                    <button mat-mini-fab [disabled]="!enStock" (click)="diminuer()"><mat-icon>remove</mat-icon></button>
+                    <mat-form-field class="inventaire-form-field" appearance ="fill">
+                        <input matInput type="text" [formControl] = "inventaire">
+                    </mat-form-field>
+                    <button mat-mini-fab (click)="augmenter()"><mat-icon>add</mat-icon></button>
+                </div>
+                <!-- <div class="boutons-actions">
+                    <a routerLink="/modifier-cellier/{{bouteille.bouteilleId}}"><button mat-mini-fab class="edit" ><mat-icon>edit</mat-icon></button></a>
+                </div> -->
+            </div>
+        </div>
     </div>
-    <div class="resultat-vin">
-        <div class="resultat-vin-data">
-            <a class="target-link">{{bouteille.nom}}</a>
+
+    <!-- Plus d'informations et accès au lien pour modifier l'info -->
+    <mat-expansion-panel class="mat-elevation-z0 plus-infos-bouteille-cellier">
+        <mat-expansion-panel-header>
+            <mat-panel-title>Plus d'informations</mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <dl>
             <div>
-                <span class="subtexte">{{bouteille.categorie}}</span>
-                <span class="subtexte">{{bouteille.format}}</span>
-                <span class="subtexte">{{bouteille.origine}}</span>
+                <dt>Description</dt>
+                <dl>{{ bouteille.description }}</dl>
             </div>
-        </div>
 
+            <div>
+                <dt>Description</dt>
+                <dl>{{ bouteille.description }}</dl>
+            </div>
+        </dl>
 
-        <div class="boutons-inventaire">
-            <div class="boutons-actions">
-                <a routerLink="/modifier-cellier/{{bouteille.bouteilleId}}"><button mat-mini-fab class="edit" ><mat-icon>edit</mat-icon></button></a>
-            </div>
-            <div *ngIf="inventaire.errors?.min">
-                L'inventaire ne doit pas être inférieur à 0
-            </div>
-            <button mat-mini-fab (click)="diminuer()"><mat-icon>remove</mat-icon></button>
-            <mat-form-field class="inventaire-form-field" appearance ="fill">
-                <input matInput type="text" [formControl] = "inventaire">
-            </mat-form-field>
-            <button mat-mini-fab (click)="augmenter()"><mat-icon>add</mat-icon></button>
+        <a *ngIf="bouteille.url_achat" href="{{ bouteille.url_achat }}">Acheter en ligne</a>
+
+        <div class="actions">
+            <a mat-flat-button routerLink="/modifier-cellier/{{bouteille.bouteilleId}}"><mat-icon>edit</mat-icon> Modifier</a>
         </div>
- 
-    </div>
+    </mat-expansion-panel>
 </section>
 

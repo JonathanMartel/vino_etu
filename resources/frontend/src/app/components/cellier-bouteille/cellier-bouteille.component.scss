@@ -104,3 +104,14 @@ input[type=number]::-webkit-outer-spin-button {
 .boutons-actions{
     margin-right: 3rem;
 }
+
+
+/* Panneau extensible */
+.mat-expansion-panel {
+    background-color: transparent;
+}
+
+.plus-infos-bouteille-cellier .actions {
+    display: flex;
+    justify-content: flex-end;
+}
