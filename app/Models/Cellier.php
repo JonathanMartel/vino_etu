@@ -29,7 +29,8 @@ class Cellier extends Model
     {
         // Mapping afin de s'assurer que l'utilisateur envoie bel et bien une valeur existante
         $orderByMapping = [
-            "nom"   => "ba.nom"
+            "nom"     => "ba.nom",
+            "origine" => "ba.origine"
         ];
 
         // Par défaut, mettre le nom comme champ de tri...
