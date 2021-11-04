@@ -47,6 +47,7 @@ import { MatExpansionModule } from '@angular/material/expansion'
         FicheBouteilleComponent,
         CellierBouteilleComponent,
         ModifierCellierBouteilleComponent,
+
     ],
     imports: [
         BrowserModule,

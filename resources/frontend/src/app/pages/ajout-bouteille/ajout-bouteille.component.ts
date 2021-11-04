@@ -66,8 +66,9 @@ export class AjoutBouteilleComponent implements OnInit {
 
         console.log(this.bouteilleAchetee);
 
-        this.servBouteilleDeVin.ajoutBouteilleCellier(this.bouteilleAchetee).subscribe(() => { 
-            this.openSnackBar('Vous avez ajouté une bouteille à votre cellier', 'Fermer')});
+        this.servBouteilleDeVin.ajoutBouteilleCellier(this.bouteilleAchetee).subscribe(() => {
+            this.openSnackBar('Vous avez ajouté une bouteille à votre cellier', 'Fermer') 
+         });
 
         setTimeout(() => {
             this.formulaireRef.close();
