@@ -88,7 +88,7 @@ class CellierBouteille extends Model
 
 
         return DB::table('cellier_bouteilles')
-        ->select('pays', 'type', 'millesime', 'taille', 'bouteilles.nom', 'quantite', 'url_img', 'cellier_id', 'bouteille_id', 'note' )
+        ->select('pays', 'type', 'millesime', 'taille', 'bouteilles.nom', 'quantite', 'url_img', 'cellier_id', 'bouteille_id', 'note','prix', 'date_achat', 'commentaire', 'garde_jusqua')
         ->where('cellier_id', $idCellier)
         ->join('bouteilles', 'bouteilles.id', '=', 'cellier_bouteilles.bouteille_id')
         ->join('types', 'types.id', '=', 'bouteilles.type_id')

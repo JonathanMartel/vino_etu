@@ -41,9 +41,16 @@
     <div class="articlesConteneur">
         @foreach ($cellierBouteillesByIDs as $vin)
         <article class="articleVin">
-            <div class="nomVinConteneur">
-                <h2>{{$vin['bouteille']->nom}}</h2>
-            </div>
+            <a href="{{route('ficheVin', [
+                    'idCellier'=>$cellier->id,
+                    'idBouteille'=>$vin['id'],
+                    ]) }}">
+                <div class="nomVinConteneur">
+                    <h2>{{$vin['bouteille']->nom}}</h2>
+                </div>
+            </a>
+
+           
             <div class="infoBouteilleConteneur">
                 <img class="image" src="{{$vin['bouteille']->url_img}}" alt="Image {{$vin['bouteille']->nom}}">
                 <div class="info">

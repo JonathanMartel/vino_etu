@@ -193,10 +193,25 @@ class CellierBouteilleController extends Controller
      * @param  \App\Models\CellierBouteille  $cellierBouteille
      * @return \Illuminate\Http\Response
      */
-    public function show(CellierBouteille $cellierBouteille)
+    public function show($idCellier, $idBouteille)
     {
-        //
+        $cellier = Cellier::find($idCellier);
+        $bouteille = Bouteille::getDataBouteilleByID($idBouteille);
+        $cellierBouteille = CellierBouteille::obtenirListeBouteilleCellier($idCellier);
+        $cellierBouteilleMillesime = CellierBouteille::obtenirMillesimesParBouteille($idCellier, $idBouteille);
+        
+        // print_r ($cellierBouteille);
+
+        return view('cellierBouteille.show', [
+            'bouteille' => $bouteille[0],
+            'cellierBouteille' => $cellierBouteille[0],
+            'cellier' => $cellier,
+            'cellierBouteilleMillesime' =>  $cellierBouteilleMillesime,
+        ]);
+        
     }
+
+ 
 
     /**
      * Show the form for editing the specified resource.
