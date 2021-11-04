@@ -26,9 +26,10 @@ export class BouteilleDeVinService {
     }
 
     getListeBouteille(filtres = {}) {
-        /* filtres = {
+        /*filtres = {
             texteRecherche: "états"
-        }; */
+        };*/
+
 
         return this.http.get<any>(this.url + '/catalogue-bouteilles', {
             params: filtres
