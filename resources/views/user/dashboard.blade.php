@@ -24,7 +24,7 @@
                         <button class="waves-effect waves-light btn-small" data-js-btnNom>Modifier</button>
                     </div>
                     <span class="red-text"></span>
-                    
+
                     <div class="flex-row space">    
                         <div  class="flex-row">
                             <i class="small material-icons black-text">email</i>
@@ -56,7 +56,7 @@
                     <a href="{{ route('custom.edit', $id)}}">
                         <div class="flex-row">    
                         <i class="small material-icons black-text">account_box</i>
-                        <h6>Gérer mon compte</h6>      
+                        <h6>Gérer mon mot de passe</h6>      
                         </div>      
                     </a>
                 </div>
