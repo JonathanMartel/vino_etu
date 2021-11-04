@@ -35,9 +35,9 @@ class BouteilleController extends Controller {
                              ->whereRaw("MATCH(nom) against (? in natural language mode)", [$recherche]); */
 
             $requete = $requete
-                            ->whereRaw("MATCH(b.nom,description,b.format) against (? in natural language mode)", [$recherche])
-                            ->orWhereRaw("MATCH(p.nom) against (? in natural language mode)", [$recherche])
-                            ->orWhereRaw("MATCH(c.nom) against (? in natural language mode)", [$recherche]);
+                            ->whereRaw("MATCH(b.nom,description,b.format) against (? in boolean mode)", ["*$recherche*"])
+                            ->orWhereRaw("MATCH(p.nom) against (? in boolean mode)", ["*$recherche*"])
+                            ->orWhereRaw("MATCH(c.nom) against (? in boolean mode)", ["*$recherche*"]);
         }
 
 
