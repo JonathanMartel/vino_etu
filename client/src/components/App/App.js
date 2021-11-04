@@ -12,6 +12,7 @@ import AjoutCellier from "../AjoutCellier/AjoutCellier";
 import DetailsBouteille from "../DetailsBouteille/DetailsBouteille";
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import ModifieCompte from "../ModifieCompte/ModifieCompte";
+import NouvelleCellier from "../NouvelleCellier/NouvelleCellier";
 import './App.css';
 
 export default class App extends React.Component {
@@ -72,6 +73,16 @@ export default class App extends React.Component {
 					<Route exact path="/bouteilles/:id" render={(param_route)=> 
 							<DetailsBouteille {...param_route} bouteille_id={param_route?.match?.params?.bouteille_id} param={param_route} />} />
 	
+					<Route
+						exact
+						path="/nouvellecellier"
+						component={(props) => (
+							<NouvelleCellier title="Nouvelle Cellier" 
+							estConnecte={this.state.estConnecte} id_usager={this.state.id_usager} 
+							{...props} />
+						)}
+					/>
+
     			    <Route exact path="*" component={Page404} />
         		</Switch>
 
