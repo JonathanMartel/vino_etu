@@ -24,7 +24,7 @@ export class ListeBouteilleComponent implements OnInit {
     recherche($event: any): void {
         const texteRecherche: string = $event.target.value;
 
-        if (texteRecherche.length < 3) {
+        if (texteRecherche.length < 3 && this.bouteille != this.bouteillesInitiales) {
             this.bouteille = this.bouteillesInitiales;
             return;
         }
@@ -33,6 +33,8 @@ export class ListeBouteilleComponent implements OnInit {
             .getListeBouteille({
                 texteRecherche: texteRecherche
             })
-            .subscribe(bouteille => this.bouteille = bouteille.data);
+            .subscribe(bouteille => {
+                this.bouteille = bouteille.data;
+            });
     }
 }
