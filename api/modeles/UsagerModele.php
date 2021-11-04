@@ -41,4 +41,31 @@ class UsagerModele extends Modele
 
         return $match;
     }
+    
+    /**
+     * Retourne toutes les informations d'un usager.
+     *
+     * @param Integer $id
+     * 
+     * @throws Exception Erreur de requête sur la base de données.
+     * 
+     * @return Array Infos usager.
+     */
+    public function getUsagerParId($id) {
+        $rows = array();
+
+        $requete = "SELECT * FROM vino__usager WHERE id_usager = '$id'";
+
+        if (($res = $this->_db->query($requete)) == true) {
+            if ($res->num_rows) {
+                while ($row = $res->fetch_assoc()) {
+                    $rows[] = $row;
+                }
+            }
+        } else {
+            throw new Exception("Erreur de requête sur la base de donnée", 1);
+        }
+
+        return $rows;
+    }
 }
