@@ -4,7 +4,6 @@ import Cellier from "../Cellier/Cellier";
 import './ListeCellier.css'
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { Box } from '@mui/system';
-/* import ListeBouteilleCellier from '../ListeBouteillesCellier/ListeBouteilleCellier'; */
 
 export default class ListeCellier extends React.Component {
 	constructor(props) {
@@ -18,17 +17,15 @@ export default class ListeCellier extends React.Component {
 		this.fetchCelliers = this.fetchCelliers.bind(this);
 	}
 
-	cliquer() {
-		console.log("cliquer: ", this);
-		//this.props.history.push("/ListeBouteilleCellier");
+	componentDidMount() {
+		if (!this.props.estConnecte) {
+			return this.props.history.push("/");
+		}
+		this.fetchCelliers();
 	}
 
-	fetchCelliers() {
-
-		console.log('this.props.match.params.id : ', this.props.match.params.id);
-		//Pour quoi ne fonctionne pas ???
-		/* this.setState({id_usager: this.props.match.params.id});
-		console.log('id_usager : ', this.state.id_usager); */
+	fetchCelliers(){
+		console.log('id_usager : ', this.props.id_usager);
 
 		const donnes = {
 			usager_id: null
@@ -40,35 +37,24 @@ export default class ListeCellier extends React.Component {
 				'Content-type': 'application/json',
 				'authorization': 'Basic ' + btoa('vino:vino')
 			}
-			//, body: JSON.stringify(donnes) 
 		}
 
-		console.log("this.state.id_usager: ", this.state.id_usager);
-		fetch("https://rmpdwebservices.ca/webservice/php/celliers/usager/" + this.props.match.params.id, getMethod)
+		fetch("https://rmpdwebservices.ca/webservice/php/celliers/usager/" + this.props.id_usager, getMethod)
 			.then(reponse => reponse.json())
 			.then((donnees) => {
 				this.setState({ items: donnees.data })
 				console.log("Celliers: ", this.state.items)
 			});
 	}
-
-	componentDidMount() {
-		this.fetchCelliers();
-	}
-
+	
 	render() {
-		{/* <Cellier info={item} onClick={this.cliquer.bind(item)} key={index} /> */ }
-		console.log('this.props : ', this.props);
-
 		const celliers = this.state.items
-			.map((item, index) => {
-				return (
-					<Cellier info={item} onClick={this.cliquer.bind(item)} key={index} />
-				);
-			})
-
-		console.log("Celliers del render: ", celliers);
-
+							.map((item, index)=>{
+								return (
+									<Cellier info={item} key={index} />
+								);
+							})
+		
 		return (
 			<Box>
 				<Breadcrumbs aria-label="breadcrumb" sx={{ display: 'flex', margin: '0 1.5rem' }}>
