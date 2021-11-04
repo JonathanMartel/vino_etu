@@ -307,3 +307,9 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
     height: 1.25rem;
     width: auto;
 }
+
+
+.msg-redirect {
+    padding: 1rem;
+    text-align: center;
+}

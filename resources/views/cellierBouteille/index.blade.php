@@ -50,19 +50,22 @@
                 </div>
             </a>
 
+            <div class="nomVinConteneur">
+                <h2>{{$vin['bouteille']->nom}}</h2>
+            </div>
             <div class="infoBouteilleConteneur">
-                <img class="image" src="{{$vin['url_img']}}" alt="Image {{$vin['nom']}}">
+                <img class="image" src="{{$vin['bouteille']->url_img}}" alt="Image {{$vin['bouteille']->nom}}">
                 <div class="info">
                     <div>
-                    <p>{{$vin['pays']}}</p>
-                    <p>{{$vin['type']}}</p>
+                    <p>{{$vin['bouteille']->pays}}</p>
+                    <p>{{$vin['bouteille']->type}}</p>
                     </div>
                     
-                    <p class="taille">{{$vin['taille']}} cl</p>
+                    <p class="taille">{{$vin['bouteille']->taille}} cl</p>
                 </div>
                 <div class="bouteilleSAQConteneur">
-                    @if($vin['url_saq'])
-                    <a class="lienSAQ" href="{{$vin['url_saq']}}">SAQ</a>
+                    @if($vin['bouteille']->url_saq)
+                    <a class="lienSAQ" href="{{$vin['bouteille']->url_saq}}">SAQ</a>
                     <div class="cercle ">
                         <i class="material-icon check">check</i>
                     </div>
@@ -102,7 +105,7 @@
                         <p class="quantite">Quantité : <span>{{$bouteille->quantite}}</span></p>
                     </div>
                     <div class=" flex bouton-conteneur">
-                        <div class="bouton-cercle-remove">
+                        <div class="cercle bouton-cercle-remove">
                             <a class="btn-floating btn-large waves-effect waves-light " name="btnRetirerBouteille" href="{{ route('boireBouteille',[
                             'idCellier'=>$cellier->id,
                             'idBouteille'=>$vin['id'],
@@ -111,7 +114,7 @@
                                 <i class="material-icon">remove</i>
                             </a>
                         </div>
-                        <div class="bouton-cercle-add">
+                        <div class="cercle bouton-cercle-add">
                             <a class="btn-floating btn-large waves-effect waves-light" name="btnAjouterBouteille" href="{{ route('ajouterBouteille',[
                             'idCellier'=>$cellier->id,
                             'idBouteille'=>$vin['id'],
@@ -131,6 +134,7 @@
 
 
 
+<<<<<<< HEAD
     <!-- @forelse($cellierBouteilles as $cellierBouteille)
     <section>
         <div class="flex">
@@ -200,6 +204,9 @@
 
 
     @endforelse -->
+=======
+    
+>>>>>>> 91186de77ab1d2d562c2673425a0ab41a3f59006
 
 </main>
 @endsection
