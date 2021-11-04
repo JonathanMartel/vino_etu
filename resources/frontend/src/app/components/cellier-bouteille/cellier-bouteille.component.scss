@@ -90,6 +90,7 @@ img {
 .boutons-inventaire{
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 5px;
 
 }
@@ -113,4 +114,14 @@ input[type=number]::-webkit-outer-spin-button {
 .plus-infos-bouteille-cellier .actions {
     display: flex;
     justify-content: flex-end;
+}
+
+.mat-expansion-panel:not(.mat-expanded):not([aria-disabled=true]) .mat-expansion-panel-header:hover {
+    background: inherit;
+}
+
+
+.mat-flat-button{
+    background-color:#4c1920;
+    color: #fff;
 }
