@@ -42,9 +42,19 @@
                 <dl>{{ bouteille.description }}</dl>
             </div>
 
-            <div>
+            <div *ngIf="bouteille.notes_personnelles">
                 <dt><strong>Notes</strong></dt>
-                <dl>{{ bouteille.notes_personnelles }}</dl>
+                <dl>{{bouteille.notes_personnelles }}</dl>
+            </div>
+
+            <div *ngIf="bouteille.origine">
+                <dt><strong>Origine</strong></dt>
+                <dl>{{bouteille.origine }}</dl>
+            </div>
+
+            <div *ngIf="bouteille.millesime">
+                <dt><strong>Millesime</strong></dt>
+                <dl>{{bouteille.millesime }}</dl>
             </div>
         </dl>
 
