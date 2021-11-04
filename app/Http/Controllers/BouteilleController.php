@@ -29,15 +29,13 @@ class BouteilleController extends Controller {
                         ->join("categories as c", "c.id", "=", "b.categories_id")
                         ->select("*", "p.nom as pays", "c.nom as categorie", "b.nom as nom", "b.id as id");
 
-        if($recherche = $request->texteRecherche) {
-            /* $sousReqPays = DB::table("pays")
-                             ->select("id", "nom as pays")
-                             ->whereRaw("MATCH(nom) against (? in natural language mode)", [$recherche]); */
+        if($request->texteRecherche && strlen($request->texteRecherche) >= 3) {
+            $recherche = $request->texteRecherche;
 
             $requete = $requete
-                            ->whereRaw("MATCH(b.nom,description,b.format) against (? in natural language mode)", [$recherche])
-                            ->orWhereRaw("MATCH(p.nom) against (? in natural language mode)", [$recherche])
-                            ->orWhereRaw("MATCH(c.nom) against (? in natural language mode)", [$recherche]);
+                            ->whereRaw("MATCH(b.nom,description,b.format) against (? in boolean mode)", ["*$recherche*"])
+                            ->orWhereRaw("MATCH(p.nom) against (? in boolean mode)", ["*$recherche*"])
+                            ->orWhereRaw("MATCH(c.nom) against (? in boolean mode)", ["*$recherche*"]);
         }
 
 
