@@ -95,6 +95,9 @@
                     <label for="date_achat">Date d'achat :</label>
                     <input type="date" name="date_achat" id="date_achat" class="" value="{!! $cellierBouteille->date_achat !!}"/>
                 </div>
+
+                <button class="bouton-fiche">Annuler</button>
+                <button>Valider</button>
             </form>
         </div>
     </section>

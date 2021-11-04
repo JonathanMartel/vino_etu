@@ -67,13 +67,15 @@
 .form-modifier .form-modifier-item .input-fiche-cercle { 
     width: 60px ;
     height: 60px ;
-    border-style: solid ; 
+    border-style: solid ;
     border-radius: 50% ;
 }
+
+
+
 
 
 /* .form{
     display: none;
   } */
 
- 
