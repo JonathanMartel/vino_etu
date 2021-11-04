@@ -57,7 +57,7 @@ export class CellierComponent implements OnInit {
 
     effectuerRechercheFiltree(): void {
         this.servBouteilleDeVin
-            .getListeBouteille({
+            .getBouteillesParCellier({
                 texteRecherche: this.texteRecherche.value.replace("-", " ")
             })
             .subscribe(bouteillesCellier => {

@@ -79,7 +79,7 @@ class Cellier extends Model
      *
      */
     static private function annexerRechercheTextuelle(&$requete, $recherche) {
-        $requete->whereRaw("MATCH(ba.nom, ba.description, ba.format, ba.origine, ba.notes_personnelles, ba.conservation) against (? in natural language mode)", ["*$recherche*"])
-                ->orWhereRaw("MATCH(cat.nom) against (? in natural language mode)", ["*$recherche*"]);
+        $requete->whereRaw("MATCH(ba.nom, ba.description, ba.format, ba.origine, ba.conservation, ba.notes_personnelles) against (? in boolean mode)", ["*$recherche*"])
+                ->orWhereRaw("MATCH(cat.nom) against (? in boolean mode)", ["*$recherche*"]);
     }
 }
