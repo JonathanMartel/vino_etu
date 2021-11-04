@@ -25,8 +25,8 @@ class Cellier extends Model
         int $limite = 24,
         $orderBy = "nom",
         $orderDirection = "asc",
-        array $filtres = null)
-    {
+        array $filtres = null
+    ) {
         // Mapping afin de s'assurer que l'utilisateur envoie bel et bien une valeur existante
         $orderByMapping = [
             "nom"     => "ba.nom",
@@ -50,7 +50,7 @@ class Cellier extends Model
                             "ba.id as bouteilleId",
                             "ba.nom as nom",
                             "ba.description as description",
-                            "ba.url_image as image",
+                            "ba.url_image",
                             "ba.url_achat",
                             "ba.url_info",
                             "ba.format",
@@ -79,7 +79,7 @@ class Cellier extends Model
      *
      */
     static private function annexerRechercheTextuelle(&$requete, $recherche) {
-        $requete->whereRaw("MATCH(ba.nom, ba.description, ba.format, ba.origine, ba.notes_personnelles, ba.conservation) against (? in boolean mode)", ["*$recherche*"])
-                ->orWhereRaw("MATCH(cat.nom) against (? in boolean mode)", ["*$recherche*"]);
+        $requete->whereRaw("MATCH(ba.nom, ba.description, ba.format, ba.origine, ba.notes_personnelles, ba.conservation) against (? in natural language mode)", ["*$recherche*"])
+                ->orWhereRaw("MATCH(cat.nom) against (? in natural language mode)", ["*$recherche*"]);
     }
 }

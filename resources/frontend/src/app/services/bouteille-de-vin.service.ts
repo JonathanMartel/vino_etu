@@ -7,23 +7,33 @@ import { HttpClient } from '@angular/common/http';
 })
 export class BouteilleDeVinService {
 
-    private url:string = "http://127.0.0.1:8000/api";
-    // private url:string = "http://kalimotxo-vino.akira.dev/api";
+    // private url:string = "http://127.0.0.1:8000/api";
+    private url:string = "http://kalimotxo-vino.akira.dev/api";
     // private url: string = new URL(window.location.href).origin + "/api";
 
     constructor(private http: HttpClient) {
         console.log(this.url);
      }
 
-    getCellier() {
+    getBouteillesParCellier(filtres = {}) {
 
-        return this.http.get<any>(this.url + '/celliers/' + 1 + '/bouteilles');
+        return this.http.get<any>(
+            this.url + '/celliers/' + 1 + '/bouteilles',
+            {
+                params: filtres
+            }
+        );
     }
 
     getBouteillesCellier(filtres = {}) {
 
-        return this.http.get<any>(this.url + '/celliers/' + 1 + '/bouteilles', {params: filtres});
-        
+        return this.http.get<any>(
+            this.url + '/celliers/' + 1 + '/bouteilles',
+            {
+                params: filtres
+            }
+        );
+
     }
 
     getListeBouteille(filtres = {}) {
