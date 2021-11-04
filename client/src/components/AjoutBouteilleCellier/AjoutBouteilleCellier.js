@@ -1,5 +1,4 @@
 import React from 'react';
-import moment from 'moment';
 import fondEcran from '../../fondEcran.svg';
 import BouteilleSAQ from '../BouteilleSAQ/BouteilleSAQ';
 import './AjoutBouteilleCellier.css';

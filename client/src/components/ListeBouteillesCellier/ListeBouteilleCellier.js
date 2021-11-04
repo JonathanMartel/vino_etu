@@ -28,12 +28,24 @@ export default class ListeBouteilleCellier extends React.Component {
 		this.changerTitreDialogue = this.changerTitreDialogue.bind(this);
 		this.ajouterAction = this.ajouterAction.bind(this);
 		this.retirerAction = this.retirerAction.bind(this);
+        this.sortBouteilles = this.sortBouteilles.bind(this);
 	}
 
 	componentDidMount() {
 		this.fetchBouteilles();
 	}
 
+    componentDidUpdate() {
+    }
+
+    sortBouteilles(key, order) {
+        if (order.toUpperCase() === 'ASC') {
+            return this.state.items.sort((a, b) => a[key] - b[key]);
+        } else if (order.toUpperCase() === 'DESC') {
+            return this.state.items.sort((a, b) => b[key] - a[key]);
+        }
+    }
+    
 	fetchBouteilles() {
 		fetch('https://rmpdwebservices.ca/webservice/php/celliers/' + this.props.match.params.id, {
 			method: 'GET',
