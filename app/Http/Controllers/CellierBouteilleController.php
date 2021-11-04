@@ -223,7 +223,7 @@ class CellierBouteilleController extends Controller
      */
     public function edit(CellierBouteille $cellierBouteille)
     {
-        //
+        return view('cellierBouteille.edit', ['cellierBouteille' => $cellierBouteille]);
     }
 
     /**
@@ -269,6 +269,18 @@ class CellierBouteilleController extends Controller
         if ($estBue) {
             return response()->json($quantiteBue);
         }
+    }
+
+
+
+    public function obtenirMillesime($idCellier, $idBouteille, $millesime)
+    {
+        
+
+        $cellierBouteille = CellierBouteille::rechercheCellierBouteille($idCellier, $idBouteille, $millesime);
+
+            return response()->json($cellierBouteille);
+       
     }
 
     /**

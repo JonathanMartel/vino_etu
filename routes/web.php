@@ -75,6 +75,8 @@ Route::post('/cellierBouteille/store', [CellierBouteilleController::class, 'stor
 Route::get('/obtenirMillesimesParBouteille/{idCellier}/{idBouteille}', [CellierBouteilleController::class, 'obtenirMillesimesParBouteille'])->name('obtenirMillesimesParBouteille')->middleware('auth')->middleware('prevent-back-history');
 Route::get('/ajouterNote/{idCellier}/{idBouteille}/{millesime}/{note}', [CellierBouteilleController::class, 'ajouterNote'])->name('ajouterNote')->middleware('auth')->middleware('prevent-back-history');
 
+Route::get('/obtenirMillesime/{idCellier}/{idBouteille}/{millesime}', [CellierBouteilleController::class, 'obtenirMillesime'])->name('obtenirMillesime')->middleware('auth')->middleware('prevent-back-history');
+
 /*
 |--------------------------------------------------------------------------
 | Bouteille
@@ -90,7 +92,7 @@ Route::get('/ajouterNote/{idCellier}/{idBouteille}/{millesime}/{note}', [Cellier
 */
 
 Route::get('/cellier/{idCellier}/{idBouteille}', [CellierBouteilleController::class, 'show'])->name('ficheVin')->middleware('auth');
-
+Route::get('/cellierBouteille/edit', [CellierBouteilleController::class, 'edit'])->middleware('auth')->name('cellierBouteille.edit')->middleware('prevent-back-history');
 
 
 
