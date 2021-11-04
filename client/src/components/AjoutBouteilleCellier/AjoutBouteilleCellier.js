@@ -3,7 +3,6 @@ import moment from 'moment';
 import fondEcran from '../../fondEcran.svg';
 import BouteilleSAQ from '../BouteilleSAQ/BouteilleSAQ';
 import './AjoutBouteilleCellier.css';
-import BouteilleSAQ from "../BouteilleSAQ/BouteilleSAQ";
 import { Box } from "@mui/system";
 import { TextField } from "@mui/material";
 
