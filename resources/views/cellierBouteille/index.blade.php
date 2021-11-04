@@ -27,18 +27,16 @@
     <div class="bouton-ajout-vin-conteneur">
         <a class="bouton-ajout-vin" href="{{ route('ajouterVin', $cellier->id) }}"><i class="material-icon">add</i> Ajouter un vin</a>
 
-        <!-- La barre de recherche n'est pas fonctionnel -->
-
-      <!--   <div class="row">
-      <div class="input-field col s12 recherche">
-          <i class="material-icons prefix">search</i>
-          <input type="text"  name="recherche" autocomplete="off">
-          <label for="recherche">Rechercher un vin</label>
-          <div class="autocomplete z-depth-2"></div>
+        <div class="search-container">
+            <form action="/search" method="get">
+                <input class="search expandright" id="searchright" type="search" name="q" placeholder="Rechercher une bouteille">
+                <label class="button searchbutton" for="searchright"><span class="mglass">&#9906;</span></label>
+            </form>
         </div>
-      </div> -->
-
+    
     </div>
+
+
     <div class="articlesConteneur">
         @forelse ($cellierBouteillesByIDs as $vin)
         <article class="articleVin">
@@ -202,3 +200,4 @@
 <link href="{{asset('css/star-rating.css')}}" rel="stylesheet" />
 <script src="{{asset('js/star-rating.js')}}"></script>
 <link href="{{asset('css/autocomplete.css')}}" rel="stylesheet" />
+<link href="{{asset('css/barre-recherche.css')}}" rel="stylesheet" />
