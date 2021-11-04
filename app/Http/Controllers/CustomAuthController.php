@@ -170,7 +170,6 @@ class CustomAuthController extends Controller
           'password'=> $oldPassword
         ]);
         return redirect('dashboard');
-        // return redirect()->intended('dashboard');
       }
 
       return redirect('/user/'.$id.'/edit')->withSuccess('Le mot de passe n\'est pas valides!');
@@ -187,25 +186,24 @@ class CustomAuthController extends Controller
     {
       $request->validate([
         'old_password' => 'required|min:6|max:20',
-        'nouveau_password' => 'required|min:6|max:20|confirmed',
-        // 'password_confirmation' => 'required|min:6|max:20'
+        'nouveau_mot_de_passe' => 'required|min:6|max:20|same:mot_de_passe_confirme',
+        'mot_de_passe_confirme' => 'required|min:6|max:20'
 
     ]);
-
+      $id = $user->id;
       $oldPassword = $user->password;
-      $password = $request->password;
+      $password = $request->old_password;
       $bool = Hash::check($password, $oldPassword);
-      if ($bool) {
-        $user->fill($request->all());
-        $user->update([
 
-          'password'=> $newPassword
+      if ($bool) {
+        $nouveau_mot_de_passe = Hash::make($request->nouveau_mot_de_passe);
+        $user->update([
+          'password'=> $nouveau_mot_de_passe
         ]);
         return redirect('dashboard');
-        // return redirect()->intended('dashboard');
       }
 
-      return redirect('/user/'.$id.'/edit')->withSuccess('Le mot de passe n\'est pas valides!');
+      return redirect('/user/'.$id.'/password')->withSuccess('Le mot de passe n\'est pas valides!');
 
     }
 

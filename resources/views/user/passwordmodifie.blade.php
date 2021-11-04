@@ -26,18 +26,18 @@
               </div>
 
               <div class="input-field col s12">
-                <input id="newPassword" type="password" class="validate" name="nouveau_password" >
-                <label for="newPassword">Nouveau mot de passe</label>
-                @if ($errors->has('nouveau_password'))
-                    <span class="red-text">{{ $errors->first('nouveau_password') }}</span>
+                <input id="nouveau_mot_de_passe" type="password" class="validate" name="nouveau_mot_de_passe" >
+                <label for="nouveau_mot_de_passe">Nouveau mot de passe</label>
+                @if ($errors->has('nouveau_mot_de_passe'))
+                    <span class="red-text">{{ $errors->first('nouveau_mot_de_passe') }}</span>
                 @endif
               </div>
 
               <div class="input-field col s12">
-                <input id="Password_confirmation" type="password" class="validate" name="password_confirmation" >
-                <label for="Password_confirmation">Mot de passe confirmé</label>
-                @if ($errors->has('password_confirmation'))
-                    <span class="red-text">{{ $errors->first('password_confirmation') }}</span>
+                <input id="mot_de_passe_confirme" type="password" class="validate" name="mot_de_passe_confirme" >
+                <label for="mot_de_passe_confirme">Mot de passe confirmé</label>
+                @if ($errors->has('mot_de_passe_confirme'))
+                    <span class="red-text">{{ $errors->first('mot_de_passe_confirme') }}</span>
                 @endif
               </div>
             
@@ -47,9 +47,9 @@
               </div>
               @if(session('success'))
                 <div class="text-center p-t-12">
-                <span class="red-text">{{ session('success')}}</span>
-            </div>
-            @endif
+                  <span class="red-text">{{ session('success')}}</span>
+                </div>
+              @endif
               
             </div>	
           </form>
