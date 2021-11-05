@@ -7,6 +7,7 @@ use App\Models\Bouteille;
 use Illuminate\Http\Request;
 use App\Models\Type;
 use App\Models\Format;
+use Illuminate\Support\Facades\URL;
 
 
 class BouteilleController extends Controller
@@ -59,9 +60,34 @@ class BouteilleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public static function store($request)
     {
-        //
+        $request->validate([
+            'nom' => 'required|max:111',
+            /* 'quantite' => 'integer|gte:0', */
+            /* 'prix' => 'numeric|regex:/[0-9]+(\.[0-9][0-9]?)?/|gte:0|max:100000', */
+            'pays' => 'nullable|regex:^[A-ZÀÂÇÉÈÊËÎÏÔÛÙÜŸÑa-zàâçéèêëîïôûùüÿñ]+$^',
+            'type_id' => 'required|exists:types,id',
+            'format_id' => 'required|exists:formats,id',
+        ]);
+
+        if ($request->file) {
+            $fileName = time() . '_' . $request->file->getClientOriginalName();
+            $request->file('file')->move(public_path() . '/img', $fileName);
+            $request->url_img = URL::to('') . '/img/' . $fileName;
+        }
+
+        $bouteille = Bouteille::create([
+
+            'nom' => $request->nom,
+            'pays' => $request->pays,
+            'description' =>  $request->description,
+            'format_id' =>  $request->format_id,
+            'url_img' => $request->url_img,
+            'type_id' =>  $request->type_id,
+            'user_id' =>  session('user')->id
+        ]);
+        return $bouteille;
     }
 
     /**
@@ -85,7 +111,7 @@ class BouteilleController extends Controller
     {
         $types = Type::all();
         $formats = Format::all();
-        /* var_dump($bouteille->nom); */
+        /* var_dump($bouteille->format); */
         return view('bouteille.edit', [
                                         'bouteille'=> $bouteille,
                                         'types' => $types,
@@ -102,7 +128,50 @@ class BouteilleController extends Controller
      */
     public function update(Request $request, Bouteille $bouteille)
     {
-        //
+         var_dump($request->all());
+        echo '<br><br>';
+        var_dump($bouteille);
+
+        $request->validate([
+            'nom' => 'required|max:45',
+            'pays' => 'required | max:45',
+            'url_img' => 'url',
+            'description' => 'min:3 | max:1000',
+            'code_saq' => 'max:50',
+            'prix_saq' => 'numeric',
+            'url_saq' => 'url',
+            'type_id' => 'required | exists:types,id',
+            'format_id' => 'required | exists:formats,id',
+            'user_id' => 'required | exists:users,id',
+            
+
+        ]);
+
+        $bouteille->fill($request->all());
+       /*  if(isset($request->file('url_saq'))) {
+            $bouteille->url_saq = Storage::putFile('public', $request->file('url_saq'));
+        } */
+        
+        $bouteille->save();
+
+
+        $bouteille->update([
+            'title' => $request->title,
+            'title_fr' => $request->title_fr,
+            'url' => $request->url,
+            'nom' => $request->nom,
+            'pays' => $request->pays,
+            'url_img' => $request->url_img,
+            'description' => $request->description,
+            'code_saq' => $request->code_saq,
+            'prix_saq' => $request->prix_saq,
+            'url_saq' => $request->url_saq,
+            'type_id' => $request->type_id,
+            'format_id' => $request->format_id,
+            'user_id' => $request->user_id,
+        ]);
+
+        //return redirect('/fileShare');
     }
 
     /**

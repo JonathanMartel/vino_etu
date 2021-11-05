@@ -48,14 +48,6 @@
                     <span class="red-text">{{ $errors->first('password') }}</span>
                 @endif
               </div>
-
-              <div class="input-field col s12">
-                <input id="Password" type="password" class="validate" name="nouveauMotDePasse" >
-                <label for="Password">Nouveau mot de passe</label>
-                @if ($errors->has('nouveauMotDePasse'))
-                    <span class="red-text">{{ $errors->first('nouveauMotDePasse') }}</span>
-                @endif
-              </div>
             
               <div class="input-field col s12 flex-row">  
                 <a href="/dashboard" class="btn waves-effect waves-light button btn-annuler"  name="annuler">Annuler</a>
