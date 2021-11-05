@@ -62,6 +62,7 @@ export default class Dialogue extends React.Component {
 							fullWidth
 							variant="standard"
 							onBlur={(e) => this.setState({valeur : e.target.value })}
+							inputProps={{ min: "1" }}
 							//onChange={(e) => this.setState({valeur : e.target.value })}
 						/>
 					</DialogContent>
