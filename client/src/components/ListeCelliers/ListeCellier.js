@@ -4,6 +4,7 @@ import Cellier from "../Cellier/Cellier";
 import './ListeCellier.css'
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { Box } from '@mui/system';
+import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
 
 export default class ListeCellier extends React.Component {
 	constructor(props) {
@@ -64,8 +65,9 @@ export default class ListeCellier extends React.Component {
 					<Typography color="text.primary">Liste des celliers</Typography>
 
 				</Breadcrumbs>
-				<AddCircleIcon onClick={()=> this.props.history.push("/NouvelleCellier/0")} sx={{ color: '#641B30' }}/>
-
+				<AddCircleIcon onClick={()=> this.props.history.push("/nouveaucellier/0")} sx={{ color: '#641B30' }}/>
+				<AddShoppingCartOutlinedIcon  onClick={()=> this.props.history.push("/listeachat")} sx={{ color: '#641B30' }} />
+				
 				<section className="liste_celliers">
 					{celliers}
 				</section>
