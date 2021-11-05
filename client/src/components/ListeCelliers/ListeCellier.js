@@ -19,7 +19,7 @@ export default class ListeCellier extends React.Component {
 
 	componentDidMount() {
 		if (!this.props.estConnecte) {
-			return this.props.history.push("/");
+			return this.props.history.push("/connexion");
 		}
 		this.fetchCelliers();
 	}
@@ -51,7 +51,7 @@ export default class ListeCellier extends React.Component {
 		const celliers = this.state.items
 							.map((item, index)=>{
 								return (
-									<Cellier info={item} key={index} />
+									<Cellier info={item} key={index} {...this.props} />
 								);
 							})
 		
@@ -64,7 +64,7 @@ export default class ListeCellier extends React.Component {
 					<Typography color="text.primary">Liste des celliers</Typography>
 
 				</Breadcrumbs>
-				<AddCircleIcon sx={{ color: '#641B30' }}/>
+				<AddCircleIcon onClick={()=> this.props.history.push("/NouvelleCellier/0")} sx={{ color: '#641B30' }}/>
 
 				<section className="liste_celliers">
 					{celliers}
