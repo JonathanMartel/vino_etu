@@ -112,4 +112,10 @@ class CellierController extends Controller
 
         return redirect('/');
     }
+
+    public function rechercheDansCellier($motCle, $idCellier) {
+        $bouteilles = Cellier::rechercheDansCellier($motCle, $idCellier);
+
+        return response()->json($bouteilles);
+    }
 }

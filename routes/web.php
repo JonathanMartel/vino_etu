@@ -86,7 +86,7 @@ Route::get('/ajouterNote/{idCellier}/{idBouteille}/{millesime}/{note}', [Cellier
 |
 */
 
-Route::get('/cellier/{idCellier}/{idBouteille}', [CellierBouteilleController::class, 'show'])->name('ficheVin')->middleware('auth');
+Route::get('/cellier/{idCellier}/{idBouteille}', [CellierBouteilleController::class, 'show'])->name('ficheVin')->middleware('auth')->middleware('prevent-back-history');
 
 
 
@@ -96,6 +96,7 @@ Route::get('/cellier/{idCellier}/{idBouteille}', [CellierBouteilleController::cl
 /* Recherche */
 
 Route::get('/rechercheBouteillesParMotCle/{motCle}', [BouteilleController::class, 'rechercheBouteillesParMotCle'])->name('rechercheBouteillesParMotCle')->middleware('auth')->middleware('prevent-back-history');
+Route::get('/rechercheDansCellier/{motCle}/{idCellier}', [CellierController::class, 'rechercheDansCellier'])->name('rechercheDansCellier')->middleware('auth')->middleware('prevent-back-history');
 Route::get('/importerBouteille', [BouteilleController::class, 'index'])->name('importerBouteille')->middleware('admin')->middleware('prevent-back-history');
 Route::get('/obtenirListeSAQ', [BouteilleController::class, 'obtenirListeSAQ'])->name('obtenirListeSAQ')->middleware('admin')->middleware('prevent-back-history');
 
