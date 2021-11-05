@@ -12,6 +12,7 @@ import AjoutCellier from "../AjoutCellier/AjoutCellier";
 import DetailsBouteille from "../DetailsBouteille/DetailsBouteille";
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import ModifieCompte from "../ModifieCompte/ModifieCompte";
+import NouvelleCellier from "../NouvelleCellier/NouvelleCellier";
 import './App.css';
 import Admin from "../Admin/Admin";
 
@@ -37,6 +38,11 @@ export default class App extends React.Component {
 				<Entete />
 				<Switch>
 					<Route exact path="/ajoutBouteille" component={AjoutBouteille} />
+
+					<Route exact path="/" component={(props)=> 
+						<ListeCelliers estConnecte={this.state.estConnecte} 
+							id_usager={this.state.id_usager} 
+							{...props} /> } />	
 
 					<Route
 						exact
@@ -70,10 +76,26 @@ export default class App extends React.Component {
 					<Route exact path="/cellier/:id" render={(param_route) =>
 						<ListeBouteilles {...param_route} id={param_route?.match?.params?.id} param={param_route} />} />
 
-					<Route exact path="/bouteilles/:id" render={(param_route) =>
-						<DetailsBouteille {...param_route} bouteille_id={param_route?.match?.params?.bouteille_id} param={param_route} />} />
-					
-					<Route exact path="/admin" component={(props) => <Admin estConnecte={this.state.estConnecte} id_usager={this.state.id_usager} {...props} />} />
+
+					<Route exact path="/bouteilles/:id" render={(param_route)=> 
+							<DetailsBouteille {...param_route} bouteille_id={param_route?.match?.params?.bouteille_id} param={param_route} />} />
+	
+
+          <Route exact path="/admin" component={(props) => <Admin estConnecte={this.state.estConnecte} id_usager={this.state.id_usager} {...props} />} />
+            
+					<Route
+						exact
+						path="/nouvellecellier/:id"
+						component={(props) => (
+							<NouvelleCellier title="Nouvelle Cellier" 
+							estConnecte={this.state.estConnecte} id_usager={this.state.id_usager} 
+							{...props} />
+						)}
+					/>
+
+    			    <Route exact path="*" component={Page404} />
+        		</Switch>
+
 
 					<Route exact path="*" component={Page404} />
 				</Switch>
