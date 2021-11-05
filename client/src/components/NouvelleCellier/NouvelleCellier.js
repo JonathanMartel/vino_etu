@@ -1,4 +1,7 @@
 import React from "react";
+import { Box } from "@mui/system";
+import { TextField } from "@mui/material";
+import Button from '@mui/material/Button';
 
 import './NouvelleCellier.css';
 
@@ -121,13 +124,25 @@ export default class NouvelleCellier extends React.Component {
     }
 
     render() {
+        { /*<p>Emplacement : <input name="emplacement" value={this.state.emplacement} onChange={(e) => this.setState({ emplacement: e.target.value })} /></p> 
+        <p>Température : <input type="number" step="0.5" name="temperature" value={this.state.temperature} onChange={e => this.setState({ temperature: e.target.value })} /></p> */}
+        
         return (
-            <form>
-                <p>Emplacement : <input name="emplacement" value={this.state.emplacement} onChange={(e) => this.setState({ emplacement: e.target.value })} /></p>
-				<p>Température : <input type="number" step="0.5" name="temperature" value={this.state.temperature} onChange={e => this.setState({ temperature: e.target.value })} /></p>
+            <Box className="login_container" sx={{ backgroundColor: "rgba(0, 0, 0, 0.8)",
+                display: "flex", justfyContent: "center", alignItems: "center",
+                gap: "1rem", width: "85vw", flexDirection: "column", borderRadius: "1rem",
+                margin: "0 auto", marginTop: "20vh", }} >
 
-				<button type="button" onClick={(e) => this.creerCellier()}> {this.state.titreBoutton} </button>
-            </form>
+                <span className="login_title">Créer une nouvelle cellier</span>
+
+                <TextField autoFocus label="Emplacement" variant="outlined" 
+                    onBlur={evt => this.setState({ emplacement: evt.target.value })} />
+                <TextField margin="dense" id="temperature" label="Température"
+					type="number" variant="standard" inputProps={{ step: "0.5" }}
+					onBlur={(e) => this.setState({temperature : e.target.value })} />
+
+                <Button type="button" onClick={(e) => this.creerCellier()}> {this.state.titreBoutton} </Button>
+            </Box>
         );
     }
 }
