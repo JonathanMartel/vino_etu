@@ -245,7 +245,7 @@ public static function creerCellierBouteille ($request, $idBouteille, $date_acha
      */
     public function edit(CellierBouteille $cellierBouteille)
     {
-        //
+        return view('cellierBouteille.edit', ['cellierBouteille' => $cellierBouteille]);
     }
 
     /**
@@ -291,6 +291,18 @@ public static function creerCellierBouteille ($request, $idBouteille, $date_acha
         if ($estBue) {
             return response()->json($quantiteBue);
         }
+    }
+
+
+
+    public function obtenirMillesime($idCellier, $idBouteille, $millesime)
+    {
+        
+
+        $cellierBouteille = CellierBouteille::rechercheCellierBouteille($idCellier, $idBouteille, $millesime);
+
+            return response()->json($cellierBouteille);
+       
     }
 
     /**

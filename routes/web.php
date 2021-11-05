@@ -57,6 +57,9 @@ Route::get('logout', [CustomAuthController::class, 'logout'])->name('logout');
 Route::get('dashboard', [CustomAuthController::class, 'dashboard'])->middleware('auth')->name('dashboard')->middleware('prevent-back-history');
 Route::get('/user/{user}/edit', [CustomAuthController::class, 'edit'])->middleware('auth')->name('custom.edit')->middleware('prevent-back-history');
 Route::put('/user/{user}/edit', [CustomAuthController::class, 'update'])->middleware('auth')->name('custom.update')->middleware('prevent-back-history');
+Route::get('/user/{user}/password', [CustomAuthController::class, 'modifiePassword'])->middleware('auth')->name('password.edit')->middleware('prevent-back-history');
+Route::put('/user/{user}/password', [CustomAuthController::class, 'passwordupdate'])->middleware('auth')->name('password.update')->middleware('prevent-back-history');
+
 
 /*
 |--------------------------------------------------------------------------
@@ -71,6 +74,8 @@ Route::get('/cellier/{idCellier}/ajouterVin', [CellierBouteilleController::class
 Route::post('/cellierBouteille/store', [CellierBouteilleController::class, 'store'])->name('cellierBouteille.store')->middleware('auth')->middleware('prevent-back-history');
 Route::get('/obtenirMillesimesParBouteille/{idCellier}/{idBouteille}', [CellierBouteilleController::class, 'obtenirMillesimesParBouteille'])->name('obtenirMillesimesParBouteille')->middleware('auth')->middleware('prevent-back-history');
 Route::get('/ajouterNote/{idCellier}/{idBouteille}/{millesime}/{note}', [CellierBouteilleController::class, 'ajouterNote'])->name('ajouterNote')->middleware('auth')->middleware('prevent-back-history');
+
+Route::get('/obtenirMillesime/{idCellier}/{idBouteille}/{millesime}', [CellierBouteilleController::class, 'obtenirMillesime'])->name('obtenirMillesime')->middleware('auth')->middleware('prevent-back-history');
 
 /*
 |--------------------------------------------------------------------------
@@ -87,7 +92,7 @@ Route::get('/ajouterNote/{idCellier}/{idBouteille}/{millesime}/{note}', [Cellier
 */
 
 Route::get('/cellier/{idCellier}/{idBouteille}', [CellierBouteilleController::class, 'show'])->name('ficheVin')->middleware('auth');
-
+Route::get('/cellierBouteille/edit', [CellierBouteilleController::class, 'edit'])->middleware('auth')->name('cellierBouteille.edit')->middleware('prevent-back-history');
 
 
 

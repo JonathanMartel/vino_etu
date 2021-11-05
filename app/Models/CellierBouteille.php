@@ -57,6 +57,8 @@ class CellierBouteille extends Model
      * @return row une ligne de la table cellier_bouteilles
      */
     public static function rechercheCellierBouteille($idCellier, $idBouteille, $millesime) {
+        if ($millesime==0)
+        $millesime=0000;
         return DB::table('cellier_bouteilles')
         ->where('cellier_id', $idCellier)
         ->where('bouteille_id', $idBouteille)
