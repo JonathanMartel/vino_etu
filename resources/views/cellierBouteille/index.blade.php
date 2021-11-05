@@ -29,7 +29,7 @@
 
         <div class="search-container">
             <form action="/search" method="get">
-                <input class="search expandright" id="searchright" type="search" name="q" placeholder="Rechercher une bouteille">
+                <input class="search expandright" id="searchright" type="search" name="q" placeholder="Rechercher une bouteille" autocomplete="off">
                 <label class="button searchbutton" for="searchright"><span class="mglass">&#9906;</span></label>
             </form>
         </div>
