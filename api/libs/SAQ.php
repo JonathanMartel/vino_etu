@@ -116,7 +116,6 @@ class SAQ extends Modele
 		} else {
 			$info->img = $noeud->getElementsByTagName("img")->item(1)->getAttribute('src');
 		};
-		
 		$a_titre = $noeud->getElementsByTagName("a")->item(0);
 		$info->url = $a_titre->getAttribute('href');
 
