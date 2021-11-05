@@ -128,12 +128,12 @@ export default class NouvelleCellier extends React.Component {
         <p>Température : <input type="number" step="0.5" name="temperature" value={this.state.temperature} onChange={e => this.setState({ temperature: e.target.value })} /></p> */}
         
         return (
-            <Box className="login_container" sx={{ backgroundColor: "rgba(0, 0, 0, 0.8)",
+            <Box className="nouvelle_cellier_container" sx={{ backgroundColor: "rgba(0, 0, 0, 0.8)",
                 display: "flex", justfyContent: "center", alignItems: "center",
                 gap: "1rem", width: "85vw", flexDirection: "column", borderRadius: "1rem",
                 margin: "0 auto", marginTop: "20vh", }} >
 
-                <span className="login_title">Créer une nouvelle cellier</span>
+                <span className="nouvelle_cellier_title">Créer une nouvelle cellier</span>
 
                 <TextField autoFocus label="Emplacement" variant="outlined" 
                     onBlur={evt => this.setState({ emplacement: evt.target.value })} />

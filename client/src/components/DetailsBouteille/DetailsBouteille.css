@@ -1,0 +1,38 @@
+.modif_bouteille_title {
+    color: white;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.modif_bouteille_container input {
+    padding: .7rem;
+    border-radius: .5rem;
+    border: none;
+}
+
+.modif_bouteille_container input:focus {
+    outline: unset;
+}
+
+.modif_bouteille_container button {
+    width: 100%;
+    color: white;
+    outline: unset;
+    border-radius: .5rem;
+    padding: .5rem 1rem;
+    border: none;
+    margin-bottom: 2rem;
+    font-size: 1em;
+    font-weight: 700;
+    background-color: #641B30;
+}
+
+.modif_bouteille_container fieldset {
+    border-color: white !important;
+}
+
+.modif_bouteille_container label,
+.modif_bouteille_container input {
+    color: white !important;
+}
