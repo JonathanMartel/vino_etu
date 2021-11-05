@@ -201,6 +201,7 @@ class CustomAuthController extends Controller
           'password'=> $nouveau_mot_de_passe
         ]);
         return redirect('dashboard');
+        
       }
 
       return redirect('/user/'.$id.'/password')->withSuccess('Le mot de passe n\'est pas valides!');
