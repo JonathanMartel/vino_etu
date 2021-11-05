@@ -18,8 +18,6 @@
                         </a>
                     </div>   
                     
-                    
-
                     <div class="flex-row space">   
                         <div  class="flex-row"> 
                             <i class="small material-icons black-text">account_circle</i>
