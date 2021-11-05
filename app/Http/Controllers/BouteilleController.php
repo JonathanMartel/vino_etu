@@ -64,9 +64,8 @@ class BouteilleController extends Controller
     {
         $request->validate([
             'nom' => 'required|max:111',
-            /* 'quantite' => 'integer|gte:0', */
-            /* 'prix' => 'numeric|regex:/[0-9]+(\.[0-9][0-9]?)?/|gte:0|max:100000', */
-            'pays' => 'nullable|regex:^[A-ZÀÂÇÉÈÊËÎÏÔÛÙÜŸÑa-zàâçéèêëîïôûùüÿñ]+$^',
+            'pays' => 'nullable|regex:^[A-ZÀÂÇÉÈÊËÎÏÔÛÙÜŸÑa-zàâçéèêëîïôûùüÿñ]+$^ | max:45',
+            'description' => 'nullable | min:3 | max:1000',
             'type_id' => 'required|exists:types,id',
             'format_id' => 'required|exists:formats,id',
         ]);
@@ -133,19 +132,26 @@ class BouteilleController extends Controller
         var_dump($bouteille);
 
         $request->validate([
-            'nom' => 'required|max:45',
-            'pays' => 'required | max:45',
-            'url_img' => 'url',
-            'description' => 'min:3 | max:1000',
+            'nom' => 'required|max:111',
+            'pays' => 'nullable|regex:^[A-ZÀÂÇÉÈÊËÎÏÔÛÙÜŸÑa-zàâçéèêëîïôûùüÿñ]+$^ | max:45',
+            'description' => 'nullable | min:3 | max:1000',
             'code_saq' => 'max:50',
-            'prix_saq' => 'numeric',
+            'prix_saq' => 'numeric|regex:/[0-9]+(\.[0-9][0-9]?)?/|gte:0|max:100000', //prix maximum trouvé pour une bouteille : 100 000.00$
             'url_saq' => 'url',
             'type_id' => 'required | exists:types,id',
             'format_id' => 'required | exists:formats,id',
-            'user_id' => 'required | exists:users,id',
-            
+
 
         ]);
+
+        /* si le user upload une image il faut supprimer celle qu'il avait mis précedement !!! */
+
+        if ($request->file) {
+            $fileName = time() . '_' . $request->file->getClientOriginalName();
+            
+            $request->file('file')->move(public_path() . '/img', $fileName);
+            $request->url_img = URL::to('') . '/img/' . $fileName;
+        }
 
         $bouteille->fill($request->all());
        /*  if(isset($request->file('url_saq'))) {
@@ -156,9 +162,6 @@ class BouteilleController extends Controller
 
 
         $bouteille->update([
-            'title' => $request->title,
-            'title_fr' => $request->title_fr,
-            'url' => $request->url,
             'nom' => $request->nom,
             'pays' => $request->pays,
             'url_img' => $request->url_img,
@@ -171,7 +174,7 @@ class BouteilleController extends Controller
             'user_id' => $request->user_id,
         ]);
 
-        //return redirect('/fileShare');
+        return back();
     }
 
     /**

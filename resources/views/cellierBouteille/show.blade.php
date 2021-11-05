@@ -16,7 +16,7 @@
     </div>
     <div class="bouteille-nom">
         <span>{{ $bouteille->nom }}</span>
-        <a class="" href="{{ route('cellierBouteille.edit', $cellier->id)}}"><i class="material-icons">edit</i></a>
+        <a class="" href="{{ route('bouteilleEdit', $bouteille->id)}}"><i class="material-icons">edit</i></a>
     </div>
 </header>
 <main>
