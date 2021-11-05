@@ -1,3 +1,30 @@
 .messageErreur{
     color: red;
 }
+
+/*.liste_bouteilles {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: 100vw;
+    margin: 1em auto;
+    flex-wrap: wrap;
+}*/
+
+.bouton_bouteilles {
+    display: flex;
+    flex-direction: column;
+}
+
+.liste_bouteilles {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+    margin: 1em auto;
+    flex-wrap: wrap;
+}

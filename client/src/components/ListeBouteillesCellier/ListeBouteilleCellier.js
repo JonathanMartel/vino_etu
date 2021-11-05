@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import BouteilleCellier from '../BouteilleCellier/BouteilleCellier';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
+import translate from 'translate';
+import paysJSON from '../../pays.json';
 
 import './ListeBouteilleCellier.css';
 import Dialogue from '../Dialogue/Dialogue';
 import { circularProgressClasses } from '@mui/material';
+import { Box } from '@mui/system';
+import { Breadcrumbs, Link, Typography } from '@mui/material';
 
 export default class ListeBouteilleCellier extends React.Component {
 	constructor(props) {
@@ -28,12 +32,24 @@ export default class ListeBouteilleCellier extends React.Component {
 		this.changerTitreDialogue = this.changerTitreDialogue.bind(this);
 		this.ajouterAction = this.ajouterAction.bind(this);
 		this.retirerAction = this.retirerAction.bind(this);
+        this.sortBouteilles = this.sortBouteilles.bind(this);
 	}
 
 	componentDidMount() {
 		this.fetchBouteilles();
 	}
 
+    componentDidUpdate() {
+    }
+
+    sortBouteilles(key, order) {
+        if (order.toUpperCase() === 'ASC') {
+            return this.state.items.sort((a, b) => a[key] - b[key]);
+        } else if (order.toUpperCase() === 'DESC') {
+            return this.state.items.sort((a, b) => b[key] - a[key]);
+        }
+    }
+    
 	fetchBouteilles() {
 		fetch('https://rmpdwebservices.ca/webservice/php/celliers/' + this.props.match.params.id, {
 			method: 'GET',
@@ -142,21 +158,29 @@ export default class ListeBouteilleCellier extends React.Component {
 		const bouteilles = this.state.items.map((item, index) => {
 			return (
 				<div key={index}>
-					<p className="messageErreur"> {this.state.message} </p>
-					<BouteilleCellier info={item} />
-					<button onClick={(e) => this.ajouterAction(item)}>Ajouter à l'inventaire</button>
-					<button onClick={(e) => this.retirerAction(item)}>Retirer de l'inventaire</button>
+					{/*<p className="messageErreur"> {this.state.message} </p>*/}
+					<BouteilleCellier
+						info={item}
+						ajouterAction={this.ajouterAction}
+						retirerAction={this.retirerAction}
+					/>
 				</div>
 			);
 		});
 
 		return (
-			<section>
-				<Link to={'/ajoutBouteille'}>
+			<Box>
+				<Breadcrumbs aria-label="breadcrumb" sx={{ display: 'flex', margin: '0 1.5rem' }}>
+					<Link underline="hover" color="white" href="/">
+						Celliers
+					</Link>
+					<Typography color="text.primary">Liste des bouteilles</Typography>
+				</Breadcrumbs>
+				{/*<Link underline="hover" color="white" href="/ajoutBouteille">
 					<span>Ajouter une nouvelle bouteille à votre cellier</span>
-				</Link>
+    </Link>*/}
 
-				<div>
+				<section>
 					<Dialogue
 						open={this.state.open}
 						titre={this.state.titre}
@@ -164,9 +188,9 @@ export default class ListeBouteilleCellier extends React.Component {
 						changerQuantite={this.changerQuantite}
 						getQuantite={this.state.qteModif}
 					/>
-					{bouteilles}
-				</div>
-			</section>
+					<div className="liste_bouteilles">{bouteilles}</div>
+				</section>
+			</Box>
 		);
 	}
 }
