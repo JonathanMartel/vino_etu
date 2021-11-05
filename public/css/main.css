@@ -175,8 +175,8 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
     flex-grow: 1;
     font-weight: bold;
     font-size: 1.25rem;
-    margin-left: 10px;
-    margin-right: 10px;
+    /* margin-left: 10px;
+    margin-right: 10px; */
 }
 
 .btn-annuler {
