@@ -26,7 +26,7 @@ export default class Cellier extends React.Component {
 					<div className="cellier_item">
 						<Box sx={{ fontSize: '1.5em', display: 'flex', justifyContent: 'space-between', width: '100%', height: 50, alignItems: 'center' }}>
 							{this.props.info.emplacement}
-							<Link to={"/NouvelleCellier/" + this.props.info.id_cellier} {...this.props} >
+							<Link to={"/nouveaucellier/" + this.props.info.id_cellier} {...this.props} >
 								 <CreateOutlinedIcon  sx={{ color: '#B2365A', fontSize: '2rem'}} />
 							</Link>
 							<ArrowCircleDownIcon sx={{ color: '#B2365A', transform: 'rotate(-90deg)', fontSize: '2rem'}} />
