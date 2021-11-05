@@ -29,7 +29,7 @@
 @if(Auth::user()->id === $bouteille->user_id )
 <!-- Si l'admin peut modifier les bouteilles perso on peut lui donner le droit ici  -->
 
-<form class="col s12 ajout-vin" action="" method="POST" enctype="multipart/form-data">
+<form class="col s12 edit-vin" action="{{ route('bouteilleUpdate', $bouteille->id) }}" method="POST" enctype="multipart/form-data">
     @method('PUT')
     @csrf
     <div class="input-field col s12">
@@ -67,22 +67,51 @@
         <label for="description">Description</label>
         <span class="helper-text" data-error="Format invalid"></span>
     </div>
-    
-    <div class="file-field input-field col s12">
-        <div class="btn">
-            <span>Image</span>
-            <input type="file" name="file" accept="image/*">
-        </div>
-        <div class="file-path-wrapper">
-            <input class="file-path validate" type="text">
+    <div class="image-vin-conteneur">
+        <img class="image-vin" src="{{$bouteille->url_img}}" alt="{{$bouteille->nom}}">
+        <div class="file-field input-field col s12">
+            <div class="btn">
+                <span>Image</span>
+                <input type="file" name="file" accept="image/*">
+            </div>
+            <div class="file-path-wrapper">
+                <input class="file-path validate" type="text">
+            </div>
         </div>
     </div>
 
-    <input type="hidden" name="id" value="{{ old('id') }}" id="id">
-    <input type="hidden" name="url_img" value="{{ old('url_img') }}" id="url_img">
+
+    <input type="hidden" name="id" value="{{ $bouteille->id }}" id="id">
+    <input type="hidden" name="url_img" value="{{ $bouteille->url_img }}" id="url_img">
     <div class="col s12 btn-space">
-        <a href="#<!-- route('cellier.show', $idCellier) -->" class="btn waves-effect waves-light button btn-annuler" name="annuler">Annuler</a>
-        <button class="btn waves-effect waves-light button btn-ajouter" type="submit" name="submit">Ajouter</button>
+        
+        <a href="#<!-- route('cellierBouteille.show', $idCellier, $idBouteille) -->" class="btn waves-effect waves-light button btn-annuler" name="annuler">Annuler</a>
+
+        <button class="btn waves-effect waves-light button btn-modifier" type="submit" name="submit">Modifier</button>
+
+
+
+
+
+
+
+        <a class="btn waves-effect waves-light button btn-supprimer modal-trigger" href="#{{$bouteille->id}}"><i class="material-icons">delete</i></a>
+        <!-- Modal Structure -->
+        <div id="{{$bouteille->id}}" class="modal">
+            <div class="modal-content">
+                <h4>Supprimer ce vin</h4>
+                <p>Êtes-vous certain de vouloir le vin <span>{{ ucfirst($bouteille->nom) }}</span>? Tous les millesimes de ce vin dans le cellier seront supprimés aussi.</p>
+            </div>
+            <div class="modal-footer">
+                <!-- <form action="// route('bouteille.destroy', $bouteille->id)//}" method="POST">
+                     changer // par }
+                    @method('DELETE')
+                    @csrf
+                    <button class="waves-effect waves-green btn-flat">Supprimer</button>
+                </form> -->
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Annuler</a>
+            </div>
+        </div>
     </div>
 
 </form>

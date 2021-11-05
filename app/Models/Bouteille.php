@@ -52,7 +52,7 @@ class Bouteille extends Model
      */
     public static function rechercheBouteilleExistante($request) {
         return DB::table('bouteilles')
-        ->where('id', $request->bouteille_id)
+        /* ->where('id', $request->bouteille_id) */
         ->where('nom', $request->nom)
         ->where('pays', $request->pays)
         ->where('type_id', $request->type_id)
