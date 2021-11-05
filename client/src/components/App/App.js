@@ -12,7 +12,8 @@ import AjoutCellier from "../AjoutCellier/AjoutCellier";
 import DetailsBouteille from "../DetailsBouteille/DetailsBouteille";
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import ModifieCompte from "../ModifieCompte/ModifieCompte";
-import NouvelleCellier from "../NouvelleCellier/NouvelleCellier";
+import NouveauCellier from "../NouveauCellier/NouveauCellier";
+import ListeAchat from "../ListeAchat/ListeAchat";
 import './App.css';
 import Admin from "../Admin/Admin";
 
@@ -85,19 +86,25 @@ export default class App extends React.Component {
             
 					<Route
 						exact
-						path="/nouvellecellier/:id"
+						path="/nouveaucellier/:id"
 						component={(props) => (
-							<NouvelleCellier title="Nouvelle Cellier" 
+							<NouveauCellier title="Nouveau Cellier" 
+							estConnecte={this.state.estConnecte} id_usager={this.state.id_usager} 
+							{...props} />
+						)}
+					/>
+
+					<Route
+						exact
+						path="/listeachat"
+						component={(props) => (
+							<ListeAchat title="Liste d'achat" 
 							estConnecte={this.state.estConnecte} id_usager={this.state.id_usager} 
 							{...props} />
 						)}
 					/>
 
     			    <Route exact path="*" component={Page404} />
-        		</Switch>
-
-
-					<Route exact path="*" component={Page404} />
 				</Switch>
 
 				<Route component={(props) =>

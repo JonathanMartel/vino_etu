@@ -3,9 +3,9 @@ import { Box } from "@mui/system";
 import { TextField } from "@mui/material";
 import Button from '@mui/material/Button';
 
-import './NouvelleCellier.css';
+import './NouveauCellier.css';
 
-export default class NouvelleCellier extends React.Component {
+export default class NouveauCellier extends React.Component {
     constructor(props) {
 		super(props);
 
