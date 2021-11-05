@@ -96,10 +96,10 @@
                     <input type="date" name="date_achat" id="date_achat" class="" value="{!! $cellierBouteille->date_achat !!}"/>
                 </div>
 
-                <button class="bouton-fiche">Annuler</button>
-                <button>Valider</button>
+              
             </form>
         </div>
+   
     </section>
    
 

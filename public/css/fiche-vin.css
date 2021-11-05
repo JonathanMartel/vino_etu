@@ -20,6 +20,7 @@
 
 .millesime-conteneur{
     display: flex;
+    justify-content: flex-start;
     flex-wrap: wrap;
     row-gap: 0.64rem;
     column-gap: 0.64rem;
@@ -63,13 +64,13 @@
     height: 287px;
     object-fit: cover;
 }
-
+/* 
 .form-modifier .form-modifier-item .input-fiche-cercle { 
     width: 60px ;
     height: 60px ;
     border-style: solid ;
     border-radius: 50% ;
-}
+} */
 
 
 
