@@ -1,4 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 
 @Component({
   selector: 'app-connection',
@@ -7,9 +11,39 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConnectionComponent implements OnInit {
 
-  constructor() { }
+  formConnection = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', Validators.required)
+  });
+
+
+  constructor(private servBouteilleDeVin:BouteilleDeVinService, private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  get erreur(){
+    return this.formConnection.controls;
+  }
+
+  connection(){
+    console.log(this.formConnection.value);
+
+    const data={
+      email: this.formConnection.value.email,
+      password: this.formConnection.value.password
+    }
+
+    this.servBouteilleDeVin.connexion(data).subscribe(res => {
+      console.log(res);
+      localStorage.setItem('user', JSON.stringify(res))
+
+      // redirect to dashboard
+      this.router.navigate(['/accueil']);
+    },
+    err=>{
+      console.log(err);
+    })
   }
 
 }

@@ -69,10 +69,12 @@ export class BouteilleDeVinService {
 
     ajouterUtilisateur(data:any){
 
-        let body = {
-            'data': data,
+        return this.http.post<any>(this.url + '/creerCompte/', data)
+    }
 
-        }
+    connexion(data:any) {
+
+        return this.http.post<any>(this.url + '/connection', data)
     }
 
 }

@@ -22,7 +22,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { CellierBouteilleComponent } from './components/cellier-bouteille/cellier-bouteille.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ModifierCellierBouteilleComponent } from './pages/modifier-cellier-bouteille/modifier-cellier-bouteille.component';
@@ -65,6 +65,7 @@ import { MatExpansionModule } from '@angular/material/expansion'
         MatSidenavModule,
         MatDialogModule,
         MatExpansionModule,
+        FormsModule,
     ],
     providers: [BouteilleDeVinService, BouteilleResolverServiceService],
     bootstrap: [AppComponent]

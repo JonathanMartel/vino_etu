@@ -81,16 +81,4 @@ export class CellierBouteilleComponent implements OnInit {
             .subscribe()
     }
 
-
-  /* formulaireModification(data:any): void {
-    let formulaire = this.formModifierBouteille.open(ModifierCellierBouteilleComponent, {
-      data
-    });
-
-    formulaire.afterClosed().subscribe(result => {
-      console.log('formulaire rempli')
-    })
-  } */
-
-
 }
