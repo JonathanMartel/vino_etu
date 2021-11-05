@@ -86,7 +86,7 @@ export default class Inscription extends React.Component {
                 .then(res => res.json()) 
                 .then((data) => {
                     if (data.data) {
-                      this.props.history.push("/");
+                      this.props.history.push("/connexion");
                     } else {
                       console.log("Erreur à l'inscription d'usager");
                     }

@@ -38,6 +38,11 @@ export default class App extends React.Component {
 				<Switch>
 					<Route exact path="/ajoutBouteille" component={AjoutBouteille} />
 
+					<Route exact path="/" component={(props)=> 
+						<ListeCelliers estConnecte={this.state.estConnecte} 
+							id_usager={this.state.id_usager} 
+							{...props} /> } />	
+
 					<Route
 						exact
 						path="/inscription"
@@ -54,7 +59,7 @@ export default class App extends React.Component {
 						)}
 					/>
 
-				<Route exact path="/" component={(props)=> 
+				<Route exact path="/connexion" component={(props)=> 
 						<Connexion login={this.seConnecter} 
 							estConnecte={this.state.estConnecte} 
 							id_usager={this.state.id_usager} 
@@ -75,7 +80,7 @@ export default class App extends React.Component {
 	
 					<Route
 						exact
-						path="/nouvellecellier"
+						path="/nouvellecellier/:id"
 						component={(props) => (
 							<NouvelleCellier title="Nouvelle Cellier" 
 							estConnecte={this.state.estConnecte} id_usager={this.state.id_usager} 
