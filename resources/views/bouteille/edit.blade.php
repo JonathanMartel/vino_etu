@@ -44,9 +44,9 @@
     </div>
     <div class="input-field col s12 ">
         <select name="type_id">
-            <option value="{{$bouteille->type_id}}" disabled selected>{{$bouteille->type->type}}</option>
+            <!-- <option value="{{$bouteille->type_id}}" selected>{{$bouteille->type->type}}</option> -->
             @foreach($types as $type)
-            <option value="{{ $type->id }}" @if( '$bouteille->type_id'==$type->id) selected @endif> {{ $type->type}}</option>
+            <option value="{{ $type->id }}" @if($bouteille->type_id==$type->id) selected @endif> {{ $type->type}}</option>
             @endforeach
         </select>
         <label>Type</label>
@@ -54,9 +54,9 @@
     </div>
     <div class="input-field col s12">
         <select name="format_id">
-            <option value="{{$bouteille->format_id}}" selected>{{$bouteille->format->nom}} - {{$bouteille->format->taille}} cl</option>
+            <!-- <option value="{{$bouteille->format_id}}" selected>{{$bouteille->format->nom}} - {{$bouteille->format->taille}} cl</option> -->
             @foreach($formats as $format)
-            <option value="{{ $format->id }}" @if( '$bouteille->format_id'==$format->id) selected @endif>{{ $format->nom}} - {{$format->taille}} cL </option>
+            <option value="{{ $format->id }}" @if( $bouteille->format_id==$format->id) selected @endif>{{ $format->nom}} - {{$format->taille}} cL </option>
             @endforeach
         </select>
         <label>Format</label>
