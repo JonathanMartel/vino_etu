@@ -65,10 +65,23 @@
                 @method('PUT')
                  @csrf
                  <div>
+
+                    <div class="form-modifier-item ">
+                        <select class="star-rating" name="note">
+                            <option value="">Choisir une note</option>
+                            <option value="5">Excellent</option>
+                            <option value="4">Très bon </option>
+                            <option value="3">Passable</option>
+                            <option value="2">Médiocre</option>
+                            <option value="1">Terrible</option>
+                        </select>
+                    </div>
+
                     <div class="form-modifier-item " >
                         <label for="note">Note :</label>
                         <input type="number" name="note" id="note" class="input-fiche-cercle" value="{!! $cellierBouteille->note !!}"/>
                     </div>
+
                     <div class="form-modifier-item" >
                         <label for="millesime">Millésime:</label>
                         <input type="number" name="millesime" id="millesime" class="" value="{!! $cellierBouteille->millesime !!}"/>
@@ -130,6 +143,9 @@
 </div> -->
 
 @endsection
+<link href="{{asset('css/autocomplete.css')}}" rel="stylesheet" />
 <script src="{{asset('js/cellierBouteille_show.js')}}"></script> 
 <link href="{{asset('css/cellierBouteillesListe.css')}}" rel="stylesheet" />
+<link href="{{asset('css/star-rating.css')}}" rel="stylesheet" />
+<script src="{{asset('js/star-rating.js')}}"></script>
 
