@@ -34,7 +34,6 @@ class CellierBouteilleController extends Controller
                 "dataCellier" => $dataCellierBouteillesByIDs,
             ];
 
-            //var_dump($cellierBouteillesByIDs);
         }
 
 

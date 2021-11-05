@@ -4,6 +4,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const table = document.querySelector('table');
     const tbody = table.querySelector('tbody');
     const message = document.querySelector('.message');
+
+    /**
+     * Afficher dans un table les bouteilles du site de la SAQ qui n'étaient pas dans la BD
+     */
     btnImport.addEventListener('click', (e) => {
         e.preventDefault();
         table.style.display = 'none';

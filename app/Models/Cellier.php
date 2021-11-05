@@ -29,6 +29,18 @@ class Cellier extends Model
         return $celliers;
     }
 
+    public static function rechercheDansCellier($motCle, $idCellier){
+
+        return DB::table('bouteilles')
+        ->select('bouteilles.nom', 'bouteille_id', 'pays', 'description', 'type', 'type_id', 'format_id', 'url_img', 'prix_saq', 'taille', 'millesime', 'note', 'quantite', 'url_saq' )
+        ->where('bouteilles.nom', "LIKE" , "%" .$motCle. "%")
+        ->orWhere('type', "LIKE" , "%" .$motCle. "%")
+        ->orWhere('millesime', "LIKE" , "%" .$motCle. "%")
+        ->join('cellier_bouteilles', 'bouteilles.id', '=', 'cellier_bouteilles.bouteille_id' )
+        ->join('types', 'bouteilles.type_id', '=', 'types.id')
+        ->join('formats', 'formats.id', '=', 'bouteilles.format_id')
+        ->get();
+    }
 
     
 }
