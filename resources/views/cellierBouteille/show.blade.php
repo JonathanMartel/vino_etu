@@ -69,10 +69,17 @@
                 @method('PUT')
                  @csrf
                  <div>
-                    <div class="form-modifier-item " >
-                        <label for="note">Note :</label>
-                        <input type="number" name="note" id="note" class="input-fiche-cercle" value="{!! $cellierBouteille->note !!}"/>
-                    </div>
+
+                 <div class="select">
+                 <select class="star-rating"  name="note" value="{!! $cellierBouteille->note !!}">
+                                <option value="">Choisir une note</option>
+                                <option value="5" @if( $cellierBouteille->note == 5) selected @endif>Excellent</option>
+                                <option value="4" @if( $cellierBouteille->note == 4) selected @endif>Très bon </option>
+                                <option value="3" @if( $cellierBouteille->note == 3) selected @endif>Passable</option>
+                                <option value="2" @if( $cellierBouteille->note == 2) selected @endif>Médiocre</option>
+                                <option value="1" @if( $cellierBouteille->note == 1) selected @endif>Terrible</option>
+                            </select>
+                        </div>
                     <div class="form-modifier-item" >
                         <label for="millesime">Millésime:</label>
                         <input type="number" name="millesime" id="millesime" class="" value="{!! $cellierBouteille->millesime !!}"/>
