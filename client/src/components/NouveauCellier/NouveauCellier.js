@@ -3,9 +3,9 @@ import { Box } from "@mui/system";
 import { TextField } from "@mui/material";
 import Button from '@mui/material/Button';
 
-import './NouvelleCellier.css';
+import './NouveauCellier.css';
 
-export default class NouvelleCellier extends React.Component {
+export default class NouveauCellier extends React.Component {
     constructor(props) {
 		super(props);
 
@@ -133,7 +133,7 @@ export default class NouvelleCellier extends React.Component {
                 gap: "1rem", width: "85vw", flexDirection: "column", borderRadius: "1rem",
                 margin: "0 auto", marginTop: "20vh", }} >
 
-                <span className="nouvelle_cellier_title">Créer une nouvelle cellier</span>
+                <span className="nouvelle_cellier_title"> {this.state.titreBoutton} </span>
 
                 <TextField autoFocus label="Emplacement" variant="outlined" 
                     onBlur={evt => this.setState({ emplacement: evt.target.value })} />
