@@ -92,9 +92,10 @@ class UsagerModele extends Modele
      * @return mixed $res Id de l'usager ou échec de la requête.
      */
     public function createUsager($data) {
-        $requete = "INSERT INTO vino__usager(nom,prenom,mot_passe) VALUES (" .
+        $requete = "INSERT INTO vino__usager(nom,prenom,courriel,mot_passe) VALUES (" .
             "'" . $data->nom . "'," .
             "'" . $data->prenom . "'," .
+            "'" . $data->courriel . "'," .
             "" . $data->mot_passe . ")";
 
         $res = $this->_db->query($requete);
