@@ -39,10 +39,10 @@ export default class App extends React.Component {
 				<Switch>
 					<Route exact path="/ajoutBouteille" component={AjoutBouteille} />
 
-					<Route exact path="/" component={(props)=> 
-						<ListeCelliers estConnecte={this.state.estConnecte} 
-							id_usager={this.state.id_usager} 
-							{...props} /> } />	
+					<Route exact path="/" component={(props) =>
+						<ListeCelliers estConnecte={this.state.estConnecte}
+							id_usager={this.state.id_usager}
+							{...props} />} />
 
 					<Route
 						exact
@@ -77,25 +77,21 @@ export default class App extends React.Component {
 						<ListeBouteilles {...param_route} id={param_route?.match?.params?.id} param={param_route} />} />
 
 
-					<Route exact path="/bouteilles/:id" render={(param_route)=> 
-							<DetailsBouteille {...param_route} bouteille_id={param_route?.match?.params?.bouteille_id} param={param_route} />} />
-	
+					<Route exact path="/bouteilles/:id" render={(param_route) =>
+						<DetailsBouteille {...param_route} bouteille_id={param_route?.match?.params?.bouteille_id} param={param_route} />} />
 
-          <Route exact path="/admin" component={(props) => <Admin estConnecte={this.state.estConnecte} id_usager={this.state.id_usager} {...props} />} />
-            
+
+					<Route exact path="/admin" component={(props) => <Admin estConnecte={this.state.estConnecte} id_usager={this.state.id_usager} {...props} />} />
+
 					<Route
 						exact
 						path="/nouvellecellier/:id"
 						component={(props) => (
-							<NouvelleCellier title="Nouvelle Cellier" 
-							estConnecte={this.state.estConnecte} id_usager={this.state.id_usager} 
-							{...props} />
+							<NouvelleCellier title="Nouvelle Cellier"
+								estConnecte={this.state.estConnecte} id_usager={this.state.id_usager}
+								{...props} />
 						)}
 					/>
-
-    			    <Route exact path="*" component={Page404} />
-        		</Switch>
-
 
 					<Route exact path="*" component={Page404} />
 				</Switch>
