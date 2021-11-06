@@ -10,6 +10,22 @@ use VinoAPI\Modeles\UsagerModele;
  */
 class UsagerController extends Router
 {
+    public function putUsager()
+    {
+        if (count($this->urlParams) == 2) {
+            if ($this->urlParams[1] == 'login') {
+                return $this->login();
+            } else if (ctype_digit($this->urlParams[1])) {
+                return $this->modifierUsager();
+            }
+        } else {
+            $this->retour['erreur'] = $this->erreur(400);
+            unset($this->retour['data']);
+
+            echo json_decode($this->retour);
+        }
+    }
+
     /**
      * Teste le login usager.
      *
@@ -17,25 +33,33 @@ class UsagerController extends Router
      */
     public function login()
     {
-        if (count($this->urlParams) == 2) {
-            if ($this->urlParams[1] == 'login') {
-                $body = json_decode(file_get_contents('php://input'));
+        $body = json_decode(file_get_contents('php://input'));
 
-                if (!empty($body)) {
-                    //TODO valider données
+        if (!empty($body)) {
+            //TODO valider données
 
-                    $usagerClassObj = new UsagerModele;
-                    $resultat = $usagerClassObj->match($body->courriel, $body->mot_passe);
+            $usagerClassObj = new UsagerModele;
+            $resultat = $usagerClassObj->match($body->courriel, $body->mot_passe);
 
-                    $this->retour['data'] = $resultat;
-                } else {
-                    $this->retour['erreur'] = $this->erreur(400);
-                    unset($this->retour['data']);
-                }
-            } else {
-                $this->retour['erreur'] = $this->erreur(400);
-                unset($this->retour['data']);
-            }
+            $this->retour['data'] = $resultat;
+        } else {
+            $this->retour['erreur'] = $this->erreur(400);
+            unset($this->retour['data']);
+        }
+
+        echo json_encode($this->retour);
+    }
+
+    public function modifierUsager() {
+        $body = json_decode(file_get_contents('php://input'));
+
+        if (!empty($body)) {
+            //TODO valider données
+
+            $usagerClassObj = new UsagerModele;
+            $resultat = $usagerClassObj->modifierUsager($body);
+
+            $this->retour['data'] = $resultat;
         } else {
             $this->retour['erreur'] = $this->erreur(400);
             unset($this->retour['data']);
@@ -68,7 +92,7 @@ class UsagerController extends Router
 
         echo json_encode($this->retour);
     }
-    
+
     /**
      * Traite la requête POST usager.
      *
@@ -96,13 +120,14 @@ class UsagerController extends Router
         echo json_encode($this->retour);
     }
 
-        
+
     /**
      * Traite la requête GET usager.
      *
      * @return void
      */
-    public function getUsager() {
+    public function getUsager()
+    {
         if (count($this->urlParams) == 2) {
             if (ctype_digit($this->urlParams[1])) {
                 $usagerClassObj = new UsagerModele;

@@ -145,7 +145,7 @@ class Router
 		switch ($this->urlParams[0]) {
 			case 'usagers':
 				$usagerClassObj = new UsagerController;
-				$usagerClassObj->login();
+				$usagerClassObj->putUsager();
 				break;
 			case 'bouteilles':
 				$bouteilleClassObj = new BouteilleController;
