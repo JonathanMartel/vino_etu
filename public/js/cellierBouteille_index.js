@@ -150,7 +150,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     return response.json();
                 })
                 .then((response) => {
-                    console.log(response)
                     let bouteilles = {};
 
                     for (let index = 0; index < response.length; index++) {
