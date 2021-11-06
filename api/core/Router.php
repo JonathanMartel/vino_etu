@@ -164,7 +164,7 @@ class Router
 	}
 
 	/**
-	 * Traite les requêtes DELETE
+	 * Traite les requêtes DELETE.
 	 *
 	 * @return void
 	 */
@@ -172,7 +172,8 @@ class Router
 	{
 		switch ($this->urlParams[0]) {
 			case 'usagers':
-				echo json_encode('usagers delete');
+				$usagerClassObj = new UsagerController;
+				$usagerClassObj->deleteUsager();
 				break;
 			case 'bouteilles':
 				echo json_encode('bouteilles delete');

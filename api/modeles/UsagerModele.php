@@ -68,4 +68,19 @@ class UsagerModele extends Modele
 
         return $rows;
     }
+    
+    /**
+     * Supprime un usager de la db.
+     *
+     * @param Integer $id Id de l'usager.
+     * 
+     * @return Boolean $res Succès de la requête.
+     */
+    public function deleteUsager($id) {
+        $requete = "DELETE FROM vino__usager WHERE id_usager = $id";
+
+        $res = $this->_db->query($requete);
+
+        return $res;
+    }
 }

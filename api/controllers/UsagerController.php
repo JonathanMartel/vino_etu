@@ -34,7 +34,32 @@ class UsagerController extends Router
                 }
             } else {
                 $this->retour['erreur'] = $this->erreur(400);
-                unset($this->retour['data']);    
+                unset($this->retour['data']);
+            }
+        } else {
+            $this->retour['erreur'] = $this->erreur(400);
+            unset($this->retour['data']);
+        }
+
+        echo json_encode($this->retour);
+    }
+
+    /**
+     * Traite la requête DELETE d'un usager.
+     *
+     * @return void
+     */
+    public function deleteUsager()
+    {
+        if (count($this->urlParams) == 2) {
+            if (ctype_digit($this->urlParams[1])) {
+                $usagerClassObj = new UsagerModele;
+                $resultat = $usagerClassObj->deleteUsager($this->urlParams[1]);
+
+                $this->retour['data'] = $resultat;
+            } else {
+                $this->retour['erreur'] = $this->erreur(400);
+                unset($this->retour['data']);
             }
         } else {
             $this->retour['erreur'] = $this->erreur(400);
