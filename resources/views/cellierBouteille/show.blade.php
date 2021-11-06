@@ -16,7 +16,7 @@
     </div>
     <div class="bouteille-nom">
         <span>{{ $bouteille->nom }}</span>
-        <a class="" href="{{ route('bouteilleEdit', $bouteille->id)}}"><i class="material-icons">edit</i></a>
+        <a class="" href="{{ route('cellierBouteille.edit', $cellier->id)}}"><i class="material-icons">edit</i></a>
     </div>
 </header>
 <main>
@@ -41,19 +41,23 @@
         </article>
     </section>
 
-    
+
+<!-- Deuxième partie "Millésime -->
+
          <section class="millesime-conteneur">
              @foreach($cellierBouteilleMillesime as $cellierBouteille)
                      <div data-js-bouton="{{ $cellierBouteille->millesime }}">
-                <div class="millesime-item" >
-                    @if($cellierBouteille->millesime  != 0)
-                        <p>{{ $cellierBouteille->millesime }}</p>
-                    @else
-                        <p>N/A</p>
-                    @endif
-                </div>
-                     </div>       
-                     @endforeach
+                       
+                            <button id="bouton-millesime"class="millesime-item" >
+                                @if($cellierBouteille->millesime  != 0)
+                                    <p>{{ $cellierBouteille->millesime }}</p>
+                                @else
+                                    <p>N/A</p>
+                                @endif
+                            </button>
+                       
+                     </div>
+                @endforeach
          </section>
     
     <section class="millesime-conteneur">
@@ -65,23 +69,10 @@
                 @method('PUT')
                  @csrf
                  <div>
-
-                    <div class="form-modifier-item ">
-                        <select class="star-rating" name="note">
-                            <option value="">Choisir une note</option>
-                            <option value="5">Excellent</option>
-                            <option value="4">Très bon </option>
-                            <option value="3">Passable</option>
-                            <option value="2">Médiocre</option>
-                            <option value="1">Terrible</option>
-                        </select>
-                    </div>
-
                     <div class="form-modifier-item " >
                         <label for="note">Note :</label>
                         <input type="number" name="note" id="note" class="input-fiche-cercle" value="{!! $cellierBouteille->note !!}"/>
                     </div>
-
                     <div class="form-modifier-item" >
                         <label for="millesime">Millésime:</label>
                         <input type="number" name="millesime" id="millesime" class="" value="{!! $cellierBouteille->millesime !!}"/>
@@ -108,11 +99,8 @@
                     <label for="date_achat">Date d'achat :</label>
                     <input type="date" name="date_achat" id="date_achat" class="" value="{!! $cellierBouteille->date_achat !!}"/>
                 </div>
-
-              
             </form>
         </div>
-   
     </section>
    
 
@@ -143,7 +131,6 @@
 </div> -->
 
 @endsection
-<link href="{{asset('css/autocomplete.css')}}" rel="stylesheet" />
 <script src="{{asset('js/cellierBouteille_show.js')}}"></script> 
 <link href="{{asset('css/cellierBouteillesListe.css')}}" rel="stylesheet" />
 <link href="{{asset('css/star-rating.css')}}" rel="stylesheet" />

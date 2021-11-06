@@ -15,12 +15,19 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log(idCellier);
     console.log(idBouteille);
 
-    for (let i = 0; i < boutonMillesime.length; i++) {
+    let btnActive = document.querySelector('#bouton-millesime');
+    console.log(btnActive);
+    // btnActive.addEventListener('click', () => btnActive.style.backgroundColor = 'blue')
+    
+ 
+ for (let i = 0; i < boutonMillesime.length; i++) {
 
         boutonMillesime[i].addEventListener("click", function(e) {
         e.preventDefault();
         const millesime = boutonMillesime[i].dataset.jsBouton;
-        
+     
+
+        /* Fetch cellier_Bouteille */
 
         fetch(`/obtenirMillesime/${idCellier}/${idBouteille}/${millesime}`)
         
@@ -40,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }).catch(error => console.log(error))
 
 
-
+     
 
         // if (infoInfo.classList.contains("form")) {
         //     infoInfo.classList.remove("form");
