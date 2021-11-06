@@ -124,11 +124,12 @@
                 </section>
                 @endforeach
             </div>
+        </article>
             @empty
     <div class="list-empty">
         <p>Vous n'avez pour l'instant aucun vin.</p>
     </div>
-        </article>
+        
         @endforelse
     </div>
 
