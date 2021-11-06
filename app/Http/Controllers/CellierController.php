@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cellier;
+use App\Models\CellierBouteille;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -115,6 +116,12 @@ class CellierController extends Controller
 
     public function rechercheDansCellier($motCle, $idCellier) {
         $bouteilles = Cellier::rechercheDansCellier($motCle, $idCellier);
+
+        return response()->json($bouteilles);
+    }
+
+    public function reinitialiserCellier($idCellier) {
+        $bouteilles = CellierBouteille::obtenirListeBouteilleCellier($idCellier);
 
         return response()->json($bouteilles);
     }

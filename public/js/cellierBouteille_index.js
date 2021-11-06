@@ -138,15 +138,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const idCellier = location.pathname.split("/")[2];
     const articlesConteneur = document.querySelector(".articlesConteneur");
-
+    let chemin;
     barreRecherche.addEventListener("input", () => {
-        if (barreRecherche.value.trim() != "") {
+        chemin = `/rechercheDansCellier/${barreRecherche.value}/${idCellier}`;
+            if(barreRecherche.value.trim() == '')  {
+                chemin = `/reinitialiserCellier/${idCellier}`;
+            }
             articlesConteneur.innerHTML = "";
-            fetch(`/rechercheDansCellier/${barreRecherche.value}/${idCellier}`)
+            fetch(chemin)
                 .then((response) => {
                     return response.json();
                 })
                 .then((response) => {
+                    console.log(response)
                     let bouteilles = {};
 
                     for (let index = 0; index < response.length; index++) {
@@ -177,44 +181,23 @@ document.addEventListener("DOMContentLoaded", function () {
                         }
                     }
                     for (const key of Object.keys(bouteilles)) {
-                        console.log(bouteilles[key].nom);
+                        
                         let saq = "";
                         if (bouteilles[key].url_saq != null) {
                             saq = `<div class="bouteilleSAQConteneur"> <a class="lienSAQ" href="${bouteilles[key].url_saq}">SAQ</a>
-                        <div class="cercle ">
-                            <i class="material-icon check">check</i>
-                        </div>
-                    </div>`;
+                                        <div class="cercle ">
+                                            <i class="material-icon check">check</i>
+                                        </div>
+                                    </div>`;
                         } else {
                             saq = ` <div class="bouteilleSAQConteneur"> 
-                    <p>SAQ</p>
-                    <div class="cercle ">
-                        <i class="material-icon check">close</i>
-                    </div></div>`;
+                                        <p>SAQ</p>
+                                        <div class="cercle ">
+                                            <i class="material-icon check">close</i>
+                                        </div>
+                                    </div>`;
                         }
-
-                        articlesConteneur.innerHTML += `<article class="articleVin">
-            <a href="/cellier/${idCellier}/${key}">
-                <div class="nomVinConteneur">
-                    <h2>${bouteilles[key].nom}</h2>
-                </div>
-            </a>
-
-           
-            <div class="infoBouteilleConteneur">
-                <img class="image" src="${bouteilles[key].url_img}" alt="Image ${bouteilles[key].nom}">
-                <div class="info">
-                    <div>
-                    <p>${bouteilles[key].pays}</p>
-                    <p>${bouteilles[key].type}</p>
-                    </div>
-                    
-                    <p class="taille">${bouteilles[key].taille} cl</p>
-                    
-                </div>
-                ${saq}
-                
-                <div class="infoCellierBouteilleConteneur">`;
+                        let infoCellierBouteilleConteneur = '<div class="infoCellierBouteilleConteneur">'
                         bouteilles[key].millesimes.forEach((millesime) => {
                             if (millesime.millesime > 0) {
                                 millesimeTexte = `  <p>${millesime.millesime}</p>`;
@@ -223,47 +206,58 @@ document.addEventListener("DOMContentLoaded", function () {
                             }
 
                             note = `  <div class="select">
-                    <select class="star-rating" data-id-bouteille="${key}" data-millesime="${millesime.millesime}" name="note">
-                        <option value="">Choisir une note</option>
-                        <option value="5"`; if(millesime.note == 5) {note += `selected`} note +=`>Excellent</option>
-                        <option value="4"`; if(millesime.note == 4) {note += `selected`} note +=`>Très bon</option>
-                        <option value="3"`; if(millesime.note == 3) {note += `selected`} note +=`>Passable</option>
-                        <option value="2"`; if(millesime.note == 2) {note += `selected`} note +=`>Médiocre</option>
-                        <option value="1"`; if(millesime.note == 1) {note += `selected`} note +=`>Terrible</option>
-                    </select>
-                </div>`;
-                            articlesConteneur.innerHTML += `   
-                    <section class="infoCellierBouteille">
-                        <div class="infoUnitaires">
-                        ${millesimeTexte}
-                           
-                            
-                         ${note}
-    
-                            <p class="quantite">Quantité : <span>${millesime.quantite}</span></p>
-                        </div>
-                        <div class=" flex bouton-conteneur">
-                            <div class="cercle bouton-cercle-remove">
-                                <a class="btn-floating btn-large waves-effect waves-light " name="btnRetirerBouteille" href="/boireBouteille/${idCellier}/${key}/${millesime.millesime}">
-                                    <i class="material-icon">remove</i>
-                                </a>
-                            </div>
-                            <div class="cercle bouton-cercle-add">
-                                <a class="btn-floating btn-large waves-effect waves-light" name="btnAjouterBouteille" href="/ajouterBouteille/${idCellier}/${key}/${millesime.millesime}">
-                                    <i class="material-icon">add</i>
-                                </a>
-                            </div>
-                        </div>
-                    </section>`;
+                                            <select class="star-rating" data-id-bouteille="${key}" data-millesime="${millesime.millesime}" name="note">
+                                                <option value="">Choisir une note</option>
+                                                <option value="5"`; if(millesime.note == 5) {note += `selected`} note +=`>Excellent</option>
+                                                <option value="4"`; if(millesime.note == 4) {note += `selected`} note +=`>Très bon</option>
+                                                <option value="3"`; if(millesime.note == 3) {note += `selected`} note +=`>Passable</option>
+                                                <option value="2"`; if(millesime.note == 2) {note += `selected`} note +=`>Médiocre</option>
+                                                <option value="1"`; if(millesime.note == 1) {note += `selected`} note +=`>Terrible</option>
+                                            </select>
+                                        </div>`;
+                            infoCellierBouteilleConteneur += `   <section class="infoCellierBouteille">
+                                                                    <div class="infoUnitaires">
+                                                                        ${millesimeTexte}     
+                                                                        ${note}
+                                                
+                                                                        <p class="quantite">Quantité : <span>${millesime.quantite}</span></p>
+                                                                    </div>
+                                                                    <div class=" flex bouton-conteneur">
+                                                                        <div class="cercle bouton-cercle-remove">
+                                                                            <a class="btn-floating btn-large waves-effect waves-light " name="btnRetirerBouteille" href="/boireBouteille/${idCellier}/${key}/${millesime.millesime}">
+                                                                                <i class="material-icon">remove</i>
+                                                                            </a>
+                                                                        </div>
+                                                                        <div class="cercle bouton-cercle-add">
+                                                                            <a class="btn-floating btn-large waves-effect waves-light" name="btnAjouterBouteille" href="/ajouterBouteille/${idCellier}/${key}/${millesime.millesime}">
+                                                                                <i class="material-icon">add</i>
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
+                                                                </section>`;
                         });
-                        articlesConteneur.innerHTML += `   
-                </div>
-           
-            </div>
-
-         
-        </article>
-       `;
+                        infoCellierBouteilleConteneur += '</div>'
+                        
+                        articlesConteneur.innerHTML += `<article class="articleVin">
+                                                            <a href="/cellier/${idCellier}/${key}">
+                                                                <div class="nomVinConteneur">
+                                                                    <h2>${bouteilles[key].nom}</h2>
+                                                                </div>
+                                                            </a>
+                                                            <div class="infoBouteilleConteneur">
+                                                                <img class="image" src="${bouteilles[key].url_img}" alt="Image ${bouteilles[key].nom}">
+                                                                <div class="info">
+                                                                    <div>
+                                                                        <p>${bouteilles[key].pays}</p>
+                                                                        <p>${bouteilles[key].type}</p>
+                                                                    </div>                
+                                                                    <p class="taille">${bouteilles[key].taille} cl</p>                 
+                                                                </div>
+                                                                ${saq}
+                                                            </div>
+                                                            ${infoCellierBouteilleConteneur}
+                                                                
+                                                        </article>`;
                     }
 
                     new StarRating(".star-rating", {
@@ -357,6 +351,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 })
                 .catch((error) => console.log(error));
-        }
+        
     });
 });
+
