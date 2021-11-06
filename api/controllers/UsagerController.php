@@ -95,4 +95,29 @@ class UsagerController extends Router
 
         echo json_encode($this->retour);
     }
+
+        
+    /**
+     * Traite la requête GET usager.
+     *
+     * @return void
+     */
+    public function getUsager() {
+        if (count($this->urlParams) == 2) {
+            if (ctype_digit($this->urlParams[1])) {
+                $usagerClassObj = new UsagerModele;
+                $resultat = $usagerClassObj->getUsagerParId($this->urlParams[1]);
+
+                $this->retour['data'] = $resultat;
+            } else {
+                $this->retour['erreur'] = $this->erreur(400);
+                unset($this->retour['data']);
+            }
+        } else {
+            $this->retour['erreur'] = $this->erreur(400);
+            unset($this->retour['data']);
+        }
+
+        echo json_encode($this->retour);
+    }
 }

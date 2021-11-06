@@ -76,7 +76,8 @@ class Router
 		if (isset($this->urlParams[0])) {
 			switch ($this->urlParams[0]) {
 				case 'usagers':
-					echo json_encode('usagers');
+					$usagerClassObj = new UsagerController;
+					$usagerClassObj->getUsager();
 					break;
 				case 'bouteilles':
 					$bouteilleClassObj = new BouteilleController;
