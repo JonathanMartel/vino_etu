@@ -47,20 +47,17 @@
          <section class="millesime-conteneur">
              @foreach($cellierBouteilleMillesime as $cellierBouteille)
                      <div data-js-bouton="{{ $cellierBouteille->millesime }}">
-                       
-                            <button id="bouton-millesime"class="millesime-item" >
-                                @if($cellierBouteille->millesime  != 0)
-                                    <p>{{ $cellierBouteille->millesime }}</p>
-                                @else
-                                    <p>N/A</p>
-                                @endif
-                            </button>
-                       
+                        <button id="bouton-millesime"class="millesime-item" >
+                            @if($cellierBouteille->millesime  != 0)
+                                <p>{{ $cellierBouteille->millesime }}</p>
+                            @else
+                                <p>N/A</p>
+                            @endif
+                        </button>
                      </div>
                 @endforeach
          </section>
         <section class="">
-            
             <div class="form-modifier form">
                 <form id="" action="" method="POST" class="form-modifier" data-js-form>
                     @method('PUT')
@@ -94,16 +91,16 @@
                         </div>
                         </div>
                     </div>
-                    <div>
-                        <div class="form-modifier-item" >
-                            <label for="commentaire">commentaire :</label>
+                    <div class="millesime-info-fin">
+                        <div class="item-commentaire" >
+                            <label for="commentaire">Commentaire</label>
                             <input type="textarea" name="commentaire" id="commentaire" class="" value="{!! $cellierBouteille->commentaire !!}"/>
                         </div>
-                        <div class="form-modifier-item" >
-                            <label for="garde_jusqua">À conserver :</label>
+                        <div class="item-commentaire" >
+                            <label for="garde_jusqua">À conserver</label>
                             <input type="textarea" name="garde_jusqua" id="garde_jusqua" class="" value="{!! $cellierBouteille->garde_jusqua !!}"/>
                         </div>
-                        <div class="form-modifier-item" >
+                        <div class="item-commentaire" >
                             <label for="date_achat">Date d'achat :</label>
                             <input type="date" name="date_achat" id="date_achat" class="" value="{!! $cellierBouteille->date_achat !!}"/>
                         </div>
