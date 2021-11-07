@@ -68,13 +68,23 @@
     padding: 1rem;
 }
 
-.form-modifier-item{
+.select-form{
     display: flex;
-    align-items: center;
+    justify-content: flex-end;
+    padding-top: 0.64rem;
 }
 
+ .form-modifier-item{
+    display: flex;
+    align-content: center;
+    justify-content: flex-end;
+    padding-top: 25px;
+} 
+
 .form-modifier-item label{
+    display: flex;
     padding: 1rem;
+    align-items: center;
 }
 
 .image-fiche {
@@ -88,10 +98,18 @@
 .form-modifier .form-modifier-item .input-fiche-cercle { 
     width: 60px ;
     height: 60px ;
-    border-style: solid ;
+    border-style: none ;
     border-radius: 50% ;
-} 
+    background-color: #BBC7C1;
+    text-align: center;
+    margin-bottom: 0;
+}
 
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
 
 
 
@@ -100,3 +118,8 @@
     display: none;
   }  */
 
+
+.millesime-info-debut{
+    display: flex;
+    column-gap: 1rem;
+}

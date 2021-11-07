@@ -59,56 +59,58 @@
                      </div>
                 @endforeach
          </section>
-    
-    <section class="millesime-conteneur">
-        <div>
-            <img class="image-fiche" src="{{ $bouteille->url_img}}" alt="">
-        </div>
-        <div class="form-modifier form">
-            <form id="" action="" method="POST" class="form-modifier" data-js-form>
-                @method('PUT')
-                 @csrf
-                 <div>
-
-                 <div class="select">
-                 <select class="star-rating"  name="note" value="{!! $cellierBouteille->note !!}">
-                                <option value="">Choisir une note</option>
-                                <option value="5" @if( $cellierBouteille->note == 5) selected @endif>Excellent</option>
-                                <option value="4" @if( $cellierBouteille->note == 4) selected @endif>Très bon </option>
-                                <option value="3" @if( $cellierBouteille->note == 3) selected @endif>Passable</option>
-                                <option value="2" @if( $cellierBouteille->note == 2) selected @endif>Médiocre</option>
-                                <option value="1" @if( $cellierBouteille->note == 1) selected @endif>Terrible</option>
-                            </select>
+        <section class="">
+            
+            <div class="form-modifier form">
+                <form id="" action="" method="POST" class="form-modifier" data-js-form>
+                    @method('PUT')
+                    @csrf
+                    <div class="millesime-info-debut">
+                        <img class="image-fiche" src="{{ $bouteille->url_img}}" alt="">
+                        <div>
+                            <div class="select-form">
+                                <select class="star-rating"  name="note" value="{!! $cellierBouteille->note !!}">
+                                    <option value="">Choisir une note</option>
+                                    <option value="5" @if( $cellierBouteille->note == 5) selected @endif>Excellent</option>
+                                    <option value="4" @if( $cellierBouteille->note == 4) selected @endif>Très bon </option>
+                                    <option value="3" @if( $cellierBouteille->note == 3) selected @endif>Passable</option>
+                                    <option value="2" @if( $cellierBouteille->note == 2) selected @endif>Médiocre</option>
+                                    <option value="1" @if( $cellierBouteille->note == 1) selected @endif>Terrible</option>
+                                </select>
+                            </div>
+                            <div>
+                                <div class="form-modifier-item " >
+                                    <label for="millesime">Millésime</label>
+                                    <input type="number" name="millesime" id="millesime" class="input-fiche-cercle" value="{!! $cellierBouteille->millesime !!}"/>
+                                </div>
+                                <div class="form-modifier-item" >
+                                    <label for="prix">Prix d'achat</label>
+                                    <input type="number" name="prix" id="prix" class="input-fiche-cercle" value="{!! $cellierBouteille->prix !!}"/>
+                                </div>
+                                <div class="form-modifier-item" >
+                                    <label for="quantite">Qte</label>
+                                    <input type="number" name="quantite" id="quantite" class="input-fiche-cercle" value="{!! $cellierBouteille->quantite !!}"/>
+                                </div>
                         </div>
-                    <div class="form-modifier-item" >
-                        <label for="millesime">Millésime:</label>
-                        <input type="number" name="millesime" id="millesime" class="" value="{!! $cellierBouteille->millesime !!}"/>
+                        </div>
                     </div>
-
-                    <div class="form-modifier-item" >
-                        <label for="prix">Prix d'achat :</label>
-                        <input type="number" name="prix" id="prix" class="" value="{!! $cellierBouteille->prix !!}"/>
+                    <div>
+                        <div class="form-modifier-item" >
+                            <label for="commentaire">commentaire :</label>
+                            <input type="textarea" name="commentaire" id="commentaire" class="" value="{!! $cellierBouteille->commentaire !!}"/>
+                        </div>
+                        <div class="form-modifier-item" >
+                            <label for="garde_jusqua">À conserver :</label>
+                            <input type="textarea" name="garde_jusqua" id="garde_jusqua" class="" value="{!! $cellierBouteille->garde_jusqua !!}"/>
+                        </div>
+                        <div class="form-modifier-item" >
+                            <label for="date_achat">Date d'achat :</label>
+                            <input type="date" name="date_achat" id="date_achat" class="" value="{!! $cellierBouteille->date_achat !!}"/>
+                        </div>
                     </div>
-                    <div class="form-modifier-item" >
-                        <label for="quantite">Qte :</label>
-                        <input type="number" name="quantite" id="quantite" class="" value="{!! $cellierBouteille->quantite !!}"/>
-                    </div>
-                 </div>
-                <div class="form-modifier-item" >
-                    <label for="commentaire">commentaire :</label>
-                    <input type="textarea" name="commentaire" id="commentaire" class="" value="{!! $cellierBouteille->commentaire !!}"/>
-                </div>
-                <div class="form-modifier-item" >
-                    <label for="garde_jusqua">À conserver :</label>
-                    <input type="textarea" name="garde_jusqua" id="garde_jusqua" class="" value="{!! $cellierBouteille->garde_jusqua !!}"/>
-                </div>
-                <div class="form-modifier-item" >
-                    <label for="date_achat">Date d'achat :</label>
-                    <input type="date" name="date_achat" id="date_achat" class="" value="{!! $cellierBouteille->date_achat !!}"/>
-                </div>
-            </form>
-        </div>
-    </section>
+                </form>
+            </div>
+        </section>
    
 
 </main>
