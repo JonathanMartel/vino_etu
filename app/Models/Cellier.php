@@ -36,7 +36,7 @@ class Cellier extends Model
         if(strtolower($motCle) == 'non millisimé')
         {
             return DB::table('bouteilles')
-            ->select('bouteilles.nom', 'bouteille_id', 'pays', 'description', 'type', 'type_id', 'format_id', 'url_img', 'prix_saq', 'taille', 'millesime', 'note', 'quantite', 'url_saq' )
+            ->select('bouteilles.nom', 'bouteille_id', 'pays', 'description', 'type', 'type_id', 'format_id', 'url_img', 'taille', 'millesime', 'note', 'quantite', 'prix', 'garde_jusqua', 'date_achat' )
             ->where('cellier_bouteilles.cellier_id', $idCellier)
             ->where('millesime',  $motCle)     
             ->join('cellier_bouteilles', 'bouteilles.id', '=', 'cellier_bouteilles.bouteille_id' )
@@ -46,7 +46,7 @@ class Cellier extends Model
         } 
         
         return DB::table('bouteilles')
-        ->select('bouteilles.nom', 'bouteille_id', 'pays', 'description', 'type', 'type_id', 'format_id', 'url_img', 'prix_saq', 'taille', 'millesime', 'note', 'quantite', 'url_saq' )
+        ->select('bouteilles.nom', 'bouteille_id', 'pays', 'description', 'type', 'type_id', 'format_id', 'url_img', 'taille', 'millesime', 'note', 'quantite', 'prix', 'garde_jusqua', 'date_achat' )
         ->where('cellier_bouteilles.cellier_id', $idCellier)
         ->where(function($query) use ($motCle){
             $query->where('bouteilles.nom', "LIKE" , "%" .$motCle. "%")

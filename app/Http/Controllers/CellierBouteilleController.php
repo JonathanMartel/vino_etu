@@ -222,7 +222,16 @@ public static function creerCellierBouteille ($request, $idBouteille, $date_acha
         $bouteille = Bouteille::getDataBouteilleByID($idBouteille);
         $cellierBouteille = CellierBouteille::obtenirListeBouteilleCellier($idCellier);
         $cellierBouteilleMillesime = CellierBouteille::obtenirMillesimesParBouteille($idCellier, $idBouteille);
-        
+        $celliers = Cellier::getCelliersByUser(session('user')->id);
+        $cellierBouteillesIDs = CellierBouteille::getCellierBouteillesIDs($idCellier);
+        $bouteilles = [];
+        foreach ($cellierBouteillesIDs as $bouteilleID) {
+
+            $bouteille = Bouteille::getDataBouteilleByID($bouteilleID->bouteille_id); //infos générales de la bouteille obtenue grace a son ID
+          
+            array_push($bouteilles, $bouteille);
+
+        }
         // print_r ($cellierBouteille);
 
         return view('cellierBouteille.show', [
@@ -230,6 +239,8 @@ public static function creerCellierBouteille ($request, $idBouteille, $date_acha
             'cellierBouteille' => $cellierBouteille[0],
             'cellier' => $cellier,
             'cellierBouteilleMillesime' =>  $cellierBouteilleMillesime,
+            'celliers' => $celliers,
+            'bouteilles' => $bouteilles,
         ]);
         
     }
