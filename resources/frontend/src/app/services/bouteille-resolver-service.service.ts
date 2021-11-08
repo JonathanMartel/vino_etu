@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, ActivatedRouteSnapshot, Resolve, RouterState, RouterStateSnapshot } from '@angular/router';
+import { map } from 'rxjs/operators';
 import { BouteilleDeVinService } from './bouteille-de-vin.service';
 
 @Injectable({
@@ -15,9 +16,11 @@ export class BouteilleResolverServiceService implements Resolve<any>{
 
         let bouteilleId = route.paramMap.get('id');
 
-        console.log(route.paramMap);
-
-
-        return this.servBouteilleDeVin.getBouteilleParId(bouteilleId);
+        return this.servBouteilleDeVin.getBouteilleParId(bouteilleId)
+            .pipe(
+                map(data => {
+                   return data.data;
+                })
+            );
     }
 }
