@@ -181,7 +181,8 @@ class Router
 				echo json_encode('bouteilles delete');
 				break;
 			case 'celliers':
-				echo json_encode('celliers delete');
+				$cellierClassObj = new CellierController;
+				$cellierClassObj->deleteCellier();
 				break;
 			case 'saq':
 				echo json_encode('saq delete');

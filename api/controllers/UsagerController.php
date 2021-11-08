@@ -9,7 +9,12 @@ use VinoAPI\Modeles\UsagerModele;
  * Gère les méthodes de bouteilles.
  */
 class UsagerController extends Router
-{
+{    
+    /**
+     * Traîte les requêtes PUT usager.
+     *
+     * @return void
+     */
     public function putUsager()
     {
         if (count($this->urlParams) == 2) {
@@ -49,7 +54,12 @@ class UsagerController extends Router
 
         echo json_encode($this->retour);
     }
-
+    
+    /**
+     * Modifie les infos d'un usager.
+     *
+     * @return void
+     */
     public function modifierUsager() {
         $body = json_decode(file_get_contents('php://input'));
 
@@ -119,7 +129,6 @@ class UsagerController extends Router
 
         echo json_encode($this->retour);
     }
-
 
     /**
      * Traite la requête GET usager.
