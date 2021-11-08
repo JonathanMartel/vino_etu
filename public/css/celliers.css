@@ -21,12 +21,18 @@
     padding: 0.64rem;
     border-radius: 5px;
     flex-grow: 1;
-    background-color: #BBC7C1;
+    background-color: #E0CFA0;
     display: flex;
     align-items: center;
     justify-content: space-between;
     column-gap: 1rem;
+    cursor: pointer;
 }
+
+.cellier:nth-child(even) {
+    background-color: #BBC7C1;
+} 
+
 
 .texte-cellier-container {
     display: flex;
@@ -91,14 +97,28 @@
 
 }
 
-.bouton-ajout-vin-conteneur{
-    display: flex;
-    justify-content: center;
-    margin: 0.64rem;
-    margin-top: 0;
+.supprimer .material-icons {
+    font-size: 33px;
+    color: #742F30;
 }
 
-.bouton-ajout-vin{
+.modifier .material-icons {
+
+    font-size: 33px;
+    color: #AA7E42;
+  
+}
+
+.bouton-ajout-vin-conteneur {
+    display: flex;
+    justify-content: center;
+    margin-top: 0.64rem;
+    margin-left: 0.64rem;
+    margin-right: 0.64rem;
+    margin-bottom: 1rem;
+}
+
+.bouton-ajout-vin {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -106,24 +126,52 @@
     padding-bottom: 0.512rem;
     padding-right: 1rem;
     padding-left: 1rem;
-    border-style: solid;
-    border-color: #778D83;
+    /* border-style: solid;
+    border-color: #707070; */
     border-radius: 30px;
     color: #343B41;
     font-weight: 700;
+    background-color: #99AAA2;
     transition: all 0.2s ease;
 }
 
-.bouton-ajout-vin:hover{
-    background-color: #CDCED1;
+.bouton-ajout-vin>i {
+    color: #343B41;
 }
 
+.bouton-ajout-vin:hover {
+    background-color: #778D83;
+    color: white;
+}
 .entete-icon-bouton{
     display: flex;
     column-gap: 1rem;
     justify-content: center;
 }
 
+.titre{
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #7A5958;
+    background-color: #E0CFA0;
+}
 
-
-
+.material-icon {
+    
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 25px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+}
