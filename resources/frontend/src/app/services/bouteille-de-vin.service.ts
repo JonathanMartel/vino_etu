@@ -94,7 +94,7 @@ export class BouteilleDeVinService {
 
     ajouterUtilisateur(data:any){
 
-        return this.http.post<any>(this.url + '/creerCompte/', data)
+        return this.http.post<any>(this.url + '/creerCompte', data)
     }
 
 }
