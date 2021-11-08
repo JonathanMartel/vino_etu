@@ -67,7 +67,7 @@ Route::put("celliers/modifier-inventaire/{cellierBouteilleId}", [CellierBouteill
 Route::post('creerCompte', [CustomAuthController::class, "creerCompte"]);
 
 // Connexion
-Route::post('connection', [CustomAuthController::class, "connection"]);
+Route::get('connection', [CustomAuthController::class, "connection"]);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

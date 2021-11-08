@@ -65,6 +65,8 @@ class CustomAuthController extends Controller
         'email' => $request->email,
         'password' => Hash::make($request->password),
     ]);
+
+    $token = $utilisateur->createToken('myapptoken')->plainTextToken;
     return response(['message' => 'Utilisateur enregistre.'], 200);
   }
 
@@ -88,7 +90,7 @@ class CustomAuthController extends Controller
         
         }
         $user = Auth::user();
-        $token = $user->createToken($user->name);
+        $token = $user->createToken('myapptoken')->plainTextToken;
 
         return response([
             'id' => $user->id,

@@ -37,6 +37,7 @@ export class CreerCompteComponent implements OnInit {
 
       if(this.formulaire.invalid)
       {
+        this.formulaire.markAllAsTouched();
         return;
       }
       this.rempli =true;
