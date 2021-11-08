@@ -2,12 +2,12 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Validation\ValidationException;
 use Throwable;
 
-class Handler extends ExceptionHandler
-{
+class Handler extends ExceptionHandler {
     /**
      * A list of the exception types that are not reported.
      *
@@ -33,18 +33,14 @@ class Handler extends ExceptionHandler
      *
      * @return void
      */
-    public function register()
-    {
+    public function register() {
         $this->reportable(function (Throwable $e) {
             //
         });
     }
 
-    public function render($request, Throwable $exception)
-    {
-        // return parent::render($request, $exception);
-
-        if($exception instanceof ValidationException){
+    public function render($request, Throwable $exception) {
+        if ($exception instanceof ValidationException) {
             return response([
                 'errors' => $exception->errors()
             ], 400);
@@ -52,6 +48,6 @@ class Handler extends ExceptionHandler
 
         return response([
             'error' => $exception->getMessage()
-        ], $exception->getCode() ? : 400);
+        ], $exception->getCode() ?: 400);
     }
 }

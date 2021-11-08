@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Validator;
 
 class CustomAuthController extends Controller
@@ -94,20 +94,20 @@ class CustomAuthController extends Controller
         $utilisateur = User::Where('email', $login['email'])->first();
 
         if (!$utilisateur || !Hash::check($login["password"], $utilisateur->password)){
-            return response([
+            return response()->json([
                 'message' => 'Mauvaise combinaison'
             ], 401);
         }
 
-    
+
         $token = $utilisateur->createToken('myapptoken')->plainTextToken;
-    
+
         $response = [
             'utilisateur' => $utilisateur,
             'token' => $token,
         ];
-    
-        return response($response, 201);
+
+        return response()->json($response, 201);
 
 
        /* $request->validate([
@@ -118,7 +118,7 @@ class CustomAuthController extends Controller
         $login = $request->only('email', 'password');
         if (!Auth::attempt($login)) {
             return response(['message' => 'Invalid login credential!!'], 401);
-        
+
         }
         $user = Auth::user();
         $token = $user->createToken($user->name);

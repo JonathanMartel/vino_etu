@@ -14,26 +14,29 @@ export class FicheBouteilleComponent implements OnInit {
     bouteille: any;
     bouteilleId: any;
 
-    constructor(private servBouteilleDeVin: BouteilleDeVinService, private actRoute: ActivatedRoute, public formAjout: MatDialog) { }
+    constructor(
+        private servBouteilleDeVin: BouteilleDeVinService,
+        private actRoute: ActivatedRoute,
+        public formAjout: MatDialog
+    ) { }
 
     ngOnInit(): void {
 
-        this.bouteilleId = this.actRoute.snapshot.paramMap.get('id');
+        // Utiliser le resolver si il y a du data dans le service ActivatedRoute
 
-        this.servBouteilleDeVin.getBouteilleParId(this.bouteilleId).subscribe(bouteille => this.bouteille = bouteille.data);
+            this.actRoute.data.subscribe(data => {
+                console.log(data);
+                this.bouteille = data.bouteille;
+                console.log(this.bouteille);
+            });
 
         this.actRoute.data.subscribe(data => { this.bouteille = data.bouteille; });
     }
 
     formulaireAjout(data: any): void {
-        let formulaire = this.formAjout.open(AjoutBouteilleComponent, {
+        this.formAjout.open(AjoutBouteilleComponent, {
             data
         });
-
-        formulaire.afterClosed().subscribe(result => {
-           // console.log('formulaire rempli');
-
-        })
     }
 
 }
