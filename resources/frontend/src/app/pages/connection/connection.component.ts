@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '@services/auth.service';
 import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 
 @Component({
@@ -17,7 +18,7 @@ export class ConnectionComponent implements OnInit {
   });
 
 
-  constructor(private servBouteilleDeVin:BouteilleDeVinService, private http: HttpClient, private router: Router) { }
+  constructor(private servAuth:AuthService, private http: HttpClient, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -27,23 +28,14 @@ export class ConnectionComponent implements OnInit {
   }
 
   connection(){
-    console.log(this.formConnection.value);
+   // console.log(this.formConnection.value);
 
     const data={
       email: this.formConnection.value.email,
       password: this.formConnection.value.password
     }
 
-    this.servBouteilleDeVin.connexion(data).subscribe(res => {
-      console.log(res);
-      localStorage.setItem('user', JSON.stringify(res))
-
-      // redirect to dashboard
-      this.router.navigate(['/accueil']);
-    },
-    err=>{
-      console.log(err);
-    })
+    this.servAuth.connexion(data);
   }
 
 }

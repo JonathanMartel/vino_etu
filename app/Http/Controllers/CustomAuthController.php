@@ -65,7 +65,15 @@ class CustomAuthController extends Controller
         'email' => $request->email,
         'password' => Hash::make($request->password),
     ]);
-    return response(['message' => 'Utilisateur enregistre.'], 200);
+
+    $token = $utilisateur->createToken('myapptoken')->plainTextToken;
+
+    $response = [
+        'utilisateur' => $utilisateur,
+        'token' => $token,
+    ];
+
+    return response($response, 201);
   }
 
 
@@ -77,7 +85,32 @@ class CustomAuthController extends Controller
 
   public function connection(Request $request)
     {
-        $request->validate([
+
+        $login = $this->validate($request, [
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        $utilisateur = User::Where('email', $login['email'])->first();
+
+        if (!$utilisateur || !Hash::check($login["password"], $utilisateur->password)){
+            return response([
+                'message' => 'Mauvaise combinaison'
+            ], 401);
+        }
+
+    
+        $token = $utilisateur->createToken('myapptoken')->plainTextToken;
+    
+        $response = [
+            'utilisateur' => $utilisateur,
+            'token' => $token,
+        ];
+    
+        return response($response, 201);
+
+
+       /* $request->validate([
             'email' => 'required',
             'password' => 'required',
         ]);
@@ -100,7 +133,7 @@ class CustomAuthController extends Controller
             'token_expires_at' => $token->token->expires_at,
         ], 200);
 
-        //return redirect("connection")->withSuccess('Échec de la connexion');
+        //return redirect("connection")->withSuccess('Échec de la connexion'); */
     }
 
 
