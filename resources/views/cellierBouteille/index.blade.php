@@ -9,7 +9,7 @@
 
 <header>
     <div class="cellier">
-        <select class="select-celliers" name ="id">
+        <select name ="select-cellier">
             
             @foreach($celliers as $unCellier)
             <option value="{{ $unCellier->id }}" @if( $unCellier->id == $cellier->id) selected @endif>{{ $unCellier->nom}} </option>

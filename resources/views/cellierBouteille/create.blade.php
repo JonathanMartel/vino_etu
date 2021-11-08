@@ -71,7 +71,7 @@
                 <option value="{{ $i }}" @if( old('millesime') == $i) selected @endif>{{ $i }}</option>
             @endfor
           </select>
-          <label name="labelMillesime">{{ old('millesime-existant') ?? 'Millesime' }}</label>
+          <label name="labelMillesime">{{ old('millesime-existant') ?? 'Millésime' }}</label>
           <span class="helper-text" data-error="Format invalid"></span>
         </div>
         <div class="input-field col s12">
