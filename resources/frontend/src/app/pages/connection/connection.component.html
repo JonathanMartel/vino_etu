@@ -1,18 +1,24 @@
 <div class="conteneur">
-    <form class="formulaire">
+    <form class="formulaire" [formGroup]= 'formConnection' (ngSubmit)= 'connection()'>
       <header>
         <h2>Se connecter</h2>
       </header>
-      <div class="">
-        <div class="input-case">
-          <label for="nom"><mat-icon>person</mat-icon></label>
-          <input type="text"  placeholder="Nom usager"  required="required"/>
+      <mat-form-field appearance="fill">
+        <mat-label for="email">Courriel</mat-label>
+        <input matInput type="text" id="email" name="email" formControlName="email">
+        <div *ngIf="erreur.email.touched && erreur.email.invalid" class="alert alert-danger">
+            <div *ngIf="erreur.email.errors.required">Ce champ est obligatoire</div>
+            <div *ngIf="erreur.email.errors.email">Veuillez rentrer un courriel valide</div>
         </div>
-        <div class="input-case">
-          <label for="motPasse"><mat-icon>lock</mat-icon></label>
-          <input type="text"  placeholder="Mot de passe" required="required"/>
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label for="password">Mot de passe</mat-label>
+        <input matInput type="text" id="password" name="password" formControlName="password">
+        <div *ngIf="erreur.password.touched && erreur.password.invalid" class="alert alert-danger">
+            <div *ngIf="erreur.password.errors.required">Ce champ est obligatoire</div>
+            <div *ngIf="erreur.password.errors.password">Veuillez rentrer un courriel valide</div>
         </div>
-      </div>
+      </mat-form-field>
 
       <button type="submit">Se connecter</button>
 
