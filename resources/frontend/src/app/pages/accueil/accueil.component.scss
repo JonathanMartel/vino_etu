@@ -7,35 +7,34 @@
 .card {
     display: flex;
     flex-direction: column;
-    padding: 1rem 0;
-    margin: 2rem 0;
+    margin: 1rem 0;
+
 }
 
 .card-title {
     display: flex;
     justify-content: flex-start;
-    padding: 1rem .8rem .3rem;
     font-size: 20px;
     font-weight: 400;
 }
 
 .card-title>h4 {
   padding: 0;
-  margin: 1.25rem 0;
 }
 
 .card-content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1rem 0;
+
 }
 
 p {
     font-size: 1rem;
     font-weight: 500;
     line-height: 1.4em;
-    padding: 0 16px;
+    width: 100%;
+    padding: 25px;
 }
 
 .home-btns{
@@ -59,4 +58,3 @@ p {
     cursor: pointer;
     
 }
-
