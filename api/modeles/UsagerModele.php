@@ -111,7 +111,7 @@ class UsagerModele extends Modele
             "'" . $data->nom . "'," .
             "'" . $data->prenom . "'," .
             "'" . $data->courriel . "'," .
-            "" . $data->mot_passe . ")";
+            "'" . $data->mot_passe . "')";
 
         $res = $this->_db->query($requete);
 
