@@ -1,42 +1,4 @@
 <div class="conteneur">
-    <!-- <form class="formulaire" [formGroup] ='ajouterUtilisateur' (ngSubmit)=postUser(ajouterUtilisateur)>
-        <h2 class="titre">Creer une compte</h2>
-        <mat-form-field appearance="fill">
-
-            <mat-label for="first_name">Prénom</mat-label>
-            <input matInput type="text" name="first_name" formControlName="first_name">
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-            <mat-label for="last_name">Nom</mat-label>
-            <input matInput type="text" name="last_name" formControlName="last_name">
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-            <mat-label for="city">Ville</mat-label>
-            <input matInput type="text" name="city" formControlName="city">
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-            <mat-label for="dob">Date de naissance</mat-label>
-            <input matInput type="date" name="dob" formControlName="dob">
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-            <mat-label for="email">Courriel</mat-label>
-            <input matInput type="text" name="email" formControlName="email">
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-            <mat-label for="password">Mot de passe</mat-label>
-            <input matInput type="text" name="password" formControlName="password">
-        </mat-form-field>
-
-        <button>Enregistrer</button>
-
-    </form> -->
-    
-
     <form class="formulaire" [formGroup]="formulaire" (ngSubmit)="utilisateur()">
         <h2 class="titre">Creer une compte</h2>
         <div>
@@ -95,7 +57,7 @@
             <div *ngIf="erreur.password.errors.required">Ce champ est obligatoire</div>
         </div>
 
-        <button [disabled]="!formulaire.valid" type="submit">Enregistrer</button>
+        <button type="submit">Enregistrer</button>
     </form>
 </div>
 
