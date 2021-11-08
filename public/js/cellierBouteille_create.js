@@ -18,12 +18,12 @@ document.addEventListener('DOMContentLoaded', function() {
      * Recherche les noms des bouteilles dans la base de données  qui correspondent au mot-clé 
      */
     recherche.addEventListener('input', () => {
-        
+        clearTimeout(timer);
+        timer = setTimeout(() => {      
         if(recherche.value.trim() != "") {
             liste.innerHTML = "";
            
-            clearTimeout(timer);
-            timer = setTimeout(() => {
+         
                 fetch("/rechercheBouteillesParMotCle/" + recherche.value)
                 .then(response => {
                     return (response.json())
@@ -35,11 +35,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     })
                     
                 }).catch(error => console.log(error))
-            }, 300);
+          
         }else {
             liste.innerHTML = "";
         }
- 
+    }, 200);
     })
 
     /**
