@@ -18,19 +18,15 @@ document.addEventListener('DOMContentLoaded', function() {
          });
 
     const boutonMillesime = document.querySelectorAll('[data-js-bouton]');
-        console.log(boutonMillesime);
-
+    const boutonModifier = document.querySelector('[data-js-modifier]');
+    const inputs = document.querySelectorAll('[data-js-input]');
+    console.log(inputs);
     const infoForm =  document.querySelector('[data-js-form]');
-        console.log(infoForm);
-
     const infoInfo = document.querySelector('.form');
-        console.log(infoInfo);
-
     const idCellier = location.pathname.split('/')[2]
-        console.log(location.pathname);
     const idBouteille = location.pathname.split('/')[3]
-    console.log(idCellier);
-    console.log(idBouteille);
+  
+  
 
     let btnActive = document.querySelector('#bouton-millesime');
     console.log(btnActive);
@@ -53,6 +49,24 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         tooltip: false,
     });
+
+    /**
+     * Ajouter un note à une bouteille en cliquant sur une étoile
+     */
+     const notes = document.querySelectorAll(".star-rating");
+
+     notes.forEach((note) => {
+         note.addEventListener("change", (e) => {
+             const idBouteille = e.target.dataset.idBouteille;
+             const millesime = e.target.dataset.millesime;
+             const idCellier = location.pathname.split("/")[2];
+             const note = document.querySelector("[data-rating]").dataset.rating;
+ 
+             fetch(
+                 `/ajouterNote/${idCellier}/${idBouteille}/${millesime}/${note}`
+             ).catch((error) => console.log(error));
+         });
+     });
     
  
  for (let i = 0; i < boutonMillesime.length; i++) {
@@ -82,8 +96,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }).catch(error => console.log(error))
 
 
-     
-
         // if (infoInfo.classList.contains("form")) {
         //     infoInfo.classList.remove("form");
         // }else{
@@ -91,4 +103,15 @@ document.addEventListener('DOMContentLoaded', function() {
         // }
       });
     }
+
+    /* Activer les champs inputs */ 
+        boutonModifier.addEventListener("click", function(e) {
+            e.preventDefault();
+            console.log('click bouton mod');
+            boutonModifier.remove();
+            for (let i = 0; i < inputs.length; i++){
+                    inputs[i].readOnly = false;
+            }
+        });
+    
 });

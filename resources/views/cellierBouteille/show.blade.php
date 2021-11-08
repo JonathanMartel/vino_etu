@@ -35,10 +35,19 @@
                 <p>Prix Saq | {{ $bouteille->prix_saq }}$</p>
             </div>
             <div class="bouteilleSAQConteneur">
+                @if($bouteille->url_saq)
                 <a class="lienSAQ" href="{{ $bouteille->url_saq }}">SAQ</a>
                 <div class="cercle ">
                     <i class="material-icon check">check</i>
                 </div>
+                @else
+
+                    <!-- Ajouter boutons modifier et suprimer bouteille ici à la place des infos SAQ !!! -->
+                    <p>SAQ</p>
+                    <div class="cercle ">
+                        <i class="material-icon check">close</i>
+                    </div>
+                    @endif
             </div>
         </article>
         <article>
@@ -72,7 +81,7 @@
                         <img class="image-fiche" src="{{ $bouteille->url_img}}" alt="">
                         <div>
                             <div class="select-form">
-                                <select class="star-rating"  name="note" value="{!! $cellierBouteille->note !!}">
+                                <select class="star-rating"  name="note" data-id-bouteille="{{$cellierBouteille->bouteille_id}}" data-millesime="{{$cellierBouteille->millesime}}">
                                     <option value="">Choisir une note</option>
                                     <option value="5" @if( $cellierBouteille->note == 5) selected @endif>Excellent</option>
                                     <option value="4" @if( $cellierBouteille->note == 4) selected @endif>Très bon </option>
@@ -84,41 +93,46 @@
                             <div>
                                 <div class="form-modifier-item " >
                                     <label for="millesime">Millésime</label>
-                                    <input type="number" name="millesime" id="millesime" class="input-fiche-cercle" value="{!! $cellierBouteille->millesime !!}"/>
+                                    <input type="number" name="millesime" readonly="readonly" id="millesime" data-js-input class="input-fiche-cercle" value="{!! $cellierBouteille->millesime !!}"/>
                                 </div>
                                 <div class="form-modifier-item" >
                                     <label for="prix">Prix d'achat</label>
-                                    <input type="number" name="prix" id="prix" class="input-fiche-cercle" value="{!! $cellierBouteille->prix !!}"/>
+                                    <input type="number" name="prix" readonly="readonly" id="prix" data-js-input class="input-fiche-cercle" value="{!! $cellierBouteille->prix !!}"/>
                                 </div>
                                 <div class="form-modifier-item" >
                                     <label for="quantite">Qte</label>
-                                    <input type="number" name="quantite" id="quantite" class="input-fiche-cercle" value="{!! $cellierBouteille->quantite !!}"/>
+                                    <input type="number" name="quantite" readonly="readonly" id="quantite" data-js-input class="input-fiche-cercle" value="{!! $cellierBouteille->quantite !!}"/>
                                 </div>
                         </div>
                         </div>
                     </div>
                     <div class="millesime-info-fin">
+                    <!-- <div class="input-field col s12">
+                        <textarea id="commentaire" name="commentaire" readonly="readonly  class="materialize-textarea">{{ old('commentaire') }}</textarea>
+                        <label for="commentaire">Commentaire</label>
+                        <span class="helper-text" data-error="Format invalid"></span>
+                    </div> -->
                         <div class="item-commentaire" >
                             <label for="commentaire">Commentaire</label>
-                            <input type="textarea" name="commentaire"  rows="5" cols="33" id="commentaire" class="textarea" value="{!! $cellierBouteille->commentaire !!}"/>
+                            <input type="textarea" name="commentaire" readonly="readonly" id="commentaire" data-js-input class="textarea" value="{!! $cellierBouteille->commentaire !!}"/>
                         </div>
                         <div class="item-commentaire" >
                             <label for="garde_jusqua">Garder jusqu'à</label>
-                            <input type="textarea" name="garde_jusqua" id="garde_jusqua" class="textarea" value="{!! $cellierBouteille->garde_jusqua !!}"/>
+                            <input type="textarea" name="garde_jusqua" readonly="readonly" id="garde_jusqua" data-js-input class="textarea" value="{!! $cellierBouteille->garde_jusqua !!}"/>
                         </div>
                         <div class="item-commentaire" >
                             <label for="date_achat">Date d'achat :</label>
-                            <input type="date" name="date_achat" id="date_achat" class="" value="{!! $cellierBouteille->date_achat !!}"/>
+                            <input type="date" name="date_achat" readonly="readonly" id="date_achat" data-js-input class="" value="{!! $cellierBouteille->date_achat !!}"/>
                         </div>
                     </div>
                     <div class="bouton">
-                        <button class="bouton-fiche">Annuler</button>
-                        <button class="bouton-fiche valider" >Valider</button>
+                        <button class="bouton-fiche valider" value="update" data-js-modifier>Modifier</button>
+                        <!-- <button class="bouton-fiche">Annuler</button>
+                        <button class="bouton-fiche valider" >Valider</button> -->
                     </div>
                 </form>
             </div>
         </section>
-   
 
 </main>
 
