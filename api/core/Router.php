@@ -76,7 +76,8 @@ class Router
 		if (isset($this->urlParams[0])) {
 			switch ($this->urlParams[0]) {
 				case 'usagers':
-					echo json_encode('usagers');
+					$usagerClassObj = new UsagerController;
+					$usagerClassObj->getUsager();
 					break;
 				case 'bouteilles':
 					$bouteilleClassObj = new BouteilleController;
@@ -112,7 +113,8 @@ class Router
 	{
 		switch ($this->urlParams[0]) {
 			case 'usagers':
-				echo json_encode('usagers');
+				$usagerClassObj = new UsagerController;
+				$usagerClassObj->createUsager();
 				break;
 			case 'bouteilles':
 				$bouteilleClassObj = new BouteilleController;
@@ -143,14 +145,15 @@ class Router
 		switch ($this->urlParams[0]) {
 			case 'usagers':
 				$usagerClassObj = new UsagerController;
-				$usagerClassObj->login();
+				$usagerClassObj->putUsager();
 				break;
 			case 'bouteilles':
 				$bouteilleClassObj = new BouteilleController;
 				$bouteilleClassObj->putBouteille();
 				break;
 			case 'celliers':
-				echo json_encode('celliers put');
+				$cellierClassObj = new CellierController;
+				$cellierClassObj->modifierCellier();
 				break;
 			case 'saq':
 				echo json_encode('saq put');
@@ -164,7 +167,7 @@ class Router
 	}
 
 	/**
-	 * Traite les requêtes DELETE
+	 * Traite les requêtes DELETE.
 	 *
 	 * @return void
 	 */
@@ -172,13 +175,15 @@ class Router
 	{
 		switch ($this->urlParams[0]) {
 			case 'usagers':
-				echo json_encode('usagers delete');
+				$usagerClassObj = new UsagerController;
+				$usagerClassObj->deleteUsager();
 				break;
 			case 'bouteilles':
 				echo json_encode('bouteilles delete');
 				break;
 			case 'celliers':
-				echo json_encode('celliers delete');
+				$cellierClassObj = new CellierController;
+				$cellierClassObj->deleteCellier();
 				break;
 			case 'saq':
 				echo json_encode('saq delete');

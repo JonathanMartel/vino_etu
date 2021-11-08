@@ -88,4 +88,34 @@ class CellierModele extends Modele
 
         return $rows;
     }
+    
+    /**
+     * Delete un cellier de la db.
+     *
+     * @param Integer $id Id du cellier.
+     * 
+     * @return Boolean $res Succès de la requête.
+     */
+    public function deleteCellier($id) {
+        $requete = "DELETE FROM vino__celier WHERE id_cellier = $id";
+
+        $res = $this->_db->query($requete);
+        
+        return $res;
+    }
+    
+    /**
+     * Modifie les infos d'un cellier dans la db.
+     *
+     * @param Object $body Nouvelles infos de cellier.
+     * 
+     * @return Boolean $res Succès de la requête.
+     */
+    public function modifierCellier($body) {
+        $requete = "UPDATE vino__cellier SET emplacement = '$body->emplacement', temperature = '$body->temperature' WHERE id_cellier = $body->id";
+
+		$res = $this->_db->query($requete);
+
+		return $res;
+    }
 }

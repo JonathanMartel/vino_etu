@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import BouteilleCellier from '../BouteilleCellier/BouteilleCellier';
 //import { Link } from 'react-router-dom';
-//import translate from 'translate';
 import paysJSON from '../../pays.json';
 
 import './ListeBouteilleCellier.css';

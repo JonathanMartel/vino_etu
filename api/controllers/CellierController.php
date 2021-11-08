@@ -47,6 +47,58 @@ class CellierController extends Router
     }
 
     /**
+     * Delete un cellier.
+     *
+     * @return void
+     */
+    public function deleteCellier()
+    {
+        if (count($this->urlParams) == 2) {
+            if (ctype_digit($this->urlParams[1])) {
+                $cellierClassObj = new CellierModele;
+                $celliers = $cellierClassObj->deleteCellier($this->urlParams[1]);
+
+                $this->retour['data'] = $celliers;
+            } else {
+                $this->retour['erreur'] = $this->erreur(400);
+                unset($this->retour['data']);
+            }
+        } else {
+            $this->retour['erreur'] = $this->erreur(400);
+            unset($this->retour['data']);
+        }
+
+        echo json_encode($this->retour);
+    }
+
+    /**
+     * Modifie les infos d'un cellier.
+     *
+     * @return void
+     */
+    public function modifierCellier()
+    {
+        if (count($this->urlParams) == 1) {
+            $body = json_decode(file_get_contents('php://input'));
+
+            if (!empty($body)) {
+                $cellierClassObj = new CellierModele;
+                $celliers = $cellierClassObj->modifierCellier($body);
+
+                $this->retour['data'] = $celliers;
+            } else {
+                $this->retour['erreur'] = $this->erreur(400);
+                unset($this->retour['data']);
+            }
+        } else {
+            $this->retour['erreur'] = $this->erreur(400);
+            unset($this->retour['data']);
+        }
+
+        echo json_encode($this->retour);
+    }
+
+    /**
      * Ajoute un nouveau cellier.
      *
      * @return void
