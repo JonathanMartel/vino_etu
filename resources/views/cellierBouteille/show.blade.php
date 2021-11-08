@@ -127,8 +127,8 @@
                     </div>
                     <div class="bouton">
                         <button class="bouton-fiche valider" value="update" data-js-modifier>Modifier</button>
-                        <!-- <button class="bouton-fiche">Annuler</button>
-                        <button class="bouton-fiche valider" >Valider</button> -->
+                        <button class="bouton-fiche non-active" data-js-btnAnnuler>Annuler</button>
+                        <button class="bouton-fiche valider non-active" data-js-btnValider >Valider</button>
                     </div>
                 </form>
             </div>

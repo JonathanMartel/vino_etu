@@ -20,9 +20,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const boutonMillesime = document.querySelectorAll('[data-js-bouton]');
     const boutonModifier = document.querySelector('[data-js-modifier]');
     const inputs = document.querySelectorAll('[data-js-input]');
-    console.log(inputs);
     const infoForm =  document.querySelector('[data-js-form]');
     const infoInfo = document.querySelector('.form');
+    const btnAnnuleActive = document.querySelector('[data-js-btnAnnuler]')
+    console.log(btnAnnuleActive);
+    const btnValideActive = document.querySelector('[data-js-btnValider]')
+    console.log(btnValideActive);
     const idCellier = location.pathname.split('/')[2]
     const idBouteille = location.pathname.split('/')[3]
   
@@ -105,13 +108,20 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     /* Activer les champs inputs */ 
-        boutonModifier.addEventListener("click", function(e) {
-            e.preventDefault();
-            console.log('click bouton mod');
-            boutonModifier.remove();
-            for (let i = 0; i < inputs.length; i++){
-                    inputs[i].readOnly = false;
-            }
-        });
-    
+    boutonModifier.addEventListener("click", function(e) {
+        e.preventDefault();
+        console.log('click bouton mod');
+        boutonModifier.remove();
+        for (let i = 0; i < inputs.length; i++){
+                inputs[i].readOnly = false;
+        }
+
+        if (btnAnnuleActive.classList.contains("non-active")) {
+            btnAnnuleActive.classList.remove("non-active");
+             }
+        if (btnValideActive.classList.contains("non-active")){
+            btnValideActive.classList.remove("non-active");
+        }
+
+    });
 });
