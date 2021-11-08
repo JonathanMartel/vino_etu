@@ -100,16 +100,20 @@
                     <div class="millesime-info-fin">
                         <div class="item-commentaire" >
                             <label for="commentaire">Commentaire</label>
-                            <input type="textarea" name="commentaire" id="commentaire" class="" value="{!! $cellierBouteille->commentaire !!}"/>
+                            <input type="textarea" name="commentaire"  rows="5" cols="33" id="commentaire" class="textarea" value="{!! $cellierBouteille->commentaire !!}"/>
                         </div>
                         <div class="item-commentaire" >
-                            <label for="garde_jusqua">À conserver</label>
-                            <input type="textarea" name="garde_jusqua" id="garde_jusqua" class="" value="{!! $cellierBouteille->garde_jusqua !!}"/>
+                            <label for="garde_jusqua">Garder jusqu'à</label>
+                            <input type="textarea" name="garde_jusqua" id="garde_jusqua" class="textarea" value="{!! $cellierBouteille->garde_jusqua !!}"/>
                         </div>
                         <div class="item-commentaire" >
                             <label for="date_achat">Date d'achat :</label>
                             <input type="date" name="date_achat" id="date_achat" class="" value="{!! $cellierBouteille->date_achat !!}"/>
                         </div>
+                    </div>
+                    <div class="bouton">
+                        <button class="bouton-fiche">Annuler</button>
+                        <button class="bouton-fiche valider" >Valider</button>
                     </div>
                 </form>
             </div>
