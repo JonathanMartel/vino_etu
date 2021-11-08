@@ -6,18 +6,18 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Hash;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 use Validator;
 
 class CustomAuthController extends Controller
 {
 
 
-    /* private $apiToken;
+    private $apiToken;
     public function __construct()
     {
         $this->apiToken = uniqid(base64_encode(Str::random(40)));
-    } */
+    }
 
     /**
      * Display a listing of the resource.
