@@ -6,8 +6,8 @@
                 <mat-label for="first_name">Prénom</mat-label>
                 <input matInput type="text" id="first_name" name="first_name"formControlName="first_name">
                 <mat-error *ngIf="erreur.first_name.touched && erreur.first_name.invalid">
-                    <div *ngIf="erreur.first_name.errors.required">Ce champ est obligatoire</div>
-                    <div *ngIf="erreur.first_name.errors.minlength">3 caratères au minimum</div>
+                    <div *ngIf="erreur.first_name.errors?.required">Ce champ est obligatoire</div>
+                    <div *ngIf="erreur.first_name.errors?.minlength">3 caratères au minimum</div>
                 </mat-error>
             </mat-form-field>
         </div>
@@ -16,8 +16,8 @@
                 <mat-label for="last_name">Nom</mat-label>
                 <input matInput type="text" id="last_name" name="last_name" formControlName="last_name">
                 <mat-error *ngIf="erreur.last_name.touched && erreur.last_name.invalid">
-                    <div *ngIf="erreur.last_name.errors.required">Ce champ est obligatoire</div>
-                    <div *ngIf="erreur.last_name.errors.minlength">3 caratères au minimum</div>
+                    <div *ngIf="erreur.last_name.errors?.required">Ce champ est obligatoire</div>
+                    <div *ngIf="erreur.last_name.errors?.minlength">3 caratères au minimum</div>
                 </mat-error>
             </mat-form-field>
         </div>
@@ -26,36 +26,41 @@
                 <mat-label for="city">Ville</mat-label>
                 <input matInput type="text" id="city" name="city" formControlName="city">
                 <mat-error  *ngIf="erreur.city.touched && erreur.city.invalid">
-                    <div *ngIf="erreur.city.errors.required">Ce champ est obligatoire</div>
+                    <div *ngIf="erreur.city.errors?.required">Ce champ est obligatoire</div>
                 </mat-error>
             </mat-form-field>
         </div>
+
         <div>
             <mat-form-field appearance="fill">
                 <mat-label for="dob">Date de naissance</mat-label>
                 <input matInput type="date" id="dob" name="dob" formControlName="dob">
+                <mat-error *ngIf="erreur.dob.touched && erreur.dob.invalid" class="alert alert-danger">
+                    <div *ngIf="erreur.dob.errors?.required">Ce champ est obligatoire</div>
+                </mat-error>
             </mat-form-field>
-            <mat-error  *ngIf="erreur.dob.touched && erreur.dob.invalid">
-                <div *ngIf="erreur.dob.errors.required">Ce champ est obligatoire</div>
-            </mat-error>
         </div>
+
         <div>
             <mat-form-field appearance="fill">
                 <mat-label for="email">Courriel</mat-label>
                 <input matInput type="text" id="email" name="email" formControlName="email">
+                <mat-error *ngIf="erreur.email.touched && erreur.email.invalid" class="alert alert-danger">
+                    <div *ngIf="erreur.email.errors?.required">Ce champ est obligatoire</div>
+                    <div *ngIf="erreur.email.errors?.email">Veuillez rentrer un courriel valide</div>
+                </mat-error>
             </mat-form-field>
-            <mat-error *ngIf="erreur.email.touched && erreur.email.invalid">
-                <div *ngIf="erreur.email.errors.required">Ce champ est obligatoire</div>
-                <div *ngIf="erreur.email.errors.email">Veuillez rentrer un courriel valide</div>
+        </div>
+
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label for="password">Mot de passe</mat-label>
+                <input matInput type="password" id="password" name="password" formControlName="password">
+            </mat-form-field>
+            <mat-error *ngIf="erreur.password.touched && erreur.password.invalid" class="alert alert-danger">
+                <div *ngIf="erreur.password.errors?.required">Ce champ est obligatoire</div>
             </mat-error>
         </div>
-        <mat-form-field appearance="fill">
-            <mat-label for="password">Mot de passe</mat-label>
-            <input matInput type="password" id="password" name="password" formControlName="password">
-            <mat-error  *ngIf="erreur.password.touched && erreur.password.invalid">
-                <div *ngIf="erreur.password.errors.required">Ce champ est obligatoire</div>
-            </mat-error>
-        </mat-form-field>
 
         <button type="submit">Enregistrer</button>
     </form>
