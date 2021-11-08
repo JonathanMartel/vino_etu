@@ -5,17 +5,23 @@
 
 <header>
     <div class="cellier">
-        <span>{{ $cellier->nom }}</span>
-        <select name="cellier" id="cellier">
-            <option value="{{ $cellier->id }}">{{ $cellier->nom }}</option>
-            <!-- Ajouter les options du select de cellier !!! -->
-        </select>
+        <select name ="select-cellier">
+            
+            @foreach($celliers as $unCellier)
+            <option value="{{ $unCellier->id }}" @if( $unCellier->id == $cellier->id) selected @endif>{{ $unCellier->nom}} </option>
+            @endforeach
+          </select>
     </div>
     <div class="localisation">
         <span><img class="map-icone" src="{{URL::asset('/assets/icon/map-marker-rouge.svg')}}" alt="icone map"> {{ $cellier->localisation }}</span>
     </div>
     <div class="bouteille-nom">
-        <span>{{ $bouteille->nom }}</span>
+    <select  name ="select-bouteille">
+            
+            @foreach($cellierBouteillesByIDs as $vin)
+            <option value="{{ $vin['id'] }}" @if( $vin['id'] == $bouteille->id) selected @endif>{{ $vin['bouteille']->nom}} </option>
+            @endforeach
+          </select>
         <a class="" href="{{ route('bouteilleEdit', $bouteille->id)}}"><i class="material-icons">edit</i></a>
     </div>
 </header>
