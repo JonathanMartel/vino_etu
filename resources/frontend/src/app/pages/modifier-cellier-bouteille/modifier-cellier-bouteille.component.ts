@@ -41,10 +41,10 @@ export class ModifierCellierBouteilleComponent implements OnInit {
     ngOnInit(): void {
 
         this.bouteilleId = this.actRoute.snapshot.params.id;
-        console.log(this.bouteilleId);
+        //console.log(this.bouteilleId);
         this.servBouteilleDeVin.getBouteilleAcheteeParId(this.bouteilleId).subscribe(rep => {
             this.bouteille = rep.data;
-            console.log(this.bouteille);
+           // console.log(this.bouteille);
             this.initChampsModification();
         })
 
@@ -79,6 +79,6 @@ export class ModifierCellierBouteilleComponent implements OnInit {
             this.openSnackBar('Vous avez modifer la bouteille avec succès', 'Fermer');
         });
 
-        console.log(nouvellesDonnes);
+       // console.log(nouvellesDonnes);
     }
 }

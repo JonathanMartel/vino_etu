@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from './auth.service';
 
 @Injectable({
     providedIn: 'root'
@@ -11,7 +12,7 @@ export class BouteilleDeVinService {
     private url:string = "http://kalimotxo-vino.akira.dev/api";
     // private url: string = new URL(window.location.href).origin + "/api";
 
-    constructor(private http: HttpClient) {
+    constructor(private servAuth:AuthService, private http: HttpClient) {
         console.log(this.url);
      }
 
@@ -58,34 +59,42 @@ export class BouteilleDeVinService {
     }
 
     ajoutBouteilleCellier(bouteilleAchetee: any) {
-        return this.http.post<any>(this.url + '/celliers/' + 1 + '/bouteilles', bouteilleAchetee);
+
+        const entete = {
+            'Authorization' : `Bearer ${this.servAuth.utilisateurToken}`,
+        }
+
+        return this.http.post<any>(this.url + '/celliers/' + 1 + '/bouteilles', bouteilleAchetee, {headers:entete});
 
     }
 
     modifierInventaireCellierBouteille(bouteille_id: any, nouvelInventaire: any) {
 
+        const entete = {
+            'Authorization' : `Bearer ${this.servAuth.utilisateurToken}`,
+        }
+
         let body = {
             'inventaire': nouvelInventaire,
         }
 
-        return this.http.put<any>(this.url + '/celliers/modifier-inventaire/' + bouteille_id, body)
+        return this.http.put<any>(this.url + '/celliers/modifier-inventaire/' + bouteille_id, body, {headers:entete});
     }
 
 
     modifierBouteilleCellier(bouteilleAchetee_id:any, data:any){
 
-        return this.http.put<any>(this.url + '/bouteilles-achetees/' + bouteilleAchetee_id, data)
+        const entete = {
+            'Authorization' : `Bearer ${this.servAuth.utilisateurToken}`,
+        }
+
+        return this.http.put<any>(this.url + '/bouteilles-achetees/' + bouteilleAchetee_id, data, {headers:entete})
 
     }
 
     ajouterUtilisateur(data:any){
 
         return this.http.post<any>(this.url + '/creerCompte/', data)
-    }
-
-    connexion(data:any) {
-
-        return this.http.get<any>(this.url + '/sanctum/csrf-cookie')
     }
 
 }

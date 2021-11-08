@@ -50,9 +50,7 @@ export class CreerCompteComponent implements OnInit {
             password: this.formulaire.value.password
         }
         this.servBouteilleDeVin.ajouterUtilisateur(data).subscribe((res) => {
-            console.log(res);
             this.router.navigate(['/connection']);
-
         });
 
     }

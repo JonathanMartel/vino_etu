@@ -54,7 +54,7 @@ export class FicheBouteilleComponent implements OnInit {
         });
 
         formulaire.afterClosed().subscribe(result => {
-            console.log('formulaire rempli');
+           // console.log('formulaire rempli');
 
         })
     }
