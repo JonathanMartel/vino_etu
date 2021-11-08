@@ -23,9 +23,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const infoForm =  document.querySelector('[data-js-form]');
     const infoInfo = document.querySelector('.form');
     const btnAnnuleActive = document.querySelector('[data-js-btnAnnuler]')
-    console.log(btnAnnuleActive);
     const btnValideActive = document.querySelector('[data-js-btnValider]')
-    console.log(btnValideActive);
+    const btnEffacerActive = document.querySelector('[data-js-btnEffacer]')
     const idCellier = location.pathname.split('/')[2]
     const idBouteille = location.pathname.split('/')[3]
   
@@ -122,6 +121,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (btnValideActive.classList.contains("non-active")){
             btnValideActive.classList.remove("non-active");
         }
-
+        if (btnEffacerActive.classList.contains("non-active")){
+            btnEffacerActive.classList.remove("non-active");
+        }
     });
 });
