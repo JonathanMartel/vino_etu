@@ -14,15 +14,22 @@ export class FicheBouteilleComponent implements OnInit {
     bouteille: any;
     bouteilleId: any;
 
-    constructor(private servBouteilleDeVin: BouteilleDeVinService, private actRoute: ActivatedRoute, public formAjout: MatDialog) { }
+    constructor(
+        private servBouteilleDeVin: BouteilleDeVinService,
+        private actRoute: ActivatedRoute,
+        public formAjout: MatDialog
+    ) { }
 
     ngOnInit(): void {
 
-        this.bouteilleId = this.actRoute.snapshot.paramMap.get('id');
+        // this.bouteilleId = this.actRoute.snapshot.paramMap.get('id');
 
-        this.servBouteilleDeVin.getBouteilleParId(this.bouteilleId).subscribe(bouteille => this.bouteille = bouteille.data);
+        // this.servBouteilleDeVin.getBouteilleParId(this.bouteilleId).subscribe(bouteille => this.bouteille = bouteille.data);
 
-        this.actRoute.data.subscribe(data => { this.bouteille = data.bouteille; });
+        this.actRoute.data.subscribe(data => {
+            this.bouteille = data.bouteille;
+            console.log(this.bouteille);
+        });
     }
 
    /* openSnackBar(message: any, action: any) {
