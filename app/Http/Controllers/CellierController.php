@@ -24,8 +24,36 @@ class CellierController extends Controller
      *
      * @param int|string $cellierId l'id du cellier d'on on veut afficher l'inventaire
      */
-    public function obtenirBouteilles(int $cellierId, array $filtres = null) {
-        return Cellier::obtenirBouteillesParCellier($cellierId);
+    public function obtenirBouteilles(Request $request, int $cellierId) {
+
+        // Bâtir le tableau de filtres
+        $filtres = $this->batirTableauFiltres($request);
+
+        return Cellier::obtenirBouteillesParCellier(
+            $cellierId,
+            24,
+            "nom",
+            "asc",
+            (!empty($filtres)) ? $filtres : null
+        );
+    }
+
+    /**
+     *
+     * Bâtir le tableau de filtres à partir des paramètres reçus en requête
+     *
+     * @param Request $request objet request avec les filtres
+     * @return array
+     *
+     */
+    private function batirTableauFiltres(Request $request) {
+        $filtres = [];
+
+        if($request->texteRecherche && $request->texteRecherche !== "") {
+            $filtres["texteRecherche"] = $request->texteRecherche;
+        }
+
+        return $filtres;
     }
 
     /**

@@ -1,29 +1,67 @@
 import { Component, OnInit } from '@angular/core';
-import { BouteilleDeVinService} from '@services/bouteille-de-vin.service';
-import {FormControl} from '@angular/forms';
+import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
+import { FormControl } from '@angular/forms';
+import { Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { MatDrawerMode } from '@angular/material/sidenav';
 
 @Component({
-  selector: 'app-cellier',
-  templateUrl: './cellier.component.html',
-  styleUrls: ['./cellier.component.scss']
+    selector: 'app-cellier',
+    templateUrl: './cellier.component.html',
+    styleUrls: ['./cellier.component.scss']
 })
 export class CellierComponent implements OnInit {
-  cellier:any;
-  mode = new FormControl('over');
-  shouldRun = [/(^|\.)plnkr\.co$/, /(^|\.)stackblitz\.io$/].some(h => h.test(window.location.host));
 
+    // Sauvegarder la liste initiale de bouteilles afin de s'éviter une requête http/sql pour un "reset"
+    bouteillesCellierInitiales: any;
 
-  constructor(private servBouteilleDeVin:BouteilleDeVinService) {
+    // Sujet (observable) permettant de "debouncer" l'envoi de la recherche à la base de données
+    rechercheSujet: Subject<string> = new Subject<string>();
 
-  }
+    bouteillesCellier: any;
+    mode: MatDrawerMode = "over";
+    texteRecherche = new FormControl('');
 
-  ngOnInit(): void {
+    constructor(
+        private servBouteilleDeVin: BouteilleDeVinService
+    ) {
 
+    }
 
-    this.servBouteilleDeVin.getCellier().subscribe(cellier => {this.cellier = cellier.data, console.log(this.cellier)});
+    ngOnInit(): void {
+        this.servBouteilleDeVin.getBouteillesParCellier().subscribe(cellier => {
+            this.bouteillesCellier = this.bouteillesCellierInitiales = cellier.data
+        });
 
-  }
+    }
 
-  
+    recherche($event: any): void {
+        console.log(this.texteRecherche.value);
+        if (this.texteRecherche.value.length < 3 && this.bouteillesCellier != this.bouteillesCellierInitiales) {
+            this.bouteillesCellier = this.bouteillesCellierInitiales;
+            return;
+        }
 
+        if (this.rechercheSujet.observers.length === 0) {
+            this.rechercheSujet
+                .pipe(debounceTime(700), distinctUntilChanged())
+                .subscribe(recherche => {
+                    if (this.texteRecherche.value.length >= 3) {
+                        this.effectuerRechercheFiltree();
+                    }
+                });
+        }
+
+        this.rechercheSujet.next(this.texteRecherche.value);
+    }
+
+    effectuerRechercheFiltree(): void {
+        this.servBouteilleDeVin
+            .getBouteillesParCellier({
+                texteRecherche: this.texteRecherche.value.replace("-", " ")
+            })
+            .subscribe(bouteillesCellier => {
+                this.bouteillesCellier = bouteillesCellier.data;
+            });
+    }
 }

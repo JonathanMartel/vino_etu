@@ -4,7 +4,7 @@
     <!-- Filtre -->
     <mat-form-field>
         <mat-label>Trouvez une bouteille</mat-label>
-        <input matInput (keyup)="recherche($event)">
+        <input matInput (keyup)="recherche($event)" [formControl]="texteRecherche">
     </mat-form-field>
     <section  *ngFor="let uneBouteille of bouteille" class="resultat" routerLink="/ficheBouteille/{{uneBouteille.id}}">
         <div class="resultat-vin">

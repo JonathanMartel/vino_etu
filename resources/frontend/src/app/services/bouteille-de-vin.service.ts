@@ -15,14 +15,25 @@ export class BouteilleDeVinService {
         console.log(this.url);
      }
 
-    getCellier() {
+    getBouteillesParCellier(filtres = {}) {
 
-        return this.http.get<any>(this.url + '/celliers/' + 1 + '/bouteilles');
+        return this.http.get<any>(
+            this.url + '/celliers/' + 1 + '/bouteilles',
+            {
+                params: filtres
+            }
+        );
     }
 
-    getBouteillesCellier() {
+    getBouteillesCellier(filtres = {}) {
 
-        return this.http.get<any>(this.url + '/celliers/' + 1 + '/bouteilles');
+        return this.http.get<any>(
+            this.url + '/celliers/' + 1 + '/bouteilles',
+            {
+                params: filtres
+            }
+        );
+
     }
 
     getListeBouteille(filtres = {}) {

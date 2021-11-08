@@ -1,6 +1,6 @@
 <mat-sidenav-container class="example-container">
 
-    <mat-sidenav #sidenav [mode]="mode.value">
+    <mat-sidenav #sidenav [mode]="mode">
         <p><button mat-button (click)="sidenav.toggle()">Toggle</button></p>
     </mat-sidenav>
 
@@ -10,7 +10,11 @@
             <h2 class="titre">Mon Cellier</h2>
             <p class="bouton-filtre"><button mat-button (click)="sidenav.toggle()">Filtrer</button></p>
         </div>
-        <section *ngFor="let uneBouteille of cellier" class="resultat">
+        <mat-form-field>
+            <mat-label>Trouvez une bouteille</mat-label>
+            <input matInput (keyup)="recherche($event)" [formControl]="texteRecherche">
+        </mat-form-field>
+        <section *ngFor="let uneBouteille of bouteillesCellier" class="resultat">
             <app-cellier-bouteille [uneBouteille]='uneBouteille'></app-cellier-bouteille>
         </section>
     </div>
