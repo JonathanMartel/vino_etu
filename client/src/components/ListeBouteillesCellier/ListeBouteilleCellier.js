@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import BouteilleCellier from '../BouteilleCellier/BouteilleCellier';
-//import { Link } from 'react-router-dom';
 import paysJSON from '../../pays.json';
 
 import './ListeBouteilleCellier.css';
@@ -175,10 +174,6 @@ export default class ListeBouteilleCellier extends React.Component {
 					</Link>
 					<Typography color="text.primary">Liste des bouteilles</Typography>
 				</Breadcrumbs>
-				{/*<Link underline="hover" color="white" href="/ajoutBouteille">
-					<span>Ajouter une nouvelle bouteille à votre cellier</span>
-    </Link>*/}
-
 				<section>
 					<Dialogue
 						open={this.state.open}
