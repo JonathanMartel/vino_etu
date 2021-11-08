@@ -70,18 +70,8 @@ Route::put("celliers/modifier-inventaire/{cellierBouteilleId}", [CellierBouteill
 Route::put('bouteilles-achetees/{bouteilleAchetee}', [BouteilleAcheteeController::class, "update"]);
 
 
-<<<<<<< HEAD
 
 
-=======
-Route::group(['middleware' => ["auth:sanctum"]], function () {
-
-    // Ajout d'une bouteille à un cellier
-    Route::post('celliers/{cellier}/bouteilles', [CellierBouteilleAcheteeController::class, "store"]);
-
-    // Mise à jour de l'inventaire d'une bouteille dans un cellier donné
-    Route::put("celliers/modifier-inventaire/{cellierBouteilleId}", [CellierBouteilleAcheteeController::class, "modifierInventaireBouteille"]);
->>>>>>> f08311869ebb634ecd41780d4a9b4af060121bce
 
 
 
