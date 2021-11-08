@@ -70,6 +70,12 @@ class BouteilleController extends Controller
             'format_id' => 'required|exists:formats,id',
         ]);
 
+        if ($request->file) {
+            $fileName = time() . '_' . $request->file->getClientOriginalName();
+            $request->file('file')->move(public_path() . '/img', $fileName);
+            $request->url_img = URL::to('') . '/img/' . $fileName;
+        }
+
         $bouteille = Bouteille::create([
 
             'nom' => $request->nom,

@@ -3,10 +3,11 @@
 
 <link href="{{asset('css/celliers.css')}}" rel="stylesheet" />
 <script src="{{asset('js/cellier_index.js')}}"></script>
+
 @if(isset(Auth::user()->id))
-<div class="entete-page">
+
+<div class="titre">
     <h1>Vos celliers</h1>
-    <img src="{{URL::asset('/assets/icon/logo-3-bouteilles-cellier.svg')}}" alt="Icone trois bouteilles">
 </div>
 
 <!-- <div class="bouton-ajout-conteneur">
@@ -14,7 +15,7 @@
 </div> -->
 
 <div class="bouton-ajout-vin-conteneur">
-    <a class="bouton-ajout-vin" href="{{ route('cellier.create') }}">Ajouter un cellier</a>
+    <a class="bouton-ajout-vin" href="{{ route('cellier.create') }}"><i class="material-icon">add</i> Ajouter un cellier</a>
 </div>
 
 
@@ -22,21 +23,21 @@
 <div class="liste-celliers">
     @forelse($celliers as $cellier)
     
-    <a class="lien-cellier" href="{{route('cellier.show',  $cellier->id)}}">
-        <article class="cellier">
+        <article class="cellier" data-lien="{{route('cellier.show',  $cellier->id)}}" >
+       
             <div class="texte-cellier-container">
                 <h2 class="nom-cellier">{{ ucfirst($cellier->nom) }}</h2>
                 <h3 class="localisation-cellier"><img class="map-icone" src="{{URL::asset('/assets/icon/map-marker-rouge.svg')}}" alt="icone map"> {{ ucfirst($cellier->localisation) }}</h3>
             </div>
+            
             <div class="droite-container">
-                <img class="bouteille-icone" src="{{URL::asset('/assets/icon/bouteille-cellier.svg')}}" alt="Icone Bouteille">
                 <!-- <p class="nb-vins-cellier">42</p> -->
                 <!-- !!! insérer nb vins dans cellier ici  -->
 
-                <div class="btn-space-col">
-                    <a class="btn waves-effect waves-light button btn-modifier" href="{{ route('cellier.edit', $cellier->id)}}"><i class="material-icons">edit</i></a>
+                <div class="btn-space">
+                    <a class="waves-effect waves-light button modifier" href="{{ route('cellier.edit', $cellier->id)}}"><i class="material-icons">edit</i></a>
                     <!-- <a class="btn waves-effect waves-light button btn-supprimer" href="#"><i class="material-icons">delete</i></a> -->
-                    <a class="btn waves-effect waves-light button btn-supprimer modal-trigger" href="#{{$cellier->id}}"><i class="material-icons">delete</i></a>
+                    <a class="waves-effect waves-light button supprimer modal-trigger" href="#{{$cellier->id}}"><i class="material-icons">delete</i></a>
                     <!-- Modal Structure -->
                     <div id="{{$cellier->id}}" class="modal">
                         <div class="modal-content">
@@ -54,8 +55,9 @@
                     </div>
                 </div>
             </div>
+          
         </article>
-    </a>
+    
     @empty
     <div class="list-empty">
         <p>Vous n'avez pour l'instant aucun cellier. Veuillez en créer un avant de continuer</p>
