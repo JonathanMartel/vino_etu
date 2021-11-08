@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
             defaultDate: new Date(date.getFullYear(), date.getMonth(), date.getDate()),
             setDefaultDate: true});
      
-    
+    let timer; //https://typeofnan.dev/how-to-execute-a-function-after-the-user-stops-typing-in-javascript/
     /**
      * Recherche les noms des bouteilles dans la base de données  qui correspondent au mot-clé 
      */
@@ -21,18 +21,21 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if(recherche.value.trim() != "") {
             liste.innerHTML = "";
-            
-            fetch("/rechercheBouteillesParMotCle/" + recherche.value)
-            .then(response => {
-                return (response.json())
-            })
-            .then(response => {
+           
+            clearTimeout(timer);
+            timer = setTimeout(() => {
+                fetch("/rechercheBouteillesParMotCle/" + recherche.value)
+                .then(response => {
+                    return (response.json())
+                })
+                .then(response => {
 
-                response.forEach(function(element){
-                    liste.innerHTML += `<div  data-description="${element.description}" data-pays="${element.pays}" data-idtype="${element.type_id}" data-idformat="${element.format_id}" data-id="${element.id}" data-prix="${element.prix_saq}"  data-imgurl="${element.url_img}" data-nom="${element.nom}" >${element.nom} - ${element.type} -  ${element.taille} cL - ${element.pays}</div>`;
-                  })
-                  
-            }).catch(error => console.log(error))
+                    response.forEach(function(element){
+                        liste.innerHTML += `<div  data-description="${element.description}" data-pays="${element.pays}" data-idtype="${element.type_id}" data-idformat="${element.format_id}" data-id="${element.id}" data-prix="${element.prix_saq}"  data-imgurl="${element.url_img}" data-nom="${element.nom}" >${element.nom} - ${element.type} -  ${element.taille} cL - ${element.pays}</div>`;
+                    })
+                    
+                }).catch(error => console.log(error))
+            }, 300);
         }else {
             liste.innerHTML = "";
         }
@@ -60,7 +63,7 @@ document.addEventListener('DOMContentLoaded', function() {
     liste.addEventListener('click', e => {
         
         if(e.target.tagName == "DIV") {
-            labelMillesime.innerHTML = "Millesime";
+            labelMillesime.innerHTML = "Millésime";
             
             img.style.display = "block";
             img.src = e.target.dataset.imgurl;

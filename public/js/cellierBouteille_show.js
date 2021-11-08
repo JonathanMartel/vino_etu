@@ -3,13 +3,19 @@ document.addEventListener('DOMContentLoaded', function() {
         /**
      * Un select permettant de changer de cellier
      */
-         var selectCellier = document.querySelector('[name="id"]');
+         var selectCellier = document.querySelector('[name="select-cellier"]');
          M.FormSelect.init(selectCellier);
      
          selectCellier.addEventListener("change", (e) => {
              location.href = location.origin + "/cellier/" + e.target.value;
          });
      
+         var selectBouteille = document.querySelector('[name="select-bouteille"]');
+         M.FormSelect.init(selectBouteille);
+     
+         selectBouteille.addEventListener("change", (e) => {
+             location.href = location.origin + `/cellier/${selectCellier.value}/${e.target.value}`;
+         });
 
     const boutonMillesime = document.querySelectorAll('[data-js-bouton]');
         console.log(boutonMillesime);
