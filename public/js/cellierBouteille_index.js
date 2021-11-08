@@ -93,10 +93,10 @@ document.addEventListener("DOMContentLoaded", function () {
             const idBouteille = e.target.dataset.idBouteille;
             const millesime = e.target.dataset.millesime;
             const idCellier = location.pathname.split("/")[2];
-            const note = document.querySelector("[data-rating]").dataset.rating;
-
+            const uneNote = note.closest('span').querySelector('[data-rating]').dataset.rating;
+            
             fetch(
-                `/ajouterNote/${idCellier}/${idBouteille}/${millesime}/${note}`
+                `/ajouterNote/${idCellier}/${idBouteille}/${millesime}/${uneNote}`
             ).catch((error) => console.log(error));
         });
     });
@@ -393,7 +393,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     
                 }
             }).catch((error) => console.log(error));
-        }, 200);
+        }, 300);
     });
 });
 

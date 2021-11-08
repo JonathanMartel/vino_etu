@@ -245,15 +245,6 @@ color: #343B41;
     justify-content: center;
 }
 
-/*  pour alterner de couleur */
-
-/* section{
-    background-color: aqua;
-}
-
-section:nth-child(even) {
-    background-color: Lightgreen;
-} */
 
 .cellier .select-wrapper input.select-dropdown,
 .cellier .select-wrapper input.select-dropdown:focus,
