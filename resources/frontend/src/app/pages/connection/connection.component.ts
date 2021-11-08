@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from '@services/auth.service';
 import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
@@ -12,16 +13,21 @@ import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 })
 export class ConnectionComponent implements OnInit {
 
+
+  utilisateurAuthentifie!:string;
+  utilisateurToken!:string;
+
   formConnection = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.required)
   });
 
 
-  constructor(private servAuth:AuthService, private http: HttpClient, private router: Router) { }
+  constructor(private servAuth:AuthService, private http: HttpClient, private router: Router, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
   }
+
 
   get erreur(){
     return this.formConnection.controls;
@@ -35,7 +41,13 @@ export class ConnectionComponent implements OnInit {
       password: this.formConnection.value.password
     }
 
-    this.servAuth.connexion(data);
+    this.servAuth.connexion(data)
+    /* .subscribe(rep => {
+      //this.utilisateurAuthentifie = rep.utilisateur;
+      //this.utilisateurToken = rep.token;
+      console.log(rep.status)
+    
+    }) */;
   }
 
 }

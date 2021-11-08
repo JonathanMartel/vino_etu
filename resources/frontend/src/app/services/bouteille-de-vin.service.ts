@@ -87,14 +87,13 @@ export class BouteilleDeVinService {
         const entete = {
             'Authorization' : `Bearer ${this.servAuth.utilisateurToken}`,
         }
-        
         return this.http.put<any>(this.url + '/bouteilles-achetees/' + bouteilleAchetee_id, data, {headers:entete})
 
     }
 
     ajouterUtilisateur(data:any){
 
-        return this.http.post<any>(this.url + '/creerCompte/', data)
+        return this.http.post<any>(this.url + '/creerCompte', data)
     }
 
 }

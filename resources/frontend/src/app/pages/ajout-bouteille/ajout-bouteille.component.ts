@@ -36,7 +36,8 @@ export class AjoutBouteilleComponent implements OnInit {
 
     openSnackBar(message: any, action: any) {
         this.snackBar.open(message, action, {
-            duration: 3000
+            duration: 3000,
+            panelClass: 'notif'
         });
     }
 
@@ -49,7 +50,7 @@ export class AjoutBouteilleComponent implements OnInit {
         this.bouteilleAchetee.users_id = 1;
 
         this.servBouteilleDeVin.ajoutBouteilleCellier(this.bouteilleAchetee).subscribe(() => {
-            this.openSnackBar('Vous avez ajouté une bouteille à votre cellier', 'Fermer') 
+            this.openSnackBar('Vous avez ajouté une bouteille à votre cellier', 'X') 
          });
 
         setTimeout(() => {

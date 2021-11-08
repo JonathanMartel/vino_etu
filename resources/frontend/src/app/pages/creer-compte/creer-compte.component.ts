@@ -14,8 +14,8 @@ export class CreerCompteComponent implements OnInit {
   soumise = false;
 
   formulaire = new FormGroup({
-    first_name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    last_name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    first_name: new FormControl('', [Validators.required]),
+    last_name: new FormControl('', [Validators.required]),
     city: new FormControl('', [Validators.required]),
     dob: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -27,12 +27,17 @@ export class CreerCompteComponent implements OnInit {
     ngOnInit(): void {
     }
 
+    
+    //Affichage des erreurs de validation
+    
     get erreur(){
       return this.formulaire.controls;
     }
 
+
+
     utilisateur(){
-      console.log(this.formulaire.value);
+      //console.log(this.formulaire.value);
       this.soumise = true;
 
 
@@ -43,6 +48,8 @@ export class CreerCompteComponent implements OnInit {
       }
       this.rempli =true;
 
+       //Recuperation de données de formulaire
+
       const data={
         first_name: this.formulaire.value.first_name,
         last_name: this.formulaire.value.last_name,
@@ -52,7 +59,7 @@ export class CreerCompteComponent implements OnInit {
         password: this.formulaire.value.password
       }
       this.servBouteilleDeVin.ajouterUtilisateur(data).subscribe((res) =>{
-       // console.log(res);
+
         this.router.navigate(['/connection']);
 
       });

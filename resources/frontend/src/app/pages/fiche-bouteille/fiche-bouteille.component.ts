@@ -25,31 +25,12 @@ export class FicheBouteilleComponent implements OnInit {
         this.actRoute.data.subscribe(data => { this.bouteille = data.bouteille; });
     }
 
-   /* openSnackBar(message: any, action: any) {
-        this.snackBar.open(message, action, {
-            duration: 3000
-        });
-    } */
-
-
-   /* ajouterBouteilleCellier(bouteilleId: any) {
-
-        this.servBouteilleDeVin.ajoutBouteilleCellier(bouteilleId).subscribe(() => {
-            this.openSnackBar('Vous avez ajouté une bouteille à votre cellier', 'Fermer')
-        });
-
-    } */
-
 
     formulaireAjout(data: any): void {
-        let formulaire = this.formAjout.open(AjoutBouteilleComponent, {
+        this.formAjout.open(AjoutBouteilleComponent, {
             data
         });
 
-        formulaire.afterClosed().subscribe(result => {
-           // console.log('formulaire rempli');
-
-        })
     }
 
 }

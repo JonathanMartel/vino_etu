@@ -52,7 +52,7 @@ Route::get('bouteilles-achetees/{bouteilleAchetee}', [BouteilleAcheteeController
 Route::post('creerCompte', [CustomAuthController::class, "creerCompte"]);
 
 // Connexion
-Route::get('connection', [CustomAuthController::class, "connection"]);
+Route::post('connection', [CustomAuthController::class, "connection"]);
 
 
 // Afficher les bouteilles d'un cellier
@@ -61,12 +61,12 @@ Route::get('celliers/{cellierId}/bouteilles', [CellierController::class, "obteni
 // route protéger
 
 Route::group(['middleware' => ["auth:sanctum"]], function () {
-    
+
     // Ajout d'une bouteille à un cellier
     Route::post('celliers/{cellier}/bouteilles', [CellierBouteilleAcheteeController::class, "store"]);
 
     // Mise à jour des informations d'une bouteille dans un cellier donné
-    Route::put("celliers/modifier-bouteille/{bouteilleAchetee}", [CellierBouteilleAcheteeController::class, "modifierInventaireBouteille"]);
+    Route::put("celliers/modifier-bouteille/{bouteilleAchetee}", [BouteilleAcheteeController::class, "modifierInventaireBouteille"]);
 
     // Mise à jour de l'inventaire d'une bouteille dans un cellier donné
     Route::put("celliers/modifier-inventaire/{cellierBouteilleId}", [CellierBouteilleAcheteeController::class, "modifierInventaireBouteille"]);

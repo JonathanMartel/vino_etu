@@ -112,7 +112,10 @@ class CustomAuthController extends Controller
     }
 
 
+    public function disconnection(Request $request) {
+        $request->user()->token()->revoke();
 
+    }
 
 
     /**
