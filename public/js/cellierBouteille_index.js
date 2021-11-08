@@ -142,14 +142,14 @@ document.addEventListener("DOMContentLoaded", function () {
     let timer; //https://typeofnan.dev/how-to-execute-a-function-after-the-user-stops-typing-in-javascript/
     barreRecherche.addEventListener("input", () => {
         chemin = `/rechercheDansCellier/${barreRecherche.value}/${idCellier}`;
-        
+        clearTimeout(timer);
+        timer = setTimeout(() => {
         if(barreRecherche.value.trim() == '')  {
             chemin = `/reinitialiserCellier/${idCellier}`;
         }
 
         articlesConteneur.innerHTML = "";
-        clearTimeout(timer);
-        timer = setTimeout(() => {
+    
             fetch(chemin)
             .then((response) => {
                 return response.json();
@@ -393,7 +393,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     
                 }
             }).catch((error) => console.log(error));
-        }, 300);
+        }, 200);
     });
 });
 
