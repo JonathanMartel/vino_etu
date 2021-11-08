@@ -65,6 +65,7 @@ class UsagerController extends Router
 
         if (!empty($body)) {
             //TODO valider données
+            $body->id = $this->urlParams[1];
 
             $usagerClassObj = new UsagerModele;
             $resultat = $usagerClassObj->modifierUsager($body);
