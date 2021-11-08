@@ -59,6 +59,7 @@ class BouteilleAcheteeController extends Controller
         $bouteilleAchetee->notes_personnelles = $request->notes_personnelles;
         $bouteilleAchetee->prix_paye          = $request->prix_paye;
         $bouteilleAchetee->conservation       = $request->conservation;
+        $bouteilleAchetee->origine            = $request->origine;
 
         if(!$bouteilleAchetee->save()) {
             return response()->json([

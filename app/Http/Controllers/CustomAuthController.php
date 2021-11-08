@@ -83,7 +83,7 @@ class CustomAuthController extends Controller
    * @return \Illuminate\Http\Response
    */
 
-  public function connection(Request $request)
+    public function connection(Request $request)
     {
 
         $login = $this->validate($request, [
@@ -94,7 +94,7 @@ class CustomAuthController extends Controller
         $utilisateur = User::Where('email', $login['email'])->first();
 
         if (!$utilisateur || !Hash::check($login["password"], $utilisateur->password)){
-            return response([
+            return response()->json([
                 'message' => 'Mauvaise combinaison'
             ], 401);
         }
@@ -106,8 +106,9 @@ class CustomAuthController extends Controller
             'utilisateur' => $utilisateur,
             'token' => $token,
         ];
-    
-        return response($response, 201);
+
+        return response()->json($response, 201);
+
 
     }
 
