@@ -20,6 +20,7 @@
 
 .millesime-conteneur{
     display: flex;
+    justify-content: flex-start;
     flex-wrap: wrap;
     row-gap: 0.64rem;
     column-gap: 0.64rem;
@@ -38,27 +39,71 @@
     align-items: center;
     justify-content: center;
     border-radius: 3px;
+    text-decoration:none ;
+    border: none;
 }
+
+ .millesime-item:hover{
+    background-color: #AC9678;
+} 
+
+.millesime-item:active{
+    background-color: #AC9678;
+}
+
+.millesime-item:focus {
+    background-color: #AC9678;
+}
+
+
+
+
+
+
 
 .form-modifier{
-    padding:1.563rem;
+    /* padding-left: 0.64rem;
+    padding-right: 0.64rem; */
     display: flex;
     flex-direction: column;
-    padding: 1rem;
 }
 
-.form-modifier-item{
+.select-form{
     display: flex;
-    align-items: center;
+    justify-content: flex-end;
+    padding-top: 0.64rem;
+}
+
+ .form-modifier-item{
+    display: flex;
+    align-content: center;
+    justify-content: flex-end;
+    padding-top: 25px;
+} 
+
+.item-commentaire{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: flex-end;
+    padding-top: 0.64rem;
+    margin: 0;
+}
+
+.item-commentaire label{
+     font-size: 1.25rem;
 }
 
 .form-modifier-item label{
+    display: flex;
     padding: 1rem;
+    align-items: center;
+    font-size: 1rem;
+    color: #343B41;
 }
 
 .image-fiche {
     margin: 0.64rem;
-    margin-left: 1.5rem;
     width: 79px;
     height: 287px;
     object-fit: cover;
@@ -67,15 +112,90 @@
 .form-modifier .form-modifier-item .input-fiche-cercle { 
     width: 60px ;
     height: 60px ;
-    border-style: solid ;
+    border-style: none ;
     border-radius: 50% ;
+    background-color: #BBC7C1;
+    text-align: center;
+    margin-bottom: 0;
+    padding:1px;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
 }
 
 
 
 
-
-/* .form{
+ /* .form{
     display: none;
-  } */
+  }  */
 
+
+.millesime-info-debut{
+    display: flex;
+    column-gap: 1rem;
+    justify-content: space-evenly;
+}
+
+.millesime-info-fin{
+    display: flex;
+    flex-direction: column;
+    margin-left: 0.64rem;
+    margin-right: 0.64rem;
+}
+/* .item-commentaire .textarea{
+    border-style:none;
+    padding-top: 0.64rem;
+    */
+  
+.textarea {
+    padding: 10px;
+    max-width: 100%;
+    line-height: 1.5;
+    border-radius: 5px;
+    border-style: none;
+    /* border: 1px solid #ccc;
+    box-shadow: 1px 1px 1px #999; */
+    resize:both;
+}
+
+
+
+
+.bouton{
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.64rem;
+    padding-left: 0.64rem;
+    padding-right: 0.64rem;
+}
+
+.bouton-fiche{
+    text-align: center;
+    padding-top: 1.563rem;
+    padding-bottom: 1.563rem;
+    font-weight: 700;
+    font-size: 1.953rem;
+    background-color: #E0CFA0;
+    color: #7A5958;
+    font-family: raleway;
+    border: none;
+    border-radius: 6px ;
+}
+
+.valider{
+    background-color: #99AAA2;
+    color: #343B41;
+}
+
+.effacer{
+    background-color: #7A5958;
+    color: white;
+}
+
+.non-active{
+    display: none;
+}
