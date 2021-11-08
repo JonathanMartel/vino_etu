@@ -8,6 +8,7 @@ use App\Http\Controllers\CellierController;
 use App\Http\Controllers\PaysController;
 use App\Http\Controllers\UnionsController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CustomAuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -61,6 +62,12 @@ Route::put("celliers/modifier-bouteille/{bouteilleAchetee}", [CellierBouteilleAc
 
 // Mise à jour de l'inventaire d'une bouteille dans un cellier donné
 Route::put("celliers/modifier-inventaire/{cellierBouteilleId}", [CellierBouteilleAcheteeController::class, "modifierInventaireBouteille"]);
+
+// Creation d'une compte utilisateur
+Route::post('creerCompte', [CustomAuthController::class, "creerCompte"]);
+
+// Connexion
+Route::post('connection', [CustomAuthController::class, "connection"]);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

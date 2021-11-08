@@ -7,8 +7,13 @@ import { HttpClient } from '@angular/common/http';
 })
 export class BouteilleDeVinService {
 
+<<<<<<< HEAD
     private url:string = "http://127.0.0.1:8000/api";
     // private url:string = "http://kalimotxo-vino.akira.dev/api";
+=======
+      private url:string = "http://127.0.0.1:8000/api";
+    //private url:string = "http://kalimotxo-vino.akira.dev/api";
+>>>>>>> 0ccebbda109537cb4d0b4b0836c7488b164bcb9c
     // private url: string = new URL(window.location.href).origin + "/api";
 
     constructor(private http: HttpClient) {
@@ -80,10 +85,12 @@ export class BouteilleDeVinService {
 
     ajouterUtilisateur(data:any){
 
-        let body = {
-            'data': data,
+        return this.http.post<any>(this.url + '/creerCompte/', data)
+    }
 
-        }
+    connexion(data:any) {
+
+        return this.http.post<any>(this.url + '/connection', data)
     }
 
 }
