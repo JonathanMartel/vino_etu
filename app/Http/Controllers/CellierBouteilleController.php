@@ -153,14 +153,17 @@ class CellierBouteilleController extends Controller
             }
         } else {
             if ($request->file) {
-                $fileName = time() . '_' . $request->file->getClientOriginalName();
+                
+                 $fileName = time() . '_' . $request->file->getClientOriginalName();
                 $request->file('file')->move(public_path() . '/img', $fileName);
-                $request->url_img = URL::to('') . '/img/' . $fileName;
+                $request->url_img = URL::to('') . '/img/' . $fileName; 
+                
             } else {
                 $request->url_img = URL::to('') . "/assets/icon/bouteille-cellier.svg";
             }
 
             $bouteille = BouteilleController::store($request);
+        
             /* $bouteille = Bouteille::create([
 
                 'nom' => $request->nom,
