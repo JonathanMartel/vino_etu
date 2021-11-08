@@ -152,7 +152,8 @@ class Router
 				$bouteilleClassObj->putBouteille();
 				break;
 			case 'celliers':
-				echo json_encode('celliers put');
+				$cellierClassObj = new CellierController;
+				$cellierClassObj->modifierCellier();
 				break;
 			case 'saq':
 				echo json_encode('saq put');
