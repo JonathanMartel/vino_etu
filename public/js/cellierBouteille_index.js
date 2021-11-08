@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
     /**
      * Un select permettant de changer de cellier
      */
-    var selectCellier = document.querySelector('[name="id"]');
+    var selectCellier = document.querySelector('[name="select-cellier"]');
     M.FormSelect.init(selectCellier);
 
     selectCellier.addEventListener("change", (e) => {
@@ -138,22 +138,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const idCellier = location.pathname.split("/")[2];
     const articlesConteneur = document.querySelector(".articlesConteneur");
-    let chemin;
+    let chemin; 
+    let timer; //https://typeofnan.dev/how-to-execute-a-function-after-the-user-stops-typing-in-javascript/
     barreRecherche.addEventListener("input", () => {
         chemin = `/rechercheDansCellier/${barreRecherche.value}/${idCellier}`;
-            if(barreRecherche.value.trim() == '')  {
-                chemin = `/reinitialiserCellier/${idCellier}`;
-            }
-            articlesConteneur.innerHTML = "";
+        
+        if(barreRecherche.value.trim() == '')  {
+            chemin = `/reinitialiserCellier/${idCellier}`;
+        }
+
+        articlesConteneur.innerHTML = "";
+        clearTimeout(timer);
+        timer = setTimeout(() => {
             fetch(chemin)
-                .then((response) => {
-                    return response.json();
-                })
-                .then((response) => {
+            .then((response) => {
+                return response.json();
+            })
+            .then((response) => {
+                if(response.length  <=0 && barreRecherche.value.trim() == '') {
+                    articlesConteneur.innerHTML = ` <div class="list-empty">
+                                                        <p>Vous n'avez pour l'instant aucun vin.</p>
+                                                    </div>`;
+                }else {
                     let bouteilles = {};
 
                     for (let index = 0; index < response.length; index++) {
                         if (!bouteilles[response[index].bouteille_id]) {
+                            
                             bouteilles[response[index].bouteille_id] = {
                                 nom: response[index].nom,
                                 pays: response[index].pays,
@@ -161,24 +172,31 @@ document.addEventListener("DOMContentLoaded", function () {
                                 url_img: response[index].url_img,
                                 url_saq: response[index].url_saq,
                                 type: response[index].type,
-                                millesimes: [
+                                cellierBouteilles: [
                                     {
                                         millesime: response[index].millesime,
                                         quantite: response[index].quantite,
                                         note: response[index].note,
+                                        prix : response[index].prix,
+                                        garde_jusqua : response[index].garde_jusqua,
+                                        description : response[index].description,
+                                        date_achat : response[index].date_achat,
                                     },
                                 ],
                             };
                         } else {
-                            bouteilles[
-                                response[index].bouteille_id
-                            ].millesimes.push({
+                            bouteilles[response[index].bouteille_id].cellierBouteilles.push({
                                 millesime: response[index].millesime,
                                 quantite: response[index].quantite,
                                 note: response[index].note,
+                                prix : response[index].prix,
+                                garde_jusqua : response[index].garde_jusqua,
+                                description : response[index].description,
+                                date_achat : response[index].date_achat,
                             });
                         }
                     }
+
                     for (const key of Object.keys(bouteilles)) {
                         
                         let saq = "";
@@ -197,21 +215,40 @@ document.addEventListener("DOMContentLoaded", function () {
                                     </div>`;
                         }
                         let infoCellierBouteilleConteneur = '<div class="infoCellierBouteilleConteneur">'
-                        bouteilles[key].millesimes.forEach((millesime) => {
-                            if (millesime.millesime > 0) {
-                                millesimeTexte = `  <p>${millesime.millesime}</p>`;
+                        bouteilles[key].cellierBouteilles.forEach((cellierBouteille) => {
+                            if (cellierBouteille.millesime > 0) {
+                                millesimeTexte = `  <p>${cellierBouteille.millesime}</p>`;
                             } else {
                                 millesimeTexte = `<p>Non millisimé</p>`;
                             }
 
+                            extraInfo = `<div>
+                                            <div class="chip">
+                                            ${cellierBouteille.prix} $
+                                            </div>`
+                                            if(cellierBouteille.garde_jusqua != null) {
+                                                extraInfo +=  `<div class="chip">
+                                                            ${cellierBouteille.garde_jusqua}
+                                                            </div>`
+                                            }
+                                            if(cellierBouteille.date_achat != null) {
+                                                extraInfo += `<div class="chip">
+                                                                ${cellierBouteille.date_achat}
+                                                            </div>`}
+                                            if(cellierBouteille.description != null) {
+                                                extraInfo +=`<div class="chip">
+                                                                ${cellierBouteille.description}
+                                                            </div>`
+                                            }
+                            extraInfo += `</div>`
                             note = `  <div class="select">
-                                            <select class="star-rating" data-id-bouteille="${key}" data-millesime="${millesime.millesime}" name="note">
+                                            <select class="star-rating" data-id-bouteille="${key}" data-millesime="${cellierBouteille.millesime}" name="note">
                                                 <option value="">Choisir une note</option>
-                                                <option value="5"`; if(millesime.note == 5) {note += `selected`} note +=`>Excellent</option>
-                                                <option value="4"`; if(millesime.note == 4) {note += `selected`} note +=`>Très bon</option>
-                                                <option value="3"`; if(millesime.note == 3) {note += `selected`} note +=`>Passable</option>
-                                                <option value="2"`; if(millesime.note == 2) {note += `selected`} note +=`>Médiocre</option>
-                                                <option value="1"`; if(millesime.note == 1) {note += `selected`} note +=`>Terrible</option>
+                                                <option value="5"`; if(cellierBouteille.note == 5) {note += `selected`} note +=`>Excellent</option>
+                                                <option value="4"`; if(cellierBouteille.note == 4) {note += `selected`} note +=`>Très bon</option>
+                                                <option value="3"`; if(cellierBouteille.note == 3) {note += `selected`} note +=`>Passable</option>
+                                                <option value="2"`; if(cellierBouteille.note == 2) {note += `selected`} note +=`>Médiocre</option>
+                                                <option value="1"`; if(cellierBouteille.note == 1) {note += `selected`} note +=`>Terrible</option>
                                             </select>
                                         </div>`;
                             infoCellierBouteilleConteneur += `   <section class="infoCellierBouteille">
@@ -219,16 +256,16 @@ document.addEventListener("DOMContentLoaded", function () {
                                                                         ${millesimeTexte}     
                                                                         ${note}
                                                 
-                                                                        <p class="quantite">Quantité : <span>${millesime.quantite}</span></p>
+                                                                        <p class="quantite">Quantité : <span>${cellierBouteille.quantite}</span></p>
                                                                     </div>
                                                                     <div class=" flex bouton-conteneur">
                                                                         <div class="cercle bouton-cercle-remove">
-                                                                            <a class="btn-floating btn-large waves-effect waves-light " name="btnRetirerBouteille" href="/boireBouteille/${idCellier}/${key}/${millesime.millesime}">
+                                                                            <a class="btn-floating btn-large waves-effect waves-light " name="btnRetirerBouteille" href="/boireBouteille/${idCellier}/${key}/${cellierBouteille.millesime}">
                                                                                 <i class="material-icon">remove</i>
                                                                             </a>
                                                                         </div>
                                                                         <div class="cercle bouton-cercle-add">
-                                                                            <a class="btn-floating btn-large waves-effect waves-light" name="btnAjouterBouteille" href="/ajouterBouteille/${idCellier}/${key}/${millesime.millesime}">
+                                                                            <a class="btn-floating btn-large waves-effect waves-light" name="btnAjouterBouteille" href="/ajouterBouteille/${idCellier}/${key}/${cellierBouteille.millesime}">
                                                                                 <i class="material-icon">add</i>
                                                                             </a>
                                                                         </div>
@@ -236,7 +273,10 @@ document.addEventListener("DOMContentLoaded", function () {
                                                                 </section>`;
                         });
                         infoCellierBouteilleConteneur += '</div>'
-                        
+                        if(barreRecherche.value.trim() != '')  {
+                            articlesConteneur.innerHTML += extraInfo;
+                        }
+                    
                         articlesConteneur.innerHTML += `<article class="articleVin">
                                                             <a href="/cellier/${idCellier}/${key}">
                                                                 <div class="nomVinConteneur">
@@ -273,7 +313,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         },
                         tooltip: false,
                     });
-                 
+                
                     const sections = document.querySelectorAll("section");
 
                     sections.forEach((section) => {
@@ -331,26 +371,29 @@ document.addEventListener("DOMContentLoaded", function () {
                     });
 
                         /**
-     * Ajouter un note à une bouteille en cliquant sur une étoile
-     */
-    const notes = document.querySelectorAll(".star-rating");
+                     * Ajouter un note à une bouteille en cliquant sur une étoile
+                     */
+                    const notes = document.querySelectorAll(".star-rating");
 
-    notes.forEach((note) => {
-        note.addEventListener("change", (e) => {
-            const idBouteille = e.target.dataset.idBouteille;
-            const millesime = e.target.dataset.millesime;
-            const idCellier = location.pathname.split("/")[2];
-            const note = document.querySelector("[data-rating]").dataset.rating;
+                    notes.forEach((note) => {
+                        note.addEventListener("change", (e) => {
+                            const idBouteille = e.target.dataset.idBouteille;
+                            const millesime = e.target.dataset.millesime;
+                            const idCellier = location.pathname.split("/")[2];
+                            const note = document.querySelector("[data-rating]").dataset.rating;
 
-            fetch(
-                `/ajouterNote/${idCellier}/${idBouteille}/${millesime}/${note}`
-            ).catch((error) => console.log(error));
-        });
-    });
-
-                })
-                .catch((error) => console.log(error));
-        
+                            fetch(
+                                `/ajouterNote/${idCellier}/${idBouteille}/${millesime}/${note}`
+                            ).catch((error) => console.log(error));
+                        });
+                    });
+                
+                        var elems = document.querySelectorAll('.chips');
+                        var instances = M.Chips.init(elems);
+                    
+                }
+            }).catch((error) => console.log(error));
+        }, 300);
     });
 });
 
