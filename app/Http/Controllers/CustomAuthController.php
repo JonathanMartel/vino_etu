@@ -70,6 +70,11 @@ class CustomAuthController extends Controller
         $credentials = $request->only('courriel', 'password');
         if(Auth::attempt($credentials)){
           session(['user' => Auth::user()]);
+          
+          if(session('user')->admin){
+            return redirect()->intended('importerBouteille');
+          }
+          
           return redirect()->intended('cellier');
         }
 
