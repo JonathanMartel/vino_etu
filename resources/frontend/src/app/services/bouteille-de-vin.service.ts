@@ -12,6 +12,7 @@ export class BouteilleDeVinService {
     private url:string = "http://kalimotxo-vino.akira.dev/api";
     // private url: string = new URL(window.location.href).origin + "/api";
 
+
     constructor(private servAuth:AuthService, private http: HttpClient) {
         console.log(this.url);
      }
@@ -94,7 +95,7 @@ export class BouteilleDeVinService {
 
     ajouterUtilisateur(data:any){
 
-        return this.http.post<any>(this.url + '/creerCompte/', data)
+        return this.http.post<any>(this.url + '/creerCompte', data)
     }
 
 }
