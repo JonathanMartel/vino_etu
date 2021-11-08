@@ -67,7 +67,13 @@ class CustomAuthController extends Controller
     ]);
 
     $token = $utilisateur->createToken('myapptoken')->plainTextToken;
-    return response(['message' => 'Utilisateur enregistre.'], 200);
+
+    $response = [
+        'utilisateur' => $utilisateur,
+        'token' => $token,
+    ];
+
+    return response($response, 201);
   }
 
 
@@ -79,30 +85,30 @@ class CustomAuthController extends Controller
 
   public function connection(Request $request)
     {
-        $request->validate([
-            'email' => 'required',
+
+        $login = $this->validate($request, [
+            'email' => 'required|email',
             'password' => 'required',
         ]);
 
-        $login = $request->only('email', 'password');
-        if (!Auth::attempt($login)) {
-            return response(['message' => 'Invalid login credential!!'], 401);
-        
+        $utilisateur = User::Where('email', $login['email'])->first();
+
+        if (!$utilisateur || !Hash::check($login["password"], $utilisateur->password)){
+            return response([
+                'message' => 'Mauvaise combinaison'
+            ], 401);
         }
-        $user = Auth::user();
-        $token = $user->createToken('myapptoken')->plainTextToken;
 
-        return response([
-            'id' => $user->id,
-            'first_name' => $user->first_name,
-            'email' => $user->email,
-            'created_at' => $user->created_at,
-            'updated_at' => $user->updated_at,
-            'token' => $token->accessToken,
-            'token_expires_at' => $token->token->expires_at,
-        ], 200);
 
-        //return redirect("connection")->withSuccess('Échec de la connexion');
+        $token = $utilisateur->createToken('myapptoken')->plainTextToken;
+
+        $response = [
+            'utilisateur' => $utilisateur,
+            'token' => $token,
+        ];
+    
+        return response($response, 201);
+
     }
 
 

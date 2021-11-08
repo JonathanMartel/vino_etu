@@ -45,23 +45,8 @@ Route::apiResource("bouteilles", BouteilleController::class)->only([
 
 Route::get("catalogue-bouteilles", [BouteilleController::class, "index"]);
 
-// Afficher les bouteilles d'un cellier
-Route::get('celliers/{cellierId}/bouteilles', [CellierController::class, "obtenirBouteilles"]);
-
-// Ajout d'une bouteille à un cellier
-Route::post('celliers/{cellier}/bouteilles', [CellierBouteilleAcheteeController::class, "store"]);
-
 // Récupérer le data d'une bouteille achetée
 Route::get('bouteilles-achetees/{bouteilleAchetee}', [BouteilleAcheteeController::class, "show"]);
-
-// Modifier le data d'une bouteille achetée
-Route::put('bouteilles-achetees/{bouteilleAchetee}', [BouteilleAcheteeController::class, "update"]);
-
-// Mise à jour de l'inventaire d'une bouteille dans un cellier donné
-Route::put("celliers/modifier-bouteille/{bouteilleAchetee}", [CellierBouteilleAcheteeController::class, "modifierInventaireBouteille"]);
-
-// Mise à jour de l'inventaire d'une bouteille dans un cellier donné
-Route::put("celliers/modifier-inventaire/{cellierBouteilleId}", [CellierBouteilleAcheteeController::class, "modifierInventaireBouteille"]);
 
 // Creation d'une compte utilisateur
 Route::post('creerCompte', [CustomAuthController::class, "creerCompte"]);
@@ -69,6 +54,24 @@ Route::post('creerCompte', [CustomAuthController::class, "creerCompte"]);
 // Connexion
 Route::get('connection', [CustomAuthController::class, "connection"]);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+
+// Afficher les bouteilles d'un cellier
+Route::get('celliers/{cellierId}/bouteilles', [CellierController::class, "obtenirBouteilles"]);
+
+// route protéger
+
+Route::group(['middleware' => ["auth:sanctum"]], function () {
+    
+    // Ajout d'une bouteille à un cellier
+    Route::post('celliers/{cellier}/bouteilles', [CellierBouteilleAcheteeController::class, "store"]);
+
+    // Mise à jour des informations d'une bouteille dans un cellier donné
+    Route::put("celliers/modifier-bouteille/{bouteilleAchetee}", [CellierBouteilleAcheteeController::class, "modifierInventaireBouteille"]);
+
+    // Mise à jour de l'inventaire d'une bouteille dans un cellier donné
+    Route::put("celliers/modifier-inventaire/{cellierBouteilleId}", [CellierBouteilleAcheteeController::class, "modifierInventaireBouteille"]);
+
+    // Modifier le data d'une bouteille achetée
+    Route::put('bouteilles-achetees/{bouteilleAchetee}', [BouteilleAcheteeController::class, "update"]);
+
 });

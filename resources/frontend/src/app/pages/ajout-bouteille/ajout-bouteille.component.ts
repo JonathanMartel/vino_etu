@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '@services/auth.service';
 import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 
 @Component({
@@ -30,7 +31,7 @@ export class AjoutBouteilleComponent implements OnInit {
 
     ngOnInit(): void {
         this.data;
-        console.log(this.data.pays);
+       // console.log(this.data.pays);
     }
 
     openSnackBar(message: any, action: any) {
@@ -40,31 +41,12 @@ export class AjoutBouteilleComponent implements OnInit {
     }
 
     postBouteilleCellier(bouteille: any) {
-        /* const bouteilleAchetee = {
-            nom: this.bouteille.nom,
-            description: this.bouteille.description,
-            url_image: this.bouteille.url_image,
-            url_achat: this.bouteille.url_achat,
-            url_info: this.bouteille.url_info,
-            origine: this.bouteille.pays,
-            millesime: 1980,
-            date_acquisition: "2021-11-01",
-            prix_paye: 25.58,
-            conservation: "4 ans",
-            format: this.bouteille.format,
-            categories_id: this.bouteille.categories_id,
-            inventaire: 4,
-            celliers_id: 1,
-            users_id: 1,
-        } */
-
+    
         this.bouteilleAchetee = { ...this.data, ...bouteille }
 
         this.bouteilleAchetee.origine = this.data.pays;
         this.bouteilleAchetee.celliers_id = 1;
         this.bouteilleAchetee.users_id = 1;
-
-        console.log(this.bouteilleAchetee);
 
         this.servBouteilleDeVin.ajoutBouteilleCellier(this.bouteilleAchetee).subscribe(() => {
             this.openSnackBar('Vous avez ajouté une bouteille à votre cellier', 'Fermer') 
