@@ -20,7 +20,8 @@ export default class ListeBouteilleCellier extends React.Component {
 			message: '',
 			open: false,
 			titre: '',
-			action: undefined
+			action: undefined,
+			premierId: undefined
 		};
 
 		this.fetchBouteilles = this.fetchBouteilles.bind(this);
@@ -58,7 +59,12 @@ export default class ListeBouteilleCellier extends React.Component {
 		})
 			.then((reponse) => reponse.json())
 			.then((donnees) => {
-				this.setState({ items: donnees.data });
+				this.setState({ 
+					items: donnees.data,
+					premierId: donnees.data[0].id
+				
+				});
+				console.log(this.state.premierId);
 			});
 	}
 
@@ -153,16 +159,25 @@ export default class ListeBouteilleCellier extends React.Component {
 	}
 
 	render() {
+		const premierId = this.state.premierId;
 		const bouteilles = this.state.items.map((item, index) => {
 			return (
-				<div key={index}>
-					{/*<p className="messageErreur"> {this.state.message} </p>*/}
-					<BouteilleCellier
-						info={item}
-						ajouterAction={this.ajouterAction}
-						retirerAction={this.retirerAction}
-					/>
+				<div>
+					{ premierId ?
+						<div key={index}>
+							{/*<p className="messageErreur"> {this.state.message} </p>*/}
+							<BouteilleCellier
+								info={item}
+								ajouterAction={this.ajouterAction}
+								retirerAction={this.retirerAction}
+							/>
+						</div> :
+						<div className="cellier_vide">
+							Il n'y a pas de bouteilles dans votre cellier
+						</div>
+					}
 				</div>
+				
 			);
 		});
 
@@ -182,7 +197,10 @@ export default class ListeBouteilleCellier extends React.Component {
 						changerQuantite={this.changerQuantite}
 						getQuantite={this.state.qteModif}
 					/>
-					<div className="liste_bouteilles">{bouteilles}</div>
+					
+						<div className="liste_bouteilles">{bouteilles}</div>
+					
+					
 				</section>
 			</Box>
 		);
