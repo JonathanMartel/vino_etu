@@ -36,7 +36,7 @@ export default class DetailsBouteille extends React.Component {
 		fetch("https://rmpdwebservices.ca/webservice/php/bouteilles/" + this.props.param.match.params.id, getMethod)
 			.then(reponse => reponse.json())
 			.then((donnees) => {
-				if (donnees.data[0] === undefined) return this.props.history.push("/ListeCelliers/");
+				if (donnees.data[0] === undefined) return this.props.history.push("/celliers/liste");
 				console.log("Datos botella: ", donnees.data[0]);
 
 				this.setState({
@@ -79,11 +79,14 @@ export default class DetailsBouteille extends React.Component {
 		fetch('https://rmpdwebservices.ca/webservice/php/bouteilles/', putMethod)
 			.then((reponse) => reponse.json())
 			.then((donnees) => {
-				if (donnees.data) return this.props.history.push("/ListeCelliers/");
+				if (donnees.data) return this.props.history.push("/celliers/liste");
 			});
 	}
 
 	componentDidMount() {
+		if (!this.props.estConnecte) {
+			return this.props.history.push("/connexion");
+        }
 		this.recupereBouteille();
 	}
 

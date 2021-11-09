@@ -65,7 +65,7 @@ export default class BouteilleCellier extends React.Component {
 						<button className="bouteille_boutons" onClick={() => this.props.retirerAction(this.props.info)}>
 							Boire
 						</button>
-						<Link to={'/bouteilles/' + this.props.info.id}>
+						<Link to={'/cellier/bouteilles/' + this.props.info.id}>
 							<button className="bouteille_boutons bouton_modifier">Modifier</button>
 						</Link>
 					</div>
