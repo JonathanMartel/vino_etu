@@ -44,6 +44,16 @@ class BouteilleController extends Controller
         return response()->json($listeBouteilles);
     }
 
+    public function rechercheBouteilleExistante($nom, $pays, $type_id, $format_id) {
+        $request = new Request();
+        $request->nom = $nom;
+        $request->pays = $pays;
+        $request->type_id = $type_id;
+        $request->format_id = $format_id;
+        $bouteille = Bouteille::rechercheBouteilleExistante($request);
+        return response()->json($bouteille);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
