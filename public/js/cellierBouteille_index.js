@@ -370,7 +370,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         });
                     });
 
-                        /**
+                     /**
                      * Ajouter un note à une bouteille en cliquant sur une étoile
                      */
                     const notes = document.querySelectorAll(".star-rating");
@@ -380,10 +380,10 @@ document.addEventListener("DOMContentLoaded", function () {
                             const idBouteille = e.target.dataset.idBouteille;
                             const millesime = e.target.dataset.millesime;
                             const idCellier = location.pathname.split("/")[2];
-                            const note = document.querySelector("[data-rating]").dataset.rating;
-
+                            const uneNote = note.closest('span').querySelector('[data-rating]').dataset.rating;
+                            
                             fetch(
-                                `/ajouterNote/${idCellier}/${idBouteille}/${millesime}/${note}`
+                                `/ajouterNote/${idCellier}/${idBouteille}/${millesime}/${uneNote}`
                             ).catch((error) => console.log(error));
                         });
                     });
