@@ -57,9 +57,7 @@ Route::post('connection', [CustomAuthController::class, "connection"]);
 // Afficher les bouteilles d'un cellier
 Route::get('celliers/{cellierId}/bouteilles', [CellierController::class, "obtenirBouteilles"]);
 
-
-// route protéger
-
+// Routes protégées
 Route::group(['middleware' => ["auth:sanctum"]], function () {
 
     // Ajout d'une bouteille à un cellier
@@ -79,5 +77,4 @@ Route::group(['middleware' => ["auth:sanctum"]], function () {
 
     //Deconnexion
     Route::post('deconnexion', [CustomAuthController::class, "deconnexion"]);
-
 });

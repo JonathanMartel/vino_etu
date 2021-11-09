@@ -12,7 +12,6 @@ import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
     styleUrls: ['./connection.component.scss']
 })
 export class ConnectionComponent implements OnInit {
-
     formConnection = new FormGroup({
         email: new FormControl('', [Validators.required, Validators.email]),
         password: new FormControl('', Validators.required)
@@ -21,9 +20,8 @@ export class ConnectionComponent implements OnInit {
 
     constructor(
         private servAuth: AuthService,
-        private http: HttpClient,
-        private router: Router,
         private snackbar: MatSnackBar,
+        private router: Router,
     ) { }
 
     ngOnInit(): void {
@@ -33,19 +31,21 @@ export class ConnectionComponent implements OnInit {
         return this.formConnection.controls;
     }
 
+    /**
+     *
+     * Envoyé l'input de l'usager au service d'authentification
+     *
+     */
     connection() {
-      const data = {
-          email: this.formConnection.value.email,
-          password: this.formConnection.value.password
-      }
+        const data = {
+            email: this.formConnection.value.email,
+            password: this.formConnection.value.password
+        }
 
       this.servAuth.connexion(data).subscribe(
           (data) => {
-              //console.log(data);
               this.servAuth.utilisateur = data.utilisateur;
               this.servAuth.token = data.token;
-              localStorage.removeItem('token')
-              localStorage.setItem('token', data.token);
               this.router.navigate(['/']);
               this.snackbar.open(`Salut, ${data.utilisateur.first_name} ! Heureux de vous revoir`, "Fermer", {duration: 3000});
           },
@@ -54,12 +54,13 @@ export class ConnectionComponent implements OnInit {
           })
     }
 
-    logout(){
-      
-      this.servAuth.deconnexion().subscribe(res => {
-        console.log(res);
-      });
-
+    /**
+     *
+     * Déconnecter l'utilisateur courant
+     *
+     */
+    logout() {
+        this.servAuth.deconnexion();
     }
 
 }

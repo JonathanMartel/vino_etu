@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 
 @Component({
@@ -33,7 +33,7 @@ export class ModifierCellierBouteilleComponent implements OnInit {
     });
 
 
-    constructor(private servBouteilleDeVin: BouteilleDeVinService, private actRoute: ActivatedRoute,
+    constructor(private servBouteilleDeVin: BouteilleDeVinService, private actRoute: ActivatedRoute, private router: Router,
         private snackBar: MatSnackBar) { }
 
     ngOnInit(): void {
@@ -76,6 +76,7 @@ export class ModifierCellierBouteilleComponent implements OnInit {
 
         this.servBouteilleDeVin.modifierBouteilleCellier(this.bouteilleId, nouvellesDonnes).subscribe(() => {
             this.openSnackBar('Vous avez modifer la bouteille avec succès', 'Fermer');
+            this.router.navigate(['/cellier']);
         });
 
        // console.log(nouvellesDonnes);

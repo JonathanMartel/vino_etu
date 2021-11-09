@@ -107,7 +107,6 @@ export class CellierBouteilleComponent implements OnInit {
          })
 
        // console.log(this.bouteille)
-        
 
 
     }
