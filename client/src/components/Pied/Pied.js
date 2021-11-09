@@ -13,6 +13,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
+import { Box } from "@mui/system";
 
 export default class Pied extends React.Component {
 	constructor(props) {
@@ -53,7 +54,7 @@ export default class Pied extends React.Component {
 
 		if (this.props.estConnecte) {
 			return (
-				<BottomNavigation showLabels sx={{ width: '100vw', position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 1, backgroundColor: '#641B30' }}>
+				<BottomNavigation showLabels sx={{ width: '100vw', position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 1, marginBottom: 20, backgroundColor: '#641B30' }}>
 					<BottomNavigationAction
 						label="Se connecter"
 						value="favorites"
@@ -70,84 +71,87 @@ export default class Pied extends React.Component {
 			);
 		} else {
 			return (
-				<BottomNavigation showLabels sx={{ width: '100vw', position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 1, backgroundColor: '#641B30' }}>
-					<BottomNavigationAction
-						label="Celliers"
-						value="recents"
-						icon={<FormatListBulletedIcon />}
-						onClick={(e) => this.openCelliersMenu(e)}
-					/>
+				<>
+					<BottomNavigation showLabels sx={{ width: '100vw', position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 1, marginBottom: '20px', backgroundColor: '#641B30' }}>
+						<BottomNavigationAction
+							label="Celliers"
+							value="recents"
+							icon={<FormatListBulletedIcon />}
+							onClick={(e) => this.openCelliersMenu(e)}
+						/>
 
-					<AddCircleOutlineOutlinedIcon sx={{ transform: 'translateX(550%)', width: 15, color: 'white' }} />
-					<BottomNavigationAction
-						label="Nouvelle bouteille"
-						value="favorites"
-						icon={<WineBarIcon />}
-					/>
+						<AddCircleOutlineOutlinedIcon sx={{ transform: 'translateX(550%)', width: 15, color: 'white' }} />
+						<BottomNavigationAction
+							label="Nouvelle bouteille"
+							value="favorites"
+							icon={<WineBarIcon />}
+						/>
 
-					<BottomNavigationAction
-						label="Mon compte"
-						value="folder"
-						icon={<PersonIcon />}
-						onClick={(e) => this.openAccMenu(e)}
-					/>
+						<BottomNavigationAction
+							label="Mon compte"
+							value="folder"
+							icon={<PersonIcon />}
+							onClick={(e) => this.openAccMenu(e)}
+						/>
 
-					<Menu
-						open={this.state.isCelliersMenuOpen}
-						anchorEl={this.state.anchorElCelliersMenu}
-						onClose={() => this.closeCelliersMenu()}
-						PaperProps={{
-							style: {
-								transform: 'translateY(-40%)',
-							}
-						}}
-						anchorOrigin={{
-							vertical: 'top',
-							horizontal: 'center',
-						}}
-						transformOrigin={{
-							vertical: 'top',
-							horizontal: 'center',
-						}}
-					>
+						<Menu
+							open={this.state.isCelliersMenuOpen}
+							anchorEl={this.state.anchorElCelliersMenu}
+							onClose={() => this.closeCelliersMenu()}
+							PaperProps={{
+								style: {
+									transform: 'translateY(-40%)',
+								}
+							}}
+							anchorOrigin={{
+								vertical: 'top',
+								horizontal: 'center',
+							}}
+							transformOrigin={{
+								vertical: 'top',
+								horizontal: 'center',
+							}}
+						>
 
-						<MenuItem sx={{ display: 'flex', gap: '.5rem' }}>
-							<FormatListNumberedIcon /> Liste des celliers
-						</MenuItem>
+							<MenuItem sx={{ display: 'flex', gap: '.5rem' }}>
+								<FormatListNumberedIcon /> Liste des celliers
+							</MenuItem>
 
-						<MenuItem sx={{ display: 'flex', gap: '.5rem' }}>
-							<PlaylistAddIcon /> Ajouter un cellier
-						</MenuItem>
-					</Menu>
+							<MenuItem sx={{ display: 'flex', gap: '.5rem' }}>
+								<PlaylistAddIcon /> Ajouter un cellier
+							</MenuItem>
+						</Menu>
 
-					<Menu
-						open={this.state.isAccMenuOpen}
-						anchorEl={this.state.anchorElAccMenu}
-						onClose={() => this.closeAccMenu()}
-						PaperProps={{
-							style: {
-								transform: 'translateY(-40%)',
-							}
-						}}
-						anchorOrigin={{
-							vertical: 'top',
-							horizontal: 'center',
-						}}
-						transformOrigin={{
-							vertical: 'top',
-							horizontal: 'center',
-						}}
-					>
+						<Menu
+							open={this.state.isAccMenuOpen}
+							anchorEl={this.state.anchorElAccMenu}
+							onClose={() => this.closeAccMenu()}
+							PaperProps={{
+								style: {
+									transform: 'translateY(-40%)',
+								}
+							}}
+							anchorOrigin={{
+								vertical: 'top',
+								horizontal: 'center',
+							}}
+							transformOrigin={{
+								vertical: 'top',
+								horizontal: 'center',
+							}}
+						>
 
-						<MenuItem sx={{ display: 'flex', gap: '.5rem' }}>
-							<AccountCircleIcon /> Mon profil
-						</MenuItem>
-						<MenuItem sx={{ display: 'flex', gap: '.5rem' }}>
-							<LogoutIcon /> Se déconnecter
-						</MenuItem>
-					</Menu>
-				</BottomNavigation>
-
+							<MenuItem sx={{ display: 'flex', gap: '.5rem' }}>
+								<AccountCircleIcon /> Mon profil
+							</MenuItem>
+							<MenuItem sx={{ display: 'flex', gap: '.5rem' }}>
+								<LogoutIcon /> Se déconnecter
+							</MenuItem>
+						</Menu>
+					</BottomNavigation>
+					<Box sx={{ width: '100vw', position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 1, height: '21px', backgroundColor: '#641B30' }}>
+					</Box>
+				</>
 			);
 		}
 	}
