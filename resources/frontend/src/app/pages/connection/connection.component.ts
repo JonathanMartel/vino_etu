@@ -41,7 +41,6 @@ export class ConnectionComponent implements OnInit {
 
       this.servAuth.connexion(data).subscribe(
           (data) => {
-              //console.log(data);
               this.servAuth.utilisateur = data.utilisateur;
               this.servAuth.token = data.token;
               localStorage.removeItem('token')
@@ -57,7 +56,6 @@ export class ConnectionComponent implements OnInit {
     logout(){
       
       this.servAuth.deconnexion().subscribe(res => {
-        console.log(res);
       });
 
     }
