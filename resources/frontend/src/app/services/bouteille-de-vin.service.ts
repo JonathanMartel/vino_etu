@@ -97,7 +97,8 @@ export class BouteilleDeVinService {
         const entete = {
             'Authorization' : `Bearer ${this.servAuth.utilisateurToken}`,
         }
-        return this.http.delete<any>(this.url + '/supprimer/' + bouteilleAchetee_id, {headers:entete})
+
+        return this.http.delete<any>(this.url + '/supprimer/' + bouteilleAchetee_id,{headers:entete})
 
     }
 

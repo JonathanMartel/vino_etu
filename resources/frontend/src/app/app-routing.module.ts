@@ -21,7 +21,6 @@ const routes: Routes = [
     {path:"connection", component:ConnectionComponent},
     {path:"deconnexion", component:ConnectionComponent},
     {path:"creerCompte", component:CreerCompteComponent},
-    {path:"supprimer/:id", component:ModifierCellierBouteilleComponent},
     {path:"ficheBouteille/:id", component:FicheBouteilleComponent, resolve: {bouteille: BouteilleResolverServiceService}},
 ];
 

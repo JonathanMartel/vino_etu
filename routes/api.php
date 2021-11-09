@@ -75,7 +75,7 @@ Route::group(['middleware' => ["auth:sanctum"]], function () {
     Route::put('bouteilles-achetees/{bouteilleAchetee}', [BouteilleAcheteeController::class, "update"]);
 
     // Supprimer une bouteille
-    Route::delete('supprimer/{bouteilleAchetee}', [CellierBouteilleAcheteeController::class, "supprimerBouteille"]);
+    Route::delete('supprimer/{CellierBouteilleAchetee}', [CellierBouteilleAcheteeController::class, "supprimerBouteille"]);
 
     //Deconnexion
     Route::post('deconnexion', [CustomAuthController::class, "deconnexion"]);
