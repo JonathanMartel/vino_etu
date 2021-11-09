@@ -80,6 +80,6 @@ class BouteilleAcheteeController extends Controller
      */
     public function destroy(BouteilleAchetee $bouteilleAchetee)
     {
-        //
+    
     }
 }
