@@ -64,4 +64,12 @@ export class CellierComponent implements OnInit {
                 this.bouteillesCellier = bouteillesCellier.data;
             });
     }
+
+
+
+    chargerBouteilles(){
+        this.servBouteilleDeVin.getBouteillesParCellier().subscribe(cellier => {
+            this.bouteillesCellier = this.bouteillesCellierInitiales = cellier.data
+        });
+    }
 }

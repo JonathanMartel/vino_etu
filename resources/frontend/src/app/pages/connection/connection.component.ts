@@ -46,7 +46,8 @@ export class ConnectionComponent implements OnInit {
               this.servAuth.token = data.token;
               localStorage.removeItem('token')
               localStorage.setItem('token', data.token);
-              this.snackbar.open(`Salut, ${data.utilisateur.first_name} !`, "Fermer", {duration: 3000});
+              this.router.navigate(['/']);
+              this.snackbar.open(`Salut, ${data.utilisateur.first_name} ! Heureux de vous revoir`, "Fermer", {duration: 3000});
           },
           (error) => {
               this.snackbar.open(error.error.message, "Fermer", {duration: 3000});

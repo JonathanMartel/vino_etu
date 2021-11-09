@@ -15,7 +15,7 @@
             <input matInput (keyup)="recherche($event)" [formControl]="texteRecherche">
         </mat-form-field>
         <section *ngFor="let uneBouteille of bouteillesCellier" class="resultat">
-            <app-cellier-bouteille [uneBouteille]='uneBouteille'></app-cellier-bouteille>
+            <app-cellier-bouteille [uneBouteille]='uneBouteille' (chargerBouteilles)="chargerBouteilles()"></app-cellier-bouteille>
         </section>
     </div>
 
