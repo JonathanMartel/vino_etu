@@ -52,7 +52,7 @@
            
             <div class="infoBouteilleConteneur">
                 @if(isset($vin['bouteille']->url_img))
-                    <img class="image" src="{{$vin['bouteille']->url_img}}" alt="Image {{$vin['bouteille']->nom}}">
+                    <img class="image" src="{{$vin['bouteille']->url_img}}" alt="{{$vin['bouteille']->nom}}">
                 @else
                     <img class="image" src="{{asset('assets/icon/bouteille-fiche-vin.svg')}}" alt="Image {{$vin['bouteille']->nom}}">
                 @endif               
