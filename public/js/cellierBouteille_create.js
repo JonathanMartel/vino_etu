@@ -91,6 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => {
                 if(response[0])
                 {
+                    labelMillesime.innerHTML = "Millésime";
                     labelMillesime.innerHTML += " (existant : ";
 
                     response.forEach((millesime, i) => {
@@ -140,207 +141,234 @@ document.addEventListener('DOMContentLoaded', function() {
     })
 
     inputNom.addEventListener('input', () => {
-        fetch(`/rechercheBouteilleExistante/${inputNom.value.trim()}/${pays.value.trim()}/${type_id.value}/${format_id.value}`)
-        .then(response => {
-            return (response.json())
-        })
-        .then(response => {
-            if(response[0]){
-                file.style.display = "none";
-                fetch(`/obtenirMillesimesParBouteille/${idCellier}/${response[0].id}`)
-                .then(response => {
-                    return (response.json())
-                })
-                .then(response => {
-                    if(response[0])
-                    {
-                        labelMillesime.innerHTML += " (existant : ";
-    
-                        response.forEach((millesime, i) => {
-                          
-                            if(millesime.millesime == 0)
-                            {
-                                millesime.millesime = "sans millesime";
-                            }
-    
-                            if(response[i +1] != undefined)
-                            {
-                              
-                                labelMillesime.innerHTML += ` ${millesime.millesime}, `;
-                            }else {
-                                
-                                labelMillesime.innerHTML += ` ${millesime.millesime}`; 
-                            }
-                        })
-                        labelMillesime.innerHTML += ")";
-    
-                        millesimeExistant.value = labelMillesime.innerHTML;
-                    }
-                    
-                }).catch(error => console.log(error))
-                
-            }else {
-                file.style.display = "block";
-                labelMillesime.innerHTML = "Millésime";
         
-            }
-        })
-})
-
-    pays.addEventListener('input', () => {
-    
-        fetch(`/rechercheBouteilleExistante/${inputNom.value.trim()}/${pays.value.trim()}/${type_id.value}/${format_id.value}`)
-        .then(response => {
-            return (response.json())
-        })
-        .then(response => {
+        if(inputNom.value.trim() != ''  && type_id.value != '' && format_id.value != ''){
+            fetch(`/rechercheBouteilleExistante/${inputNom.value.trim()}/${type_id.value}/${format_id.value}/${pays.value.trim()}`)
+            .then(response => {
+                return (response.json())
+            })
+            .then(response => {
+                if(response[0]){
+                    file.style.display = "none";
+                    fetch(`/obtenirMillesimesParBouteille/${idCellier}/${response[0].id}`)
+                    .then(response => {
+                        return (response.json())
+                    })
+                    .then(response => {
+                        labelMillesime.innerHTML = "Millésime";
+                        if(response[0])
+                        {
+                            
+                            labelMillesime.innerHTML += " (existant : ";
+        
+                            response.forEach((millesime, i) => {
+                            
+                                if(millesime.millesime == 0)
+                                {
+                                    millesime.millesime = "sans millesime";
+                                }
+        
+                                if(response[i +1] != undefined)
+                                {
+                                
+                                    labelMillesime.innerHTML += ` ${millesime.millesime}, `;
+                                }else {
+                                    
+                                    labelMillesime.innerHTML += ` ${millesime.millesime}`; 
+                                }
+                            })
+                            labelMillesime.innerHTML += ")";
+        
+                            millesimeExistant.value = labelMillesime.innerHTML;
+                        }
+                        
+                    }).catch(error => console.log(error))
+                    
+                }else {
+                    file.style.display = "block";
+                    labelMillesime.innerHTML = "Millésime";
             
-            if(response[0]){
-                file.style.display = "none";
+                }
+            })
+        }else {
+            labelMillesime.innerHTML = "Millésime";
+            file.style.display = "block";
+        }
+    })
+    pays.addEventListener('input', () => {
 
-                fetch(`/obtenirMillesimesParBouteille/${idCellier}/${response[0].id}`)
-                .then(response => {
-                    return (response.json())
-                })
-                .then(response => {
-                    if(response[0])
-                    {
-                        labelMillesime.innerHTML += " (existant : ";
-    
-                        response.forEach((millesime, i) => {
-                          
-                            if(millesime.millesime == 0)
-                            {
-                                millesime.millesime = "sans millesime";
-                            }
-    
-                            if(response[i +1] != undefined)
-                            {
-                              
-                                labelMillesime.innerHTML += ` ${millesime.millesime}, `;
-                            }else {
-                                
-                                labelMillesime.innerHTML += ` ${millesime.millesime}`; 
-                            }
-                        })
-                        labelMillesime.innerHTML += ")";
-    
-                        millesimeExistant.value = labelMillesime.innerHTML;
-                    }
-                    
-                }).catch(error => console.log(error))
+        if(inputNom.value.trim() != ''  && type_id.value != '' && format_id.value != ''){
+            fetch(`/rechercheBouteilleExistante/${inputNom.value.trim()}/${type_id.value}/${format_id.value}/${pays.value.trim()}`)
+            .then(response => {
+                return (response.json())
+            })
+            .then(response => {
                 
-            }else {
-                file.style.display = "block";
-                labelMillesime.innerHTML = "Millésime";
+                if(response[0]){
+                    file.style.display = "none";
+
+                    fetch(`/obtenirMillesimesParBouteille/${idCellier}/${response[0].id}`)
+                    .then(response => {
+                        return (response.json())
+                    })
+                    .then(response => {
+                        labelMillesime.innerHTML = "Millésime";
+                        if(response[0])
+                        {
+                    
+                            labelMillesime.innerHTML += " (existant : ";
         
-            }
-           
-        })
+                            response.forEach((millesime, i) => {
+                            
+                                if(millesime.millesime == 0)
+                                {
+                                    millesime.millesime = "sans millesime";
+                                }
+        
+                                if(response[i +1] != undefined)
+                                {
+                                
+                                    labelMillesime.innerHTML += ` ${millesime.millesime}, `;
+                                }else {
+                                    
+                                    labelMillesime.innerHTML += ` ${millesime.millesime}`; 
+                                }
+                            })
+                            labelMillesime.innerHTML += ")";
+        
+                            millesimeExistant.value = labelMillesime.innerHTML;
+                        }
+                        
+                    }).catch(error => console.log(error))
+                    
+                }else {
+                    file.style.display = "block";
+                    labelMillesime.innerHTML = "Millésime";
+            
+                }
+            
+            })
+        }else {
+            labelMillesime.innerHTML = "Millésime";
+            file.style.display = "block";
+        }
     })
 
     type_id.addEventListener('change', () => {
-    
-        fetch(`/rechercheBouteilleExistante/${inputNom.value.trim()}/${pays.value.trim()}/${type_id.value}/${format_id.value}`)
-        .then(response => {
-            return (response.json())
-        })
-        .then(response => {
-            
-            if(response[0]){
-                file.style.display = "none";
-
-                fetch(`/obtenirMillesimesParBouteille/${idCellier}/${response[0].id}`)
-                .then(response => {
-                    return (response.json())
-                })
-                .then(response => {
-                    if(response[0])
-                    {
-                        labelMillesime.innerHTML += " (existant : ";
-    
-                        response.forEach((millesime, i) => {
-                          
-                            if(millesime.millesime == 0)
-                            {
-                                millesime.millesime = "sans millesime";
-                            }
-    
-                            if(response[i +1] != undefined)
-                            {
-                              
-                                labelMillesime.innerHTML += ` ${millesime.millesime}, `;
-                            }else {
-                                
-                                labelMillesime.innerHTML += ` ${millesime.millesime}`; 
-                            }
-                        })
-                        labelMillesime.innerHTML += ")";
-    
-                        millesimeExistant.value = labelMillesime.innerHTML;
-                    }
-                    
-                }).catch(error => console.log(error))
+      
+        if(inputNom.value.trim() != ''  && type_id.value != '' && format_id.value != ''){
+            fetch(`/rechercheBouteilleExistante/${inputNom.value.trim()}/${type_id.value}/${format_id.value}/${pays.value.trim()}`)
+            .then(response => {
+                return (response.json())
+            })
+            .then(response => {
                 
-            }else {
-                file.style.display = "block";
-                labelMillesime.innerHTML = "Millésime";
+                if(response[0]){
+                    file.style.display = "none";
+
+                    fetch(`/obtenirMillesimesParBouteille/${idCellier}/${response[0].id}`)
+                    .then(response => {
+                        return (response.json())
+                    })
+                    .then(response => {
+                        labelMillesime.innerHTML = "Millésime";
+                        if(response[0])
+                        {
+                            
+                            labelMillesime.innerHTML += " (existant : ";
         
-            }
-           
-        })
+                            response.forEach((millesime, i) => {
+                            
+                                if(millesime.millesime == 0)
+                                {
+                                    millesime.millesime = "sans millesime";
+                                }
+        
+                                if(response[i +1] != undefined)
+                                {
+                                
+                                    labelMillesime.innerHTML += ` ${millesime.millesime}, `;
+                                }else {
+                                    
+                                    labelMillesime.innerHTML += ` ${millesime.millesime}`; 
+                                }
+                            })
+                            labelMillesime.innerHTML += ")";
+        
+                            millesimeExistant.value = labelMillesime.innerHTML;
+                        }
+                        
+                    }).catch(error => console.log(error))
+                    
+                }else {
+                    file.style.display = "block";
+                    labelMillesime.innerHTML = "Millésime";
+            
+                }
+            
+            })
+        }else {
+            labelMillesime.innerHTML = "Millésime";
+            file.style.display = "block";
+        }
     })
 
     format_id.addEventListener('change', () => {
-    
-        fetch(`/rechercheBouteilleExistante/${inputNom.value.trim()}/${pays.value.trim()}/${type_id.value}/${format_id.value}`)
-        .then(response => {
-            return (response.json())
-        })
-        .then(response => {
-            
-            if(response[0]){
-                file.style.display = "none";
-
-                fetch(`/obtenirMillesimesParBouteille/${idCellier}/${response[0].id}`)
-                .then(response => {
-                    return (response.json())
-                })
-                .then(response => {
-                    if(response[0])
-                    {
-                        labelMillesime.innerHTML += " (existant : ";
-    
-                        response.forEach((millesime, i) => {
-                          
-                            if(millesime.millesime == 0)
-                            {
-                                millesime.millesime = "sans millesime";
-                            }
-    
-                            if(response[i +1] != undefined)
-                            {
-                              
-                                labelMillesime.innerHTML += ` ${millesime.millesime}, `;
-                            }else {
-                                
-                                labelMillesime.innerHTML += ` ${millesime.millesime}`; 
-                            }
-                        })
-                        labelMillesime.innerHTML += ")";
-    
-                        millesimeExistant.value = labelMillesime.innerHTML;
-                    }
-                    
-                }).catch(error => console.log(error))
+  
+        if(inputNom.value.trim() != ''  && type_id.value != '' && format_id.value != ''){
+            fetch(`/rechercheBouteilleExistante/${inputNom.value.trim()}/${type_id.value}/${format_id.value}/${pays.value.trim()}`)
+            .then(response => {
+                return (response.json())
+            })
+            .then(response => {
                 
-            }else {
-                file.style.display = "block";
-                labelMillesime.innerHTML = "Millésime";
+                if(response[0]){
+                    file.style.display = "none";
+
+                    fetch(`/obtenirMillesimesParBouteille/${idCellier}/${response[0].id}`)
+                    .then(response => {
+                        return (response.json())
+                    })
+                    .then(response => {
+                        labelMillesime.innerHTML = "Millésime";
+                        if(response[0])
+                        {
+                            labelMillesime.innerHTML += " (existant : ";
         
-            }
-           
-        })
+                            response.forEach((millesime, i) => {
+                            
+                                if(millesime.millesime == 0)
+                                {
+                                    millesime.millesime = "sans millesime";
+                                }
+        
+                                if(response[i +1] != undefined)
+                                {
+                                
+                                    labelMillesime.innerHTML += ` ${millesime.millesime}, `;
+                                }else {
+                                    
+                                    labelMillesime.innerHTML += ` ${millesime.millesime}`; 
+                                }
+                            })
+                            labelMillesime.innerHTML += ")";
+        
+                            millesimeExistant.value = labelMillesime.innerHTML;
+                        }
+                        
+                    }).catch(error => console.log(error))
+                    
+                }else {
+                    file.style.display = "block";
+                    labelMillesime.innerHTML = "Millésime";
+            
+                }
+            
+            })
+        }else {
+            labelMillesime.innerHTML = "Millésime";
+            file.style.display = "block";
+        }
     })
     /**
      *  les selects
@@ -357,7 +385,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if(success) {
         var toastHTML = '<span>Cette bouteille existe déjà dans votre cellier</span><button class="btn-flat toast-action">Fermer</button>';
         M.toast({html: toastHTML, displayLength : 5000})
-
+        file.style.display = "none";
         const message = document.querySelector('.toast-action')
 
         message.addEventListener('click', () => {

@@ -102,9 +102,10 @@ class CellierBouteilleController extends Controller
          * Sinon si elle n'existe pas dans table bouteille, la créer et ajouter dans la table cellier_bouteille
          * Si la bouteille existe dans la table bouteillesm l'ajouter dans la table cellier_bouteilles
          */
+        $bouteilleExistante = Bouteille::rechercheBouteilleExistante($request);
         if (isset($request->bouteille_id)) {
             $cellierBouteille = CellierBouteille::rechercheCellierBouteille($request->cellier_id, $request->bouteille_id, $millesime);
-            $bouteilleExistante = Bouteille::rechercheBouteilleExistante($request);
+            
 
             if (isset($bouteilleExistante[0]) && isset($cellierBouteille[0])) {
 
@@ -115,80 +116,46 @@ class CellierBouteilleController extends Controller
 
                     self::creerCellierBouteille ($request, $request->bouteille_id, $date_achat, $millesime);
 
-                    /* $cellierBouteille = new CellierBouteille;
-                    $cellierBouteille->fill($request->all());
-                    $cellierBouteille->date_achat = $date_achat;
-                    $cellierBouteille->millesime =  $millesime;
-                    $cellierBouteille->save();
-*/
                     return redirect("cellier/" . $request->cellier_id)->withInput()->with("nouvelleBouteille", "nouvelle bouteille ajoutée");
                 } else {
 
-                    
-
                     $bouteille = BouteilleController::store($request);
 
-                    /* $bouteille = Bouteille::create([
-
-                        'nom' => $request->nom,
-                        'pays' => $request->pays,
-                        'description' =>  $request->description,
-                        'format_id' =>  $request->format_id,
-                        'url_img' => $request->url_img,
-                        'type_id' =>  $request->type_id,
-                        'user_id' =>  session('user')->id
-                    ]); */
-
                     self::creerCellierBouteille ($request, $bouteille->id, $date_achat, $millesime);
-
-                    /* $cellierBouteille = new CellierBouteille;
-                    $cellierBouteille->fill($request->all());
-                    $cellierBouteille->bouteille_id = $bouteille->id;
-                    $cellierBouteille->millesime =  $millesime;
-                    $cellierBouteille->date_achat = $date_achat;
-                    $cellierBouteille->save();*/
 
                     return redirect("cellier/" . $request->cellier_id)->withInput()->with("nouvelleBouteille", "nouvelle bouteille ajoutée");
                 }
             }
         } else {
-           
-
-            $bouteille = BouteilleController::store($request);
+            
+            if (isset($bouteilleExistante[0])) {
+                $cellierBouteille = CellierBouteille::rechercheCellierBouteille($request->cellier_id, $bouteilleExistante[0]->id, $millesime);
+                
+                if(isset($cellierBouteille[0])){
+                    return back()->withInput()->with('erreur', "Bouteille existe déjà");
+                }else {
+                    self::creerCellierBouteille ($request, $bouteilleExistante[0]->id, $date_achat, $millesime);
+                    return redirect("cellier/" . $request->cellier_id)->withInput()->with("nouvelleBouteille", "nouvelle bouteille ajoutée");
+                }
+            }else {
+                $bouteille = BouteilleController::store($request);
+            
+                self::creerCellierBouteille ($request, $bouteille->id, $date_achat, $millesime);
         
-            /* $bouteille = Bouteille::create([
-
-                'nom' => $request->nom,
-                'pays' => $request->pays,
-                'description' =>  $request->description,
-                'format_id' =>  $request->format_id,
-                'url_img' => $request->url_img,
-                'type_id' =>  $request->type_id,
-                'user_id' =>  session('user')->id
-            ]); */
-
-            self::creerCellierBouteille ($request, $bouteille->id, $date_achat, $millesime);
-
-            /* $cellierBouteille = new CellierBouteille;
-            $cellierBouteille->fill($request->all());
-            $cellierBouteille->bouteille_id = $bouteille->id;
-            $cellierBouteille->date_achat = $date_achat;
-            $cellierBouteille->millesime =  $millesime;
-            $cellierBouteille->save();
-*/
-            return redirect("cellier/" . $request->cellier_id)->withInput()->with("nouvelleBouteille", "nouvelle bouteille ajoutée");
+                return redirect("cellier/" . $request->cellier_id)->withInput()->with("nouvelleBouteille", "nouvelle bouteille ajoutée");
+            }
         }
     }
 
-public static function creerCellierBouteille ($request, $idBouteille, $date_achat, $millesime){
-    $cellierBouteille = new CellierBouteille;
-    $cellierBouteille->fill($request->all());
-    $cellierBouteille->bouteille_id = $idBouteille;
-    $cellierBouteille->date_achat = $date_achat;
-    $cellierBouteille->millesime =  $millesime;
-    $cellierBouteille->save();
-    /* return redirect("cellier/" . $request->cellier_id)->withInput()->with("nouvelleBouteille", "nouvelle bouteille ajoutée"); */
-}
+    public static function creerCellierBouteille ($request, $idBouteille, $date_achat, $millesime){
+        $cellierBouteille = new CellierBouteille;
+        $cellierBouteille->fill($request->all());
+        $cellierBouteille->bouteille_id = $idBouteille;
+        $cellierBouteille->date_achat = $date_achat;
+        $cellierBouteille->millesime =  $millesime;
+        $cellierBouteille->save();
+    
+    }
 
 
 

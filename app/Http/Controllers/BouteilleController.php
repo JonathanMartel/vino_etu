@@ -44,7 +44,7 @@ class BouteilleController extends Controller
         return response()->json($listeBouteilles);
     }
 
-    public function rechercheBouteilleExistante($nom, $pays, $type_id, $format_id) {
+    public function rechercheBouteilleExistante($nom, $type_id, $format_id, $pays = null) {
         $request = new Request();
         $request->nom = $nom;
         $request->pays = $pays;
@@ -84,6 +84,8 @@ class BouteilleController extends Controller
             $fileName = time() . '_' . $request->file->getClientOriginalName();
             $request->file('file')->move(public_path() . '/img', $fileName);
             $request->url_img = URL::to('') . '/img/' . $fileName;
+        }else {
+            $request->url_img = URL::to('') . '/assets/icon/bouteille-cellier.svg';
         }
 
         $bouteille = Bouteille::create([
