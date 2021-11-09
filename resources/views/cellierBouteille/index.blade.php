@@ -51,10 +51,17 @@
 
            
             <div class="infoBouteilleConteneur">
-                <img class="image" src="{{$vin['bouteille']->url_img}}" alt="Image {{$vin['bouteille']->nom}}">
+                @if(isset($vin['bouteille']->url_img))
+                    <img class="image" src="{{$vin['bouteille']->url_img}}" alt="Image {{$vin['bouteille']->nom}}">
+                @else
+                    <img class="image" src="{{asset('assets/icon/bouteille-fiche-vin.svg')}}" alt="Image {{$vin['bouteille']->nom}}">
+                @endif               
+
                 <div class="info">
                     <div>
+                    @if(isset($vin['bouteille']->pays))
                     <p>{{$vin['bouteille']->pays}}</p>
+                    @endif
                     <p>{{$vin['bouteille']->type}}</p>
                     </div>
                     
@@ -70,10 +77,20 @@
                     @else
 
                     <!-- Ajouter boutons modifier et suprimer bouteille ici à la place des infos SAQ !!! -->
-                    <p>SAQ</p>
+                    <!-- <p>SAQ</p>
                     <div class="cercle ">
                         <i class="material-icon check">close</i>
+                    </div> -->
+                    <div class="cercle nonborder">
+                        <i class="material-icon">edit</i>
                     </div>
+                    <div class="cercle nonborder">
+                        <i class="material-icon">delete</i>
+                    </div>
+
+
+
+
                     @endif
                 </div>
             </div>
@@ -120,6 +137,7 @@
                                 <i class="material-icon">add</i>
                             </a>
                         </div>
+                        
                     </div>
                 </section>
                 @endforeach

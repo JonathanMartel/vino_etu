@@ -6,7 +6,7 @@ gap: 1rem;
 .image-vin {
     height: 4.768rem;
     width: 4.768rem;
-    object-fit: cover;
+    object-fit: contain;
 }
 .col.s12.edit-vin {
     padding: 1rem;

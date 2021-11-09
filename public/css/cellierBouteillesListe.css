@@ -288,3 +288,7 @@ color: #343B41;
     color: #7A5958;
     text-align: center;
 }
+
+.nonborder {
+    border: none;
+}
