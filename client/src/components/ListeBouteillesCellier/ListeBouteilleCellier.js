@@ -21,7 +21,8 @@ export default class ListeBouteilleCellier extends React.Component {
 			open: false,
 			titre: '',
 			action: undefined,
-			premierId: undefined
+			premierId: undefined,
+			nomCellier: undefined
 		};
 
 		this.fetchBouteilles = this.fetchBouteilles.bind(this);
@@ -61,7 +62,8 @@ export default class ListeBouteilleCellier extends React.Component {
 			.then((donnees) => {
 				this.setState({ 
 					items: donnees.data,
-					premierId: donnees.data[0].id
+					premierId: donnees.data[0].id,
+					nomCellier: donnees.data[0].emplacement
 				
 				});
 				console.log(this.state.premierId);
@@ -184,9 +186,10 @@ export default class ListeBouteilleCellier extends React.Component {
 		return (
 			<Box>
 				<Breadcrumbs aria-label="breadcrumb" sx={{ display: 'flex', margin: '0 1.5rem' }}>
-					<Link underline="hover" color="white" href="/">
+					<Link underline="hover" color="white" href="/celliers/liste">
 						Celliers
 					</Link>
+					<Typography color="text.primary">{this.state.nomCellier}</Typography>
 					<Typography color="text.primary">Liste des bouteilles</Typography>
 				</Breadcrumbs>
 				<section>
