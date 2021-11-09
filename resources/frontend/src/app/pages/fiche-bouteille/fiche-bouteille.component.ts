@@ -22,15 +22,11 @@ export class FicheBouteilleComponent implements OnInit {
 
     ngOnInit(): void {
 
-        // Utiliser le resolver si il y a du data dans le service ActivatedRoute
-
-            this.actRoute.data.subscribe(data => {
-                console.log(data);
-                this.bouteille = data.bouteille;
-                console.log(this.bouteille);
-            });
-
-        this.actRoute.data.subscribe(data => { this.bouteille = data.bouteille; });
+        // Utiliser le resolver pour charger le data de la bouteille
+        this.actRoute.data.subscribe(data => {
+            this.bouteille = data.bouteille;
+            console.log(this.bouteille);
+        });
     }
 
     formulaireAjout(data: any): void {

@@ -19,7 +19,7 @@ export class BouteilleResolverServiceService implements Resolve<any>{
         return this.servBouteilleDeVin.getBouteilleParId(bouteilleId)
             .pipe(
                 map(data => {
-                   return data.data;
+                    return data.data;
                 })
             );
     }
