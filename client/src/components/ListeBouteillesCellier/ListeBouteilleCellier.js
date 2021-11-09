@@ -43,9 +43,9 @@ export default class ListeBouteilleCellier extends React.Component {
 
     sortBouteilles(key, order) {
         if (order.toUpperCase() === 'ASC') {
-            return this.state.items.sort((a, b) => a[key] - b[key]);
+			return this.state.items.sort((a, b) => a[key].localeCompare(b[key]));
         } else if (order.toUpperCase() === 'DESC') {
-            return this.state.items.sort((a, b) => b[key] - a[key]);
+			return this.state.items.sort((a, b) => b[key].localeCompare(a[key]))
         }
     }
     
