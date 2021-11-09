@@ -19,6 +19,7 @@ export default class Inscription extends React.Component {
       est_admin: false,
       sinscrire: false,
       validation: false,
+      mot_passe_chiffre: ""
     };
 
     this.validation = this.validation.bind(this);
@@ -48,11 +49,7 @@ export default class Inscription extends React.Component {
 
       if (bRegex) {
         if (this.state.mot_passe === this.state.mot_passe_verif) {
-          /* let mot_passe_chiffre = Bcryptjs.hashSync(
-            this.state.mot_passe
-          ).toString();
-          console.log("mot_passe_chiffre: ", mot_passe_chiffre); */
-          bValidation = true;
+            bValidation = true;
         }
       }
     }
@@ -63,16 +60,16 @@ export default class Inscription extends React.Component {
   sinscrire() {
 
     if (this.validation()) {
-      //Vérifier s'il existe un usager avec le même courriel ? On dois valider cela ? SQL courriel UNIQUE
+      let mot_chiffre = Bcryptjs.hashSync(this.state.mot_passe).toString();
+      console.log("mot_chiffre: ", mot_chiffre);
 
       const donnes = {
-        prenom: this.state.prenom,
         nom: this.state.nom,
+        prenom: this.state.prenom,
         courriel: this.state.courriel,
-        mot_passe: this.state.mot_passe,
-        est_admin: 0,
+        mot_passe: mot_chiffre
       };
-
+      console.log('donnes: ', donnes);
       const postMethod = {
         method: "POST",
         headers: {
@@ -85,15 +82,15 @@ export default class Inscription extends React.Component {
       fetch("https://rmpdwebservices.ca/webservice/php/usagers/", postMethod)
                 .then(res => res.json()) 
                 .then((data) => {
-                    if (data.data) {
-                      this.props.history.push("/connexion");
+                if (data.data) {
+                      this.props.history.push("/connexion");  //doit aller sur listecelliers et dèjà connecté
                     } else {
                       console.log("Erreur à l'inscription d'usager");
                     }
-                });
+                }); 
     } else {
       console.log("Validation incorrecte!!!");
-    }
+    } 
   }
 
   render() {

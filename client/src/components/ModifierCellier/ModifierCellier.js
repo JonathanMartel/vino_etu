@@ -3,7 +3,7 @@ import { Box } from "@mui/system";
 import { TextField } from "@mui/material";
 import Button from '@mui/material/Button';
 
-import './NouveauCellier.css';
+import './ModifierCellier.css';
 
 export default class NouveauCellier extends React.Component {
     constructor(props) {
@@ -26,15 +26,10 @@ export default class NouveauCellier extends React.Component {
 		if (!this.props.estConnecte) {
 			return this.props.history.push("/connexion");
 		}
-
-        if (this.props.match.params.id > 0) {
-            console.log("Modifier cellier ");
-            this.setState({titreBoutton: "Modifier cellier"})
-            this.chercherCellier();
-        } else {
-            console.log("Nouvelle cellier ");
-            this.setState({titreBoutton: "Nouvelle cellier"})
-        }
+        
+        this.setState({titreBoutton: "Modifier cellier"})
+        this.chercherCellier();
+        
 	}
 
     chercherCellier() {
@@ -49,7 +44,7 @@ export default class NouveauCellier extends React.Component {
         /* fetch('https://rmpdwebservices.ca/webservice/php/celliers/' + this.props.match.params.id, getMethod)
             .then((reponse) => reponse.json())
             .then((donnees) => {
-                if (donnees.data[0] === undefined) return this.props.history.push("/ListeCelliers/");
+                if (donnees.data[0] === undefined) return this.props.history.push("/celliers/liste");
 				console.log("Datos botella: ", donnees.data[0]);
 
 				this.setState({
@@ -92,7 +87,7 @@ export default class NouveauCellier extends React.Component {
                 fetch('https://rmpdwebservices.ca/webservice/php/celliers/'  + this.props.match.params.id, putMethod)
                     .then((reponse) => reponse.json())
                     .then((donnees) => {
-                        if (donnees.data) return this.props.history.push("/ListeCelliers/");
+                        if (donnees.data) return this.props.history.push("/celliers/liste");
                     });
             } else {    //creation d'une cellier
                 let donnes = {
