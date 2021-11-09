@@ -116,8 +116,8 @@ class CustomAuthController extends Controller
 
     public function deconnexion(Request $request){
 
-        //auth()->user()->tokens()->delete();
-        $request->currentAccessToken()->delete();
+        auth()->user()->tokens()->delete();
+        //$request->currentAccessToken()->delete();
 
         $response = [
             'status'=>true,

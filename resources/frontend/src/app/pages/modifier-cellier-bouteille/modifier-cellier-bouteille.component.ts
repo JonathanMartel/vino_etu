@@ -34,9 +34,7 @@ export class ModifierCellierBouteilleComponent implements OnInit {
 
 
     constructor(private servBouteilleDeVin: BouteilleDeVinService, private actRoute: ActivatedRoute,
-        private snackBar: MatSnackBar
-              /* public formulaireRef: MatDialogRef<ModifierCellierBouteilleComponent>,
-              @Inject(MAT_DIALOG_DATA) public data:any */) { }
+        private snackBar: MatSnackBar) { }
 
     ngOnInit(): void {
 
@@ -85,6 +83,7 @@ export class ModifierCellierBouteilleComponent implements OnInit {
 
     supprimerBouteille(){
         //console.log(bouteilleId);
+    
         this.servBouteilleDeVin.supprimerBouteilleCellier(this.bouteilleId).subscribe(()=>{
             console.log("supprimer")
         })
