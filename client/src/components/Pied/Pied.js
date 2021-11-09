@@ -13,6 +13,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
+import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
 
 export default class Pied extends React.Component {
 	constructor(props) {
@@ -51,7 +52,7 @@ export default class Pied extends React.Component {
 		console.log("Est connecté: ", this.props.estConnecte);
 		console.log("Usager: ", this.props.id_usager);
 
-		if (this.props.estConnecte) {
+		if (!this.props.estConnecte) {
 			return (
 				<BottomNavigation showLabels sx={{ width: '100vw', position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 1, backgroundColor: '#641B30' }}>
 					<BottomNavigationAction
@@ -111,12 +112,12 @@ export default class Pied extends React.Component {
 						}}
 					>
 
-						<MenuItem sx={{ display: 'flex', gap: '.5rem' }}>
-							<FormatListNumberedIcon /> Liste des celliers
+						<MenuItem onClick={() => this.props.history.push("/celliers/liste")} sx={{ display: 'flex', gap: '.5rem' }}>
+							<FormatListNumberedIcon onClick={() => this.props.history.push("/celliers/liste")} /> Liste des celliers
 						</MenuItem>
 
-						<MenuItem sx={{ display: 'flex', gap: '.5rem' }}>
-							<PlaylistAddIcon /> Ajouter un cellier
+						<MenuItem onClick={() => this.props.history.push("/celliers/ajouter")} sx={{ display: 'flex', gap: '.5rem' }}>
+							<PlaylistAddIcon onClick={() => this.props.history.push("/celliers/ajouter")} /> Ajouter un cellier
 						</MenuItem>
 					</Menu>
 
@@ -139,11 +140,16 @@ export default class Pied extends React.Component {
 						}}
 					>
 
-						<MenuItem sx={{ display: 'flex', gap: '.5rem' }}>
-							<AccountCircleIcon /> Mon profil
+						<MenuItem onClick={() => this.props.history.push("/compte/modifier")} sx={{ display: 'flex', gap: '.5rem' }}>
+							<AccountCircleIcon onClick={() => this.props.history.push("/compte/modifier")} /> Mon profil
 						</MenuItem>
-						<MenuItem sx={{ display: 'flex', gap: '.5rem' }}>
-							<LogoutIcon /> Se déconnecter
+						
+						<MenuItem onClick={() => this.props.history.push("/listeachat")} sx={{ display: 'flex', gap: '.5rem' }}>
+							<AddShoppingCartOutlinedIcon onClick={() => this.props.history.push("/listeachat")} /> Liste d'achat
+						</MenuItem>
+						
+						<MenuItem onClick={() => this.props.logout()} sx={{ display: 'flex', gap: '.5rem' }}>
+							<LogoutIcon onClick={() => this.props.logout()} /> Se déconnecter
 						</MenuItem>
 					</Menu>
 				</BottomNavigation>

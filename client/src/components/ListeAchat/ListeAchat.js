@@ -18,8 +18,11 @@ export default class ListeAchat extends React.Component {
 	}
 
     componentDidMount() {
-		this.fetchBouteilles();
-	}
+		if (!this.props.estConnecte) {
+			return this.props.history.push("/connexion");
+        }
+        this.fetchBouteilles();
+    }
 
     fetchBouteilles() {
         //Ici on doit mettre le nouveau fetch pour avoir la liste de vinos de tous nos celliers avec la quantite, pour savoir sin on doit acheter
