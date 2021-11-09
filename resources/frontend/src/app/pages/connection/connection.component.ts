@@ -21,6 +21,7 @@ export class ConnectionComponent implements OnInit {
     constructor(
         private servAuth: AuthService,
         private snackbar: MatSnackBar,
+        private router: Router,
     ) { }
 
     ngOnInit(): void {
@@ -41,15 +42,16 @@ export class ConnectionComponent implements OnInit {
             password: this.formConnection.value.password
         }
 
-        this.servAuth.connexion(data).subscribe(
-            (data) => {
-                this.servAuth.utilisateur = data.utilisateur;
-                this.servAuth.token = data.token;
-                this.snackbar.open(`Salut, ${data.utilisateur.first_name} !`, "Fermer", { duration: 3000 });
-            },
-            (error) => {
-                this.snackbar.open(error.error.message, "Fermer", { duration: 3000 });
-            })
+      this.servAuth.connexion(data).subscribe(
+          (data) => {
+              this.servAuth.utilisateur = data.utilisateur;
+              this.servAuth.token = data.token;
+              this.router.navigate(['/']);
+              this.snackbar.open(`Salut, ${data.utilisateur.first_name} ! Heureux de vous revoir`, "Fermer", {duration: 3000});
+          },
+          (error) => {
+              this.snackbar.open(error.error.message, "Fermer", {duration: 3000});
+          })
     }
 
     /**

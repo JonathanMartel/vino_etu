@@ -2,6 +2,10 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from './auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { MatConfirmDialogComponent } from '@components/mat-confirm-dialog/mat-confirm-dialog.component';
+
+
 
 @Injectable({
     providedIn: 'root'
@@ -9,13 +13,13 @@ import { AuthService } from './auth.service';
 export class BouteilleDeVinService {
 
     //  private url:string = "http://127.0.0.1:8000/api";
-    private url:string = "http://kalimotxo-vino.akira.dev/api";
+    private url: string = "http://kalimotxo-vino.akira.dev/api";
     // private url: string = new URL(window.location.href).origin + "/api";
 
 
-    constructor(private servAuth:AuthService, private http: HttpClient) {
+    constructor(private servAuth: AuthService, private http: HttpClient, private dialog: MatDialog) {
         console.log(this.url);
-     }
+    }
 
     getBouteillesParCellier(filtres = {}) {
 
@@ -62,40 +66,40 @@ export class BouteilleDeVinService {
     ajoutBouteilleCellier(bouteilleAchetee: any) {
 
         const entete = {
-            'Authorization' : `Bearer ${this.servAuth.utilisateurToken}`,
+            'Authorization': `Bearer ${this.servAuth.utilisateurToken}`,
         }
 
-        return this.http.post<any>(this.url + '/celliers/' + 1 + '/bouteilles', bouteilleAchetee, {headers:entete});
+        return this.http.post<any>(this.url + '/celliers/' + 1 + '/bouteilles', bouteilleAchetee, { headers: entete });
 
     }
 
     modifierInventaireCellierBouteille(bouteille_id: any, nouvelInventaire: any) {
 
         const entete = {
-            'Authorization' : `Bearer ${this.servAuth.utilisateurToken}`,
+            'Authorization': `Bearer ${this.servAuth.utilisateurToken}`,
         }
 
         let body = {
             'inventaire': nouvelInventaire,
         }
 
-        return this.http.put<any>(this.url + '/celliers/modifier-inventaire/' + bouteille_id, body, {headers:entete});
+        return this.http.put<any>(this.url + '/celliers/modifier-inventaire/' + bouteille_id, body, { headers: entete });
     }
 
 
-    modifierBouteilleCellier(bouteilleAchetee_id:any, data:any){
+    modifierBouteilleCellier(bouteilleAchetee_id: any, data: any) {
 
         const entete = {
-            'Authorization' : `Bearer ${this.servAuth.utilisateurToken}`,
+            'Authorization': `Bearer ${this.servAuth.utilisateurToken}`,
         }
-        return this.http.put<any>(this.url + '/bouteilles-achetees/' + bouteilleAchetee_id, data, {headers:entete})
+        return this.http.put<any>(this.url + '/bouteilles-achetees/' + bouteilleAchetee_id, data, { headers: entete })
 
     }
 
-    supprimerBouteilleCellier(bouteilleAchetee_id:any){
+    supprimerBouteilleCellier(bouteilleAchetee_id: any) {
 
         const entete = {
-            'Authorization' : `Bearer ${this.servAuth.utilisateurToken}`,
+            'Authorization': `Bearer ${this.servAuth.utilisateurToken}`,
         }
 
         console.log(bouteilleAchetee_id);
@@ -107,9 +111,20 @@ export class BouteilleDeVinService {
 
     }
 
-    ajouterUtilisateur(data:any){
+    ajouterUtilisateur(data: any) {
 
         return this.http.post<any>(this.url + '/creerCompte', data)
+    }
+
+    confirmDialog(msg: string) {
+        return this.dialog.open(MatConfirmDialogComponent, {
+            width: '400px',
+            panelClass: 'confirm-dialog-container',
+            disableClose: true,
+            data: {
+                message: msg
+            }
+        });
     }
 
 }
