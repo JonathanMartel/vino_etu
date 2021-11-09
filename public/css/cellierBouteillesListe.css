@@ -1,7 +1,6 @@
 .cellier {
     text-align: center;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding:5px 0.64rem 5px 0.64rem;
     font-size: 1.25rem;
     font-weight: 700;
     color: #7A5958;

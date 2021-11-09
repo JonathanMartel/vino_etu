@@ -113,6 +113,10 @@ document.addEventListener('DOMContentLoaded', function() {
         boutonModifier.remove();
         for (let i = 0; i < inputs.length; i++){
                 inputs[i].readOnly = false;
+                inputs[i].classList.add("input-active");
+                if (inputs[i].classList.contains("input-fiche-cercle")){
+                    inputs[i].classList.remove("input-fiche-cercle");
+                }
         }
 
         if (btnAnnuleActive.classList.contains("non-active")) {
@@ -124,5 +128,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (btnEffacerActive.classList.contains("non-active")){
             btnEffacerActive.classList.remove("non-active");
         }
+
     });
 });

@@ -288,10 +288,21 @@ class CellierBouteilleController extends Controller
      * @param  \App\Models\CellierBouteille  $cellierBouteille
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CellierBouteille $cellierBouteille)
-    {
-        //
+    public function update(Request $request, $idCellier, $idBouteille, $millesime)
+    {   
+        CellierBouteille::updateCellierBouteille($idCellier, $idBouteille, $millesime, $request);
+        // $cellierBouteille->update([
+        //     'millesime' => $request->millesime,
+        //     'prix' => $request->prix,
+        //     'quantite' => $request->quantite,
+        //     'commentaire' => $request->commentaire,
+        //     'garde_jusqua' => $request->garde_jusqua,
+        //     'date_achat' => $request->date_achat,
+        // ]);
+         return redirect('/cellier/'.$idCellier."/".$idBouteille);
+
     }
+
 
     /**
      * Remove the specified resource from storage.
@@ -301,6 +312,8 @@ class CellierBouteilleController extends Controller
      */
     public function destroy(CellierBouteille $cellierBouteille)
     {
-        //
+        $cellierBouteille->delete();
+
+        return redirect('/');
     }
 }
