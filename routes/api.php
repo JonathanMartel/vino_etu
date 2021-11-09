@@ -65,10 +65,20 @@ Route::group(['middleware' => ["auth:sanctum"]], function () {
     // Ajout d'une bouteille à un cellier
     Route::post('celliers/{cellier}/bouteilles', [CellierBouteilleAcheteeController::class, "store"]);
 
+    // Mise à jour des informations d'une bouteille dans un cellier donné
+    Route::put("celliers/modifier-bouteille/{bouteilleAchetee}", [BouteilleAcheteeController::class, "modifierInventaireBouteille"]);
+
     // Mise à jour de l'inventaire d'une bouteille dans un cellier donné
     Route::put("celliers/modifier-inventaire/{cellierBouteilleId}", [CellierBouteilleAcheteeController::class, "modifierInventaireBouteille"]);
 
     // Modifier le data d'une bouteille achetée
     Route::put('bouteilles-achetees/{bouteilleAchetee}', [BouteilleAcheteeController::class, "update"]);
 
+    // Supprimer une bouteille
+    Route::delete('supprimer/{bouteilleAchetee}', [CellierBouteilleAcheteeController::class, "supprimerBouteille"]);
+
+    //Deconnexion
+    Route::post('deconnexion', [CustomAuthController::class, "deconnexion"]);
+
 });
+

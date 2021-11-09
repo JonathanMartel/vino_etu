@@ -16,8 +16,10 @@ const routes: Routes = [
     {path:"bouteilles", component:ListeBouteilleComponent},
     {path:"ajout", component:AjoutBouteilleComponent},
     {path:"modifier-cellier/:id", component:ModifierCellierBouteilleComponent},
+    {path:"supprimer/:id", component:ModifierCellierBouteilleComponent},
     {path:"ajouterNouvelleBouteille", component:AjoutBouteilleComponent},
     {path:"connection", component:ConnectionComponent},
+    {path:"deconnexion", component:ConnectionComponent},
     {path:"creerCompte", component:CreerCompteComponent},
     {path:"ficheBouteille/:id", component:FicheBouteilleComponent, resolve: {bouteille: BouteilleResolverServiceService}},
 ];

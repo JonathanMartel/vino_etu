@@ -109,7 +109,13 @@ class CellierBouteilleAcheteeController extends Controller {
      * @param  \App\Models\CellierBouteille  $cellierBouteille
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CellierBouteilleAchetee $cellierBouteilleAchetee) {
-        //
+    public function supprimerBouteille(CellierBouteilleAchetee $CellierBouteilleAchetee)
+    {
+        $CellierBouteilleAchetee->delete();
+
+        return response() -> json([
+            "message" => "Bouteille supprimer correctement"
+        ], 200);
     }
+
 }

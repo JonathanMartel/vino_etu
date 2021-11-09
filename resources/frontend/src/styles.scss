@@ -59,3 +59,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 
+.notif {
+  color: #155724; // green
+  background-color: #d4edda;
+  border-color: #c3e6cb ;
+  .mat-simple-snackbar-action {
+      color: #155724 !important;
+  }
+}
