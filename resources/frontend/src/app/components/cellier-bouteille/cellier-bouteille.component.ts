@@ -1,10 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { startWith, pairwise, debounceTime, distinctUntilChanged } from "rxjs/operators"
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ModifierCellierBouteilleComponent } from '@pages/modifier-cellier-bouteille/modifier-cellier-bouteille.component';
 import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 import { Subject } from 'rxjs';
+import { EventEmitter } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
     selector: 'app-cellier-bouteille',
@@ -60,7 +62,9 @@ export class CellierBouteilleComponent implements OnInit {
 
     };
 
-    constructor(private servBouteilleDeVin: BouteilleDeVinService, public formModifierBouteille: MatDialog) { }
+    @Output("chargerBouteilles") chargerBouteilles: EventEmitter<any> = new EventEmitter();
+
+    constructor(private servBouteilleDeVin: BouteilleDeVinService, public formModifierBouteille: MatDialog,  private snackBar: MatSnackBar) { }
 
     ngOnInit(): void {
 
@@ -81,6 +85,13 @@ export class CellierBouteilleComponent implements OnInit {
             .subscribe()
     }
 
+    openSnackBar(message: any, action: any) {
+        this.snackBar.open(message, action, {
+            duration: 3000,
+            panelClass: 'notif'
+        });
+    }
+
     supprimerBouteille(){
 
 
@@ -88,7 +99,9 @@ export class CellierBouteilleComponent implements OnInit {
          .afterClosed().subscribe(res => {
              if(res){
                 this.servBouteilleDeVin.supprimerBouteilleCellier(this.bouteille.inventaireId).subscribe(()=>{
-                    console.log("supprimer")
+                   this.chargerBouteilles.emit();
+                   this.openSnackBar('Vous avez supprimer la bouteille avec succès', 'Fermer');
+
                 });
              }
          })
@@ -98,5 +111,6 @@ export class CellierBouteilleComponent implements OnInit {
 
 
     }
+
 
 }
