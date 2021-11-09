@@ -34,7 +34,7 @@ class CellierController extends Router
                 $celliers = $cellierClassObj->getCelliersParUsagerId($this->urlParams[2]);
 
                 $this->retour['data'] = $celliers;
-            } else if (ctype_digit($this->urlParams[2]) && $this->urlParams[1] == 'bouteilles') {
+            } else if (ctype_digit($this->urlParams[1]) && $this->urlParams[2] == 'bouteilles') {
                 $cellierClassObj = new CellierModele;
                 $celliers = $cellierClassObj->getCellierParIdAvecBouteilles($this->urlParams[1]);
 
