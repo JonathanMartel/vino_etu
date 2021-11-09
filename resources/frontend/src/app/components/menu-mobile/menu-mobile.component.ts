@@ -18,8 +18,6 @@ export class MenuMobileComponent implements OnInit {
     }
 
     estAuthentifie() {
-        return this.servAuth.utilisateurToken;
+        return this.servAuth.estAuthentifie;
     }
-
-
 }

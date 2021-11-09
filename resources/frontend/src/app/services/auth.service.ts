@@ -18,8 +18,8 @@ export class AuthService {
         private http: HttpClient
     ) {
         this.connexion({
-            email: "test@test.com",
-            password: "test",
+            email: "vino@kalimotxo.com",
+            password: "password",
         })
         .subscribe(
             data => {
@@ -117,4 +117,7 @@ export class AuthService {
         this._utilisateurToken = null;
     }
 
+    estAuthentifie(): boolean {
+        return this._utilisateurToken ? true : false;
+    }
 }
