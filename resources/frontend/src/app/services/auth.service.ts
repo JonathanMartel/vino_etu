@@ -7,12 +7,12 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-    _utilisateurAuthentifie!: object;
-    _utilisateurToken!: string;
+    _utilisateurAuthentifie!: object|null;
+    _utilisateurToken!: string|null;
 
 
-    private url: string = "http://127.0.0.1:8000/api";
-    //private url:string = "http://kalimotxo-vino.akira.dev/api";
+    // private url: string = "http://127.0.0.1:8000/api";
+    private url:string = "http://kalimotxo-vino.akira.dev/api";
 
     constructor(
         private http: HttpClient
@@ -32,7 +32,7 @@ export class AuthService {
      * @returns objet des propriétés de l'utilisateur authentifié
      *
      */
-    get utilisateurAuthentifie(): object {
+    get utilisateurAuthentifie(): object|null {
         return this._utilisateurAuthentifie;
     }
 
@@ -44,7 +44,7 @@ export class AuthService {
      *
      */
 
-    get utilisateurToken(): string {
+    get utilisateurToken(): string|null {
         return this._utilisateurToken;
     }
 
@@ -70,10 +70,10 @@ export class AuthService {
      *
      * Déconnecter l'usager présentement authentifié
      *
-     * @returns Observable La réponse reçue confirmant ou non la déconnexion
+     * @returns La réponse reçue confirmant ou non la déconnexion
      *
      */
-    deconnexion(): Observable<object> {
+    deconnexion(): any {
         const entete = {
             'Authorization': `Bearer ${this.utilisateurToken}`,
         }
@@ -84,7 +84,21 @@ export class AuthService {
             {
                 headers: entete
             }
+        )
+        .subscribe(
+            data => {
+                this.reinitialiserUtilisateur();
+                return data;
+            },
+            error => {
+                return error;
+            }
         );
+    }
+
+    reinitialiserUtilisateur() {
+        this._utilisateurAuthentifie = null;
+        this._utilisateurToken = null;
     }
 
 }
