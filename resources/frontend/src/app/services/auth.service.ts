@@ -16,7 +16,12 @@ export class AuthService {
 
     constructor(
         private http: HttpClient
-    ) { }
+    ) {
+        this.connexion({
+            utilisateur: "test@test.com",
+            password: "test",
+        })
+    }
 
     connexion(data: any) {
         return this.http.post<any>(
