@@ -51,4 +51,12 @@ export class ConnectionComponent implements OnInit {
             })
     }
 
+    logout(){
+      
+      this.servAuth.logout().subscribe(res => {
+        console.log(res);
+      });
+
+    }
+
 }

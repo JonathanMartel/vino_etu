@@ -69,16 +69,12 @@ Route::put("celliers/modifier-inventaire/{cellierBouteilleId}", [CellierBouteill
 // Modifier le data d'une bouteille achetée
 Route::put('bouteilles-achetees/{bouteilleAchetee}', [BouteilleAcheteeController::class, "update"]);
 
-
-
-
-
-
-
+Route::delete('supprimer/{bouteilleAchetee}', [CellierBouteilleAcheteeController::class, "supprimer"]);
 
 // route protéger
 Route::group(['middleware' => ["auth:sanctum"]], function () {
-    
 
-
+    // logout
+    Route::post('logout', [CustomAuthController::class, "logout"]);
+   
 });

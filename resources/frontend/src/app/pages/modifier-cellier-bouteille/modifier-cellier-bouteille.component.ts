@@ -81,4 +81,15 @@ export class ModifierCellierBouteilleComponent implements OnInit {
 
        // console.log(nouvellesDonnes);
     }
+
+
+    deleteBouteille(){
+
+        console.log(this.bouteilleId);
+
+        this.servBouteilleDeVin.supprimerBouteilleCellier(this.bouteilleId).subscribe(() => {
+            this.openSnackBar('Vous avez supprimer la bouteille avec succès', 'Fermer');
+        });
+
+    }
 }

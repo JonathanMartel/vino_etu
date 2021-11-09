@@ -77,6 +77,29 @@ class CustomAuthController extends Controller
   }
 
 
+   /**
+   * Deconnexion
+   *
+   * @return \Illuminate\Http\Response
+   */
+  public function logout(Request $request)
+  {
+
+    //$request->user()->Tokens()->delete();
+
+    auth()->user()->Tokens()->delete();
+
+      $response = [
+          'user'=> auth()->user(),
+          'status' =>true,
+          'message'=>'Logout reussit',
+      ];
+
+      return response($response, 201);
+      
+  }
+
+
   /**
    * Connection
    *
@@ -109,33 +132,7 @@ class CustomAuthController extends Controller
 
         return response()->json($response, 201);
 
-
-       /* $request->validate([
-            'email' => 'required',
-            'password' => 'required',
-        ]);
-
-        $login = $request->only('email', 'password');
-        if (!Auth::attempt($login)) {
-            return response(['message' => 'Invalid login credential!!'], 401);
-
-        }
-        $user = Auth::user();
-        $token = $user->createToken($user->name);
-
-        return response([
-            'id' => $user->id,
-            'first_name' => $user->first_name,
-            'email' => $user->email,
-            'created_at' => $user->created_at,
-            'updated_at' => $user->updated_at,
-            'token' => $token->accessToken,
-            'token_expires_at' => $token->token->expires_at,
-        ], 200);
-
-        //return redirect("connection")->withSuccess('Échec de la connexion'); */
     }
-
 
 
 

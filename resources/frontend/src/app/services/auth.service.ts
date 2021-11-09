@@ -14,7 +14,7 @@ private url: string = "http://127.0.0.1:8000/api";
 //private url:string = "http://kalimotxo-vino.akira.dev/api";
 
     constructor(
-        private http: HttpClient
+        private http: HttpClient,
     ) { }
 
     connexion(data: any) {
@@ -30,5 +30,16 @@ private url: string = "http://127.0.0.1:8000/api";
 
     set token(token: string) {
         this.utilisateurToken = token;
+    }
+
+    logout(){
+
+      const entete = {
+        'Authorization' : `Bearer ${this.utilisateurToken}`,
+      }
+
+      console.log(this.utilisateurToken);
+
+      return this.http.post<any>(this.url + '/logout',"", {headers:entete});
     }
 }
