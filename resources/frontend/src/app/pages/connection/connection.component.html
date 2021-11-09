@@ -1,8 +1,8 @@
 <div class="conteneur">
     <form class="formulaire" [formGroup]= 'formConnection' (ngSubmit)= 'connection()'>
-      <header>
-        <h2>Se connecter</h2>
-      </header>
+        
+        <h2 class="titre">Se connecter</h2>
+
       <mat-form-field appearance="fill">
         <mat-label for="email">Courriel</mat-label>
         <input matInput type="text" id="email" name="email" formControlName="email">
@@ -11,6 +11,7 @@
             <div *ngIf="erreur.email.errors.email">Veuillez rentrer un courriel valide</div>
         </mat-error>
       </mat-form-field>
+
       <mat-form-field appearance="fill">
         <mat-label for="password">Mot de passe</mat-label>
         <input matInput type="password" id="password" name="password" formControlName="password">
@@ -24,8 +25,4 @@
 
       <a color="accent" href="./creerCompte">Créer un compte </a>
     </form>
-
-    
 </div>
-
-<button (click)='logout()'>logout</button>

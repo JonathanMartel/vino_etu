@@ -57,24 +57,27 @@ Route::post('connection', [CustomAuthController::class, "connection"]);
 // Afficher les bouteilles d'un cellier
 Route::get('celliers/{cellierId}/bouteilles', [CellierController::class, "obtenirBouteilles"]);
 
-// Ajout d'une bouteille à un cellier
-Route::post('celliers/{cellier}/bouteilles', [CellierBouteilleAcheteeController::class, "store"]);
-
-// Mise à jour des informations d'une bouteille dans un cellier donné ( modification )
-Route::put("celliers/modifier-bouteille/{bouteilleAchetee}", [CellierBouteilleAcheteeController::class, "modifierInventaireBouteille"]);
-
-// Mise à jour de l'inventaire d'une bouteille dans un cellier donné  ( + et - dans le cellier )
-Route::put("celliers/modifier-inventaire/{cellierBouteilleId}", [CellierBouteilleAcheteeController::class, "modifierInventaireBouteille"]);
-
-// Modifier le data d'une bouteille achetée
-Route::put('bouteilles-achetees/{bouteilleAchetee}', [BouteilleAcheteeController::class, "update"]);
-
-Route::delete('supprimer/{bouteilleAchetee}', [CellierBouteilleAcheteeController::class, "supprimer"]);
 
 // route protéger
+
 Route::group(['middleware' => ["auth:sanctum"]], function () {
 
-    // logout
-    Route::post('logout', [CustomAuthController::class, "logout"]);
-   
+    // Ajout d'une bouteille à un cellier
+    Route::post('celliers/{cellier}/bouteilles', [CellierBouteilleAcheteeController::class, "store"]);
+
+    // Mise à jour des informations d'une bouteille dans un cellier donné
+    Route::put("celliers/modifier-bouteille/{bouteilleAchetee}", [BouteilleAcheteeController::class, "modifierInventaireBouteille"]);
+
+    // Mise à jour de l'inventaire d'une bouteille dans un cellier donné
+    Route::put("celliers/modifier-inventaire/{cellierBouteilleId}", [CellierBouteilleAcheteeController::class, "modifierInventaireBouteille"]);
+
+    // Modifier le data d'une bouteille achetée
+    Route::put('bouteilles-achetees/{bouteilleAchetee}', [BouteilleAcheteeController::class, "update"]);
+
+    // Supprimer une bouteille
+    Route::delete('supprimer/{bouteilleAchetee}', [CellierBouteilleAcheteeController::class, "supprimerBouteille"]);
+
+    //Deconnexion
+    Route::post('deconnexion', [CustomAuthController::class, "deconnexion"]);
+
 });

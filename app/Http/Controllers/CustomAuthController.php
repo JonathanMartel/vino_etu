@@ -5,9 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use Validator;
+
 
 class CustomAuthController extends Controller
 {
@@ -106,7 +107,7 @@ class CustomAuthController extends Controller
    * @return \Illuminate\Http\Response
    */
 
-  public function connection(Request $request)
+    public function connection(Request $request)
     {
 
         $login = $this->validate($request, [
@@ -135,7 +136,21 @@ class CustomAuthController extends Controller
     }
 
 
+    public function deconnexion(Request $request){
 
+        auth()->user()->tokens()->delete();
+        
+
+        // Rapport journalier 
+        //$request->currentAccessToken()->delete();
+
+        $response = [
+            'status'=>true,
+            'message'=>'Logout successfully',
+        ];
+
+        return response()->json($response, 201);
+    }
 
     /**
      * Store a newly created resource in storage.

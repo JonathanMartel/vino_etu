@@ -34,26 +34,28 @@ export class ConnectionComponent implements OnInit {
     }
 
     connection() {
-        const data = {
-            email: this.formConnection.value.email,
-            password: this.formConnection.value.password
-        }
+      const data = {
+          email: this.formConnection.value.email,
+          password: this.formConnection.value.password
+      }
 
-        this.servAuth.connexion(data).subscribe(
-            (data) => {
-                console.log(data);
-                this.servAuth.utilisateur = data.utilisateur;
-                this.servAuth.token = data.token;
-                this.snackbar.open(`Salut, ${data.utilisateur.first_name} !`, "Fermer", {duration: 3000});
-            },
-            (error) => {
-                this.snackbar.open(error.error.message, "Fermer", {duration: 3000});
-            })
+      this.servAuth.connexion(data).subscribe(
+          (data) => {
+              //console.log(data);
+              this.servAuth.utilisateur = data.utilisateur;
+              this.servAuth.token = data.token;
+              localStorage.removeItem('token')
+              localStorage.setItem('token', data.token);
+              this.snackbar.open(`Salut, ${data.utilisateur.first_name} !`, "Fermer", {duration: 3000});
+          },
+          (error) => {
+              this.snackbar.open(error.error.message, "Fermer", {duration: 3000});
+          })
     }
 
     logout(){
       
-      this.servAuth.logout().subscribe(res => {
+      this.servAuth.deconnexion().subscribe(res => {
         console.log(res);
       });
 
