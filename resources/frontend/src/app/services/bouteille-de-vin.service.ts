@@ -2,6 +2,10 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from './auth.service';
+import { MatDialog } from '@angular/material/dialog';
+import { MatConfirmDialogComponent } from '@components/mat-confirm-dialog/mat-confirm-dialog.component';
+
+
 
 @Injectable({
     providedIn: 'root'
@@ -13,7 +17,7 @@ export class BouteilleDeVinService {
     // private url: string = new URL(window.location.href).origin + "/api";
 
 
-    constructor(private servAuth:AuthService, private http: HttpClient) {
+    constructor(private servAuth:AuthService, private http: HttpClient, private dialog: MatDialog) {
         console.log(this.url);
      }
 
@@ -106,6 +110,17 @@ export class BouteilleDeVinService {
 
         return this.http.post<any>(this.url + '/creerCompte', data)
     }
+
+    confirmDialog(msg:string){
+        return this.dialog.open(MatConfirmDialogComponent, {
+          width: '400px',
+          panelClass: 'confirm-dialog-container',
+          disableClose: true,
+          data: {
+            message : msg
+          }
+        });
+      }
 
 }
 

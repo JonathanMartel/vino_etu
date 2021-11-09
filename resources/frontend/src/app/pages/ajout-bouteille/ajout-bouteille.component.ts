@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '@services/auth.service';
 import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 
@@ -27,7 +27,8 @@ export class AjoutBouteilleComponent implements OnInit {
         private actRoute: ActivatedRoute,
         public formulaireRef: MatDialogRef<AjoutBouteilleComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any,
-        private snackBar: MatSnackBar) { }
+        private snackBar: MatSnackBar,
+        private router: Router) { }
 
     ngOnInit(): void {
         this.data;
@@ -55,11 +56,11 @@ export class AjoutBouteilleComponent implements OnInit {
 
         this.servBouteilleDeVin.ajoutBouteilleCellier(this.bouteilleAchetee).subscribe(() => {
             this.openSnackBar('Vous avez ajouté une bouteille à votre cellier', 'X') 
-         });
-
-        setTimeout(() => {
             this.formulaireRef.close();
-        }, 2000)
+
+            this.router.navigate(['/bouteilles']);
+
+         });
 
     }
 

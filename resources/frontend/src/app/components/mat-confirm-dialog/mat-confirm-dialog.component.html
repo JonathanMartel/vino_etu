@@ -1,0 +1,10 @@
+<div>
+    <div class="content-container">
+        <mat-icon id="close-icon" (click)="closeDialog()">close</mat-icon>
+        <p class="content-span full-width">Voulez-vous supprimer la bouteille ?</p>
+    </div>
+    <div class="mat-confirm-bouton">
+        <button mat-raised-button id="non" [mat-dialog-close]="false">Non</button>
+        <button class="danger" mat-raised-button id="oui" [mat-dialog-close]="true" >Oui</button>
+    </div>
+</div>
