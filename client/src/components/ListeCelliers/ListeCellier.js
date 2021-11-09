@@ -65,7 +65,7 @@ export default class ListeCellier extends React.Component {
 					<Typography color="text.primary">Liste des celliers</Typography>
 
 				</Breadcrumbs>
-				<AddCircleIcon onClick={()=> this.props.history.push("/nouveaucellier/0")} sx={{ color: '#641B30' }}/>
+				<AddCircleIcon onClick={()=> this.props.history.push("/celliers/ajouter")} sx={{ color: '#641B30' }}/>
 				<AddShoppingCartOutlinedIcon  onClick={()=> this.props.history.push("/listeachat")} sx={{ color: '#641B30' }} />
 				
 				<section className="liste_celliers">
