@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 
 import './ModifierCellier.css';
 
-export default class NouveauCellier extends React.Component {
+export default class ModifierCellier extends React.Component {
     constructor(props) {
 		super(props);
 
