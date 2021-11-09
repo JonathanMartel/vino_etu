@@ -31,4 +31,18 @@ export class AuthService {
     set token(token: string) {
         this.utilisateurToken = token;
     }
+
+
+    deconnexion() {
+        const entete = this.utilisateurToken;
+
+        /* const entete = {
+            'Authorization' : `Bearer ${this.utilisateurToken}`,
+        } */
+        return this.http.post<any>(
+            this.url + '/deconnexion',
+            {headers:entete}
+        );
+    }
+
 }

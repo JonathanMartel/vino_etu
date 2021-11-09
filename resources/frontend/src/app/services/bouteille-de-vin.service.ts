@@ -92,6 +92,15 @@ export class BouteilleDeVinService {
 
     }
 
+    supprimerBouteilleCellier(bouteilleAchetee_id:any){
+
+        const entete = {
+            'Authorization' : `Bearer ${this.servAuth.utilisateurToken}`,
+        }
+        return this.http.delete<any>(this.url + '/supprimer/' + bouteilleAchetee_id, {headers:entete})
+
+    }
+
     ajouterUtilisateur(data:any){
 
         return this.http.post<any>(this.url + '/creerCompte', data)

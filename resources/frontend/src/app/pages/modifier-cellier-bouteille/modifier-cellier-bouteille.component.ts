@@ -70,15 +70,24 @@ export class ModifierCellierBouteilleComponent implements OnInit {
     openSnackBar(message: any, action: any) {
         this.snackBar.open(message, action, {
             duration: 3000,
+            panelClass: 'notif'
         });
     }
 
     putBouteille(nouvellesDonnes: any) {
 
         this.servBouteilleDeVin.modifierBouteilleCellier(this.bouteilleId, nouvellesDonnes).subscribe(() => {
-            this.openSnackBar('Vous avez modifer la bouteille avec succès', 'X');
+            this.openSnackBar('Vous avez modifer la bouteille avec succès', 'Fermer');
         });
 
        // console.log(nouvellesDonnes);
+    }
+
+    supprimerBouteille(){
+        //console.log(bouteilleId);
+        this.servBouteilleDeVin.supprimerBouteilleCellier(this.bouteilleId).subscribe(()=>{
+            console.log("supprimer")
+        })
+
     }
 }

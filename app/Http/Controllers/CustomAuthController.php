@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 
+
 class CustomAuthController extends Controller
 {
 
@@ -113,9 +114,17 @@ class CustomAuthController extends Controller
     }
 
 
-    public function disconnection(Request $request) {
-        $request->user()->token()->revoke();
+    public function deconnexion(Request $request){
 
+        //auth()->user()->tokens()->delete();
+        $request->currentAccessToken()->delete();
+
+        $response = [
+            'status'=>true,
+            'message'=>'Logout successfully',
+        ];
+
+        return response()->json($response, 201);
     }
 
 
