@@ -69,7 +69,8 @@ export class ModifierCellierBouteilleComponent implements OnInit {
 
     openSnackBar(message: any, action: any) {
         this.snackBar.open(message, action, {
-            duration: 3000
+            duration: 3000,
+            panelClass: 'notif'
         });
     }
 
@@ -80,5 +81,13 @@ export class ModifierCellierBouteilleComponent implements OnInit {
         });
 
        // console.log(nouvellesDonnes);
+    }
+
+    supprimerBouteille(){
+        //console.log(bouteilleId);
+        this.servBouteilleDeVin.supprimerBouteilleCellier(this.bouteilleId).subscribe(()=>{
+            console.log("supprimer")
+        })
+
     }
 }

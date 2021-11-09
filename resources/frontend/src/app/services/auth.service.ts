@@ -10,8 +10,8 @@ export class AuthService {
     utilisateurToken!: string;
 
 
-    // private url: string = "http://127.0.0.1:8000/api";
-    private url:string = "http://kalimotxo-vino.akira.dev/api";
+    private url: string = "http://127.0.0.1:8000/api";
+    //private url:string = "http://kalimotxo-vino.akira.dev/api";
 
     constructor(
         private http: HttpClient
@@ -31,4 +31,18 @@ export class AuthService {
     set token(token: string) {
         this.utilisateurToken = token;
     }
+
+
+    deconnexion() {
+        const entete = this.utilisateurToken;
+
+        /* const entete = {
+            'Authorization' : `Bearer ${this.utilisateurToken}`,
+        } */
+        return this.http.post<any>(
+            this.url + '/deconnexion',
+            {headers:entete}
+        );
+    }
+
 }
