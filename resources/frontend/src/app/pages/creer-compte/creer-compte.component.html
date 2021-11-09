@@ -56,10 +56,11 @@
             <mat-form-field appearance="fill">
                 <mat-label for="password">Mot de passe</mat-label>
                 <input matInput type="password" id="password" name="password" formControlName="password">
+
+                <mat-error *ngIf="erreur.password.touched && erreur.password.invalid" class="alert alert-danger">
+                    <div *ngIf="erreur.password.errors?.required">Ce champ est obligatoire</div>
+                </mat-error>
             </mat-form-field>
-            <mat-error *ngIf="erreur.password.touched && erreur.password.invalid" class="alert alert-danger">
-                <div *ngIf="erreur.password.errors?.required">Ce champ est obligatoire</div>
-            </mat-error>
         </div>
 
         <button type="submit">Enregistrer</button>
