@@ -104,6 +104,7 @@ export class AuthService {
         .subscribe(
             data => {
                 this.reinitialiserUtilisateur();
+                console.log(this._utilisateurAuthentifie);
                 return data;
             },
             error => {

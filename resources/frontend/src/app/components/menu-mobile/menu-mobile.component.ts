@@ -14,10 +14,10 @@ export class MenuMobileComponent implements OnInit {
     }
 
     deconnexion() {
-        console.log(this.servAuth.deconnexion());
+        this.servAuth.deconnexion();
     }
 
     estAuthentifie() {
-        return this.servAuth.estAuthentifie;
+        return this.servAuth.estAuthentifie();
     }
 }

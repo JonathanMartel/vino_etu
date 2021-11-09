@@ -13,7 +13,7 @@
             <mat-icon svgIcon="cellier"></mat-icon>
         </a>
         <ng-container
-            *ngIf="estAuthentifie; then authentifie; else nonAuthentifie">
+            *ngIf="estAuthentifie(); then authentifie; else nonAuthentifie">
         </ng-container>
 
         <ng-template #authentifie>

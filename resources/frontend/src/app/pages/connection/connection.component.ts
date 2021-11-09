@@ -30,6 +30,11 @@ export class ConnectionComponent implements OnInit {
         return this.formConnection.controls;
     }
 
+    /**
+     *
+     * Envoyé l'input de l'usager au service d'authentification
+     *
+     */
     connection() {
         const data = {
             email: this.formConnection.value.email,
@@ -47,8 +52,13 @@ export class ConnectionComponent implements OnInit {
             })
     }
 
+    /**
+     *
+     * Déconnecter l'utilisateur courant
+     *
+     */
     logout() {
-        console.log(this.servAuth.deconnexion());
+        this.servAuth.deconnexion();
     }
 
 }
