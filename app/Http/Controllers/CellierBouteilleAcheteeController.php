@@ -53,7 +53,7 @@ class CellierBouteilleAcheteeController extends Controller {
      */
     public function store(Request $request) {
         $bouteilleAchetee = new BouteilleAchetee();
-
+        
         $bouteilleAchetee->nom =  $request->nom;
         $bouteilleAchetee->description =  $request->description;
         $bouteilleAchetee->url_image =  $request->url_image;

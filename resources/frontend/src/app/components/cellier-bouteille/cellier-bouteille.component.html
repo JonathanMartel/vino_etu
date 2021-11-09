@@ -59,6 +59,8 @@
 
         <div class="actions">
             <a mat-flat-button routerLink="/modifier-cellier/{{bouteille.bouteilleId}}"><mat-icon>edit</mat-icon> Modifier</a>
+            <a mat-flat-button (click)='supprimerBouteille()'><mat-icon>delete</mat-icon> Supprimer</a>
         </div>
+
     </mat-expansion-panel>
 </section>

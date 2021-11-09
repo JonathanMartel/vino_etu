@@ -81,4 +81,14 @@ export class CellierBouteilleComponent implements OnInit {
             .subscribe()
     }
 
+    supprimerBouteille(){
+
+       // console.log(this.bouteille)
+        
+        this.servBouteilleDeVin.supprimerBouteilleCellier(this.bouteille.inventaireId).subscribe(()=>{
+            console.log("supprimer")
+        })
+
+    }
+
 }

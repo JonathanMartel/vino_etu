@@ -54,9 +54,9 @@ Route::post('creerCompte', [CustomAuthController::class, "creerCompte"]);
 // Connexion
 Route::post('connection', [CustomAuthController::class, "connection"]);
 
-
 // Afficher les bouteilles d'un cellier
 Route::get('celliers/{cellierId}/bouteilles', [CellierController::class, "obtenirBouteilles"]);
+
 
 // route protéger
 
@@ -75,10 +75,9 @@ Route::group(['middleware' => ["auth:sanctum"]], function () {
     Route::put('bouteilles-achetees/{bouteilleAchetee}', [BouteilleAcheteeController::class, "update"]);
 
     // Supprimer une bouteille
-    Route::delete('supprimer/{bouteilleAchetee}', [CellierBouteilleAcheteeController::class, "supprimerBouteille"]);
+    Route::delete('supprimer/{CellierBouteilleAchetee}', [CellierBouteilleAcheteeController::class, "supprimerBouteille"]);
 
     //Deconnexion
     Route::post('deconnexion', [CustomAuthController::class, "deconnexion"]);
 
 });
-
