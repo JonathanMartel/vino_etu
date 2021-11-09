@@ -28,7 +28,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ModifierCellierBouteilleComponent } from './pages/modifier-cellier-bouteille/modifier-cellier-bouteille.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MatExpansionModule } from '@angular/material/expansion'
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatConfirmDialogComponent } from './components/mat-confirm-dialog/mat-confirm-dialog.component'
+
+
 
 
 
@@ -47,6 +50,7 @@ import { MatExpansionModule } from '@angular/material/expansion'
         FicheBouteilleComponent,
         CellierBouteilleComponent,
         ModifierCellierBouteilleComponent,
+        MatConfirmDialogComponent,
 
     ],
     imports: [
@@ -68,6 +72,7 @@ import { MatExpansionModule } from '@angular/material/expansion'
         FormsModule,
     ],
     providers: [BouteilleDeVinService, BouteilleResolverServiceService],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
+    entryComponents:[MatConfirmDialogComponent],
 })
 export class AppModule { }
