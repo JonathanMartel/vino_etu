@@ -45,7 +45,7 @@
                     'idBouteille'=>$vin['id'],
                     ]) }}">
                 <div class="nomVinConteneur">
-                    <h2>{{$vin['bouteille']->nom}}</h2>
+                    <h2 class="underline">{{$vin['bouteille']->nom}}</h2>
                 </div>
             </a>
 
@@ -60,7 +60,9 @@
                 <div class="info">
                     <div>
                     @if(isset($vin['bouteille']->pays))
-                    <p>{{$vin['bouteille']->pays}}</p>
+                        <p>{{$vin['bouteille']->pays}}</p>
+                    @else
+                        <p>Pays:non</p>
                     @endif
                     <p>{{$vin['bouteille']->type}}</p>
                     </div>
@@ -69,7 +71,7 @@
                 </div>
                 <div class="bouteilleSAQConteneur">
                     @if($vin['bouteille']->url_saq)
-                    <a class="lienSAQ" href="{{$vin['bouteille']->url_saq}}">SAQ</a>
+                    <a class="lienSAQ underline" href="{{$vin['bouteille']->url_saq}}">SAQ</a>
                     <div class="cercle ">
                         <i class="material-icon check">check</i>
                     </div>
@@ -77,7 +79,7 @@
                     @else
 
                     <!-- Ajouter boutons modifier et suprimer bouteille ici à la place des infos SAQ !!! -->
-                    <p>SAQ</p>
+                    <p class="nonlienSAQ">SAQ</p>
                     <div class="cercle ">
                         <i class="material-icon check">close</i>
                     </div>

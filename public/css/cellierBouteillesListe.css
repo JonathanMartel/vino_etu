@@ -39,6 +39,11 @@
     border: 2px solid;
     display: flex;
     flex-direction: column;
+    
+}
+
+.underline{
+    text-decoration: underline;
 }
 
 .nomVinConteneur {
@@ -47,6 +52,7 @@
     font-weight: 700;
     color: #343B41; */
     background-color: #7A5958;
+    
 }
 
 .nomVinConteneur>h2 {
@@ -90,6 +96,11 @@
     font-weight: 700;
     padding: 0.64rem;
 }
+
+.nonlienSAQ {
+    padding: 0.64rem;
+}
+
 
 .cercle {
     display: flex;
@@ -292,3 +303,4 @@ color: #343B41;
 .nonborder {
     border: none;
 }
+
