@@ -103,6 +103,7 @@ Route::get('/cellierBouteille/edit', [CellierBouteilleController::class, 'edit']
 
 /* Recherche */
 
+Route::get('/rechercheBouteilleExistante/{nom}/{type_id}/{format_id}/{pays?}', [BouteilleController::class, 'rechercheBouteilleExistante'])->name('rechercheBouteilleExistante')->middleware('auth')->middleware('prevent-back-history');
 Route::get('/rechercheBouteillesParMotCle/{motCle}', [BouteilleController::class, 'rechercheBouteillesParMotCle'])->name('rechercheBouteillesParMotCle')->middleware('auth')->middleware('prevent-back-history');
 Route::get('/rechercheDansCellier/{motCle}/{idCellier}', [CellierController::class, 'rechercheDansCellier'])->name('rechercheDansCellier')->middleware('auth')->middleware('prevent-back-history');
 Route::get('/reinitialiserCellier/{idCellier}', [CellierController::class, 'reinitialiserCellier'])->name('reinitialiserCellier')->middleware('auth')->middleware('prevent-back-history');

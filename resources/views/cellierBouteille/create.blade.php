@@ -99,7 +99,7 @@
           <label for="garde_jusqua">Garder jusqu'à</label>
           <span class="helper-text" data-error="Format invalid"></span>
         </div>
-        <div class="file-field input-field col s12">
+        <div class="file-field input-field col s12 ">
           <div class="btn">
             <span>Image</span>
             <input type="file" name="file" accept="image/*">
