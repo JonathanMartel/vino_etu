@@ -30,11 +30,7 @@ export class FicheBouteilleComponent implements OnInit {
                 console.log(this.bouteille);
             });
 
-            return;
-
-
-        // this.bouteilleId = this.actRoute.snapshot.paramMap.get('id');
-        // this.servBouteilleDeVin.getBouteilleParId(this.bouteilleId).subscribe(bouteille => this.bouteille = bouteille.data);
+        this.actRoute.data.subscribe(data => { this.bouteille = data.bouteille; });
     }
 
     formulaireAjout(data: any): void {

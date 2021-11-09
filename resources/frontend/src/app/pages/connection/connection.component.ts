@@ -53,4 +53,12 @@ export class ConnectionComponent implements OnInit {
           })
     }
 
+    logout(){
+      
+      this.servAuth.deconnexion().subscribe(res => {
+        console.log(res);
+      });
+
+    }
+
 }

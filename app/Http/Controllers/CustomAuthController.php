@@ -77,7 +77,6 @@ class CustomAuthController extends Controller
     return response($response, 201);
   }
 
-
   /**
    * Connection
    *
@@ -110,13 +109,14 @@ class CustomAuthController extends Controller
 
         return response()->json($response, 201);
 
-
     }
 
 
     public function deconnexion(Request $request){
 
         auth()->user()->tokens()->delete();
+
+        // Rapport journalier 
         //$request->currentAccessToken()->delete();
 
         $response = [
@@ -126,7 +126,6 @@ class CustomAuthController extends Controller
 
         return response()->json($response, 201);
     }
-
 
     /**
      * Store a newly created resource in storage.
