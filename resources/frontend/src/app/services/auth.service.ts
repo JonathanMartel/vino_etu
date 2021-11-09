@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AuthService {
 
-    utilisateurAuthentifie!: object;
-    utilisateurToken!: string;
+    _utilisateurAuthentifie!: object;
+    _utilisateurToken!: string;
 
 
     private url: string = "http://127.0.0.1:8000/api";
@@ -24,24 +25,65 @@ export class AuthService {
         );
     }
 
+    /**
+     *
+     * Getter public des propriétés privées de l'utilisateur authentifié
+     *
+     * @returns objet des propriétés de l'utilisateur authentifié
+     *
+     */
+    get utilisateurAuthentifie(): object {
+        return this._utilisateurAuthentifie;
+    }
+
+    /**
+     *
+     * Getter public du token de l'utilisateur auth du service d'authentification
+     *
+     * @returns chaîne du token api de l'utilisateur authentifié
+     *
+     */
+
+    get utilisateurToken(): string {
+        return this._utilisateurToken;
+    }
+
+    /**
+     *
+     * Setter public des propriétés privées de l'utilisateur authentifié
+     *
+     */
     set utilisateur(utilisateur: object) {
-        this.utilisateurAuthentifie = utilisateur;
+        this._utilisateurAuthentifie = utilisateur;
     }
 
+    /**
+     *
+     * Setter public du token api de l'utilisateur authentifié
+     *
+     */
     set token(token: string) {
-        this.utilisateurToken = token;
+        this._utilisateurToken = token;
     }
 
+    /**
+     *
+     * Déconnecter l'usager présentement authentifié
+     *
+     * @returns Observable La réponse reçue confirmant ou non la déconnexion
+     *
+     */
+    deconnexion(): Observable<object> {
+        const entete = {
+            'Authorization': `Bearer ${this.utilisateurToken}`,
+        }
 
-    deconnexion() {
-        const entete = this.utilisateurToken;
-
-        /* const entete = {
-            'Authorization' : `Bearer ${this.utilisateurToken}`,
-        } */
         return this.http.post<any>(
             this.url + '/deconnexion',
-            {headers:entete}
+            null, // Pas de body à envoyer
+            {
+                headers: entete
+            }
         );
     }
 

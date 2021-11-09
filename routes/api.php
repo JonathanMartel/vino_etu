@@ -79,6 +79,4 @@ Route::group(['middleware' => ["auth:sanctum"]], function () {
 
     //Deconnexion
     Route::post('deconnexion', [CustomAuthController::class, "deconnexion"]);
-
 });
-
