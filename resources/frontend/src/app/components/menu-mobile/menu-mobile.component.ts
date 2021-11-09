@@ -17,5 +17,9 @@ export class MenuMobileComponent implements OnInit {
         console.log(this.servAuth.deconnexion());
     }
 
+    estAuthentifie() {
+        return this.servAuth.utilisateurToken;
+    }
+
 
 }

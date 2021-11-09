@@ -18,9 +18,20 @@ export class AuthService {
         private http: HttpClient
     ) {
         this.connexion({
-            utilisateur: "test@test.com",
+            email: "test@test.com",
             password: "test",
         })
+        .subscribe(
+            data => {
+                console.log(data);
+                this.utilisateur = data.utilisateur;
+                this.token = data.token;
+                return data;
+            },
+            error => {
+                return error;
+            }
+        )
     }
 
     connexion(data: any) {
