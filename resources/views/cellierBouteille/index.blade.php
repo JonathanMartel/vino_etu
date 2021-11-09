@@ -77,16 +77,16 @@
                     @else
 
                     <!-- Ajouter boutons modifier et suprimer bouteille ici à la place des infos SAQ !!! -->
-                    <!-- <p>SAQ</p>
+                    <p>SAQ</p>
                     <div class="cercle ">
                         <i class="material-icon check">close</i>
-                    </div> -->
-                    <div class="cercle nonborder">
+                    </div>
+                    <!-- <div class="cercle nonborder">
                         <i class="material-icon">edit</i>
                     </div>
                     <div class="cercle nonborder">
                         <i class="material-icon">delete</i>
-                    </div>
+                    </div> -->
 
 
 
