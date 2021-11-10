@@ -1,14 +1,12 @@
 .content {
     display: flex;
     flex-direction: column;
-    padding: 5rem 0;
-    margin-bottom: 1rem;
+    padding: 1rem 0;
 }
 
 .resultat-vin {
     clear: both;
     min-height: 45px;
-    margin: 0 -10px;
     padding: 10px 10px;
     cursor: pointer;
     border-top: 1px solid #e9e8e5;
@@ -57,17 +55,15 @@
     display: block;
 }
 
-.card-header h2{
-    margin-bottom: 10px;
-}
 
 .card-content{
     font-weight: bold;
 }
 
 .card-action{
-    display: flex;
-    justify-content: center;
+   display: flex;
+   justify-content: space-between;
+   margin-top: 1rem;
 }
 
 .card-action button{
@@ -80,9 +76,7 @@
     width: 10rem;
     display: block;
     padding: 0.875rem 1rem;
-    margin: 1rem 0;
-    border-radius: 1.5rem;
-    box-shadow: 3px 3px 8px #b1b1b1, -3px -3px 8px #ffffff;
+    border-radius: 4px;
     cursor: pointer;
 }
 
@@ -116,4 +110,26 @@
 
 .card-link .voir-info{
     display: none;
+}
+
+.mat-card-image:first-child{
+    margin-top: 0;
+}
+
+.retour{
+    display: flex;
+    align-items: center;
+}
+
+dl div{
+    margin-bottom: 1rem;
+}
+
+dl{
+    font-weight: 500;
+}
+
+dd{
+    margin: 0;
+    margin-top: .5rem;
 }

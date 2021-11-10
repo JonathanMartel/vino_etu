@@ -4,7 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { AjoutBouteilleComponent } from '@pages/ajout-bouteille/ajout-bouteille.component';
-import {Location} from '@angular/common';
+import { Location } from '@angular/common'
+
 @Component({
     selector: 'app-fiche-bouteille',
     templateUrl: './fiche-bouteille.component.html',
@@ -18,7 +19,7 @@ export class FicheBouteilleComponent implements OnInit {
         private servBouteilleDeVin: BouteilleDeVinService,
         private actRoute: ActivatedRoute,
         public formAjout: MatDialog,
-        private location: Location,
+        private location: Location
     ) { }
 
     ngOnInit(): void {
@@ -30,14 +31,15 @@ export class FicheBouteilleComponent implements OnInit {
         });
     }
 
+    back(): void {
+        this.location.back()
+    }
+
     formulaireAjout(data: any): void {
         this.formAjout.open(AjoutBouteilleComponent, {
             data
         });
     }
 
-    back() {
-        this.location.back();
-    }
 
 }

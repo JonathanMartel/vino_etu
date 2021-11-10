@@ -52,7 +52,7 @@ export class AjoutBouteilleComponent implements OnInit {
             this.ajoutBouteille.markAllAsTouched();
             return;
         }
-
+    
         this.bouteilleAchetee = { ...this.data, ...bouteille }
 
         this.bouteilleAchetee.origine = this.data.pays;
@@ -60,7 +60,7 @@ export class AjoutBouteilleComponent implements OnInit {
         this.bouteilleAchetee.users_id = 1;
 
         this.servBouteilleDeVin.ajoutBouteilleCellier(this.bouteilleAchetee).subscribe(() => {
-            this.openSnackBar('Vous avez ajouté une bouteille à votre cellier', 'Fermer')
+            this.openSnackBar('Vous avez ajouté une bouteille à votre cellier', 'Fermer') 
             this.formulaireRef.close();
 
             this.router.navigate(['/bouteilles']);

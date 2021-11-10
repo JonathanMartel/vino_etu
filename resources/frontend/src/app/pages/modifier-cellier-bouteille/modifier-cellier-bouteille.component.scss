@@ -35,18 +35,17 @@
 
 .card-action{
     display: flex;
-    justify-content: center;
-}
+    justify-content: space-between;
+    margin-top: 1rem;
+ }
 
 .mat-card-image{
     width: 40vw;
     display: block;
     margin: 0 auto;
+    padding: 2rem 0;
 }
 
-.mat-card-image:first-child{
-    margin-top: 0;
-}
 
 .mat-form-field-underline{
     display: none;
@@ -61,4 +60,11 @@
 .bouton-modifier-cellier{
     background-color: #4c1920;
     color: #fff;
+}
+
+
+.retour{
+    display: flex;
+    align-items: center;
+    
 }
