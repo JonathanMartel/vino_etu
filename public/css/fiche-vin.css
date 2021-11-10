@@ -15,7 +15,7 @@
 .description-titre{
     font-size: 1.25rem;
     font-weight: 500;
-    padding-top: 0.64rem;
+    padding-bottom: 0.512rem;
 }
 
 .millesime-conteneur{
@@ -140,6 +140,7 @@ input[type=number]::-webkit-outer-spin-button {
     display: flex;
     column-gap: 1rem;
     justify-content: space-evenly;
+    padding: 1.563rem;
 }
 
 .millesime-info-fin{
@@ -164,8 +165,9 @@ input[type=number]::-webkit-outer-spin-button {
     resize:both;
 }
 
-
-
+input:focus-visible{
+    outline: 0;
+}
 
 .bouton{
     display: flex;
@@ -200,4 +202,70 @@ input[type=number]::-webkit-outer-spin-button {
 
 .non-active{
     display: none;
+}
+
+.input-active{
+    border-style:solid;
+    border-color: #99AAA2;
+}
+
+.icon-modifier-bouteille{
+    display: flex;
+    justify-content: end;
+}
+
+.bouteilleSAQConteneur-fiche {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  
+   
+}
+
+.info-fiche {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-self: stretch;
+    padding: 0.64rem;
+    padding-top: 1.563rem;
+    padding-bottom: 1.563rem;
+}
+
+
+.material-icons-fiche {
+    color: #AA7E42;
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 33px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+    padding:0.64rem;
+}
+
+
+.infoBouteilleConteneur-fiche {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+
+/**** infographie, texture, police etc....***/
+
+.bold{
+    font-weight: 700;
+}
+
+.bold-20px{
+    font-weight: 700;
+    font-size: 1.563rem;
 }
