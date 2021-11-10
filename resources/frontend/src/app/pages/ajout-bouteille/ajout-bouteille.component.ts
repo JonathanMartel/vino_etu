@@ -36,10 +36,12 @@ export class AjoutBouteilleComponent implements OnInit {
 
     ngOnInit(): void {
         console.log("init");
-        this.listeCelliers = this.servBouteilleDeVin.getListeCelliersParUtilisateur(this.authService.getIdUtilisateurAuthentifie())
-                                .subscribe((data: any) => {
-                                    console.log(data);
-                                })
+
+        // Charger la liste des celliers de l'utilisateur.
+        this.servBouteilleDeVin.getListeCelliersParUtilisateur(this.authService.getIdUtilisateurAuthentifie())
+            .subscribe((data: any) => {
+                this.listeCelliers = data;
+            })
     }
 
     openSnackBar(message: any, action: any) {
@@ -56,15 +58,15 @@ export class AjoutBouteilleComponent implements OnInit {
         this.bouteilleAchetee.origine = this.data.pays;
         this.bouteilleAchetee.users_id = 1;
 
-        // this.servBouteilleDeVin.ajoutBouteilleCellier(this.this.bouteilleAchetee)
-        //     .subscribe(() => {
-        //         this.openSnackBar('Vous avez ajouté une bouteille à votre cellier', 'X')
-        //         this.formulaireRef.close();
+        console.log(bouteille);
 
-        //         this.router.navigate(['/bouteilles']);
+        this.servBouteilleDeVin.ajoutBouteilleCellier(bouteille.cellierId, this.bouteilleAchetee)
+            .subscribe(() => {
+                this.openSnackBar('Vous avez ajouté une bouteille à votre cellier', 'Fermer')
+                this.formulaireRef.close();
 
-        //     });
-
+                this.router.navigate(['/bouteilles']);
+            });
     }
 
 
