@@ -16,6 +16,11 @@ class Cellier extends Model
         return $this->belongsToMany(Bouteille::class, "celliers_bouteilles", "celliers_id", "bouteilles_id")->withPivot(["inventaire"]);
     }
 
+    static public function obtenirCelliersParUtilisateur(int $userId) {
+        return Cellier::where("users_id", $userId)
+                      ->get();
+    }
+
     /**
      *
      * Récupérer les bouteilles contenu dans un cellier donné.

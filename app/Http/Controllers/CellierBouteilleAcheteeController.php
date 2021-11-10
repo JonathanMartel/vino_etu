@@ -51,7 +51,7 @@ class CellierBouteilleAcheteeController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
+    public function store(Cellier $cellier, Request $request) {
         $bouteilleAchetee = new BouteilleAchetee();
 
         $bouteilleAchetee->nom =  $request->nom;
@@ -72,7 +72,7 @@ class CellierBouteilleAcheteeController extends Controller {
 
         $bouteilleCellier = new CellierBouteilleAchetee();
         $bouteilleCellier->bouteilles_achetees_id = $bouteilleAchetee->id;
-        $bouteilleCellier->celliers_id = $request->celliers_id;
+        $bouteilleCellier->celliers_id = $cellier->id;
         $bouteilleCellier->inventaire = $request->inventaire;
         $bouteilleCellier->save();
 
