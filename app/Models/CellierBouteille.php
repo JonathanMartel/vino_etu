@@ -153,5 +153,24 @@ class CellierBouteille extends Model
         ->update(['note' => $note]);
         
     }
+
+
+    // public static function updateCellierBouteille($idCellier, $idBouteille, $millesime, $request)
+    // {
+    //     if($millesime == 0) {
+    //         $millesime = 0000;
+    //     }
+        
+    //      DB::table('cellier_bouteilles')
+    //     ->where('cellier_id', $idCellier)
+    //     ->where('bouteille_id', $idBouteille)
+    //     ->where('millesime', $millesime)
+    //     ->update(['note' => $request->note,
+    //                 'prix' => $request->prix
+    
+    
+    //     ]);
+        
+    // }
     
 }

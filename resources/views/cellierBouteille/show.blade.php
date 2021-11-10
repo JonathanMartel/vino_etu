@@ -1,6 +1,5 @@
 
 @extends('layouts.app')
-<link href="{{asset('css/fiche-vin.css')}}" rel="stylesheet" />
 @section('content')
 
 <header>
@@ -22,33 +21,40 @@
             <option value="{{ $vin['id'] }}" @if( $vin['id'] == $bouteille->id) selected @endif>{{ $vin['bouteille']->nom}} </option>
             @endforeach
           </select>
-        <a class="" href="{{ route('bouteilleEdit', ['bouteille' =>$bouteille->id, 'idCellier' => $cellier->id])}}"><i class="material-icons">edit</i></a>
+       
+        
     </div>
 </header>
 <main>
-    <section class="info">
-        <article class="infoBouteilleConteneur">
+    <section class="info-fiche">
+        <article class="infoBouteilleConteneur-fiche">
             <div class="">
-                <p>{{ $bouteille->pays }} | {{ $bouteille->type }}</p>
+                <p class="bold">{{ $bouteille->pays }} | {{ $bouteille->type }}</p>
                 <p>{{  $bouteille->format }}</p>
                 <p>{{  $bouteille->taille }} cl</p>
-                <p>Prix Saq | {{ $bouteille->prix_saq }}$</p>
+                <p>Prix Saq | <span class="bold-20px">{{ $bouteille->prix_saq }}$</span></p>
             </div>
-            <div class="bouteilleSAQConteneur">
-                @if($bouteille->url_saq)
-                <a class="lienSAQ" href="{{ $bouteille->url_saq }}">SAQ</a>
-                <div class="cercle ">
-                    <i class="material-icon check">check</i>
-                </div>
-                @else
-
-                    <!-- Ajouter boutons modifier et suprimer bouteille ici à la place des infos SAQ !!! -->
-                    <p>SAQ</p>
+            <div>
+                
+                <div class="bouteilleSAQConteneur-fiche">
+                    @if($bouteille->url_saq)
+                    <a class="lienSAQ" href="{{ $bouteille->url_saq }}">SAQ</a>
                     <div class="cercle ">
-                        <i class="material-icon check">close</i>
+                        <i class="material-icon check">check</i>
                     </div>
-                    @endif
+                    @else
+                        <!-- Ajouter boutons modifier et suprimer bouteille ici à la place des infos SAQ !!! -->
+                        <p>SAQ</p>
+                        <div class="cercle ">
+                            <i class="material-icon check">close</i>
+                        </div>
+                        @endif
+                </div>
+              
+                <a class="bouteilleSAQConteneur-fiche" href="{{ route('bouteilleEdit', ['bouteille' =>$bouteille->id, 'idCellier' => $cellier->id])}}"><i class="material-icons-fiche">edit</i></a>
+               
             </div>
+
         </article>
         <article>
             <h2 class="description-titre">Description</h2>
@@ -74,7 +80,7 @@
          </section>
         <section class="">
             <div class="form-modifier form">
-                <form id="" action="" method="POST" class="form-modifier" data-js-form>
+                 <form id="" action="" method="POST" class="form-modifier" data-js-form> 
                     @method('PUT')
                     @csrf
                     <div class="millesime-info-debut">
@@ -93,7 +99,7 @@
                             <div>
                                 <div class="form-modifier-item " >
                                     <label for="millesime">Millésime</label>
-                                    <input type="number" name="millesime" readonly="readonly" id="millesime" data-js-input class="input-fiche-cercle" value="{!! $cellierBouteille->millesime !!}"/>
+                                    <input type="number" name="millesime" readonly="readonly" id="millesime"  class="input-fiche-cercle" value="{!! $cellierBouteille->millesime !!}"/>
                                 </div>
                                 <div class="form-modifier-item" >
                                     <label for="prix">Prix d'achat</label>
@@ -126,9 +132,10 @@
                         </div>
                     </div>
                     <div class="bouton">
-                        <button class="bouton-fiche valider" value="update" data-js-modifier>Modifier</button>
-                        <button class="bouton-fiche non-active" data-js-btnAnnuler>Annuler</button>
-                        <button class="bouton-fiche valider non-active" data-js-btnValider >Valider</button>
+                        <button class="bouton-fiche valider"  data-js-modifier>Modifier</button>
+
+                        <button class="bouton-fiche non-active" data-js-btnAnnuler>Annuler</button> 
+                        <button class="bouton-fiche valider non-active"  data-js-btnValider >Valider</button>
                         <button class="bouton-fiche effacer non-active" data-js-btnEffacer >Effacer</button>
                     </div>
                 </form>
@@ -165,5 +172,7 @@
 <script src="{{asset('js/cellierBouteille_show.js')}}"></script> 
 <link href="{{asset('css/cellierBouteillesListe.css')}}" rel="stylesheet" />
 <link href="{{asset('css/star-rating.css')}}" rel="stylesheet" />
+<link href="{{asset('css/fiche-vin.css')}}" rel="stylesheet" />
 <script src="{{asset('js/star-rating.js')}}"></script>
+
 
