@@ -52,7 +52,6 @@ export class CreerCompteComponent implements OnInit {
         this.servBouteilleDeVin.ajouterUtilisateur(data).subscribe((res) => {
             this.router.navigate(['/connection']);
         });
-
     }
 
 }

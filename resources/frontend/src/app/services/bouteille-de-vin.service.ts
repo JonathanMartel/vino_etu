@@ -21,9 +21,9 @@ export class BouteilleDeVinService {
         console.log(this.url);
     }
 
-    getBouteillesParCellier(filtres = {}) {
+    getBouteillesParCellier(cellierId = 1, filtres = {}) {
         return this.http.get<any>(
-            this.url + '/celliers/' + 1 + '/bouteilles',
+            this.url + '/celliers/' + cellierId + '/bouteilles',
             {
                 params: filtres
             }
