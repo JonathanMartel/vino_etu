@@ -86,6 +86,7 @@ export default class Pied extends React.Component {
 						label="Nouvelle bouteille"
 						value="favorites"
 						icon={<WineBarIcon />}
+						onClick={() => this.props.history.push("/bouteille/ajout")}
 					/>
 
 					<BottomNavigationAction
