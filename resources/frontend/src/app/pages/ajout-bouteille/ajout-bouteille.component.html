@@ -2,17 +2,18 @@
     <form [formGroup]="ajoutBouteille" (ngSubmit)=postBouteilleCellier(ajoutBouteille.value)>
         <div class="formulaire-contenu">
             <mat-form-field appearance="fill" class="input-case">
-                <mat-label for="millesime">Millesime</mat-label>
-                <input matInput type="text" id="millesime" formControlName="millesime">
-            </mat-form-field>
-
-            <mat-form-field appearance="fill" class="input-case">
                 <mat-label for="inventaire">Quantité</mat-label>
                 <input matInput type="text" id="inventaire" formControlName="inventaire" class="step__input">
                 <mat-error *ngIf="erreur.inventaire.touched && erreur.inventaire.invalid" class="alert alert-danger">
                     <div *ngIf="erreur.inventaire.errors.required">Ce champ est obligatoire</div>
                 </mat-error>
             </mat-form-field>
+
+            <mat-form-field appearance="fill" class="input-case">
+                <mat-label for="millesime">Millesime</mat-label>
+                <input matInput type="text" id="millesime" formControlName="millesime">
+            </mat-form-field>
+
 
             <mat-form-field appearance="fill" class="input-case">
                 <mat-label for="date_acquisition">Date d'achat</mat-label>
