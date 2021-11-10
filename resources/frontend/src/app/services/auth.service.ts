@@ -11,8 +11,8 @@ export class AuthService {
     _utilisateurToken!: string|null;
 
 
-    // private url: string = "http://127.0.0.1:8000/api";
-    private url:string = "http://kalimotxo-vino.akira.dev/api";
+     private url: string = "http://127.0.0.1:8000/api";
+    //private url:string = "http://kalimotxo-vino.akira.dev/api";
 
     constructor(
         private http: HttpClient
@@ -23,7 +23,7 @@ export class AuthService {
         })
         .subscribe(
             data => {
-                console.log(data);
+                //console.log(data);
                 this.utilisateur = data.utilisateur;
                 this.token = data.token;
                 return data;

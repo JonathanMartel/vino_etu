@@ -54,13 +54,4 @@ export class ConnectionComponent implements OnInit {
           })
     }
 
-    /**
-     *
-     * Déconnecter l'utilisateur courant
-     *
-     */
-    logout() {
-        this.servAuth.deconnexion();
-    }
-
 }

@@ -53,6 +53,11 @@
                 <dt><strong>Millesime</strong></dt>
                 <dl>{{bouteille.millesime }}</dl>
             </div>
+
+            <div *ngIf="bouteille.prix_paye">
+                <dt><strong>Prix</strong></dt>
+                <dl>{{bouteille.prix_paye }}$</dl>
+            </div>
         </dl>
 
         <a *ngIf="bouteille.url_achat" href="{{ bouteille.url_achat }}">Acheter en ligne</a>
