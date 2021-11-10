@@ -94,6 +94,13 @@ export class BouteilleDeVinService {
 
     }
 
+    /**
+     *
+     * Charger les celliers appartenant à l'utilisateur donné
+     *
+     * @param {number} userId Id de l'utilisateur
+     * @returns {Observable} Liste des celliers de l'utilisateur
+     */
     getListeCelliersParUtilisateur(userId: number): any {
         const options = {
             params: {
