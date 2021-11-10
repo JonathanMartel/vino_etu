@@ -6,7 +6,7 @@
 }
 
 .liste_achat_rows {
-    color: white;
+    color :white !important;
 }
 
 .liste_achat_container > .button {
