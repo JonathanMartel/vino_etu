@@ -58,8 +58,22 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   width: 0;
 }
 
-.notif {
-  color: #155724; // green
+[class*="notif"] {
+  position: relative;
+  bottom: 50px;
+}
+
+.notif-danger {
+  color: #8a1a25;
+  background-color: #f1d1d1;
+  border-color: #e6c3c5 ;
+  .mat-simple-snackbar-action {
+      color: #8a1a25;
+  }
+}
+
+.notif-success {
+  color: #155724;
   background-color: #d4edda;
   border-color: #c3e6cb ;
   .mat-simple-snackbar-action {

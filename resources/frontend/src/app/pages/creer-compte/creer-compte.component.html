@@ -19,14 +19,6 @@
         </mat-form-field>
 
         <mat-form-field appearance="fill">
-            <mat-label for="city">Ville</mat-label>
-            <input matInput type="text" id="city" name="city" formControlName="city">
-            <mat-error *ngIf="erreur.city.touched && erreur.city.invalid">
-                <div *ngIf="erreur.city.errors?.required">Ce champ est obligatoire</div>
-            </mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
             <mat-label for="dob">Date de naissance</mat-label>
             <input matInput type="date" id="dob" name="dob" formControlName="dob">
             <mat-error *ngIf="erreur.dob.touched && erreur.dob.invalid" class="alert alert-danger">

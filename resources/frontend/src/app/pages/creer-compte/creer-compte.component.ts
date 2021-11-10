@@ -16,7 +16,6 @@ export class CreerCompteComponent implements OnInit {
     formulaire = new FormGroup({
         first_name: new FormControl('', [Validators.required, Validators.minLength(3)]),
         last_name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-        city: new FormControl('', [Validators.required]),
         dob: new FormControl('', [Validators.required]),
         email: new FormControl('', [Validators.required, Validators.email]),
         password: new FormControl('', Validators.required)
@@ -44,7 +43,6 @@ export class CreerCompteComponent implements OnInit {
         const data = {
             first_name: this.formulaire.value.first_name,
             last_name: this.formulaire.value.last_name,
-            city: this.formulaire.value.city,
             dob: this.formulaire.value.dob,
             email: this.formulaire.value.email,
             password: this.formulaire.value.password
