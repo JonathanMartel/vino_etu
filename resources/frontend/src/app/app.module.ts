@@ -29,7 +29,8 @@ import { ModifierCellierBouteilleComponent } from './pages/modifier-cellier-bout
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { MatConfirmDialogComponent } from './components/mat-confirm-dialog/mat-confirm-dialog.component'
+import { MatConfirmDialogComponent } from './components/mat-confirm-dialog/mat-confirm-dialog.component';
+import { ListeCelliersComponent } from './pages/liste-celliers/liste-celliers.component'
 
 
 
@@ -51,6 +52,7 @@ import { MatConfirmDialogComponent } from './components/mat-confirm-dialog/mat-c
         CellierBouteilleComponent,
         ModifierCellierBouteilleComponent,
         MatConfirmDialogComponent,
+        ListeCelliersComponent,
 
     ],
     imports: [

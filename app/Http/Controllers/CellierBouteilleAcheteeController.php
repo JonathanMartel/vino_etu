@@ -99,8 +99,7 @@ class CellierBouteilleAcheteeController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Cellier $cellier, Bouteille $bouteille) {
-
-
+        
     }
 
     /**
