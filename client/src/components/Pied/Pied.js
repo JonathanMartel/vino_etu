@@ -13,6 +13,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
+import { Box } from "@mui/system";
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
 
 export default class Pied extends React.Component {
@@ -71,7 +72,8 @@ export default class Pied extends React.Component {
 			);
 		} else {
 			return (
-				<BottomNavigation showLabels sx={{ width: '100vw', position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 1, backgroundColor: '#641B30' }}>
+      <>
+				<BottomNavigation showLabels sx={{ width: '100vw', position: 'fixed', bottom: 19, left: 0, right: 0, zIndex: 1, backgroundColor: '#641B30' }}>
 					<BottomNavigationAction
 						label="Celliers"
 						value="recents"
@@ -84,6 +86,7 @@ export default class Pied extends React.Component {
 						label="Nouvelle bouteille"
 						value="favorites"
 						icon={<WineBarIcon />}
+						onClick={() => this.props.history.push("/bouteille/ajout")}
 					/>
 
 					<BottomNavigationAction
@@ -153,7 +156,9 @@ export default class Pied extends React.Component {
 						</MenuItem>
 					</Menu>
 				</BottomNavigation>
-
+        <Box sx={{ width: '100vw', position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 1, height: '20px', backgroundColor: '#641B30' }}>
+				</Box>
+      </>
 			);
 		}
 	}

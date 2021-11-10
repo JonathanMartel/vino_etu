@@ -28,3 +28,11 @@
     margin: 1em auto;
     flex-wrap: wrap;
 }
+
+.cellier_vide {
+    color: #641B30;
+    font-size: 1.5em;
+    font-weight: 600;
+    margin: 2rem 1rem 0 1rem;
+    text-align: center;
+}
