@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Type;
 use App\Models\Format;
 use Illuminate\Support\Facades\URL;
-
+use Illuminate\Support\Facades\File; 
 
 class BouteilleController extends Controller
 {
@@ -118,8 +118,9 @@ class BouteilleController extends Controller
      * @param  \App\Models\Bouteille  $bouteille
      * @return \Illuminate\Http\Response
      */
-    public function edit(Bouteille $bouteille)
+    public function edit(Bouteille $bouteille, $idCellier)
     {
+        session(['idCellier' => $idCellier]);
         $types = Type::all();
         $formats = Format::all();
         /* var_dump($bouteille->format); */
@@ -139,10 +140,6 @@ class BouteilleController extends Controller
      */
     public function update(Request $request, Bouteille $bouteille)
     {
-         var_dump($request->all());
-        echo '<br><br>';
-        var_dump($bouteille);
-
         $request->validate([
             'nom' => 'required|max:111',
             'pays' => 'nullable|regex:^[A-ZÀÂÇÉÈÊËÎÏÔÛÙÜŸÑa-zàâçéèêëîïôûùüÿñ]+$^ | max:45',
@@ -158,22 +155,28 @@ class BouteilleController extends Controller
 
         /* si le user upload une image il faut supprimer celle qu'il avait mis précedement !!! */
 
-        if ($request->file) {
-            $fileName = time() . '_' . $request->file->getClientOriginalName();
-            
-            $request->file('file')->move(public_path() . '/img', $fileName);
-            $request->url_img = URL::to('') . '/img/' . $fileName;
-        }
+       
 
         $bouteille->fill($request->all());
        /*  if(isset($request->file('url_saq'))) {
             $bouteille->url_saq = Storage::putFile('public', $request->file('url_saq'));
         } */
-        
-        $bouteille->save();
+        if ($request->file) {
+
+            if($request->url_img != URL::to('') . '/assets/icon/bouteille-cellier.svg'){
+                print_r(explode('/',$request->url_img));
+                //unlink('img/'. explode('/',$request->url_img)[4]);
+                File::delete(public_path() . '/img', explode('/',$request->url_img)[4]);
+            }
+            $fileName = time() . '_' . $request->file->getClientOriginalName();
+            
+            $request->file('file')->move(public_path() . '/img', $fileName);
+            $bouteille->url_img = URL::to('') . '/img/' . $fileName;
+        }
+         $bouteille->save();
 
 
-        $bouteille->update([
+       /* $bouteille->update([
             'nom' => $request->nom,
             'pays' => $request->pays,
             'url_img' => $request->url_img,
@@ -184,9 +187,9 @@ class BouteilleController extends Controller
             'type_id' => $request->type_id,
             'format_id' => $request->format_id,
             'user_id' => $request->user_id,
-        ]);
-
-        return back();
+        ]);*/
+        
+        return redirect(URL::to('') . '/cellier/'. session('idCellier') . '/'. $bouteille->id);
     }
 
     /**

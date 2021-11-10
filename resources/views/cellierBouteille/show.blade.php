@@ -22,7 +22,7 @@
             <option value="{{ $vin['id'] }}" @if( $vin['id'] == $bouteille->id) selected @endif>{{ $vin['bouteille']->nom}} </option>
             @endforeach
           </select>
-        <a class="" href="{{ route('bouteilleEdit', $bouteille->id)}}"><i class="material-icons">edit</i></a>
+        <a class="" href="{{ route('bouteilleEdit', ['bouteille' =>$bouteille->id, 'idCellier' => $cellier->id])}}"><i class="material-icons">edit</i></a>
     </div>
 </header>
 <main>
