@@ -50,7 +50,7 @@ export default class ListeBouteilleCellier extends React.Component {
     }
     
 	fetchBouteilles() {
-		fetch('https://rmpdwebservices.ca/webservice/php/celliers/' + this.props.match.params.id, {
+		fetch('https://rmpdwebservices.ca/webservice/php/celliers/' + this.props.match.params.id + "/bouteilles", {
 			method: 'GET',
 			headers: new Headers({
 				'Content-Type': 'application/json',
