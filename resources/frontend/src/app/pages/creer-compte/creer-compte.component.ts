@@ -49,9 +49,11 @@ export class CreerCompteComponent implements OnInit {
             email: this.formulaire.value.email,
             password: this.formulaire.value.password
         }
-        this.servBouteilleDeVin.ajouterUtilisateur(data).subscribe((res) => {
-            this.router.navigate(['/connection']);
-        });
+        this.servBouteilleDeVin.ajouterUtilisateur(data)
+            .subscribe((reponse) => {
+                console.log(reponse);
+                this.router.navigate([`/cellier/${reponse.nouvelUtilisateurCellierId}`]);
+            });
     }
 
 }
