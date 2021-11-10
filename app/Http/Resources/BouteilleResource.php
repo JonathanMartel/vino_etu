@@ -24,7 +24,7 @@ class BouteilleResource extends JsonResource
             "format"        => $this->format,
             "pays"          => $this->pays->nom,
             "categories_id" => $this->categories_id,
-            "categories"    => $this->categorie->nom,
+            "categorie"     => $this->categorie->nom,
             "created_at"    => $this->created_at,
             "updated_at"    => $this->updated_at,
         ];
