@@ -7,12 +7,11 @@ import Dialogue from "../Dialogue/Dialogue";
 import { circularProgressClasses } from "@mui/material";
 import { Box } from "@mui/system";
 import { Breadcrumbs, Link, Typography } from "@mui/material";
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import ListSubheader from '@mui/material/ListSubheader';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import ListSubheader from "@mui/material/ListSubheader";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
 export default class ListeBouteilleCellier extends React.Component {
   constructor(props) {
@@ -47,24 +46,23 @@ export default class ListeBouteilleCellier extends React.Component {
 
   componentDidUpdate() {}
 
-  sortBouteilles(key, order) {
+  sortBouteilles(obj) {
+    const parsedObj = JSON.parse(obj);
+    const key = parsedObj.key;
+    const order = parsedObj.order;
     if (order.toUpperCase() === "ASC") {
-      return this.state.items.sort((a, b) => a[key].localeCompare(b[key]));
+      const sortedItems = this.state.items.sort((a, b) => a[key].localeCompare(b[key]));
+	  console.log(sortedItems);
+	  this.setState({items: sortedItems});
     } else if (order.toUpperCase() === "DESC") {
-      return this.state.items.sort((a, b) => b[key].localeCompare(a[key]));
+		const sortedItems = this.state.items.sort((a, b) => b[key].localeCompare(a[key]));
+		console.log(sortedItems);
+		this.setState({items: sortedItems});
     }
   }
 
   triBouteilles(order) {
-	  console.log(order);
-  }
-
-  triBouteillesASC(key) {
-    return this.state.items.sort((a, b) => a[key].localeCompare(b[key]));
-  }
-
-  triBouteillesDESC(key) {
-    return this.state.items.sort((a, b) => b[key].localeCompare(a[key]));
+    console.log(JSON.parse(order));
   }
 
   fetchBouteilles() {
@@ -233,20 +231,21 @@ export default class ListeBouteilleCellier extends React.Component {
             defaultValue=""
             id="grouped-native-select"
             label="Grouping"
-			onChange={(e) => this.triBouteilles(e.target.value)}
+            onChange={(e) => this.sortBouteilles(e.target.value)}
           >
-            <option aria-label="None" value="" />
             <optgroup label="Nom">
-              <option value={"nomasc"}>Nom (A-Z)</option>
-              <option value={"nomdesc"}>Nom (Z-A)</option>
+              <option value={JSON.stringify({ key: "nom", order: "asc" })}>
+                Nom (A-Z)
+              </option>
+              <option value={JSON.stringify({ key: "nom", order: "desc" })}>Nom (Z-A)</option>
             </optgroup>
             <optgroup label="Millesime">
-              <option value={"milasc"}>Millesime Ascendant</option>
-              <option value={"mildesc"}>Millesime Descendant</option>
+              <option value={JSON.stringify({ key: "millesime", order: "asc" })}>Millesime Ascendant</option>
+              <option value={JSON.stringify({ key: "millesime", order: "desc" })}>Millesime Descendant</option>
             </optgroup>
-			<optgroup label="Pays">
-              <option value={"paysasc"}>Pays (A-Z)</option>
-              <option value={"paysdesc"}>Pays (Z-A)</option>
+            <optgroup label="Pays">
+              <option value={JSON.stringify({ key: "pays", order: "asc" })}>Pays (A-Z)</option>
+              <option value={JSON.stringify({ key: "pays", order: "desc" })}>Pays (Z-A)</option>
             </optgroup>
           </Select>
         </FormControl>
