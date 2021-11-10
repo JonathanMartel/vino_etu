@@ -94,8 +94,17 @@ export class BouteilleDeVinService {
 
     }
 
-    ajouterUtilisateur(data: any) {
+    getListeCelliersParUtilisateur(userId: number): any {
+        const options = {
+            params: {
+                userId: userId
+            }
+        }
 
+        return this.http.get<any>(this.url + "/celliers", options)
+    }
+
+    ajouterUtilisateur(data: any) {
         return this.http.post<any>(this.url + '/creerCompte', data)
     }
 
