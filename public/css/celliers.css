@@ -21,7 +21,7 @@
     padding: 0.64rem;
     border-radius: 5px;
     flex-grow: 1;
-    background-color: #E0CFA0;
+    background-color: hsla(44, 51%, 75%, 0.5);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -30,7 +30,7 @@
 }
 
 .cellier:nth-child(even) {
-    background-color: #BBC7C1;
+    background-color: hsla(150, 10%, 76%, 0.5);
 } 
 
 
@@ -115,7 +115,7 @@ main {
 .bouton-ajout-vin-conteneur {
     display: flex;
     justify-content: center;
-    margin-top: 0.64rem;
+    margin-top: 1rem;
     margin-left: 0.64rem;
     margin-right: 0.64rem;
     margin-bottom: 1rem;

@@ -69,8 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
              ).catch((error) => console.log(error));
          });
      });
-    
- 
+
  for (let i = 0; i < boutonMillesime.length; i++) {
 
         boutonMillesime[i].addEventListener("click", function(e) {
@@ -107,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     /* Activer les champs inputs et les boutons annuler, valider, effacer */ 
-    
+
     boutonModifier.addEventListener("click", function(e) {
         e.preventDefault();
         console.log('click bouton mod');
