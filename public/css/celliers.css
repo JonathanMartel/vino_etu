@@ -108,6 +108,9 @@
     color: #AA7E42;
   
 }
+main {
+    padding-bottom: 0;
+}
 
 .bouton-ajout-vin-conteneur {
     display: flex;

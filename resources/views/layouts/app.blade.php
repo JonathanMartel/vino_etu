@@ -28,6 +28,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     
     <link href="{{asset('css/main.css')}}" rel="stylesheet" />
+    <link href="{{asset('css/footer-nav.css')}}" rel="stylesheet" />
     <link href="{{asset('css/dashboard.css')}}" rel="stylesheet" />
 
 
@@ -92,10 +93,14 @@
 
     @yield('content')
     </main>
+
+    
     <!-- Footer -->
     <footer class="footer text-faded text-center py-5">
-        <div class="container">
-            <p class="m-0 small">Copyright - In Vino Veritas</p>
+        <div class="container footer-nav precedent z-depth-1">
+        <i class="material-icons">arrow_back</i>
+        <span>Retour</span>
+            
         </div>
     </footer>
 
