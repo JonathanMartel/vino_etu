@@ -8,7 +8,7 @@
     </mat-form-field>
     <section  *ngFor="let uneBouteille of bouteille" class="resultat" routerLink="/ficheBouteille/{{uneBouteille.id}}">
         <div class="resultat-vin">
-            <a class="btn-vin" ><img src="{{uneBouteille.url_image}}" alt="une bouteille"></a>
+            <img src="{{uneBouteille.url_image}}" alt="une bouteille">
             <div class="resultat-vin-data"><a class="target-link" routerLink="/ficheBouteille/{{uneBouteille.id}}" >{{uneBouteille.nom}}</a></div>
             <div class="vin-data-droit">{{uneBouteille.format}}</div>
             <span class="subtexte">{{uneBouteille.categorie}}</span>
