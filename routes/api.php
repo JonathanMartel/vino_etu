@@ -59,6 +59,8 @@ Route::get('celliers/{cellierId}/bouteilles', [CellierController::class, "obteni
 
 // Routes protégées
 Route::group(['middleware' => ["auth:sanctum"]], function () {
+    // Récupérer la liste des celliers pour un utilisateur donné
+    Route::get('celliers', [CellierController::class, "afficherCelliersParUtilisateur"]);
 
     // Ajout d'une bouteille à un cellier
     Route::post('celliers/{cellier}/bouteilles', [CellierBouteilleAcheteeController::class, "store"]);
