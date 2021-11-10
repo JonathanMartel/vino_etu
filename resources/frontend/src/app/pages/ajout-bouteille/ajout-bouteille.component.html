@@ -2,6 +2,15 @@
     <form [formGroup]="ajoutBouteille" (ngSubmit)=postBouteilleCellier(ajoutBouteille.value)>
         <div class="formulaire-contenu">
             <mat-form-field appearance="fill" class="input-case">
+                <mat-label for="inventaire" data-required="">Choisir le cellier</mat-label>
+                <mat-select formControlName="inventaire">
+                    <mat-option *ngFor="let food of foods" [value]="food.value">
+                        {{food.viewValue}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="input-case">
                 <mat-label for="inventaire" data-required="">Quantité</mat-label>
                 <input matInput type="text" id="inventaire" formControlName="inventaire" class="step__input">
             </mat-form-field>

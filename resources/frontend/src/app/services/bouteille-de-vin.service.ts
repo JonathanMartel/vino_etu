@@ -46,13 +46,13 @@ export class BouteilleDeVinService {
         return this.http.get<any>(this.url + '/bouteilles-achetees/' + id_bouteille);
     }
 
-    ajoutBouteilleCellier(bouteilleAchetee: any) {
+    ajoutBouteilleCellier(cellierId: number = 1, bouteilleAchetee: any) {
 
         const entete = {
             'Authorization': `Bearer ${this.servAuth.utilisateurToken}`,
         }
 
-        return this.http.post<any>(this.url + '/celliers/' + 1 + '/bouteilles', bouteilleAchetee, { headers: entete });
+        return this.http.post<any>(this.url + '/celliers/' + cellierId + '/bouteilles', bouteilleAchetee, { headers: entete });
 
     }
 
