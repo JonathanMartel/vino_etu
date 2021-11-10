@@ -166,6 +166,10 @@ input[type=number]::-webkit-outer-spin-button {
 
 
 
+textarea.materialize-textarea:focus:not([readonly]){
+    outline-style: none;
+}
+
 .bouton{
     display: flex;
     flex-direction: column;

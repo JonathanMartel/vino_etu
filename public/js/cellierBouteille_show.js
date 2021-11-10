@@ -106,11 +106,12 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     }
 
-    /* Activer les champs inputs */ 
+    /* Activer les champs inputs et les boutons annuler, valider, effacer */ 
+    
     boutonModifier.addEventListener("click", function(e) {
         e.preventDefault();
         console.log('click bouton mod');
-        boutonModifier.remove();
+        boutonModifier.classList.add("non-active");
         for (let i = 0; i < inputs.length; i++){
                 inputs[i].readOnly = false;
                 inputs[i].classList.add("input-active");
@@ -131,15 +132,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
     });
 
-    /** Bouton annuler, efface les champs modifié et reload **/
+    /** Action bouton annuler, efface les champs modifié et retire les boutons annuler, valider et effacer. Réactive le bouton modifier **/
+   
     btnAnnuleActive.addEventListener("click",function(e){
         e.preventDefault();
         console.log('click annuler');
+       
+        boutonModifier.classList.remove("non-active");
+        btnEffacerActive.classList.add("non-active");
+        btnValideActive.classList.add("non-active");
+        btnAnnuleActive.classList.add("non-active");
         infoForm.reset();
-        location.reload();
 
-
+        for (let i = 0; i < inputs.length; i++){
+            inputs[i].readOnly = true;
+            inputs[i].classList.remove("input-active");
+            inputs[i].classList.add("input-fiche-cercle");
+            }
     });
+
+
 
     btnValideActive.addEventListener("click",function(e){
         e.preventDefault();
