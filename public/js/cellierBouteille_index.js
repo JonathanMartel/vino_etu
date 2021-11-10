@@ -219,7 +219,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             if (cellierBouteille.millesime > 0) {
                                 millesimeTexte = `  <p>${cellierBouteille.millesime}</p>`;
                             } else {
-                                millesimeTexte = `<p>Non millisimé</p>`;
+                                millesimeTexte = `<p>Non millésimé</p>`;
                             }
 
                             extraInfo = `<div>

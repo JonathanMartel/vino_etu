@@ -14,7 +14,7 @@
         @csrf
         <div class="input-field col s12">
 
-            <input type="text" name="nom" id="nom" class="@if($errors->first('nom')) invalid @endif validate" value="{!! $cellier->nom !!}" required max="45"/>
+            <input type="text" name="nom" id="nom" class="@if($errors->first('nom')) invalid @endif validate" value="{!! $cellier->nom !!}" required max="32"/>
             <label for="nom">Nom :</label>
 
             <span class="helper-text" data-error="Champ obligatoire"></span>
@@ -23,7 +23,7 @@
 
         <div class="input-field col s12">
 
-            <input type="text" name="localisation" id="localisation" class="validate" value="{!! $cellier->localisation !!}" required max="45" />
+            <input type="text" name="localisation" id="localisation" class="validate" value="{!! $cellier->localisation !!}" required max="40" />
             <label for="localisation">Localisation :</label>
             
             <span class="helper-text" data-error="Champ obligatoire"></span>
