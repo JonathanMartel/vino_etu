@@ -4,18 +4,24 @@ import BouteilleSAQ from "../BouteilleSAQ/BouteilleSAQ";
 import "./AjoutBouteilleCellier.css";
 import { Box } from "@mui/system";
 import { TextField } from "@mui/material";
-import moment from 'moment';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import Button from '@mui/material/Button';
+import moment from "moment";
 
 export default class AjoutBouteille extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       bouteillesSAQ: [],
+      celliers: [],
       recherche: "",
       nomBouteilleSAQ: "",
       prixBouteilleSAQ: "",
       nom: "",
-      millesime: moment().format('YYYY'),
+      millesime: moment().format("YYYY"),
       quantite: "1",
       date_achat: moment().format("YYYY-MM-DD"),
       prix: "",
@@ -32,6 +38,30 @@ export default class AjoutBouteille extends React.Component {
     this.fetchBouteillesSAQ = this.fetchBouteillesSAQ.bind(this);
     this.ajouterBouteilleCellier = this.ajouterBouteilleCellier.bind(this);
     this.choixBouteille = this.choixBouteille.bind(this);
+    this.fetchCelliers = this.fetchCelliers.bind(this);
+  }
+
+  componentDidMount() {
+    this.fetchCelliers();
+  }
+
+  fetchCelliers() {
+    fetch(
+      "https://rmpdwebservices.ca/webservice/php/celliers/usager/" +
+        this.props.usager,
+      {
+        method: "GET",
+        headers: new Headers({
+          "Content-Type": "application/json",
+          authorization: "Basic " + btoa("vino:vino"),
+        }),
+      }
+    )
+      .then((reponse) => reponse.json())
+      .then((donnees) => {
+        console.log(donnees.data);
+        this.setState({ celliers: donnees.data });
+      });
   }
 
   fetchBouteillesSAQ(event) {
@@ -59,7 +89,7 @@ export default class AjoutBouteille extends React.Component {
   choixBouteille(info) {
     this.setState({
       bouteillesSAQ: [],
-      nomBouteilleSAQ: info.nom,
+      nom: info.nom,
       prixBouteilleSAQ: info.prix_saq,
       pays: info.pays,
       vino__type_id: info.type,
@@ -73,18 +103,18 @@ export default class AjoutBouteille extends React.Component {
 
     const nouvelleBouteille = {
       prixBouteilleSAQ: this.state.prixBouteilleSAQ,
-	  usager_id: this.state.usager_id, 
-	  nom: this.state.nomBouteilleSAQ,
+      usager_id: this.state.usager_id,
+      nom: this.state.nom,
       pays: this.state.pays,
       millesime: this.state.millesime,
-	  url_saq: this.state.url_saq,
-	  url_img: this.state.url_img,
-	  vino__type_id: this.state.vino__type_id,
-	  garde_jusqua: this.state.garde,
+      url_saq: this.state.url_saq,
+      url_img: this.state.url_img,
+      vino__type_id: this.state.vino__type_id,
+      garde_jusqua: this.state.garde,
       note_degustation: this.state.commentaires,
-	  date_ajout: this.state.date_achat, 
-	  id_cellier: this.state.id_cellier,
-	  quantite: this.state.quantite,
+      date_ajout: this.state.date_achat,
+      id_cellier: this.state.id_cellier,
+      quantite: this.state.quantite,
       prix: this.state.prixBouteilleSAQ,
     };
 
@@ -104,7 +134,6 @@ export default class AjoutBouteille extends React.Component {
   }
 
   render() {
-    console.log(this.state.bouteillesSAQ);
     const bouteilles = this.state.bouteillesSAQ.map((bouteille, index) => {
       return (
         <BouteilleSAQ
@@ -149,13 +178,36 @@ export default class AjoutBouteille extends React.Component {
               gap: "1rem",
             }}
           >
-            <p>Recherche : <input onKeyUp={(event) => this.fetchBouteillesSAQ(event)} type="text" name="nom_bouteille" /></p>
+            <FormControl>
+              <InputLabel id="demo-controlled-open-select-label">
+                Age
+              </InputLabel>
+              <Select
+                label="Cellier"
+              >
+                {this.state.celliers.map((cellier, index) => (
+                  <MenuItem 
+                  key={index} 
+                  value={cellier}
+                  />
+                ))}
+              </Select>
+            </FormControl>
+            <TextField
+              label="Recherche d'une bouteille"
+              variant="outlined"
+              InputLabelProps={{
+                className: "ajout_bouteille_input",
+              }}
+              onChange={(event) => this.fetchBouteillesSAQ(event)}
+            />
             {bouteilles}
             {/* <p>Nom : <input name="nom" value={this.state.nomBouteilleSAQ} onChange={e => this.setState({ nom: e.target.value })} /></p> */}
             <TextField
               label="Nom"
               variant="outlined"
-			  value={this.state.nomBouteilleSAQ}
+              value={this.state.nom}
+              onChange={(e) => this.setState({ nom: e.target.value })}
               InputLabelProps={{
                 className: "ajout_bouteille_input",
               }}
@@ -201,7 +253,7 @@ export default class AjoutBouteille extends React.Component {
             <TextField
               label="Date d'achat"
               variant="outlined"
-			  type="date"
+              type="date"
               value={this.state.date_achat}
               name="date_achat"
               onChange={(e) => this.setState({ date_achat: e.target.value })}
