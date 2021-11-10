@@ -2,10 +2,19 @@
     <form [formGroup]="ajoutBouteille" (ngSubmit)=postBouteilleCellier(ajoutBouteille.value)>
         <div class="formulaire-contenu">
             <mat-form-field appearance="fill" class="input-case">
-                <mat-label for="inventaire">Quantité</mat-label>
+                <mat-label for="inventaire" data-required="">Choisir le cellier</mat-label>
+                <mat-select formControlName="cellierId">
+                    <mat-option *ngFor="let cellier of listeCelliers" [value]="cellier.id">
+                        {{ cellier.nom }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill" class="input-case">
+                <mat-label for="inventaire" data-required="">Quantité</mat-label>
                 <input matInput type="text" id="inventaire" formControlName="inventaire" class="step__input">
                 <mat-error *ngIf="erreur.inventaire.touched && erreur.inventaire.invalid" class="alert alert-danger">
-                    <div *ngIf="erreur.inventaire.errors.required">Ce champ est obligatoire</div>
+                    <div *ngIf="erreur.inventaire.errors?.required">Ce champ est obligatoire</div>
                 </mat-error>
             </mat-form-field>
 
@@ -14,10 +23,9 @@
                 <input matInput type="text" id="millesime" formControlName="millesime">
             </mat-form-field>
 
-
             <mat-form-field appearance="fill" class="input-case">
                 <mat-label for="date_acquisition">Date d'achat</mat-label>
-                <input matInput type="date" id=date_acquisition formControlName="date_acquisition" class="step__input" >
+                <input matInput type="date" id=date_acquisition formControlName="date_acquisition" class="step__input">
             </mat-form-field>
 
             <mat-form-field appearance="fill" class="input-case">
@@ -27,19 +35,21 @@
 
             <mat-form-field appearance="fill" class="input-case">
                 <mat-label for="conservation">Conservation</mat-label>
-                <input matInput type="text" id=conservation formControlName="conservation" class="step__input" >
+                <input matInput type="text" id=conservation formControlName="conservation" class="step__input">
             </mat-form-field>
 
             <mat-form-field appearance="fill" class="input-case">
                 <mat-label for="notes_personnelles">Notes</mat-label>
-                <input matInput type="text" id=notes_personnelles formControlName="notes_personnelles" class="step__input" >
+                <input matInput type="text" id=notes_personnelles formControlName="notes_personnelles"
+                    class="step__input">
             </mat-form-field>
         </div>
+
+        <small>( * ) Champ obligatoire</small>
+
         <mat-dialog-actions>
             <button type="submit" mat-raised-button>Ajouter la bouteille</button>
         </mat-dialog-actions>
 
     </form>
 </div>
-
-

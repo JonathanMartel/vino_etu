@@ -6,16 +6,18 @@ use App\Models\Cellier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class CellierController extends Controller
-{
+class CellierController extends Controller {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         //
+    }
+
+    public function afficherCelliersParUtilisateur(Request $request) {
+        return Cellier::obtenirCelliersParUtilisateur($request->userId);
     }
 
     /**
@@ -49,7 +51,7 @@ class CellierController extends Controller
     private function batirTableauFiltres(Request $request) {
         $filtres = [];
 
-        if($request->texteRecherche && $request->texteRecherche !== "") {
+        if ($request->texteRecherche && $request->texteRecherche !== "") {
             $filtres["texteRecherche"] = $request->texteRecherche;
         }
 
@@ -62,8 +64,7 @@ class CellierController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         //
     }
 
@@ -73,8 +74,7 @@ class CellierController extends Controller
      * @param  \App\Models\Cellier  $cellier
      * @return \Illuminate\Http\Response
      */
-    public function show(Cellier $cellier)
-    {
+    public function show(Cellier $cellier) {
         //
     }
 
@@ -85,8 +85,7 @@ class CellierController extends Controller
      * @param  \App\Models\Cellier  $cellier
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cellier $cellier)
-    {
+    public function update(Request $request, Cellier $cellier) {
         //
     }
 
@@ -96,8 +95,7 @@ class CellierController extends Controller
      * @param  \App\Models\Cellier  $cellier
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cellier $cellier)
-    {
+    public function destroy(Cellier $cellier) {
         //
     }
 }

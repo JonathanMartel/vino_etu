@@ -12,8 +12,8 @@ import { MatConfirmDialogComponent } from '@components/mat-confirm-dialog/mat-co
 })
 export class BouteilleDeVinService {
 
-    private url:string = "http://127.0.0.1:8000/api";
-    //private url: string = "http://kalimotxo-vino.akira.dev/api";
+    // private url:string = "http://127.0.0.1:8000/api";
+    private url: string = "http://kalimotxo-vino.akira.dev/api";
     // private url: string = new URL(window.location.href).origin + "/api";
 
 
@@ -21,9 +21,9 @@ export class BouteilleDeVinService {
         console.log(this.url);
     }
 
-    getBouteillesParCellier(filtres = {}) {
+    getBouteillesParCellier(cellierId = 1, filtres = {}) {
         return this.http.get<any>(
-            this.url + '/celliers/' + 1 + '/bouteilles',
+            this.url + '/celliers/' + cellierId + '/bouteilles',
             {
                 params: filtres
             }
@@ -46,13 +46,13 @@ export class BouteilleDeVinService {
         return this.http.get<any>(this.url + '/bouteilles-achetees/' + id_bouteille);
     }
 
-    ajoutBouteilleCellier(bouteilleAchetee: any) {
+    ajoutBouteilleCellier(cellierId: number = 1, bouteilleAchetee: any) {
 
         const entete = {
             'Authorization': `Bearer ${this.servAuth.utilisateurToken}`,
         }
 
-        return this.http.post<any>(this.url + '/celliers/' + 1 + '/bouteilles', bouteilleAchetee, { headers: entete });
+        return this.http.post<any>(this.url + '/celliers/' + cellierId + '/bouteilles', bouteilleAchetee, { headers: entete });
 
     }
 
@@ -94,8 +94,27 @@ export class BouteilleDeVinService {
 
     }
 
-    ajouterUtilisateur(data: any) {
+    /**
+     *
+     * Charger les celliers appartenant à l'utilisateur donné
+     *
+     * @param {number} userId Id de l'utilisateur
+     * @returns {Observable} Liste des celliers de l'utilisateur
+     */
+    getListeCelliersParUtilisateur(userId: number): any {
+        const options = {
+            headers: {
+                'Authorization': `Bearer ${this.servAuth.utilisateurToken}`,
+            },
+            params: {
+                userId: userId
+            }
+        }
 
+        return this.http.get<any>(this.url + "/celliers", options)
+    }
+
+    ajouterUtilisateur(data: any) {
         return this.http.post<any>(this.url + '/creerCompte', data)
     }
 

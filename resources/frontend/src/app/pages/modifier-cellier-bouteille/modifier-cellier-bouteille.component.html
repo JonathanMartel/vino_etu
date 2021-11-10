@@ -1,11 +1,10 @@
 <form [formGroup]="modifierBouteilleCellier" (ngSubmit)=putBouteille(modifierBouteilleCellier.value)>
     <header class="card-action">
         <a class="retour" (click)='back()'><mat-icon>arrow_back</mat-icon>Retour</a>
-        <button class="bouton-modifier-cellier" type="submit" mat-flat-button>Modifier</button>
     </header>
     
     <img *ngIf='bouteille' mat-card-image src="{{bouteille.url_image}}" alt="Photo of a Shiba Inu">
-    
+
     <div class="formulaire-contenu">
         <mat-form-field appearance="fill">
             <mat-label for="url_image">Nom</mat-label>
@@ -51,5 +50,8 @@
             <mat-label for="url_achat">Lien pour achat</mat-label>
             <input matInput type="text" id="url_achat" name="url_achat" formControlName="url_achat">
         </mat-form-field>
+    </div>
+    <div class="save">
+        <button class="bouton-modifier-cellier" type="submit" mat-flat-button>Modifier</button>
     </div>
 </form>
