@@ -21,7 +21,7 @@ export class CellierComponent implements OnInit {
     // Sujet (observable) permettant de "debouncer" l'envoi de la recherche à la base de données
     rechercheSujet: Subject<string> = new Subject<string>();
 
-    bouteillesCellier: any;
+    bouteillesCellier: any = [];
     mode: MatDrawerMode = "over";
     texteRecherche = new FormControl('');
 
@@ -74,11 +74,20 @@ export class CellierComponent implements OnInit {
             });
     }
 
-
-
+    /**
+     *
+     * Charger les bouteilles contenues dans le présent cellier
+     *
+     * @returns {void}
+     *
+     */
     chargerBouteilles() {
         this.servBouteilleDeVin.getBouteillesParCellier().subscribe(cellier => {
             this.bouteillesCellier = this.bouteillesCellierInitiales = cellier.data
         });
+    }
+
+    cellierContientBouteille(){
+         return  this.bouteillesCellier.length > 0;
     }
 }

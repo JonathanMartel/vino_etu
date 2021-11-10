@@ -1,8 +1,11 @@
-<img *ngIf='bouteille' mat-card-image src="{{bouteille.url_image}}" alt="Photo of a Shiba Inu">
-
 <form [formGroup]="modifierBouteilleCellier" (ngSubmit)=putBouteille(modifierBouteilleCellier.value)>
-    <div class="formulaire-contenu">
+    <header class="card-action">
+        <a class="retour" (click)='back()'><mat-icon>arrow_back</mat-icon>Retour</a>
+    </header>
+    
+    <img *ngIf='bouteille' mat-card-image src="{{bouteille.url_image}}" alt="Photo of a Shiba Inu">
 
+    <div class="formulaire-contenu">
         <mat-form-field appearance="fill">
             <mat-label for="url_image">Nom</mat-label>
             <input matInput type="text" id="nom" name="nom" formControlName="nom">
@@ -18,10 +21,6 @@
         <mat-form-field appearance="fill">
             <mat-label for="format">Format</mat-label>
             <input matInput type="text" id="format" name="format" formControlName="format">
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-            <mat-label for="url_achat">Lien pour achat</mat-label>
-            <input matInput type="text" id="url_achat" name="url_achat" formControlName="url_achat">
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label for="origine">Origine</mat-label>
@@ -45,12 +44,14 @@
         </mat-form-field>
         <mat-form-field appearance="fill">
             <mat-label for="notes_personnelles">Notes personnelles</mat-label>
-            <input matInput type="text" id="notes_personnelles" name="notes_personnelles"
-                formControlName="notes_personnelles">
+            <input matInput type="text" id="notes_personnelles" name="notes_personnelles" formControlName="notes_personnelles">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label for="url_achat">Lien pour achat</mat-label>
+            <input matInput type="text" id="url_achat" name="url_achat" formControlName="url_achat">
         </mat-form-field>
     </div>
-
-    <div class="modifier-cellier">
+    <div class="save">
         <button class="bouton-modifier-cellier" type="submit" mat-flat-button>Modifier</button>
     </div>
 </form>

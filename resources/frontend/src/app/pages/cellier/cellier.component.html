@@ -14,9 +14,25 @@
             <mat-label>Trouvez une bouteille</mat-label>
             <input matInput (keyup)="recherche($event)" [formControl]="texteRecherche">
         </mat-form-field>
-        <section *ngFor="let uneBouteille of bouteillesCellier" class="resultat">
-            <app-cellier-bouteille [uneBouteille]='uneBouteille' (chargerBouteilles)="chargerBouteilles()"></app-cellier-bouteille>
-        </section>
+
+        <ng-container
+            *ngIf="cellierContientBouteille(); then bouteille; else pasBouteille" >
+        </ng-container>
+
+        <ng-template #bouteille>
+            <section *ngFor="let uneBouteille of bouteillesCellier" class="resultat">
+                <app-cellier-bouteille [uneBouteille]='uneBouteille' (chargerBouteilles)="chargerBouteilles()"></app-cellier-bouteille>
+            </section>
+        </ng-template>
+
+        <ng-template #pasBouteille>
+            <section class="ajouter-bouteille">
+                <h2>Oops!</h2>
+                <p>Vous n'avez pas de bouteille.</p>
+                <a href="bouteilles">Ajoutez en une !</a>
+            </section>
+        </ng-template>
+
     </div>
 
 </mat-sidenav-container>

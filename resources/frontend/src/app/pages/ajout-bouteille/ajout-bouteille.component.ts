@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -17,7 +17,7 @@ export class AjoutBouteilleComponent implements OnInit {
 
     ajoutBouteille = new FormGroup({
         millesime: new FormControl(''),
-        inventaire: new FormControl(''),
+        inventaire: new FormControl('', Validators.required),
         date_acquisition: new FormControl(''),
         prix_paye: new FormControl(''),
         conservation: new FormControl(''),
@@ -44,6 +44,10 @@ export class AjoutBouteilleComponent implements OnInit {
             })
     }
 
+    get erreur() {
+        return this.ajoutBouteille.controls;
+    }
+
     openSnackBar(message: any, action: any) {
         this.snackBar.open(message, action, {
             duration: 3000,
@@ -57,8 +61,6 @@ export class AjoutBouteilleComponent implements OnInit {
 
         this.bouteilleAchetee.origine = this.data.pays;
         this.bouteilleAchetee.users_id = 1;
-
-        console.log(bouteille);
 
         this.servBouteilleDeVin.ajoutBouteilleCellier(bouteille.cellierId, this.bouteilleAchetee)
             .subscribe(() => {

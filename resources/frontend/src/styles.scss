@@ -51,7 +51,7 @@ a.inline-link {
     color: var(--couleur-primaire);
 }
 
-mat-label[data-required]::after {
+.required::after {
     content: " *";
     color: var(--couleur-primaire);
 }
@@ -74,4 +74,9 @@ mat-label[data-required]::after {
   .mat-simple-snackbar-action {
       color: #155724 !important;
   }
+}
+
+
+.mat-icon[svgIcon="catalogue"]{
+  stroke-width: .1;
 }
