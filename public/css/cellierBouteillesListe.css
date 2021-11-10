@@ -36,6 +36,7 @@
 
 .articleVin {
     border: 2px solid;
+    border-color: #7A5958;
     display: flex;
     flex-direction: column;
 }
@@ -203,7 +204,7 @@ color: #343B41;
 .bouton-ajout-vin-conteneur {
     display: flex;
     justify-content: center;
-    margin-top: 0.64rem;
+    margin-top: 1rem;
     margin-left: 0.64rem;
     margin-right: 0.64rem;
     margin-bottom: 1rem;

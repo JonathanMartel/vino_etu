@@ -8,8 +8,8 @@
     <h1>Modifier ce cellier</h1>
     <img src="{{URL::asset('/assets/icon/logo-3-bouteilles-cellier.svg')}}" alt="Icone trois bouteilles">
 </div>
-<div class="form-ajout">
-    <form id="edit-form" action="{{route('cellier.update', $cellier->id )}}" method="POST">
+<div class="form-ajout row">
+    <form id="edit-form" class="col s12 edit-vin"  action="{{route('cellier.update', $cellier->id )}}" method="POST">
         @method('PUT')
         @csrf
         <div class="input-field col s12">
