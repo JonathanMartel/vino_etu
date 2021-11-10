@@ -63,6 +63,10 @@ class CustomAuthController extends Controller {
             'password'   => Hash::make($request->password),
         ]);
 
+        ddd($utilisateur);
+
+        $utilisateur->delete();
+
         // Rapatrier tous les champs du modèle.
         $utilisateur = $utilisateur->fresh();
 
@@ -75,9 +79,9 @@ class CustomAuthController extends Controller {
             "users_id" => $utilisateur->id,
         ]);
 
-        $utilisateur->delete();
 
-        dd($nouveauCellier);
+
+
 
 
         // Rapatrier tous les champs du modèle
