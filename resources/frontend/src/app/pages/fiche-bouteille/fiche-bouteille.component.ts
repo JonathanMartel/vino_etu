@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { AjoutBouteilleComponent } from '@pages/ajout-bouteille/ajout-bouteille.component';
+import { Location } from '@angular/common'
 
 @Component({
     selector: 'app-fiche-bouteille',
@@ -17,7 +18,8 @@ export class FicheBouteilleComponent implements OnInit {
     constructor(
         private servBouteilleDeVin: BouteilleDeVinService,
         private actRoute: ActivatedRoute,
-        public formAjout: MatDialog
+        public formAjout: MatDialog,
+        private location: Location
     ) { }
 
     ngOnInit(): void {
@@ -27,6 +29,10 @@ export class FicheBouteilleComponent implements OnInit {
             this.bouteille = data.bouteille;
             console.log(this.bouteille);
         });
+    }
+
+    back(): void {
+        this.location.back()
     }
 
     formulaireAjout(data: any): void {

@@ -23,7 +23,7 @@ export class AuthService {
         })
         .subscribe(
             data => {
-                console.log(data);
+                //console.log(data);
                 this.utilisateur = data.utilisateur;
                 this.token = data.token;
                 return data;
