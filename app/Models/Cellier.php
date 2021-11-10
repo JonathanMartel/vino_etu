@@ -10,6 +10,8 @@ class Cellier extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function bouteilles() {
         return $this->belongsToMany(Bouteille::class, "celliers_bouteilles", "celliers_id", "bouteilles_id")->withPivot(["inventaire"]);
     }

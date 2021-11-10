@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cellier;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -10,13 +11,11 @@ use Illuminate\Support\Facades\Auth;
 use Validator;
 
 
-class CustomAuthController extends Controller
-{
+class CustomAuthController extends Controller {
 
 
     private $apiToken;
-    public function __construct()
-    {
+    public function __construct() {
         $this->apiToken = uniqid(base64_encode(Str::random(40)));
     }
 
@@ -25,8 +24,7 @@ class CustomAuthController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index() {
         //
     }
 
@@ -35,80 +33,91 @@ class CustomAuthController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create() {
         //
     }
 
 
-   /**
-   * Creation de compte utilisateur
-   *
-   * @return \Illuminate\Http\Response
-   */
-  public function creerCompte(Request $request)
-  {
+    /**
+     * Creation de compte utilisateur
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function creerCompte(Request $request) {
 
-    $this->validate($request, [
-      'first_name' => 'required|max:50|min:2',
-      'last_name' => 'required|max:50|min:2',
-      'city' => 'required|max:50|min:2',
-      'dob' => 'required|date:Y-m-d',
-      'email' => 'required|email',
-      'password' => 'required',
-    ]);
+        $this->validate($request, [
+            'first_name' => 'required|max:50|min:2',
+            'last_name'  => 'required|max:50|min:2',
+            'city'       => 'required|max:50|min:2',
+            'dob'        => 'required|date:Y-m-d',
+            'email'      => 'required|email|unique:users',
+            'password'   => 'required',
+        ]);
 
-    $utilisateur = User::create([
-        'first_name' => $request->first_name,
-        'last_name' => $request->last_name,
-        'city' => $request->city,
-        'dob' => $request->dob,
-        'email' => $request->email,
-        'password' => Hash::make($request->password),
-    ]);
+        $utilisateur = User::create([
+            'first_name' => $request->first_name,
+            'last_name'  => $request->last_name,
+            'city'       => $request->city,
+            'dob'        => $request->dob,
+            'email'      => $request->email,
+            'password'   => Hash::make($request->password),
+        ]);
 
-    $token = $utilisateur->createToken('myapptoken')->plainTextToken;
+        // Rapatrier tous les champs du modèle.
+        $utilisateur = $utilisateur->fresh();
 
-    $response = [
-        'utilisateur' => $utilisateur,
-        'token' => $token,
-    ];
+        // Création d'un token afin de pouvoir immédiatement authentifier l'utilisateur.
+        $token = $utilisateur->createToken('tokenKalivino')->plainTextToken;
 
-    return response($response, 201);
-  }
+        // Création du cellier initial de l'utilisateur.
+        $nouveauCellier = Cellier::create([
+            "nom"      => "Mon premier cellier",
+            "users_id" => $utilisateur->id,
+        ]);
 
+        $utilisateur->delete();
 
-   /**
-   * Deconnexion
-   *
-   * @return \Illuminate\Http\Response
-   */
-  public function logout(Request $request)
-  {
-
-    //$request->user()->Tokens()->delete();
-
-    auth()->user()->Tokens()->delete();
-
-      $response = [
-          'user'=> auth()->user(),
-          'status' =>true,
-          'message'=>'Logout reussit',
-      ];
-
-      return response($response, 201);
-      
-  }
+        dd($nouveauCellier);
 
 
-  /**
-   * Connection
-   *
-   * @return \Illuminate\Http\Response
-   */
+        // Rapatrier tous les champs du modèle
+        $nouveauCellier = $nouveauCellier->fresh();
 
-    public function connection(Request $request)
-    {
+        $response = [
+            'utilisateur'                => $utilisateur,
+            'token'                      => $token,
+            "nouvelUtilisateurCellierId" => $nouveauCellier->id,
+        ];
+
+        return response($response, 201);
+    }
+
+
+    /**
+     * Deconnexion
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function logout(Request $request) {
+        auth()->user()->tokens()->delete();
+
+        $response = [
+            'user' => auth()->user(),
+            'status' => true,
+            'message' => 'Logout reussit',
+        ];
+
+        return response($response, 201);
+    }
+
+
+    /**
+     * Connection
+     *
+     * @return \Illuminate\Http\Response
+     */
+
+    public function connection(Request $request) {
 
         $login = $this->validate($request, [
             'email' => 'required|email',
@@ -117,7 +126,7 @@ class CustomAuthController extends Controller
 
         $utilisateur = User::Where('email', $login['email'])->first();
 
-        if (!$utilisateur || !Hash::check($login["password"], $utilisateur->password)){
+        if (!$utilisateur || !Hash::check($login["password"], $utilisateur->password)) {
             return response()->json([
                 'message' => 'Mauvaise combinaison'
             ], 401);
@@ -132,21 +141,15 @@ class CustomAuthController extends Controller
         ];
 
         return response()->json($response, 201);
-
     }
 
 
-    public function deconnexion(Request $request){
-
+    public function deconnexion(Request $request) {
         auth()->user()->tokens()->delete();
-        
-
-        // Rapport journalier 
-        //$request->currentAccessToken()->delete();
 
         $response = [
-            'status'=>true,
-            'message'=>'Logout successfully',
+            'status' => true,
+            'message' => 'Logout successfully',
         ];
 
         return response()->json($response, 201);
@@ -158,8 +161,7 @@ class CustomAuthController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request) {
         //
     }
 
@@ -169,8 +171,7 @@ class CustomAuthController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
-    {
+    public function show(User $user) {
         //
     }
 
@@ -180,8 +181,7 @@ class CustomAuthController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
-    {
+    public function edit(User $user) {
         //
     }
 
@@ -192,8 +192,7 @@ class CustomAuthController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
-    {
+    public function update(Request $request, User $user) {
         //
     }
 
@@ -203,8 +202,7 @@ class CustomAuthController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
-    {
+    public function destroy(User $user) {
         //
     }
 }
