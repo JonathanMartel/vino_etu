@@ -42,7 +42,10 @@ class CellierModele extends Modele
     {
         $rows = array();
 
-        $requete = "SELECT id_cellier, emplacement FROM vino__cellier WHERE usager_id = $id";
+        $requete = "SELECT vino__cellier.*, SUM(vino__cellier_inventaire.quantite) AS quantite FROM vino__cellier"
+        . " LEFT JOIN vino__cellier_inventaire ON vino__cellier.id_cellier = vino__cellier_inventaire.id_cellier"
+        . " WHERE vino__cellier.usager_id = 3"
+        . " GROUP BY vino__cellier.emplacement";
 
         if (($res = $this->_db->query($requete)) == true) {
             if ($res->num_rows) {
