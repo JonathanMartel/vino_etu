@@ -4,6 +4,7 @@ import { FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { MatDrawerMode } from '@angular/material/sidenav';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-cellier',
@@ -11,6 +12,8 @@ import { MatDrawerMode } from '@angular/material/sidenav';
     styleUrls: ['./cellier.component.scss']
 })
 export class CellierComponent implements OnInit {
+    // Id du cellier reçu en paramètre du router
+    cellierId!: number;
 
     // Sauvegarder la liste initiale de bouteilles afin de s'éviter une requête http/sql pour un "reset"
     bouteillesCellierInitiales: any;
@@ -23,16 +26,19 @@ export class CellierComponent implements OnInit {
     texteRecherche = new FormControl('');
 
     constructor(
-        private servBouteilleDeVin: BouteilleDeVinService
+        private servBouteilleDeVin: BouteilleDeVinService,
+        private actRoute: ActivatedRoute,
     ) {
 
     }
 
     ngOnInit(): void {
-        this.servBouteilleDeVin.getBouteillesParCellier().subscribe(cellier => {
-            this.bouteillesCellier = this.bouteillesCellierInitiales = cellier.data
-        });
+        this.cellierId = this.actRoute.snapshot.params.id;
 
+        this.servBouteilleDeVin.getBouteillesParCellier(this.cellierId)
+            .subscribe(cellier => {
+                this.bouteillesCellier = this.bouteillesCellierInitiales = cellier.data
+            });
     }
 
     recherche($event: any): void {
@@ -57,9 +63,12 @@ export class CellierComponent implements OnInit {
 
     effectuerRechercheFiltree(): void {
         this.servBouteilleDeVin
-            .getBouteillesParCellier({
-                texteRecherche: this.texteRecherche.value.replace("-", " ")
-            })
+            .getBouteillesParCellier(
+                this.cellierId,
+                {
+                    texteRecherche: this.texteRecherche.value.replace("-", " ")
+                }
+            )
             .subscribe(bouteillesCellier => {
                 this.bouteillesCellier = bouteillesCellier.data;
             });
@@ -67,7 +76,7 @@ export class CellierComponent implements OnInit {
 
 
 
-    chargerBouteilles(){
+    chargerBouteilles() {
         this.servBouteilleDeVin.getBouteillesParCellier().subscribe(cellier => {
             this.bouteillesCellier = this.bouteillesCellierInitiales = cellier.data
         });
