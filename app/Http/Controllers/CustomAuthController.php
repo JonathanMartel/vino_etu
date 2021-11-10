@@ -63,13 +63,6 @@ class CustomAuthController extends Controller {
             'password'   => Hash::make($request->password),
         ]);
 
-        ddd($utilisateur);
-
-        $utilisateur->delete();
-
-        // Rapatrier tous les champs du modèle.
-        $utilisateur = $utilisateur->fresh();
-
         // Création d'un token afin de pouvoir immédiatement authentifier l'utilisateur.
         $token = $utilisateur->createToken('tokenKalivino')->plainTextToken;
 
@@ -79,21 +72,13 @@ class CustomAuthController extends Controller {
             "users_id" => $utilisateur->id,
         ]);
 
-
-
-
-
-
-        // Rapatrier tous les champs du modèle
-        $nouveauCellier = $nouveauCellier->fresh();
-
         $response = [
             'utilisateur'                => $utilisateur,
             'token'                      => $token,
             "nouvelUtilisateurCellierId" => $nouveauCellier->id,
         ];
 
-        return response($response, 201);
+        return response()->json($response, 201);
     }
 
 

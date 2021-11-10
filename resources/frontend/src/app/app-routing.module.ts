@@ -13,6 +13,10 @@ import { ModifierCellierBouteilleComponent } from '@pages/modifier-cellier-boute
 const routes: Routes = [
     {path:"", component:AccueilComponent},
     {path:"cellier", component:CellierComponent},
+    {
+        path:"cellier/:id",
+        component:CellierComponent
+    },
     {path:"bouteilles", component:ListeBouteilleComponent},
     {path:"ajout", component:AjoutBouteilleComponent},
     {path:"modifier-cellier/:id", component:ModifierCellierBouteilleComponent},
