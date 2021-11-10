@@ -93,7 +93,6 @@ export class AuthService {
         const entete = {
             'Authorization': `Bearer ${this.utilisateurToken}`,
         }
-
         return this.http.post<any>(
             this.url + '/deconnexion',
             null, // Pas de body à envoyer

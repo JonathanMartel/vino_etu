@@ -16,7 +16,6 @@ export class MenuMobileComponent implements OnInit {
 
     deconnexion() {
         this.servAuth.deconnexion();
-
         this.router.navigate(['/connection']);
     }
 

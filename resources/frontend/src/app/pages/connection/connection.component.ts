@@ -47,10 +47,10 @@ export class ConnectionComponent implements OnInit {
               this.servAuth.utilisateur = data.utilisateur;
               this.servAuth.token = data.token;
               this.router.navigate(['/']);
-              this.snackbar.open(`Salut, ${data.utilisateur.first_name} ! Heureux de vous revoir`, "Fermer", {duration: 3000});
+              this.snackbar.open(`Salut, ${data.utilisateur.first_name} ! Heureux de vous revoir`, "Fermer", {duration: 3000, panelClass: 'notif'});
           },
           (error) => {
-              this.snackbar.open(error.error.message, "Fermer", {duration: 3000});
+              this.snackbar.open(error.error.message, "Fermer", {duration: 3000, panelClass: 'notif-danger'});
           })
     }
 
