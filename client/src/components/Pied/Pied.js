@@ -55,7 +55,7 @@ export default class Pied extends React.Component {
 
 		if (!this.props.estConnecte) {
 			return (
-				<BottomNavigation showLabels sx={{ width: '100vw', position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 1, marginBottom: 20, backgroundColor: '#641B30' }}>
+				<BottomNavigation showLabels sx={{ width: '100vw', position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 1, backgroundColor: '#641B30' }}>
 					<BottomNavigationAction
 						label="Se connecter"
 						value="favorites"
@@ -73,7 +73,7 @@ export default class Pied extends React.Component {
 		} else {
 			return (
       <>
-				<BottomNavigation showLabels sx={{ width: '100vw', position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 1, backgroundColor: '#641B30' }}>
+				<BottomNavigation showLabels sx={{ width: '100vw', position: 'fixed', bottom: 19, left: 0, right: 0, zIndex: 1, backgroundColor: '#641B30' }}>
 					<BottomNavigationAction
 						label="Celliers"
 						value="recents"
@@ -86,6 +86,7 @@ export default class Pied extends React.Component {
 						label="Nouvelle bouteille"
 						value="favorites"
 						icon={<WineBarIcon />}
+						onClick={() => this.props.history.push("/bouteille/ajout")}
 					/>
 
 					<BottomNavigationAction
@@ -155,7 +156,7 @@ export default class Pied extends React.Component {
 						</MenuItem>
 					</Menu>
 				</BottomNavigation>
-        <Box sx={{ width: '100vw', position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 1, height: '21px', backgroundColor: '#641B30' }}>
+        <Box sx={{ width: '100vw', position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 1, height: '20px', backgroundColor: '#641B30' }}>
 				</Box>
       </>
 			);

@@ -47,6 +47,10 @@
 	justify-content: center;
 }
 
+.bouteille_boutons_container > a {
+	text-decoration: none;
+}
+
 .bouteille_boutons {
 	display: flex;
 	flex-direction: column;
@@ -84,6 +88,10 @@
 
 .content > a > p {
 	width: fit-content;
+}
+
+.content > a {
+	color: white;
 }
 
 .content > a:visited {

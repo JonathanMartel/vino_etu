@@ -17,3 +17,7 @@
 .MuiBottomNavigationAction-root > * {
 	color: white;
 }
+
+.MuiBottomNavigation-root {
+	margin-bottom: 0;
+}
