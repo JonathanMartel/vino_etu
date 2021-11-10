@@ -13,18 +13,21 @@ import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 })
 export class AjoutBouteilleComponent implements OnInit {
     bouteilleAchetee: any;
+    listeCelliers!: any[];
 
     ajoutBouteille = new FormGroup({
-        millesime         : new FormControl(''),
-        inventaire        : new FormControl(''),
-        date_acquisition  : new FormControl(''),
-        prix_paye         : new FormControl(''),
-        conservation      : new FormControl(''),
+        millesime: new FormControl(''),
+        inventaire: new FormControl(''),
+        date_acquisition: new FormControl(''),
+        prix_paye: new FormControl(''),
+        conservation: new FormControl(''),
         notes_personnelles: new FormControl(''),
-        cellier_id        : new FormControl(''),
+        cellierId: new FormControl(''),
     });
 
-    constructor(private servBouteilleDeVin: BouteilleDeVinService,
+    constructor(
+        private servBouteilleDeVin: BouteilleDeVinService,
+        private authService: AuthService,
         private actRoute: ActivatedRoute,
         public formulaireRef: MatDialogRef<AjoutBouteilleComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any,
@@ -32,7 +35,11 @@ export class AjoutBouteilleComponent implements OnInit {
         private router: Router) { }
 
     ngOnInit(): void {
-        this.data;
+        console.log("init");
+        this.listeCelliers = this.servBouteilleDeVin.getListeCelliersParUtilisateur(this.authService.getIdUtilisateurAuthentifie())
+                                .subscribe((data: any) => {
+                                    console.log(data);
+                                })
     }
 
     openSnackBar(message: any, action: any) {
@@ -47,16 +54,16 @@ export class AjoutBouteilleComponent implements OnInit {
         this.bouteilleAchetee = { ...this.data, ...bouteille }
 
         this.bouteilleAchetee.origine = this.data.pays;
-        this.bouteilleAchetee.celliers_id = 1;
         this.bouteilleAchetee.users_id = 1;
 
-        this.servBouteilleDeVin.ajoutBouteilleCellier(this.bouteilleAchetee).subscribe(() => {
-            this.openSnackBar('Vous avez ajouté une bouteille à votre cellier', 'X')
-            this.formulaireRef.close();
+        // this.servBouteilleDeVin.ajoutBouteilleCellier(this.this.bouteilleAchetee)
+        //     .subscribe(() => {
+        //         this.openSnackBar('Vous avez ajouté une bouteille à votre cellier', 'X')
+        //         this.formulaireRef.close();
 
-            this.router.navigate(['/bouteilles']);
+        //         this.router.navigate(['/bouteilles']);
 
-         });
+        //     });
 
     }
 

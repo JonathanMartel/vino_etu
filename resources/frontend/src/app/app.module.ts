@@ -29,7 +29,8 @@ import { ModifierCellierBouteilleComponent } from './pages/modifier-cellier-bout
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { MatConfirmDialogComponent } from './components/mat-confirm-dialog/mat-confirm-dialog.component'
+import { MatConfirmDialogComponent } from './components/mat-confirm-dialog/mat-confirm-dialog.component';
+import { MatSelectModule } from '@angular/material/select'
 
 
 
@@ -69,6 +70,7 @@ import { MatConfirmDialogComponent } from './components/mat-confirm-dialog/mat-c
         MatSidenavModule,
         MatDialogModule,
         MatExpansionModule,
+        MatSelectModule,
         FormsModule,
     ],
     providers: [BouteilleDeVinService, BouteilleResolverServiceService],

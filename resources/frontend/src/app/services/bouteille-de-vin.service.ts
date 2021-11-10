@@ -103,6 +103,9 @@ export class BouteilleDeVinService {
      */
     getListeCelliersParUtilisateur(userId: number): any {
         const options = {
+            headers: {
+                'Authorization': `Bearer ${this.servAuth.utilisateurToken}`,
+            },
             params: {
                 userId: userId
             }

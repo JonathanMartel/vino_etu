@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-    _utilisateurAuthentifie!: object|null;
-    _utilisateurToken!: string|null;
+    _utilisateurAuthentifie!: any;
+    _utilisateurToken!: any;
 
 
     // private url: string = "http://127.0.0.1:8000/api";
@@ -120,5 +120,9 @@ export class AuthService {
 
     estAuthentifie(): boolean {
         return this._utilisateurToken ? true : false;
+    }
+
+    getIdUtilisateurAuthentifie(): number {
+        return this._utilisateurAuthentifie.id ?? false;
     }
 }
