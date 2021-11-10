@@ -17,7 +17,7 @@ class CellierSeeder extends Seeder
         Cellier::create([
             "nom"         => "maison",
             "description" => "Cellier au sous-sol de la maison",
-            "user_id"     => 1,
+            "users_id"     => 1,
         ]);
     }
 }
