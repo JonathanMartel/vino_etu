@@ -49,8 +49,8 @@ class CellierController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nom' => 'required | max:45',
-            'localisation' => 'required | max:45',
+            'nom' => 'required | max:32',
+            'localisation' => 'required | max:40',
             'user_id' => 'required | exists:users,id',
         ]);
 
@@ -90,8 +90,8 @@ class CellierController extends Controller
     public function update(Request $request, Cellier $cellier)
     {
         $request->validate([
-            'nom' => 'required | max:45',
-            'localisation' => 'required | max:45',
+            'nom' => 'required | max:32',
+            'localisation' => 'required | max:40',
         ]);
 
         $cellier->update([

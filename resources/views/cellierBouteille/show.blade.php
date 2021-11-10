@@ -22,10 +22,11 @@
             @endforeach
           </select>
        
+        
     </div>
 </header>
 <main>
-    <section class="info">
+    <section class="info-fiche">
         <article class="infoBouteilleConteneur-fiche">
             <div class="">
                 <p class="bold">{{ $bouteille->pays }} | {{ $bouteille->type }}</p>
@@ -50,10 +51,10 @@
                         @endif
                 </div>
               
-                    <a class="icon-modifier-bouteille" href="{{ route('bouteilleEdit', $bouteille->id)}}"><i class="material-icons-fiche">edit</i></a>
+                <a class="bouteilleSAQConteneur-fiche" href="{{ route('bouteilleEdit', ['bouteille' =>$bouteille->id, 'idCellier' => $cellier->id])}}"><i class="material-icons-fiche">edit</i></a>
                
             </div>
-            
+
         </article>
         <article>
             <h2 class="description-titre">Description</h2>

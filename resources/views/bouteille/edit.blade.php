@@ -83,6 +83,7 @@
 
     <input type="hidden" name="id" value="{{ $bouteille->id }}" id="id">
     <input type="hidden" name="url_img" value="{{ $bouteille->url_img }}" id="url_img">
+    
     <div class="col s12 btn-space">
         
         <a href="#<!-- route('cellierBouteille.show', $idCellier, $idBouteille) -->" class="btn waves-effect waves-light button btn-annuler" name="annuler">Annuler</a>

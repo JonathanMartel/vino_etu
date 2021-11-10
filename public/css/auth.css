@@ -9,4 +9,6 @@
     text-align: center;
 }
 
-
+body main {
+    padding-bottom: 0;
+}
