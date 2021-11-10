@@ -53,7 +53,7 @@ class CellierBouteilleAcheteeController extends Controller {
      */
     public function store(Request $request) {
         $bouteilleAchetee = new BouteilleAchetee();
-        
+
         $bouteilleAchetee->nom =  $request->nom;
         $bouteilleAchetee->description =  $request->description;
         $bouteilleAchetee->url_image =  $request->url_image;
@@ -109,9 +109,9 @@ class CellierBouteilleAcheteeController extends Controller {
      * @param  \App\Models\CellierBouteille  $cellierBouteille
      * @return \Illuminate\Http\Response
      */
-    public function supprimerBouteille(CellierBouteilleAchetee $CellierBouteilleAchetee)
+    public function supprimerBouteille(CellierBouteilleAchetee $cellierBouteilleAchetee)
     {
-        $CellierBouteilleAchetee->delete();
+        $cellierBouteilleAchetee->delete();
 
         return response() -> json([
             "message" => "Bouteille supprimer correctement"

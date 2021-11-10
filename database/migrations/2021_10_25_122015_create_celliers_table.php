@@ -17,7 +17,7 @@ class CreateCelliersTable extends Migration
             $table->id();
             $table->string("nom");
             $table->string("description")->nullable();
-            $table->foreignId("user_id")->constrained();
+            $table->foreignId("users_id")->nullable()->constrained()->cascadeOnUpdate()->nullOnDelete();
             $table->timestamps();
         });
     }

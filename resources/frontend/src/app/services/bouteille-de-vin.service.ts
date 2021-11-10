@@ -22,32 +22,15 @@ export class BouteilleDeVinService {
     }
 
     getBouteillesParCellier(filtres = {}) {
-
         return this.http.get<any>(
             this.url + '/celliers/' + 1 + '/bouteilles',
             {
                 params: filtres
             }
         );
-    }
-
-    getBouteillesCellier(filtres = {}) {
-
-        return this.http.get<any>(
-            this.url + '/celliers/' + 1 + '/bouteilles',
-            {
-                params: filtres
-            }
-        );
-
     }
 
     getListeBouteille(filtres = {}) {
-        /*filtres = {
-            texteRecherche: "états"
-        };*/
-
-
         return this.http.get<any>(this.url + '/catalogue-bouteilles', {
             params: filtres
         });
