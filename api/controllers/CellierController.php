@@ -87,8 +87,6 @@ class CellierController extends Router
             $body = json_decode(file_get_contents('php://input'));
 
             if (!empty($body)) {
-                $body->id = $this->urlParams[1];
-
                 $cellierClassObj = new CellierModele;
                 $celliers = $cellierClassObj->modifierCellier($body);
 
