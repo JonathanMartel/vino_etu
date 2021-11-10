@@ -155,18 +155,13 @@ class BouteilleController extends Controller
 
         /* si le user upload une image il faut supprimer celle qu'il avait mis précedement !!! */
 
-       
-
+    
         $bouteille->fill($request->all());
-       /*  if(isset($request->file('url_saq'))) {
-            $bouteille->url_saq = Storage::putFile('public', $request->file('url_saq'));
-        } */
+    
         if ($request->file) {
 
             if($request->url_img != URL::to('') . '/assets/icon/bouteille-cellier.svg'){
-                print_r(explode('/',$request->url_img));
-                //unlink('img/'. explode('/',$request->url_img)[4]);
-                File::delete(public_path() . '/img', explode('/',$request->url_img)[4]);
+                File::delete(public_path('img/' . explode('/',$request->url_img)[4]) );
             }
             $fileName = time() . '_' . $request->file->getClientOriginalName();
             
@@ -175,20 +170,6 @@ class BouteilleController extends Controller
         }
          $bouteille->save();
 
-
-       /* $bouteille->update([
-            'nom' => $request->nom,
-            'pays' => $request->pays,
-            'url_img' => $request->url_img,
-            'description' => $request->description,
-            'code_saq' => $request->code_saq,
-            'prix_saq' => $request->prix_saq,
-            'url_saq' => $request->url_saq,
-            'type_id' => $request->type_id,
-            'format_id' => $request->format_id,
-            'user_id' => $request->user_id,
-        ]);*/
-        
         return redirect(URL::to('') . '/cellier/'. session('idCellier') . '/'. $bouteille->id);
     }
 
