@@ -86,7 +86,7 @@
                         @if($bouteille->millesime > 0)
                         <p>{{$bouteille->millesime }}</p>
                         @else
-                        <p>Non millisimé</p>
+                        <p>Non millésimé</p>
                         @endif
                         <div class="select">
                             <select class="star-rating" data-id-bouteille="{{$vin['id']}}" data-millesime="{{$bouteille->millesime}}" name="note">

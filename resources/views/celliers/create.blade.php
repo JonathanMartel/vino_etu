@@ -13,7 +13,7 @@
         @csrf
         <div class="input-field col s12">
 
-            <input type="text" name="nom" id="nom" class="@if($errors->first('nom')) invalid @endif validate" min='0' max='45' value="{{old('nom')}}" />
+            <input type="text" name="nom" id="nom" class="@if($errors->first('nom')) invalid @endif validate" min='0' max='32' value="{{old('nom')}}" />
             <label for="nom">Nom :</label>
             @if ($errors->has('nom'))
             <span class="helper-text" data-error="{{ $errors->first('nom') }}"></span>
@@ -21,7 +21,7 @@
         </div>
 
         <div class="input-field col s12">
-            <input type="text" name="localisation" id="localisation" class="@if($errors->first('localisation')) invalid @endif validate" value="{{old('localisation')}}" max="45" />
+            <input type="text" name="localisation" id="localisation" class="@if($errors->first('localisation')) invalid @endif validate" value="{{old('localisation')}}" max="40" />
             <label for="localisation">Localisation :</label>
             @if ($errors->has('localisation'))
             <span class="helper-text" data-error="{{ $errors->first('localisation') }}"></span>

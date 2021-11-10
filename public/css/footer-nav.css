@@ -1,0 +1,27 @@
+.footer-nav {
+    position: fixed;
+    bottom: 0;
+    opacity: 100;
+    gap: 0.5em;
+    width: 100%;
+    z-index: 999;
+    display: none;
+    align-items: center;
+    background-color: #CDCED1
+}
+
+.footer-nav:hover {
+    cursor: pointer;
+    background-color: #99AAA2;
+}
+
+.footer-nav i {
+    color: black;
+    font-size: 40px;
+
+}
+
+.footer-nav span {
+    font-weight: 700;
+}
+
