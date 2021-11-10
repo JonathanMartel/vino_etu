@@ -123,11 +123,15 @@ class BouteilleController extends Controller
         session(['idCellier' => $idCellier]);
         $types = Type::all();
         $formats = Format::all();
+        // $idBouteille = $bouteille->id;
         /* var_dump($bouteille->format); */
         return view('bouteille.edit', [
                                         'bouteille'=> $bouteille,
                                         'types' => $types,
                                         'formats' => $formats,
+                                        'idCellier' => $idCellier,
+                                        'idBouteille' =>$bouteille
+
     ]);
     }
 
