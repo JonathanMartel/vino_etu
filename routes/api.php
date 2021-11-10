@@ -54,11 +54,12 @@ Route::post('creerCompte', [CustomAuthController::class, "creerCompte"]);
 // Connexion
 Route::post('connection', [CustomAuthController::class, "connection"]);
 
-// Afficher les bouteilles d'un cellier
-Route::get('celliers/{cellierId}/bouteilles', [CellierController::class, "obtenirBouteilles"]);
-
 // Routes protégées
 Route::group(['middleware' => ["auth:sanctum"]], function () {
+
+    // Afficher les bouteilles d'un cellier
+    Route::get('celliers/{cellierId}/bouteilles', [CellierController::class, "obtenirBouteilles"]);
+
     // Récupérer la liste des celliers pour un utilisateur donné
     Route::get('celliers', [CellierController::class, "afficherCelliersParUtilisateur"]);
 
