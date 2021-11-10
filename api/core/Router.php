@@ -4,6 +4,7 @@ namespace VinoAPI\Core;
 
 use VinoAPI\Controllers\BouteilleController;
 use VinoAPI\Controllers\CellierController;
+use VinoAPI\Controllers\ListeAchatController;
 use VinoAPI\Controllers\SAQController;
 use VinoAPI\Controllers\UsagerController;
 use VinoAPI\Modeles\UsagerModele;
@@ -86,6 +87,10 @@ class Router
 				case 'celliers':
 					$cellierClassObj = new CellierController;
 					$cellierClassObj->getCelliers();
+					break;
+				case 'listeachat':
+					$listeAchatClassObj = new ListeAchatController;
+					$listeAchatClassObj->getListeAchat();
 					break;
 				case 'saq':
 					$saqClassObj = new SAQController;
