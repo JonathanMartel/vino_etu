@@ -46,7 +46,7 @@ class CellierModele extends Modele
         . " LEFT JOIN vino__cellier_inventaire ON vino__cellier.id_cellier = vino__cellier_inventaire.id_cellier"
         . " WHERE vino__cellier.usager_id = 3"
         . " GROUP BY vino__cellier.emplacement"
-        . " ORDER BY vino_cellier.id_cellier";
+        . " ORDER BY vino__cellier.id_cellier";
 
         if (($res = $this->_db->query($requete)) == true) {
             if ($res->num_rows) {
