@@ -28,12 +28,13 @@
     <section class="info">
         <article class="infoBouteilleConteneur-fiche">
             <div class="">
-                <p>{{ $bouteille->pays }} | {{ $bouteille->type }}</p>
+                <p class="bold">{{ $bouteille->pays }} | {{ $bouteille->type }}</p>
                 <p>{{  $bouteille->format }}</p>
                 <p>{{  $bouteille->taille }} cl</p>
-                <p>Prix Saq | {{ $bouteille->prix_saq }}$</p>
+                <p>Prix Saq | <span class="bold-20px">{{ $bouteille->prix_saq }}$</span></p>
             </div>
             <div>
+                
                 <div class="bouteilleSAQConteneur-fiche">
                     @if($bouteille->url_saq)
                     <a class="lienSAQ" href="{{ $bouteille->url_saq }}">SAQ</a>
@@ -131,8 +132,9 @@
                     </div>
                     <div class="bouton">
                         <button class="bouton-fiche valider"  data-js-modifier>Modifier</button>
-                        <button class="bouton-fiche non-active" data-js-btnAnnuler>Annuler</button>
-                        <button class="bouton-fiche valider non-active" value="update" type="submit" data-js-btnValider >Valider</button>
+
+                        <button class="bouton-fiche non-active" data-js-btnAnnuler>Annuler</button> 
+                        <button class="bouton-fiche valider non-active"  data-js-btnValider >Valider</button>
                         <button class="bouton-fiche effacer non-active" data-js-btnEffacer >Effacer</button>
                     </div>
                 </form>

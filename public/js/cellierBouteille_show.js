@@ -130,4 +130,26 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
     });
+
+    /** Bouton annuler, efface les champs modifié et reload **/
+    btnAnnuleActive.addEventListener("click",function(e){
+        e.preventDefault();
+        console.log('click annuler');
+        infoForm.reset();
+        location.reload();
+
+
+    });
+
+    btnValideActive.addEventListener("click",function(e){
+        e.preventDefault();
+        console.log('click valider');
+
+    });
+
+    btnEffacerActive.addEventListener("click",function(e){
+        e.preventDefault();
+        console.log('click effacer');
+
+    });
 });

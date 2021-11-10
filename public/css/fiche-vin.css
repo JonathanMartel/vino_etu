@@ -245,3 +245,15 @@ input[type=number]::-webkit-outer-spin-button {
     align-items: flex-start;
     justify-content: space-between;
 }
+
+
+/**** infographie, texture, police etc....***/
+
+.bold{
+    font-weight: 700;
+}
+
+.bold-20px{
+    font-weight: 700;
+    font-size: 1.563rem;
+}
