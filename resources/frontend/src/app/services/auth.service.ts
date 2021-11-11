@@ -19,20 +19,7 @@ export class AuthService {
     constructor(
         private http: HttpClient
     ) {
-         this.connexion({
-             email: "vino@kalimotxo.com",
-             password: "password",
-         })
-         .subscribe(
-             data => {
-                 this.utilisateur = data.utilisateur;
-                 this.token = data.token;
-                 return data;
-             },
-             error => {
-                 return error;
-             }
-         )
+
     }
 
     connexion(data: any) {
@@ -61,7 +48,7 @@ export class AuthService {
      *
      */
 
-    get utilisateurToken(): string | null {
+    getToken(): string | null {
         return this._utilisateurToken;
     }
 
@@ -92,7 +79,7 @@ export class AuthService {
      */
     deconnexion(): any {
         const entete = {
-            'Authorization': `Bearer ${this.utilisateurToken}`,
+            'Authorization': `Bearer ${this.getToken()}`,
         }
         return this.http.post<any>(
             this.url + '/deconnexion',

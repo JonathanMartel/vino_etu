@@ -1,9 +1,8 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AjoutCellierComponent } from '@pages/ajout-cellier/ajout-cellier.component';
 import { AuthService } from '@services/auth.service';
 import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
-import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-liste-celliers',
@@ -14,7 +13,12 @@ export class ListeCelliersComponent implements OnInit {
 
   listeCelliers!: any[];
 
-  @Output("chargerCelliers") chargerCelliers: EventEmitter<any> = new EventEmitter();
+
+ // cellierInitiales: any;
+
+  celliers: any = [];
+
+ 
 
   constructor(private servBouteilleDeVin: BouteilleDeVinService, private authService: AuthService,  public formAjout: MatDialog,) { }
 
@@ -24,19 +28,25 @@ export class ListeCelliersComponent implements OnInit {
     // Charger la liste des celliers de l'utilisateur.
     this.servBouteilleDeVin.getListeCelliersParUtilisateur(this.authService.getIdUtilisateurAuthentifie())
         .subscribe((data: any) => {
-
-          this.chargerCelliers.emit();
           this.listeCelliers = data;
           
         })
   }
 
   formulaireAjout(data: any): void {
-    this.formAjout.open(AjoutCellierComponent, {
+    let refModal = this.formAjout.open(AjoutCellierComponent, {
         data
     });
-}
 
-  
+    const response = refModal.componentInstance.chargerCelliers.subscribe(() => {this.chargerCelliers()});
+ }
+
+ chargerCelliers() {
+  this.servBouteilleDeVin.getListeCelliersParUtilisateur(this.authService.getIdUtilisateurAuthentifie()).subscribe( (cellier: any) => {
+      this.celliers = this.listeCelliers = cellier
+
+      console.log(cellier);
+  });
+ }
 
 }
