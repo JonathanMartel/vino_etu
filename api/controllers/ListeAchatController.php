@@ -40,4 +40,25 @@ class ListeAchatController extends Router
 
         echo json_encode($this->retour);
     }
+
+    public function createListeAchat() {
+        if (count($this->urlParams) == 1) {
+            $body = json_decode(file_get_contents('php://input'));
+
+			if (!empty($body)) {
+				$listeAchatClassObj = new ListeAchatModele;
+				$resultat = $listeAchatClassObj->createListeAchat($body);
+
+				$this->retour['data'] = $resultat;
+			} else {
+				$this->retour['erreur'] = $this->erreur(400);
+				unset($this->retour['data']);
+			}
+        } else {
+            $this->retour['erreur'] = $this->erreur(400);
+            unset($this->retour['data']);
+        }
+
+        echo json_encode($this->retour);
+    }
 }

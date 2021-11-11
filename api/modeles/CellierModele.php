@@ -36,6 +36,8 @@ class CellierModele extends Modele
      *
      * @param mixed $id L'id de l'usager.
      * 
+     * @throws Exception Erreur de requête sur la base de données.
+     * 
      * @return Array Résultats de la requête.
      */
     public function getCelliersParUsagerId($id)

@@ -14,6 +14,8 @@ class ListeAchatModele extends Modele
      *
      * @param Integer $id Id de l'usager.
      * 
+     * @throws Exception Erreur de requête sur la base de données.
+     * 
      * @return Boolean $res Succès de la requête.
      */
     public function getListeAchatParIdUsager($id)
@@ -34,5 +36,51 @@ class ListeAchatModele extends Modele
         }
 
         return $rows;
+    }
+
+    /**
+     * Crée une liste d'achat.
+     *
+     * @param Object $body Donnés de la liste d'achat.
+     * 
+     * @throws Exception Erreur de requête sur la base de données.
+     * 
+     * @return Boolean $res Succès de la requête.
+     */
+    public function createListeAchat($body)
+    {
+        $rows = array();
+
+        $res = false;
+
+        $requete = "INSERT INTO vino__liste_achat (id_usager) VALUES ('$body->id_usager')";
+
+        if (($res = $this->_db->query($requete)) == true) {
+            if ($res->num_rows) {
+                while ($row = $res->fetch_assoc()) {
+                    $rows[] = $row;
+                }
+            }
+        } else {
+            throw new Exception("Erreur de requête sur la base de donnée", 1);
+        }
+
+        $firstRes = $this->_db->query($requete);
+
+        if ($firstRes) {
+            $id = $this->_db->insert_id;
+
+            $requete = "INSERT INTO vino__liste_achat_vino(liste_achat_id, bouteille_id, millesime, quantite) VALUES (" .
+                "'" . $id . "'," .
+                "'" . $body->bouteille_id . "'," .
+                "'" . $body->millesime . "'," .
+                "'" . $body->quantite . "');";
+
+            $res = $this->_db->query($requete);
+        } else {
+            throw new Exception("Erreur de requête sur la base de donnée", 1);
+        }
+
+        return $res;
     }
 }
