@@ -75,8 +75,8 @@ class ListeAchatController extends Router
                 $body = json_decode(file_get_contents('php://input'));
 
                 if (!empty($body)) {
-                    $body->id = $this->urlParams[1];
-                    
+                    $body->listeAchatId = $this->urlParams[1];
+
                     $listeAchatClassObj = new ListeAchatModele;
                     $resultat = $listeAchatClassObj->modifierListeAchat($body);
 
