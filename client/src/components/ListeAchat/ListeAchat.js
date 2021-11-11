@@ -3,6 +3,7 @@ import './ListeAchat.css';
 import { DataGrid } from '@mui/x-data-grid';  //import { DataGrid } from '@mui/x-data-grid/index-cjs';
 import Button from '@mui/material/Button';
 import { Box } from "@mui/system";
+import { DataGrid } from '@mui/x-data-grid/index-cjs';
 
 export default class ListeAchat extends React.Component {
   constructor(props) {

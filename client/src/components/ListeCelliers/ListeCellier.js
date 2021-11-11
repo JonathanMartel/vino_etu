@@ -1,7 +1,7 @@
 import { Breadcrumbs, Link, Typography } from '@mui/material';
 import React from 'react';
-import Cellier from "../Cellier/Cellier";
-import './ListeCellier.css'
+import Cellier from '../Cellier/Cellier';
+import './ListeCellier.css';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { Box } from '@mui/system';
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
@@ -15,7 +15,7 @@ export default class ListeCellier extends React.Component {
 			celliers: [],
 			id_usager: 0,
 			items: []
-		}
+		};
 
 		this.fetchCelliers = this.fetchCelliers.bind(this);
 	}
@@ -27,37 +27,34 @@ export default class ListeCellier extends React.Component {
 		this.fetchCelliers();
 	}
 
-	fetchCelliers(){
+	fetchCelliers() {
 		console.log('id_usager : ', this.props.id_usager);
 
-		const donnes = {
+		/*const donnees = {
 			usager_id: null
-		}
+		};*/
 
 		const getMethod = {
 			method: 'GET',
 			headers: {
 				'Content-type': 'application/json',
-				'authorization': 'Basic ' + btoa('vino:vino')
+				authorization: 'Basic ' + btoa('vino:vino')
 			}
-		}
+		};
 
-		fetch("https://rmpdwebservices.ca/webservice/php/celliers/usager/" + this.props.id_usager, getMethod)
-			.then(reponse => reponse.json())
+		fetch('https://rmpdwebservices.ca/webservice/php/celliers/usager/' + this.props.id_usager, getMethod)
+			.then((reponse) => reponse.json())
 			.then((donnees) => {
-				this.setState({ items: donnees.data })
-				console.log("Celliers: ", this.state.items)
+				this.setState({ items: donnees.data });
+				console.log('Celliers: ', this.state.items);
 			});
 	}
-	
+
 	render() {
-		const celliers = this.state.items
-							.map((item, index)=>{
-								return (
-									<Cellier info={item} key={index} {...this.props} />
-								);
-							})
-		
+		const celliers = this.state.items.map((item, index) => {
+			return <Cellier info={item} key={index} {...this.props} />;
+		});
+
 		return (
 			<Box>
 				<Breadcrumbs aria-label="breadcrumb" sx={{ display: 'flex', margin: '0 1.5rem' }}>
@@ -65,7 +62,6 @@ export default class ListeCellier extends React.Component {
 						Celliers
 					</Link>
 					<Typography color="text.primary">Liste des celliers</Typography>
-
 				</Breadcrumbs>
 				<Box sx={{ justifyContent: 'space-between',  alignItems: 'center', gap: "20px" }}>
 					<Fab size="small" margin="10px" > <AddCircleIcon onClick={()=> this.props.history.push("/celliers/ajouter")} sx={{ color: '#641B30' }}/> </Fab>

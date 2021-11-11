@@ -1,6 +1,5 @@
 import React from "react";
 import Entete from "../Entete/Entete";
-import Accueil from "../Accueil/Accueil";
 import Pied from "../Pied/Pied";
 import Page404 from "../Page404/Page404";
 import AjoutBouteille from "../AjoutBouteilleCellier/AjoutBouteilleCellier";

@@ -10,27 +10,39 @@ export default class ModifieCompte extends React.Component {
 
         // Object contenant les informations d'un utilisateur
         this.state = {
+            usager: [],
             prenom: "",
             nom: "",
             courriel: "",
             mot_passe: "",
+            mot_passe_verif: "",
             modifier: false,
             validation: false,
         };
 
-        // Bind des fonctions
+        // Binder le contexte 'this' aux fonctions
         this.validation = this.validation.bind(this);
         this.modifier = this.modifier.bind(this);
     }
 
-    // À voir avec bobby
-    // Est-ce nécéssaire en PUT?
-    // componentDidMount() {
-    //     if (this.props.estConnecte) {
-    //         this.props.history.push("/connexion");
-    //     }
-    // }
+    // Vérifie si connecté
+    /*  componentDidMount() {
+         if (!this.props.estConnecte) {
+             // Si non connecté, redirige à la connexion
+             return this.props.history.push("/connexion");
+         }
+     } */
 
+    componentDidMount() {
+
+        this.getUsager()
+    }
+
+    componentDidUpdate() {
+
+        console.log(this.state.prenom, this.state.nom, this.state.courriel, this.state.mot_passe, this.state.mot_passe_verif)
+
+    }
 
     // Validation du formulaire
     validation() {
@@ -49,8 +61,7 @@ export default class ModifieCompte extends React.Component {
             this.state.mot_passe_verif.trim() !== ""
         ) {
             // Validation selon la forme minimale [a-Z]@[a-Z]
-            let expRegex =
-                /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+            let expRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
             let bRegex = expRegex.test(this.state.courriel);
 
             if (bRegex) {
@@ -68,21 +79,45 @@ export default class ModifieCompte extends React.Component {
         return bValidation;
     }
 
-    // Fonction pour modifier les informations de l'usager. À faire véréfier par Bobbychou.
-    modifier() {
-        console.log("Click sur bouton modifier!!!");
 
-        if (this.validation()) {
-            console.log("Modifier usager!!!");
+    getUsager() {
+        const options = {
+            method: 'GET',
+            headers: {
+                'Content-type': 'application/json',
+                'authorization': 'Basic ' + btoa('vino:vino')
+            }
+        }
+
+        fetch("https://rmpdwebservices.ca/webservice/php/usagers/" + 1, options)
+            .then(reponse => reponse.json())
+            .then((donnees) => {
+                this.setState({
+                    prenom: donnees.data[0].prenom,
+                    nom: donnees.data[0].nom,
+                    courriel: donnees.data[0].courriel,
+                    mot_passe: donnees.data[0].mot_passe,
+                    mot_passe_verif: donnees.data[0].mot_passe_verif
+                })
+                console.log(this.state.usager);
+            });
+    }
+
+
+    // Fonction pour modifier les informations de l'usager. À faire vérifier par Bobbychou.
+    modifier() {
+        if (this.validation) {
+            console.log("Validation valide");
 
             const donnes = {
                 prenom: this.state.prenom,
                 nom: this.state.nom,
                 courriel: this.state.courriel,
                 mot_passe: this.state.mot_passe,
+                mot_passe_verif: this.mot_passe_verif
             };
 
-            const putMethod = {
+            const options = {
                 method: "PUT",
                 headers: {
                     "Content-type": "application/json",
@@ -91,10 +126,12 @@ export default class ModifieCompte extends React.Component {
                 body: JSON.stringify(donnes),
             };
 
-            fetch("https://rmpdwebservices.ca/webservice/php/usagers", putMethod)
+            fetch("https://rmpdwebservices.ca/webservice/php/usagers" + 1, options)
                 .then(res => res.json())
-
-            //Si le PUT est correct, redirection à faire
+                .then((data) => {
+                    console.log(data);
+                    //this.getCommentaires();
+                });
         } else {
             console.log("Pas de modifications pour toé messieu!!!");
         }
@@ -130,6 +167,7 @@ export default class ModifieCompte extends React.Component {
                     <span className="modification_titre">Modifier son compte</span>
 
                     <Box
+
                         sx={{
                             display: "flex",
                             flexDirection: "column",
@@ -137,38 +175,45 @@ export default class ModifieCompte extends React.Component {
                         }}
                     >
                         <TextField
-                            label="Nom"
-                            variant="outlined"
-                        />
-                        <TextField
+                            onChange={e => this.setState({ prenom: e.target.value })}
                             label="Prénom"
+                            value={this.state.prenom}
                             variant="outlined"
                         />
                         <TextField
+                            onChange={e => this.setState({ nom: e.target.value })}
+                            label="Nom"
+                            value={this.state.nom}
+                            variant="outlined"
+                        />
+                        <TextField
+                            onChange={e => this.setState({ courriel: e.target.value })}
                             label="Courriel"
+                            value={this.state.courriel}
                             variant="outlined"
                             type="email"
                         />
                         <TextField
+                            onChange={e => this.setState({ mot_passe: e.target.value })}
                             label="Mot de passe"
+                            value={this.state.mot_passe}
                             variant="outlined"
                             type="password"
                         />
                         <TextField
+                            onChange={e => this.setState({ mot_passe_verif: e.target.value })}
                             label="Confirmer mot de passe"
+                            value={this.state.mot_passe_verif}
                             variant="outlined"
                             type="password"
                         />
-
-                        {/* <input name="courriel" onKeyUp={evt => this.setState({ courriel: evt.target.value })} placeholder="bobus@gmail.com" type="email" />
-                        <input name="mot_passe" onKeyUp={evt => this.setState({ mot_passe: evt.target.value })} placeholder="12345" type="password" /> */}
                     </Box>
 
-                    <button>Modifier</button>
+                    {<button onClick={this.modifier}>{(this.state.modifier, "Modifier le compte")}</button>}
+
                 </Box>
 
-                {/* <button onClick={this.seConnecter}>{(this.state.seConnecter ? "Se déconnecter" : "Se connecter")}</button> */}
-            </Box>
+            </Box >
         );
     }
 }
