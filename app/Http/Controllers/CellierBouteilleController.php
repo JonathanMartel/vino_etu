@@ -300,10 +300,12 @@ class CellierBouteilleController extends Controller
 
     }
 
-    public function  modifierCellierBouteille($idCellier, $idBouteille, $millesime, $prix, $quantite, $commentaire, $garde_jusqua, $date_achat)
+    public function  modifierCellierBouteille($idCellier, $idBouteille, $millesime, $prix, $quantite, $date_achat, $commentaire=null, $garde_jusqua=null)
     {
-        CellierBouteille::modifierCellierBouteille($idCellier, $idBouteille, $millesime, $prix, $quantite, $commentaire, $garde_jusqua, $date_achat);
-    }
+        CellierBouteille::modifierCellierBouteille($idCellier, $idBouteille, $millesime, $prix, $quantite, $date_achat, $commentaire, $garde_jusqua);
+
+
+     }
 
     /**
      * Remove the specified resource from storage.
