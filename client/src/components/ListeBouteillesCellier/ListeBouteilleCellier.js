@@ -48,7 +48,7 @@ export default class ListeBouteilleCellier extends React.Component {
 		this.fetchBouteilles();
 	}
 
-	componentDidUpdate() {}
+	componentDidUpdate() { }
 
 	sortBouteilles(obj) {
 		const parsedObj = JSON.parse(obj);
@@ -80,15 +80,11 @@ export default class ListeBouteilleCellier extends React.Component {
 			.then((reponse) => reponse.json())
 			.then((donnees) => {
 				donnees.data.map((item) => {
-					let processed = 0;
 					Object.entries(item).map((i) => {
-						if(i[0] === "pays") {
-							console.log(this.getDrapeauPays(i[1]));
-						}
+						if (i[0] === "pays") item.drapeau = this.getDrapeauPays(i[1]);
+					});
+				})
 
-					})
-					
-				} )
 				this.setState({
 					items: donnees.data,
 					premierId: donnees.data[0].id,
@@ -100,22 +96,22 @@ export default class ListeBouteilleCellier extends React.Component {
 			});
 	}
 
-	setDrapeau(flag) {
-		//this.setState({ items.drapeau: flag });
-	}
-
 	getDrapeauPays(pays) {
+		let flag = undefined;
+
 		listePays
 			.filter((data) => {
 				if (pays == null) return;
+
 				else if (data.name.toLowerCase().includes(pays.toLowerCase())) {
 					return data;
 				}
 			})
 			.map((data) => {
-				let flag = 'https://flagcdn.com/' + data.alpha2 + '.svg';
-				return flag;
+				flag = 'https://flagcdn.com/' + data.alpha2 + '.svg';
 			});
+
+		return flag;
 	}
 
 
@@ -214,7 +210,7 @@ export default class ListeBouteilleCellier extends React.Component {
 	render() {
 		const premierId = this.state.premierId;
 		const bouteilles = this.state.items.map((item, index) => {
-			
+
 			return (
 				<div>
 					{premierId ? (
