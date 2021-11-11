@@ -85,6 +85,9 @@ Route::get('/obtenirMillesime/{idCellier}/{idBouteille}/{millesime}', [CellierBo
 */
 Route::get('/vin/{bouteille}/edit/{idCellier}', [BouteilleController::class, 'edit'])->middleware('auth')->name('bouteilleEdit')->middleware('auth')->middleware('prevent-back-history');
 Route::put('/vin/{bouteille}/edit', [BouteilleController::class, 'update'])->middleware('auth')->name('bouteilleUpdate')->middleware('auth')->middleware('prevent-back-history');
+Route::delete('/vin/{bouteille}', [BouteilleController::class, 'destroy'])->middleware('auth')->name('bouteille.destroy')->middleware('prevent-back-history');
+
+
 
 /*
 |--------------------------------------------------------------------------

@@ -185,6 +185,8 @@ class BouteilleController extends Controller
      */
     public function destroy(Bouteille $bouteille)
     {
-        //
+        $bouteille->delete();
+
+        return redirect('/cellier/'.session('idCellier'));
     }
 }
