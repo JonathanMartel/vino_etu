@@ -82,7 +82,7 @@
     padding: 1rem;
     border-radius: 5px;
     flex-grow: 1;
-    border: 2px solid #BBC7C1;
+    border: none;
     display: flex;
 }
 

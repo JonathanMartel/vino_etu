@@ -315,3 +315,6 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
     text-align: center;
 }
 
+.couleur-noire{
+    color:#343B41;
+}

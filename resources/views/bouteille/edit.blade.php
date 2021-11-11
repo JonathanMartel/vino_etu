@@ -29,7 +29,7 @@
 @if(Auth::user()->id === $bouteille->user_id )
 <!-- Si l'admin peut modifier les bouteilles perso on peut lui donner le droit ici  -->
 
-<form class="col s12 edit-vin" action="{{ route('bouteilleUpdate', $bouteille->id) }}" method="POST" enctype="multipart/form-data">
+<form class="col s12 edit-vin row" action="{{ route('bouteilleUpdate', $bouteille->id) }}" method="POST" enctype="multipart/form-data">
     @method('PUT')
     @csrf
     <div class="input-field col s12">

@@ -44,7 +44,7 @@
 
         <nav class="nav-extended white z-depth-0">
             <div class="nav-wrapper">
-                <a href="#" class="sidenav-trigger right" data-target="mobile-links"><i class="material-icons" style="font-size: 50px;"><span class=" black-text  md-48">menu</span></i></a>
+                <a href="#" class="sidenav-trigger right" data-target="mobile-links"><i class="material-icons" style="font-size: 50px;"><span class=" couleur-noire  md-48">menu</span></i></a>
                 <ul class="right hide-on-med-and-down">
                     @guest
                     <li><a href="{{ route('register') }}"><span class="black-text">S'inscrire</span></a></li>
