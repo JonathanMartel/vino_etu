@@ -190,6 +190,6 @@ class BouteilleController extends Controller
     {
         $bouteille->delete();
 
-        return redirect('/cellier/'.session('idCellier'));
+        return redirect('/cellier/'.session('idCellier'))->withInput()->with("deleteBouteille", "une bouteille supprimé");
     }
 }

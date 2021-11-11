@@ -87,9 +87,7 @@
         
         <a href="{{route('ficheVin', ['idCellier'=>$idCellier,'idBouteille'=>$idBouteille])}}
          " class="btn waves-effect waves-light button btn-annuler" name="annuler">Annuler</a>
-
         
-
         <a class="btn waves-effect waves-light button btn-modifier modal-trigger" href="#modal-modifier">Modifier</a>
 
         <!-- Modal Structure pour modifier-->
@@ -106,7 +104,9 @@
                 <a href="#!" class="modal-close waves-effect waves-green btn-flat">Annuler</a>
             </div>
         </div>
-    
+        
+        <a class="btn waves-effect waves-light button btn-supprimer modal-trigger" href="#{{$bouteille->id}}"><i class="material-icons">delete</i></a>
+
     </form>
 </div>
 
