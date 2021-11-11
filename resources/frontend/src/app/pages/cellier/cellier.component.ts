@@ -17,6 +17,7 @@ export class CellierComponent implements OnInit {
 
     // Sauvegarder la liste initiale de bouteilles afin de s'éviter une requête http/sql pour un "reset"
     bouteillesCellierInitiales: any;
+    bouteillesCellier: any = [];
 
     // Sujet (observable) permettant de "debouncer" l'envoi de la recherche à la base de données
     rechercheSujet: Subject<string> = new Subject<string>();
@@ -24,7 +25,6 @@ export class CellierComponent implements OnInit {
     // Permet de savoir si l'utilisateur a effectué une recherche et ainsi présenté le bon template
     estFiltre: boolean = false;
 
-    bouteillesCellier: any = [];
     mode: MatDrawerMode = "over";
     texteRecherche = new FormControl('');
 
@@ -38,10 +38,16 @@ export class CellierComponent implements OnInit {
     ngOnInit(): void {
         this.cellierId = this.actRoute.snapshot.params.id;
 
-        this.servBouteilleDeVin.getBouteillesParCellier(this.cellierId)
-            .subscribe(cellier => {
-                this.bouteillesCellier = this.bouteillesCellierInitiales = cellier.data
-            });
+        // Utiliser le resolver pour charger le data de la bouteille
+        this.actRoute.data.subscribe(data => {
+            this.bouteillesCellier = this.bouteillesCellierInitiales = data.bouteillesCellier;
+            console.log(this.bouteillesCellier);
+        });
+
+        // this.servBouteilleDeVin.getBouteillesParCellier(this.cellierId)
+        //     .subscribe(cellier => {
+        //         this.bouteillesCellier = this.bouteillesCellierInitiales = cellier.data
+        //     });
     }
 
     recherche($event: any): void {

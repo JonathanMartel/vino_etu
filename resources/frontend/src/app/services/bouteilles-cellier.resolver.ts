@@ -32,7 +32,6 @@ export class BouteillesCellierResolver implements Resolve<boolean> {
         return this.servBouteilleDeVin.getBouteillesParCellier(cellierId)
             .pipe(
                 map(data => {
-                    console.log(data);
                     return data.data;
                 })
             );
