@@ -10,7 +10,7 @@ use VinoAPI\Modeles\ListeAchatModele;
  */
 class ListeAchatController extends Router
 {
-    
+
     /**
      * Retourne la liste d'achat de l'usager.
      *
@@ -40,25 +40,26 @@ class ListeAchatController extends Router
 
         echo json_encode($this->retour);
     }
-    
+
     /**
      * Crée une liste d'achat.
      *
      * @return void
      */
-    public function createListeAchat() {
+    public function createListeAchat()
+    {
         if (count($this->urlParams) == 1) {
             $body = json_decode(file_get_contents('php://input'));
 
-			if (!empty($body)) {
-				$listeAchatClassObj = new ListeAchatModele;
-				$resultat = $listeAchatClassObj->createListeAchat($body);
+            if (!empty($body)) {
+                $listeAchatClassObj = new ListeAchatModele;
+                $resultat = $listeAchatClassObj->createListeAchat($body);
 
-				$this->retour['data'] = $resultat;
-			} else {
-				$this->retour['erreur'] = $this->erreur(400);
-				unset($this->retour['data']);
-			}
+                $this->retour['data'] = $resultat;
+            } else {
+                $this->retour['erreur'] = $this->erreur(400);
+                unset($this->retour['data']);
+            }
         } else {
             $this->retour['erreur'] = $this->erreur(400);
             unset($this->retour['data']);
@@ -66,13 +67,43 @@ class ListeAchatController extends Router
 
         echo json_encode($this->retour);
     }
-    
+
+    public function modifierListeAchat()
+    {
+        if (count($this->urlParams) == 2) {
+            if (ctype_digit($this->urlParams[1])) {
+                $body = json_decode(file_get_contents('php://input'));
+
+                if (!empty($body)) {
+                    $body->id = $this->urlParams[1];
+                    
+                    $listeAchatClassObj = new ListeAchatModele;
+                    $resultat = $listeAchatClassObj->modifierListeAchat($body);
+
+                    $this->retour['data'] = $resultat;
+                } else {
+                    $this->retour['erreur'] = $this->erreur(400);
+                    unset($this->retour['data']);
+                }
+            } else {
+                $this->retour['erreur'] = $this->erreur(400);
+                unset($this->retour['data']);
+            }
+        } else {
+            $this->retour['erreur'] = $this->erreur(400);
+            unset($this->retour['data']);
+        }
+
+        echo json_encode($this->retour);
+    }
+
     /**
      * Supprime une liste d'achat.
      *
      * @return void
      */
-    public function deleteListeAchat() {
+    public function deleteListeAchat()
+    {
         if (count($this->urlParams) == 2) {
             if (ctype_digit($this->urlParams[1])) {
                 $listeAchatClassObj = new ListeAchatModele;

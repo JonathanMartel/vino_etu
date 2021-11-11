@@ -91,6 +91,30 @@ class ListeAchatModele extends Modele
     }
 
     /**
+     * Modifie les infos d'une liste d'achat.
+     *
+     * @param Object $body Nouvelles infos de la liste d'achat.
+     * 
+     * @return Boolean $res Succès de la requête.
+     */
+    public function modifierListeAchat($body) {
+        foreach ($body->bouteilles as $bte) {
+            $firstReq = "DELETE FROM vino__liste_achat_vino WHERE NOT EXISTS(SELECT bouteille_id FROM vino__liste_achat_vino"
+            . " WHERE liste_achat_id = $body->listeAchatId AND bouteille_id = $bte->id)";
+
+            $this->_db->query($firstReq);
+
+            $requete = "UPDATE vino__liste_achat_vino SET"
+            . " quantite = '$bte->quantite',"
+            . " WHERE liste_achat_id = $body->listeAchatId AND bouteille_id = $bte->id";
+
+            $res = $this->_db->query($requete);
+        }
+
+        return $res;
+    }
+
+    /**
      * Supprime une liste d'achat.
      *
      * @param Integer $id Id de la liste d'achat.

@@ -164,6 +164,10 @@ class Router
 				$cellierClassObj = new CellierController;
 				$cellierClassObj->modifierCellier();
 				break;
+			case 'listeachat':
+				$listeAchatClassObj = new ListeAchatController;
+				$listeAchatClassObj->modifierListeAchat();
+				break;
 			case 'saq':
 				echo json_encode('saq put');
 				break;
