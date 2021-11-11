@@ -2,7 +2,6 @@ import { Component, Input, OnInit, Output } from '@angular/core';
 import { startWith, pairwise, debounceTime, distinctUntilChanged } from "rxjs/operators"
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { ModifierCellierBouteilleComponent } from '@pages/modifier-cellier-bouteille/modifier-cellier-bouteille.component';
 import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 import { Subject } from 'rxjs';
 import { EventEmitter } from '@angular/core';
