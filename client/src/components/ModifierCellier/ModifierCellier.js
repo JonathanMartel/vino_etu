@@ -11,7 +11,7 @@ export default class ModifierCellier extends React.Component {
 
         this.state = {
             emplacement: "",
-            temperature: 10,
+            temperature: undefined,
             usager_id: 0,
             titreBoutton: "",
             id: undefined

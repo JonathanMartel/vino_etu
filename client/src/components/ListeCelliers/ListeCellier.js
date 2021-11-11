@@ -5,6 +5,8 @@ import './ListeCellier.css';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { Box } from '@mui/system';
 import AddShoppingCartOutlinedIcon from '@mui/icons-material/AddShoppingCartOutlined';
+import Fab from '@mui/material/Fab';
+import AddIcon from '@mui/icons-material/Add';
 
 export default class ListeCellier extends React.Component {
 	constructor(props) {
@@ -61,13 +63,13 @@ export default class ListeCellier extends React.Component {
 					</Link>
 					<Typography color="text.primary">Liste des celliers</Typography>
 				</Breadcrumbs>
-				<AddCircleIcon onClick={() => this.props.history.push('/celliers/ajouter')} sx={{ color: '#641B30' }} />
-				<AddShoppingCartOutlinedIcon
-					onClick={() => this.props.history.push('/listeachat')}
-					sx={{ color: '#641B30' }}
-				/>
-
-				<section className="liste_celliers">{celliers}</section>
+				<Box sx={{ justifyContent: 'space-between',  alignItems: 'center', gap: "20px" }}>
+					<Fab size="small" margin="10px" > <AddCircleIcon onClick={()=> this.props.history.push("/celliers/ajouter")} sx={{ color: '#641B30' }}/> </Fab>
+					<Fab size="small"  > <AddShoppingCartOutlinedIcon  onClick={()=> this.props.history.push("/listeachat")} sx={{ color: '#641B30' }} /> </Fab>
+				</Box>
+				<section className="liste_celliers">
+					{celliers}
+				</section>
 			</Box>
 		);
 	}

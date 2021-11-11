@@ -2,6 +2,7 @@ import React from "react";
 import { Box } from "@mui/system";
 import { TextField } from "@mui/material";
 import Button from '@mui/material/Button';
+import InputAdornment from '@mui/material/InputAdornment';
 
 import './AjoutCellier.css';
 
@@ -11,7 +12,7 @@ export default class AjoutCellier extends React.Component {
 
         this.state = {
             emplacement: "",
-            temperature: 10,
+            temperature: undefined,
             usager_id: 0,
             titreBoutton: ""
         }
@@ -43,8 +44,8 @@ export default class AjoutCellier extends React.Component {
         if (this.validation()) {
             let donnes = {
                 emplacement: this.state.emplacement,
-                usager_id: this.props.id_usager /* ,
-                temperature: this.state.temperature */
+                usager_id: this.props.id_usager,
+                temperature: this.state.temperature
             };
             console.log("Donnes: ", donnes);
 
@@ -60,7 +61,7 @@ export default class AjoutCellier extends React.Component {
             fetch('https://rmpdwebservices.ca/webservice/php/celliers/', postMethod)
                 .then((reponse) => reponse.json())
                 .then((donnees) => {
-                    if (donnees.data) return this.props.history.push("/celliers/liste");
+                    if (donnees.data) return this.props.history.push("/cellier/"+ donnees.data);
                 });
 
         } else {
@@ -80,7 +81,11 @@ export default class AjoutCellier extends React.Component {
                 <TextField autoFocus label="Emplacement" variant="outlined" 
                     onBlur={evt => this.setState({ emplacement: evt.target.value })} />
                 <TextField margin="dense" id="temperature" label="Température"
-					type="number" variant="standard" inputProps={{ step: "0.5" }}
+					type="number" inputProps={{ step: "0.5" }}
+                    InputProps={{
+                        endAdornment: <InputAdornment position="end"
+                        >°C</InputAdornment>
+                    }}
 					onBlur={(e) => this.setState({temperature : e.target.value })} />
 
                 <Button type="button" onClick={(e) => this.creerCellier()}> {this.state.titreBoutton} </Button>

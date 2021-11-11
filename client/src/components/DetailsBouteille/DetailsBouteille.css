@@ -1,3 +1,7 @@
+.modif_bouteille_container > * {
+    width: 80% !important;
+}
+
 .modif_bouteille_title {
     color: white;
     font-weight: 700;
@@ -14,7 +18,7 @@
 .modif_bouteille_container input:focus {
     outline: unset;
 }
-
+ 
 .modif_bouteille_container button {
     width: 100%;
     color: white;
