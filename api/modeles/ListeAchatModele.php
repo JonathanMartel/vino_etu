@@ -61,9 +61,9 @@ class ListeAchatModele extends Modele
     
                 $requete = "INSERT INTO vino__liste_achat_vino(liste_achat_id, bouteille_id, millesime, quantite) VALUES (" .
                     "'" . $id . "'," .
-                    "'" . $body->bouteille_id . "'," .
-                    "'" . $body->millesime . "'," .
-                    "'" . $body->quantite . "');";
+                    "'" . $bte->bouteille_id . "'," .
+                    "'" . $bte->millesime . "'," .
+                    "'" . $bte->quantite . "');";
     
                 $secondRes = $this->_db->query($requete);
     
