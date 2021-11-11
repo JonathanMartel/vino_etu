@@ -59,6 +59,10 @@ img {
     font-size: 14px;
 }
 
+.mat-mini-fab {
+   transform: scale(.9)
+}
+
 .mat-mini-fab.mat-accent{
     background-color: var(--couleur-primaire);
 }
@@ -95,10 +99,8 @@ img {
 
 }
 
-
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-  opacity: 0;
+.mat-input-element {
+    text-align: center;
 }
 
 

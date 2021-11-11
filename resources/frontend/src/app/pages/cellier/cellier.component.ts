@@ -21,6 +21,9 @@ export class CellierComponent implements OnInit {
     // Sujet (observable) permettant de "debouncer" l'envoi de la recherche à la base de données
     rechercheSujet: Subject<string> = new Subject<string>();
 
+    // Permet de savoir si l'utilisateur a effectué une recherche et ainsi présenté le bon template
+    estFiltre: boolean = false;
+
     bouteillesCellier: any = [];
     mode: MatDrawerMode = "over";
     texteRecherche = new FormControl('');
@@ -62,6 +65,8 @@ export class CellierComponent implements OnInit {
     }
 
     effectuerRechercheFiltree(): void {
+        this.estFiltre = true;
+
         this.servBouteilleDeVin
             .getBouteillesParCellier(
                 this.cellierId,
