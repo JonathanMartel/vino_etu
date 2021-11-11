@@ -185,6 +185,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 
+    /** Bouton valider **/
 
         btnValideActive.addEventListener("click",function(e){
             e.preventDefault();
@@ -203,15 +204,35 @@ document.addEventListener('DOMContentLoaded', function() {
                 commentaire.value = commentaire.value.trim()
             })
               .catch(error => console.log('Le fetch ne fonctionne toujours pas',error))
+         
+           
+            // let messagePrix = "Entrez de 0 à 100000";
+            // if (prix.value < 0 || prix.value > 6) {
+            //     btnValideActive.disabled = true;
+            //     document.getElementById("message").innerHTML = messagePrix;
+                  
+            // }else {
+                
+               
 
+                for (let i = 0; i < inputs.length; i++){
+                    inputs[i].readOnly = true;
+                    inputs[i].classList.remove("input-active");
+                    inputs[i].classList.add("input-fiche-cercle");
+                }
+
+                boutonModifier.classList.remove("non-active");
+                btnAnnuleActive.classList.add("non-active");
+                btnValideActive.classList.add("non-active");
+                btnEffacerActive.classList.add("non-active");
+           
+
+            });
+
+
+        btnEffacerActive.addEventListener("click",function(e){
+            e.preventDefault();
+            console.log('click effacer');
 
         });
-
-
-    btnEffacerActive.addEventListener("click",function(e){
-        e.preventDefault();
-
-    });
-
-  
 });
