@@ -20,7 +20,7 @@ export default class BouteilleCellier extends React.Component {
 					<p>Pays : {this.props.info.pays}</p>
 					<p>Millesime : {this.props.info.millesime}</p>
 					<p>Quantite : {this.props.info.quantite}</p>
-					{/* <p>{this.props.info.vino__type_id}</p>*/}
+					<p>Type de vin : {this.props.info.vino__type_id}</p>
 					{/* <a href={this.props.info.url_saq} >Voir sur le site de la SAQ</a> */}
 					
 					<Link to={"/bouteilles/" + this.props.info.id}>

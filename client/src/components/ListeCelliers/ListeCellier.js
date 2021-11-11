@@ -17,6 +17,13 @@ export default class ListeCellier extends React.Component {
 		this.fetchCelliers = this.fetchCelliers.bind(this);
 	}
 
+	componentDidMount() {
+		if (!this.props.estConnecte) {
+			return this.props.history.push("/");
+		}
+		this.fetchCelliers();
+	}
+
 	fetchCelliers(){
 		console.log('id_usager : ', this.props.id_usager);
 
@@ -39,23 +46,17 @@ export default class ListeCellier extends React.Component {
 				console.log("Celliers: ", this.state.items)
 			});
 	}
-
-	componentDidMount() {
-		this.fetchCelliers();
-	}
-
+	
 	render() {
-		if (this.props.esConnecte && this.props.id_usager > 0) { //usager connecté
-
-			const celliers = this.state.items
-								.map((item, index)=>{
-									return (
-										<Cellier info={item} key={index} />
-									);
-								})
-			
-			return (
-				<Box>
+		const celliers = this.state.items
+							.map((item, index)=>{
+								return (
+									<Cellier info={item} key={index} />
+								);
+							})
+		
+		return (
+			<Box>
 				<Breadcrumbs aria-label="breadcrumb" sx={{ display: 'flex', margin: '0 1.5rem' }}>
 					<Link underline="hover" color="inherit" href="/">
 						Celliers
@@ -69,13 +70,6 @@ export default class ListeCellier extends React.Component {
 					{celliers}
 				</section>
 			</Box>
-			);
-		} else {	//usager non connecté
-			return (
-				<div>
-					{this.props.history.push("/")}
-				</div>
-			);
-		} 
+		);
 	}
 }

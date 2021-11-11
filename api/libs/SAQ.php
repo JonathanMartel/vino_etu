@@ -110,8 +110,13 @@ class SAQ extends Modele
 	{
 
 		$info = new stdClass;
-		$info->img = $noeud->getElementsByTagName("img")->item(0)->getAttribute('src'); //TODO : Nettoyer le lien
-		;
+		$imgFirst = $noeud->getElementsByTagName("img")->item(0);
+		if (strpos($imgFirst->getAttribute('class'), "product-image-photo") !== false) {
+			$info->img = $imgFirst->getAttribute('src');
+		} else {
+			$info->img = $noeud->getElementsByTagName("img")->item(1)->getAttribute('src');
+		};
+		
 		$a_titre = $noeud->getElementsByTagName("a")->item(0);
 		$info->url = $a_titre->getAttribute('href');
 

@@ -1,4 +1,7 @@
-import React from "react";
+import React from 'react';
+import moment from 'moment';
+import fondEcran from '../../fondEcran.svg';
+import BouteilleSAQ from '../BouteilleSAQ/BouteilleSAQ';
 import './AjoutBouteilleCellier.css';
 import BouteilleSAQ from "../BouteilleSAQ/BouteilleSAQ";
 import { Box } from "@mui/system";
@@ -9,30 +12,27 @@ export default class AjoutBouteille extends React.Component {
 		super(props);
 		this.state = {
 			bouteillesSAQ: [],
-			recherche: "",
-			nomBouteilleSAQ: "",
-			prixBouteilleSAQ: "",
-			nom: "",
-			millesime: "",
-			quantite: "1",
-			date_achat: "",
-			prix: "",
-			garde: "",
-			commentaires: "",
-			usager_id: "1",
-			vino__type_id: "1",
-			id_cellier: "3"
-		}
+			recherche: '',
+			nomBouteilleSAQ: '',
+			prixBouteilleSAQ: '',
+			nom: '',
+			millesime: '',
+			quantite: '1',
+			date_achat: '',
+			prix: '',
+			garde: '',
+			commentaires: '',
+			usager_id: '1',
+			vino__type_id: '',
+			id_cellier: '3',
+			url_img: '',
+			url_saq: '',
+		};
 
         // Binder le contexte 'this' aux fonction
 		this.fetchBouteillesSAQ = this.fetchBouteillesSAQ.bind(this);
 		this.ajouterBouteilleCellier = this.ajouterBouteilleCellier.bind(this);
 		this.choixBouteille = this.choixBouteille.bind(this);
-
-	}
-
-	componentDidUpdate() {
-		console.log(this.state.nomBouteilleSAQ);
 	}
 
 	fetchBouteillesSAQ(event) {
@@ -41,30 +41,27 @@ export default class AjoutBouteille extends React.Component {
 			return;
 		}
 
-		console.log(event.target.value);
-		fetch("https://rmpdwebservices.ca/webservice/php/saq/" + event.target.value, {
+		fetch('https://rmpdwebservices.ca/webservice/php/saq/' + event.target.value, {
 			method: 'GET',
 			headers: new Headers({
-				"Content-Type": "application/json",
-				"authorization": "Basic " + btoa("vino:vino"),
-			}),
-
+				'Content-Type': 'application/json',
+				authorization: 'Basic ' + btoa('vino:vino')
+			})
 		})
-			.then(reponse => reponse.json())
+			.then((reponse) => reponse.json())
 			.then((donnees) => {
-				this.setState({ bouteillesSAQ: donnees.data })
+				this.setState({ bouteillesSAQ: donnees.data });
 
 			});
 	}
 
 	choixBouteille(info) {
-		console.log(info.nom);
-		this.setState({ nomBouteilleSAQ: info.nom, prixBouteilleSAQ: info.prix_saq, pays: info.pays });
-		this.setState({ bouteillesSAQ: [] });
+		this.setState({bouteillesSAQ: [], nomBouteilleSAQ: info.nom, prixBouteilleSAQ: info.prix_saq, pays: info.pays, type__type_id: info.type, url_img: info.url_img, url_saq: info.url_saq });
 	}
 
 	ajouterBouteilleCellier() {
 		const entete = new Headers();
+    
 		const nouvelleBouteille = {
 			prixBouteilleSAQ: this.state.prixBouteilleSAQ,
 			nom: this.state.nomBouteilleSAQ,
@@ -78,27 +75,25 @@ export default class AjoutBouteille extends React.Component {
 			usager_id: this.state.usager_id,
 			vino__type_id: this.state.vino__type_id,
 			id_cellier: this.state.id_cellier,
-			pays: this.state.pays
-		}
+			pays: this.state.pays,
+			url_img: this.state.url_img,
+			url_saq: this.state.url_saq,
+		};
 
-		entete.append("Content-Type", "application/json");
-		fetch("https://rmpdwebservices.ca/webservice/php/bouteilles", {
+		entete.append('Content-Type', 'application/json');
+		fetch('https://rmpdwebservices.ca/webservice/php/bouteilles', {
 			method: 'POST',
 			body: JSON.stringify(nouvelleBouteille),
 			headers: new Headers({
-				"Content-Type": "application/json",
-				"authorization": "Basic " + btoa("vino:vino"),
-			}),
+				'Content-Type': 'application/json',
+				authorization: 'Basic ' + btoa('vino:vino')
+			})
 		})
-			.then(reponse => reponse.json())
+			.then((reponse) => reponse.json())
 			.then(() => {
-				//this.setState({pays: })
-				console.log(nouvelleBouteille.pays);
-				this.props.history.push('/cellier/' + this.state.id_cellier)
+				this.props.history.push('/cellier/' + this.state.id_cellier);
 			});
-
 	}
-
 
 	render() {
 		console.log(this.state.bouteillesSAQ);
