@@ -12,9 +12,9 @@ import { MatConfirmDialogComponent } from '@components/mat-confirm-dialog/mat-co
 })
 export class BouteilleDeVinService {
 
-    private url:string = "http://127.0.0.1:8000/api";
+    // private url:string = "http://127.0.0.1:8000/api";
     // private url: string = "http://kalimotxo-vino.akira.dev/api";
-    // private url: string = new URL(window.location.href).origin + "/api";
+    private url: string = new URL(window.location.href).origin + "/api";
 
 
     constructor(private servAuth: AuthService, private http: HttpClient, private dialog: MatDialog) {

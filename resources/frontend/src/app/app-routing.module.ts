@@ -19,7 +19,7 @@ const routes: Routes = [
         component:CellierComponent
     },
     {path:"bouteilles", component:ListeBouteilleComponent},
-    {path:"liste-celliers", component:ListeCelliersComponent},
+    {path:"celliers", component:ListeCelliersComponent},
     {path:"ajout", component:AjoutBouteilleComponent},
     {path:"modifier-cellier/:id", component:ModifierCellierBouteilleComponent},
     {path:"supprimer/:id", component:ModifierCellierBouteilleComponent},

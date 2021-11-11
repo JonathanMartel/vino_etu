@@ -13,8 +13,8 @@ export class AuthService {
 
 
     //  private url: string = "http://127.0.0.1:8000/api";
-    private url: string = "http://kalimotxo-vino.akira.dev/api";
-    // private url: string = new URL(window.location.href).origin + "/api";
+    // private url: string = "http://kalimotxo-vino.akira.dev/api";
+    private url: string = new URL(window.location.href).origin + "/api";
 
     constructor(
         private http: HttpClient
@@ -36,16 +36,10 @@ export class AuthService {
     }
 
     connexion(data: any) {
-        // Générer le token csrf de Laravel en premier lieu
-        return this.http.get<any>(`${this.url}/csrf-cookie`)
-            .pipe(
-                switchMap((csrfResponse: any) => {
-                    return this.http.post<any>(
-                        this.url + '/connection',
-                        data
-                    );
-                })
-            )
+        return this.http.post<any>(
+            this.url + '/connection',
+            data
+        );
     }
 
     /**
