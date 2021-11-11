@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AccueilComponent } from './pages/accueil/accueil.component';
 import { CellierComponent } from '@pages/cellier/cellier.component';
 import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { EnteteComponent } from './components/entete/entete.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -33,6 +33,7 @@ import { MatConfirmDialogComponent } from './components/mat-confirm-dialog/mat-c
 import { MatSelectModule } from '@angular/material/select'
 import { ListeCelliersComponent } from './pages/liste-celliers/liste-celliers.component';
 import { AjoutCellierComponent } from './pages/ajout-cellier/ajout-cellier.component'
+import { TokenInterceptor } from './token.interceptor';
 
 @NgModule({
     declarations: [
@@ -75,6 +76,11 @@ import { AjoutCellierComponent } from './pages/ajout-cellier/ajout-cellier.compo
     providers: [
         BouteilleDeVinService,
         BouteilleResolverServiceService,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: TokenInterceptor,
+            multi: true,
+        }
     ],
     bootstrap: [AppComponent],
     entryComponents:[MatConfirmDialogComponent],
