@@ -46,7 +46,7 @@ export class ConnectionComponent implements OnInit {
           (data) => {
               this.servAuth.utilisateur = data.utilisateur;
               this.servAuth.token = data.token;
-              this.router.navigate(['/accueil']);
+              this.router.navigate(['/']);
               this.snackbar.open(`Salut, ${data.utilisateur.first_name} ! Heureux de vous revoir`, "Fermer", {duration: 3000, panelClass: 'notif'});
           },
           (error) => {

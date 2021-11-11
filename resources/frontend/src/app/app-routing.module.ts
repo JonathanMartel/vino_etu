@@ -12,8 +12,10 @@ import { BouteilleResolverServiceService } from '@services/bouteille-resolver-se
 import { ModifierCellierBouteilleComponent } from '@pages/modifier-cellier-bouteille/modifier-cellier-bouteille.component';
 
 const routes: Routes = [
-    {path:"", component:ConnectionComponent},
-    {path:"cellier", component:CellierComponent},
+    {
+        path: "",
+        component: AccueilComponent
+    },
     {
         path:"cellier/:id",
         component:CellierComponent
