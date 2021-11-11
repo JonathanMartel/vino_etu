@@ -8,10 +8,6 @@ import './Cellier.css';
 import { Box } from "@mui/system";
 
 export default class Cellier extends React.Component {
-	constructor(props) {
-		super(props);
-
-	}
 
 	componentDidMount() {
 		if (!this.props.estConnecte) {
