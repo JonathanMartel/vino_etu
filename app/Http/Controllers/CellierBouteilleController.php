@@ -88,12 +88,9 @@ class CellierBouteilleController extends Controller
         }
 
         $request->validate([
-           /*  'nom' => 'required|max:111', */
             'quantite' => 'integer|gte:0',
             'prix' => 'numeric|regex:/[0-9]+(\.[0-9][0-9]?)?/|gte:0|max:100000',
-            /* 'pays' => 'nullable|regex:^[A-ZÀÂÇÉÈÊËÎÏÔÛÙÜŸÑa-zàâçéèêëîïôûùüÿñ]+$^', */
-            /* 'type_id' => 'required|exists:types,id',
-            'format_id' => 'required|exists:formats,id', */
+          
         ]);
 
         /**

@@ -28,7 +28,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const idCellier = location.pathname.split('/')[2]
     const idBouteille = location.pathname.split('/')[3]
   
-  
+    const datepicker = document.querySelector('.datepicker');
+    
+    M.Datepicker.init(datepicker,
+        {  autoClose : true,
+            
+         });
 
     let btnActive = document.querySelector('#bouton-millesime');
     console.log(btnActive);
@@ -60,7 +65,9 @@ document.addEventListener('DOMContentLoaded', function() {
      notes.forEach((note) => {
          note.addEventListener("change", (e) => {
              const idBouteille = e.target.dataset.idBouteille;
-             const millesime = e.target.dataset.millesime;
+           
+             const millesime = document.querySelector('.millesime-item-selected').parentElement.dataset.jsBouton;
+             
              const idCellier = location.pathname.split("/")[2];
              const note = document.querySelector("[data-rating]").dataset.rating;
  
@@ -75,8 +82,13 @@ document.addEventListener('DOMContentLoaded', function() {
         boutonMillesime[i].addEventListener("click", function(e) {
         e.preventDefault();
         const millesime = boutonMillesime[i].dataset.jsBouton;
-     
+        
+        document.querySelectorAll('button').forEach(button => {
+            button.classList.remove('millesime-item-selected');
+        })
 
+        
+        boutonMillesime[i].querySelector('button').classList.add('millesime-item-selected');
         /* Fetch cellier_Bouteille */
 
         fetch(`/obtenirMillesime/${idCellier}/${idBouteille}/${millesime}`)
@@ -85,15 +97,33 @@ document.addEventListener('DOMContentLoaded', function() {
             return (response.json())
         })
         .then(response => {
-            infoForm.querySelector('#millesime').value=response[0].millesime;
+           
+            
+            if(value=response[0].millesime != 0){
+                infoForm.querySelector('#millesime').value=response[0].millesime;
+            }else {
+                infoForm.querySelector('#millesime').value = 'N/A';
+            }
              infoForm.querySelector('#quantite').value=response[0].quantite;
-             infoForm.querySelector('#note').value=response[0].note;
+             infoForm.querySelectorAll('[data-value]').forEach(etoile => {
+                 console.log(etoile.dataset.value)
+                 console.log(response[0].note)
+                if(etoile.dataset.value < response[0].note ){
+                    etoile.classList.add('gl-active')
+                }else if (etoile.dataset.value == response[0].note) {
+                    etoile.classList.add('gl-active', 'gl-selected');
+                }else {
+                    etoile.classList.remove('gl-active', 'gl-selected')
+                }
+             }
+
+             )
              infoForm.querySelector('#prix').value=response[0].prix;
              infoForm.querySelector('#commentaire').value=response[0].commentaire.trim();
              infoForm.querySelector('#date_achat').value=response[0].date_achat;
              infoForm.querySelector('#garde_jusqua').value=response[0].garde_jusqua;
 
-           console.log(response[0].millesime);
+         
         }).catch(error => console.log(error))
 
 
@@ -128,7 +158,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (btnEffacerActive.classList.contains("non-active")){
             btnEffacerActive.classList.remove("non-active");
         }
-
+  
+        datepicker.disabled = false;
     });
 
     /** Action bouton annuler, efface les champs modifié et retire les boutons annuler, valider et effacer. Réactive le bouton modifier **/
@@ -148,6 +179,8 @@ document.addEventListener('DOMContentLoaded', function() {
             inputs[i].classList.remove("input-active");
             inputs[i].classList.add("input-fiche-cercle");
             }
+
+            datepicker.disabled =  true;
     });
 
 
@@ -191,4 +224,6 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('click effacer');
 
     });
+
+  
 });

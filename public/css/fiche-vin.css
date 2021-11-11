@@ -30,7 +30,7 @@
 
 .millesime-item{
     display: flex;
-    width: 113px;
+    width: 106px;
     height: 36px; 
     background-color: #7A5958;
     font-size: 1.25rem;
@@ -41,9 +41,10 @@
     border-radius: 3px;
     text-decoration:none ;
     border: none;
+    cursor: pointer;
 }
 
- .millesime-item:hover{
+ .millesime-item-selected{
     background-color: #AC9678;
 } 
 
@@ -220,6 +221,10 @@ input:focus-visible{
     justify-content: flex-end;
   
    
+}
+
+.bouteilleSAQConteneur-fiche p{
+    padding: 0.64rem;
 }
 
 .info-fiche {

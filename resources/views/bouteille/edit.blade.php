@@ -83,38 +83,27 @@
             </div>
         </div>
     
-    
-        <input type="hidden" name="id" value="{{ $bouteille->id }}" id="id">
-        <input type="hidden" name="url_img" value="{{ $bouteille->url_img }}" id="url_img">
-    
-        <div class="col s12 btn-space">
-    
-            <a href="#<!-- route('cellierBouteille.show', $idCellier, $idBouteille) -->" class="btn waves-effect waves-light button btn-annuler" name="annuler">Annuler</a>
-    
-            <button class="btn waves-effect waves-light button btn-modifier" type="submit" name="submit">Modifier</button>
-    
-    
-    
-    
-    
-    
-    
-            <a class="btn waves-effect waves-light button btn-supprimer modal-trigger" href="#{{$bouteille->id}}"><i class="material-icons">delete</i></a>
-            <!-- Modal Structure -->
-            <div id="{{$bouteille->id}}" class="modal">
-                <div class="modal-content">
-                    <h4>Supprimer ce vin</h4>
-                    <p>Êtes-vous certain de vouloir le vin <span>{{ ucfirst($bouteille->nom) }}</span>? Tous les millesimes de ce vin dans le cellier seront supprimés aussi.</p>
-                </div>
-                <div class="modal-footer">
-                    <!-- <form action="// route('bouteille.destroy', $bouteille->id)//}" method="POST">
-                         changer // par }
-                        @method('DELETE')
-                        @csrf
-                        <button class="waves-effect waves-green btn-flat">Supprimer</button>
-                    </form> -->
-                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Annuler</a>
-                </div>
+    <div class="col s12 btn-space">
+        
+        <a href="{{route('ficheVin', ['idCellier'=>$idCellier,'idBouteille'=>$idBouteille])}}
+         " class="btn waves-effect waves-light button btn-annuler" name="annuler">Annuler</a>
+
+        
+
+        <a class="btn waves-effect waves-light button btn-modifier modal-trigger" href="#modal-modifier">Modifier</a>
+
+        <!-- Modal Structure pour modifier-->
+        <div id="modal-modifier" class="modal">
+            <div class="modal-content">
+                <h4>Modifier ce vin</h4>
+                <p>Êtes-vous certain de vouloir modifier le vin <span>{{ ucfirst($bouteille->nom) }}</span>? Les informations de ce vin seront modifiés dans les autres celliers aussi.</p>
+            </div>
+            <div class="modal-footer">
+                                                            
+                
+                    <button class="waves-effect waves-green btn-flat" type="submit" name="submit">Modifier</button>
+                
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Annuler</a>
             </div>
         </div>
     
@@ -127,7 +116,7 @@
 <div id="{{$bouteille->id}}" class="modal">
     <div class="modal-content">
         <h4>Supprimer ce vin</h4>
-        <p>Êtes-vous certain de vouloir le vin <span>{{ ucfirst($bouteille->nom) }}</span>? Tous les millesimes de ce vin dans le cellier seront supprimés aussi.</p>
+        <p>Êtes-vous certain de vouloir supprimer le vin <span>{{ ucfirst($bouteille->nom) }}</span>? Ce vin sera supprimé dans tous les celliers.</p>
     </div>
     <div class="modal-footer">
                                                     

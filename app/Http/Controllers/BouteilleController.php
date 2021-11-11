@@ -156,7 +156,10 @@ class BouteilleController extends Controller
 
 
         ]);
-
+        $bouteilleExistante = Bouteille::rechercheBouteilleExistante($request);
+        if($bouteilleExistante[0]) {
+            return back()->withInput()->with('erreur', "Bouteille existe déjà");
+        }
         /* si le user upload une image il faut supprimer celle qu'il avait mis précedement !!! */
 
     
