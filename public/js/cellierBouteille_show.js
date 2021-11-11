@@ -27,19 +27,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const btnEffacerActive = document.querySelector('[data-js-btnEffacer]')
     const idCellier = location.pathname.split('/')[2]
     const idBouteille = location.pathname.split('/')[3]
-    const elCommentaire = document.querySelector('#commentaire')
-    elCommentaire.value = elCommentaire.value.trim()
-  
+    
+    sessionStorage.setItem('idCellier', idCellier);
+    sessionStorage.setItem('idBouteille', idBouteille);
+
     const datepicker = document.querySelector('.datepicker');
     
     M.Datepicker.init(datepicker,
         {  autoClose : true,
+            format : 'yyyy-mm-dd'
             
          });
 
-    let btnActive = document.querySelector('#bouton-millesime');
-    console.log(btnActive);
-    // btnActive.addEventListener('click', () => btnActive.style.backgroundColor = 'blue')
 
     /**
      * Note
@@ -66,11 +65,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
      notes.forEach((note) => {
          note.addEventListener("change", (e) => {
-             const idBouteille = e.target.dataset.idBouteille;
+         
            
              const millesime = document.querySelector('.millesime-item-selected').parentElement.dataset.jsBouton;
              
-             const idCellier = location.pathname.split("/")[2];
+           
              const note = document.querySelector("[data-rating]").dataset.rating;
  
              fetch(
@@ -108,8 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
              infoForm.querySelector('#quantite').value=response[0].quantite;
              infoForm.querySelectorAll('[data-value]').forEach(etoile => {
-                 console.log(etoile.dataset.value)
-                 console.log(response[0].note)
+               
                 if(etoile.dataset.value < response[0].note ){
                     etoile.classList.add('gl-active')
                 }else if (etoile.dataset.value == response[0].note) {
@@ -121,7 +119,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
              )
              infoForm.querySelector('#prix').value=response[0].prix;
-             infoForm.querySelector('#commentaire').value=response[0].commentaire.trim();
+             infoForm.querySelector('#commentaire').value=response[0].commentaire;
              infoForm.querySelector('#date_achat').value=response[0].date_achat;
              infoForm.querySelector('#garde_jusqua').value=response[0].garde_jusqua;
 
@@ -141,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     boutonModifier.addEventListener("click", function(e) {
         e.preventDefault();
-        console.log('click bouton mod');
+
         boutonModifier.classList.add("non-active");
         for (let i = 0; i < inputs.length; i++){
                 inputs[i].readOnly = false;
@@ -168,14 +166,14 @@ document.addEventListener('DOMContentLoaded', function() {
    
     btnAnnuleActive.addEventListener("click",function(e){
         e.preventDefault();
-        console.log('click annuler');
+     
        
         boutonModifier.classList.remove("non-active");
         btnEffacerActive.classList.add("non-active");
         btnValideActive.classList.add("non-active");
         btnAnnuleActive.classList.add("non-active");
         infoForm.reset();
-        elCommentaire.value = elCommentaire.value.trim();
+      
 
         for (let i = 0; i < inputs.length; i++){
             inputs[i].readOnly = true;
@@ -190,32 +188,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
         btnValideActive.addEventListener("click",function(e){
             e.preventDefault();
-            console.log('click valider');
-             if(commentaire.value.trim()=="")
+            let annee = millesime.value;
+             
+            if(commentaire.value.trim()==""){
                 commentaire.value=" ";
-
-            fetch(`/modifierCellierBouteille/${idCellier}/${idBouteille}/${millesime.value}/${prix.value}/${quantite.value}/${date_achat.value}/${commentaire.value}/${garde_jusqua.value}`)
-            // console.log(idCellier);
-            // console.log(idBouteille);    
-            // console.log(commentaire.value);
-            //     console.log(prix.value);
-            //     console.log(millesime.value);
-            //     console.log(quantite.value);
-            //     console.log(garde_jusqua.value);
-            //     console.log(date_achat.value);
-
-            //  .then(response => {
-            //      return (response.json())
-            //  })
-             //.then(response => {
-            //     infoForm.querySelector('#quantite').value=response[0].quantite;
-            //     infoForm.querySelector('#prix').value=response[0].prix;
-            //     infoForm.querySelector('#commentaire').value=response[0].commentaire;
-            //     infoForm.querySelector('#date_achat').value=response[0].date_achat;
-            //     infoForm.querySelector('#garde_jusqua').value=response[0].garde_jusqua;
-    
-              // console.log(response);
+             }
             
+            if(isNaN(millesime.value)){
+                annee = 0;
+            }
+
+            fetch(`/modifierCellierBouteille/${idCellier}/${idBouteille}/${annee}/${prix.value}/${quantite.value}/${date_achat.value}/${commentaire.value}/${garde_jusqua.value}`)
+            .then(() => {
+                commentaire.value = commentaire.value.trim()
+            })
               .catch(error => console.log('Le fetch ne fonctionne toujours pas',error))
 
 
@@ -224,7 +210,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     btnEffacerActive.addEventListener("click",function(e){
         e.preventDefault();
-        console.log('click effacer');
 
     });
 

@@ -284,6 +284,15 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
 }
 
 
+.select-wrapper {
+    margin-right: 1em;
+}
+
+.select-wrapper .caret {
+    right: -25px;
+    z-index: 99;
+}
+
 /* entete pour le titre et icon */
 
 .entete-page {

@@ -90,7 +90,7 @@
 
         
 
-        <a class="btn waves-effect waves-light button btn-modifier modal-trigger" href="#modal-modifier">Modifier</a>
+        <a class="btn waves-effect waves-light button btn-modifier modal-trigger" href="#modal-modifier" disabled>Modifier</a>
 
         <!-- Modal Structure pour modifier-->
         <div id="modal-modifier" class="modal">
@@ -106,7 +106,7 @@
                 <a href="#!" class="modal-close waves-effect waves-green btn-flat">Annuler</a>
             </div>
         </div>
-    
+        <input type="hidden" name="url_img" value="{{$bouteille->url_img}}">
     </form>
 </div>
 

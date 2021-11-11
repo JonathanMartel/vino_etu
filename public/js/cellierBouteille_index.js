@@ -265,7 +265,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                                                 <img class="image" src="${bouteilles[key].url_img}" alt="Image ${bouteilles[key].nom}">
                                                                 <div class="info">
                                                                     <div>
-                                                                        <p>${bouteilles[key].pays}</p>
+                                                                        <p>${bouteilles[key].pays ?? 'N/A'}</p>
                                                                         <p>${bouteilles[key].type}</p>
                                                                     </div>                
                                                                     <p class="taille">${bouteilles[key].taille} cl</p>                 

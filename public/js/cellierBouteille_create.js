@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     M.Datepicker.init(datepicker,
         {  autoClose : true,
+            format : 'yyyy-mm-dd',
             defaultDate: new Date(date.getFullYear(), date.getMonth(), date.getDate()),
             setDefaultDate: true});
      

@@ -130,7 +130,7 @@
                         </div>
                         <div class="item-commentaire" >
                             <label for="date_achat">Date d'achat :</label>
-                            <input type="text" name="date_achat" disabled tabindex="-1" autocomplete="" class="datepicker" id="date_achat" data-js-input class="" value="{!! date('M d, Y', strtotime($cellierBouteille->date_achat)) !!}"/>
+                            <input type="text" name="date_achat" disabled tabindex="-1" autocomplete="off" class="datepicker" id="date_achat" data-js-input class="" value="{!! $cellierBouteille->date_achat !!}"/>
                         </div>
                     </div>
                     <div class="bouton">

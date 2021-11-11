@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const success = document.querySelector(".success");
 
     if(success) {
-        var toastHTML = '<span>Cette bouteille existe déjà dans votre cellier</span><button class="btn-flat toast-action">Fermer</button>';
+        var toastHTML = '<span>Cette bouteille existe déjà</span><button class="btn-flat toast-action">Fermer</button>';
         M.toast({html: toastHTML, displayLength : 5000})
 
         const message = document.querySelector('.toast-action')
@@ -21,5 +21,12 @@ document.addEventListener('DOMContentLoaded', function() {
             M.Toast.dismissAll();
         })
     }
+
+    const form = document.querySelector('.edit-vin');
+  
+    form.addEventListener('input', () => {
+        
+        form.querySelector('.btn-modifier').removeAttribute('disabled');
+    })
 
   });
