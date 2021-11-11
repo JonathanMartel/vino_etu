@@ -1,3 +1,6 @@
+.nouvelle_cellier_container > * {
+    width: 80% !important;
+}
 .nouvelle_cellier_title {
     color: white;
     font-weight: 700;

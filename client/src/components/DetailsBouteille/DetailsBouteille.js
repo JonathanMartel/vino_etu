@@ -164,14 +164,14 @@ export default class DetailsBouteille extends React.Component {
           value={this.state.note}
         />
 
-        <TextField
+        <TextField 
           label="Date ajout"
           variant="outlined"
           onChange={(evt) => this.setState({ date_ajout: evt.target.value })}
           value={this.state.date_ajout}
           type="date"
-        />
-
+        />        
+        
         <Button type="button" onClick={(e) => this.modifier()}>
           Modifier
         </Button>

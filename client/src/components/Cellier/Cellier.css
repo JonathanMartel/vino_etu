@@ -3,10 +3,7 @@
     flex-direction: column;
     justify-content: center;
     gap: 2rem;
-    width: 100%;
-}
-
-.cellier_item {
+    width: 100%;  
     margin: 0 1.5rem;
 }
 
@@ -19,8 +16,4 @@ a.cellier_container_parent {
     margin: 0;
     border-radius: .5em;
     background-color: rgba(0, 0, 0, 0.8);
-}
-
-.spantest {
-    /* color: #00FFFF; */
 }
