@@ -34,6 +34,7 @@ import { MatSelectModule } from '@angular/material/select'
 import { ListeCelliersComponent } from './pages/liste-celliers/liste-celliers.component';
 import { AjoutCellierComponent } from './pages/ajout-cellier/ajout-cellier.component'
 import { TokenInterceptor } from './token.interceptor';
+import { BouteillesCellierResolver } from '@services/bouteilles-cellier.resolver';
 
 @NgModule({
     declarations: [
@@ -76,6 +77,7 @@ import { TokenInterceptor } from './token.interceptor';
     providers: [
         BouteilleDeVinService,
         BouteilleResolverServiceService,
+        BouteillesCellierResolver,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: TokenInterceptor,
