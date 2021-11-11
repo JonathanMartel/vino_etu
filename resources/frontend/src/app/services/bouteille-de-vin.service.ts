@@ -129,6 +129,19 @@ export class BouteilleDeVinService {
         });
     }
 
+    ajoutCellier(data:any, id:any) {
+
+        const entete = {
+            'Authorization': `Bearer ${this.servAuth.utilisateurToken}`,
+        }
+
+        return this.http.post<any>(this.url + '/celliers', data, { headers: entete });
+
+
+      
+
+    }
+
 }
 
 
