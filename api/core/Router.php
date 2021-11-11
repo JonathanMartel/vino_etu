@@ -194,6 +194,10 @@ class Router
 				$cellierClassObj = new CellierController;
 				$cellierClassObj->deleteCellier();
 				break;
+			case 'listeachat':
+				$listeAchatClassObj = new ListeAchatController;
+				$listeAchatClassObj->deleteListeAchat();
+				break;
 			case 'saq':
 				echo json_encode('saq delete');
 				break;

@@ -76,7 +76,47 @@ class ListeAchatModele extends Modele
                 "'" . $body->millesime . "'," .
                 "'" . $body->quantite . "');";
 
-            $res = $this->_db->query($requete);
+            $secondRes = $this->_db->query($requete);
+
+            if ($secondRes) {
+                $res = $secondRes;
+            } else {
+                throw new Exception("Erreur de requête sur la base de donnée", 1);
+            }
+        } else {
+            throw new Exception("Erreur de requête sur la base de donnée", 1);
+        }
+
+        return $res;
+    }
+
+    /**
+     * Supprime une liste d'achat.
+     *
+     * @param Integer $id Id de la liste d'achat.
+     * 
+     * @throws Exception Erreur de requête sur la base de données.
+     * 
+     * @return Boolean $res Succès de la requête.
+     */
+    public function deleteListeAchat($id)
+    {
+        $res = false;
+
+        $requete = "DELETE FROM vino__liste_achat WHERE id = $id";
+
+        $firstRes = $this->_db->query($requete);
+
+        if ($firstRes) {
+            $requete = "DELETE FROM vino__liste_achat_vino WHERE liste_achat_id = $id";
+
+            $secondRes = $this->_db->query($requete);
+
+            if ($secondRes) {
+                $res = $secondRes;
+            } else {
+                throw new Exception("Erreur de requête sur la base de donnée", 1);
+            }
         } else {
             throw new Exception("Erreur de requête sur la base de donnée", 1);
         }

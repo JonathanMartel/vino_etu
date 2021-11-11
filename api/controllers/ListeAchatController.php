@@ -40,7 +40,12 @@ class ListeAchatController extends Router
 
         echo json_encode($this->retour);
     }
-
+    
+    /**
+     * Crée une liste d'achat.
+     *
+     * @return void
+     */
     public function createListeAchat() {
         if (count($this->urlParams) == 1) {
             $body = json_decode(file_get_contents('php://input'));
@@ -54,6 +59,30 @@ class ListeAchatController extends Router
 				$this->retour['erreur'] = $this->erreur(400);
 				unset($this->retour['data']);
 			}
+        } else {
+            $this->retour['erreur'] = $this->erreur(400);
+            unset($this->retour['data']);
+        }
+
+        echo json_encode($this->retour);
+    }
+    
+    /**
+     * Supprime une liste d'achat.
+     *
+     * @return void
+     */
+    public function deleteListeAchat() {
+        if (count($this->urlParams) == 2) {
+            if (ctype_digit($this->urlParams[1])) {
+                $listeAchatClassObj = new ListeAchatModele;
+                $resultat = $listeAchatClassObj->deleteListeAchat($this->urlParams[1]);
+
+                $this->retour['data'] = $resultat;
+            } else {
+                $this->retour['erreur'] = $this->erreur(400);
+                unset($this->retour['data']);
+            }
         } else {
             $this->retour['erreur'] = $this->erreur(400);
             unset($this->retour['data']);
