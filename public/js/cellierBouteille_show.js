@@ -27,6 +27,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const btnEffacerActive = document.querySelector('[data-js-btnEffacer]')
     const idCellier = location.pathname.split('/')[2]
     const idBouteille = location.pathname.split('/')[3]
+    const elCommentaire = document.querySelector('#commentaire')
+    elCommentaire.value = elCommentaire.value.trim()
   
     const datepicker = document.querySelector('.datepicker');
     
@@ -173,6 +175,7 @@ document.addEventListener('DOMContentLoaded', function() {
         btnValideActive.classList.add("non-active");
         btnAnnuleActive.classList.add("non-active");
         infoForm.reset();
+        elCommentaire.value = elCommentaire.value.trim();
 
         for (let i = 0; i < inputs.length; i++){
             inputs[i].readOnly = true;
