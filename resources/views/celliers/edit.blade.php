@@ -45,7 +45,7 @@
     </form>
 </div>
 <div class="btn-sup-container">
-    <a class="btn waves-effect waves-light button btn-supprimer modal-trigger" href="#{{$cellier->id}}"><i class="material-icons">delete</i></a>
+    <a class="btn waves-effect waves-light button btn-supprimer modal-trigger"><i class="material-icons">delete</i></a>
     <!-- Modal Structure -->
     <div id="{{$cellier->id}}" class="modal">
         <div class="modal-content">
