@@ -37,7 +37,6 @@ const routes: Routes = [
         path:"bouteilles-achetees/:id/modifier",
         component:ModifierCellierBouteilleComponent
     },
-    {path:"supprimer/:id", component:ModifierCellierBouteilleComponent},
     // {path:"ajouterNouvelleBouteille", component:AjoutBouteilleComponent},
     {path:"connection", component:ConnectionComponent},
     {path:"creerCompte", component:CreerCompteComponent},
