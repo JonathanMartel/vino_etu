@@ -24,7 +24,7 @@ export default class AjoutBouteille extends React.Component {
 			id_cellier: "3"
 		}
 
-		// Binding des fonctions
+        // Binder le contexte 'this' aux fonction
 		this.fetchBouteillesSAQ = this.fetchBouteillesSAQ.bind(this);
 		this.ajouterBouteilleCellier = this.ajouterBouteilleCellier.bind(this);
 		this.choixBouteille = this.choixBouteille.bind(this);

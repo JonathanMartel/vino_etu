@@ -47,9 +47,9 @@ export default class App extends React.Component {
 
 					<Route
 						exact
-						path="/modifieCompte"
+						path="/compte/modifier"
 						component={(props) => (
-							<ModifieCompte title="Modifier son compte" {...props} />
+							<ModifieCompte title="Modifier son compte" id_usager={this.state.id_usager} {...props} />
 						)}
 					/>
 
