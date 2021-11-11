@@ -33,11 +33,6 @@ import { MatConfirmDialogComponent } from './components/mat-confirm-dialog/mat-c
 import { MatSelectModule } from '@angular/material/select'
 import { ListeCelliersComponent } from './pages/liste-celliers/liste-celliers.component'
 
-
-
-
-
-
 @NgModule({
     declarations: [
         AppComponent,
