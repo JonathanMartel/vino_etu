@@ -177,6 +177,7 @@ class CellierBouteilleController extends Controller
      */
     public function show($idCellier, $idBouteille)
     {
+        
         $cellier = Cellier::find($idCellier);
         $bouteille = Bouteille::getDataBouteilleByID($idBouteille);
         $cellierBouteille = CellierBouteille::obtenirListeBouteilleCellier($idCellier);

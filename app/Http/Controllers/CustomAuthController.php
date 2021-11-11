@@ -174,7 +174,7 @@ class CustomAuthController extends Controller
           'date_naissance' => $request->date_naissance,
           'password'=> $oldPassword
         ]);
-        return redirect('dashboard');
+        return redirect('dashboard')->withInput()->with("modifieInfo", "infomation modifiée");
       }
 
       return redirect('/user/'.$id.'/edit')->withSuccess('Le mot de passe n\'est pas valides!');
@@ -205,7 +205,7 @@ class CustomAuthController extends Controller
         $user->update([
           'password'=> $nouveau_mot_de_passe
         ]);
-        return redirect('dashboard');
+        return redirect('dashboard')->withInput()->with("modifiePassword", "password modifiée");
         
       }
 

@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+<script src="{{asset('js/cellier_index.js')}}"></script>
+
 
 <div class="flex-box">
   <div class="row"> 
@@ -51,7 +53,22 @@
             
               <div class="input-field col s12 flex-row">  
                 <a href="/dashboard" class="btn waves-effect waves-light button btn-annuler"  name="annuler">Annuler</a>
-                <button type="submit" class="btn waves-effect waves-light button btn-modifier">Modifier</button>
+                <a class="btn waves-effect waves-light button btn-modifier modal-trigger" href="#modal-modifier">Modifier</a>
+
+                <!-- Modal Structure pour modifier-->
+                <div id="modal-modifier" class="modal">
+                <div class="modal-content">
+                    <h4>Modifier les informations personnelles</h4>
+                    <p>Êtes-vous certain de vouloir modifier les informations personnelles de <span>{{ ucfirst($nom) }}</span>? </p>
+                </div>
+                <div class="modal-footer">
+                    
+                  <button type="submit" class="modal-close waves-effect waves-green btn-flat">Modifier</button>
+                  <a href="#!" class="modal-close waves-effect waves-green btn-flat">Annuler</a>
+                </div>
+        </div>
+
+
               </div>
               @if(session('success'))
                 <div class="text-center p-t-12">

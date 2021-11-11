@@ -65,6 +65,28 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+     /**
+     * Message Dialogue si une bouteille a été supprimé
+     */
+
+      const deleteBouteille = document.querySelector(".deleteBouteille");
+
+      if (deleteBouteille) {
+          var toastHTML =
+              '<span>Une bouteille a été supprimé</span><button class="btn-flat toast-action">Fermer</button>';
+          M.toast({ html: toastHTML, displayLength: 5000 });
+  
+          const message = document.querySelector(".toast-action");
+  
+          message.addEventListener("click", () => {
+              M.Toast.dismissAll();
+          });
+      }
+
+
+
+
+
     /**
      * Note
      */

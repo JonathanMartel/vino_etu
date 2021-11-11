@@ -1,6 +1,9 @@
-
 @extends('layouts.app')
 @section('content')
+
+@if(Session::get('modifieBouteille'))
+<span class="modifieBouteille"></span>
+@endif
 
 <header>
     <div class="cellier">
@@ -50,7 +53,7 @@
                         </div>
                         @endif
                 </div>
-                @if(!$bouteille->url_saq)
+                @if(!$bouteille->url_saq || Auth::user()->admin)
                 <a class="bouteilleSAQConteneur-fiche" href="{{ route('bouteilleEdit', ['bouteille' =>$bouteille->id, 'idCellier' => $cellier->id])}}"><i class="material-icons-fiche">edit</i></a>
                 @endif
                
