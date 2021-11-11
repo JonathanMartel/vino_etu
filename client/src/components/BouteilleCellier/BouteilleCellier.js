@@ -13,26 +13,11 @@ export default class BouteilleCellier extends React.Component {
 			imgSaq: this.props.info.url_img,
 			drapeau: ''
 		};
-
-		this.drapeauPays = this.drapeauPays.bind(this);
 	}
 	componentDidMount() {
-		this.drapeauPays();
+		
 	}
 
-	drapeauPays() {
-		const drapeauPays = listePays
-			.filter((data) => {
-				if (this.props.info.pays == null) return data;
-				else if (data.name.toLowerCase().includes(this.props.info.pays.toLowerCase())) {
-					return data;
-				}
-			})
-			.map((data) => {
-				let flag = 'https://flagcdn.com/' + data.alpha2 + '.svg';
-				this.props.setDrapeau(flag);
-			});
-	}
 
 	render() {
 		return (

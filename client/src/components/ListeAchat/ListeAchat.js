@@ -1,8 +1,9 @@
 import React from 'react';
 import './ListeAchat.css';
-// import { DataGrid } from '@mui/x-data-grid';
+
 import Button from '@mui/material/Button';
 import { Box } from "@mui/system";
+import { DataGrid } from '@mui/x-data-grid/index-cjs';
 
 export default class ListeAchat extends React.Component {
     constructor(props) {
@@ -48,12 +49,12 @@ export default class ListeAchat extends React.Component {
 
     fetchListeAchat() {
         fetch('https://rmpdwebservices.ca/webservice/php/celliers/' + this.props.id_usager + '/bouteilles', {
-                method: 'GET',
-                headers: new Headers({
-                    'Content-Type': 'application/json',
-                    authorization: 'Basic ' + btoa('vino:vino')
-                })
+            method: 'GET',
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                authorization: 'Basic ' + btoa('vino:vino')
             })
+        })
             .then((reponse) => reponse.json())
             .then((donnees) => {
                 this.setState({ items: donnees.data });
@@ -64,12 +65,12 @@ export default class ListeAchat extends React.Component {
     fetchBouteilles() {
         //Ici on doit mettre le nouveau fetch pour avoir la liste de vinos de tous nos celliers avec la quantite, pour savoir sin on doit acheter
         fetch('https://rmpdwebservices.ca/webservice/php/celliers/' + this.props.id_usager, {
-                method: 'GET',
-                headers: new Headers({
-                    'Content-Type': 'application/json',
-                    authorization: 'Basic ' + btoa('vino:vino')
-                })
+            method: 'GET',
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                authorization: 'Basic ' + btoa('vino:vino')
             })
+        })
             .then((reponse) => reponse.json())
             .then((donnees) => {
                 this.setState({ items: donnees.data });
@@ -94,37 +95,22 @@ export default class ListeAchat extends React.Component {
 
         console.log("columns: ", columns);
 
-        return ( <
-            Box className = "liste_achat_container"
-            sx = {
-                {
-                    display: "flex",
-                    justfyContent: "center",
-                    alignItems: "center",
-                    width: "85vw",
-                    flexDirection: "column",
-                    borderRadius: "1rem",
-                    margin: "0 auto",
-                    marginTop: "20vh",
-                    color: "white",
-                }
-            } >
+        return (
+            <Box className="liste_achat_container" sx={{
+                display: "flex", justfyContent: "center", alignItems: "center",
+                width: "85vw", flexDirection: "column", borderRadius: "1rem",
+                margin: "0 auto", marginTop: "20vh", color: "white",
+            }} >
 
-            <
-            span > Liste d 'achat</span>
+                <span>Liste d'achat</span>
 
-            {
-                /*<div className="liste_achat_rows"  style={{ height: 400, width: '100%' }}>
-                                    <DataGrid sx={{ color: "white !important", }} rows={this.state.items} columns={columns}
-                                        pageSize={5} rowsPerPageOptions={[5]} checkboxSelection
-                                    />
-                            </div>*/
-            } <
-            Button className = "button"
-            type = "button"
-            onClick = {
-                (e) => this.creerListeAchat() } > Créer Liste < /Button> <
-            /Box>
+                <div className="liste_achat_rows" style={{ height: 400, width: '100%' }}>
+                    <DataGrid sx={{ color: "white !important", }} rows={this.state.items} columns={columns}
+                        pageSize={5} rowsPerPageOptions={[5]} checkboxSelection
+                    />
+                </div>
+                <Button className="button" type="button" onClick={(e) => this.creerListeAchat()}> Créer Liste </Button>
+            </Box>
         );
     }
 }

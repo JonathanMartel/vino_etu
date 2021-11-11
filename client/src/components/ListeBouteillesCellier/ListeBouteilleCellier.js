@@ -41,7 +41,6 @@ export default class ListeBouteilleCellier extends React.Component {
 		this.ajouterAction = this.ajouterAction.bind(this);
 		this.retirerAction = this.retirerAction.bind(this);
 		this.sortBouteilles = this.sortBouteilles.bind(this);
-		this.setDrapeau = this.setDrapeau.bind(this);
 	}
 
 	componentDidMount() {
