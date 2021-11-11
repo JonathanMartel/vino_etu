@@ -114,6 +114,7 @@
                                     <label for="prix">Prix d'achat</label>
                                     <input type="number" name="prix" readonly="readonly" id="prix" data-js-input class="input-fiche-cercle" value="{!! $cellierBouteille->prix !!}"/>
                                 </div>
+                                <p id="message"></p>
                                 <div class="form-modifier-item" >
                                     <label for="quantite">Qte</label>
                                     <input type="number" name="quantite" readonly="readonly" id="quantite" data-js-input class="input-fiche-cercle" value="{!! $cellierBouteille->quantite !!}"/>
@@ -136,13 +137,17 @@
                             <input type="text" name="date_achat" disabled tabindex="-1" autocomplete="" class="datepicker" id="date_achat" data-js-input class="" value="{!! date('M d, Y', strtotime($cellierBouteille->date_achat)) !!}"/>
                         </div>
                     </div>
-                    <div class="bouton">
+
+                    
+                    <!--Validation non fonctionnelle, à terminer pour le prochain sprint -->
+
+                    <!-- <div class="bouton">
                         <button class="bouton-fiche valider"  data-js-modifier>Modifier</button>
 
                         <button class="bouton-fiche non-active" data-js-btnAnnuler>Annuler</button> 
-                        <button class="bouton-fiche valider non-active"  data-js-btnValider >Valider</button>
+                        <button   class="bouton-fiche valider non-active"  data-js-btnValider >Valider</button>
                         <button class="bouton-fiche effacer non-active" data-js-btnEffacer >Effacer</button>
-                    </div>
+                    </div> -->
                 </form>
             </div>
         </section>
