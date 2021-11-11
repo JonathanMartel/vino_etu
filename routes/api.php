@@ -9,6 +9,7 @@ use App\Http\Controllers\PaysController;
 use App\Http\Controllers\UnionsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CustomAuthController;
+use App\Models\Cellier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -54,13 +55,17 @@ Route::post('creerCompte', [CustomAuthController::class, "creerCompte"]);
 // Connexion
 Route::post('connection', [CustomAuthController::class, "connection"]);
 
-// Afficher les bouteilles d'un cellier
-Route::get('celliers/{cellierId}/bouteilles', [CellierController::class, "obtenirBouteilles"]);
-
 // Routes protégées
 Route::group(['middleware' => ["auth:sanctum"]], function () {
+
+    // Afficher les bouteilles d'un cellier
+    Route::get('celliers/{cellierId}/bouteilles', [CellierController::class, "obtenirBouteilles"]);
+
     // Récupérer la liste des celliers pour un utilisateur donné
     Route::get('celliers', [CellierController::class, "afficherCelliersParUtilisateur"]);
+
+    // Ajout d'un nouveau cellier
+    Route::post('celliers', [CellierController::class, "store"]);
 
     // Ajout d'une bouteille à un cellier
     Route::post('celliers/{cellier}/bouteilles', [CellierBouteilleAcheteeController::class, "store"]);

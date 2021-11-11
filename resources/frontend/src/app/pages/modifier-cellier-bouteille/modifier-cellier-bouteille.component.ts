@@ -79,7 +79,7 @@ export class ModifierCellierBouteilleComponent implements OnInit {
 
         this.servBouteilleDeVin.modifierBouteilleCellier(this.bouteilleId, nouvellesDonnes).subscribe(() => {
             this.openSnackBar('Vous avez modifer la bouteille avec succès', 'Fermer');
-            this.router.navigate(['/cellier']);
+            this.router.navigate(['/celliers']);
         });
 
        // console.log(nouvellesDonnes);

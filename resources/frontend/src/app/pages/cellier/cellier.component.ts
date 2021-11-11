@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { MatDrawerMode } from '@angular/material/sidenav';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '@services/auth.service';
 
 @Component({
     selector: 'app-cellier',
@@ -28,6 +29,7 @@ export class CellierComponent implements OnInit {
     constructor(
         private servBouteilleDeVin: BouteilleDeVinService,
         private actRoute: ActivatedRoute,
+        private authService: AuthService,
     ) {
 
     }
@@ -82,7 +84,7 @@ export class CellierComponent implements OnInit {
      *
      */
     chargerBouteilles() {
-        this.servBouteilleDeVin.getBouteillesParCellier().subscribe(cellier => {
+        this.servBouteilleDeVin.getBouteillesParCellier(this.cellierId).subscribe(cellier => {
             this.bouteillesCellier = this.bouteillesCellierInitiales = cellier.data
         });
     }

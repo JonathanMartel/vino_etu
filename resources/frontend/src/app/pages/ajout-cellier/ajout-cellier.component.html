@@ -1,0 +1,27 @@
+<div>
+    <form [formGroup]="ajoutCellier" (ngSubmit)=postCellier(ajoutCellier.value)>
+        <div class="formulaire-contenu">
+            <mat-form-field appearance="fill" class="input-case">
+                <mat-label for="nom" class="required">Nom</mat-label>
+                <input matInput type="text" id="nom" formControlName="nom" class="step__input">
+                <mat-error *ngIf="erreur.nom.touched && erreur.nom.invalid" class="alert alert-danger">
+                    <div *ngIf="erreur.nom.errors?.required">Ce champ est obligatoire</div>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="input-case">
+                <mat-label for="description">Description</mat-label>
+                <input matInput type="text" id="description" formControlName="description" class="step__input">
+                <mat-error *ngIf="erreur.description.touched && erreur.description.invalid" class="alert alert-danger">
+                    <div *ngIf="erreur.description.errors?.required">Ce champ est obligatoire</div>
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <small>( * ) Champ obligatoire</small>
+
+        <mat-dialog-actions>
+            <button type="submit" mat-raised-button>Ajouter un cellier</button>
+        </mat-dialog-actions>
+
+    </form>
+</div>
