@@ -48,7 +48,6 @@ class CustomAuthController extends Controller {
         $this->validate($request, [
             'first_name' => 'required|max:50|min:2',
             'last_name'  => 'required|max:50|min:2',
-            'city'       => 'required|max:50|min:2',
             'dob'        => 'required|date:Y-m-d',
             'email'      => 'required|email|unique:users',
             'password'   => 'required',
@@ -57,7 +56,6 @@ class CustomAuthController extends Controller {
         $utilisateur = User::create([
             'first_name' => $request->first_name,
             'last_name'  => $request->last_name,
-            'city'       => $request->city,
             'dob'        => $request->dob,
             'email'      => $request->email,
             'password'   => Hash::make($request->password),

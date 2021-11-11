@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { AjoutCellierComponent } from '@pages/ajout-cellier/ajout-cellier.component';
 import { AuthService } from '@services/auth.service';
 import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 
@@ -11,7 +13,7 @@ export class ListeCelliersComponent implements OnInit {
 
   listeCelliers!: any[];
 
-  constructor(private servBouteilleDeVin: BouteilleDeVinService, private authService: AuthService) { }
+  constructor(private servBouteilleDeVin: BouteilleDeVinService, private authService: AuthService,  public formAjout: MatDialog,) { }
 
   ngOnInit(): void {
 
@@ -22,5 +24,13 @@ export class ListeCelliersComponent implements OnInit {
             this.listeCelliers = data;
         })
   }
+
+  formulaireAjout(data: any): void {
+    this.formAjout.open(AjoutCellierComponent, {
+        data
+    });
+}
+
+  
 
 }
