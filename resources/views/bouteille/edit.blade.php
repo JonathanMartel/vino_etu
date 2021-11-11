@@ -92,10 +92,10 @@
 
         
 
-        <a class="btn waves-effect waves-light button btn-modifier modal-trigger" href="#{{$bouteille->id}}">Modifier</a>
+        <a class="btn waves-effect waves-light button btn-modifier modal-trigger" href="#modal-modifier">Modifier</a>
 
         <!-- Modal Structure pour modifier-->
-        <div id="{{$bouteille->id}}" class="modal">
+        <div id="modal-modifier" class="modal">
             <div class="modal-content">
                 <h4>Modifier ce vin</h4>
                 <p>Êtes-vous certain de vouloir le vin <span>{{ ucfirst($bouteille->nom) }}</span>? Tous les millesimes de ce vin dans le cellier seront modifiés aussi.</p>
@@ -108,9 +108,6 @@
                 <a href="#!" class="modal-close waves-effect waves-green btn-flat">Annuler</a>
             </div>
         </div>
-
-
-
 
 
         <a class="btn waves-effect waves-light button btn-supprimer modal-trigger" href="#{{$bouteille->id}}"><i class="material-icons">delete</i></a>
