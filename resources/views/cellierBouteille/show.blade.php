@@ -1,7 +1,9 @@
 @extends('layouts.app')
 @section('content')
 
-
+@if(Session::get('modifieBouteille'))
+<span class="modifieBouteille"></span>
+@endif
 
 <header>
     <div class="cellier">

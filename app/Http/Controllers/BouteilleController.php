@@ -158,6 +158,7 @@ class BouteilleController extends Controller
         ]);
         $bouteilleExistante = Bouteille::rechercheBouteilleExistante($request);
         if($bouteilleExistante[0]) {
+        
             return back()->withInput()->with('erreur', "Bouteille existe déjà");
         }
         /* si le user upload une image il faut supprimer celle qu'il avait mis précedement !!! */
@@ -177,7 +178,7 @@ class BouteilleController extends Controller
         }
          $bouteille->save();
 
-        return redirect(URL::to('') . '/cellier/'. session('idCellier') . '/'. $bouteille->id);
+        return redirect(URL::to('') . '/cellier/'. session('idCellier') . '/'. $bouteille->id)->withInput()->with("modifieBouteille", "une bouteille modifiée");
     }
 
     /**
@@ -190,6 +191,6 @@ class BouteilleController extends Controller
     {
         $bouteille->delete();
 
-        return redirect('/cellier/'.session('idCellier'))->withInput()->with("deleteBouteille", "une bouteille supprimé");
+        return redirect('/cellier/'.session('idCellier'))->withInput()->with("deleteBouteille", "une bouteille supprimée");
     }
 }
