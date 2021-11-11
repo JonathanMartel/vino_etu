@@ -48,49 +48,31 @@ export class BouteilleDeVinService {
 
     ajoutBouteilleCellier(cellierId: number = 1, bouteilleAchetee: any) {
 
-        const entete = {
-            'Authorization': `Bearer ${this.servAuth.utilisateurToken}`,
-        }
-
-        return this.http.post<any>(this.url + '/celliers/' + cellierId + '/bouteilles', bouteilleAchetee, { headers: entete });
+        return this.http.post<any>(this.url + '/celliers/' + cellierId + '/bouteilles', bouteilleAchetee);
 
     }
 
     modifierInventaireCellierBouteille(bouteille_id: any, nouvelInventaire: any) {
 
-        const entete = {
-            'Authorization': `Bearer ${this.servAuth.utilisateurToken}`,
-        }
-
         let body = {
             'inventaire': nouvelInventaire,
         }
 
-        return this.http.put<any>(this.url + '/celliers/modifier-inventaire/' + bouteille_id, body, { headers: entete });
+        return this.http.put<any>(this.url + '/celliers/modifier-inventaire/' + bouteille_id, body);
     }
 
 
     modifierBouteilleCellier(bouteilleAchetee_id: any, data: any) {
 
-        const entete = {
-            'Authorization': `Bearer ${this.servAuth.utilisateurToken}`,
-        }
-        return this.http.put<any>(this.url + '/bouteilles-achetees/' + bouteilleAchetee_id, data, { headers: entete })
+        return this.http.put<any>(this.url + '/bouteilles-achetees/' + bouteilleAchetee_id, data)
 
     }
 
     supprimerBouteilleCellier(bouteilleAchetee_id: any) {
 
-        const entete = {
-            'Authorization': `Bearer ${this.servAuth.utilisateurToken}`,
-        }
-
         console.log(bouteilleAchetee_id);
         return this.http.delete<any>(
-            this.url + '/supprimer/' + bouteilleAchetee_id,
-            {
-                headers: entete
-            })
+            this.url + '/supprimer/' + bouteilleAchetee_id)
 
     }
 
@@ -103,9 +85,6 @@ export class BouteilleDeVinService {
      */
     getListeCelliersParUtilisateur(userId: number): any {
         const options = {
-            headers: {
-                'Authorization': `Bearer ${this.servAuth.utilisateurToken}`,
-            },
             params: {
                 userId: userId
             }
@@ -129,16 +108,9 @@ export class BouteilleDeVinService {
         });
     }
 
-    ajoutCellier(data:any, id:any) {
+    ajoutCellier(data: any, id: any) {
 
-        const entete = {
-            'Authorization': `Bearer ${this.servAuth.utilisateurToken}`,
-        }
-
-        return this.http.post<any>(this.url + '/celliers', data, { headers: entete });
-
-
-      
+        return this.http.post<any>(this.url + '/celliers', data);
 
     }
 

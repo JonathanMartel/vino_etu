@@ -61,7 +61,7 @@ export class AuthService {
      *
      */
 
-    get utilisateurToken(): string | null {
+    getToken(): string | null {
         return this._utilisateurToken;
     }
 
@@ -92,7 +92,7 @@ export class AuthService {
      */
     deconnexion(): any {
         const entete = {
-            'Authorization': `Bearer ${this.utilisateurToken}`,
+            'Authorization': `Bearer ${this.getToken()}`,
         }
         return this.http.post<any>(
             this.url + '/deconnexion',
