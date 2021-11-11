@@ -21,7 +21,7 @@ export class BouteilleDeVinService {
         console.log(this.url);
     }
 
-    getBouteillesParCellier(cellierId = 1, filtres = {}) {
+    getBouteillesParCellier(cellierId: number, filtres = {}) {
         return this.http.get<any>(
             this.url + '/celliers/' + cellierId + '/bouteilles',
             {
@@ -46,7 +46,7 @@ export class BouteilleDeVinService {
         return this.http.get<any>(this.url + '/bouteilles-achetees/' + id_bouteille);
     }
 
-    ajoutBouteilleCellier(cellierId: number = 1, bouteilleAchetee: any) {
+    ajoutBouteilleCellier(cellierId: number, bouteilleAchetee: any) {
 
         return this.http.post<any>(this.url + '/celliers/' + cellierId + '/bouteilles', bouteilleAchetee);
 
@@ -108,6 +108,12 @@ export class BouteilleDeVinService {
         });
     }
 
+    /**
+     *
+     * @param data
+     * @param id
+     * @returns
+     */
     ajoutCellier(data: any, id: any) {
 
         return this.http.post<any>(this.url + '/celliers', data);

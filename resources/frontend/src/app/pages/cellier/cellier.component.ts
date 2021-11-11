@@ -53,7 +53,7 @@ export class CellierComponent implements OnInit {
 
         if (this.rechercheSujet.observers.length === 0) {
             this.rechercheSujet
-                .pipe(debounceTime(700), distinctUntilChanged())
+                .pipe(debounceTime(400), distinctUntilChanged())
                 .subscribe(recherche => {
                     if (this.texteRecherche.value.length >= 3) {
                         this.effectuerRechercheFiltree();
@@ -87,12 +87,13 @@ export class CellierComponent implements OnInit {
      *
      */
     chargerBouteilles() {
-        this.servBouteilleDeVin.getBouteillesParCellier().subscribe(cellier => {
-            this.bouteillesCellier = this.bouteillesCellierInitiales = cellier.data
-        });
+        this.servBouteilleDeVin.getBouteillesParCellier(this.cellierId)
+            .subscribe(cellier => {
+                this.bouteillesCellier = this.bouteillesCellierInitiales = cellier.data
+            });
     }
 
-    cellierContientBouteille(){
-         return  this.bouteillesCellier.length > 0;
+    cellierContientBouteille() {
+        return this.bouteillesCellier.length > 0;
     }
 }

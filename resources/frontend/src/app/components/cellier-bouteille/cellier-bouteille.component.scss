@@ -60,7 +60,7 @@ img {
 }
 
 .mat-mini-fab {
-   transform: scale(.9)
+   transform: scale()
 }
 
 .mat-mini-fab.mat-accent{
@@ -95,8 +95,12 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
+}
 
+.boutons-inventaire > div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .mat-input-element {
