@@ -79,7 +79,7 @@
 /* Formulaire d'ajout */
 
 .form-ajout {
-    padding: 1rem;
+    padding: 0.64rem;
     border-radius: 5px;
     flex-grow: 1;
     border: none;
