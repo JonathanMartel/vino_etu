@@ -81,25 +81,6 @@ class CustomAuthController extends Controller {
         return response()->json($response, 201);
     }
 
-
-    /**
-     * Deconnexion
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function logout(Request $request) {
-        auth()->user()->tokens()->delete();
-
-        $response = [
-            'user' => auth()->user(),
-            'status' => true,
-            'message' => 'Logout reussit',
-        ];
-
-        return response($response, 201);
-    }
-
-
     /**
      * Connection
      *
@@ -135,6 +116,9 @@ class CustomAuthController extends Controller {
 
     public function deconnexion(Request $request) {
         auth()->user()->tokens()->delete();
+
+        // Rapport journalier 
+        //$request->currentAccessToken()->delete();
 
         $response = [
             'status' => true,

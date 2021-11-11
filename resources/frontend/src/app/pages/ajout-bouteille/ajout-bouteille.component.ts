@@ -51,7 +51,7 @@ export class AjoutBouteilleComponent implements OnInit {
     openSnackBar(message: any, action: any) {
         this.snackBar.open(message, action, {
             duration: 3000,
-            panelClass: 'notif'
+            panelClass: 'notif-success'
         });
     }
 

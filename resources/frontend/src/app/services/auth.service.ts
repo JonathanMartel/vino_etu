@@ -25,7 +25,6 @@ export class AuthService {
         // })
         // .subscribe(
         //     data => {
-        //         //console.log(data);
         //         this.utilisateur = data.utilisateur;
         //         this.token = data.token;
         //         return data;
@@ -101,7 +100,6 @@ export class AuthService {
         const entete = {
             'Authorization': `Bearer ${this.utilisateurToken}`,
         }
-
         return this.http.post<any>(
             this.url + '/deconnexion',
             null, // Pas de body à envoyer
@@ -131,6 +129,8 @@ export class AuthService {
     }
 
     getIdUtilisateurAuthentifie(): number {
+
+        console.log(this._utilisateurAuthentifie);
         return this._utilisateurAuthentifie.id ?? false;
     }
 }
