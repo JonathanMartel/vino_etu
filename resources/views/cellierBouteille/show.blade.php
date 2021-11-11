@@ -86,7 +86,11 @@
                     @method('PUT')
                     @csrf
                     <div class="millesime-info-debut">
-                        <img class="image-fiche" src="{{ $bouteille->url_img}}" alt="">
+                        @if (isset($bouteille->url_img))
+                            <img class="image-fiche" src="{{ $bouteille->url_img}}" alt="">
+                        @else
+                            <img class="image-fiche" src="{{asset('assets/icon/bouteille-fiche-vin.svg')}}" alt="">
+                        @endif
                         <div>
                             <div class="select-form">
                                 <select class="star-rating"  name="note" data-id-bouteille="{{$cellierBouteille->bouteille_id}}" data-millesime="{{$cellierBouteille->millesime}}">
@@ -115,11 +119,7 @@
                         </div>
                     </div>
                     <div class="millesime-info-fin">
-                    <!-- <div class="input-field col s12">
-                        <textarea id="commentaire" name="commentaire" readonly="readonly  class="materialize-textarea">{{ old('commentaire') }}</textarea>
-                        <label for="commentaire">Commentaire</label>
-                        <span class="helper-text" data-error="Format invalid"></span>
-                    </div> -->
+              
                         <div class="item-commentaire" >
                             <label for="commentaire">Commentaire</label>
                             <input type="textarea" name="commentaire" readonly="readonly" id="commentaire" data-js-input class="textarea" placeholder="Aucun commentaire" value="{{ $cellierBouteille->commentaire }}"/>
@@ -146,29 +146,6 @@
 
 </main>
 
-<!-- <div>
-    <ul>
-        <li>Nom ://  $bouteille->nom //</li>
-        <li>Description :// $bouteille->description //</li>
-        <li>Pays :// $bouteille->pays //</li>
-        <li>Prix Saq ://  $bouteille->prix_saq //</li>
-        <li>Type : //  $bouteille->type //</li>
-        <li>Format : //  $bouteille->format //</li>
-        <li>Lien SAQ : //  $bouteille->url_saq //</li>
-        <li>image : //  $bouteille->url_img //</li>
-    </ul>
-</div>
-<div>
-    <ul>
-        <li>Quantié : // $cellierBouteille->quantite //</li>
-        <li>Note : // $cellierBouteille->note //</li>
-        <li>Millesime : // $cellierBouteille->millesime //</li>
-        <li>Prix: // $cellierBouteille->garde_jusqua //</li>
-        <li>Commentaire: // $cellierBouteille->commentaire //</li>
-        <li>Date: // $cellierBouteille->date_achat //</li>
-        <li>Garder:// $cellierBouteille->garde_jusqua //</li>
-    </ul>
-</div> -->
 
 @endsection
 <script src="{{asset('js/cellierBouteille_show.js')}}"></script> 

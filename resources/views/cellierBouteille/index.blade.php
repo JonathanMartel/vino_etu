@@ -45,16 +45,25 @@
                     'idBouteille'=>$vin['id'],
                     ]) }}">
                 <div class="nomVinConteneur">
-                    <h2>{{$vin['bouteille']->nom}}</h2>
+                    <h2 class="underline">{{$vin['bouteille']->nom}}</h2>
                 </div>
             </a>
 
            
             <div class="infoBouteilleConteneur">
-                <img class="image" src="{{$vin['bouteille']->url_img}}" alt="Image {{$vin['bouteille']->nom}}">
+                @if(isset($vin['bouteille']->url_img))
+                    <img class="image" src="{{$vin['bouteille']->url_img}}" alt="{{$vin['bouteille']->nom}}">
+                @else
+                    <img class="image" src="{{asset('assets/icon/bouteille-fiche-vin.svg')}}" alt="Image {{$vin['bouteille']->nom}}">
+                @endif               
+
                 <div class="info">
                     <div>
-                    <p>{{$vin['bouteille']->pays}}</p>
+                    @if(isset($vin['bouteille']->pays))
+                        <p>{{$vin['bouteille']->pays}}</p>
+                    @else
+                        <p>N/A</p>
+                    @endif
                     <p>{{$vin['bouteille']->type}}</p>
                     </div>
                     
@@ -62,7 +71,7 @@
                 </div>
                 <div class="bouteilleSAQConteneur">
                     @if($vin['bouteille']->url_saq)
-                    <a class="lienSAQ" href="{{$vin['bouteille']->url_saq}}">SAQ</a>
+                    <a class="lienSAQ underline" href="{{$vin['bouteille']->url_saq}}">SAQ</a>
                     <div class="cercle ">
                         <i class="material-icon check">check</i>
                     </div>
@@ -70,10 +79,20 @@
                     @else
 
                     <!-- Ajouter boutons modifier et suprimer bouteille ici à la place des infos SAQ !!! -->
-                    <p>SAQ</p>
+                    <p class="nonlienSAQ">SAQ</p>
                     <div class="cercle ">
                         <i class="material-icon check">close</i>
                     </div>
+                    <!-- <div class="cercle nonborder">
+                        <i class="material-icon">edit</i>
+                    </div>
+                    <div class="cercle nonborder">
+                        <i class="material-icon">delete</i>
+                    </div> -->
+
+
+
+
                     @endif
                 </div>
             </div>
@@ -120,6 +139,7 @@
                                 <i class="material-icon">add</i>
                             </a>
                         </div>
+                        
                     </div>
                 </section>
                 @endforeach

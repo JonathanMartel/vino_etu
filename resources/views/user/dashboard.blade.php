@@ -52,7 +52,7 @@
                                 <i class="small material-icons black-text">account_box</i>
                                 <h6>Mot de passe</h6>   
                             </div>  
-                            <a href="{{ route('password.edit', $id)}}" class="hoverclass">
+                            <a href="{{ route('password.edit', $id)}}">
                             <i class="material-icons right black-text small">edit</i>
                             </a>
 

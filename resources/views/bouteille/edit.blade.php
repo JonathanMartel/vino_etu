@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+<script src="{{asset('js/cellier_index.js')}}"></script>
 
 @if(Session::get('erreur'))
 <span class="success"></span>
@@ -72,7 +73,7 @@
         <div class="file-field input-field col s12">
             <div class="btn">
                 <span>Image</span>
-                <input type="file" name="file" accept="image/*">
+                <input type="file" name="file"  accept="image/*">
             </div>
             <div class="file-path-wrapper">
                 <input class="file-path validate" type="text">
@@ -86,36 +87,55 @@
     
     <div class="col s12 btn-space">
         
-        <a href="#<!-- route('cellierBouteille.show', $idCellier, $idBouteille) -->" class="btn waves-effect waves-light button btn-annuler" name="annuler">Annuler</a>
+        <a href="{{route('ficheVin', ['idCellier'=>$idCellier,'idBouteille'=>$idBouteille])}}
+         " class="btn waves-effect waves-light button btn-annuler" name="annuler">Annuler</a>
 
-        <button class="btn waves-effect waves-light button btn-modifier" type="submit" name="submit">Modifier</button>
+        
 
+        <a class="btn waves-effect waves-light button btn-modifier modal-trigger" href="#modal-modifier">Modifier</a>
 
-
-
-
-
-
-        <a class="btn waves-effect waves-light button btn-supprimer modal-trigger" href="#{{$bouteille->id}}"><i class="material-icons">delete</i></a>
-        <!-- Modal Structure -->
-        <div id="{{$bouteille->id}}" class="modal">
+        <!-- Modal Structure pour modifier-->
+        <div id="modal-modifier" class="modal">
             <div class="modal-content">
-                <h4>Supprimer ce vin</h4>
-                <p>Êtes-vous certain de vouloir le vin <span>{{ ucfirst($bouteille->nom) }}</span>? Tous les millesimes de ce vin dans le cellier seront supprimés aussi.</p>
+                <h4>Modifier ce vin</h4>
+                <p>Êtes-vous certain de vouloir modifier le vin <span>{{ ucfirst($bouteille->nom) }}</span>? Les informations de ce vin seront modifiés dans les autres celliers aussi.</p>
             </div>
             <div class="modal-footer">
-                <!-- <form action="// route('bouteille.destroy', $bouteille->id)//}" method="POST">
-                     changer // par }
-                    @method('DELETE')
-                    @csrf
-                    <button class="waves-effect waves-green btn-flat">Supprimer</button>
-                </form> -->
+                                                            
+                
+                    <button class="waves-effect waves-green btn-flat" type="submit" name="submit">Modifier</button>
+                
                 <a href="#!" class="modal-close waves-effect waves-green btn-flat">Annuler</a>
             </div>
         </div>
+
+
+        <a class="btn waves-effect waves-light button btn-supprimer modal-trigger" href="#{{$bouteille->id}}"><i class="material-icons">delete</i></a>
+
+
+        
     </div>
 
 </form>
+
+
+
+<!-- Modal Structure pour suprrimer-->
+<div id="{{$bouteille->id}}" class="modal">
+    <div class="modal-content">
+        <h4>Supprimer ce vin</h4>
+        <p>Êtes-vous certain de vouloir supprimer le vin <span>{{ ucfirst($bouteille->nom) }}</span>? Ce vin sera supprimé dans tous les celliers.</p>
+    </div>
+    <div class="modal-footer">
+                                                    
+        <form action="{{ route('bouteille.destroy', $bouteille->id)}}" method="POST">
+            @method('DELETE')
+            @csrf
+            <button class="waves-effect waves-green btn-flat">Supprimer</button>
+        </form>
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Annuler</a>
+    </div>
+</div>
 
 
 @else
