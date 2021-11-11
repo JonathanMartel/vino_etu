@@ -2,33 +2,22 @@ import React from "react";
 import "./Admin.css";
 import { DataGrid } from "@mui/x-data-grid/index-cjs";
 import { Breadcrumbs, Link, Typography } from '@mui/material';
-import Fab from '@mui/material/Fab';
-import AutorenewIcon from '@mui/icons-material/Autorenew';
-
-
 
 export default class Admin extends React.Component {
     constructor(props) {
         super(props);
 
+        // 
         this.state = {
             usagers: []
         };
     }
 
-    //Vérifie si connecté
-    //componentDidMount() {
-    // if (!this.props.estConnecte) {
-    // 	return this.props.history.push('/connexion');
-    // }
-    //}
-
     componentDidMount() {
+        if (!this.props.estConnecte) {
+            return this.props.history.push('/connexion');
+        }
         this.getUsager()
-    }
-
-    componentDidUpdate() {
-        console.log(this.state.prenom, this.state.nom, this.state.courriel)
     }
 
     getUsager() {
@@ -46,13 +35,10 @@ export default class Admin extends React.Component {
                 this.setState({
                     usagers: donnees.data
                 })
-                console.log(this.state.usagers)
             });
     }
 
-
     render() {
-
         const columns = [
             { field: 'prenom', headerName: 'Prénom', width: 80 },
             { field: 'nom', headerName: 'Nom', width: 80 },
@@ -65,32 +51,26 @@ export default class Admin extends React.Component {
         ];
 
         const users = this.state.usagers.map(user => {
-
             return {
                 id: parseInt(user.id_usager),
                 prenom: user.prenom,
                 nom: user.nom,
                 courriel: user.courriel
             }
-
         })
 
-        console.log(users)
-
         return (
-
             <>
                 <Breadcrumbs aria-label="breadcrumb" sx={{ display: 'flex', margin: '0 1.8rem', marginBottom: '1rem' }}>
                     <Link underline="hover" color="inherit" href="/">
                         Mon Cellier
                     </Link>
+
                     <Typography color="text.primary">Panneau admin</Typography>
-                    {/*    <Fab variant="extended">
-                        <AutorenewIcon sx={{ mr: 1 }} />
-                        Mise à jour SAQ
-                    </Fab> */}
                 </Breadcrumbs>
+
                 <span className="titre" >Liste des usagers</span>
+
                 <div style={{
                     height: 500, width: '85vw',
                     margin: '0 auto',
@@ -106,6 +86,5 @@ export default class Admin extends React.Component {
                 </div>
             </>
         );
-
     }
 }
