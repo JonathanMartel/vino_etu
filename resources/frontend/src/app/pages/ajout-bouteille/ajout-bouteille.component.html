@@ -11,7 +11,7 @@
             </mat-form-field>
 
             <mat-form-field appearance="fill" class="input-case">
-                <mat-label for="inventaire" data-required="">Quantité</mat-label>
+                <mat-label for="inventaire" class="required">Quantité</mat-label>
                 <input matInput type="text" id="inventaire" formControlName="inventaire" class="step__input">
                 <mat-error *ngIf="erreur.inventaire.touched && erreur.inventaire.invalid" class="alert alert-danger">
                     <div *ngIf="erreur.inventaire.errors?.required">Ce champ est obligatoire</div>
