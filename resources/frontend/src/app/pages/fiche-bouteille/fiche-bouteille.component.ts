@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { AjoutBouteilleComponent } from '@pages/ajout-bouteille/ajout-bouteille.component';
 import { Location } from '@angular/common'
+import { AuthService } from '@services/auth.service';
 
 @Component({
     selector: 'app-fiche-bouteille',
@@ -16,10 +17,11 @@ export class FicheBouteilleComponent implements OnInit {
     bouteilleId: any;
 
     constructor(
-        private servBouteilleDeVin: BouteilleDeVinService,
         private actRoute: ActivatedRoute,
         public formAjout: MatDialog,
-        private location: Location
+        private location: Location,
+        private authService: AuthService,
+        private router: Router,
     ) { }
 
     ngOnInit(): void {
@@ -35,7 +37,13 @@ export class FicheBouteilleComponent implements OnInit {
         this.location.back()
     }
 
-    formulaireAjout(data: any): void {
+    formulaireAjout(data: any): boolean|void {
+        // Vérifier si il y a bien un utilisateur d'authentifié
+        if(!this.authService.estAuthentifie()) {
+            this.router.navigate(['/connection']);
+            return false;
+        }
+
         this.formAjout.open(AjoutBouteilleComponent, {
             data
         });

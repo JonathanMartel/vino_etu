@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class AuthService {
 
@@ -11,27 +12,27 @@ export class AuthService {
     _utilisateurToken!: any;
 
 
-     private url: string = "http://127.0.0.1:8000/api";
-    //private url:string = "http://kalimotxo-vino.akira.dev/api";
+    //  private url: string = "http://127.0.0.1:8000/api";
+    private url: string = "http://kalimotxo-vino.akira.dev/api";
+    // private url: string = new URL(window.location.href).origin + "/api";
 
     constructor(
         private http: HttpClient
     ) {
-        this.connexion({
-            email: "vino@kalimotxo.com",
-            password: "password",
-        })
-        .subscribe(
-            data => {
-                //console.log(data);
-                this.utilisateur = data.utilisateur;
-                this.token = data.token;
-                return data;
-            },
-            error => {
-                return error;
-            }
-        )
+        // this.connexion({
+        //     email: "vino@kalimotxo.com",
+        //     password: "password",
+        // })
+        // .subscribe(
+        //     data => {
+        //         this.utilisateur = data.utilisateur;
+        //         this.token = data.token;
+        //         return data;
+        //     },
+        //     error => {
+        //         return error;
+        //     }
+        // )
     }
 
     connexion(data: any) {
@@ -48,7 +49,7 @@ export class AuthService {
      * @returns objet des propriétés de l'utilisateur authentifié
      *
      */
-    get utilisateurAuthentifie(): object|null {
+    get utilisateurAuthentifie(): object | null {
         return this._utilisateurAuthentifie;
     }
 
@@ -60,7 +61,7 @@ export class AuthService {
      *
      */
 
-    get utilisateurToken(): string|null {
+    get utilisateurToken(): string | null {
         return this._utilisateurToken;
     }
 
@@ -100,16 +101,16 @@ export class AuthService {
                 headers: entete
             }
         )
-        .subscribe(
-            data => {
-                this.reinitialiserUtilisateur();
-                console.log(this._utilisateurAuthentifie);
-                return data;
-            },
-            error => {
-                return error;
-            }
-        );
+            .subscribe(
+                data => {
+                    this.reinitialiserUtilisateur();
+                    console.log(this._utilisateurAuthentifie);
+                    return data;
+                },
+                error => {
+                    return error;
+                }
+            );
     }
 
     reinitialiserUtilisateur() {

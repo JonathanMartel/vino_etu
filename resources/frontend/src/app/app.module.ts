@@ -34,11 +34,6 @@ import { MatSelectModule } from '@angular/material/select'
 import { ListeCelliersComponent } from './pages/liste-celliers/liste-celliers.component';
 import { AjoutCellierComponent } from './pages/ajout-cellier/ajout-cellier.component'
 
-
-
-
-
-
 @NgModule({
     declarations: [
         AppComponent,
@@ -77,7 +72,10 @@ import { AjoutCellierComponent } from './pages/ajout-cellier/ajout-cellier.compo
         MatSelectModule,
         FormsModule,
     ],
-    providers: [BouteilleDeVinService, BouteilleResolverServiceService],
+    providers: [
+        BouteilleDeVinService,
+        BouteilleResolverServiceService,
+    ],
     bootstrap: [AppComponent],
     entryComponents:[MatConfirmDialogComponent],
 })

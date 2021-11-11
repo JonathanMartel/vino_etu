@@ -10,22 +10,38 @@ import { CreerCompteComponent } from '@pages/creer-compte/creer-compte.component
 import { FicheBouteilleComponent } from '@pages/fiche-bouteille/fiche-bouteille.component';
 import { BouteilleResolverServiceService } from '@services/bouteille-resolver-service.service';
 import { ModifierCellierBouteilleComponent } from '@pages/modifier-cellier-bouteille/modifier-cellier-bouteille.component';
+import { AuthGuard } from "@services/auth.guard";
 
 const routes: Routes = [
-    {path:"", component:AccueilComponent},
-    {path:"cellier", component:CellierComponent},
     {
-        path:"cellier/:id",
-        component:CellierComponent
+        path: "",
+        component: AccueilComponent
     },
-    {path:"bouteilles", component:ListeBouteilleComponent},
-    {path:"celliers", component:ListeCelliersComponent},
-    {path:"ajout", component:AjoutBouteilleComponent},
-    {path:"modifier-cellier/:id", component:ModifierCellierBouteilleComponent},
-    {path:"supprimer/:id", component:ModifierCellierBouteilleComponent},
-    {path:"ajouterNouvelleBouteille", component:AjoutBouteilleComponent},
+    {
+        path:"celliers/:id",
+        component: CellierComponent,
+        canActivate: [AuthGuard],
+    },
+    {
+        path:"bouteilles",
+        component:ListeBouteilleComponent,
+    },
+    {
+        path:"celliers",
+        component:ListeCelliersComponent,
+        canActivate: [AuthGuard],
+    },
+    {
+        path:"bouteilles/ajout",
+        component:AjoutBouteilleComponent,
+        canActivate: [AuthGuard],
+    },
+    {
+        path:"bouteilles-achetees/:id/modifier",
+        component:ModifierCellierBouteilleComponent,
+        canActivate: [AuthGuard],
+    },
     {path:"connection", component:ConnectionComponent},
-    {path:"deconnexion", component:ConnectionComponent},
     {path:"creerCompte", component:CreerCompteComponent},
     {path:"ficheBouteille/:id", component:FicheBouteilleComponent, resolve: {bouteille: BouteilleResolverServiceService}},
 ];
