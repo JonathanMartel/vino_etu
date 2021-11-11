@@ -61,7 +61,7 @@ export class AuthService {
      *
      */
 
-    get utilisateurToken(): string | null {
+    get getToken(): string | null {
         return this._utilisateurToken;
     }
 
