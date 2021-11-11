@@ -41,6 +41,15 @@ const routes: Routes = [
         component:ModifierCellierBouteilleComponent,
         canActivate: [AuthGuard],
     },
+<<<<<<< HEAD
+=======
+    {path:"bouteilles", component:ListeBouteilleComponent},
+    {path:"celliers", component:ListeCelliersComponent},
+    {path:"ajout", component:AjoutBouteilleComponent},
+    {path:"modifier-cellier/:id", component:ModifierCellierBouteilleComponent},
+    {path:"supprimer/:id", component:ModifierCellierBouteilleComponent},
+    {path:"ajouterNouvelleBouteille", component:AjoutBouteilleComponent},
+>>>>>>> a1185375ce2ad68ef7ac48bb019001c5908c2aca
     {path:"connection", component:ConnectionComponent},
     {path:"creerCompte", component:CreerCompteComponent},
     {path:"ficheBouteille/:id", component:FicheBouteilleComponent, resolve: {bouteille: BouteilleResolverServiceService}},

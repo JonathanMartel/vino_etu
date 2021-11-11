@@ -65,7 +65,17 @@ class CellierController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        //
+        $nouveauCellier = new Cellier();
+
+        $nouveauCellier->nom = $request->nom;
+        $nouveauCellier->description = $request->description;
+        $nouveauCellier->users_id = $request->users_id;
+        $nouveauCellier->save();
+
+        return response()->json([
+            "message" => "ajout réussi ! id : $nouveauCellier->id"
+        ], 200);
+
     }
 
     /**
