@@ -23,15 +23,15 @@ export class HttpXsrfInterceptor implements HttpInterceptor {
         request: HttpRequest<unknown>,
         next: HttpHandler): Observable<HttpEvent<unknown>> {
 
-        console.log("j'intercepte");
-
         if (request.method === 'GET' || request.method === 'HEAD') {
+            console.log("bad method");
             return next.handle(request);
         }
 
         const xToken = this.extractor.getToken();
 
         if (xToken === null || request.headers.has(this.nomEntete)) {
+            console.log(this.extractor.getToken());
             return next.handle(request);
         }
 

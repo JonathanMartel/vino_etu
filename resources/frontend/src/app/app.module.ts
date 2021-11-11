@@ -74,7 +74,7 @@ import { interceptorProviders } from '@services/interceptor-providers.service'
         BouteilleDeVinService,
         BouteilleResolverServiceService,
         // Baril d'interceptors
-        interceptorProviders
+        interceptorProviders,
     ],
     bootstrap: [AppComponent],
     entryComponents:[MatConfirmDialogComponent],

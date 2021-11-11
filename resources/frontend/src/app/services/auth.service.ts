@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class AuthService {
 
@@ -12,7 +13,7 @@ export class AuthService {
 
 
     //  private url: string = "http://127.0.0.1:8000/api";
-    private url:string = "http://kalimotxo-vino.akira.dev/api";
+    private url: string = "http://kalimotxo-vino.akira.dev/api";
     // private url: string = new URL(window.location.href).origin + "/api";
 
     constructor(
@@ -36,10 +37,16 @@ export class AuthService {
     }
 
     connexion(data: any) {
-        return this.http.post<any>(
-            this.url + '/connection',
-            data
-        );
+        // Générer le token csrf de Laravel en premier lieu
+        return this.http.get<any>(`${this.url}/csrf-cookie`)
+            .pipe(
+                switchMap((csrfResponse: any) => {
+                    return this.http.post<any>(
+                        this.url + '/connection',
+                        data
+                    );
+                })
+            )
     }
 
     /**
@@ -49,7 +56,7 @@ export class AuthService {
      * @returns objet des propriétés de l'utilisateur authentifié
      *
      */
-    get utilisateurAuthentifie(): object|null {
+    get utilisateurAuthentifie(): object | null {
         return this._utilisateurAuthentifie;
     }
 
@@ -61,7 +68,7 @@ export class AuthService {
      *
      */
 
-    get utilisateurToken(): string|null {
+    get utilisateurToken(): string | null {
         return this._utilisateurToken;
     }
 
@@ -102,16 +109,16 @@ export class AuthService {
                 headers: entete
             }
         )
-        .subscribe(
-            data => {
-                this.reinitialiserUtilisateur();
-                console.log(this._utilisateurAuthentifie);
-                return data;
-            },
-            error => {
-                return error;
-            }
-        );
+            .subscribe(
+                data => {
+                    this.reinitialiserUtilisateur();
+                    console.log(this._utilisateurAuthentifie);
+                    return data;
+                },
+                error => {
+                    return error;
+                }
+            );
     }
 
     reinitialiserUtilisateur() {
