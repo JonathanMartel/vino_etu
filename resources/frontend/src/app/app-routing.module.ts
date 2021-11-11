@@ -22,22 +22,25 @@ const routes: Routes = [
         component: CellierComponent,
         canActivate: [AuthGuard],
     },
-    {path:"bouteilles", component:ListeBouteilleComponent},
+    {
+        path:"bouteilles",
+        component:ListeBouteilleComponent,
+    },
     {
         path:"celliers",
         component:ListeCelliersComponent,
         canActivate: [AuthGuard],
     },
     {
-        path:"ajout",
+        path:"bouteilles/ajout",
         component:AjoutBouteilleComponent,
         canActivate: [AuthGuard],
     },
     {
         path:"bouteilles-achetees/:id/modifier",
-        component:ModifierCellierBouteilleComponent
+        component:ModifierCellierBouteilleComponent,
+        canActivate: [AuthGuard],
     },
-    // {path:"ajouterNouvelleBouteille", component:AjoutBouteilleComponent},
     {path:"connection", component:ConnectionComponent},
     {path:"creerCompte", component:CreerCompteComponent},
     {path:"ficheBouteille/:id", component:FicheBouteilleComponent, resolve: {bouteille: BouteilleResolverServiceService}},
