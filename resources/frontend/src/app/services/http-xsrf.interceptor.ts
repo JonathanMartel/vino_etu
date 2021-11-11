@@ -6,13 +6,14 @@ import {
     HttpInterceptor,
     HttpXsrfTokenExtractor
 } from '@angular/common/http';
+
 import { Observable } from 'rxjs';
 
 @Injectable()
 
 
 export class HttpXsrfInterceptor implements HttpInterceptor {
-    private nomEntete: string = "X-SRF-TOKEN";
+    private nomEntete: string = "X-XSRF-TOKEN";
 
     constructor(
         private extractor: HttpXsrfTokenExtractor,
@@ -21,6 +22,8 @@ export class HttpXsrfInterceptor implements HttpInterceptor {
     intercept(
         request: HttpRequest<unknown>,
         next: HttpHandler): Observable<HttpEvent<unknown>> {
+
+        console.log("j'intercepte");
 
         if (request.method === 'GET' || request.method === 'HEAD') {
             return next.handle(request);
