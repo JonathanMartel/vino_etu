@@ -69,8 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
              ).catch((error) => console.log(error));
          });
      });
-    
- 
+
  for (let i = 0; i < boutonMillesime.length; i++) {
 
         boutonMillesime[i].addEventListener("click", function(e) {
@@ -107,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     /* Activer les champs inputs et les boutons annuler, valider, effacer */ 
-    
+
     boutonModifier.addEventListener("click", function(e) {
         e.preventDefault();
         console.log('click bouton mod');
@@ -153,11 +152,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-    btnValideActive.addEventListener("click",function(e){
-        e.preventDefault();
-        console.log('click valider');
+        btnValideActive.addEventListener("click",function(e){
+            e.preventDefault();
+            console.log('click valider');
 
-    });
+            fetch(`/ajouterNote/${idCellier}/${idBouteille}/${millesime}/${prix}/${quantite}/${commentaire}/${garde_jusqua}/${date_achat}`)
+                
+            .then(response => {
+                return (response.json())
+            })
+            .then(response => {
+                infoForm.querySelector('#quantite').value=response[0].quantite;
+                infoForm.querySelector('#prix').value=response[0].prix;
+                infoForm.querySelector('#commentaire').value=response[0].commentaire;
+                infoForm.querySelector('#date_achat').value=response[0].date_achat;
+                infoForm.querySelector('#garde_jusqua').value=response[0].garde_jusqua;
+    
+               console.log(response[0].prix);
+            }).catch(error => console.log('Le fetch ne fonctionne toujours pas',error))
+        });
+
 
     btnEffacerActive.addEventListener("click",function(e){
         e.preventDefault();

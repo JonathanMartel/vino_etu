@@ -8,7 +8,7 @@
     <h1 class="titre-formulaire">Nouveau cellier</h1>
     <img src="{{URL::asset('/assets/icon/logo-3-bouteilles-cellier.svg')}}" alt="Icone trois bouteilles">
 </div>
-<div class="form-ajout">
+<div class="form-ajout row">
     <form action="{{ route('cellier.store')}}" method="POST">
         @csrf
         <div class="input-field col s12">

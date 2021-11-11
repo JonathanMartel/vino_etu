@@ -91,7 +91,7 @@
                         @endif
                         <div>
                             <div class="select-form">
-                                <select class="star-rating"  name="note" data-id-bouteille="{{$cellierBouteille->bouteille_id}}" data-millesime="{{$cellierBouteille->millesime}}">
+                                <select class="star-rating"  name="note"  data-id-bouteille="{{$cellierBouteille->bouteille_id}}" data-millesime="{{$cellierBouteille->millesime}}">
                                     <option value="">Choisir une note</option>
                                     <option value="5" @if( $cellierBouteille->note == 5) selected @endif>Excellent</option>
                                     <option value="4" @if( $cellierBouteille->note == 4) selected @endif>Très bon </option>
