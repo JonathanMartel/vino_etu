@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+
 import BouteilleCellier from '../BouteilleCellier/BouteilleCellier';
-import paysJSON from '../../pays.json';
+import Dialogue from '../Dialogue/Dialogue';
 
 import './ListeBouteilleCellier.css';
-import Dialogue from '../Dialogue/Dialogue';
-import { circularProgressClasses } from '@mui/material';
+
+//import { circularProgressClasses } from '@mui/material';
 import { Box } from '@mui/system';
 import { Breadcrumbs, Link, Typography } from '@mui/material';
 import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import ListSubheader from '@mui/material/ListSubheader';
+//import MenuItem from '@mui/material/MenuItem';
+//import ListSubheader from '@mui/material/ListSubheader';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
@@ -94,7 +95,7 @@ export default class ListeBouteilleCellier extends React.Component {
 	changerQuantite(valeur) {
 		this.setState({ qteModif: valeur, open: false });
 
-		if (this.state.action == 'ajouter') {
+		if (this.state.action === 'ajouter') {
 			this.ajouter(this.state.item, valeur);
 		} else {
 			this.retirer(this.state.item, valeur);

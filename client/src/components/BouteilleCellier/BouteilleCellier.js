@@ -41,7 +41,7 @@ export default class BouteilleCellier extends React.Component {
 				<div className="content_container">
 					<div className="content">
 						<div className="bouteille_img_container">
-							<img className="bouteille_img" src={this.state.imgSaq} alt="Image de la bouteille de vin"/>
+							<img className="bouteille_img" src={this.state.imgSaq} alt="Bouteille de vin"/>
 							<img src={this.props.info.vino__type_id === '1' ? vinRouge : vinBlanc} alt="Couleur du vin"/>
 						</div>
 						{this.props.info.url_saq ? (
@@ -51,7 +51,7 @@ export default class BouteilleCellier extends React.Component {
 						) : null}
 					</div>
 					<div className="bouteille_description">
-						<img className="bouteille_drapeau" src={this.props.drapeau} width="30" />
+						<img className="bouteille_drapeau" src={this.props.drapeau} width="30" alt="Drapeau du pays" />
 						<p>{this.props.info.millesime}</p>
 						<p>Quantité : {this.props.info.quantite}</p>
 					</div>
