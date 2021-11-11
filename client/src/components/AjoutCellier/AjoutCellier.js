@@ -1,48 +1,90 @@
-import React from 'react';
-import Cellier from "../Cellier/Cellier";
-import { Redirect } from "react-router-dom";
+import React from "react";
+import { Box } from "@mui/system";
+import { TextField } from "@mui/material";
+import Button from '@mui/material/Button';
+
+import './AjoutCellier.css';
 
 export default class AjoutCellier extends React.Component {
-	constructor(props) {
+    constructor(props) {
 		super(props);
-		this.state = {
-			id_usager: "1",
-			emplacement: "",
-			temperature: "",
+
+        this.state = {
+            emplacement: "",
+            temperature: 10,
+            usager_id: 0,
+            titreBoutton: ""
+        }
+
+        this.validation = this.validation.bind(this);
+        this.creerCellier = this.creerCellier.bind(this);
+	}
+
+    componentDidMount() {
+		if (!this.props.estConnecte) {
+			return this.props.history.push("/connexion");
 		}
-		this.ajouterCellier = this.ajouterCellier.bind(this);
+        console.log("Nouvelle cellier ");
+        this.setState({titreBoutton: "Nouveau cellier"})
 	}
 
-	ajouterCellier() {
-		let nouveauCellier = {
-			//id_usager: this.state.id_usager,
-			emplacement: this.state.emplacement
-		}
-		fetch("https://rmpdwebservices.ca/webservice/php/celliers", {
-			method: 'POST',
-			body: JSON.stringify(nouveauCellier),
-			headers: new Headers({
-				"Content-Type": "application/json",
-				"authorization": "Basic " + btoa("vino:vino"),
-			}),
-		})
-			.then(reponse => reponse.json())
-			.then(() => {
-				console.log("Cellier ajouté");
-				<Redirect to='/' /> // À changer pour rediriger vers le cellier qu'on viens d'ajouter.
-			});
-	}
+    validation()  {
+        let bValidation = false;
 
-	render() {
-		return (
+        if ( this.state.emplacement && this.state.emplacement.trim() !== "" &&
+            this.state.temperature) {
+                bValidation = true;
+        } 
 
-			<div className="nouveauCellier">
-				<div>
-					<p>Emplacement du cellier : <input name="emplacement" value={this.state.emplacement} onChange={e => this.setState({ emplacement: e.target.value })} /></p>
-				</div>
-				<button onClick={this.ajouterCellier} name="ajouterCellier">Ajouter votre cellier</button>
-			</div>
+        return bValidation;
+    }
 
-		)
-	}
-};
+    creerCellier() {
+        if (this.validation()) {
+            let donnes = {
+                emplacement: this.state.emplacement,
+                usager_id: this.props.id_usager /* ,
+                temperature: this.state.temperature */
+            };
+            console.log("Donnes: ", donnes);
+
+            const postMethod = {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json',
+                    authorization: 'Basic ' + btoa('vino:vino')
+                },
+                body: JSON.stringify(donnes)
+            };
+    
+            fetch('https://rmpdwebservices.ca/webservice/php/celliers/', postMethod)
+                .then((reponse) => reponse.json())
+                .then((donnees) => {
+                    if (donnees.data) return this.props.history.push("/celliers/liste");
+                });
+
+        } else {
+            console.log("Validation incorrecte!!!");
+        }
+    }
+
+    render() {
+        return (
+            <Box className="nouvelle_cellier_container" sx={{ backgroundColor: "rgba(0, 0, 0, 0.8)",
+                display: "flex", justfyContent: "center", alignItems: "center",
+                gap: "1rem", width: "85vw", flexDirection: "column", borderRadius: "1rem",
+                margin: "0 auto", marginTop: "20vh", }} >
+
+                <span className="nouvelle_cellier_title"> {this.state.titreBoutton} </span>
+
+                <TextField autoFocus label="Emplacement" variant="outlined" 
+                    onBlur={evt => this.setState({ emplacement: evt.target.value })} />
+                <TextField margin="dense" id="temperature" label="Température"
+					type="number" variant="standard" inputProps={{ step: "0.5" }}
+					onBlur={(e) => this.setState({temperature : e.target.value })} />
+
+                <Button type="button" onClick={(e) => this.creerCellier()}> {this.state.titreBoutton} </Button>
+            </Box>
+        );
+    }
+}

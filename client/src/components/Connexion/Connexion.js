@@ -70,7 +70,7 @@ export default class Connexion extends React.Component {
                     if (data.data) {
                         this.props.login(data.data)
                         console.log("Connexion avec succès!!!", data.data)
-                        this.props.history.push("/listecelliers");
+                        this.props.history.push("/celliers/liste");
                     } else {
                         console.log("Courriel ou mot de passe incorrect.")
                     }

@@ -1,3 +1,11 @@
+p.MuiTypography-root {
+    color: white !important;
+}
+
+.modifier_cellier_container > * {
+    width: 80% !important;
+}
+
 .nouvelle_cellier_title {
     color: white;
     font-weight: 700;
@@ -5,17 +13,17 @@
     margin-top: 2rem;
 }
 
-.nouvelle_cellier_container input {
+.modifier_cellier_container input {
     padding: .7rem;
     border-radius: .5rem;
     border: none;
 }
 
-.nouvelle_cellier_container input:focus {
+.modifier_cellier_container input:focus {
     outline: unset;
 }
 
-.nouvelle_cellier_container button {
+.modifier_cellier_container button {
     width: 100%;
     color: white;
     outline: unset;
@@ -28,11 +36,11 @@
     background-color: #641B30;
 }
 
-.nouvelle_cellier_container fieldset {
+.modifier_cellier_container fieldset {
    border-color: white !important;
 }
 
-.nouvelle_cellier_container label, 
-.nouvelle_cellier_container input {
+.modifier_cellier_container label, 
+.modifier_cellier_container input {
     color: white !important;
 }

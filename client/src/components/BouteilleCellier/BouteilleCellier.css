@@ -1,4 +1,115 @@
-.uneBouteille > img {
-	height: 166px;
-	width: 111px;
+.bouteille_img_container {
+	height: 90px;
+	margin: auto 1rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.bouteille_img_container > a {
+	height: 70%;
+}
+
+.bouteille_img {
+	height: 100%;
+	width: auto;
+	margin-top: 1rem;
+	/* border: grey 5px solid; */
+	border-radius: .5em;
+	padding: 2px;
+	box-sizing: border-box;
+}
+
+.saq_logo {
+	height: 5%;
+	margin-top: 2em;
+	margin-right: 1em;
+}
+
+.bouteille_description {
+	color: white;
+	font-size: 0.875em;
+	font-weight: 700;
+	margin: 1em;
+	display: flex;
+	flex-direction: column;
+	justify-content:space-evenly ;
+	gap: 0.5em;
+}
+
+.bouteille_description > p {
+	margin: 0.25em;
+}
+
+.bouteille_boutons_container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.bouteille_boutons_container > a {
+	text-decoration: none;
+}
+
+.bouteille_boutons {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 90%;
+	color: black;
+	outline: unset;
+	border-radius: .5rem;
+	padding: .5rem 1rem;
+	border: none;
+	margin-bottom: 0.5rem;
+	margin-right: 0.5rem;
+	margin-left: 0.5rem;
+	font-size: 1em;
+	font-weight: 700;
+	background-color: white;
+}
+
+.bouton_modifier {
+	color: white;
+	background-color: #641b30;
+}
+
+.bouteille_container {
+	display: flex;
+	flex-direction: column;
+	gap: 0;
+	flex: 1;
+	border-radius: .5em;
+	background-color: rgba(0, 0, 0, 0.8);
+	color: white;
+	width: 90vw;
+	padding: 0.5rem;
+}
+
+.content > a > p {
+	width: fit-content;
+}
+
+.content > a {
+	color: white;
+}
+
+.content > a:visited {
+	color: white;
+}
+
+.content_container {
+	display: flex;
+	justify-content: space-between;
+}
+
+.content {
+}
+
+.url_saq {
+	margin-left: 2em;
+}
+
+.bouteille_drapeau {
+	margin-left: 4px;
 }

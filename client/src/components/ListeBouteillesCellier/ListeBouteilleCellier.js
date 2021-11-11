@@ -1,172 +1,266 @@
-import React from 'react';
-import BouteilleCellier from '../BouteilleCellier/BouteilleCellier';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import BouteilleCellier from "../BouteilleCellier/BouteilleCellier";
+import paysJSON from "../../pays.json";
 
-import './ListeBouteilleCellier.css';
-import Dialogue from '../Dialogue/Dialogue';
-import { circularProgressClasses } from '@mui/material';
+import "./ListeBouteilleCellier.css";
+import Dialogue from "../Dialogue/Dialogue";
+import { circularProgressClasses } from "@mui/material";
+import { Box } from "@mui/system";
+import { Breadcrumbs, Link, Typography } from "@mui/material";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import ListSubheader from "@mui/material/ListSubheader";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
 export default class ListeBouteilleCellier extends React.Component {
-	constructor(props) {
-		super(props);
+  constructor(props) {
+    super(props);
 
-		this.state = {
-			qteModif: '',
-			qteInventaire: '',
-			items: [],
-			item: undefined,
-			message: '',
-			open: false,
-			titre: '',
-			action: undefined
-		};
+    this.state = {
+      qteModif: "",
+      qteInventaire: "",
+      items: [],
+      item: undefined,
+      message: "",
+      open: false,
+      titre: "",
+      action: undefined,
+      premierId: undefined,
+      nomCellier: undefined,
+    };
 
-		this.fetchBouteilles = this.fetchBouteilles.bind(this);
-		this.ajouter = this.ajouter.bind(this);
-		this.retirer = this.retirer.bind(this);
-		this.changerQuantite = this.changerQuantite.bind(this);
-		this.changerTitreDialogue = this.changerTitreDialogue.bind(this);
-		this.ajouterAction = this.ajouterAction.bind(this);
-		this.retirerAction = this.retirerAction.bind(this);
-	}
+    this.fetchBouteilles = this.fetchBouteilles.bind(this);
+    this.ajouter = this.ajouter.bind(this);
+    this.retirer = this.retirer.bind(this);
+    this.changerQuantite = this.changerQuantite.bind(this);
+    this.changerTitreDialogue = this.changerTitreDialogue.bind(this);
+    this.ajouterAction = this.ajouterAction.bind(this);
+    this.retirerAction = this.retirerAction.bind(this);
+    this.sortBouteilles = this.sortBouteilles.bind(this);
+  }
 
-	componentDidMount() {
-		this.fetchBouteilles();
-	}
+  componentDidMount() {
+    this.fetchBouteilles();
+  }
 
-	fetchBouteilles() {
-		fetch('https://rmpdwebservices.ca/webservice/php/celliers/' + this.props.match.params.id, {
-			method: 'GET',
-			headers: new Headers({
-				'Content-Type': 'application/json',
-				authorization: 'Basic ' + btoa('vino:vino')
-			})
-		})
-			.then((reponse) => reponse.json())
-			.then((donnees) => {
-				this.setState({ items: donnees.data });
-			});
-	}
+  componentDidUpdate() {}
 
-	changerQuantite(valeur) {
-		this.setState({ qteModif: valeur, open: false });
+  sortBouteilles(obj) {
+    const parsedObj = JSON.parse(obj);
+    const key = parsedObj.key;
+    const order = parsedObj.order;
+    if (order.toUpperCase() === "ASC") {
+      const sortedItems = this.state.items.sort((a, b) => a[key].localeCompare(b[key]));
+	  console.log(sortedItems);
+	  this.setState({items: sortedItems});
+    } else if (order.toUpperCase() === "DESC") {
+		const sortedItems = this.state.items.sort((a, b) => b[key].localeCompare(a[key]));
+		console.log(sortedItems);
+		this.setState({items: sortedItems});
+    }
+  }
 
-		if (this.state.action == 'ajouter') {
-			this.ajouter(this.state.item, valeur);
-		} else {
-			this.retirer(this.state.item, valeur);
-		}
-	}
+  triBouteilles(order) {
+    console.log(JSON.parse(order));
+  }
 
-	ajouterAction(item) {
-		this.setState({
-			item: item,
-			action: 'ajouter',
-			open: true
-		});
-		this.changerTitreDialogue("Ajouter à l'inventaire");
-	}
+  fetchBouteilles() {
+    fetch(
+      "https://rmpdwebservices.ca/webservice/php/celliers/" +
+        this.props.match.params.id +
+        "/bouteilles",
+      {
+        method: "GET",
+        headers: new Headers({
+          "Content-Type": "application/json",
+          authorization: "Basic " + btoa("vino:vino"),
+        }),
+      }
+    )
+      .then((reponse) => reponse.json())
+      .then((donnees) => {
+        this.setState({
+          items: donnees.data,
+          premierId: donnees.data[0].id,
+          nomCellier: donnees.data[0].emplacement,
+        });
+        console.log(this.state.premierId);
+        console.log(this.state.items);
+      });
+  }
 
-	retirerAction(item) {
-		this.setState({
-			item: item,
-			action: 'retirer',
-			open: true
-		});
-		this.changerTitreDialogue("Retirer de l'inventaire");
-	}
+  changerQuantite(valeur) {
+    this.setState({ qteModif: valeur, open: false });
 
-	changerTitreDialogue(titre) {
-		this.setState({ titre: titre });
-	}
+    if (this.state.action == "ajouter") {
+      this.ajouter(this.state.item, valeur);
+    } else {
+      this.retirer(this.state.item, valeur);
+    }
+  }
 
-	ajouter(item, quantite) {
-		this.setState({ open: false });
-		const donnes = {
-			id: item.id,
-			quantite: quantite
-		};
+  ajouterAction(item) {
+    this.setState({
+      item: item,
+      action: "ajouter",
+      open: true,
+    });
+    this.changerTitreDialogue("Ajouter à l'inventaire");
+  }
 
-		const postMethod = {
-			method: 'PUT',
-			headers: {
-				'Content-type': 'application/json',
-				authorization: 'Basic ' + btoa('vino:vino')
-			},
-			body: JSON.stringify(donnes)
-		};
+  retirerAction(item) {
+    this.setState({
+      item: item,
+      action: "retirer",
+      open: true,
+    });
+    this.changerTitreDialogue("Retirer de l'inventaire");
+  }
 
-		fetch('https://rmpdwebservices.ca/webservice/php/bouteilles/quantite', postMethod)
-			.then((res) => res.json())
-			.then((data) => {
-				if (data.data) {
-					this.fetchBouteilles();
-				} else {
-				}
-			});
-		this.setState({ message: '' });
-	}
+  changerTitreDialogue(titre) {
+    this.setState({ titre: titre });
+  }
 
-	retirer(item, quantite) {
-		if (item.quantite >= quantite) {
-			let quantiteInversee = -quantite;
-			const donnes = {
-				id: item.id,
-				quantite: quantiteInversee
-			};
+  ajouter(item, quantite) {
+    this.setState({ open: false });
+    const donnes = {
+      id: item.id,
+      quantite: quantite,
+    };
 
-			const postMethod = {
-				method: 'PUT',
-				headers: {
-					'Content-type': 'application/json',
-					authorization: 'Basic ' + btoa('vino:vino')
-				},
-				body: JSON.stringify(donnes)
-			};
+    const postMethod = {
+      method: "PUT",
+      headers: {
+        "Content-type": "application/json",
+        authorization: "Basic " + btoa("vino:vino"),
+      },
+      body: JSON.stringify(donnes),
+    };
 
-			fetch('https://rmpdwebservices.ca/webservice/php/bouteilles/quantite', postMethod)
-				.then((res) => res.json())
-				.then((data) => {
-					if (data.data) {
-						this.fetchBouteilles();
-					} else {
-					}
-				});
-			this.setState({ message: '' });
-		} else {
-			this.setState({ message: "Il n'y a pas assez de bouteilles pour retirer la quantité demandée" });
-		}
-	}
+    fetch(
+      "https://rmpdwebservices.ca/webservice/php/bouteilles/quantite",
+      postMethod
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.data) {
+          this.fetchBouteilles();
+        } else {
+        }
+      });
+    this.setState({ message: "" });
+  }
 
-	render() {
-		const bouteilles = this.state.items.map((item, index) => {
-			return (
-				<div key={index}>
-					<p className="messageErreur"> {this.state.message} </p>
-					<BouteilleCellier info={item} />
-					<button onClick={(e) => this.ajouterAction(item)}>Ajouter à l'inventaire</button>
-					<button onClick={(e) => this.retirerAction(item)}>Retirer de l'inventaire</button>
-				</div>
-			);
-		});
+  retirer(item, quantite) {
+    if (item.quantite >= quantite) {
+      let quantiteInversee = -quantite;
+      const donnes = {
+        id: item.id,
+        quantite: quantiteInversee,
+      };
 
-		return (
-			<section>
-				<Link to={'/ajoutBouteille'}>
-					<span>Ajouter une nouvelle bouteille à votre cellier</span>
-				</Link>
+      const postMethod = {
+        method: "PUT",
+        headers: {
+          "Content-type": "application/json",
+          authorization: "Basic " + btoa("vino:vino"),
+        },
+        body: JSON.stringify(donnes),
+      };
 
-				<div>
-					<Dialogue
-						open={this.state.open}
-						titre={this.state.titre}
-						action={this.state.action}
-						changerQuantite={this.changerQuantite}
-						getQuantite={this.state.qteModif}
-					/>
-					{bouteilles}
-				</div>
-			</section>
-		);
-	}
+      fetch(
+        "https://rmpdwebservices.ca/webservice/php/bouteilles/quantite",
+        postMethod
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.data) {
+            this.fetchBouteilles();
+          } else {
+          }
+        });
+      this.setState({ message: "" });
+    } else {
+      this.setState({
+        message:
+          "Il n'y a pas assez de bouteilles pour retirer la quantité demandée",
+      });
+    }
+  }
+
+  render() {
+    const premierId = this.state.premierId;
+    const bouteilles = this.state.items.map((item, index) => {
+      return (
+        <div>
+          {premierId ? (
+            <div key={index}>
+              {/*<p className="messageErreur"> {this.state.message} </p>*/}
+              <BouteilleCellier
+                info={item}
+                ajouterAction={this.ajouterAction}
+                retirerAction={this.retirerAction}
+              />
+            </div>
+          ) : (
+            <div className="cellier_vide">
+              Il n'y a pas de bouteilles dans votre cellier
+            </div>
+          )}
+        </div>
+      );
+    });
+
+    return (
+      <Box>
+        <Breadcrumbs
+          aria-label="breadcrumb"
+          sx={{ display: "flex", margin: "0 1.5rem" }}
+        >
+          <Link underline="hover" color="white" href="/celliers/liste">
+            Celliers
+          </Link>
+          <Typography color="text.primary">{this.state.nomCellier}</Typography>
+          <Typography color="text.primary">Liste des bouteilles</Typography>
+        </Breadcrumbs>
+        <FormControl sx={{ m: 1, minWidth: 120 }}>
+          <InputLabel htmlFor="grouped-native-select">Trier par</InputLabel>
+          <Select
+            native
+            defaultValue=""
+            id="grouped-native-select"
+            label="Grouping"
+            onChange={(e) => this.sortBouteilles(e.target.value)}
+          >
+            <optgroup label="Nom">
+              <option value={JSON.stringify({ key: "nom", order: "asc" })}>
+                Nom (A-Z)
+              </option>
+              <option value={JSON.stringify({ key: "nom", order: "desc" })}>Nom (Z-A)</option>
+            </optgroup>
+            <optgroup label="Millesime">
+              <option value={JSON.stringify({ key: "millesime", order: "asc" })}>Millesime Ascendant</option>
+              <option value={JSON.stringify({ key: "millesime", order: "desc" })}>Millesime Descendant</option>
+            </optgroup>
+            <optgroup label="Pays">
+              <option value={JSON.stringify({ key: "pays", order: "asc" })}>Pays (A-Z)</option>
+              <option value={JSON.stringify({ key: "pays", order: "desc" })}>Pays (Z-A)</option>
+            </optgroup>
+          </Select>
+        </FormControl>
+        <section>
+          <Dialogue
+            open={this.state.open}
+            titre={this.state.titre}
+            action={this.state.action}
+            changerQuantite={this.changerQuantite}
+            getQuantite={this.state.qteModif}
+          />
+
+          <div className="liste_bouteilles">{bouteilles}</div>
+        </section>
+      </Box>
+    );
+  }
 }

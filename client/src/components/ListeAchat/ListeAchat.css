@@ -1,0 +1,23 @@
+
+.liste_achat_container> * {
+    padding: .7rem;
+    border-radius: .5rem;
+    border: none;
+}
+
+.liste_achat_rows {
+    color :white !important;
+}
+
+.liste_achat_container > .button {
+    width: 100%;
+    color: white;
+    outline: unset;
+    border-radius: .5rem;
+    padding: .5rem 1rem;
+    border: none;
+    margin-bottom: 2rem;
+    font-size: 1em;
+    font-weight: 700;
+    background-color: #641B30;
+}

@@ -61,8 +61,9 @@ export default class Dialogue extends React.Component {
 							type="number"
 							fullWidth
 							variant="standard"
+							value="1"
 							onBlur={(e) => this.setState({valeur : e.target.value })}
-							//onChange={(e) => this.setState({valeur : e.target.value })}
+							inputProps={{ min: "1" }}
 						/>
 					</DialogContent>
 					<DialogActions>

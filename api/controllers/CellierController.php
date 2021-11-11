@@ -34,6 +34,63 @@ class CellierController extends Router
                 $celliers = $cellierClassObj->getCelliersParUsagerId($this->urlParams[2]);
 
                 $this->retour['data'] = $celliers;
+            } else if (ctype_digit($this->urlParams[1]) && $this->urlParams[2] == 'bouteilles') {
+                $cellierClassObj = new CellierModele;
+                $celliers = $cellierClassObj->getCellierParIdAvecBouteilles($this->urlParams[1]);
+
+                $this->retour['data'] = $celliers;
+            } else {
+                $this->retour['erreur'] = $this->erreur(400);
+                unset($this->retour['data']);
+            }
+        } else {
+            $this->retour['erreur'] = $this->erreur(400);
+            unset($this->retour['data']);
+        }
+
+        echo json_encode($this->retour);
+    }
+
+    /**
+     * Delete un cellier.
+     *
+     * @return void
+     */
+    public function deleteCellier()
+    {
+        if (count($this->urlParams) == 2) {
+            if (ctype_digit($this->urlParams[1])) {
+                $cellierClassObj = new CellierModele;
+                $celliers = $cellierClassObj->deleteCellier($this->urlParams[1]);
+
+                $this->retour['data'] = $celliers;
+            } else {
+                $this->retour['erreur'] = $this->erreur(400);
+                unset($this->retour['data']);
+            }
+        } else {
+            $this->retour['erreur'] = $this->erreur(400);
+            unset($this->retour['data']);
+        }
+
+        echo json_encode($this->retour);
+    }
+
+    /**
+     * Modifie les infos d'un cellier.
+     *
+     * @return void
+     */
+    public function modifierCellier()
+    {
+        if (count($this->urlParams) == 1) {
+            $body = json_decode(file_get_contents('php://input'));
+
+            if (!empty($body)) {
+                $cellierClassObj = new CellierModele;
+                $celliers = $cellierClassObj->modifierCellier($body);
+
+                $this->retour['data'] = $celliers;
             } else {
                 $this->retour['erreur'] = $this->erreur(400);
                 unset($this->retour['data']);
