@@ -46,7 +46,7 @@ class CellierModele extends Modele
 
         $requete = "SELECT vino__cellier.*, SUM(vino__cellier_inventaire.quantite) AS quantite FROM vino__cellier"
         . " LEFT JOIN vino__cellier_inventaire ON vino__cellier.id_cellier = vino__cellier_inventaire.id_cellier"
-        . " WHERE vino__cellier.usager_id = 3"
+        . " WHERE vino__cellier.usager_id = $id"
         . " GROUP BY vino__cellier.emplacement"
         . " ORDER BY vino__cellier.id_cellier";
 
