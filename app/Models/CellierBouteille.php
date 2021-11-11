@@ -158,7 +158,7 @@ class CellierBouteille extends Model
 
 
 
-    public static function modifierCellierBouteille($idCellier, $idBouteille, $millesime, $prix, $quantite, $commentaire, $garde_jusqua, $date_achat)
+    public static function modifierCellierBouteille($idCellier, $idBouteille, $millesime, $prix, $quantite, $date_achat, $commentaire=null, $garde_jusqua=null)
     {
         if($millesime == 0) {
             $millesime = 0000;

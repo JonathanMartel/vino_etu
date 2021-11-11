@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
              infoForm.querySelector('#quantite').value=response[0].quantite;
              infoForm.querySelector('#note').value=response[0].note;
              infoForm.querySelector('#prix').value=response[0].prix;
-             infoForm.querySelector('#commentaire').value=response[0].commentaire;
+             infoForm.querySelector('#commentaire').value=response[0].commentaire.trim();
              infoForm.querySelector('#date_achat').value=response[0].date_achat;
              infoForm.querySelector('#garde_jusqua').value=response[0].garde_jusqua;
 
@@ -155,21 +155,34 @@ document.addEventListener('DOMContentLoaded', function() {
         btnValideActive.addEventListener("click",function(e){
             e.preventDefault();
             console.log('click valider');
+             if(commentaire.value.trim()=="")
+                commentaire.value=" ";
 
-            fetch(`/ajouterNote/${idCellier}/${idBouteille}/${millesime}/${prix}/${quantite}/${commentaire}/${garde_jusqua}/${date_achat}`)
-                
-            .then(response => {
-                return (response.json())
-            })
-            .then(response => {
-                infoForm.querySelector('#quantite').value=response[0].quantite;
-                infoForm.querySelector('#prix').value=response[0].prix;
-                infoForm.querySelector('#commentaire').value=response[0].commentaire;
-                infoForm.querySelector('#date_achat').value=response[0].date_achat;
-                infoForm.querySelector('#garde_jusqua').value=response[0].garde_jusqua;
+            fetch(`/modifierCellierBouteille/${idCellier}/${idBouteille}/${millesime.value}/${prix.value}/${quantite.value}/${date_achat.value}/${commentaire.value}/${garde_jusqua.value}`)
+            // console.log(idCellier);
+            // console.log(idBouteille);    
+            // console.log(commentaire.value);
+            //     console.log(prix.value);
+            //     console.log(millesime.value);
+            //     console.log(quantite.value);
+            //     console.log(garde_jusqua.value);
+            //     console.log(date_achat.value);
+
+            //  .then(response => {
+            //      return (response.json())
+            //  })
+             //.then(response => {
+            //     infoForm.querySelector('#quantite').value=response[0].quantite;
+            //     infoForm.querySelector('#prix').value=response[0].prix;
+            //     infoForm.querySelector('#commentaire').value=response[0].commentaire;
+            //     infoForm.querySelector('#date_achat').value=response[0].date_achat;
+            //     infoForm.querySelector('#garde_jusqua').value=response[0].garde_jusqua;
     
-               console.log(response[0].prix);
-            }).catch(error => console.log('Le fetch ne fonctionne toujours pas',error))
+              // console.log(response);
+            
+              .catch(error => console.log('Le fetch ne fonctionne toujours pas',error))
+
+
         });
 
 
