@@ -32,7 +32,6 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatConfirmDialogComponent } from './components/mat-confirm-dialog/mat-confirm-dialog.component';
 import { MatSelectModule } from '@angular/material/select'
 import { ListeCelliersComponent } from './pages/liste-celliers/liste-celliers.component'
-import { interceptorProviders } from '@services/interceptor-providers.service'
 
 @NgModule({
     declarations: [
@@ -73,8 +72,6 @@ import { interceptorProviders } from '@services/interceptor-providers.service'
     providers: [
         BouteilleDeVinService,
         BouteilleResolverServiceService,
-        // Baril d'interceptors
-        interceptorProviders,
     ],
     bootstrap: [AppComponent],
     entryComponents:[MatConfirmDialogComponent],
