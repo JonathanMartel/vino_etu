@@ -155,6 +155,28 @@ class CellierBouteille extends Model
     }
 
 
+
+
+
+    public static function modifierCellierBouteille($idCellier, $idBouteille, $millesime, $prix, $quantite, $commentaire, $garde_jusqua, $date_achat)
+    {
+        if($millesime == 0) {
+            $millesime = 0000;
+        }
+        
+         DB::table('cellier_bouteilles')
+        ->where('cellier_id', $idCellier)
+        ->where('bouteille_id', $idBouteille)
+        ->where('millesime', $millesime)
+        ->update(['prix' => $prix,
+                    'quantite'=> $quantite,
+                    'commentaire'=>$commentaire,
+                    'garde_jusqua'=>$garde_jusqua,
+                    'date_achat'=>$date_achat,
+                ]);
+
+    }
+
     // public static function updateCellierBouteille($idCellier, $idBouteille, $millesime, $request)
     // {
     //     if($millesime == 0) {
@@ -165,8 +187,8 @@ class CellierBouteille extends Model
     //     ->where('cellier_id', $idCellier)
     //     ->where('bouteille_id', $idBouteille)
     //     ->where('millesime', $millesime)
-    //     ->update(['note' => $request->note,
-    //                 'prix' => $request->prix
+    //     ->update(['quantite' => $request->note,
+    //                 'prix' => $request->prix,
     
     
     //     ]);
