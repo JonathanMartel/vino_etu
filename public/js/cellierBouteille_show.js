@@ -235,4 +235,22 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('click effacer');
 
         });
+
+        /**
+     * Message Dialogue si une bouteille a été supprimé
+     */
+
+    const modifieBouteille = document.querySelector(".modifieBouteille");
+
+    if (modifieBouteille) {
+        var toastHTML =
+            '<span>Une bouteille a été modifié</span><button class="btn-flat toast-action">Fermer</button>';
+        M.toast({ html: toastHTML, displayLength: 5000 });
+
+        const message = document.querySelector(".toast-action");
+
+        message.addEventListener("click", () => {
+            M.Toast.dismissAll();
+        });
+    }
 });

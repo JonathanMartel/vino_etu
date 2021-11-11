@@ -5,6 +5,10 @@
 <span class="nouvelleBouteille"></span>
 @endif
 
+@if(Session::get('deleteBouteille'))
+<span class="deleteBouteille"></span>
+@endif
+
 
 
 <header>

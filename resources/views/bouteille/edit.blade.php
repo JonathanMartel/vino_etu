@@ -69,6 +69,9 @@
             <label for="description">Description</label>
             <span class="helper-text" data-error="Format invalid"></span>
         </div>
+
+        <input type="hidden" name="url_img" value="{{$bouteille->url_img}}">
+
         <div class="file-field input-field col s12">
             <div class="image-vin-conteneur">
             <img class="image-vin" src="{{$bouteille->url_img}}" alt="{{$bouteille->nom}}">
@@ -107,6 +110,9 @@
             </div>
         </div>
         <input type="hidden" name="url_img" value="{{$bouteille->url_img}}">
+        
+        <a class="btn waves-effect waves-light button btn-supprimer modal-trigger" href="#{{$bouteille->id}}"><i class="material-icons">delete</i></a>
+
     </form>
 </div>
 
