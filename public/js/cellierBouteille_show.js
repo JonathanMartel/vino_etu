@@ -22,14 +22,14 @@ document.addEventListener('DOMContentLoaded', function() {
     const inputs = document.querySelectorAll('[data-js-input]');
     const infoForm =  document.querySelector('[data-js-form]');
     const infoInfo = document.querySelector('.form');
-    const btnAnnuleActive = document.querySelector('[data-js-btnAnnuler]')
-    const btnValideActive = document.querySelector('[data-js-btnValider]')
-    const btnEffacerActive = document.querySelector('[data-js-btnEffacer]')
-    const idCellier = location.pathname.split('/')[2]
-    const idBouteille = location.pathname.split('/')[3]
-    const elCommentaire = document.querySelector('#commentaire')
-    elCommentaire.value = elCommentaire.value.trim()
-  
+    const btnAnnuleActive = document.querySelector('[data-js-btnAnnuler]');
+    const btnValideActive = document.querySelector('[data-js-btnValider]');
+    const btnEffacerActive = document.querySelector('[data-js-btnEffacer]');
+    const idCellier = location.pathname.split('/')[2];
+    const idBouteille = location.pathname.split('/')[3];
+    const elCommentaire = document.querySelector('#commentaire');
+    elCommentaire.value = elCommentaire.value.trim();
+ 
     const datepicker = document.querySelector('.datepicker');
     
     M.Datepicker.init(datepicker,
@@ -187,23 +187,33 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 
-
     /** Bouton valider **/
 
         btnValideActive.addEventListener("click",function(e){
-            e.preventDefault();
+           e.preventDefault(e);
             console.log('click valider');
+           
+            // let messagePrix = "Entrez de 0 à 100000";
+            // if (prix.value < 0 || prix.value > 6) {
+            //     btnValideActive.disabled = true;
+            //     document.getElementById("message").innerHTML = messagePrix;
+                  
+            // }else {
+                
+               
 
-            for (let i = 0; i < inputs.length; i++){
-                inputs[i].readOnly = true;
-                inputs[i].classList.remove("input-active");
-                inputs[i].classList.add("input-fiche-cercle");
-            }
+                for (let i = 0; i < inputs.length; i++){
+                    inputs[i].readOnly = true;
+                    inputs[i].classList.remove("input-active");
+                    inputs[i].classList.add("input-fiche-cercle");
+                }
 
-            boutonModifier.classList.remove("non-active");
-            btnAnnuleActive.classList.add("non-active");
-            btnValideActive.classList.add("non-active");
-            btnEffacerActive.classList.add("non-active");
+                boutonModifier.classList.remove("non-active");
+                btnAnnuleActive.classList.add("non-active");
+                btnValideActive.classList.add("non-active");
+                btnEffacerActive.classList.add("non-active");
+             
+
 
                 if(commentaire.value.trim()=="")
                     commentaire.value=" ";
@@ -233,6 +243,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 .catch(error => console.log('Le fetch ne fonctionne toujours pas',error))
 
                 elCommentaire.value = elCommentaire.value.trim()
+            
+            
 
             });
 

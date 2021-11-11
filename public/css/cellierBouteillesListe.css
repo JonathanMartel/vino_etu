@@ -43,7 +43,8 @@
 }
 
 .underline{
-    text-decoration: underline;
+     text-decoration: underline; 
+
 }
 
 .nomVinConteneur {
@@ -51,15 +52,22 @@
     /* font-size: 1.25rem;
     font-weight: 700;
     color: #343B41; */
+    color: white;
     background-color: #7A5958;
-    
+    transition: all 0.3s ease;
+}
+
+.nomVinConteneur:hover{
+    background-color: #CDCED1;
+    color: #7A5958;
 }
 
 .nomVinConteneur>h2 {
     font-size: 1.25rem;
     font-weight: 700;
-    color: white;
 }
+
+
 
 .infoBouteilleConteneur {
     display: flex;
