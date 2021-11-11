@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { MatDrawerMode } from '@angular/material/sidenav';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '@services/auth.service';
 
 @Component({
     selector: 'app-cellier',
@@ -31,6 +32,7 @@ export class CellierComponent implements OnInit {
     constructor(
         private servBouteilleDeVin: BouteilleDeVinService,
         private actRoute: ActivatedRoute,
+        private servAuth: AuthService,
     ) {
 
     }
