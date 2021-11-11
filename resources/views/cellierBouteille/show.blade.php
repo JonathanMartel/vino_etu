@@ -29,10 +29,10 @@
     <section class="info-fiche">
         <article class="infoBouteilleConteneur-fiche">
             <div class="">
-                <p class="bold">{{ $bouteille->pays }} | {{ $bouteille->type }}</p>
+                <p class="bold">@if($bouteille->pays){{ $bouteille->pays }} | @endif {{ $bouteille->type }}</p>
                 <p>{{  $bouteille->format }}</p>
                 <p>{{  $bouteille->taille }} cl</p>
-                <p>Prix Saq | <span class="bold-20px">{{ $bouteille->prix_saq }}$</span></p>
+                <p>Prix Saq | @if($bouteille->prix_saq)<span class="bold-20px">{{ $bouteille->prix_saq  }} $</span> @else N/A @endif</p>
             </div>
             <div>
                 
@@ -50,15 +50,16 @@
                         </div>
                         @endif
                 </div>
-              
+                @if(!$bouteille->url_saq)
                 <a class="bouteilleSAQConteneur-fiche" href="{{ route('bouteilleEdit', ['bouteille' =>$bouteille->id, 'idCellier' => $cellier->id])}}"><i class="material-icons-fiche">edit</i></a>
+                @endif
                
             </div>
 
         </article>
         <article>
             <h2 class="description-titre">Description</h2>
-            <p>{{ $bouteille->description  }}</p>
+            <p>{{ $bouteille->description ?? "Aucune description" }}</p>
         </article>
     </section>
 
@@ -67,8 +68,9 @@
 
          <section class="millesime-conteneur">
              @foreach($cellierBouteilleMillesime as $cellierBouteille)
-                     <div data-js-bouton="{{ $cellierBouteille->millesime }}">
-                        <button id="bouton-millesime"class="millesime-item" >
+            
+                     <div    data-js-bouton="{{ $cellierBouteille->millesime }}">
+                        <button @if($loop->last) class="millesime-item-selected millesime-item"  @endif id="bouton-millesime"class="millesime-item" >
                             @if($cellierBouteille->millesime  != 0)
                                 <p>{{ $cellierBouteille->millesime }}</p>
                             @else
@@ -103,7 +105,7 @@
                             <div>
                                 <div class="form-modifier-item " >
                                     <label for="millesime">Millésime</label>
-                                    <input type="number" name="millesime" readonly="readonly" id="millesime"  class="input-fiche-cercle" value="{!! $cellierBouteille->millesime !!}"/>
+                                    <input  name="millesime" readonly="readonly" id="millesime"  class="input-fiche-cercle" value="@if($cellierBouteille->millesime != 0){{ $cellierBouteille->millesime }} @else N/A @endif"/>
                                 </div>
                                 <div class="form-modifier-item" >
                                     <label for="prix">Prix d'achat</label>
@@ -117,22 +119,18 @@
                         </div>
                     </div>
                     <div class="millesime-info-fin">
-                    <!-- <div class="input-field col s12">
-                        <textarea id="commentaire" name="commentaire" readonly="readonly  class="materialize-textarea">{{ old('commentaire') }}</textarea>
-                        <label for="commentaire">Commentaire</label>
-                        <span class="helper-text" data-error="Format invalid"></span>
-                    </div> -->
+              
                         <div class="item-commentaire" >
                             <label for="commentaire">Commentaire</label>
-                            <input type="textarea" name="commentaire" readonly="readonly" id="commentaire" data-js-input class="textarea" value="{!! $cellierBouteille->commentaire !!}"/>
+                            <input type="textarea" name="commentaire" readonly="readonly" id="commentaire" data-js-input class="textarea" placeholder="Aucun commentaire" value="{{ $cellierBouteille->commentaire }}"/>
                         </div>
                         <div class="item-commentaire" >
                             <label for="garde_jusqua">Garder jusqu'à</label>
-                            <input type="textarea" name="garde_jusqua" readonly="readonly" id="garde_jusqua" data-js-input class="textarea" value="{!! $cellierBouteille->garde_jusqua !!}"/>
+                            <input type="textarea" name="garde_jusqua" readonly="readonly" placeholder="Non disponible" id="garde_jusqua" data-js-input class="textarea" value="{!! $cellierBouteille->garde_jusqua !!}"/>
                         </div>
                         <div class="item-commentaire" >
                             <label for="date_achat">Date d'achat :</label>
-                            <input type="date" name="date_achat" readonly="readonly" id="date_achat" data-js-input class="" value="{!! $cellierBouteille->date_achat !!}"/>
+                            <input type="text" name="date_achat" disabled tabindex="-1" autocomplete="" class="datepicker" id="date_achat" data-js-input class="" value="{!! date('M d, Y', strtotime($cellierBouteille->date_achat)) !!}"/>
                         </div>
                     </div>
                     <div class="bouton">
@@ -148,29 +146,6 @@
 
 </main>
 
-<!-- <div>
-    <ul>
-        <li>Nom ://  $bouteille->nom //</li>
-        <li>Description :// $bouteille->description //</li>
-        <li>Pays :// $bouteille->pays //</li>
-        <li>Prix Saq ://  $bouteille->prix_saq //</li>
-        <li>Type : //  $bouteille->type //</li>
-        <li>Format : //  $bouteille->format //</li>
-        <li>Lien SAQ : //  $bouteille->url_saq //</li>
-        <li>image : //  $bouteille->url_img //</li>
-    </ul>
-</div>
-<div>
-    <ul>
-        <li>Quantié : // $cellierBouteille->quantite //</li>
-        <li>Note : // $cellierBouteille->note //</li>
-        <li>Millesime : // $cellierBouteille->millesime //</li>
-        <li>Prix: // $cellierBouteille->garde_jusqua //</li>
-        <li>Commentaire: // $cellierBouteille->commentaire //</li>
-        <li>Date: // $cellierBouteille->date_achat //</li>
-        <li>Garder:// $cellierBouteille->garde_jusqua //</li>
-    </ul>
-</div> -->
 
 @endsection
 <script src="{{asset('js/cellierBouteille_show.js')}}"></script> 

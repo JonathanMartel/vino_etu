@@ -62,7 +62,7 @@
                     @if(isset($vin['bouteille']->pays))
                         <p>{{$vin['bouteille']->pays}}</p>
                     @else
-                        <p>Pays:non</p>
+                        <p>N/A</p>
                     @endif
                     <p>{{$vin['bouteille']->type}}</p>
                     </div>

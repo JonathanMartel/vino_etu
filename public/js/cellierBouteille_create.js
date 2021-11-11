@@ -29,9 +29,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     return (response.json())
                 })
                 .then(response => {
-
+                    
                     response.forEach(function(element){
-                        liste.innerHTML += `<div  data-description="${element.description}" data-pays="${element.pays}" data-idtype="${element.type_id}" data-idformat="${element.format_id}" data-id="${element.id}" data-prix="${element.prix_saq}"  data-imgurl="${element.url_img}" data-nom="${element.nom}" >${element.nom} - ${element.type} -  ${element.taille} cL - ${element.pays}</div>`;
+                 
+                        liste.innerHTML += `<div  data-description="${element.description ?? ''}" data-pays="${element.pays ?? ''}" data-idtype="${element.type_id}" data-idformat="${element.format_id}" data-id="${element.id}" data-prix="${element.prix_saq ?? 0}"  data-imgurl="${element.url_img}" data-nom="${element.nom}" >${element.nom} - ${element.type} -  ${element.taille} cL ${element.pays != null ? '- ' + element.pays : ''}</div>`;
                     })
                     
                 }).catch(error => console.log(error))
@@ -75,13 +76,14 @@ document.addEventListener('DOMContentLoaded', function() {
             inputNom.className = 'valid';
             
             imgUrl.value = e.target.dataset.imgurl;
-
-            prix.value = parseFloat(e.target.dataset.prix).toFixed(2);
-
-            if(e.target.dataset?.description != ''){
-                description.value = e.target.dataset.description;
-          
+            if(e.target.dataset.prix != null) {
+                prix.value = parseFloat(e.target.dataset.prix).toFixed(2);
+            }else {
+                prix.value = 0;
             }
+            
+
+            description.value = e.target.dataset.description;
             
 
             fetch(`/obtenirMillesimesParBouteille/${idCellier}/${e.target.dataset.id}`)
@@ -128,10 +130,10 @@ document.addEventListener('DOMContentLoaded', function() {
             liste.innerHTML = "";
             inputBouteilleId.value = e.target.dataset.id;
            
-            if(e.target.dataset?.pays != ''){
-                pays.value = e.target.dataset.pays;
+     
+            pays.value = e.target.dataset.pays;
 
-            }
+            
 
             M.updateTextFields();
 
