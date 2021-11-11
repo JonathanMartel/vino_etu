@@ -1,40 +1,42 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AjoutCellierComponent } from '@pages/ajout-cellier/ajout-cellier.component';
 import { AuthService } from '@services/auth.service';
 import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
+import { EventEmitter } from '@angular/core';
 
 @Component({
-    selector: 'app-liste-celliers',
-    templateUrl: './liste-celliers.component.html',
-    styleUrls: ['./liste-celliers.component.scss']
+  selector: 'app-liste-celliers',
+  templateUrl: './liste-celliers.component.html',
+  styleUrls: ['./liste-celliers.component.scss']
 })
 export class ListeCelliersComponent implements OnInit {
 
-    listeCelliers!: any[];
+  listeCelliers!: any[];
 
-    constructor(
-        private servBouteilleDeVin: BouteilleDeVinService,
-        private authService: AuthService,
-        public formAjout: MatDialog,
-    ) { }
+  @Output("chargerCelliers") chargerCelliers: EventEmitter<any> = new EventEmitter();
 
-    ngOnInit(): void {
-        console.log(this.authService.getIdUtilisateurAuthentifie());
+  constructor(private servBouteilleDeVin: BouteilleDeVinService, private authService: AuthService,  public formAjout: MatDialog,) { }
 
-        // Charger la liste des celliers de l'utilisateur.
-        this.servBouteilleDeVin.getListeCelliersParUtilisateur(this.authService.getIdUtilisateurAuthentifie())
-            .subscribe((data: any) => {
-                this.listeCelliers = data;
-            })
-    }
+  ngOnInit(): void {
 
-    formulaireAjout(data: any): void {
-        this.formAjout.open(AjoutCellierComponent, {
-            data
-        });
-    }
+    
+    // Charger la liste des celliers de l'utilisateur.
+    this.servBouteilleDeVin.getListeCelliersParUtilisateur(this.authService.getIdUtilisateurAuthentifie())
+        .subscribe((data: any) => {
 
+          this.chargerCelliers.emit();
+          this.listeCelliers = data;
+          
+        })
+  }
 
+  formulaireAjout(data: any): void {
+    this.formAjout.open(AjoutCellierComponent, {
+        data
+    });
+}
+
+  
 
 }

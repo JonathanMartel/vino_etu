@@ -19,20 +19,20 @@ export class AuthService {
     constructor(
         private http: HttpClient
     ) {
-        // this.connexion({
-        //     email: "vino@kalimotxo.com",
-        //     password: "password",
-        // })
-        // .subscribe(
-        //     data => {
-        //         this.utilisateur = data.utilisateur;
-        //         this.token = data.token;
-        //         return data;
-        //     },
-        //     error => {
-        //         return error;
-        //     }
-        // )
+         this.connexion({
+             email: "vino@kalimotxo.com",
+             password: "password",
+         })
+         .subscribe(
+             data => {
+                 this.utilisateur = data.utilisateur;
+                 this.token = data.token;
+                 return data;
+             },
+             error => {
+                 return error;
+             }
+         )
     }
 
     connexion(data: any) {
