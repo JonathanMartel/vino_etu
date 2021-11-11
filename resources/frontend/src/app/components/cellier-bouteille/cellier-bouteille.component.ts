@@ -63,7 +63,11 @@ export class CellierBouteilleComponent implements OnInit {
 
     @Output("chargerBouteilles") chargerBouteilles: EventEmitter<any> = new EventEmitter();
 
-    constructor(private servBouteilleDeVin: BouteilleDeVinService, public formModifierBouteille: MatDialog,  private snackBar: MatSnackBar) { }
+    constructor(
+        private servBouteilleDeVin: BouteilleDeVinService,
+        public formModifierBouteille: MatDialog,
+        private snackBar: MatSnackBar
+    ) { }
 
     ngOnInit(): void {
 
@@ -92,8 +96,6 @@ export class CellierBouteilleComponent implements OnInit {
     }
 
     supprimerBouteille(){
-
-
         this.servBouteilleDeVin.confirmDialog('Voulez vous vraiment supprimer la bouteille ?')
          .afterClosed().subscribe(res => {
              if(res){
