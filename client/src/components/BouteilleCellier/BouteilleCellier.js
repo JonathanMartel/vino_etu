@@ -51,7 +51,7 @@ export default class BouteilleCellier extends React.Component {
 						) : null}
 					</div>
 					<div className="bouteille_description">
-						<img className="bouteille_drapeau" src={this.props.drapeau} width="30" alt="Drapeau du pays" />
+						{/*<img className="bouteille_drapeau" src={this.props.info.drapeau} width="30" alt="Drapeau du pays" />*/}
 						<p>{this.props.info.millesime}</p>
 						<p>Quantité : {this.props.info.quantite}</p>
 					</div>

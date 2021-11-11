@@ -2,6 +2,7 @@ import React from 'react';
 
 import BouteilleCellier from '../BouteilleCellier/BouteilleCellier';
 import Dialogue from '../Dialogue/Dialogue';
+import listePays from '../../pays.json';
 
 import './ListeBouteilleCellier.css';
 
@@ -78,19 +79,45 @@ export default class ListeBouteilleCellier extends React.Component {
 		})
 			.then((reponse) => reponse.json())
 			.then((donnees) => {
+				donnees.data.map((item) => {
+					let processed = 0;
+					Object.entries(item).map((i) => {
+						if(i[0] === "pays") {
+							console.log(this.getDrapeauPays(i[1]));
+						}
+
+					})
+					
+				} )
 				this.setState({
 					items: donnees.data,
 					premierId: donnees.data[0].id,
-					nomCellier: donnees.data[0].emplacement
+					nomCellier: donnees.data[0].emplacement,
 				});
+
 
 				console.log(this.state.items);
 			});
 	}
 
-	setDrapeau(drap) {
-		this.setState({ drapeau: drap });
+	setDrapeau(flag) {
+		//this.setState({ items.drapeau: flag });
 	}
+
+	getDrapeauPays(pays) {
+		listePays
+			.filter((data) => {
+				if (pays == null) return;
+				else if (data.name.toLowerCase().includes(pays.toLowerCase())) {
+					return data;
+				}
+			})
+			.map((data) => {
+				let flag = 'https://flagcdn.com/' + data.alpha2 + '.svg';
+				return flag;
+			});
+	}
+
 
 	changerQuantite(valeur) {
 		this.setState({ qteModif: valeur, open: false });
@@ -187,6 +214,7 @@ export default class ListeBouteilleCellier extends React.Component {
 	render() {
 		const premierId = this.state.premierId;
 		const bouteilles = this.state.items.map((item, index) => {
+			
 			return (
 				<div>
 					{premierId ? (
