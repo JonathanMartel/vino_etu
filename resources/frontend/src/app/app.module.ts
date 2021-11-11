@@ -31,7 +31,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatConfirmDialogComponent } from './components/mat-confirm-dialog/mat-confirm-dialog.component';
 import { MatSelectModule } from '@angular/material/select'
-import { ListeCelliersComponent } from './pages/liste-celliers/liste-celliers.component'
+import { ListeCelliersComponent } from './pages/liste-celliers/liste-celliers.component';
+import { ProfilUtilisateurComponent } from './pages/profil-utilisateur/profil-utilisateur.component';
+import { ModifierUtilisateurComponent } from './pages/modifier-utilisateur/modifier-utilisateur.component'
 
 
 
@@ -54,6 +56,8 @@ import { ListeCelliersComponent } from './pages/liste-celliers/liste-celliers.co
         ModifierCellierBouteilleComponent,
         MatConfirmDialogComponent,
         ListeCelliersComponent,
+        ProfilUtilisateurComponent,
+        ModifierUtilisateurComponent,
 
     ],
     imports: [
