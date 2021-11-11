@@ -9,24 +9,16 @@ import Toolbar from '@mui/material/Toolbar';
 /* Variables de styles */
 const appBarStyles = {
 	backgroundColor: 'rgba(0, 0, 0, .8)',
-	position: 'relative',
-}
+	position: 'relative'
+};
 
 const toolBarStyles = {
 	display: 'flex',
 	justifyContent: 'space-between',
 	height: 75
-
-}
-
+};
 
 export default class Entete extends React.Component {
-	constructor(props) {
-		super(props);
-	}
-
-
-
 	render() {
 		// return (
 		// 	<Box>

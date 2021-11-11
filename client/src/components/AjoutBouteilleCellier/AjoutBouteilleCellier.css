@@ -29,9 +29,17 @@
 }
 
 .formulaire_ajout_bouteille_cellier fieldset {
-   border-color: white !important;
+   border-color: white;
 }
 
 .formulaire_ajout_bouteille_cellier label, .formulaire_ajout_bouteille_cellier input {
-    color: white !important;
+    color: white;
+}
+
+.recherche_saq {
+    color: white;
+}
+
+.champs_recherche {
+    color: black;
 }

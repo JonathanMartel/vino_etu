@@ -1,13 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+
 import BouteilleCellier from '../BouteilleCellier/BouteilleCellier';
-//import { Link } from 'react-router-dom';
-import paysJSON from '../../pays.json';
+import Dialogue from '../Dialogue/Dialogue';
+import listePays from '../../pays.json';
 
 import './ListeBouteilleCellier.css';
-import Dialogue from '../Dialogue/Dialogue';
-import { circularProgressClasses } from '@mui/material';
+
+//import { circularProgressClasses } from '@mui/material';
 import { Box } from '@mui/system';
 import { Breadcrumbs, Link, Typography } from '@mui/material';
+import InputLabel from '@mui/material/InputLabel';
+//import MenuItem from '@mui/material/MenuItem';
+//import ListSubheader from '@mui/material/ListSubheader';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
 export default class ListeBouteilleCellier extends React.Component {
 	constructor(props) {
@@ -21,7 +27,10 @@ export default class ListeBouteilleCellier extends React.Component {
 			message: '',
 			open: false,
 			titre: '',
-			action: undefined
+			action: undefined,
+			premierId: undefined,
+			nomCellier: undefined,
+			drapeau: undefined
 		};
 
 		this.fetchBouteilles = this.fetchBouteilles.bind(this);
@@ -31,26 +40,37 @@ export default class ListeBouteilleCellier extends React.Component {
 		this.changerTitreDialogue = this.changerTitreDialogue.bind(this);
 		this.ajouterAction = this.ajouterAction.bind(this);
 		this.retirerAction = this.retirerAction.bind(this);
-        this.sortBouteilles = this.sortBouteilles.bind(this);
+		this.sortBouteilles = this.sortBouteilles.bind(this);
+		this.setDrapeau = this.setDrapeau.bind(this);
 	}
 
 	componentDidMount() {
 		this.fetchBouteilles();
 	}
 
-    componentDidUpdate() {
-    }
+	componentDidUpdate() {}
 
-    sortBouteilles(key, order) {
-        if (order.toUpperCase() === 'ASC') {
-			return this.state.items.sort((a, b) => a[key].localeCompare(b[key]));
-        } else if (order.toUpperCase() === 'DESC') {
-			return this.state.items.sort((a, b) => b[key].localeCompare(a[key]))
-        }
-    }
-    
+	sortBouteilles(obj) {
+		const parsedObj = JSON.parse(obj);
+		const key = parsedObj.key;
+		const order = parsedObj.order;
+		if (order.toUpperCase() === 'ASC') {
+			const sortedItems = this.state.items.sort((a, b) => a[key].localeCompare(b[key]));
+			console.log(sortedItems);
+			this.setState({ items: sortedItems });
+		} else if (order.toUpperCase() === 'DESC') {
+			const sortedItems = this.state.items.sort((a, b) => b[key].localeCompare(a[key]));
+			console.log(sortedItems);
+			this.setState({ items: sortedItems });
+		}
+	}
+
+	triBouteilles(order) {
+		console.log(JSON.parse(order));
+	}
+
 	fetchBouteilles() {
-		fetch('https://rmpdwebservices.ca/webservice/php/celliers/' + this.props.match.params.id, {
+		fetch('https://rmpdwebservices.ca/webservice/php/celliers/' + this.props.match.params.id + '/bouteilles', {
 			method: 'GET',
 			headers: new Headers({
 				'Content-Type': 'application/json',
@@ -59,14 +79,50 @@ export default class ListeBouteilleCellier extends React.Component {
 		})
 			.then((reponse) => reponse.json())
 			.then((donnees) => {
-				this.setState({ items: donnees.data });
+				donnees.data.map((item) => {
+					let processed = 0;
+					Object.entries(item).map((i) => {
+						if(i[0] === "pays") {
+							console.log(this.getDrapeauPays(i[1]));
+						}
+
+					})
+					
+				} )
+				this.setState({
+					items: donnees.data,
+					premierId: donnees.data[0].id,
+					nomCellier: donnees.data[0].emplacement,
+				});
+
+
+				console.log(this.state.items);
 			});
 	}
+
+	setDrapeau(flag) {
+		//this.setState({ items.drapeau: flag });
+	}
+
+	getDrapeauPays(pays) {
+		listePays
+			.filter((data) => {
+				if (pays == null) return;
+				else if (data.name.toLowerCase().includes(pays.toLowerCase())) {
+					return data;
+				}
+			})
+			.map((data) => {
+				let flag = 'https://flagcdn.com/' + data.alpha2 + '.svg';
+				return flag;
+			});
+	}
+
 
 	changerQuantite(valeur) {
 		this.setState({ qteModif: valeur, open: false });
 
-		if (this.state.action == 'ajouter') {
+		if (this.state.action === 'ajouter') {
 			this.ajouter(this.state.item, valeur);
 		} else {
 			this.retirer(this.state.item, valeur);
@@ -149,20 +205,32 @@ export default class ListeBouteilleCellier extends React.Component {
 				});
 			this.setState({ message: '' });
 		} else {
-			this.setState({ message: "Il n'y a pas assez de bouteilles pour retirer la quantité demandée" });
+			this.setState({
+				message: "Il n'y a pas assez de bouteilles pour retirer la quantité demandée"
+			});
 		}
 	}
 
 	render() {
+		const premierId = this.state.premierId;
 		const bouteilles = this.state.items.map((item, index) => {
+			
 			return (
-				<div key={index}>
-					{/*<p className="messageErreur"> {this.state.message} </p>*/}
-					<BouteilleCellier
-						info={item}
-						ajouterAction={this.ajouterAction}
-						retirerAction={this.retirerAction}
-					/>
+				<div>
+					{premierId ? (
+						<div>
+							<BouteilleCellier
+								key={index}
+								info={item}
+								setDrapeau={this.setDrapeau}
+								drapeau={this.state.drapeau}
+								ajouterAction={this.ajouterAction}
+								retirerAction={this.retirerAction}
+							/>
+						</div>
+					) : (
+						<div className="cellier_vide">Il n'y a pas de bouteilles dans votre cellier</div>
+					)}
 				</div>
 			);
 		});
@@ -170,15 +238,39 @@ export default class ListeBouteilleCellier extends React.Component {
 		return (
 			<Box>
 				<Breadcrumbs aria-label="breadcrumb" sx={{ display: 'flex', margin: '0 1.5rem' }}>
-					<Link underline="hover" color="white" href="/">
+					<Link underline="hover" color="white" href="/celliers/liste">
 						Celliers
 					</Link>
+					<Typography color="text.primary">{this.state.nomCellier}</Typography>
 					<Typography color="text.primary">Liste des bouteilles</Typography>
 				</Breadcrumbs>
-				{/*<Link underline="hover" color="white" href="/ajoutBouteille">
-					<span>Ajouter une nouvelle bouteille à votre cellier</span>
-    </Link>*/}
-
+				<FormControl sx={{ m: 1, minWidth: 120 }}>
+					<InputLabel htmlFor="grouped-native-select">Trier par</InputLabel>
+					<Select
+						native
+						defaultValue=""
+						id="grouped-native-select"
+						label="Grouping"
+						onChange={(e) => this.sortBouteilles(e.target.value)}
+					>
+						<optgroup label="Nom">
+							<option value={JSON.stringify({ key: 'nom', order: 'asc' })}>Nom (A-Z)</option>
+							<option value={JSON.stringify({ key: 'nom', order: 'desc' })}>Nom (Z-A)</option>
+						</optgroup>
+						<optgroup label="Millesime">
+							<option value={JSON.stringify({ key: 'millesime', order: 'asc' })}>
+								Millesime Ascendant
+							</option>
+							<option value={JSON.stringify({ key: 'millesime', order: 'desc' })}>
+								Millesime Descendant
+							</option>
+						</optgroup>
+						<optgroup label="Pays">
+							<option value={JSON.stringify({ key: 'pays', order: 'asc' })}>Pays (A-Z)</option>
+							<option value={JSON.stringify({ key: 'pays', order: 'desc' })}>Pays (Z-A)</option>
+						</optgroup>
+					</Select>
+				</FormControl>
 				<section>
 					<Dialogue
 						open={this.state.open}
@@ -187,6 +279,7 @@ export default class ListeBouteilleCellier extends React.Component {
 						changerQuantite={this.changerQuantite}
 						getQuantite={this.state.qteModif}
 					/>
+
 					<div className="liste_bouteilles">{bouteilles}</div>
 				</section>
 			</Box>

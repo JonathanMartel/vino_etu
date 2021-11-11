@@ -1,11 +1,10 @@
-import { textAlign } from '@mui/system';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import saqLogo from '../../SAQ_Logo.svg';
-import listePays from '../../pays.json';
-import './BouteilleCellier.css';
 import vinBlanc from '../../vin_blanc.png';
 import vinRouge from '../../vin_rouge.png';
+import listePays from '../../pays.json';
+import './BouteilleCellier.css';
+
 
 export default class BouteilleCellier extends React.Component {
 	constructor(props) {
@@ -30,22 +29,20 @@ export default class BouteilleCellier extends React.Component {
 				}
 			})
 			.map((data) => {
-				let drap = 'https://flagcdn.com/' + data.alpha2 + '.svg';
-				this.setState({ drapeau: drap });
+				let flag = 'https://flagcdn.com/' + data.alpha2 + '.svg';
+				this.props.setDrapeau(flag);
 			});
 	}
 
 	render() {
-		//<Link to={'/bouteilles/' + this.props.info.id} />;
-
 		return (
 			<div className="bouteille_container">
 				<div className="titre">{this.props.info.nom}</div>
 				<div className="content_container">
 					<div className="content">
 						<div className="bouteille_img_container">
-							<img className="bouteille_img" src={this.state.imgSaq} />
-							<img src={this.props.info.vino__type_id === '1' ? vinRouge : vinBlanc} />
+							<img className="bouteille_img" src={this.state.imgSaq} alt="Bouteille de vin"/>
+							<img src={this.props.info.vino__type_id === '1' ? vinRouge : vinBlanc} alt="Couleur du vin"/>
 						</div>
 						{this.props.info.url_saq ? (
 							<a href={this.props.info.url_saq}>
@@ -54,7 +51,7 @@ export default class BouteilleCellier extends React.Component {
 						) : null}
 					</div>
 					<div className="bouteille_description">
-						<img className="bouteille_drapeau" src={this.state.drapeau} width="30" />
+						{/*<img className="bouteille_drapeau" src={this.props.info.drapeau} width="30" alt="Drapeau du pays" />*/}
 						<p>{this.props.info.millesime}</p>
 						<p>Quantité : {this.props.info.quantite}</p>
 					</div>
