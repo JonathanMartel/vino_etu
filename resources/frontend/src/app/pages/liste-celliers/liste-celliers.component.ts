@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '@services/auth.service';
+import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 
 @Component({
   selector: 'app-liste-celliers',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListeCelliersComponent implements OnInit {
 
-  constructor() { }
+  listeCelliers!: any[];
+
+  constructor(private servBouteilleDeVin: BouteilleDeVinService, private authService: AuthService) { }
 
   ngOnInit(): void {
+
+    
+    // Charger la liste des celliers de l'utilisateur.
+    this.servBouteilleDeVin.getListeCelliersParUtilisateur(this.authService.getIdUtilisateurAuthentifie())
+        .subscribe((data: any) => {
+            this.listeCelliers = data;
+        })
   }
 
 }

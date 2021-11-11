@@ -122,6 +122,8 @@ export class AuthService {
     }
 
     getIdUtilisateurAuthentifie(): number {
+
+        console.log(this._utilisateurAuthentifie);
         return this._utilisateurAuthentifie.id ?? false;
     }
 }
