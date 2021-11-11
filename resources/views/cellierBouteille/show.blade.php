@@ -84,7 +84,11 @@
                     @method('PUT')
                     @csrf
                     <div class="millesime-info-debut">
-                        <img class="image-fiche" src="{{ $bouteille->url_img}}" alt="">
+                        @if (isset($bouteille->url_img))
+                            <img class="image-fiche" src="{{ $bouteille->url_img}}" alt="">
+                        @else
+                            <img class="image-fiche" src="{{asset('assets/icon/bouteille-fiche-vin.svg')}}" alt="">
+                        @endif
                         <div>
                             <div class="select-form">
                                 <select class="star-rating"  name="note"  data-id-bouteille="{{$cellierBouteille->bouteille_id}}" data-millesime="{{$cellierBouteille->millesime}}">

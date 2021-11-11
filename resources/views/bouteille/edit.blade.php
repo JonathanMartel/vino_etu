@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+<script src="{{asset('js/cellier_index.js')}}"></script>
 
 @if(Session::get('erreur'))
 <span class="success"></span>
@@ -118,6 +119,25 @@
         </div>
     
     </form>
+</div>
+
+
+
+<!-- Modal Structure pour suprrimer-->
+<div id="{{$bouteille->id}}" class="modal">
+    <div class="modal-content">
+        <h4>Supprimer ce vin</h4>
+        <p>Êtes-vous certain de vouloir le vin <span>{{ ucfirst($bouteille->nom) }}</span>? Tous les millesimes de ce vin dans le cellier seront supprimés aussi.</p>
+    </div>
+    <div class="modal-footer">
+                                                    
+        <form action="{{ route('bouteille.destroy', $bouteille->id)}}" method="POST">
+            @method('DELETE')
+            @csrf
+            <button class="waves-effect waves-green btn-flat">Supprimer</button>
+        </form>
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Annuler</a>
+    </div>
 </div>
 
 
