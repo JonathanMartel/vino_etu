@@ -106,7 +106,7 @@ Route::delete('/cellierBouteille/{idBouteille}', [CellierBouteilleController::cl
 
 /*route pour le fetch*/
 
-Route::get('/ajouterNote/{idCellier}/{idBouteille}/{millesime}/{prix}/{quantite}/{commentaire}/{garde_jusqua}/{date_achat}', [CellierBouteilleController::class, 'modifierCellierBouteille'])->name('modifierCellierBouteille')->middleware('auth')->middleware('prevent-back-history');
+Route::get('/modifierCellierBouteille/{idCellier}/{idBouteille}/{millesime}/{prix}/{quantite}/{date_achat}/{commentaire?}/{garde_jusqua?}', [CellierBouteilleController::class, 'modifierCellierBouteille'])->name('modifierCellierBouteille')->middleware('auth')->middleware('prevent-back-history');
 
 /* Recherche */
 

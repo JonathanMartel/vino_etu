@@ -88,12 +88,9 @@ class CellierBouteilleController extends Controller
         }
 
         $request->validate([
-           /*  'nom' => 'required|max:111', */
             'quantite' => 'integer|gte:0',
             'prix' => 'numeric|regex:/[0-9]+(\.[0-9][0-9]?)?/|gte:0|max:100000',
-            /* 'pays' => 'nullable|regex:^[A-ZÀÂÇÉÈÊËÎÏÔÛÙÜŸÑa-zàâçéèêëîïôûùüÿñ]+$^', */
-            /* 'type_id' => 'required|exists:types,id',
-            'format_id' => 'required|exists:formats,id', */
+          
         ]);
 
         /**
@@ -303,10 +300,12 @@ class CellierBouteilleController extends Controller
 
     }
 
-    public function  modifierCellierBouteille($idCellier, $idBouteille, $millesime, $prix, $quantite, $commentaire, $garde_jusqua, $date_achat)
+    public function  modifierCellierBouteille($idCellier, $idBouteille, $millesime, $prix, $quantite, $date_achat, $commentaire=null, $garde_jusqua=null)
     {
-        CellierBouteille::modifierCellierBouteille($idCellier, $idBouteille, $millesime, $prix, $quantite, $commentaire, $garde_jusqua, $date_achat);
-    }
+        CellierBouteille::modifierCellierBouteille($idCellier, $idBouteille, $millesime, $prix, $quantite, $date_achat, $commentaire, $garde_jusqua);
+
+
+     }
 
     /**
      * Remove the specified resource from storage.

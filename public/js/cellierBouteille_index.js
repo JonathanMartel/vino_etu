@@ -222,25 +222,6 @@ document.addEventListener("DOMContentLoaded", function () {
                                 millesimeTexte = `<p>Non millésimé</p>`;
                             }
 
-                            extraInfo = `<div>
-                                            <div class="chip">
-                                            ${cellierBouteille.prix} $
-                                            </div>`
-                                            if(cellierBouteille.garde_jusqua != null) {
-                                                extraInfo +=  `<div class="chip">
-                                                            ${cellierBouteille.garde_jusqua}
-                                                            </div>`
-                                            }
-                                            if(cellierBouteille.date_achat != null) {
-                                                extraInfo += `<div class="chip">
-                                                                ${cellierBouteille.date_achat}
-                                                            </div>`}
-                                            if(cellierBouteille.description != null) {
-                                                extraInfo +=`<div class="chip">
-                                                                ${cellierBouteille.description}
-                                                            </div>`
-                                            }
-                            extraInfo += `</div>`
                             note = `  <div class="select">
                                             <select class="star-rating" data-id-bouteille="${key}" data-millesime="${cellierBouteille.millesime}" name="note">
                                                 <option value="">Choisir une note</option>
@@ -273,10 +254,7 @@ document.addEventListener("DOMContentLoaded", function () {
                                                                 </section>`;
                         });
                         infoCellierBouteilleConteneur += '</div>'
-                        if(barreRecherche.value.trim() != '')  {
-                            articlesConteneur.innerHTML += extraInfo;
-                        }
-                    
+                       
                         articlesConteneur.innerHTML += `<article class="articleVin">
                                                             <a href="/cellier/${idCellier}/${key}">
                                                                 <div class="nomVinConteneur">
