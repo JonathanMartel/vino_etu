@@ -20,7 +20,7 @@ export default class ModifieCompte extends React.Component {
             validation: false,
         };
 
-        // Binder le contexte 'this' aux fonction
+        // Binder le contexte 'this' aux fonctions
         this.validation = this.validation.bind(this);
         this.modifier = this.modifier.bind(this);
     }
@@ -126,7 +126,7 @@ export default class ModifieCompte extends React.Component {
                 body: JSON.stringify(donnes),
             };
 
-            fetch("https://rmpdwebservices.ca/webservice/php/usagers", options)
+            fetch("https://rmpdwebservices.ca/webservice/php/usagers" + 1, options)
                 .then(res => res.json())
                 .then((data) => {
                     console.log(data);
