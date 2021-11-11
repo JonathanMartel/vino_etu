@@ -4,6 +4,7 @@ namespace VinoAPI\Core;
 
 use VinoAPI\Controllers\BouteilleController;
 use VinoAPI\Controllers\CellierController;
+use VinoAPI\Controllers\ListeAchatController;
 use VinoAPI\Controllers\SAQController;
 use VinoAPI\Controllers\UsagerController;
 use VinoAPI\Modeles\UsagerModele;
@@ -87,6 +88,10 @@ class Router
 					$cellierClassObj = new CellierController;
 					$cellierClassObj->getCelliers();
 					break;
+				case 'listeachat':
+					$listeAchatClassObj = new ListeAchatController;
+					$listeAchatClassObj->getListeAchat();
+					break;
 				case 'saq':
 					$saqClassObj = new SAQController;
 					$saqClassObj->autocompleteBouteille();
@@ -124,6 +129,10 @@ class Router
 				$cellierClassObj = new CellierController;
 				$cellierClassObj->ajouterNouveauCellier();
 				break;
+			case 'listeachat':
+				$listeAchatClassObj = new ListeAchatController;
+				$listeAchatClassObj->createListeAchat();
+				break;
 			case 'saq':
 				echo json_encode('saq');
 				break;
@@ -155,6 +164,10 @@ class Router
 				$cellierClassObj = new CellierController;
 				$cellierClassObj->modifierCellier();
 				break;
+			case 'listeachat':
+				$listeAchatClassObj = new ListeAchatController;
+				$listeAchatClassObj->modifierListeAchat();
+				break;
 			case 'saq':
 				echo json_encode('saq put');
 				break;
@@ -184,6 +197,10 @@ class Router
 			case 'celliers':
 				$cellierClassObj = new CellierController;
 				$cellierClassObj->deleteCellier();
+				break;
+			case 'listeachat':
+				$listeAchatClassObj = new ListeAchatController;
+				$listeAchatClassObj->deleteListeAchat();
 				break;
 			case 'saq':
 				echo json_encode('saq delete');
