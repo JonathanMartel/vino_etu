@@ -36,6 +36,7 @@ const routes: Routes = [
         component: ListeCelliersComponent,
         canActivate: [AuthGuard],
     },
+    
     {
         path: "bouteilles/ajout",
         component: AjoutBouteilleComponent,

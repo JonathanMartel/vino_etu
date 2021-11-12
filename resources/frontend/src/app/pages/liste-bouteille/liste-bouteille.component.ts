@@ -29,6 +29,7 @@ export class ListeBouteilleComponent implements OnInit {
             .subscribe(bouteille => this.bouteillesInitiales = this.bouteille = bouteille.data);
     }
 
+    // Récupérer les 3 caractères inséré dans l'espace pour faire la recherche
     recherche($event: any): void {
 
         if (this.texteRecherche.value.length < 3 && this.bouteille != this.bouteillesInitiales) {
@@ -49,6 +50,7 @@ export class ListeBouteilleComponent implements OnInit {
         this.rechercheSujet.next(this.texteRecherche.value);
     }
 
+    // Fonction de recherche d'un bouteille dans le cellier
     effectuerRechercheFiltree(): void {
         this.servBouteilleDeVin
             .getListeBouteille({

@@ -33,9 +33,12 @@ export class FicheBouteilleComponent implements OnInit {
         });
     }
 
+    // Revenir à la page précédente
     back(): void {
         this.location.back()
     }
+
+    // Appel du formulaire d'ajout d'un bouteille
 
     formulaireAjout(data: any): boolean|void {
         // Vérifier si il y a bien un utilisateur d'authentifié

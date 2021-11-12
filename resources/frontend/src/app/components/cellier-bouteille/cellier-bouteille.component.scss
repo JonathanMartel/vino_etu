@@ -16,6 +16,7 @@
 .resultat-vin {
     min-height: 45px;
     padding: 10px 10px;
+    flex: 1;
 }
 
 .btn-vin {
@@ -65,7 +66,6 @@ img {
     background-color: #ababab;
 }
 
-
 .mat-form-field {
     max-width: 6ch;
     padding: 0 0 0 .75em;
@@ -78,11 +78,6 @@ img {
 .wrapper{
     display: flex;
     border-top: 1px solid #e9e8e5;
-}
-
-.resultat-vin{
-    flex: 1;
-
 }
 
 .boutons-inventaire{
@@ -122,6 +117,6 @@ img {
 
 
 .mat-flat-button{
-    background-color:#4c1920;
+    background-color: var(--couleur-primaire);
     color: #fff;
 }
