@@ -3,7 +3,7 @@
     <h2 class="titre">Catalogue de bouteilles</h2>
     <!-- Filtre -->
     <mat-form-field>
-        <mat-label>Trouvez une bouteille</mat-label>
+        <mat-label><mat-icon>search</mat-icon>Trouvez une bouteille</mat-label>
         <input matInput (keyup)="recherche($event)" [formControl]="texteRecherche">
     </mat-form-field>
     <section  *ngFor="let uneBouteille of bouteille" class="resultat" routerLink="/ficheBouteille/{{uneBouteille.id}}">

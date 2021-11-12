@@ -12,8 +12,8 @@ import { MatConfirmDialogComponent } from '@components/mat-confirm-dialog/mat-co
 })
 export class BouteilleDeVinService {
 
-    private url:string = "http://127.0.0.1:8000/api";
-    //private url: string = "http://kalimotxo-vino.akira.dev/api";
+    // private url:string = "http://127.0.0.1:8000/api";
+    private url: string = "http://kalimotxo-vino.akira.dev/api";
     // private url: string = new URL(window.location.href).origin + "/api";
 
 
@@ -89,6 +89,19 @@ export class BouteilleDeVinService {
         }
 
         return this.http.get<any>(this.url + "/celliers", options)
+    }
+
+    /**
+     *
+     * Charger les données concernant un cellier donné.
+     *
+     * @param {number|string} cellierId Id du cellier à charger
+     * @returns {Observable}
+     */
+    getCellier(cellierId: number|string) {
+        return this.http.get<any>(
+            this.url + "/celliers/" + cellierId
+        )
     }
 
     ajouterUtilisateur(data: any) {
