@@ -40,12 +40,10 @@ export class ModifierCellierBouteilleComponent implements OnInit {
               @Inject(MAT_DIALOG_DATA) public data:any */) { }
 
     ngOnInit(): void {
-
         this.bouteilleId = this.actRoute.snapshot.params.id;
-        //console.log(this.bouteilleId);
+
         this.servBouteilleDeVin.getBouteilleAcheteeParId(this.bouteilleId).subscribe(rep => {
             this.bouteille = rep.data;
-           // console.log(this.bouteille);
             this.initChampsModification();
         })
 
@@ -78,7 +76,7 @@ export class ModifierCellierBouteilleComponent implements OnInit {
     putBouteille(nouvellesDonnes: any) {
 
         this.servBouteilleDeVin.modifierBouteilleCellier(this.bouteilleId, nouvellesDonnes).subscribe(() => {
-            this.openSnackBar('Vous avez modifer la bouteille avec succès', 'Fermer');
+            this.openSnackBar('Vous avez modifié la bouteille avec succès', 'Fermer');
             this.router.navigate(['/celliers']);
         });
 

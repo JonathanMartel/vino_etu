@@ -6,6 +6,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { MatDrawerMode } from '@angular/material/sidenav';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '@services/auth.service';
+import { Location } from '@angular/common';
 
 @Component({
     selector: 'app-cellier',
@@ -15,6 +16,9 @@ import { AuthService } from '@services/auth.service';
 export class CellierComponent implements OnInit {
     // Id du cellier reçu en paramètre du router
     cellierId!: number;
+
+    // Objet qui a les propriétés du cellier
+    cellier!: any;
 
     // Sauvegarder la liste initiale de bouteilles afin de s'éviter une requête http/sql pour un "reset"
     bouteillesCellierInitiales: any;
@@ -33,11 +37,13 @@ export class CellierComponent implements OnInit {
         private servBouteilleDeVin: BouteilleDeVinService,
         private actRoute: ActivatedRoute,
         private servAuth: AuthService,
+        private location: Location,
     ) {
 
     }
 
     ngOnInit(): void {
+        this.cellier = this.location.getState();
         this.cellierId = this.actRoute.snapshot.params.id;
 
         // Utiliser le resolver pour charger le data de la bouteille

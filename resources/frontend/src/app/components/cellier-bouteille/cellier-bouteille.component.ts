@@ -101,7 +101,7 @@ export class CellierBouteilleComponent implements OnInit {
              if(res){
                 this.servBouteilleDeVin.supprimerBouteilleCellier(this.bouteille.inventaireId).subscribe(()=>{
                    this.chargerBouteilles.emit();
-                   this.openSnackBar('Vous avez supprimer la bouteille avec succès', 'Fermer');
+                   this.openSnackBar('Vous avez supprimé la bouteille avec succès', 'Fermer');
 
                 });
              }
