@@ -10,9 +10,13 @@ import { Location } from '@angular/common'
     templateUrl: './modifier-cellier-bouteille.component.html',
     styleUrls: ['./modifier-cellier-bouteille.component.scss']
 })
+
 export class ModifierCellierBouteilleComponent implements OnInit {
     bouteille: any;
     bouteilleId: any;
+
+    // Cellier auquel appartient la bouteille
+    cellierId: any;
 
     // Nom du champ qui est présentement modifiable. Il ne peut donc y en avoir qu'un seul à la fois.
     champEnModification: string = "";
@@ -34,21 +38,27 @@ export class ModifierCellierBouteilleComponent implements OnInit {
     });
 
 
-    constructor(private servBouteilleDeVin: BouteilleDeVinService, private actRoute: ActivatedRoute,
-        private snackBar: MatSnackBar, private router: Router,private location: Location,
-              /* public formulaireRef: MatDialogRef<ModifierCellierBouteilleComponent>,
-              @Inject(MAT_DIALOG_DATA) public data:any */) { }
+    constructor(
+        private servBouteilleDeVin: BouteilleDeVinService,
+        private actRoute: ActivatedRoute,
+        private snackBar: MatSnackBar,
+        private router: Router,
+        private location: Location,
+    ) { }
 
     ngOnInit(): void {
-
+        // Récupérer l'id de la bouteille à modifier
         this.bouteilleId = this.actRoute.snapshot.params.id;
-        //console.log(this.bouteilleId);
+
         this.servBouteilleDeVin.getBouteilleAcheteeParId(this.bouteilleId).subscribe(rep => {
             this.bouteille = rep.data;
-           // console.log(this.bouteille);
             this.initChampsModification();
         })
 
+        // Récupérer l'id du cellier où la bouteille est stockée pour la redirection post-modifs
+        const state = this.location.getState() as any;
+
+        this.cellierId = state.cellierId;
     }
 
     initChampsModification() {
@@ -78,8 +88,8 @@ export class ModifierCellierBouteilleComponent implements OnInit {
     putBouteille(nouvellesDonnes: any) {
 
         this.servBouteilleDeVin.modifierBouteilleCellier(this.bouteilleId, nouvellesDonnes).subscribe(() => {
-            this.openSnackBar('Vous avez modifier la bouteille avec succès', 'Fermer');
-            this.router.navigate(['/celliers']);
+            this.openSnackBar('Vous avez modifié la bouteille avec succès', 'Fermer');
+            this.router.navigate([`/celliers/${this.cellierId}`]);
         });
 
        // console.log(nouvellesDonnes);

@@ -7,11 +7,11 @@
 
     <div class="content">
         <div class="content-header">
-            <h2 class="titre">Mon Cellier</h2>
+            <h2 class="titre">{{ cellier.nom }}</h2>
             <p class="bouton-filtre none"><button mat-button (click)="sidenav.toggle()">Filtrer</button></p>
         </div>
         <mat-form-field class="recherche">
-            <mat-label>Trouvez une bouteille</mat-label>
+            <mat-label><mat-icon>search</mat-icon>Trouvez une bouteille</mat-label>
             <input matInput (keyup)="recherche($event)" [formControl]="texteRecherche">
         </mat-form-field>
 
@@ -20,7 +20,10 @@
 
         <ng-template #bouteille>
             <section *ngFor="let uneBouteille of bouteillesCellier" class="resultat">
-                <app-cellier-bouteille [uneBouteille]='uneBouteille' (chargerBouteilles)="chargerBouteilles()">
+                <app-cellier-bouteille
+                    [uneBouteille]='uneBouteille'
+                    (chargerBouteilles)="chargerBouteilles()"
+                    [cellierId]="cellierId">
                 </app-cellier-bouteille>
             </section>
         </ng-template>

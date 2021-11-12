@@ -42,6 +42,7 @@ import { ModifierUtilisateurComponent } from './pages/modifier-utilisateur/modif
 import { AjoutCellierComponent } from './pages/ajout-cellier/ajout-cellier.component'
 import { TokenInterceptor } from './token.interceptor';
 import { BouteillesCellierResolver } from '@services/bouteilles-cellier.resolver';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
     declarations: [
@@ -91,7 +92,8 @@ import { BouteillesCellierResolver } from '@services/bouteilles-cellier.resolver
             provide: HTTP_INTERCEPTORS,
             useClass: TokenInterceptor,
             multi: true,
-        }
+        },
+        DatePipe,
     ],
     bootstrap: [AppComponent],
     entryComponents:[MatConfirmDialogComponent],
