@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     M.Datepicker.init(datepicker,
         {  autoClose : true,
+            format : 'yyyy-mm-dd',
             defaultDate: new Date(date.getFullYear(), date.getMonth(), date.getDate()),
             setDefaultDate: true});
      
@@ -151,6 +152,8 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(response => {
                 if(response[0]){
+                    img.src = response[0].url_img;
+                    img.style.display = "block";
                     file.style.display = "none";
                     fetch(`/obtenirMillesimesParBouteille/${idCellier}/${response[0].id}`)
                     .then(response => {
@@ -189,12 +192,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 }else {
                     file.style.display = "block";
                     labelMillesime.innerHTML = "Millésime";
+                    img.style.display = "none";
             
                 }
             })
         }else {
             labelMillesime.innerHTML = "Millésime";
             file.style.display = "block";
+            
         }
     })
     pays.addEventListener('input', () => {
@@ -207,6 +212,8 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => {
                 
                 if(response[0]){
+                    img.style.display = "block";
+                    img.src = response[0].url_img;
                     file.style.display = "none";
 
                     fetch(`/obtenirMillesimesParBouteille/${idCellier}/${response[0].id}`)
@@ -246,13 +253,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 }else {
                     file.style.display = "block";
                     labelMillesime.innerHTML = "Millésime";
-            
+                    img.style.display = "none";
                 }
             
             })
         }else {
             labelMillesime.innerHTML = "Millésime";
             file.style.display = "block";
+            
         }
     })
 
@@ -266,8 +274,9 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => {
                 
                 if(response[0]){
+                    img.style.display = "block";
                     file.style.display = "none";
-
+                    img.src = response[0].url_img;
                     fetch(`/obtenirMillesimesParBouteille/${idCellier}/${response[0].id}`)
                     .then(response => {
                         return (response.json())
@@ -305,13 +314,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 }else {
                     file.style.display = "block";
                     labelMillesime.innerHTML = "Millésime";
-            
+                    img.style.display = "none";
                 }
             
             })
         }else {
             labelMillesime.innerHTML = "Millésime";
             file.style.display = "block";
+            
         }
     })
 
@@ -325,8 +335,9 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => {
                 
                 if(response[0]){
+                    img.style.display = "block";
                     file.style.display = "none";
-
+                    img.src = response[0].url_img;
                     fetch(`/obtenirMillesimesParBouteille/${idCellier}/${response[0].id}`)
                     .then(response => {
                         return (response.json())
@@ -363,13 +374,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 }else {
                     file.style.display = "block";
                     labelMillesime.innerHTML = "Millésime";
-            
+                    img.style.display = "none";
                 }
             
             })
         }else {
             labelMillesime.innerHTML = "Millésime";
             file.style.display = "block";
+            
         }
     })
     /**

@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function() {
           location.href = location.origin + "/dashboard" ;
           
         }else if(url.split('/')[3] == 'vin'){
-          location.href = document.referrer;
+          location.href = location.origin + "/cellier/" + sessionStorage.getItem('idCellier') + "/" + sessionStorage.getItem('idBouteille');
           
         }else if(url.split('/')[5] == 'edit') {
           location.href = location.origin + "/cellier" ;

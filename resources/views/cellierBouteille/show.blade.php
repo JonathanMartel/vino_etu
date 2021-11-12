@@ -1,6 +1,9 @@
-
 @extends('layouts.app')
 @section('content')
+
+@if(Session::get('modifieBouteille'))
+<span class="modifieBouteille"></span>
+@endif
 
 <header>
     <div class="cellier">
@@ -50,7 +53,7 @@
                         </div>
                         @endif
                 </div>
-                @if(!$bouteille->url_saq)
+                @if(!$bouteille->url_saq || Auth::user()->admin)
                 <a class="bouteilleSAQConteneur-fiche" href="{{ route('bouteilleEdit', ['bouteille' =>$bouteille->id, 'idCellier' => $cellier->id])}}"><i class="material-icons-fiche">edit</i></a>
                 @endif
                
@@ -131,7 +134,7 @@
                         </div>
                         <div class="item-commentaire" >
                             <label for="date_achat">Date d'achat :</label>
-                            <input type="text" name="date_achat" disabled tabindex="-1" autocomplete="" class="datepicker" id="date_achat" data-js-input class="" value="{!! date('M d, Y', strtotime($cellierBouteille->date_achat)) !!}"/>
+                            <input type="text" name="date_achat" disabled tabindex="-1" autocomplete="off" class="datepicker" id="date_achat" data-js-input class="" value="{!! $cellierBouteille->date_achat !!}"/>
                         </div>
                     </div>
 

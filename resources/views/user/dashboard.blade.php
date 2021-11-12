@@ -2,6 +2,16 @@
 
 @section('content')
 
+
+
+@if(Session::get('modifieInfo'))
+<span class="modifieInfo"></span>
+@endif
+
+@if(Session::get('modifiePassword'))
+<span class="modifiePassword"></span>
+@endif
+
 <div class="">
     <div class="row"> 
     
@@ -80,4 +90,7 @@
 
 
 @endsection
+
+<script src="{{asset('js/dashboard.js')}}"></script>
+
 

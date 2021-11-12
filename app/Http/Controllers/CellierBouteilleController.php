@@ -177,6 +177,7 @@ class CellierBouteilleController extends Controller
      */
     public function show($idCellier, $idBouteille)
     {
+        
         $cellier = Cellier::find($idCellier);
         $bouteille = Bouteille::getDataBouteilleByID($idBouteille);
         $cellierBouteille = CellierBouteille::obtenirListeBouteilleCellier($idCellier);
@@ -301,8 +302,8 @@ class CellierBouteilleController extends Controller
     }
 
     public function  modifierCellierBouteille($idCellier, $idBouteille, $millesime, $prix, $quantite, $date_achat, $commentaire=null, $garde_jusqua=null)
-    {
-        CellierBouteille::modifierCellierBouteille($idCellier, $idBouteille, $millesime, $prix, $quantite, $date_achat, $commentaire, $garde_jusqua);
+    {   
+        CellierBouteille::modifierCellierBouteille($idCellier, $idBouteille, $millesime, $prix, $quantite, $date_achat, trim($commentaire), $garde_jusqua);
 
 
      }
