@@ -62,7 +62,7 @@ a.inline-link {
 /* champs obligatoires */
 
 .required::after {
-    content: "  *";
+    content: " *";
     color: var(--couleur-primaire);
 }
 
@@ -120,7 +120,7 @@ a.inline-link {
   stroke-width: .1;
 }
 
- 
+
 /* Taille de tous les modals */
 mat-dialog-container.mat-dialog-container {
   width: 80vw;
