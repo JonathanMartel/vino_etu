@@ -153,8 +153,6 @@ class BouteilleController extends Controller
             'url_saq' => 'url',
             'type_id' => 'required | exists:types,id',
             'format_id' => 'required | exists:formats,id',
-
-
         ]);
         
         /**
@@ -179,7 +177,7 @@ class BouteilleController extends Controller
                 }
                  $bouteille->save();
         
-                return redirect(URL::to('') . '/cellier/'. session('idCellier') . '/'. $bouteille->id);
+                return redirect(URL::to('') . '/cellier/'. session('idCellier') . '/'. $bouteille->id)->withInput()->with("modifieBouteille", "une bouteille modifiée");
             }else {
                 return back()->withInput()->with('erreur', "Bouteille existe déjà");
             }
@@ -198,7 +196,7 @@ class BouteilleController extends Controller
             }
              $bouteille->save();
     
-            return redirect(URL::to('') . '/cellier/'. session('idCellier') . '/'. $bouteille->id);
+            return redirect(URL::to('') . '/cellier/'. session('idCellier') . '/'. $bouteille->id)->withInput()->with("modifieBouteille", "une bouteille modifiée");
         }
         /* si le user upload une image il faut supprimer celle qu'il avait mis précedement !!! */
 
