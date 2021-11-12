@@ -76,7 +76,7 @@
 
             <div class="card">
                 <div class="card-content hoverclass">
-                    <a href="/cellier">
+                    <a href="{{ route('cellier')}}">
                     <div class="flex-row">
                     <i class="small material-icons black-text">chevron_left</i>
                     <h6>Vos celliers</h6>  
