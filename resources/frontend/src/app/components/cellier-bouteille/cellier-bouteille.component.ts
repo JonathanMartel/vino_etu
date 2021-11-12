@@ -26,6 +26,8 @@ export class CellierBouteilleComponent implements OnInit {
         Validators.min(0)
     ]);
 
+    @Input() cellierId: any;
+
     @Input() set uneBouteille(bouteille: any) {
         this.bouteille = bouteille
         if (bouteille) {

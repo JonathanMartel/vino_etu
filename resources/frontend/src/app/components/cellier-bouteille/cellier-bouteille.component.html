@@ -63,7 +63,11 @@
         <a *ngIf="bouteille.url_achat" class="inline-link" href="{{ bouteille.url_achat }}">Acheter en ligne</a>
 
         <div class="actions">
-            <a mat-flat-button routerLink="/bouteilles-achetees/{{bouteille.bouteilleId}}/modifier"><mat-icon>edit</mat-icon> Modifier</a>
+            <a
+                mat-flat-button
+                routerLink="/bouteilles-achetees/{{bouteille.bouteilleId}}/modifier"
+                [state]="{cellierId: cellierId}">
+                <mat-icon>edit</mat-icon> Modifier</a>
             <a mat-flat-button (click)='supprimerBouteille()'><mat-icon>delete</mat-icon> Supprimer</a>
         </div>
 

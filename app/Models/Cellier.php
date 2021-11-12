@@ -28,11 +28,11 @@ class Cellier extends Model
      * @param int|string $cellierId l'id du cellier d'on on veut afficher l'inventaire
      */
     static public function obtenirBouteillesParCellier(
-        int $cellierId,
-        int $limite = 24,
+        $cellierId,
+        $limite = 24,
         $orderBy = "nom",
         $orderDirection = "asc",
-        array $filtres = null
+        $filtres = null
     ) {
         // Mapping afin de s'assurer que l'utilisateur envoie bel et bien une valeur existante
         $orderByMapping = [
