@@ -14,7 +14,7 @@ export class BouteilleResolverServiceService implements Resolve<any>{
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
-        let bouteilleId = route.paramMap.get('id');
+        const bouteilleId = route.paramMap.get('id');
 
         return this.servBouteilleDeVin.getBouteilleParId(bouteilleId)
             .pipe(
