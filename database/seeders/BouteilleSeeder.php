@@ -61,14 +61,14 @@ class BouteilleSeeder extends Seeder {
                 continue;
             }
 
-            if(!$bouteille = self::recupereInfo($noeud, $categorieId)) {
+            if (!$bouteille = self::recupereInfo($noeud, $categorieId)) {
                 continue;
             }
 
             $aInserer[] = $bouteille;
         }
 
-        foreach($aInserer as $bouteille) {
+        foreach ($aInserer as $bouteille) {
             Bouteille::create($bouteille);
         }
 
@@ -102,7 +102,7 @@ class BouteilleSeeder extends Seeder {
                     $info->categories_id = $categorieId;
                     $info->format = trim($aDesc[1]);
 
-                    if(!$pays = Pays::select("id")->where("nom", "like", "%".trim($aDesc[2])."%")->get()->first()) {
+                    if (!$pays = Pays::select("id")->where("nom", "like", "%" . trim($aDesc[2]) . "%")->get()->first()) {
                         return false;
                     }
 
@@ -113,7 +113,24 @@ class BouteilleSeeder extends Seeder {
             }
         }
 
-        //var_dump($info);
+        //Code SAQ
+        $aElements = $noeud->getElementsByTagName("div");
+        foreach ($aElements as $node) {
+            if ($node->getAttribute('class') == 'saq-code') {
+                if (preg_match("/\d+/", $node->textContent, $aRes)) {
+                    $info->code_SAQ = trim($aRes[0]);
+                }
+            }
+        }
+
+        // Prix
+        $aElements = $noeud->getElementsByTagName("span");
+        foreach ($aElements as $node) {
+            if ($node->getAttribute('class') == 'price') {
+                $info->prix = trim($node->textContent);
+            }
+        }
+
         return (array) $info;
     }
 

@@ -39,3 +39,9 @@
 .menu-mobile mat-icon[data-mat-icon-type="svg"] {
     transform: scale(1.5);
 }
+
+.desactive{
+    color: rgb(92, 88, 88);
+    pointer-events: none;
+    cursor: default;
+}

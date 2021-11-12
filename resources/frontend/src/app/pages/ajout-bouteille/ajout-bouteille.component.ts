@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -22,7 +23,7 @@ export class AjoutBouteilleComponent implements OnInit {
         prix_paye: new FormControl(''),
         conservation: new FormControl(''),
         notes_personnelles: new FormControl(''),
-        cellierId: new FormControl(''),
+        cellierId: new FormControl('', Validators.required),
     });
 
     constructor(
@@ -32,10 +33,15 @@ export class AjoutBouteilleComponent implements OnInit {
         public formulaireRef: MatDialogRef<AjoutBouteilleComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any,
         private snackBar: MatSnackBar,
-        private router: Router) { }
+        private router: Router,
+        private datePipe: DatePipe,
+    ) { }
 
     ngOnInit(): void {
-        console.log("init");
+        // Charger la date du jour comme date par défaut du formulaire
+        this.ajoutBouteille.get("date_acquisition")?.setValue(
+            this.datePipe.transform(new Date(), "yyyy-MM-dd")
+        );
 
         // Charger la liste des celliers de l'utilisateur.
         this.servBouteilleDeVin.getListeCelliersParUtilisateur(this.authService.getIdUtilisateurAuthentifie())
@@ -56,6 +62,11 @@ export class AjoutBouteilleComponent implements OnInit {
     }
 
     postBouteilleCellier(bouteille: any) {
+
+        if (this.ajoutBouteille.invalid) {
+            this.ajoutBouteille.markAllAsTouched();
+            return;
+        }
 
         this.bouteilleAchetee = { ...this.data, ...bouteille }
 

@@ -94,12 +94,16 @@ class CustomAuthController extends Controller {
 
         $utilisateur = User::Where('email', $login['email'])->first();
 
+
         if (!$utilisateur || !Hash::check($login["password"], $utilisateur->password)) {
             return response()->json([
                 'message' => 'Mauvaise combinaison'
             ], 401);
+        } elseif (empty($request)) {
+            return response()->json([
+                'message' => 'Remplir les champs'
+            ], 401);
         }
-
 
         $token = $utilisateur->createToken('myapptoken')->plainTextToken;
 

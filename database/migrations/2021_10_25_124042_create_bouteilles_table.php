@@ -21,6 +21,8 @@ class CreateBouteillesTable extends Migration
             $table->string("url_image")->nullable();
             $table->string("url_achat")->nullable();
             $table->string("url_infos")->nullable();
+            $table->decimal("prix", 8, 2, true)->nullable();
+            $table->char("code_SAQ", 8)->nullable();
             $table->date("date_achat")->nullable();
             $table->string("format")->nullable();
             $table->foreignId("pays_id")->constrained();

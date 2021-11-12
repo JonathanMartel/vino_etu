@@ -26,7 +26,7 @@ class CellierController extends Controller {
      *
      * @param int|string $cellierId l'id du cellier d'on on veut afficher l'inventaire
      */
-    public function obtenirBouteilles(Request $request, int $cellierId) {
+    public function obtenirBouteilles(Request $request, $cellierId) {
 
         // Bâtir le tableau de filtres
         $filtres = $this->batirTableauFiltres($request);
@@ -85,7 +85,7 @@ class CellierController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show(Cellier $cellier) {
-        //
+        return response()->json($cellier, 201);
     }
 
     /**
