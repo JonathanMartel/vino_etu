@@ -21,3 +21,7 @@
     font-weight: 700;
     background-color: #641B30;
 }
+
+.liste_achat_check {
+    align-self: end;
+}
