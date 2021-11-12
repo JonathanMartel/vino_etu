@@ -16,7 +16,8 @@ import { BouteillesCellierResolver } from '@services/bouteilles-cellier.resolver
 const routes: Routes = [
     {
         path: "",
-        component: AccueilComponent
+        component: AccueilComponent,
+        canActivate: [AuthGuard],
     },
     {
         path: "celliers/:id",
