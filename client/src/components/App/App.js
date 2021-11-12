@@ -23,13 +23,35 @@ export default class App extends React.Component {
     this.state = {
       estConnecte: false,
       id_usager: undefined,
+      estAdmin: false
     };
 
     this.seConnecter = this.seConnecter.bind(this);
     this.logout = this.logout.bind(this);
+    this.fetchUsager = this.fetchUsager.bind(this);
+
+  }
+
+  fetchUsager(id) {
+    const options = {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json',
+        authorization: 'Basic ' + btoa('vino:vino')
+      }
+    };
+
+    fetch('https://rmpdwebservices.ca/webservice/php/usagers/' + id, options)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.data[0].est_admin === "1") {
+          this.setState({ estAdmin: true })
+        }
+      });
   }
 
   seConnecter(id) {
+    this.fetchUsager(id);
     this.setState({ id_usager: id, estConnecte: true });
   }
 
@@ -49,6 +71,8 @@ export default class App extends React.Component {
               <AjoutBouteille
                 estConnecte={this.state.estConnecte}
                 id_usager={this.state.id_usager}
+                title="Ajouter bouteille"
+                estAdmin={this.state.estAdmin}
                 {...props}
               />
             )}
@@ -61,6 +85,8 @@ export default class App extends React.Component {
               <ListeCelliers
                 estConnecte={this.state.estConnecte}
                 id_usager={this.state.id_usager}
+                estAdmin={this.state.estAdmin}
+                title="Liste celliers"
                 {...props}
               />
             )}
@@ -69,14 +95,28 @@ export default class App extends React.Component {
           <Route
             exact
             path="/inscription"
-            component={(props) => <Inscription title="S'inscrire" {...props} />}
+            component={(props) => (
+              <Inscription
+                title="S'inscrire"
+                estConnecte={this.state.estConnecte}
+                id_usager={this.state.id_usager}
+                estAdmin={this.state.estAdmin}
+                {...props}
+              />
+            )}
           />
 
           <Route
             exact
             path="/compte/modifier"
             component={(props) => (
-              <ModifieCompte title="Modifier son compte" {...props} />
+              <ModifieCompte
+                estConnecte={this.state.estConnecte}
+                id_usager={this.state.id_usager}
+                estAdmin={this.state.estAdmin}
+                title="Modifier son compte"
+                {...props}
+              />
             )}
           />
 
@@ -88,6 +128,8 @@ export default class App extends React.Component {
                 login={this.seConnecter}
                 estConnecte={this.state.estConnecte}
                 id_usager={this.state.id_usager}
+                estAdmin={this.state.estAdmin}
+                title="Se connecter"
                 {...props}
               />
             )}
@@ -100,6 +142,8 @@ export default class App extends React.Component {
               <ListeCelliers
                 estConnecte={this.state.estConnecte}
                 id_usager={this.state.id_usager}
+                estAdmin={this.state.estAdmin}
+                title="Liste celliers"
                 {...props}
               />
             )}
@@ -113,6 +157,10 @@ export default class App extends React.Component {
                 {...param_route}
                 id={param_route?.match?.params?.id}
                 param={param_route}
+                estConnecte={this.state.estConnecte}
+                id_usager={this.state.id_usager}
+                estAdmin={this.state.estAdmin}
+                title="Cellier"
               />
             )}
           />
@@ -127,6 +175,8 @@ export default class App extends React.Component {
                 param={param_route}
                 estConnecte={this.state.estConnecte}
                 id_usager={this.state.id_usager}
+                estAdmin={this.state.estAdmin}
+                title="Détails bouteille"
               />
             )}
           />
@@ -138,6 +188,8 @@ export default class App extends React.Component {
               <Admin
                 estConnecte={this.state.estConnecte}
                 id_usager={this.state.id_usager}
+                estAdmin={this.state.estAdmin}
+                title="Admin"
                 {...props}
               />
             )}
@@ -148,9 +200,10 @@ export default class App extends React.Component {
             path="/celliers/ajouter"
             component={(props) => (
               <AjoutCellier
-                title="Ajouter Cellier"
+                title="Ajouter cellier"
                 estConnecte={this.state.estConnecte}
                 id_usager={this.state.id_usager}
+                estAdmin={this.state.estAdmin}
                 {...props}
               />
             )}
@@ -161,9 +214,10 @@ export default class App extends React.Component {
             path="/cellier/modifier/:id"
             component={(props) => (
               <ModifierCellier
-                title="Modifier Cellier"
+                title="Modifier cellier"
                 estConnecte={this.state.estConnecte}
                 id_usager={this.state.id_usager}
+                estAdmin={this.state.estAdmin}
                 {...props}
               />
             )}
@@ -177,6 +231,7 @@ export default class App extends React.Component {
                 title="Liste d'achat"
                 estConnecte={this.state.estConnecte}
                 id_usager={this.state.id_usager}
+                estAdmin={this.state.estAdmin}
                 {...props}
               />
             )}
@@ -190,6 +245,7 @@ export default class App extends React.Component {
             <Pied
               estConnecte={this.state.estConnecte}
               id_usager={this.state.id_usager}
+              estAdmin={this.state.estAdmin}
               logout={this.logout}
               {...props}
             />
