@@ -1,6 +1,15 @@
-import { DatePipe } from '@angular/common';
-import { Component, Inject, Input, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { DatePipe, formatCurrency } from '@angular/common';
+import {
+    Component,
+    Inject,
+    Input,
+    OnInit,
+    LOCALE_ID,
+} from '@angular/core';
+import {
+    FormControl,
+    FormGroup,
+    Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -14,6 +23,7 @@ import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 })
 export class AjoutBouteilleComponent implements OnInit {
     bouteilleAchetee: any;
+    bouteilleData: any;
     listeCelliers!: any[];
 
     ajoutBouteille = new FormGroup({
@@ -26,9 +36,7 @@ export class AjoutBouteilleComponent implements OnInit {
         cellierId: new FormControl('', Validators.required),
     });
 
-    @Input() prixBouteilleSAQ!: number;
-
-    constructor(
+   constructor(
         private servBouteilleDeVin: BouteilleDeVinService,
         private authService: AuthService,
         private actRoute: ActivatedRoute,
@@ -40,13 +48,17 @@ export class AjoutBouteilleComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
+        // Charger les données passées par le parent dans le l'objet
+        this.bouteilleData = this.data;
+
         // Récupérer la date du jour valeur par défaut du formulaire
         this.ajoutBouteille.get("date_acquisition")?.setValue(
             this.datePipe.transform(new Date(), "yyyy-MM-dd")
         );
 
         // Récupérer le prix de la bouteille comme valeur par défaut du formulaire
-        this.ajoutBouteille.get("date_acquisition")?.setValue(this.prixBouteilleSAQ);
+        console.log("fr-CA");
+        this.ajoutBouteille.get("prix_paye")?.setValue(formatCurrency(this.bouteilleData.prix, "fr-CA", "$"));
 
         // Charger la liste des celliers de l'utilisateur.
         this.servBouteilleDeVin.getListeCelliersParUtilisateur(this.authService.getIdUtilisateurAuthentifie())
