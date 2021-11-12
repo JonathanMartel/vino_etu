@@ -28,17 +28,14 @@
         </ng-template>
 
         <ng-template #nonAuthentifie>
-            <a mat-button>
-                <mat-icon class="desactive">home</mat-icon>
+            <a mat-button class="desactive">
+                <mat-icon>home</mat-icon>
             </a>
-            <a class="none" mat-button>
-                <mat-icon>add_circle_outline</mat-icon>
+            <a mat-button class="desactive">
+                <mat-icon svgIcon="catalogue"></mat-icon>
             </a>
-            <a mat-button>
-                <mat-icon svgIcon="catalogue" class="desactive"></mat-icon>
-            </a>
-            <a mat-button>
-                <mat-icon svgIcon="cellier" class="desactive"></mat-icon>
+            <a mat-button class="desactive">
+                <mat-icon svgIcon="cellier"></mat-icon>
             </a>
             <a mat-button routerLink='/connection'>
                 <mat-icon alt="connexion">login</mat-icon>

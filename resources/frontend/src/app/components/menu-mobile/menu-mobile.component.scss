@@ -41,7 +41,10 @@
 }
 
 .desactive{
-    color: rgb(92, 88, 88);
     pointer-events: none;
     cursor: default;
+}
+
+.desactive mat-icon {
+    color: rgb(92, 88, 88);
 }

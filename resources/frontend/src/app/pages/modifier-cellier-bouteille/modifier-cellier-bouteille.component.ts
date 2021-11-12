@@ -61,6 +61,7 @@ export class ModifierCellierBouteilleComponent implements OnInit {
         this.cellierId = state.cellierId;
     }
 
+    // Pour l'affichage des données actuelles de la bouteille à modifier
     initChampsModification() {
         this.modifierBouteilleCellier.patchValue({
             url_image: this.bouteille.url_image,
@@ -85,6 +86,7 @@ export class ModifierCellierBouteilleComponent implements OnInit {
         });
     }
 
+    // Fonction pour modifier les information de la bouteille dans le cellier
     putBouteille(nouvellesDonnes: any) {
 
         this.servBouteilleDeVin.modifierBouteilleCellier(this.bouteilleId, nouvellesDonnes).subscribe(() => {
@@ -92,15 +94,15 @@ export class ModifierCellierBouteilleComponent implements OnInit {
             this.router.navigate([`/celliers/${this.cellierId}`]);
         });
 
-       // console.log(nouvellesDonnes);
     }
 
+    // Revenir à la page précédente
     back(): void {
         this.location.back()
     }
 
+    // Fonction pour supprimer la bouteille du cellier
     supprimerBouteille(){
-        //console.log(bouteilleId);
 
         this.servBouteilleDeVin.supprimerBouteilleCellier(this.bouteilleId).subscribe(()=>{
             console.log("supprimer")

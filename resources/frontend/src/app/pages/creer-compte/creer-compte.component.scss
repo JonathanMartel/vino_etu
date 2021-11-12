@@ -11,14 +11,6 @@ div {
     margin-bottom: 0.5rem;
 }
 
-label {
-    display: inline-block;
-    padding-top: 1rem;
-    margin: 0.5rem 0;
-    font-size: 14px;
-    font-weight: 500;
-}
-
 .formulaire input {
     padding: 0.875rem;
     border: none;
@@ -33,23 +25,11 @@ input:not([type=radio]),
 select{
     width: 100%;
     box-sizing: border-box;
-    font-family: 'Nunito', sans-serif;
-    background-color: #fff;
 }
 
 input[type=date] {
     color: #000;
     background-color: #fff;
-}
-
-
-select {
-    display: block;
-    width: 100%;
-    padding: 0.625rem 0;
-    margin-top: 0.5rem;
-    border-radius: 3px;
-    border: 1px solid var(--color-border-input);
 }
 
 .formulaire button {
@@ -67,11 +47,6 @@ select {
     cursor: pointer;
     margin-top: 1rem;
     margin-bottom: 2.34rem;
-}
-
-a {
-    padding-top: 1rem;
-    font-size: 14px;
 }
 
 .titre {

@@ -32,13 +32,6 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatConfirmDialogComponent } from './components/mat-confirm-dialog/mat-confirm-dialog.component';
 import { MatSelectModule } from '@angular/material/select'
 import { ListeCelliersComponent } from './pages/liste-celliers/liste-celliers.component';
-import { ProfilUtilisateurComponent } from './pages/profil-utilisateur/profil-utilisateur.component';
-import { ModifierUtilisateurComponent } from './pages/modifier-utilisateur/modifier-utilisateur.component'
-
-
-
-
-
 import { AjoutCellierComponent } from './pages/ajout-cellier/ajout-cellier.component'
 import { TokenInterceptor } from './token.interceptor';
 import { BouteillesCellierResolver } from '@services/bouteilles-cellier.resolver';
@@ -60,8 +53,6 @@ import { DatePipe } from '@angular/common';
         ModifierCellierBouteilleComponent,
         MatConfirmDialogComponent,
         ListeCelliersComponent,
-        ProfilUtilisateurComponent,
-        ModifierUtilisateurComponent,
         AjoutCellierComponent,
 
     ],

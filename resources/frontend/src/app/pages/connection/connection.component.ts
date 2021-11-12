@@ -13,6 +13,7 @@ import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
     styleUrls: ['./connection.component.scss']
 })
 export class ConnectionComponent implements OnInit {
+
     formConnection = new FormGroup({
         email: new FormControl('', [
             Validators.required,
@@ -20,8 +21,6 @@ export class ConnectionComponent implements OnInit {
         ]),
         password: new FormControl('', Validators.required)
     });
-
-    
 
 
     constructor(
@@ -33,9 +32,11 @@ export class ConnectionComponent implements OnInit {
 
     ngOnInit(): void {
 
+        // Charger l'email aprés la creation de compte pour facilité la connection à l'utilisateur
         this.formConnection.get("email")?.setValue((this.location.getState() as any).email);
     }
 
+    // Affichage d'erreur quand le champ n'est pas rempli
     get erreur() {
         return this.formConnection.controls;
     }

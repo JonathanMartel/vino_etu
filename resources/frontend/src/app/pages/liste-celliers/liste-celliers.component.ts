@@ -18,20 +18,23 @@ export class ListeCelliersComponent implements OnInit {
 
   celliers: any = [];
 
- 
 
-  constructor(private servBouteilleDeVin: BouteilleDeVinService, private authService: AuthService,  public formAjout: MatDialog,) { }
+  constructor(
+    private servBouteilleDeVin: BouteilleDeVinService,
+    private authService: AuthService,
+    public formAjout: MatDialog
+  ) { }
 
   ngOnInit(): void {
 
-    
     // Charger la liste des celliers de l'utilisateur.
     this.servBouteilleDeVin.getListeCelliersParUtilisateur(this.authService.getIdUtilisateurAuthentifie())
         .subscribe((data: any) => {
           this.listeCelliers = data;
-          
         })
   }
+
+  // Appel du formulaire pour l'ajout d'un cellier
 
   formulaireAjout(data: any): void {
     let refModal = this.formAjout.open(AjoutCellierComponent, {
@@ -41,12 +44,14 @@ export class ListeCelliersComponent implements OnInit {
     const response = refModal.componentInstance.chargerCelliers.subscribe(() => {this.chargerCelliers()});
  }
 
- chargerCelliers() {
-  this.servBouteilleDeVin.getListeCelliersParUtilisateur(this.authService.getIdUtilisateurAuthentifie()).subscribe( (cellier: any) => {
-      this.celliers = this.listeCelliers = cellier
+  // Affichage de la liste avec le nouveau cellier
 
-      console.log(cellier);
-  });
- }
+  chargerCelliers() {
+    this.servBouteilleDeVin.getListeCelliersParUtilisateur(this.authService.getIdUtilisateurAuthentifie()).subscribe( (cellier: any) => {
+        this.celliers = this.listeCelliers = cellier
+
+        console.log(cellier);
+    });
+  }
 
 }

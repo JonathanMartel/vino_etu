@@ -10,7 +10,6 @@ import { CreerCompteComponent } from '@pages/creer-compte/creer-compte.component
 import { FicheBouteilleComponent } from '@pages/fiche-bouteille/fiche-bouteille.component';
 import { BouteilleResolverServiceService } from '@services/bouteille-resolver-service.service';
 import { ModifierCellierBouteilleComponent } from '@pages/modifier-cellier-bouteille/modifier-cellier-bouteille.component';
-import { ProfilUtilisateurComponent } from '@pages/profil-utilisateur/profil-utilisateur.component';
 import { AuthGuard } from "@services/auth.guard";
 import { BouteillesCellierResolver } from '@services/bouteilles-cellier.resolver';
 
@@ -37,11 +36,7 @@ const routes: Routes = [
         component: ListeCelliersComponent,
         canActivate: [AuthGuard],
     },
-    {
-        path: "profil",
-        component: ProfilUtilisateurComponent,
-        canActivate: [AuthGuard],
-    },
+    
     {
         path: "bouteilles/ajout",
         component: AjoutBouteilleComponent,
