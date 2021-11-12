@@ -117,9 +117,11 @@ class BouteilleSeeder extends Seeder {
         $aElements = $noeud->getElementsByTagName("div");
         foreach ($aElements as $node) {
             if ($node->getAttribute('class') == 'saq-code') {
-                if (preg_match("/\d+/", $node->textContent, $aRes)) {
-                    $info->code_SAQ = trim($aRes[0]);
+                if (!preg_match("/\d+/", $node->textContent, $aRes)) {
+                    continue;
                 }
+
+                $info->code_SAQ = trim($aRes[0]);
             }
         }
 
@@ -127,7 +129,10 @@ class BouteilleSeeder extends Seeder {
         $aElements = $noeud->getElementsByTagName("span");
         foreach ($aElements as $node) {
             if ($node->getAttribute('class') == 'price') {
-                $info->prix = trim($node->textContent);
+                // Retirer le signe de dollar
+                $prix = filter_var($node->textContent, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_THOUSAND);
+
+               $info->prix = trim(str_replace(",", ".", $prix));
             }
         }
 

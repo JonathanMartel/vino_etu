@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -25,9 +26,11 @@ export class ConnectionComponent implements OnInit {
         private servAuth: AuthService,
         private snackbar: MatSnackBar,
         private router: Router,
+        private location: Location,
     ) { }
 
     ngOnInit(): void {
+        this.formConnection.get("email")?.setValue((this.location.getState() as any).email);
     }
 
     get erreur() {
