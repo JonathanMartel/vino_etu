@@ -29,4 +29,10 @@ document.addEventListener('DOMContentLoaded', function() {
         form.querySelector('.btn-modifier').removeAttribute('disabled');
     })
 
+    form.querySelectorAll('select').forEach(select => {
+        select.addEventListener('change' ,() => {
+            form.querySelector('.btn-modifier').removeAttribute('disabled')
+        })
+    })
+
   });
