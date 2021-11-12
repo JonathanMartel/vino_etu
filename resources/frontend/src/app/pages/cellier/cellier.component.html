@@ -20,7 +20,10 @@
 
         <ng-template #bouteille>
             <section *ngFor="let uneBouteille of bouteillesCellier" class="resultat">
-                <app-cellier-bouteille [uneBouteille]='uneBouteille' (chargerBouteilles)="chargerBouteilles()">
+                <app-cellier-bouteille
+                    [uneBouteille]='uneBouteille'
+                    (chargerBouteilles)="chargerBouteilles()"
+                    [cellierId]="cellierId">
                 </app-cellier-bouteille>
             </section>
         </ng-template>

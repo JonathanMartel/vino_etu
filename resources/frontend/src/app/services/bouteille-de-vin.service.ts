@@ -91,6 +91,19 @@ export class BouteilleDeVinService {
         return this.http.get<any>(this.url + "/celliers", options)
     }
 
+    /**
+     *
+     * Charger les données concernant un cellier donné.
+     *
+     * @param {number|string} cellierId Id du cellier à charger
+     * @returns {Observable}
+     */
+    getCellier(cellierId: number|string) {
+        return this.http.get<any>(
+            this.url + "/celliers/" + cellierId
+        )
+    }
+
     ajouterUtilisateur(data: any) {
         return this.http.post<any>(this.url + '/creerCompte', data)
     }
