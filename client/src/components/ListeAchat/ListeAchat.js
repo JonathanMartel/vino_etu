@@ -32,6 +32,14 @@ export default class ListeAchat extends React.Component {
     
     this.fetchListeAchat();
     console.log('this.state.listeAchat: ', this.state.listeAchat);
+    
+    if (!this.state.listeAchat) {
+      this.fetchBouteilles();
+      this.setState({titre: "Inventaire des bouteilles"});
+    } else {
+      this.setState({titre: "Liste d'achat"});
+    }
+    
   }
 
   componentDidUpdate() {
@@ -73,12 +81,7 @@ export default class ListeAchat extends React.Component {
       console.log('this.state.items: ', this.state.items);
       console.log("Éxiste listeAchat ? : ", this.state.listeAchat);
 
-      if (!this.state.listeAchat) {
-        this.fetchBouteilles();
-        this.setState({titre: "Inventaire des bouteilles"});
-      } else {
-        this.setState({titre: "Liste d'achat"});
-      }
+      
   }
 
   fetchBouteilles() {

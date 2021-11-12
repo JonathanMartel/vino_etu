@@ -40,7 +40,33 @@ class UsagerModele extends Modele
 
         return $match;
     }
-    
+
+    /**
+     * Retourne si l'authorisation HTTP match un usager à la db.
+     * 
+     * @throws Exception Erreur de requête sur la base de données.
+     *  
+     * @return Array $rows Tous les usagers.
+     */
+    public function getUsagers()
+    {
+        $rows = array();
+
+        $requete = "SELECT id_usager, nom, prenom, courriel FROM vino__usager";
+
+        if (($res = $this->_db->query($requete)) == true) {
+            if ($res->num_rows) {
+                while ($row = $res->fetch_assoc()) {
+                    $rows[] = $row;
+                }
+            }
+        } else {
+            throw new Exception("Erreur de requête sur la base de donnée", 1);
+        }
+
+        return $rows;
+    }
+
     /**
      * Retourne toutes les informations d'un usager.
      *
@@ -50,7 +76,8 @@ class UsagerModele extends Modele
      * 
      * @return Array $rows Infos usager.
      */
-    public function getUsagerParId($id) {
+    public function getUsagerParId($id)
+    {
         $rows = array();
 
         $requete = "SELECT * FROM vino__usager WHERE id_usager = '$id'";
@@ -67,7 +94,7 @@ class UsagerModele extends Modele
 
         return $rows;
     }
-    
+
     /**
      * Modifier les infos d'un usager dans la db.
      *
@@ -75,15 +102,16 @@ class UsagerModele extends Modele
      * 
      * @return Boolean $res Succès de la requête.
      */
-    public function modifierUsager($body) {
+    public function modifierUsager($body)
+    {
         $requete = "UPDATE vino__usager SET nom = '$body->nom', prenom = '$body->prenom', courriel = '$body->courriel', mot_passe = '$body->mot_passe' WHERE id_usager = $body->id";
 
-		$res = $this->_db->query($requete);
+        $res = $this->_db->query($requete);
 
-		//TODO Return id de l'usager modifié.
-		return $res;
+        //TODO Return id de l'usager modifié.
+        return $res;
     }
-    
+
     /**
      * Supprime un usager de la db.
      *
@@ -91,14 +119,15 @@ class UsagerModele extends Modele
      * 
      * @return Boolean $res Succès de la requête.
      */
-    public function deleteUsager($id) {
+    public function deleteUsager($id)
+    {
         $requete = "DELETE FROM vino__usager WHERE id_usager = $id";
 
         $res = $this->_db->query($requete);
 
         return $res;
     }
-    
+
     /**
      * Ajoute un usager à la db.
      *
@@ -106,7 +135,8 @@ class UsagerModele extends Modele
      * 
      * @return mixed $res Id de l'usager ou échec de la requête.
      */
-    public function createUsager($data) {
+    public function createUsager($data)
+    {
         $requete = "INSERT INTO vino__usager(nom,prenom,courriel,mot_passe) VALUES (" .
             "'" . $data->nom . "'," .
             "'" . $data->prenom . "'," .
@@ -116,7 +146,7 @@ class UsagerModele extends Modele
         $res = $this->_db->query($requete);
 
         if ($res) return $this->_db->insert_id;
-        
+
         return $res;
     }
 }

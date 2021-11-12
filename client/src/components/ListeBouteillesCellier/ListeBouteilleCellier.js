@@ -211,7 +211,7 @@ export default class ListeBouteilleCellier extends React.Component {
 		const bouteilles = this.state.items.map((item, index) => {
 
 			return (
-				<div>
+				<div key={index}>
 					{premierId ? (
 						<div>
 							<BouteilleCellier
