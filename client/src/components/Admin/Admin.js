@@ -16,6 +16,11 @@ export default class Admin extends React.Component {
         if (!this.props.estConnecte) {
             return this.props.history.push('/connexion');
         }
+
+        if (!this.props.estAdmin) {
+            return this.props.history.goBack();
+        }
+        
         this.getUsager()
     }
 
@@ -61,7 +66,7 @@ export default class Admin extends React.Component {
         return (
             <>
                 <Breadcrumbs aria-label="breadcrumb" sx={{ display: 'flex', margin: '0 1.8rem', marginBottom: '1rem' }}>
-                    <Link underline="hover" color="inherit" href="/">
+                    <Link underline="hover" color="inherit" onClick={() => this.props.history.push('/')}>
                         Mon Cellier
                     </Link>
 
