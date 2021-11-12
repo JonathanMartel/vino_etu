@@ -152,6 +152,8 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .then(response => {
                 if(response[0]){
+                    img.src = response[0].url_img;
+                    img.style.display = "block";
                     file.style.display = "none";
                     fetch(`/obtenirMillesimesParBouteille/${idCellier}/${response[0].id}`)
                     .then(response => {
@@ -190,12 +192,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 }else {
                     file.style.display = "block";
                     labelMillesime.innerHTML = "Millésime";
+
             
                 }
             })
         }else {
             labelMillesime.innerHTML = "Millésime";
             file.style.display = "block";
+            img.style.display = "none";
         }
     })
     pays.addEventListener('input', () => {
@@ -208,6 +212,8 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => {
                 
                 if(response[0]){
+                    img.style.display = "block";
+                    img.src = response[0].url_img;
                     file.style.display = "none";
 
                     fetch(`/obtenirMillesimesParBouteille/${idCellier}/${response[0].id}`)
@@ -247,13 +253,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 }else {
                     file.style.display = "block";
                     labelMillesime.innerHTML = "Millésime";
-            
+                    
                 }
             
             })
         }else {
             labelMillesime.innerHTML = "Millésime";
             file.style.display = "block";
+            img.style.display = "none";
         }
     })
 
@@ -267,8 +274,9 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => {
                 
                 if(response[0]){
+                    img.style.display = "block";
                     file.style.display = "none";
-
+                    img.src = response[0].url_img;
                     fetch(`/obtenirMillesimesParBouteille/${idCellier}/${response[0].id}`)
                     .then(response => {
                         return (response.json())
@@ -306,13 +314,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 }else {
                     file.style.display = "block";
                     labelMillesime.innerHTML = "Millésime";
-            
+                    
                 }
             
             })
         }else {
             labelMillesime.innerHTML = "Millésime";
             file.style.display = "block";
+            img.style.display = "none";
         }
     })
 
@@ -326,8 +335,9 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => {
                 
                 if(response[0]){
+                    img.style.display = "block";
                     file.style.display = "none";
-
+                    img.src = response[0].url_img;
                     fetch(`/obtenirMillesimesParBouteille/${idCellier}/${response[0].id}`)
                     .then(response => {
                         return (response.json())
@@ -364,13 +374,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 }else {
                     file.style.display = "block";
                     labelMillesime.innerHTML = "Millésime";
-            
+                    
                 }
             
             })
         }else {
             labelMillesime.innerHTML = "Millésime";
             file.style.display = "block";
+            img.style.display = "none";
         }
     })
     /**

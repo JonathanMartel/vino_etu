@@ -52,7 +52,7 @@
               </div>
             
               <div class="input-field col s12 flex-row">  
-                <a href="/dashboard" class="btn waves-effect waves-light button btn-annuler"  name="annuler">Annuler</a>
+                <a href="{{ route('dashboard') }}" class="btn waves-effect waves-light button btn-annuler"  name="annuler">Annuler</a>
                 <a class="btn waves-effect waves-light button btn-modifier modal-trigger" href="#modal-modifier">Modifier</a>
 
                 <!-- Modal Structure pour modifier-->

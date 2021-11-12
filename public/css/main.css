@@ -283,6 +283,15 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
    color: white;
 }
 
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+}
 
 .select-wrapper {
     margin-right: 1em;
