@@ -192,14 +192,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 }else {
                     file.style.display = "block";
                     labelMillesime.innerHTML = "Millésime";
-
+                    img.style.display = "none";
             
                 }
             })
         }else {
             labelMillesime.innerHTML = "Millésime";
             file.style.display = "block";
-            img.style.display = "none";
+            
         }
     })
     pays.addEventListener('input', () => {
@@ -253,14 +253,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 }else {
                     file.style.display = "block";
                     labelMillesime.innerHTML = "Millésime";
-                    
+                    img.style.display = "none";
                 }
             
             })
         }else {
             labelMillesime.innerHTML = "Millésime";
             file.style.display = "block";
-            img.style.display = "none";
+            
         }
     })
 
@@ -314,14 +314,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 }else {
                     file.style.display = "block";
                     labelMillesime.innerHTML = "Millésime";
-                    
+                    img.style.display = "none";
                 }
             
             })
         }else {
             labelMillesime.innerHTML = "Millésime";
             file.style.display = "block";
-            img.style.display = "none";
+            
         }
     })
 
@@ -374,14 +374,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 }else {
                     file.style.display = "block";
                     labelMillesime.innerHTML = "Millésime";
-                    
+                    img.style.display = "none";
                 }
             
             })
         }else {
             labelMillesime.innerHTML = "Millésime";
             file.style.display = "block";
-            img.style.display = "none";
+            
         }
     })
     /**
