@@ -50,7 +50,7 @@ export class CreerCompteComponent implements OnInit {
         this.servBouteilleDeVin.ajouterUtilisateur(data)
             .subscribe((reponse) => {
                 console.log(reponse);
-                this.router.navigate([`/cellier/${reponse.nouvelUtilisateurCellierId}`]);
+                this.router.navigate([`/celliers/${reponse.nouvelUtilisateurCellierId}`]);
             });
     }
 
