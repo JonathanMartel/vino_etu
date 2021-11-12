@@ -34,6 +34,9 @@ $angular-theme: mat.define-light-theme((
 
 /* You can add global styles to this file, and also import other style files */
 
+
+/* Générale */
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
@@ -47,25 +50,45 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     box-sizing: border-box;
 }
 
+main {
+  padding: 3.75rem 1rem;
+  width: 100%;
+}
+
 a.inline-link {
     color: var(--couleur-primaire);
 }
 
+/* champs obligatoires */
+
 .required::after {
-    content: " *";
+    content: "  *";
     color: var(--couleur-primaire);
 }
 
-.mat-form-field-appearance-fill .mat-form-field-flex{
-  background-color: white;
-}
+
+/* Correction sur les mat-button */
 .mat-mini-fab:not([class*=mat-elevation-z]){
   box-shadow: none;
+}
+
+
+/* Correction sur les mat-form */
+
+.mat-form-field-wrapper {
+  padding-bottom: 1rem;
 }
 
 .mat-form-field-underline {
   width: 0;
 }
+
+.mat-form-field-appearance-fill .mat-form-field-flex{
+  background-color: white;
+}
+
+
+/* Css pour les notifications (snackBar) */
 
 [class*="notif"] {
   position: relative;
@@ -90,18 +113,19 @@ a.inline-link {
   }
 }
 
+
+/* correction du stroke pour l'icone du catalogue */
+
 .mat-icon[svgIcon="catalogue"]{
   stroke-width: .1;
 }
 
+ 
+/* Taille de tous les modals */
 mat-dialog-container.mat-dialog-container {
   width: 80vw;
   max-height: 80vh;
   padding: 20px;
-}
-
-.mat-form-field-wrapper {
-  padding-bottom: 1rem;
 }
 
 /* Aligner la loupe dans les champs de recherche */

@@ -2,16 +2,19 @@
     <form [formGroup]="ajoutBouteille" (ngSubmit)=postBouteilleCellier(ajoutBouteille.value)>
         <div class="formulaire-contenu">
             <mat-form-field appearance="fill" class="input-case">
-                <mat-label for="inventaire" class="required">Choisir le cellier</mat-label>
+                <mat-label for="cellierId" class="required">Choisir le cellier </mat-label>
                 <mat-select formControlName="cellierId">
                     <mat-option *ngFor="let cellier of listeCelliers" [value]="cellier.id">
                         {{ cellier.nom }}
                     </mat-option>
                 </mat-select>
+                <mat-error *ngIf="erreur.cellierId.touched && erreur.cellierId.invalid" class="alert alert-danger">
+                    <div *ngIf="erreur.cellierId.errors?.required">Ce champ est obligatoire</div>
+                </mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="fill" class="input-case">
-                <mat-label for="inventaire" class="required">Quantité</mat-label>
+                <mat-label for="inventaire" class="required">Quantité </mat-label>
                 <input matInput type="text" id="inventaire" formControlName="inventaire" class="step__input">
                 <mat-error *ngIf="erreur.inventaire.touched && erreur.inventaire.invalid" class="alert alert-danger">
                     <div *ngIf="erreur.inventaire.errors?.required">Ce champ est obligatoire</div>

@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -20,14 +21,19 @@ export class ConnectionComponent implements OnInit {
         password: new FormControl('', Validators.required)
     });
 
+    
+
 
     constructor(
         private servAuth: AuthService,
         private snackbar: MatSnackBar,
         private router: Router,
+        private location: Location,
     ) { }
 
     ngOnInit(): void {
+
+        this.formConnection.get("email")?.setValue((this.location.getState() as any).email);
     }
 
     get erreur() {
@@ -40,10 +46,18 @@ export class ConnectionComponent implements OnInit {
      *
      */
     connection() {
+
+        if (this.formConnection.invalid) {
+            this.formConnection.markAllAsTouched();
+            return;
+        }
+
         const data = {
             email: this.formConnection.value.email,
             password: this.formConnection.value.password
         }
+
+
 
       this.servAuth.connexion(data).subscribe(
           (data) => {

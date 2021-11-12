@@ -17,11 +17,15 @@
                     L'inventaire ne doit pas être inférieur à 0
                 </div>
                 <div>
-                    <button mat-mini-fab [disabled]="!enStock" (click)="diminuer()"><mat-icon>remove</mat-icon></button>
-                    <mat-form-field class="inventaire-form-field" appearance ="fill">
-                        <input matInput type="text" [formControl] = "inventaire">
+                    <button mat-mini-fab [disabled]="!enStock" (click)="diminuer()">
+                        <mat-icon>remove</mat-icon>
+                    </button>
+                    <mat-form-field class="inventaire-form-field" appearance="fill">
+                        <input matInput type="text" [formControl]="inventaire">
                     </mat-form-field>
-                    <button mat-mini-fab (click)="augmenter()"><mat-icon>add</mat-icon></button>
+                    <button mat-mini-fab (click)="augmenter()">
+                        <mat-icon>add</mat-icon>
+                    </button>
                 </div>
             </div>
         </div>
@@ -63,12 +67,13 @@
         <a *ngIf="bouteille.url_achat" class="inline-link" href="{{ bouteille.url_achat }}">Acheter en ligne</a>
 
         <div class="actions">
-            <a
-                mat-flat-button
-                routerLink="/bouteilles-achetees/{{bouteille.bouteilleId}}/modifier"
+            <a mat-flat-button routerLink="/bouteilles-achetees/{{bouteille.bouteilleId}}/modifier"
                 [state]="{cellierId: cellierId}">
-                <mat-icon>edit</mat-icon> Modifier</a>
-            <a mat-flat-button (click)='supprimerBouteille()'><mat-icon>delete</mat-icon> Supprimer</a>
+                <mat-icon>edit</mat-icon> Modifier
+            </a>
+            <a mat-flat-button (click)='supprimerBouteille()'>
+                <mat-icon>delete</mat-icon> Supprimer
+            </a>
         </div>
 
     </mat-expansion-panel>
