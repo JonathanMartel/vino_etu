@@ -13,6 +13,7 @@ import { AuthService } from '@services/auth.service';
     styleUrls: ['./cellier.component.scss']
 })
 export class CellierComponent implements OnInit {
+
     // Id du cellier reçu en paramètre du router
     cellierId!: number;
 
@@ -20,13 +21,18 @@ export class CellierComponent implements OnInit {
     bouteillesCellierInitiales: any;
     bouteillesCellier: any = [];
 
+    test: any;
+
     // Sujet (observable) permettant de "debouncer" l'envoi de la recherche à la base de données
     rechercheSujet: Subject<string> = new Subject<string>();
 
     // Permet de savoir si l'utilisateur a effectué une recherche et ainsi présenté le bon template
     estFiltre: boolean = false;
 
+    // Comportement de la sideNav 
     mode: MatDrawerMode = "over";
+
+    //Form control
     texteRecherche = new FormControl('');
 
     constructor(
@@ -50,6 +56,7 @@ export class CellierComponent implements OnInit {
         //     .subscribe(cellier => {
         //         this.bouteillesCellier = this.bouteillesCellierInitiales = cellier.data
         //     });
+        
     }
 
     recherche($event: any): void {
@@ -100,6 +107,15 @@ export class CellierComponent implements OnInit {
                 this.bouteillesCellier = this.bouteillesCellierInitiales = cellier.data
             });
     }
+
+
+    /**
+     *
+     * Vérifier si le cellier contient des bouteilles retourn true ou false
+     *
+     * @returns {boolean}
+     *
+     */
 
     cellierContientBouteille() {
         return this.bouteillesCellier.length > 0;
