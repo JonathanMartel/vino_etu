@@ -23,7 +23,7 @@ export class AjoutBouteilleComponent implements OnInit {
         prix_paye: new FormControl(''),
         conservation: new FormControl(''),
         notes_personnelles: new FormControl(''),
-        cellierId: new FormControl(''),
+        cellierId: new FormControl('', Validators.required),
     });
 
     constructor(
@@ -62,6 +62,11 @@ export class AjoutBouteilleComponent implements OnInit {
     }
 
     postBouteilleCellier(bouteille: any) {
+
+        if (this.ajoutBouteille.invalid) {
+            this.ajoutBouteille.markAllAsTouched();
+            return;
+        }
 
         this.bouteilleAchetee = { ...this.data, ...bouteille }
 

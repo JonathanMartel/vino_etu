@@ -63,6 +63,8 @@ export class CellierBouteilleComponent implements OnInit {
 
     };
 
+    // Émetteur d'événnement afin d'afficher la liste des bouteilles dans le cellier sans refresh après la supression
+
     @Output("chargerBouteilles") chargerBouteilles: EventEmitter<any> = new EventEmitter();
 
     constructor(
@@ -76,19 +78,22 @@ export class CellierBouteilleComponent implements OnInit {
     }
 
 
+    // Fonction pour augmenter la valeur de l'inventaire
     augmenter() {
         this.inventaire.setValue(this.inventaire.value + 1);
     }
-
+    // Fonction pour dimminuer la valeur de l'inventaire
     diminuer() {
         this.inventaire.setValue(this.inventaire.value - 1);
     }
 
-
+   // Enregistrer l'inventaire dans la base de donnée après les changements
    enregistrerNouvelInventaire() {
         this.servBouteilleDeVin.modifierInventaireCellierBouteille(this.bouteille.inventaireId, this.inventaire.value)
             .subscribe()
     }
+
+
 
     openSnackBar(message: any, action: any) {
         this.snackBar.open(message, action, {
@@ -97,6 +102,8 @@ export class CellierBouteilleComponent implements OnInit {
         });
     }
 
+
+    // Fonction pour supprimer une bouteille dans le cellier et envoyer une notification de confirmation
     supprimerBouteille(){
         this.servBouteilleDeVin.confirmDialog('Voulez vous supprimer la bouteille ?')
          .afterClosed().subscribe(res => {
@@ -108,9 +115,5 @@ export class CellierBouteilleComponent implements OnInit {
                 });
              }
          })
-
-
     }
-
-
 }
