@@ -95,11 +95,16 @@ a.inline-link {
   }
 }
 
-
 .mat-icon[svgIcon="catalogue"]{
   stroke-width: .1;
 }
 
 mat-dialog-container.mat-dialog-container {
   width: 60ch;
+  height: 70ch;
 }
+
+.mat-form-field-wrapper {
+  padding-bottom: 1rem;
+}
+

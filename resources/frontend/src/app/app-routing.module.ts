@@ -12,6 +12,7 @@ import { BouteilleResolverServiceService } from '@services/bouteille-resolver-se
 import { ModifierCellierBouteilleComponent } from '@pages/modifier-cellier-bouteille/modifier-cellier-bouteille.component';
 import { ProfilUtilisateurComponent } from '@pages/profil-utilisateur/profil-utilisateur.component';
 import { AuthGuard } from "@services/auth.guard";
+import { BouteillesCellierResolver } from '@services/bouteilles-cellier.resolver';
 
 const routes: Routes = [
     {
@@ -19,33 +20,46 @@ const routes: Routes = [
         component: AccueilComponent
     },
     {
-        path:"celliers/:id",
+        path: "celliers/:id",
         component: CellierComponent,
         canActivate: [AuthGuard],
+        resolve: {
+            bouteillesCellier: BouteillesCellierResolver
+        }
     },
     {
-        path:"bouteilles",
-        component:ListeBouteilleComponent,
+        path: "bouteilles",
+        component: ListeBouteilleComponent,
     },
     {
-        path:"celliers",
-        component:ListeCelliersComponent,
+        path: "celliers",
+        component: ListeCelliersComponent,
         canActivate: [AuthGuard],
     },
     {
-        path:"bouteilles/ajout",
-        component:AjoutBouteilleComponent,
+        path: "profil",
+        component: ProfilUtilisateurComponent,
         canActivate: [AuthGuard],
     },
     {
-        path:"bouteilles-achetees/:id/modifier",
-        component:ModifierCellierBouteilleComponent,
+        path: "bouteilles/ajout",
+        component: AjoutBouteilleComponent,
         canActivate: [AuthGuard],
     },
-    {path:"connection", component:ConnectionComponent},
-    {path:"creerCompte", component:CreerCompteComponent},
-    {path:"profil", component:ProfilUtilisateurComponent},
-    {path:"ficheBouteille/:id", component:FicheBouteilleComponent, resolve: {bouteille: BouteilleResolverServiceService}},
+    {
+        path: "bouteilles-achetees/:id/modifier",
+        component: ModifierCellierBouteilleComponent,
+        canActivate: [AuthGuard],
+    },
+    { path: "connection", component: ConnectionComponent },
+    { path: "creerCompte", component: CreerCompteComponent },
+    {
+        path: "ficheBouteille/:id",
+        component: FicheBouteilleComponent,
+        resolve: {
+            bouteille: BouteilleResolverServiceService
+        }
+    },
 ];
 
 @NgModule({

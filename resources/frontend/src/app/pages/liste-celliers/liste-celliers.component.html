@@ -3,10 +3,12 @@
         <h2 class="titre">Mes Celliers</h2>
         <p class="bouton-filtre"><button mat-button (click)="formulaireAjout(listeCelliers)"><mat-icon>add</mat-icon></button></p>
     </div>
-    <div *ngFor="let cellier of listeCelliers" class="resultat" routerLink="/celliers/{{cellier.id}}">
-        <div class="resultat-cellier">
-            <h3>{{ cellier.nom }}</h3>
-            <p>{{cellier.description}}</p>
+    <a *ngFor="let cellier of listeCelliers" routerLink="/celliers/{{cellier.id}}">
+        <div class="resultat" >
+            <div class="resultat-cellier">
+                <h3>{{ cellier.nom }}</h3>
+                <p>{{cellier.description}}</p>
+            </div>
         </div>
-    </div>
+    </a>
 </div>

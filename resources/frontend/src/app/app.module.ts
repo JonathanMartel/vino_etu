@@ -41,6 +41,7 @@ import { ModifierUtilisateurComponent } from './pages/modifier-utilisateur/modif
 
 import { AjoutCellierComponent } from './pages/ajout-cellier/ajout-cellier.component'
 import { TokenInterceptor } from './token.interceptor';
+import { BouteillesCellierResolver } from '@services/bouteilles-cellier.resolver';
 
 @NgModule({
     declarations: [
@@ -85,6 +86,7 @@ import { TokenInterceptor } from './token.interceptor';
     providers: [
         BouteilleDeVinService,
         BouteilleResolverServiceService,
+        BouteillesCellierResolver,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: TokenInterceptor,

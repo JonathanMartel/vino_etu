@@ -17,6 +17,8 @@
     margin-left: auto;
     margin-right: auto;
     object-fit: cover;
+    position: relative;
+    bottom: 50px;
   }
 
   img {
@@ -49,7 +51,6 @@
 
   .material-icons{
     vertical-align: -0.125em;
-    font-size: 20px;
   }
 
   .mat-icon {
@@ -57,7 +58,6 @@
   }
 
   .mat-form-prefix .mat-icon {
-    font-size: 150%;
     line-height: 1.25;
   }
 

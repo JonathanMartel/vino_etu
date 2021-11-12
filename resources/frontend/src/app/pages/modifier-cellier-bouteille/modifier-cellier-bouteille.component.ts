@@ -91,7 +91,7 @@ export class ModifierCellierBouteilleComponent implements OnInit {
 
     supprimerBouteille(){
         //console.log(bouteilleId);
-    
+
         this.servBouteilleDeVin.supprimerBouteilleCellier(this.bouteilleId).subscribe(()=>{
             console.log("supprimer")
         })

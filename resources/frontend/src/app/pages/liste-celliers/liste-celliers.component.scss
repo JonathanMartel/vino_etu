@@ -3,6 +3,12 @@
     flex-direction: column;
     flex-wrap: wrap;
 }
+
+.content a {
+    text-decoration: none;
+    color: black;
+}
+
 .titre {
     display: flex;
     justify-content: center;
@@ -15,6 +21,7 @@
 
 .resultat{
     padding-bottom: 10px;
+    cursor: pointer;
 }
 
 .resultat-cellier {

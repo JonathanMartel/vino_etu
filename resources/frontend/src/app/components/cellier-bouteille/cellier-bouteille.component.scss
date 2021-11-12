@@ -59,6 +59,10 @@ img {
     font-size: 14px;
 }
 
+.mat-mini-fab {
+   transform: scale()
+}
+
 .mat-mini-fab.mat-accent{
     background-color: var(--couleur-primaire);
 }
@@ -91,14 +95,16 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
-
 }
 
+.boutons-inventaire > div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
 
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-  opacity: 0;
+.mat-input-element {
+    text-align: center;
 }
 
 

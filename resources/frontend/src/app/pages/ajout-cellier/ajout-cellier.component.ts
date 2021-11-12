@@ -1,8 +1,9 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AuthService } from '@services/auth.service';
 import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-ajout-cellier',
@@ -20,6 +21,8 @@ export class AjoutCellierComponent implements OnInit {
     description: new FormControl(''),
 });
 
+@Output("chargerCelliers") chargerCelliers: EventEmitter<any> = new EventEmitter();
+
   constructor( public formulaireRef: MatDialogRef<AjoutCellierComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private servAuth: AuthService,
@@ -32,6 +35,8 @@ export class AjoutCellierComponent implements OnInit {
     return this.ajoutCellier.controls;
   }
 
+  
+
   postCellier(cellier: any) {
     console.log(cellier)
 
@@ -39,15 +44,15 @@ export class AjoutCellierComponent implements OnInit {
 
     this.nouveauCellier = { ...cellier, "users_id":this.idUtilisateur }
 
-   
-
-  // this.nouveauCellier.users_id = 1;
 
     this.servBouteilleDeVin.ajoutCellier(this.nouveauCellier, this.idUtilisateur)
         .subscribe(() => {
-            this.formulaireRef.close();
 
-        });
+          this.formulaireRef.close();
+
+         this.chargerCelliers.emit();
+
+        });      
 
   }
 

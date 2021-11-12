@@ -46,7 +46,7 @@ export class BouteilleDeVinService {
         return this.http.get<any>(this.url + '/bouteilles-achetees/' + id_bouteille);
     }
 
-    ajoutBouteilleCellier(cellierId: number, bouteilleAchetee: any) {
+    ajoutBouteilleCellier(cellierId: any, bouteilleAchetee: any) {
 
         return this.http.post<any>(this.url + '/celliers/' + cellierId + '/bouteilles', bouteilleAchetee);
 
@@ -70,10 +70,8 @@ export class BouteilleDeVinService {
 
     supprimerBouteilleCellier(bouteilleAchetee_id: any) {
 
-        console.log(bouteilleAchetee_id);
         return this.http.delete<any>(
             this.url + '/supprimer/' + bouteilleAchetee_id)
-
     }
 
     /**
@@ -108,6 +106,12 @@ export class BouteilleDeVinService {
         });
     }
 
+    /**
+     *
+     * @param data
+     * @param id
+     * @returns
+     */
     ajoutCellier(data: any, id: any) {
 
         return this.http.post<any>(this.url + '/celliers', data);

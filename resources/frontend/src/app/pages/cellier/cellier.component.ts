@@ -18,18 +18,21 @@ export class CellierComponent implements OnInit {
 
     // Sauvegarder la liste initiale de bouteilles afin de s'éviter une requête http/sql pour un "reset"
     bouteillesCellierInitiales: any;
+    bouteillesCellier: any = [];
 
     // Sujet (observable) permettant de "debouncer" l'envoi de la recherche à la base de données
     rechercheSujet: Subject<string> = new Subject<string>();
 
-    bouteillesCellier: any = [];
+    // Permet de savoir si l'utilisateur a effectué une recherche et ainsi présenté le bon template
+    estFiltre: boolean = false;
+
     mode: MatDrawerMode = "over";
     texteRecherche = new FormControl('');
 
     constructor(
         private servBouteilleDeVin: BouteilleDeVinService,
         private actRoute: ActivatedRoute,
-        private authService: AuthService,
+        private servAuth: AuthService,
     ) {
 
     }
@@ -37,10 +40,16 @@ export class CellierComponent implements OnInit {
     ngOnInit(): void {
         this.cellierId = this.actRoute.snapshot.params.id;
 
-        this.servBouteilleDeVin.getBouteillesParCellier(this.cellierId)
-            .subscribe(cellier => {
-                this.bouteillesCellier = this.bouteillesCellierInitiales = cellier.data
-            });
+        // Utiliser le resolver pour charger le data de la bouteille
+        this.actRoute.data.subscribe(data => {
+            this.bouteillesCellier = this.bouteillesCellierInitiales = data.bouteillesCellier;
+            console.log(this.bouteillesCellier);
+        });
+
+        // this.servBouteilleDeVin.getBouteillesParCellier(this.cellierId)
+        //     .subscribe(cellier => {
+        //         this.bouteillesCellier = this.bouteillesCellierInitiales = cellier.data
+        //     });
     }
 
     recherche($event: any): void {
@@ -52,7 +61,7 @@ export class CellierComponent implements OnInit {
 
         if (this.rechercheSujet.observers.length === 0) {
             this.rechercheSujet
-                .pipe(debounceTime(700), distinctUntilChanged())
+                .pipe(debounceTime(400), distinctUntilChanged())
                 .subscribe(recherche => {
                     if (this.texteRecherche.value.length >= 3) {
                         this.effectuerRechercheFiltree();
@@ -64,6 +73,8 @@ export class CellierComponent implements OnInit {
     }
 
     effectuerRechercheFiltree(): void {
+        this.estFiltre = true;
+
         this.servBouteilleDeVin
             .getBouteillesParCellier(
                 this.cellierId,
@@ -84,12 +95,13 @@ export class CellierComponent implements OnInit {
      *
      */
     chargerBouteilles() {
-        this.servBouteilleDeVin.getBouteillesParCellier(this.cellierId).subscribe(cellier => {
-            this.bouteillesCellier = this.bouteillesCellierInitiales = cellier.data
-        });
+        this.servBouteilleDeVin.getBouteillesParCellier(this.cellierId)
+            .subscribe(cellier => {
+                this.bouteillesCellier = this.bouteillesCellierInitiales = cellier.data
+            });
     }
 
-    cellierContientBouteille(){
-         return  this.bouteillesCellier.length > 0;
+    cellierContientBouteille() {
+        return this.bouteillesCellier.length > 0;
     }
 }
