@@ -70,7 +70,7 @@ class Cellier extends Model
                             "cat.nom as categorie")
                         ->where("cba.celliers_id", $cellierId);
 
-        if($texteRecherche = $filtres["texteRecherche"]) {
+        if(!empty($filtres) && $texteRecherche = $filtres["texteRecherche"]) {
             self::annexerRechercheTextuelle($requete, $texteRecherche);
         }
 
