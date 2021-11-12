@@ -141,13 +141,13 @@
                     
                     <!--Validation non fonctionnelle, à terminer pour le prochain sprint -->
 
-                    <!-- <div class="bouton">
+                     <div class="bouton">
                         <button class="bouton-fiche valider"  data-js-modifier>Modifier</button>
 
                         <button class="bouton-fiche non-active" data-js-btnAnnuler>Annuler</button> 
                         <button   class="bouton-fiche valider non-active"  data-js-btnValider >Valider</button>
                         <button class="bouton-fiche effacer non-active" data-js-btnEffacer >Effacer</button>
-                    </div> -->
+                    </div> 
                 </form>
             </div>
         </section>
