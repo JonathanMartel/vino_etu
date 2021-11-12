@@ -36,7 +36,6 @@ export class CellierComponent implements OnInit {
     constructor(
         private servBouteilleDeVin: BouteilleDeVinService,
         private actRoute: ActivatedRoute,
-        private servAuth: AuthService,
         private location: Location,
     ) {
 
@@ -46,16 +45,17 @@ export class CellierComponent implements OnInit {
         this.cellier = this.location.getState();
         this.cellierId = this.actRoute.snapshot.params.id;
 
-        // Utiliser le resolver pour charger le data de la bouteille
+        // Charger les propriétés du cellier
+        this.servBouteilleDeVin.getCellier(this.cellierId)
+            .subscribe(data => {
+                this.cellier = data;
+            })
+
+        // Utiliser le resolver pour charger le data des bouteilles du cellier
         this.actRoute.data.subscribe(data => {
             this.bouteillesCellier = this.bouteillesCellierInitiales = data.bouteillesCellier;
             console.log(this.bouteillesCellier);
         });
-
-        // this.servBouteilleDeVin.getBouteillesParCellier(this.cellierId)
-        //     .subscribe(cellier => {
-        //         this.bouteillesCellier = this.bouteillesCellierInitiales = cellier.data
-        //     });
     }
 
     recherche($event: any): void {

@@ -85,7 +85,7 @@ class CellierController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show(Cellier $cellier) {
-        //
+        return response()->json($cellier, 201);
     }
 
     /**
