@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 
@@ -21,7 +22,7 @@ export class CreerCompteComponent implements OnInit {
         password: new FormControl('', Validators.required)
     });
 
-    constructor(private servBouteilleDeVin: BouteilleDeVinService, private router: Router) { }
+    constructor(private servBouteilleDeVin: BouteilleDeVinService, private router: Router, private snackbar: MatSnackBar) { }
 
     ngOnInit(): void {
     }
@@ -50,7 +51,9 @@ export class CreerCompteComponent implements OnInit {
         this.servBouteilleDeVin.ajouterUtilisateur(data)
             .subscribe((reponse) => {
                 console.log(reponse);
-                this.router.navigate([`/celliers/${reponse.nouvelUtilisateurCellierId}`]);
+                this.router.navigate([`/connection`], { state: { email: this.formulaire.value.email}});
+                this.snackbar.open(`Bienvenue! vous avez créer votre compte`, "Fermer", {duration: 3000, panelClass: 'notif'});
+
             });
     }
 

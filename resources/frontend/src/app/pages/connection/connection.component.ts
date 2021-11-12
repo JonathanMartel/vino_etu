@@ -22,6 +22,8 @@ export class ConnectionComponent implements OnInit {
     });
 
 
+
+
     constructor(
         private servAuth: AuthService,
         private snackbar: MatSnackBar,
@@ -43,10 +45,18 @@ export class ConnectionComponent implements OnInit {
      *
      */
     connection() {
+
+        if (this.formConnection.invalid) {
+            this.formConnection.markAllAsTouched();
+            return;
+        }
+
         const data = {
             email: this.formConnection.value.email,
             password: this.formConnection.value.password
         }
+
+
 
       this.servAuth.connexion(data).subscribe(
           (data) => {

@@ -1,8 +1,9 @@
 .card{
-    margin: 1rem 0;
+    margin-bottom: 1rem;
     border-radius: 5px;
     border: 2px solid var(--couleur-primaire);
 }
+
 
  .page-accueil h1{
     font-family: 'Dancing Script', cursive;
@@ -15,8 +16,7 @@
 .page-accueil{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-content: center;
+    margin: 1rem 0;
 }
 
 .card h2{
@@ -35,8 +35,8 @@
 }
 
 mat-icon{
-    height: 30vw;
-    width: 30vw;
+    width: 100%;
+    height: 10vh;
     display: block;
     margin: auto;
     color: var(--couleur-primaire);
