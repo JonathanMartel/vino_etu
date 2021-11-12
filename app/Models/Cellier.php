@@ -6,8 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class Cellier extends Model
-{
+class Cellier extends Model {
     use HasFactory;
 
     protected $guarded = [];
@@ -18,7 +17,7 @@ class Cellier extends Model
 
     static public function obtenirCelliersParUtilisateur(int $userId) {
         return Cellier::where("users_id", $userId)
-                      ->get();
+            ->get();
     }
 
     /**
@@ -44,38 +43,39 @@ class Cellier extends Model
         $orderByTri = $orderByMapping["nom"];
 
         // ...si l'argument reçu existe dans le mapping, écraser la valeur par défaut
-        if(array_key_exists($orderBy, $orderByMapping)) {
+        if (array_key_exists($orderBy, $orderByMapping)) {
             $orderByTri = $orderByMapping[$orderBy];
         }
 
         $requete = DB::table('celliers_bouteilles_achetees as cba')
-                        ->join("bouteilles_achetees as ba", "cba.bouteilles_achetees_id", "=", "ba.id")
-                        ->join("categories as cat", "ba.categories_id", "=", "cat.id")
-                        ->select(
-                            "cba.id as inventaireId",
-                            "cba.inventaire as inventaire",
-                            "ba.id as bouteilleId",
-                            "ba.nom as nom",
-                            "ba.description as description",
-                            "ba.url_image",
-                            "ba.url_achat",
-                            "ba.url_info",
-                            "ba.format",
-                            "ba.origine",
-                            "ba.millesime",
-                            "ba.prix_paye",
-                            "ba.date_acquisition",
-                            "ba.conservation",
-                            "ba.notes_personnelles",
-                            "cat.nom as categorie")
-                        ->where("cba.celliers_id", $cellierId);
+            ->join("bouteilles_achetees as ba", "cba.bouteilles_achetees_id", "=", "ba.id")
+            ->join("categories as cat", "ba.categories_id", "=", "cat.id")
+            ->select(
+                "cba.id as inventaireId",
+                "cba.inventaire as inventaire",
+                "ba.id as bouteilleId",
+                "ba.nom as nom",
+                "ba.description as description",
+                "ba.url_image",
+                "ba.url_achat",
+                "ba.url_info",
+                "ba.format",
+                "ba.origine",
+                "ba.millesime",
+                "ba.prix_paye",
+                "ba.date_acquisition",
+                "ba.conservation",
+                "ba.notes_personnelles",
+                "cat.nom as categorie"
+            )
+            ->where("cba.celliers_id", $cellierId);
 
-        if(!empty($filtres) && $texteRecherche = $filtres["texteRecherche"]) {
+        if (!empty($filtres) && $texteRecherche = $filtres["texteRecherche"]) {
             self::annexerRechercheTextuelle($requete, $texteRecherche);
         }
 
         return $requete->orderBy($orderByTri, $orderDirection)
-                       ->paginate($limite);
+            ->paginate($limite);
     }
 
     /**
@@ -86,7 +86,9 @@ class Cellier extends Model
      *
      */
     static private function annexerRechercheTextuelle(&$requete, $recherche) {
-        $requete->whereRaw("MATCH(ba.nom, ba.description, ba.format, ba.origine, ba.conservation, ba.notes_personnelles) against (? in boolean mode)", ["*$recherche*"])
+        $requete->where(function ($query) use ($recherche) {
+            $query->whereRaw("MATCH(ba.nom, ba.description, ba.format, ba.origine, ba.conservation, ba.notes_personnelles) against (? in boolean mode)", ["*$recherche*"])
                 ->orWhereRaw("MATCH(cat.nom) against (? in boolean mode)", ["*$recherche*"]);
+        });
     }
 }
