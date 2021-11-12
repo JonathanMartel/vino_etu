@@ -11,7 +11,6 @@
     padding: 0.64rem;
 }
 
-
 .description-titre{
     font-size: 1.25rem;
     font-weight: 500;
@@ -25,7 +24,6 @@
     row-gap: 0.64rem;
     column-gap: 0.64rem;
     padding-left:0.64rem;
-
 }
 
 .millesime-item{
@@ -56,17 +54,11 @@
     background-color: #AC9678;
 }
 
-
-
 textarea:focus-visible{
     outline: 0;
 }
 
-
-
 .form-modifier{
-    /* padding-left: 0.64rem;
-    padding-right: 0.64rem; */
     display: flex;
     flex-direction: column;
 }
@@ -129,14 +121,6 @@ input[type=number]::-webkit-outer-spin-button {
   margin: 0; 
 }
 
-
-
-
- /* .form{
-    display: none;
-  }  */
-
-
 .millesime-info-debut{
     display: flex;
     column-gap: 1rem;
@@ -150,19 +134,13 @@ input[type=number]::-webkit-outer-spin-button {
     margin-left: 0.64rem;
     margin-right: 0.64rem;
 }
-/* .item-commentaire .textarea{
-    border-style:none;
-    padding-top: 0.64rem;
-    */
-  
+
 .textarea {
     padding: 10px;
     max-width: 100%;
     line-height: 1.5;
     border-radius: 5px;
     border-style: none;
-    /* border: 1px solid #ccc;
-    box-shadow: 1px 1px 1px #999; */
     resize:both;
 }
 
@@ -219,8 +197,6 @@ input:focus-visible{
     display: flex;
     align-items: center;
     justify-content: flex-end;
-  
-   
 }
 
 .bouteilleSAQConteneur-fiche p{
@@ -236,7 +212,6 @@ input:focus-visible{
     padding-top: 1.563rem;
     padding-bottom: 1.563rem;
 }
-
 
 .material-icons-fiche {
     color: #AA7E42;
@@ -255,7 +230,6 @@ input:focus-visible{
     -webkit-font-smoothing: antialiased;
     padding:0.64rem;
 }
-
 
 .infoBouteilleConteneur-fiche {
     display: flex;
