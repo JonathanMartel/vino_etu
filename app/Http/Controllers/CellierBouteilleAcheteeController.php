@@ -52,30 +52,25 @@ class CellierBouteilleAcheteeController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Cellier $cellier, Request $request) {
+        // BouteilleAchetee::create($request->all());
+
         $bouteilleAchetee = new BouteilleAchetee();
 
-        $bouteilleAchetee->nom =  $request->nom;
-        $bouteilleAchetee->description =  $request->description;
-        $bouteilleAchetee->url_image =  $request->url_image;
-        $bouteilleAchetee->url_achat =  $request->url_achat;
-        $bouteilleAchetee->url_info =  $request->url_info;
-        $bouteilleAchetee->origine =  $request->origine;
-        $bouteilleAchetee->millesime =  $request->millesime;
-        $bouteilleAchetee->date_acquisition =  $request->date_acquisition;
-        // $bouteilleAchetee->prix_paye =  str_replace(",", ".", filter_var($request->prix_paye, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_THOUSAND));
-        $bouteilleAchetee->conservation =  $request->conservation;
-        $bouteilleAchetee->notes_personnelles =  $request->notes_personnelles;
-        $bouteilleAchetee->format =  $request->format;
-        $bouteilleAchetee->categories_id =  $request->categories_id;
-        $bouteilleAchetee->users_id =  $request->users_id;
-        // dd($bouteilleAchetee);
-        try {
-            $bouteilleAchetee->save();
-        }
-        catch(\Exception $e) {
-            dd($e->getMessage());
-        }
-
+        $bouteilleAchetee->nom                = $request->nom;
+        $bouteilleAchetee->description        = $request->description;
+        $bouteilleAchetee->url_image          = $request->url_image;
+        $bouteilleAchetee->url_achat          = $request->url_achat;
+        $bouteilleAchetee->url_info           = $request->url_info;
+        $bouteilleAchetee->origine            = $request->origine;
+        $bouteilleAchetee->millesime          = $request->millesime;
+        $bouteilleAchetee->date_acquisition   = $request->date_acquisition;
+        $bouteilleAchetee->prix_paye          = str_replace(",", ".", filter_var($request->prix_paye, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_THOUSAND));
+        $bouteilleAchetee->conservation       = $request->conservation;
+        $bouteilleAchetee->notes_personnelles = $request->notes_personnelles;
+        $bouteilleAchetee->format             = $request->format;
+        $bouteilleAchetee->categories_id      = $request->categories_id;
+        $bouteilleAchetee->users_id           = $request->users_id;
+        $bouteilleAchetee->save();
 
         $bouteilleCellier = new CellierBouteilleAchetee();
         $bouteilleCellier->bouteilles_achetees_id = $bouteilleAchetee->id;
