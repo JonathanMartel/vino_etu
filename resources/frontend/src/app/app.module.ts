@@ -37,6 +37,7 @@ import { TokenInterceptor } from './token.interceptor';
 import { BouteillesCellierResolver } from '@services/bouteilles-cellier.resolver';
 import { DatePipe, registerLocaleData } from '@angular/common';
 import localeFrCa from "@angular/common/locales/fr-CA"
+import { StringHelpersService } from '@services/helpers/string-helpers.service';
 
 @NgModule({
     declarations: [
@@ -86,10 +87,7 @@ import localeFrCa from "@angular/common/locales/fr-CA"
             multi: true,
         },
         DatePipe,
-        {
-            provide: LOCALE_ID,
-            useValue: "fr-CA"
-        }
+        StringHelpersService,
     ],
     bootstrap: [AppComponent],
     entryComponents:[MatConfirmDialogComponent],

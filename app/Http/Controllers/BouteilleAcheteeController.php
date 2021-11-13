@@ -57,7 +57,7 @@ class BouteilleAcheteeController extends Controller
         $bouteilleAchetee->millesime          = $request->millesime;
         $bouteilleAchetee->format             = $request->format;
         $bouteilleAchetee->notes_personnelles = $request->notes_personnelles;
-        $bouteilleAchetee->prix_paye          = $request->prix_paye;
+        $bouteilleAchetee->prix_paye          = filter_var($request->prix_paye, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_THOUSAND);
         $bouteilleAchetee->conservation       = $request->conservation;
         $bouteilleAchetee->origine            = $request->origine;
 
@@ -80,6 +80,6 @@ class BouteilleAcheteeController extends Controller
      */
     public function destroy(BouteilleAchetee $bouteilleAchetee)
     {
-    
+
     }
 }

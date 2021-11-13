@@ -62,13 +62,20 @@ class CellierBouteilleAcheteeController extends Controller {
         $bouteilleAchetee->origine =  $request->origine;
         $bouteilleAchetee->millesime =  $request->millesime;
         $bouteilleAchetee->date_acquisition =  $request->date_acquisition;
-        $bouteilleAchetee->prix_paye =  $request->prix_paye;
+        // $bouteilleAchetee->prix_paye =  str_replace(",", ".", filter_var($request->prix_paye, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_THOUSAND));
         $bouteilleAchetee->conservation =  $request->conservation;
         $bouteilleAchetee->notes_personnelles =  $request->notes_personnelles;
         $bouteilleAchetee->format =  $request->format;
         $bouteilleAchetee->categories_id =  $request->categories_id;
         $bouteilleAchetee->users_id =  $request->users_id;
-        $bouteilleAchetee->save();
+        // dd($bouteilleAchetee);
+        try {
+            $bouteilleAchetee->save();
+        }
+        catch(\Exception $e) {
+            dd($e->getMessage());
+        }
+
 
         $bouteilleCellier = new CellierBouteilleAchetee();
         $bouteilleCellier->bouteilles_achetees_id = $bouteilleAchetee->id;
@@ -99,7 +106,7 @@ class CellierBouteilleAcheteeController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Cellier $cellier, Bouteille $bouteille) {
-        
+
     }
 
     /**

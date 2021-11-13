@@ -52,6 +52,9 @@ Route::get('bouteilles-achetees/{bouteilleAchetee}', [BouteilleAcheteeController
 // Creation d'une compte utilisateur
 Route::post('creerCompte', [CustomAuthController::class, "creerCompte"]);
 
+// Ajout d'une bouteille à un cellier
+Route::post('celliers/{cellier}/bouteilles', [CellierBouteilleAcheteeController::class, "store"]);
+
 // Connexion
 Route::post('connection', [CustomAuthController::class, "connection"]);
 
@@ -69,8 +72,7 @@ Route::group(['middleware' => ["auth:sanctum"]], function () {
     // Ajout d'un nouveau cellier
     Route::post('celliers', [CellierController::class, "store"]);
 
-    // Ajout d'une bouteille à un cellier
-    Route::post('celliers/{cellier}/bouteilles', [CellierBouteilleAcheteeController::class, "store"]);
+
 
     // Mise à jour des informations d'une bouteille dans un cellier donné
     Route::put("celliers/modifier-bouteille/{bouteilleAchetee}", [BouteilleAcheteeController::class, "modifierInventaireBouteille"]);
