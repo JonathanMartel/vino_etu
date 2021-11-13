@@ -1,0 +1,64 @@
+.formulaire {
+    flex-direction: column;
+    align-items: center;
+    min-width: 15rem;
+    max-width: 100vw;
+    border-radius: .5rem;
+    color: black;
+}
+
+div {
+    margin-bottom: 0.5rem;
+}
+
+.formulaire input {
+    padding: 0.875rem;
+    border: none;
+    min-height: 2.2em;
+    padding: .4em;
+    line-height: 1.4em;
+    border-radius: 2px;
+    box-sizing: border-box;
+}
+
+input:not([type=radio]),
+select{
+    width: 100%;
+    box-sizing: border-box;
+}
+
+input[type=date] {
+    color: #000;
+    background-color: #fff;
+}
+
+.formulaire button {
+    text-transform: uppercase;
+    border: none;
+    font-size: 0.725rem;
+    color: #ffffff;
+    font-weight: bold;
+    background-color: #4c1920;
+    width: 10rem;
+    display: block;
+    padding: 0.875rem 1rem;
+    margin: 0 auto;
+    border-radius: 1.5rem;
+    cursor: pointer;
+    margin-top: 1rem;
+    margin-bottom: 2.34rem;
+}
+
+.titre {
+    display: flex;
+    justify-content: center;
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    margin: 18px 0;
+    color: #4c1920;
+}
+
+.mat-form-field{
+    display: block;
+}
+

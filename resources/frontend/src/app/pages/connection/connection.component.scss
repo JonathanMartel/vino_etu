@@ -1,0 +1,49 @@
+
+
+.formulaire {
+    display: flex;
+    flex-direction: column;
+    color: black;
+    align-items: center;
+}
+
+.formulaire h2{
+    font-size: 3rem;
+    font-family: 'Dancing Script', cursive;
+    color: #4c1920;
+    margin: 2rem 0;
+}
+
+
+.input-case {
+    display: flex;
+    align-items: center;
+    margin: 1rem 0.875rem;
+}
+
+label {
+    display: inline-block;
+    padding-top: 1rem;
+    margin: 0.5rem 0;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.formulaire button {
+    text-transform: uppercase;
+    border: none;
+    font-size: 0.725rem;
+    color: #ffffff;
+    font-weight: bold;
+    background-color: #4c1920;
+    width: 10rem;
+    display: block;
+    padding: 0.875rem 1rem;
+    margin: 2rem 0;
+    border-radius: 1.5rem;
+    cursor: pointer;
+}
+
+.mat-form-field{
+    width: 100%;
+}

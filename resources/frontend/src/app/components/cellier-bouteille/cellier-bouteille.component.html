@@ -1,0 +1,80 @@
+<section>
+    <div class="wrapper">
+        <div class="resultat-img">
+            <a class="btn-vin"><img src="{{bouteille.url_image}}" alt="une bouteille"></a>
+        </div>
+        <div class="resultat-vin">
+            <div class="resultat-vin-data">
+                <a class="target-link">{{bouteille.nom}}</a>
+                <div>
+                    <span class="subtexte">{{bouteille.categorie}}</span>
+                    <span class="subtexte">{{bouteille.format}}</span>
+                    <span class="subtexte">{{bouteille.pays}}</span>
+                </div>
+            </div>
+            <div class="boutons-inventaire">
+                <div *ngIf="inventaire.errors?.min">
+                    L'inventaire ne doit pas être inférieur à 0
+                </div>
+                <div>
+                    <button mat-mini-fab [disabled]="!enStock" (click)="diminuer()">
+                        <mat-icon>remove</mat-icon>
+                    </button>
+                    <mat-form-field class="inventaire-form-field" appearance="fill">
+                        <input matInput type="text" [formControl]="inventaire">
+                    </mat-form-field>
+                    <button mat-mini-fab (click)="augmenter()">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Plus d'informations et accès au lien pour modifier l'info -->
+    <mat-expansion-panel class="mat-elevation-z0 plus-infos-bouteille-cellier">
+        <mat-expansion-panel-header>
+            <mat-panel-title>Plus d'informations</mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <dl>
+            <div>
+                <dt><strong>Description</strong></dt>
+                <dl>{{ bouteille.description }}</dl>
+            </div>
+
+            <div *ngIf="bouteille.notes_personnelles">
+                <dt><strong>Notes</strong></dt>
+                <dl>{{bouteille.notes_personnelles }}</dl>
+            </div>
+
+            <div *ngIf="bouteille.origine">
+                <dt><strong>Origine</strong></dt>
+                <dl>{{bouteille.origine }}</dl>
+            </div>
+
+            <div *ngIf="bouteille.millesime">
+                <dt><strong>Millesime</strong></dt>
+                <dl>{{bouteille.millesime }}</dl>
+            </div>
+
+            <div *ngIf="bouteille.prix_paye">
+                <dt><strong>Prix</strong></dt>
+                <dl>{{bouteille.prix_paye | currency : "CAD": "$" : "1.2" : "fr-CA"}}</dl>
+            </div>
+        </dl>
+
+        <a *ngIf="bouteille.url_achat" class="inline-link" href="{{ bouteille.url_achat }}">Acheter en ligne</a>
+
+        <div class="actions">
+            <a mat-flat-button routerLink="/bouteilles-achetees/{{bouteille.bouteilleId}}/modifier"
+                [state]="{cellierId: cellierId}">
+                <mat-icon>edit</mat-icon> Modifier
+            </a>
+            <a mat-flat-button (click)='supprimerBouteille()'>
+                <mat-icon>delete</mat-icon> Supprimer
+            </a>
+        </div>
+
+    </mat-expansion-panel>
+</section>

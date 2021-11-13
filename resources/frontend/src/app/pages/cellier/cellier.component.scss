@@ -1,0 +1,60 @@
+main[_ngcontent-vfb-c129] {
+    padding: 0;
+}
+
+.content{
+  //  margin: 60px 0;
+    overflow: hidden;
+    padding-bottom: 3.75rem;
+}
+
+.content-header{
+    display: flex;
+    justify-content: space-around;
+}
+
+.content h2{
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    margin: 15px 0;
+    color: #4c1920;
+}
+
+.content button{
+    background-color: #4c1920;
+    color: #fff;
+}
+
+/* css pour le side-nav */
+
+.example-container {
+    position: absolute;
+    top: 3.75rem;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.sidenav-content {
+    text-align: center;
+    padding: 10px;
+}
+
+.mat-drawer{
+    width: 75%;
+    overflow: hidden;
+}
+
+.mat-form-field{
+    width: 100%;
+    padding: 0 1rem;
+}
+
+
+.ajouter-bouteille{
+    text-align: center;
+}
+
+.none{
+    display: none;
+}

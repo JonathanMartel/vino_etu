@@ -1,0 +1,49 @@
+<mat-sidenav-container class="example-container">
+
+    <mat-sidenav #sidenav [mode]="mode">
+        <p><button mat-button (click)="sidenav.toggle()">Toggle</button></p>
+    </mat-sidenav>
+
+    <div class="content">
+        <div class="content-header">
+            <h2 class="titre">{{ cellier.nom }}</h2>
+            <p class="bouton-filtre none"><button mat-button (click)="sidenav.toggle()">Filtrer</button></p>
+        </div>
+        <mat-form-field class="recherche">
+            <mat-label><mat-icon>search</mat-icon>Trouvez une bouteille</mat-label>
+            <input matInput (keyup)="recherche($event)" [formControl]="texteRecherche">
+        </mat-form-field>
+
+        <ng-container *ngIf="cellierContientBouteille(); then bouteille; else pasBouteille">
+        </ng-container>
+
+        <ng-template #bouteille>
+            <section *ngFor="let uneBouteille of bouteillesCellier" class="resultat">
+                <app-cellier-bouteille
+                    [uneBouteille]='uneBouteille'
+                    (chargerBouteilles)="chargerBouteilles()"
+                    [cellierId]="cellierId">
+                </app-cellier-bouteille>
+            </section>
+        </ng-template>
+
+        <ng-template #pasBouteille>
+            <section class="ajouter-bouteille">
+                <ng-container
+                    *ngIf="estFiltre; then msgFiltre; else msgInitial">
+                </ng-container>
+
+                <ng-template #msgFiltre>
+                    <p>Vous n'avez pas de bouteille correspondante à cette recherche.</p>
+                </ng-template>
+
+                <ng-template #msgInitial>
+                    <h2>Oops!</h2>
+                    <p>Vous n'avez pas de bouteille.</p>
+                    <a routerLink="/bouteilles">Ajoutez en une !</a>
+                </ng-template>
+            </section>
+        </ng-template>
+    </div>
+
+</mat-sidenav-container>

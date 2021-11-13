@@ -1,0 +1,58 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.resultat{
+    padding-bottom: 10px;
+}
+
+.resultat-vin {
+    clear: both;
+    min-height: 45px;
+    margin: 0 -10px;
+    padding: 10px 10px;
+    border-top: 1px solid #e9e8e5;
+}
+
+.titre {
+    display: flex;
+    justify-content: center;
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    margin: 20px 0;
+    color: #4c1920;
+}
+
+img {
+
+    float: left;
+    margin-right: 10px;
+    display: block;
+    width: 70px;
+}
+
+.resultat-vin-data {
+    padding-right: 25px;
+    margin-left: 55px;
+}
+
+.vin-data-droit {
+    float: right;
+    font-size: 12px;
+}
+
+.target-link {
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 16px;
+    Color: #000;
+}
+
+.subtexte {
+    display: inline-block;
+    padding-right: 15px;
+    font-weight: 500;
+    font-size: 14px;
+}

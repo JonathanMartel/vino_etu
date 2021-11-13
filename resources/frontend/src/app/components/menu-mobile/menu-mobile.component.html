@@ -1,0 +1,45 @@
+<mat-toolbar>
+    <nav class="menu-mobile">
+
+        
+
+        <ng-container
+            *ngIf="estAuthentifie(); then authentifie; else nonAuthentifie">
+        </ng-container>
+
+        <ng-template #authentifie>
+
+            <a mat-button routerLink="/">
+                <mat-icon>home</mat-icon>
+            </a>
+            <a class="none" mat-button routerLink="/ajout">
+                <mat-icon>add_circle_outline</mat-icon>
+            </a>
+            <a mat-button routerLink="/bouteilles">
+                <mat-icon svgIcon="catalogue"></mat-icon>
+            </a>
+            <a mat-button routerLink="/celliers">
+                <mat-icon svgIcon="cellier"></mat-icon>
+            </a>
+            <a mat-button (click)='deconnexion()'>
+                <mat-icon>logout</mat-icon>
+            </a>
+
+        </ng-template>
+
+        <ng-template #nonAuthentifie>
+            <a mat-button class="desactive">
+                <mat-icon>home</mat-icon>
+            </a>
+            <a mat-button class="desactive">
+                <mat-icon svgIcon="catalogue"></mat-icon>
+            </a>
+            <a mat-button class="desactive">
+                <mat-icon svgIcon="cellier"></mat-icon>
+            </a>
+            <a mat-button routerLink='/connection'>
+                <mat-icon alt="connexion">login</mat-icon>
+            </a>
+        </ng-template>
+    </nav>
+</mat-toolbar>

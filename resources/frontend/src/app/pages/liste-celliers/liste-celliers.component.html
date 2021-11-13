@@ -1,0 +1,14 @@
+<div class="content">
+    <div class="content-header">
+        <h2 class="titre">Mes Celliers</h2>
+        <p class="bouton-filtre"><button mat-button (click)="formulaireAjout(listeCelliers)"><mat-icon>add</mat-icon></button></p>
+    </div>
+    <a *ngFor="let cellier of listeCelliers" routerLink="/celliers/{{cellier.id}}" [state]="cellier">
+        <div class="resultat" >
+            <div class="resultat-cellier">
+                <h3>{{ cellier.nom }}</h3>
+                <p>{{cellier.description}}</p>
+            </div>
+        </div>
+    </a>
+</div>

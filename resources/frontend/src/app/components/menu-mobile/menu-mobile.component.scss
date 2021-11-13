@@ -1,0 +1,50 @@
+
+.mat-toolbar{
+    position: fixed;
+    background-color:#FFF;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    box-shadow: 0 -1px 4px 0 rgb(0 0 0 / 28%);
+    height: 3.75rem;
+}
+
+.mat-toolbar .menu-mobile{
+    display: flex;
+    margin: 0;
+    justify-content: space-around;
+    flex-grow: 1;
+}
+
+.mat-toolbar a{
+    font-size: 13px;
+    text-align: center;
+    padding: var(--espacement-petit);
+    border-radius: var(--espacement-petit);
+    margin: var(--espacement-petit);
+    text-decoration: none;
+    color: #000;
+}
+
+.none{
+    display: none;
+}
+
+.menu-mobile mat-icon[data-mat-icon-type="font"] {
+    width: 32px;
+    height: 32px;
+    font-size: 32px;
+}
+
+.menu-mobile mat-icon[data-mat-icon-type="svg"] {
+    transform: scale(1.5);
+}
+
+.desactive{
+    pointer-events: none;
+    cursor: default;
+}
+
+.desactive mat-icon {
+    color: rgb(92, 88, 88);
+}

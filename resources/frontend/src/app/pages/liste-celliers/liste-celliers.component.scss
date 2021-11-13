@@ -1,0 +1,45 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.content a {
+    text-decoration: none;
+    color: black;
+}
+
+.titre {
+    display: flex;
+    justify-content: center;
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    margin: 20px 0;
+    color: #4c1920;
+}
+
+.resultat{
+    padding-bottom: 10px;
+    cursor: pointer;
+}
+
+.resultat-cellier {
+    clear: both;
+    min-height: 45px;
+    margin: 0 -10px;
+    padding: 10px 10px;
+    border-top: 1px solid #e9e8e5;
+}
+
+.content-header{
+    display: flex;
+    justify-content: space-around;
+}
+.content button{
+    background-color: #4c1920;
+    color: #fff;
+}
+.content a {
+    text-decoration: none;
+    color: #000;
+}

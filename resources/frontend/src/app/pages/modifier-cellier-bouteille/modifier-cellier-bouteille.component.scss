@@ -1,0 +1,75 @@
+.formulaire-contenu {
+    display: flex;
+    flex-direction: column;
+    border-radius: .5rem;
+    margin: 1rem 0;
+}
+
+.mat-form-field {
+    display: block;
+    font-size: 0.815rem;
+}
+
+.mat-dialog-actions {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 1.34375em;
+}
+
+.mat-dialog-actions button[type=submit] {
+    background-color: #4c1920;
+    color: white;
+}
+
+.example-card {
+    box-shadow: none;
+}
+
+.card-header{
+    display: block;
+}
+
+.card-content{
+    font-weight: bold;
+}
+
+.card-action{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+ }
+
+.mat-card-image{
+    width: 40vw;
+    display: block;
+    margin: 0 auto;
+    padding: 2rem 0;
+}
+
+
+.mat-form-field-underline{
+    display: none;
+}
+
+.modifier-cellier{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2.34rem;
+}
+
+.save{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 2rem;
+}
+
+.bouton-modifier-cellier{
+    background-color: #4c1920;
+    color: #fff;
+}
+
+
+.retour{
+    display: flex;
+    align-items: center;
+}

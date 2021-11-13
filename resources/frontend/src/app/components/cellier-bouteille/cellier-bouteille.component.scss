@@ -1,0 +1,122 @@
+.wrapper{
+    display: flex;
+    border-top: 1px solid #e9e8e5;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.resultat-img {
+    min-height: 45px;
+    padding: 10px 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.resultat-vin {
+    min-height: 45px;
+    padding: 10px 10px;
+    flex: 1;
+}
+
+.btn-vin {
+    float: left;
+    margin: 2px 12px 10px 0;
+    display: block;
+}
+
+img {
+    width: 100px;
+}
+
+.resultat-vin-data {
+    padding-right: 0;
+}
+
+.vin-data-droit {
+    float: right;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.target-link {
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 16px;
+    Color: #000;
+}
+
+.subtexte {
+    display: block;
+    padding-right: 15px;
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.mat-mini-fab {
+   transform: scale()
+}
+
+.mat-mini-fab.mat-accent{
+    background-color: var(--couleur-primaire);
+}
+
+.mat-mini-fab.mat-accent:disabled{
+    background-color: #ababab;
+}
+
+.mat-form-field {
+    max-width: 6ch;
+    padding: 0 0 0 .75em;
+}
+
+.mat-form-field-appearance-fill {
+    padding: 0;
+}
+
+.wrapper{
+    display: flex;
+    border-top: 1px solid #e9e8e5;
+}
+
+.boutons-inventaire{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.boutons-inventaire > div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.mat-input-element {
+    text-align: center;
+}
+
+
+
+/* Panneau extensible */
+.mat-expansion-panel {
+    background-color: transparent;
+}
+
+.plus-infos-bouteille-cellier .actions {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 1rem;
+
+
+}
+
+.mat-expansion-panel:not(.mat-expanded):not([aria-disabled=true]) .mat-expansion-panel-header:hover {
+    background: inherit;
+}
+
+
+.mat-flat-button{
+    background-color: var(--couleur-primaire);
+    color: #fff;
+}
