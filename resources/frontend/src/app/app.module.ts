@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -35,7 +35,9 @@ import { ListeCelliersComponent } from './pages/liste-celliers/liste-celliers.co
 import { AjoutCellierComponent } from './pages/ajout-cellier/ajout-cellier.component'
 import { TokenInterceptor } from './token.interceptor';
 import { BouteillesCellierResolver } from '@services/bouteilles-cellier.resolver';
-import { DatePipe } from '@angular/common';
+import { DatePipe, registerLocaleData } from '@angular/common';
+import localeFrCa from "@angular/common/locales/fr-CA"
+import { StringHelpersService } from '@services/helpers/string-helpers.service';
 
 @NgModule({
     declarations: [
@@ -85,8 +87,13 @@ import { DatePipe } from '@angular/common';
             multi: true,
         },
         DatePipe,
+        StringHelpersService,
     ],
     bootstrap: [AppComponent],
     entryComponents:[MatConfirmDialogComponent],
 })
-export class AppModule { }
+export class AppModule {
+    constructor() {
+        registerLocaleData(localeFrCa);
+    }
+}

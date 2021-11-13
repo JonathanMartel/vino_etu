@@ -1,11 +1,20 @@
-import { DatePipe } from '@angular/common';
-import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { DatePipe, formatCurrency } from '@angular/common';
+import {
+    Component,
+    Inject,
+    OnInit,
+} from '@angular/core';
+import {
+    FormControl,
+    FormGroup,
+    Validators
+} from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '@services/auth.service';
 import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
+import { StringHelpersService } from '@services/helpers/string-helpers.service';
 
 @Component({
     selector: 'app-ajout-bouteille',
@@ -14,6 +23,7 @@ import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 })
 export class AjoutBouteilleComponent implements OnInit {
     bouteilleAchetee: any;
+    bouteilleData: any;
     listeCelliers!: any[];
 
     ajoutBouteille = new FormGroup({
@@ -35,13 +45,21 @@ export class AjoutBouteilleComponent implements OnInit {
         private snackBar: MatSnackBar,
         private router: Router,
         private datePipe: DatePipe,
+        private stringHelp: StringHelpersService,
+
     ) { }
 
     ngOnInit(): void {
-        // Charger la date du jour comme date par défaut du formulaire
+        // Charger les données passées par le parent dans le l'objet
+        this.bouteilleData = this.data;
+
+        // Récupérer la date du jour valeur par défaut du formulaire
         this.ajoutBouteille.get("date_acquisition")?.setValue(
             this.datePipe.transform(new Date(), "yyyy-MM-dd")
         );
+
+        // Récupérer le prix de la bouteille comme valeur par défaut du formulaire
+        this.ajoutBouteille.get("prix_paye")?.setValue(this.stringHelp.formaterNombreEnDollarsCanadiens(this.bouteilleData.prix));
 
         // Charger la liste des celliers de l'utilisateur.
         this.servBouteilleDeVin.getListeCelliersParUtilisateur(this.authService.getIdUtilisateurAuthentifie())
@@ -82,6 +100,12 @@ export class AjoutBouteilleComponent implements OnInit {
 
                 this.router.navigate(['/bouteilles']);
             });
+    }
+
+    formatterPrix() {
+        const nombre = this.stringHelp.recupererNombreDeDevise(this.ajoutBouteille.get("prix_paye")?.value);
+        // Formatter le prix en device canadienne au fur et à mesure que l'utilisateur interagit
+        this.ajoutBouteille.get("prix_paye")?.setValue(this.stringHelp.formaterNombreEnDollarsCanadiens(nombre));
     }
 
 

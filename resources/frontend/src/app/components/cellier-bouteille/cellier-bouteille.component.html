@@ -60,7 +60,7 @@
 
             <div *ngIf="bouteille.prix_paye">
                 <dt><strong>Prix</strong></dt>
-                <dl>{{bouteille.prix_paye }}$</dl>
+                <dl>{{bouteille.prix_paye | currency : "CAD": "$" : "1.2" : "fr-CA"}}</dl>
             </div>
         </dl>
 

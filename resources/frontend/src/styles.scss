@@ -62,7 +62,7 @@ a.inline-link {
 /* champs obligatoires */
 
 .required::after {
-    content: "  *";
+    content: "\00a0*";
     color: var(--couleur-primaire);
 }
 

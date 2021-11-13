@@ -24,7 +24,7 @@ class CreateBouteillesAcheteesTable extends Migration
             $table->string("origine")->nullable();
             $table->smallInteger("millesime")->unsigned()->nullable();
             $table->date("date_acquisition")->nullable();
-            $table->float("prix_paye", 8, 2, true)->nullable();
+            $table->decimal("prix_paye", 8, 2, true)->nullable();
             $table->string("conservation", 500)->nullable();
             $table->text("notes_personnelles")->nullable();
             $table->string("format")->nullable();

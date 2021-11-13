@@ -22,6 +22,11 @@ export class ConnectionComponent implements OnInit {
         password: new FormControl('', Validators.required)
     });
 
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> 00ae55b176f89b1b40f87fc8c8575f73cf18eda7
 
     constructor(
         private servAuth: AuthService,
