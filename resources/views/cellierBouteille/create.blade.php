@@ -57,7 +57,7 @@
           <span class="helper-text" data-error="Format invalid"></span>
         </div>
         <div class="input-field col s12">
-          <input id="pays" type="text" name="pays" pattern="^[-a-zA-ZáéíóúÁÉÍÓÚÑñÇç]*$" class="@if($errors->first('pays')) invalid @endif validate"  value="{{ old('pays') }}">
+          <input id="pays" type="text" name="pays" pattern="^[-a-zA-ZáéíóúÁÉÍÓÚÑñÇç ]*$" class="@if($errors->first('pays')) invalid @endif validate"  value="{{ old('pays') }}">
           <label for="pays">Pays</label>
           <span class="helper-text" data-error="Format invalid"></span>
         </div>
@@ -121,7 +121,6 @@
         </div>
         <input type="hidden" name="cellier_id" value="{{ $idCellier }}" id="cellier_id">
         <input type="hidden" name="millesime-existant" value="{{ old('millesime-existant') }}" id="millesime-existant">
-        <input type="hidden" name="bouteille_id" value="{{ old('bouteille_id') }}" id="bouteille_id">
         <input type="hidden" name="url_img" value="{{ old('url_img') }}" id="url_img">
         <div class="col s12 btn-space">
           <a href="{{route('cellier.show', $idCellier)}}" class="btn waves-effect waves-light button btn-annuler"  name="annuler">Annuler</a>

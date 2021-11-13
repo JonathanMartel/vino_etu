@@ -40,7 +40,7 @@
             <span class="helper-text" data-error="Champ obligatoire"></span>
         </div>
         <div class="input-field col s12">
-            <input id="pays" type="text" name="pays" pattern="^[-a-zA-ZáéíóúÁÉÍÓÚÑñÇç]*$" class="@if($errors->first('pays')) invalid @endif validate" value="{{$bouteille->pays}}">
+            <input id="pays" type="text" name="pays" pattern="^[-a-zA-ZáéíóúÁÉÍÓÚÑñÇç ]*$" class="@if($errors->first('pays')) invalid @endif validate" value="{{$bouteille->pays}}">
             <label for="pays">Pays</label>
             <span class="helper-text" data-error="Format invalid"></span>
         </div>

@@ -20,7 +20,10 @@ class Cellier extends Model
         return $this->belongsTo(User::class);
     }
 
-
+    /**
+     * @param user_id
+     * @return celliers tous les celliers apartenant à user_id
+     */
     public static function getCelliersByUser($user_id)
     {
         $celliers = DB::table('celliers')
@@ -31,6 +34,10 @@ class Cellier extends Model
 
     /**
      * https://stackoverflow.com/questions/29548073/laravel-advanced-wheres-how-to-pass-variable-into-function
+     * Rechercher dans tous les tables des colonnes qui contiennent le motCle
+     * @param motcle
+     * @param idCellier
+     * @return rows une jointure de tous les tables contenant le mot clé
      */
     public static function rechercheDansCellier($motCle, $idCellier){
         if(strtolower($motCle) == 'non millisimé')
