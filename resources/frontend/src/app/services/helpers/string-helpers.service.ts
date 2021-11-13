@@ -20,6 +20,6 @@ export class StringHelpersService {
     }
 
     recupererNombreDeDevise(chaine: string): number {
-        return +(chaine.replace(/[^\d,\.]/g, ""));
+        return +(chaine.replace(",", ".").replace(/[^\d\.]/g, ""));
     }
 }
