@@ -19,24 +19,27 @@ export class AjoutCellierComponent implements OnInit {
   ajoutCellier = new FormGroup({
     nom: new FormControl('', Validators.required),
     description: new FormControl(''),
-});
+  });
 
-@Output("chargerCelliers") chargerCelliers: EventEmitter<any> = new EventEmitter();
+  // Émetteur d'événnement afin d'afficher la liste des celliers sans refresh après l'ajout
+  @Output("chargerCelliers") chargerCelliers: EventEmitter<any> = new EventEmitter();
 
-  constructor( public formulaireRef: MatDialogRef<AjoutCellierComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    private servAuth: AuthService,
-    private servBouteilleDeVin: BouteilleDeVinService) { }
+  constructor(
+      public formulaireRef: MatDialogRef<AjoutCellierComponent>,
+      @Inject(MAT_DIALOG_DATA) public data: any,
+      private servAuth: AuthService,
+      private servBouteilleDeVin: BouteilleDeVinService
+  ) { }
 
   ngOnInit(): void {
   }
 
+  // Affichage d'erreur quand le champ obligatoire n'est pas rempli
   get erreur() {
     return this.ajoutCellier.controls;
   }
 
-  
-
+  // Fonction qui permet l'ajout d'un nouveau cellier par un utilisateur authentifie
   postCellier(cellier: any) {
     console.log(cellier)
 
@@ -52,7 +55,7 @@ export class AjoutCellierComponent implements OnInit {
 
          this.chargerCelliers.emit();
 
-        });      
+        });
 
   }
 

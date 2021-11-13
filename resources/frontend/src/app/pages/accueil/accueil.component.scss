@@ -4,15 +4,6 @@
     border: 2px solid var(--couleur-primaire);
 }
 
-
- .page-accueil h1{
-    font-family: 'Dancing Script', cursive;
-    color: var(--couleur-primaire);
-    font-size: 2rem;
-    text-align: center;
-    margin: .7rem;
-}
-
 .page-accueil{
     display: flex;
     flex-direction: column;
@@ -24,13 +15,13 @@
     color: var(--couleur-primaire);
     font-family: 'Dancing Script', cursive;
     text-align: center;
-    padding: 1rem;
+    padding: 0.25rem;
     font-size: 2rem;
 }
 
 .card p{
     color: var(--couleur-primaire);
-    padding: 1rem;
+    padding: 0.25rem 0.5rem;
     text-align: center;
 }
 

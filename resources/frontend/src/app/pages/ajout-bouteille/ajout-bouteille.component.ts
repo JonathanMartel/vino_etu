@@ -68,6 +68,7 @@ export class AjoutBouteilleComponent implements OnInit {
             })
     }
 
+    // Affichage des erreurs quand le champs n'est pas rempli
     get erreur() {
         return this.ajoutBouteille.controls;
     }
@@ -79,6 +80,7 @@ export class AjoutBouteilleComponent implements OnInit {
         });
     }
 
+    // Function pour ajouter une bouteille au cellier
     postBouteilleCellier(bouteille: any) {
 
         if (this.ajoutBouteille.invalid) {

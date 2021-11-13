@@ -33,7 +33,7 @@ export class CellierComponent implements OnInit {
     // Permet de savoir si l'utilisateur a effectué une recherche et ainsi présenté le bon template
     estFiltre: boolean = false;
 
-    // Comportement de la sideNav 
+    // Comportement de la sideNav
     mode: MatDrawerMode = "over";
 
     //Form control
@@ -64,6 +64,7 @@ export class CellierComponent implements OnInit {
         });
     }
 
+    // Récupérer les 3 caractères inséré dans l'espace pour faire la recherche
     recherche($event: any): void {
         console.log(this.texteRecherche.value);
         if (this.texteRecherche.value.length < 3 && this.bouteillesCellier != this.bouteillesCellierInitiales) {
@@ -84,6 +85,7 @@ export class CellierComponent implements OnInit {
         this.rechercheSujet.next(this.texteRecherche.value);
     }
 
+    // Fonction de recherche d'un bouteille dans le cellier
     effectuerRechercheFiltree(): void {
         this.estFiltre = true;
 

@@ -22,15 +22,21 @@ export class CreerCompteComponent implements OnInit {
         password: new FormControl('', Validators.required)
     });
 
-    constructor(private servBouteilleDeVin: BouteilleDeVinService, private router: Router, private snackbar: MatSnackBar) { }
+    constructor(
+        private servBouteilleDeVin: BouteilleDeVinService,
+        private router: Router,
+        private snackbar: MatSnackBar
+    ) { }
 
     ngOnInit(): void {
     }
 
+    // Affichage d'erreur quand le champ n'est pas rempli
     get erreur() {
         return this.formulaire.controls;
     }
 
+    // Fonction pour la creation d'un nouvel utilisateur
     utilisateur() {
         console.log(this.formulaire.value);
         this.soumise = true;
