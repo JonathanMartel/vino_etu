@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-
+  //document.head.innerHTML = document.head.innerHTML + "<base href='" + document.location.origin + "/InVinoVeritas' />";
     var elems = document.querySelectorAll('.sidenav');
 
 

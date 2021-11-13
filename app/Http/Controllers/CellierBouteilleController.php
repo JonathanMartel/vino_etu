@@ -100,30 +100,6 @@ class CellierBouteilleController extends Controller
          * Si la bouteille existe dans la table bouteillesm l'ajouter dans la table cellier_bouteilles
          */
         $bouteilleExistante = Bouteille::rechercheBouteilleExistante($request);
-        if (isset($request->bouteille_id)) {
-            $cellierBouteille = CellierBouteille::rechercheCellierBouteille($request->cellier_id, $request->bouteille_id, $millesime);
-            
-
-            if (isset($bouteilleExistante[0]) && isset($cellierBouteille[0])) {
-
-                return back()->withInput()->with('erreur', "Bouteille existe déjà");
-            } else {
-
-                if (isset($bouteilleExistante[0])) {
-
-                    self::creerCellierBouteille ($request, $request->bouteille_id, $date_achat, $millesime);
-
-                    return redirect("cellier/" . $request->cellier_id)->withInput()->with("nouvelleBouteille", "nouvelle bouteille ajoutée");
-                } else {
-
-                    $bouteille = BouteilleController::store($request);
-
-                    self::creerCellierBouteille ($request, $bouteille->id, $date_achat, $millesime);
-
-                    return redirect("cellier/" . $request->cellier_id)->withInput()->with("nouvelleBouteille", "nouvelle bouteille ajoutée");
-                }
-            }
-        } else {
             
             if (isset($bouteilleExistante[0])) {
                 $cellierBouteille = CellierBouteille::rechercheCellierBouteille($request->cellier_id, $bouteilleExistante[0]->id, $millesime);
@@ -141,7 +117,7 @@ class CellierBouteilleController extends Controller
         
                 return redirect("cellier/" . $request->cellier_id)->withInput()->with("nouvelleBouteille", "nouvelle bouteille ajoutée");
             }
-        }
+        
     }
 
     public static function creerCellierBouteille ($request, $idBouteille, $date_achat, $millesime){
