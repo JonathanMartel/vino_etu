@@ -31,7 +31,7 @@ export class AuthService {
         private router: Router,
         private snackBar: MatSnackBar,
     ) {
-        // Vérifier s'il existe un utilisaeur déjà enregistré dans le local storage et le charger dans le service dans le cas échéant.
+        // Vérifier s'il existe un utilisaeur déjà enregistré dans le localStorage et le charger dans le service dans le cas échéant.
         if(this.aUtilisateurDansLocalStorage()) {
             this.autoAuthentificationLocalStorage();
         };
@@ -51,6 +51,13 @@ export class AuthService {
         return estAuthentifie;
     }
 
+    /**
+     *
+     * Vérifier si le token est expiré à l'aide de la date d'expiration du localStorage.
+     *
+     * @returns {boolean}
+     *
+     */
     private tokenEstExpire(): any {
         const expiration = new Date(localStorage.getItem(this.VAR_LS_EXPIRATION) as string);
 
@@ -69,7 +76,8 @@ export class AuthService {
      * Authentifier l'utilisateur dans l'application et persister les données pertinentes dans le localStorage
      *
      * @param {Object} data Objet comportant les données sur l'utilisateur ainsi que le token d'authentification
-     * @returns
+     * @returns {Subscription}
+     *
      */
     connexion(data: any): Subscription {
         return this.http.post<any>(
@@ -100,7 +108,6 @@ export class AuthService {
      *
      * Automatiquement authentifié l'utilisateur au service à partir du localStorage, si le token n'est pas expiré
      *
-     * @returns
      */
     private autoAuthentificationLocalStorage(): void {
         // Vérifier si le token est expiré et réinitialiser toutes les variables du localStorage si c'est le cas.
