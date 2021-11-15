@@ -59,5 +59,4 @@ export class ConnectionComponent implements OnInit {
         // Authentifier l'utilisateur à l'aide du service
         this.servAuth.connexion(data);
     }
-
 }

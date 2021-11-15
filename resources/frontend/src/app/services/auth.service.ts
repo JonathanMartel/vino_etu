@@ -57,7 +57,6 @@ export class AuthService {
                     { duration: 3000, panelClass: 'notif' }
                 );
                 this.router.navigate(['/']);
-                return true;
             },
 
         );
@@ -78,6 +77,30 @@ export class AuthService {
 
     /**
      *
+     * Charger l'utilisateur authentifié ainsi qu'un délai d'expiration dans le localStorage afin de faire persister l'utilisateur à travers les rafraichissements et fermetures d'onglet / fenêtre
+     *
+     * @param utilisateur
+     * @param token
+     */
+    enregistrerUtilisateurLocalStorage(utilisateur: Utilisateur, token: string) {
+        const expiration = new Date
+        localStorage.setItem(
+            "Kalimotxo:Vino:utilisateurActif",
+            JSON.stringify(utilisateur)
+        )
+        localStorage.setItem(
+            "Kalimotxo:Vino:tokenActif",
+            token
+        )
+        localStorage.setItem(
+            "Kalimotxo:Vino:expirationToken",
+            this.expirationEnSecondes.toString()
+        )
+    }
+
+
+    /**
+     *
      * Déconnecter l'usager présentement authentifié
      *
      * @returns La réponse reçue confirmant ou non la déconnexion
@@ -95,12 +118,13 @@ export class AuthService {
             }
         )
             .subscribe(
-                data => {
+                (data) => {
                     this.reinitialiserUtilisateurActif();
+                    this.reinitialiserUtilisateurLocalStorage();
                     console.log(this.utilisateurAuthentifie);
                     return data;
                 },
-                error => {
+                (error) => {
                     return error;
                 }
             );
@@ -111,26 +135,24 @@ export class AuthService {
      * Détruire les données de l'utilisateur actif du service afin de le déconnecter de la session
      *
      */
-    reinitialiserUtilisateurActif() {
+     reinitialiserUtilisateurActif() {
         this.utilisateurAuthentifie = null;
         this.utilisateurToken = null;
     }
 
-    enregistrerUtilisateurLocalStorage(utilisateur: Utilisateur, token: string) {
-        const expiration = new Date
-        localStorage.setItem(
-            "Kalimotxo:Vino:utilisateurActif",
-            JSON.stringify(utilisateur)
-        )
-        localStorage.setItem(
-            "Kalimotxo:Vino:tokenActif",
-            token
-        )
-        localStorage.setItem(
-            "Kalimotxo:Vino:expirationToken",
-            this.expirationEnSecondes.toString()
-        )
+
+    /**
+     *
+     * Détruire les données de l'utilisateur actif du localStorage afin de le déconnecter de la session
+     *
+     */
+     reinitialiserUtilisateurLocalStorage() {
+        localStorage.removeItem("Kalimotxo:Vino:utilisateurActif");
+        localStorage.removeItem("Kalimotxo:Vino:utilisateurToken");
+        localStorage.removeItem("Kalimotxo:Vino:expirationToken");
     }
+
+
 
     /**
      *
