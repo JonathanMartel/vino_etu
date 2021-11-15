@@ -10,6 +10,10 @@ import { catchError, switchMap } from 'rxjs/operators';
     providedIn: 'root'
 })
 export class AuthService {
+    readonly VENDOR_PREFIX = "Kalimotxo:Vino:";
+    readonly VAR_LS_UTILISATEUR = this.VENDOR_PREFIX +  "utilisateurActif";
+    readonly VAR_LS_TOKEN = this.VENDOR_PREFIX +  "tokenActif";
+    readonly VAR_LS_EXPIRATION = this.VENDOR_PREFIX +  "expirationToken";
 
     private utilisateurAuthentifie!: Utilisateur|null;
     private utilisateurToken!: string|null;
@@ -27,7 +31,37 @@ export class AuthService {
         private router: Router,
         private snackBar: MatSnackBar,
     ) {
+        // Vérifier s'il existe un utilisaeur déjà enregistré dans le local storage et le charger dans le service dans le cas échéant.
+        if(this.aUtilisateurDansLocalStorage()) {
+            this.autoAuthentificationLocalStorage();
+        };
+    }
 
+    /**
+     *
+     * Vérifier l'existence d'un utilisateur dans le localStorage
+     *
+     * @returns {boolean}
+     */
+    private aUtilisateurDansLocalStorage(): any {
+        const estAuthentifie = localStorage.getItem(this.VAR_LS_UTILISATEUR) &&
+        localStorage.getItem(this.VAR_LS_TOKEN) &&
+        localStorage.getItem(this.VAR_LS_EXPIRATION)
+
+        return estAuthentifie;
+    }
+
+    private tokenEstExpire(): any {
+        const expiration = new Date(localStorage.getItem(this.VAR_LS_EXPIRATION) as string);
+
+        if(!expiration) {
+            return true;
+        }
+
+        const maintenant =  new Date();
+
+        console.log(maintenant > expiration);
+        return maintenant > expiration;
     }
 
     /**
@@ -64,6 +98,23 @@ export class AuthService {
 
     /**
      *
+     * Automatiquement authentifié l'utilisateur au service à partir du localStorage, si le token n'est pas expiré
+     *
+     * @returns
+     */
+    private autoAuthentificationLocalStorage(): void {
+        // Vérifier si le token est expiré et réinitialiser toutes les variables du localStorage si c'est le cas.
+        if(this.tokenEstExpire()) {
+            this.reinitialiserUtilisateurLocalStorage();
+            return;
+        }
+
+        this.utilisateurAuthentifie = JSON.parse(localStorage.getItem(this.VAR_LS_UTILISATEUR) as string);
+        this.utilisateurToken = localStorage.getItem(this.VAR_LS_TOKEN);
+    }
+
+    /**
+     *
      * Charger l'utilisateur authentifié dans le service
      *
      * @param {Utilisateur} utilisateur Infos sur l'utilisateur
@@ -83,18 +134,21 @@ export class AuthService {
      * @param token
      */
     enregistrerUtilisateurLocalStorage(utilisateur: Utilisateur, token: string) {
-        const expiration = new Date
+        const maintenant: Date = new Date();
+
+        const expiration = new Date(maintenant.getTime() + (this.expirationEnSecondes * 1000));
+
         localStorage.setItem(
-            "Kalimotxo:Vino:utilisateurActif",
+            this.VAR_LS_UTILISATEUR,
             JSON.stringify(utilisateur)
         )
         localStorage.setItem(
-            "Kalimotxo:Vino:tokenActif",
+            this.VAR_LS_TOKEN,
             token
         )
         localStorage.setItem(
-            "Kalimotxo:Vino:expirationToken",
-            this.expirationEnSecondes.toString()
+            this.VAR_LS_EXPIRATION,
+            expiration.toString()
         )
     }
 
@@ -147,11 +201,10 @@ export class AuthService {
      *
      */
      reinitialiserUtilisateurLocalStorage() {
-        localStorage.removeItem("Kalimotxo:Vino:utilisateurActif");
-        localStorage.removeItem("Kalimotxo:Vino:utilisateurToken");
-        localStorage.removeItem("Kalimotxo:Vino:expirationToken");
+        localStorage.removeItem(this.VAR_LS_UTILISATEUR);
+        localStorage.removeItem(this.VAR_LS_TOKEN);
+        localStorage.removeItem(this.VAR_LS_EXPIRATION);
     }
-
 
 
     /**
