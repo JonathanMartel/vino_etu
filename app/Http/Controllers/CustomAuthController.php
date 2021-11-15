@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\UtilisateurResource;
 use App\Models\Cellier;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -71,7 +72,7 @@ class CustomAuthController extends Controller {
         ]);
 
         $response = [
-            'utilisateur'                => $utilisateur,
+            'utilisateur'                => UtilisateurResource::make($utilisateur),
             'token'                      => $token,
             "nouvelUtilisateurCellierId" => $nouveauCellier->id,
         ];
@@ -108,7 +109,7 @@ class CustomAuthController extends Controller {
         $token = $utilisateur->createToken('myapptoken')->plainTextToken;
 
         $response = [
-            'utilisateur' => $utilisateur,
+            'utilisateur' => UtilisateurResource::make($utilisateur),
             'token' => $token,
         ];
 
@@ -119,7 +120,7 @@ class CustomAuthController extends Controller {
     public function deconnexion(Request $request) {
         auth()->user()->tokens()->delete();
 
-        // Rapport journalier 
+        // Rapport journalier
         //$request->currentAccessToken()->delete();
 
         $response = [
