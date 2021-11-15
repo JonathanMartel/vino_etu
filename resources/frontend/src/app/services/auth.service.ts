@@ -9,8 +9,8 @@ import { switchMap } from 'rxjs/operators';
 })
 export class AuthService {
 
-    utilisateurAuthentifie!: any;
-    utilisateurToken!: any;
+    private _utilisateurAuthentifie!: any;
+    private _utilisateurToken!: any;
 
 
     // private url: string = "http://127.0.0.1:8000/api";
@@ -40,8 +40,9 @@ export class AuthService {
         );
     }
 
-    setUtilisateurActif(): void {
-
+    private setUtilisateurActif(utilisateur: any, token: string): void {
+        this._utilisateurAuthentifie = utilisateur;
+        this._utilisateurToken = token;
     }
 
     /**
@@ -125,8 +126,6 @@ export class AuthService {
     }
 
     getIdUtilisateurAuthentifie(): number {
-
-        console.log(this._utilisateurAuthentifie);
         return this._utilisateurAuthentifie.id ?? false;
     }
 }
