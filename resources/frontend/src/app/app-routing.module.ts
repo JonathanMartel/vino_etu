@@ -12,6 +12,8 @@ import { BouteilleResolverServiceService } from '@services/bouteille-resolver-se
 import { ModifierCellierBouteilleComponent } from '@pages/modifier-cellier-bouteille/modifier-cellier-bouteille.component';
 import { AuthGuard } from "@services/auth.guard";
 import { BouteillesCellierResolver } from '@services/bouteilles-cellier.resolver';
+import { ProfilUtilisateurComponent } from '@pages/profil-utilisateur/profil-utilisateur.component';
+import { ModifierUtilisateurComponent } from '@pages/modifier-utilisateur/modifier-utilisateur.component';
 
 const routes: Routes = [
     {
@@ -36,7 +38,16 @@ const routes: Routes = [
         component: ListeCelliersComponent,
         canActivate: [AuthGuard],
     },
-    
+    {
+        path: "profil",
+        component: ProfilUtilisateurComponent,
+        canActivate: [AuthGuard],
+    },
+    {
+        path: "profil/modifier",
+        component: ModifierUtilisateurComponent,
+        canActivate: [AuthGuard],
+    },
     {
         path: "bouteilles/ajout",
         component: AjoutBouteilleComponent,

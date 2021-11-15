@@ -1,0 +1,82 @@
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common'
+import { AuthService } from '@services/auth.service';
+import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
+
+@Component({
+  selector: 'app-modifier-utilisateur',
+  templateUrl: './modifier-utilisateur.component.html',
+  styleUrls: ['./modifier-utilisateur.component.scss']
+})
+export class ModifierUtilisateurComponent implements OnInit {
+
+  userId: any;
+
+  champEnModification: string = "";
+
+  autoFocus?: boolean = true;
+
+  modifierDonneesUtilisateur = new FormGroup({
+    first_name: new FormControl('', [Validators.required]),
+    last_name: new FormControl('', [Validators.required]),
+    city: new FormControl(''),
+    dob: new FormControl(''),
+  })
+
+  constructor(
+    private servBouteilleDeVin: BouteilleDeVinService,
+    private authService: AuthService,
+    private snackBar: MatSnackBar,
+    public modifierUtilisateur: MatDialogRef<ModifierUtilisateurComponent>,
+    @Inject(MAT_DIALOG_DATA) public data:any,
+    private router: Router,
+    private location: Location,
+  ) { }
+
+  ngOnInit(): void {
+
+    this.userId = this.data.id;
+
+    this.initChampsModification();
+
+  }
+
+  // Affichage d'erreur quand le champ n'est pas rempli
+  get erreur() {
+    return this.modifierDonneesUtilisateur.controls;
+  }
+
+  initChampsModification() {
+    this.modifierDonneesUtilisateur.patchValue({
+      first_name: this.data.first_name,
+      last_name: this.data.last_name,
+      city: this.data.city,
+      dob: this.data.dob,
+    })
+  }
+
+  openSnackBar(message: any, action: any) {
+    this.snackBar.open(message, action, {
+        duration: 3000,
+        panelClass: 'notif-success'
+    });
+  }
+
+  // Revenir à la page précédente
+  back(): void {
+    this.location.back()
+  }
+
+  putUtilisateur(nouvelleInfo:any){
+    console.log(nouvelleInfo);
+
+    this.servBouteilleDeVin.modifierUtilisateur(this.userId, nouvelleInfo).subscribe(() => {
+      this.openSnackBar('Vous avez modifié les informations personnelle avec succès', 'Fermer');
+      this.router.navigate([`/profil/`]);
+  });
+  }
+}

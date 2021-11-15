@@ -1,0 +1,31 @@
+<div>
+    <mat-card class="card">
+      <mat-card-header>
+          <a mat-button ><img class="header-image" src="./assets/img/avatar.png" alt="avatar"></a>
+        <h2>{{utilisateur.first_name}}</h2>
+        <div class="text-secondary">
+          <mat-icon>email</mat-icon>
+          <span>{{utilisateur.email}}</span>
+        </div>
+      </mat-card-header>
+
+      <mat-card-content>
+
+        <div class="mat-form-prefix">
+            <a mat-button (click)="modifierUtilisateur(utilisateur)">
+                <mat-icon>person</mat-icon>
+                <span>Informartions personnelles</span>
+            </a>
+        </div>
+
+        <div class="mat-form-prefix">
+            <a mat-button routerLink="">
+                <mat-icon svgIcon="cellier"></mat-icon>
+                <span>Mes celliers</span>
+            </a>
+        </div>
+
+
+      </mat-card-content>
+    </mat-card>
+  </div>

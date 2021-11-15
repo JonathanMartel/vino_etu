@@ -1,0 +1,73 @@
+<div>
+    <form [formGroup]="modifierDonneesUtilisateur" (ngSubmit)=putUtilisateur(modifierDonneesUtilisateur.value)>
+        <header class="card-action">
+            <a class="retour" (click)='back()'><mat-icon>arrow_back</mat-icon>Retour</a>
+        </header>
+        <div class="header">
+            <img class="header-image" src="./assets/img/avatar.png" alt="avatar">
+        </div>
+        <div class="formulaire-contenu">
+            <mat-form-field appearance="fill">
+                <div class="mat-form-flex">
+                    <div class="mat-form-prefix">
+                        <mat-icon>person</mat-icon>
+                    </div>
+                    <div class="mat-form-inflex">
+                        <mat-label for="first_name">Prenom</mat-label>
+                        <input matInput type="text" id="fist_name" name="first_name" formControlName="first_name" cdkFocusInitial>
+                    </div>
+                </div>
+                <mat-error *ngIf="erreur.first_name.touched && erreur.first_name.invalid">
+                    <div *ngIf="erreur.first_name.errors?.required">Ce champ est obligatoire</div>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <div class="mat-form-flex">
+                    <div class="mat-form-prefix">
+                        <mat-icon>person</mat-icon>
+                    </div>
+                    <div class="mat-form-inflex">
+                        <mat-label for="first_name">Nom</mat-label>
+                        <input matInput type="text" id="last_name" name="last_name" formControlName="last_name">
+                    </div>
+                    <mat-error *ngIf="erreur.last_name.touched && erreur.last_name.invalid">
+                        <div *ngIf="erreur.last_name.errors?.required">Ce champ est obligatoire</div>
+                    </mat-error>
+                </div>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <div class="mat-form-flex">
+                    <div class="mat-form-prefix">
+                        <mat-icon>location_city</mat-icon>
+                    </div>
+                    <div class="mat-form-inflex">
+                        <mat-label for="city">City</mat-label>
+                        <input matInput type="text" id="city" name="city" formControlName="city">
+                    </div>
+                </div>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <div class="mat-form-flex">
+                    <div class="mat-form-prefix">
+                        <mat-icon>event</mat-icon>
+                    </div>
+                    <div class="mat-form-inflex">
+                        <mat-label for="dob">Date de naissance</mat-label>
+                        <input matInput type="date" id="dob" name="dob" formControlName="dob">
+                    </div>
+                </div>
+            </mat-form-field>
+        </div>
+
+        <small>( * ) Champ obligatoire</small>
+
+        <mat-dialog-actions>
+            <button mat-button>Annuler</button>
+            <button mat-raised-button >modifier</button>
+        </mat-dialog-actions>
+    </form>
+</div>
+

@@ -167,8 +167,23 @@ class CustomAuthController extends Controller {
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user) {
-        //
+    public function update(Request $request, int $userId) {
+
+        $user = User::find($userId);
+
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->city = $request->city;
+        $user->dob = $request->dob;
+
+        $user->save();
+
+        return response()->json([
+            "message" => "Modification réussie"
+        ], 201);
+
+
+
     }
 
     /**

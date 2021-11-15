@@ -131,6 +131,13 @@ export class BouteilleDeVinService {
 
     }
 
+
+    modifierUtilisateur(userId: any, data: any) {
+
+        return this.http.put<any>(this.url + '/user/' + userId, data)
+
+    }
+
 }
 
 
