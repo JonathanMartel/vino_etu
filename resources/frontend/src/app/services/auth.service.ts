@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
@@ -8,8 +9,8 @@ import { switchMap } from 'rxjs/operators';
 })
 export class AuthService {
 
-    _utilisateurAuthentifie!: any;
-    _utilisateurToken!: any;
+    utilisateurAuthentifie!: any;
+    utilisateurToken!: any;
 
 
     // private url: string = "http://127.0.0.1:8000/api";
@@ -17,7 +18,8 @@ export class AuthService {
     // private url: string = new URL(window.location.href).origin + "/api";
 
     constructor(
-        private http: HttpClient
+        private http: HttpClient,
+        private snackBar: MatSnackBar,
     ) {
 
     }
@@ -26,7 +28,20 @@ export class AuthService {
         return this.http.post<any>(
             this.url + '/connection',
             data
+        ).subscribe(
+            (data) => {
+                this.setUtilisateurActif(data.utilisateur, data.token);
+                this.enregistrerUtilisateurActifLocalStorage(data.utilisateur, data.token);
+            },
+            (error) => {
+                this.snackBar.open(error.error.message, "Fermer", { duration: 3000, panelClass: 'notif-danger' });
+                return false;
+            }
         );
+    }
+
+    setUtilisateurActif(): void {
+
     }
 
     /**
