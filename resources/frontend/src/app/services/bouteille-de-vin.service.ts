@@ -6,15 +6,14 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatConfirmDialogComponent } from '@components/mat-confirm-dialog/mat-confirm-dialog.component';
 
 
-
 @Injectable({
     providedIn: 'root'
 })
 export class BouteilleDeVinService {
 
-    // private url:string = "http://127.0.0.1:8000/api";
+    private url:string = "http://127.0.0.1:8000/api";
     // private url: string = "http://kalimotxo-vino.akira.dev/api";
-    private url: string = new URL(window.location.href).origin + "/api";
+    // private url: string = new URL(window.location.href).origin + "/api";
 
 
     constructor(private servAuth: AuthService, private http: HttpClient, private dialog: MatDialog) {
@@ -132,6 +131,25 @@ export class BouteilleDeVinService {
     ajoutCellier(data: any, id: any) {
 
         return this.http.post<any>(this.url + '/celliers', data);
+
+    }
+
+    
+    /**
+     * Modifie les données d'un cellier
+     * 
+     * @param {array} data
+     * 
+     * @returns
+     */
+     modifierCellier(data: any, idCellier : any) {
+
+        let body = {
+            'nom': data.nom,
+            'description': data.description,
+        }
+
+        return this.http.put<any>(this.url + '/celliers/'+ idCellier, body);
 
     }
 

@@ -38,6 +38,7 @@ import { BouteillesCellierResolver } from '@services/bouteilles-cellier.resolver
 import { DatePipe, registerLocaleData } from '@angular/common';
 import localeFrCa from "@angular/common/locales/fr-CA"
 import { StringHelpersService } from '@services/helpers/string-helpers.service';
+import { ModifierCellierComponent } from './pages/modifier-cellier/modifier-cellier.component';
 
 @NgModule({
     declarations: [
@@ -56,6 +57,7 @@ import { StringHelpersService } from '@services/helpers/string-helpers.service';
         MatConfirmDialogComponent,
         ListeCelliersComponent,
         AjoutCellierComponent,
+        ModifierCellierComponent,
 
     ],
     imports: [
