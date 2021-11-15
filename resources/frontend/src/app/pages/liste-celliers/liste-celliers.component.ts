@@ -1,5 +1,6 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, Output} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AjoutCellierComponent } from '@pages/ajout-cellier/ajout-cellier.component';
 import { ModifierCellierComponent } from '@pages/modifier-cellier/modifier-cellier.component';
 import { AuthService } from '@services/auth.service';
@@ -19,12 +20,12 @@ export class ListeCelliersComponent implements OnInit {
 
   celliers: any = [];
 
-
   constructor(
     private servBouteilleDeVin: BouteilleDeVinService,
     private authService: AuthService,
     public formAjout: MatDialog,
-    public formModif: MatDialog
+    public formModif: MatDialog,
+    private snackbar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -62,9 +63,24 @@ export class ListeCelliersComponent implements OnInit {
   chargerCelliers() {
     this.servBouteilleDeVin.getListeCelliersParUtilisateur(this.authService.getIdUtilisateurAuthentifie()).subscribe( (cellier: any) => {
         this.celliers = this.listeCelliers = cellier
-
         console.log(cellier);
     });
   }
+  
+
+   // Fonction pour supprimer une bouteille dans le cellier et envoyer une notification de confirmation
+    supprimerCellier(idCellier: any){
+
+      console.log(idCellier);
+      
+      this.servBouteilleDeVin.confirmDialog('Voulez vous supprimer le cellier ?')
+        .afterClosed().subscribe(res => {
+            if(res){
+              this.servBouteilleDeVin.supprimerUnCellier(idCellier).subscribe(()=>{
+                this.snackbar.open('Supprimer avec succès', 'fermer');
+              });
+            }
+        })
+  } 
 
 }

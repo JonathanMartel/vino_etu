@@ -12,7 +12,7 @@
                     </a>
                     <div class="action-cellier">
                         <button (click)="formulaireModification(cellier)"><mat-icon>edit</mat-icon></button>
-                        <button><mat-icon>delete</mat-icon></button>
+                        <button (click)="supprimerCellier(cellier.id)"><mat-icon>delete</mat-icon></button>
                     </div>
                 </div>
                 <p>{{cellier.description}}</p>

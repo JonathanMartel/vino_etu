@@ -115,7 +115,14 @@ class CellierController extends Controller {
      * @param  \App\Models\Cellier  $cellier
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cellier $cellier) {
-        //
+    public function destroy(int $cellierId) {
+
+        $cellier = Cellier::find($cellierId);
+        
+        $cellier->delete();
+
+        return response() -> json([
+            "message" => "Cellier supprimer correctement"
+        ], 200);
     }
 }

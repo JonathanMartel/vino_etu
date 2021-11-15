@@ -73,6 +73,12 @@ export class BouteilleDeVinService {
             this.url + '/supprimer/' + bouteilleAchetee_id)
     }
 
+    supprimerUnCellier(cellier_id: any){
+
+        return this.http.delete<any>(
+            this.url + '/supprimer/' + cellier_id)
+    }
+
     /**
      *
      * Charger les celliers appartenant à l'utilisateur donné
