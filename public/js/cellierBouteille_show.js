@@ -143,20 +143,13 @@ document.addEventListener('DOMContentLoaded', function() {
              infoForm.querySelector('#date_achat').value=response[0].date_achat;
              infoForm.querySelector('#garde_jusqua').value=response[0].garde_jusqua;
 
-         
         }).catch(error => console.log(error))
-
-
-        // if (infoInfo.classList.contains("form")) {
-        //     infoInfo.classList.remove("form");
-        // }else{
-        //     infoInfo.classList.add("form");
-        // }
       });
     }
 
     /* Activer les champs inputs et les boutons annuler, valider, effacer */ 
-
+    
+    /* Bouton modifier*/ 
     boutonModifier.addEventListener("click", function(e) {
         e.preventDefault();
 
@@ -183,17 +176,13 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     /** Action bouton annuler, efface les champs modifié et retire les boutons annuler, valider et effacer. Réactive le bouton modifier **/
-   
     btnAnnuleActive.addEventListener("click",function(e){
         e.preventDefault();
-     
-       
         boutonModifier.classList.remove("non-active");
         btnEffacerActive.classList.add("non-active");
         btnValideActive.classList.add("non-active");
         btnAnnuleActive.classList.add("non-active");
         infoForm.reset();
-      
 
         for (let i = 0; i < inputs.length; i++){
             inputs[i].readOnly = true;
@@ -206,7 +195,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
     /** Bouton valider **/
-
         btnValideActive.addEventListener("click",function(e){
             e.preventDefault();
             let annee = millesime.value;
@@ -225,15 +213,14 @@ document.addEventListener('DOMContentLoaded', function() {
             })
               .catch(error => console.log('Le fetch ne fonctionne toujours pas',error))
          
-           
+           /* Validation non-terminée*/ 
+
             // let messagePrix = "Entrez de 0 à 100000";
             // if (prix.value < 0 || prix.value > 6) {
             //     btnValideActive.disabled = true;
             //     document.getElementById("message").innerHTML = messagePrix;
                   
             // }else {
-                
-               
 
                 for (let i = 0; i < inputs.length; i++){
                     inputs[i].readOnly = true;
@@ -245,8 +232,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 btnAnnuleActive.classList.add("non-active");
                 btnValideActive.classList.add("non-active");
                 btnEffacerActive.classList.add("non-active");
-           
-
             });
 
 
@@ -255,6 +240,4 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('click effacer');
 
         });
-
-   
 });

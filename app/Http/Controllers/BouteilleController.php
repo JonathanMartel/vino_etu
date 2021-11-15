@@ -44,6 +44,14 @@ class BouteilleController extends Controller
         return response()->json($listeBouteilles);
     }
 
+    /**
+     * @param nom
+     * @param type_id
+     * @param format_id
+     * @param pays
+     * Rechercher dans la table bouteilles pour vérifier si une bouteille existe déjà
+     * @return response une bouteille si existante ou rien
+     */
     public function rechercheBouteilleExistante($nom, $type_id, $format_id, $pays = null) {
         $request = new Request();
         $request->nom = $nom;
@@ -163,45 +171,36 @@ class BouteilleController extends Controller
             return back()->withInput()->with('erreur', "Bouteille existe déjà");
         }else if(isset($bouteilleExistante[0]) && $request->file){
             if($bouteilleExistante[0]->id == $bouteille->id) {
-                $bouteille->fill($request->all());
-    
-                if ($request->file) {
-        
-                    if($request->url_img != URL::to('') . '/assets/icon/bouteille-cellier.svg'){
-                        File::delete(public_path('img/' . explode('/',$request->url_img)[4]) );
-                    }
-                    $fileName = time() . '_' . $request->file->getClientOriginalName();
-                    
-                    $request->file('file')->move(public_path() . '/img', $fileName);
-                    $bouteille->url_img = URL::to('') . '/img/' . $fileName;
-                }
-                 $bouteille->save();
+              
+                self::updateBouteille($bouteille, $request);
         
                 return redirect(URL::to('') . '/cellier/'. session('idCellier') . '/'. $bouteille->id)->withInput()->with("modifieBouteille", "une bouteille modifiée");
             }else {
                 return back()->withInput()->with('erreur', "Bouteille existe déjà");
             }
         }else {
-            $bouteille->fill($request->all());
-    
-            if ($request->file) {
-    
-                if($request->url_img != URL::to('') . '/assets/icon/bouteille-cellier.svg'){
-                    File::delete(public_path('img/' . explode('/',$request->url_img)[4]) );
-                }
-                $fileName = time() . '_' . $request->file->getClientOriginalName();
-                
-                $request->file('file')->move(public_path() . '/img', $fileName);
-                $bouteille->url_img = URL::to('') . '/img/' . $fileName;
-            }
-             $bouteille->save();
+            self::updateBouteille($bouteille, $request);
     
             return redirect(URL::to('') . '/cellier/'. session('idCellier') . '/'. $bouteille->id)->withInput()->with("modifieBouteille", "une bouteille modifiée");
-        }
-        /* si le user upload une image il faut supprimer celle qu'il avait mis précedement !!! */
-
-            
+        }   
       
+    }
+
+    public static function updateBouteille(Bouteille $bouteille, Request $request){
+        $bouteille->fill($request->all());
+    
+        if ($request->file) {
+
+            if($request->url_img != URL::to('') . '/assets/icon/bouteille-cellier.svg'){
+                File::delete(public_path('img/' . explode('/',$request->url_img)[4]) );
+            }
+            $fileName = time() . '_' . $request->file->getClientOriginalName();
+            
+            $request->file('file')->move(public_path() . '/img', $fileName);
+            $bouteille->url_img = URL::to('') . '/img/' . $fileName;
+        }
+         $bouteille->save();
+
     }
 
     /**
