@@ -46,7 +46,6 @@ export class ConnectionComponent implements OnInit {
      *
      */
     connection() {
-
         if (this.formConnection.invalid) {
             this.formConnection.markAllAsTouched();
             return;
@@ -57,18 +56,7 @@ export class ConnectionComponent implements OnInit {
             password: this.formConnection.value.password
         }
 
-
-
-      this.servAuth.connexion(data).subscribe(
-          (data) => {
-              this.servAuth.utilisateur = data.utilisateur;
-              this.servAuth.token = data.token;
-              this.router.navigate(['/']);
-              this.snackbar.open(`Salut, ${data.utilisateur.first_name} ! Heureux de vous revoir`, "Fermer", {duration: 3000, panelClass: 'notif'});
-          },
-          (error) => {
-              this.snackbar.open(error.error.message, "Fermer", {duration: 3000, panelClass: 'notif-danger'});
-          })
+        // Authentifier l'utilisateur à l'aide du service
+        this.servAuth.connexion(data);
     }
-
 }

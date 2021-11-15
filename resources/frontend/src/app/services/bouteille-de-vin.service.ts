@@ -80,7 +80,11 @@ export class BouteilleDeVinService {
      * @param {number} userId Id de l'utilisateur
      * @returns {Observable} Liste des celliers de l'utilisateur
      */
-    getListeCelliersParUtilisateur(userId: number): any {
+    getListeCelliersParUtilisateur(userId: number|null): any {
+        if(!userId) {
+            return false;
+        }
+
         const options = {
             params: {
                 userId: userId
