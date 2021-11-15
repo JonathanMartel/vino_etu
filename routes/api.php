@@ -72,7 +72,8 @@ Route::group(['middleware' => ["auth:sanctum"]], function () {
     // Ajout d'un nouveau cellier
     Route::post('celliers', [CellierController::class, "store"]);
 
-
+    // Modifier le data d'un cellier
+    Route::put('celliers/{cellierId}', [CellierController::class, "update"]);
 
     // Mise à jour des informations d'une bouteille dans un cellier donné
     Route::put("celliers/modifier-bouteille/{bouteilleAchetee}", [BouteilleAcheteeController::class, "modifierInventaireBouteille"]);

@@ -130,6 +130,25 @@ export class BouteilleDeVinService {
 
     }
 
+    
+    /**
+     * Modifie les données d'un cellier
+     * 
+     * @param {array} data
+     * 
+     * @returns
+     */
+     modifierCellier(data: any, idCellier : any) {
+
+        let body = {
+            'nom': data.nom,
+            'description': data.description,
+        }
+
+        return this.http.put<any>(this.url + '/celliers/'+ idCellier, body);
+
+    }
+
 }
 
 

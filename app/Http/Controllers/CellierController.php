@@ -95,8 +95,18 @@ class CellierController extends Controller {
      * @param  \App\Models\Cellier  $cellier
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cellier $cellier) {
-        //
+    public function update(Request $request, int $cellierId) {
+        
+        $cellier = Cellier::find($cellierId);
+
+        $cellier->nom = $request->nom;
+        $cellier->description = $request->description;
+
+        $cellier->save();
+
+        return response()->json([
+            "message"  => "Mise à jour réussie"
+         ], 200);
     }
 
     /**
