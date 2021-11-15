@@ -10,7 +10,10 @@
                     <a routerLink="/celliers/{{cellier.id}}" [state]="cellier">
                         <h3>{{ cellier.nom }}</h3>
                     </a>
-                    <button (click)="formulaireModification(cellier)"><mat-icon>edit</mat-icon></button>
+                    <div class="action-cellier">
+                        <button (click)="formulaireModification(cellier)"><mat-icon>edit</mat-icon></button>
+                        <button><mat-icon>delete</mat-icon></button>
+                    </div>
                 </div>
                 <p>{{cellier.description}}</p>
             </div>

@@ -53,11 +53,12 @@ export class ListeCelliersComponent implements OnInit {
     let refModal = this.formModif.open(ModifierCellierComponent, {
       data
   });
+
+  const response = refModal.componentInstance.chargerCelliers.subscribe(() => {this.chargerCelliers()});
   
  }
 
   // Affichage de la liste avec le nouveau cellier
-
   chargerCelliers() {
     this.servBouteilleDeVin.getListeCelliersParUtilisateur(this.authService.getIdUtilisateurAuthentifie()).subscribe( (cellier: any) => {
         this.celliers = this.listeCelliers = cellier

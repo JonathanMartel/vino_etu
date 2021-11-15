@@ -1,8 +1,9 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AuthService } from '@services/auth.service';
 import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-modifier-cellier',
@@ -23,6 +24,9 @@ export class ModifierCellierComponent implements OnInit {
     description: new FormControl(''),
     id: new FormControl('')
   });
+
+  // Émetteur d'événnement afin d'afficher la liste des celliers sans refresh après la modification
+  @Output("chargerCelliers") chargerCelliers: EventEmitter<any> = new EventEmitter();
 
 
   constructor(
@@ -66,6 +70,8 @@ export class ModifierCellierComponent implements OnInit {
         .subscribe(() => {
 
           this.formulaireRef.close();
+
+          this.chargerCelliers.emit();
 
         });
 
