@@ -12,6 +12,8 @@ export class ProfilUtilisateurComponent implements OnInit {
 
   utilisateur: any;
 
+  utilisateurModifier: any;
+
   constructor(
     private authService: AuthService,
     public dialog: MatDialog,
@@ -21,16 +23,24 @@ export class ProfilUtilisateurComponent implements OnInit {
 
     // Recuperer les données de l'utilisateur authentifie
     this.utilisateur = this.authService.utilisateurAuthentifie;
-    //console.log(this.utilisateur);
   }
 
-  modifierUtilisateur(utilisateur: any): void {
-    console.log(utilisateur);
+  formulaireModifierUtilisateur(utilisateur: any): void {
 
     let modifierUtilisateur = this.dialog.open(ModifierUtilisateurComponent, {
 
       data: utilisateur
     });
+
+    this.profilUtilisateur();
+
+    //const response = modifierUtilisateur.componentInstance.profilUtilisateur.subscribe(() => {this.profilUtilisateur()});
+  }
+
+
+  profilUtilisateur() {
+    this.utilisateurModifier = this.authService.utilisateurAuthentifie;
+    this.utilisateurModifier = this.utilisateur;
   }
 
 }

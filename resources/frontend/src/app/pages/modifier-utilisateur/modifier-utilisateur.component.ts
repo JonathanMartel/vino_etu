@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, Output, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Location } from '@angular/common'
 import { AuthService } from '@services/auth.service';
 import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-modifier-utilisateur',
@@ -18,8 +19,6 @@ export class ModifierUtilisateurComponent implements OnInit {
 
   champEnModification: string = "";
 
-  autoFocus?: boolean = true;
-
   modifierDonneesUtilisateur = new FormGroup({
     first_name: new FormControl('', [Validators.required]),
     last_name: new FormControl('', [Validators.required]),
@@ -27,11 +26,12 @@ export class ModifierUtilisateurComponent implements OnInit {
     dob: new FormControl(''),
   })
 
+
   constructor(
     private servBouteilleDeVin: BouteilleDeVinService,
     private authService: AuthService,
     private snackBar: MatSnackBar,
-    public modifierUtilisateur: MatDialogRef<ModifierUtilisateurComponent>,
+    public formModifierUtilisateur: MatDialogRef<ModifierUtilisateurComponent>,
     @Inject(MAT_DIALOG_DATA) public data:any,
     private router: Router,
     private location: Location,
@@ -76,7 +76,10 @@ export class ModifierUtilisateurComponent implements OnInit {
 
     this.servBouteilleDeVin.modifierUtilisateur(this.userId, nouvelleInfo).subscribe(() => {
       this.openSnackBar('Vous avez modifié les informations personnelle avec succès', 'Fermer');
-      this.router.navigate([`/profil/`]);
-  });
+      setTimeout(() => {
+      this.formModifierUtilisateur.close();
+    }, 2000);
+      this.router.navigate(['profil']);
+    });
   }
 }

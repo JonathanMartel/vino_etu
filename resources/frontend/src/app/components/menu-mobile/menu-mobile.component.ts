@@ -10,12 +10,14 @@ import { AuthService } from '@services/auth.service';
 })
 export class MenuMobileComponent implements OnInit {
 
+
     constructor(private servAuth: AuthService,
                 private router: Router,
                 private snackbar: MatSnackBar
     ) { }
 
     ngOnInit(): void {
+
     }
 
     // Fonction pour se deconnecter et envoyer une notification de confirmation
