@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AuthService } from '@services/auth.service';
 import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 import { EventEmitter } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-modifier-cellier',
@@ -33,7 +34,8 @@ export class ModifierCellierComponent implements OnInit {
       public formulaireRef: MatDialogRef<ModifierCellierComponent>,
       @Inject(MAT_DIALOG_DATA) public data: any,
       private servAuth: AuthService,
-      private servBouteilleDeVin: BouteilleDeVinService
+      private servBouteilleDeVin: BouteilleDeVinService,
+      private snackBar: MatSnackBar,
   ) { }
 
   ngOnInit(): void {
@@ -72,6 +74,8 @@ export class ModifierCellierComponent implements OnInit {
           this.formulaireRef.close();
 
           this.chargerCelliers.emit();
+
+          this.snackBar.open(`Vous avez modifier votre cellier `, "Fermer", {duration: 3000, panelClass: 'notif'});
 
         });
 
