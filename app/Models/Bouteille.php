@@ -51,7 +51,6 @@ class Bouteille extends Model
      */
     public static function rechercheBouteilleExistante($request) {
         return DB::table('bouteilles')
-        /* ->where('id', $request->bouteille_id) */
         ->where('nom', $request->nom)
         ->where('pays', $request->pays)
         ->where('type_id', $request->type_id)
@@ -118,7 +117,7 @@ class Bouteille extends Model
                 ->where('taille',  $format)
                 ->get();
           
-                DB::table('bouteilles')->insert(
+                $id = DB::table('bouteilles')->insertGetId(
                     ['nom' => $element->nom,
                      'url_img' => $element->img,
                      'description' => $element->desc->texte,
@@ -140,7 +139,8 @@ class Bouteille extends Model
                                               'prix_saq' => number_format((float)explode('$', str_replace(',', '.', $element->prix))[0], 2, '.', '') . " $",
                                               'format' => $format . " cL",
                                               'type' => ucfirst(explode(' ', $element->desc->type)[1]),
-                                              'url_saq' => $element->url ]);
+                                              'url_saq' => $element->url,
+                                              'idBouteille' => $id]);
                                     
             }  
         }

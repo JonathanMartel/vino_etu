@@ -4,11 +4,7 @@
 
 
 <h1 class="titre">Liste d'usager</h1>
-<!-- <div class=" flex-center">
-    <a class="waves-effect waves-light btn-large" href="{{ route('obtenirListeSAQ') }}">Importer des bouteilles du site de la SAQ</a>
-    
-    
-</div> -->
+
 <div class="padding">
 <table class="table striped">
         <thead>

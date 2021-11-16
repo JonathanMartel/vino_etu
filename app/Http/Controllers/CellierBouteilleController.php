@@ -153,6 +153,7 @@ class CellierBouteilleController extends Controller
      */
     public function show($idCellier, $idBouteille)
     {
+        session(['idCellier' => $idCellier]);
         
         $cellier = Cellier::find($idCellier);
         $bouteille = Bouteille::getDataBouteilleByID($idBouteille);

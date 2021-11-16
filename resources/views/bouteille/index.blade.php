@@ -19,7 +19,7 @@
       </div>
 </div>
 
-<table class="table striped responsive-table">
+<table class="table striped highlight responsive-table">
         <thead>
           <tr>
               <th>Image</th>

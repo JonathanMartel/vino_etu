@@ -5,8 +5,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const tbody = table.querySelector('tbody');
     const message = document.querySelector('.message');
     let tableRow;
-    let stop = false;
-    let nbBouteilleTotal;
+    let stop;
+    let nbBouteille;
     /**
      * Afficher dans un table les bouteilles du site de la SAQ qui n'étaient pas dans la BD
      */
@@ -17,8 +17,9 @@ document.addEventListener('DOMContentLoaded', function() {
         preloader.classList.add('active');
         btnImport.classList.add('disabled');
         let page = 1;
+        stop = false;
         tableRow = '';
-        nbBouteilleTotal = 0;
+        nbBouteille = 0;
         importer(page)
     })
     
@@ -39,15 +40,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 }));
             }).then(response => {
                 
-                let nbBouteille = 0;
+                
     
                 
                    
-    
+                console.log(response)
                     response.forEach( data => {
+                        if(data != 'stop') 
                         nbBouteille += data.length;
                     })
-                    if(nbBouteille != 0){ 
+                   
                        
                         for (let index = 0; index < response.length; index++) {
                             if(response[index] == 'stop'){
@@ -55,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             }else {
                             for (let i = 0; i <  response[index].length; i++) { 
                                
-                                tableRow += `<tr>
+                                tableRow += `<tr data-id="${response[index][i].idBouteille}">
                                                         <td> <img class='image'  src="${response[index][i].url_img}" alt="${response[index][i].nom}"></td>
                                                         <td>${response[index][i].nom}</td>
                                                         <td>${response[index][i].pays}</td>
@@ -68,68 +70,37 @@ document.addEventListener('DOMContentLoaded', function() {
                                                     </tr>`;
                                 
                             }
-                                nbBouteilleTotal += nbBouteille;
+                                
                         }
+                        
                         }
                        
                        
-                    }
+                    
                     if(!stop){
                         importer(page + 7);
                     }else {
                         preloader.classList.remove('active');
                         btnImport.classList.remove('disabled');
-                        if(nbBouteilleTotal == 0) {
+                        
+                        if(nbBouteille == 0) {
                             message.textContent = "Aucun bouteille a été ajoutée";
                         }else {
                             table.style.display = 'table';
                             message.textContent = nbBouteille + " bouteille(s) a été ajoutée(s)";
                             tbody.innerHTML = tableRow;
                         }
+
+                        document.querySelectorAll('[data-id]').forEach(tr => {
+
+                            tr.addEventListener('click', () => {
+                                tr.dataset.id
+                                window.open(location.origin + "/vin/" + tr.dataset.id + "/edit", '_blank').focus();
+                            })
+                        })
                     }
                 
             }).catch(error => console.log(error))
-      /*       fetch(`/obtenirListeSAQ/${page}`)
-        .then(response => {
-            return (response.json())
-        })
-        .then(response => {
-            
-            if(response != 'stop'){
-               
-                
-           
-             
-                if(response.length != 0){ 
-                    table.style.display = 'table';
-                    for (let index = 0; index < response.length; index++) {
-                    
-                        tbody.innerHTML += `<tr>
-                                                <td> <img class='image'  src="${response[index].url_img}" alt="${response[index].nom}"></td>
-                                                <td>${response[index].nom}</td>
-                                                <td>${response[index].pays}</td>
-                                                <td>${response[index].description}</td>
-                                                <td>${response[index].code_saq}</td>
-                                                <td>${response[index].prix_saq}</td>
-                                                <td>${response[index].url_saq}</td>
-                                                <td>${response[index].format}</td>
-                                                <td>${response[index].type}</td>
-                                            </tr>`;
-                            
-                    }
-                    message.textContent = response.length + " bouteille(s) a été ajoutée(s)";
-                   
-                }else {
-                    
-                    message.textContent = "Aucun bouteille a été ajoutée";
-                }
-           
-            page++;
-            importer(94);
-            }else {
-                preloader.classList.remove('active');
-                btnImport.classList.remove('disabled');
-            }
-        }).catch(error => console.log(error)) */
+
       }
   });
