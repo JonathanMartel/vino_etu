@@ -58,6 +58,18 @@ document.addEventListener('DOMContentLoaded', function() {
          });
 
 
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * Note
      */
@@ -210,27 +222,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 commentaire.value = commentaire.value.trim()
             })
               .catch(error => console.log('Le fetch ne fonctionne toujours pas',error))
-         
-           /* Validation non-terminée*/ 
 
-            // let messagePrix = "Entrez de 0 à 100000";
-            // if (prix.value < 0 || prix.value > 6) {
-            //     btnValideActive.disabled = true;
-            //     document.getElementById("message").innerHTML = messagePrix;
-                  
-            // }else {
+            if(estValide()){
 
-                for (let i = 0; i < inputs.length; i++){
-                    inputs[i].readOnly = true;
-                    inputs[i].classList.remove("input-active");
-                    inputs[i].classList.add("input-fiche-cercle");
-                }
+                    for (let i = 0; i < inputs.length; i++){
+                        inputs[i].readOnly = true;
+                        inputs[i].classList.remove("input-active");
+                        inputs[i].classList.add("input-fiche-cercle");
+                    }
 
-                boutonModifier.classList.remove("non-active");
-                btnAnnuleActive.classList.add("non-active");
-                btnValideActive.classList.add("non-active");
-                btnEffacerActive.classList.add("non-active");
-            });
+                    boutonModifier.classList.remove("non-active");
+                    btnAnnuleActive.classList.add("non-active");
+                    btnValideActive.classList.add("non-active");
+                    btnEffacerActive.classList.add("non-active");
+            }
+        });
 
 
         btnEffacerActive.addEventListener("click",function(e){
@@ -238,4 +244,45 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('click effacer');
 
         });
+
+        /** validation fonctionnelle, mais chaque champs à la fois**/
+
+        function estValide() {
+            
+            if( prix.value < 0 || prix.value > 100000) {
+                let messagePrix = "Entrez de 0 à 100000";
+                document.getElementById("messagePrix").innerHTML = messagePrix;
+                return false;
+            }else{
+                document.getElementById("messagePrix").innerHTML ="";
+            }
+
+            if( quantite.value < 0 || quantite.value > 999) {
+                    let messageQuantite = "Entrez entre 0 et 999";
+                    document.getElementById("messageQuantite").innerHTML = messageQuantite;
+                    return false;
+            }else{
+                document.getElementById("messageQuantite").innerHTML ="";
+            }
+
+            if( commentaire.value.length > 50) {
+                let messageCommentaire = "maximun 50 charactères";
+                document.getElementById("messageCommentaire").innerHTML = messageCommentaire;
+                return false;
+            }else{
+                document.getElementById("messageCommentaire").innerHTML ="";
+            }
+
+            if( garde_jusqua.value.length > 50) {
+                let messageGardeJusqua = "maximun 50 charactères";
+                document.getElementById("messageGardeJusqua").innerHTML = messageGardeJusqua;
+                return false;
+            }else{
+                document.getElementById("messageGardeJusqua").innerHTML ="";
+            }
+
+            return( true );
+
+        }
+
 });

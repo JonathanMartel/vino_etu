@@ -248,3 +248,8 @@ input:focus-visible{
     font-weight: 700;
     font-size: 1.563rem;
 }
+
+.nonValide{
+    color: red;
+    text-align: right;
+}
