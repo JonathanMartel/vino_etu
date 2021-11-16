@@ -22,6 +22,9 @@ document.addEventListener('DOMContentLoaded', function() {
         })
     }
 
+    /**
+     * Mettre le bouton modifier a disabled false lorsqu'il y a une modification dans le formulaire
+     */
     const form = document.querySelector('.edit-vin');
   
     form.addEventListener('input', () => {

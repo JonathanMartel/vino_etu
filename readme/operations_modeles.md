@@ -9,14 +9,14 @@
 - editerBouteille()
     - accessible seulement au propriétaire ou l'admin (pour les vins de la SAQ)
     - le user qui créé un vin perso peut la modifier
-- obtenirBouteille()
+- getDataBouteilleByID
     - get un vin avec son id
-- obtenirListeSAQ()
-    - index global des vins
+- ajouterNouvellesBouteille()
+    - Ajouter les nouvelles bouteilles qui n'étaient pas dans la BD
 - rechercheBouteillesParMotCle()
     - dans les vins de la SAQ et les vins du user connecté
 - rechercheBouteilleExistante()
-    - vérifier si une bouteille existe déjè avant de la créer
+    - vérifier si une bouteille existe déjà avant de la créer
 
 ###CellierBouteille
 
@@ -24,17 +24,17 @@
   - Ajouter une seule bouteille depuis la liste //Fait
 - supprimerQuantiteBouteille()  
   - Retirer une seule bouteille depuis la liste //Fait
-
-// !!! 2 options pour ajouter ou retirer plusieurs bouteilles dansun cellier en même temps : faire 2 nouvelles méthodes ou réutiliser et modifier les 2 méthode plus haut. -> tester si fonctionne de nouveau
-
 - ajouterBouteilleCellier()     //Ajouter une bouteille dans le cellier
 - supprimerBouteilleCellier()   //Retirer un vin du cellier
-- obtenirListeBouteilles()      //index des bouteilles du cellier
-- rechercherCellierBouteille()
+- obtenirListeBouteilleCellier()      //index des bouteilles du cellier
+- rechercherCellierBouteille()   // Vérifier si une bouteille existe déjà dans le cellier
 - obtenirMillesimesParBouteille()
   - obtenir les différents millesime d'une bouteille dans un cellier
 - ajouterNote()
-  
+  - ajouter une note de dégustation à une bouteille
+- modifierCellierBouteille() // modifier quantité, commentaire, date_achat et garde_jusqua
+- modifierQuantiteBouteille() // modifier la quantité d'une bouteille
+
 ###Cellier
 
 - ajouterCellier()
@@ -42,7 +42,8 @@
 - supprimerCellier()
 - editerCellier()
 - obtenirCellier()
-- obtenirListeCelliers()
+- getCelliersByUser()
+- rechercheDansCellier()
 
 ###Format
 
