@@ -246,11 +246,12 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         /** validation fonctionnelle, mais chaque champs à la fois**/
+       
 
         function estValide() {
             
             if( prix.value < 0 || prix.value > 100000) {
-                let messagePrix = "Entrez de 0 à 100000";
+                let messagePrix = "Prix de 0 à 100 000";
                 document.getElementById("messagePrix").innerHTML = messagePrix;
                 return false;
             }else{
@@ -258,7 +259,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             if( quantite.value < 0 || quantite.value > 999) {
-                    let messageQuantite = "Entrez entre 0 et 999";
+                    let messageQuantite = "Quantité entre 0 et 999";
                     document.getElementById("messageQuantite").innerHTML = messageQuantite;
                     return false;
             }else{
@@ -266,7 +267,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             if( commentaire.value.length > 50) {
-                let messageCommentaire = "maximun 50 charactères";
+                let messageCommentaire = "Maximun 50 charactères";
                 document.getElementById("messageCommentaire").innerHTML = messageCommentaire;
                 return false;
             }else{
@@ -274,7 +275,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             if( garde_jusqua.value.length > 50) {
-                let messageGardeJusqua = "maximun 50 charactères";
+                let messageGardeJusqua = "Maximun 50 charactères";
                 document.getElementById("messageGardeJusqua").innerHTML = messageGardeJusqua;
                 return false;
             }else{
@@ -285,4 +286,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
         }
 
+
+         inputs.forEach((input) => {
+             input.addEventListener("input", (e) => {
+                 e.preventDefault();
+                 console.log('change');
+                 if(!estValide(input)){
+                     input.classList.add("champNonValide");
+                 }else{
+                    input.classList.remove("champNonValide");
+                 }
+             });
+         });
 });

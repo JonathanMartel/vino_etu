@@ -253,3 +253,9 @@ input:focus-visible{
     color: red;
     text-align: right;
 }
+
+.champNonValide{
+    border-style: dashed;
+    border-color: red;
+    background-color: #9aa2a888;
+}
