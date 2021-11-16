@@ -69,8 +69,16 @@ export class BouteilleDeVinService {
 
     supprimerBouteilleCellier(bouteilleAchetee_id: any) {
 
+        console.log(bouteilleAchetee_id);
+
         return this.http.delete<any>(
             this.url + '/supprimer/' + bouteilleAchetee_id)
+    }
+
+    supprimerUnCellier(cellier_id: any){
+
+        return this.http.delete<any>(
+            this.url + '/supprimerCellier/' + cellier_id)
     }
 
     /**
