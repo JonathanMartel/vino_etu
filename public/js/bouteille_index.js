@@ -4,7 +4,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const table = document.querySelector('table');
     const tbody = table.querySelector('tbody');
     const message = document.querySelector('.message');
-
+    let tableRow;
+    let stop = false;
+    let nbBouteilleTotal;
     /**
      * Afficher dans un table les bouteilles du site de la SAQ qui n'étaient pas dans la BD
      */
@@ -14,15 +16,90 @@ document.addEventListener('DOMContentLoaded', function() {
         message.textContent = "";
         preloader.classList.add('active');
         btnImport.classList.add('disabled');
-        fetch(btnImport.href)
+        let page = 1;
+        tableRow = '';
+        nbBouteilleTotal = 0;
+        importer(page)
+    })
+    
+         const importer = (page) => {
+        
+            Promise.all([
+                fetch(`/obtenirListeSAQ/${page}`),
+                fetch(`/obtenirListeSAQ/${page + 1}`),
+                fetch(`/obtenirListeSAQ/${page + 2}`),
+                fetch(`/obtenirListeSAQ/${page + 3}`),
+                fetch(`/obtenirListeSAQ/${page + 4 }`),
+                fetch(`/obtenirListeSAQ/${page + 5}`),
+                fetch(`/obtenirListeSAQ/${page + 6}`),
+            ]).then(function (responses) {
+                // Get a JSON object from each of the responses
+                return Promise.all(responses.map(function (response) {
+                    return response.json();
+                }));
+            }).then(response => {
+                
+                let nbBouteille = 0;
+    
+                
+                   
+    
+                    response.forEach( data => {
+                        nbBouteille += data.length;
+                    })
+                    if(nbBouteille != 0){ 
+                       
+                        for (let index = 0; index < response.length; index++) {
+                            if(response[index] == 'stop'){
+                             stop = true;
+                            }else {
+                            for (let i = 0; i <  response[index].length; i++) { 
+                               
+                                tableRow += `<tr>
+                                                        <td> <img class='image'  src="${response[index][i].url_img}" alt="${response[index][i].nom}"></td>
+                                                        <td>${response[index][i].nom}</td>
+                                                        <td>${response[index][i].pays}</td>
+                                                        <td>${response[index][i].description}</td>
+                                                        <td>${response[index][i].code_saq}</td>
+                                                        <td>${response[index][i].prix_saq}</td>
+                                                        <td>${response[index][i].url_saq}</td>
+                                                        <td>${response[index][i].format}</td>
+                                                        <td>${response[index][i].type}</td>
+                                                    </tr>`;
+                                
+                            }
+                                nbBouteilleTotal += nbBouteille;
+                        }
+                        }
+                       
+                       
+                    }
+                    if(!stop){
+                        importer(page + 7);
+                    }else {
+                        preloader.classList.remove('active');
+                        btnImport.classList.remove('disabled');
+                        if(nbBouteilleTotal == 0) {
+                            message.textContent = "Aucun bouteille a été ajoutée";
+                        }else {
+                            table.style.display = 'table';
+                            message.textContent = nbBouteille + " bouteille(s) a été ajoutée(s)";
+                            tbody.innerHTML = tableRow;
+                        }
+                    }
+                
+            }).catch(error => console.log(error))
+      /*       fetch(`/obtenirListeSAQ/${page}`)
         .then(response => {
             return (response.json())
         })
         .then(response => {
-          
-            setTimeout(()=> { 
-                preloader.classList.remove('active');
-                btnImport.classList.remove('disabled');
+            
+            if(response != 'stop'){
+               
+                
+           
+             
                 if(response.length != 0){ 
                     table.style.display = 'table';
                     for (let index = 0; index < response.length; index++) {
@@ -46,9 +123,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     
                     message.textContent = "Aucun bouteille a été ajoutée";
                 }
-            }, 2000)
-            
-        }).catch(error => console.log(error))
-      
-    })
+           
+            page++;
+            importer(94);
+            }else {
+                preloader.classList.remove('active');
+                btnImport.classList.remove('disabled');
+            }
+        }).catch(error => console.log(error)) */
+      }
   });

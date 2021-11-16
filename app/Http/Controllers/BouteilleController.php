@@ -27,8 +27,8 @@ class BouteilleController extends Controller
      * Mettre à jour la table Bouteille en important une liste de bouteille du site de la SAQ
      * @return response une liste de bouteilles qui n'était pas dans la BD
      */
-	public function obtenirListeSAQ() {
-        $nouvellesBouteilles = Bouteille::obtenirListeSAQ();
+	public function obtenirListeSAQ($page) {
+        $nouvellesBouteilles = Bouteille::obtenirListeSAQ($page);
        
         return response()->json($nouvellesBouteilles);
     }

@@ -116,7 +116,7 @@ Route::get('/rechercheDansCellier/{motCle}/{idCellier}', [CellierController::cla
 Route::get('/reinitialiserCellier/{idCellier}', [CellierController::class, 'reinitialiserCellier'])->name('reinitialiserCellier')->middleware('auth')->middleware('prevent-back-history');
 
 Route::get('/importerBouteille', [BouteilleController::class, 'index'])->name('importerBouteille')->middleware('admin')->middleware('prevent-back-history');
-Route::get('/obtenirListeSAQ', [BouteilleController::class, 'obtenirListeSAQ'])->name('obtenirListeSAQ')->middleware('admin')->middleware('prevent-back-history');
+Route::get('/obtenirListeSAQ/{page}', [BouteilleController::class, 'obtenirListeSAQ'])->name('obtenirListeSAQ')->middleware('admin')->middleware('prevent-back-history');
 
 
 
