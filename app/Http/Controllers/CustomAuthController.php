@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Bouteille;
+use App\Models\Cellier;
 use Illuminate\Http\Request;
 
 use Hash;
@@ -236,6 +238,10 @@ class CustomAuthController extends Controller
      */
     public function destroy(user $user)
     {
-        //
+      $id_user = $user->id;
+      $deletedRows = Cellier::where('user_id', $id_user)->delete();
+      $celliers = Bouteille::where('user_id', $id_user)->delete();
+      $user->delete();
+      return redirect('liste-usager');
     }
 }
