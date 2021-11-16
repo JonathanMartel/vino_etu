@@ -51,7 +51,6 @@ class Bouteille extends Model
      */
     public static function rechercheBouteilleExistante($request) {
         return DB::table('bouteilles')
-        /* ->where('id', $request->bouteille_id) */
         ->where('nom', $request->nom)
         ->where('pays', $request->pays)
         ->where('type_id', $request->type_id)
@@ -91,10 +90,20 @@ class Bouteille extends Model
 
 
             if($bouteille->isEmpty()){
-                          
+                if($element->desc->type == "Cocktail au vin"){
+                    $type = "Cocktail au vin";
+                }else if ($element->desc->type == "Vin de tomate"){
+                        $type = "Vin de tomate";
+                
+                }else if ($element->desc->type == "Vin de dessert") {
+                    $type = "Vin de dessert";
+                }
+                else {
+                    $type = ucfirst(explode(' ', $element->desc->type)[1]);
+                }
                 $idType = DB::table('types')
                 ->select('id')
-                ->where('type', "LIKE" , "%" . explode(' ', $element->desc->type)[1]. "%")
+                ->where('type', $type)
                 ->get();
 
                 if( explode(' ', $element->desc->format)[1] == "L") {
@@ -108,7 +117,7 @@ class Bouteille extends Model
                 ->where('taille',  $format)
                 ->get();
           
-                DB::table('bouteilles')->insert(
+                $id = DB::table('bouteilles')->insertGetId(
                     ['nom' => $element->nom,
                      'url_img' => $element->img,
                      'description' => $element->desc->texte,
@@ -121,7 +130,7 @@ class Bouteille extends Model
                      'url_saq' => $element->url
                     ]
                 );
-
+        
                 array_push($nouvellesBouteilles, ["nom" => $element->nom,
                                               'url_img' =>$element->img ,
                                               'description' =>$element->desc->texte,
@@ -130,8 +139,10 @@ class Bouteille extends Model
                                               'prix_saq' => number_format((float)explode('$', str_replace(',', '.', $element->prix))[0], 2, '.', '') . " $",
                                               'format' => $format . " cL",
                                               'type' => ucfirst(explode(' ', $element->desc->type)[1]),
-                                              'url_saq' => $element->url ]);
-            }
+                                              'url_saq' => $element->url,
+                                              'idBouteille' => $id]);
+                                    
+            }  
         }
         
         return $nouvellesBouteilles;
@@ -143,10 +154,10 @@ class Bouteille extends Model
 	 * @param int $debut
      * @return ajouterNouvellesBouteilles un tableau contant les bouteilles ajoutées
 	 */
-	public static function obtenirListeSAQ($nombre = 24, $page = 1) {
+	public static function obtenirListeSAQ($page) {
 		$s = curl_init();
-		$url = "https://www.saq.com/fr/produits/vin/vin-rouge?p=1&product_list_limit=24&product_list_order=name_asc";
-
+		$url = "https://www.saq.com/fr/produits/vin?p=${page}&product_list_limit=96&product_list_order=name_asc";
+      
         curl_setopt_array($s,array(
             CURLOPT_URL => $url,
             CURLOPT_RETURNTRANSFER => true,
@@ -162,9 +173,10 @@ class Bouteille extends Model
         ));
 
 		$_webpage = curl_exec($s);
-	
+          
+       
 		curl_close($s);
-
+      
 		$doc = new DOMDocument();
 		$doc -> recover = true;
 		$doc -> strictErrorChecking = false;
@@ -174,9 +186,15 @@ class Bouteille extends Model
         $collection = new Collection();
 		foreach ($elements as $noeud) {		
 			if (strpos($noeud -> getAttribute('class'), "product-item") !== false) {
-
+               
 				$info = self::recupereInfo($noeud);
-			
+                if($page == 1 && $collection->count() == 0){
+                    
+                    session([ 'premiereBouteille' => $info]);
+                   
+                }else  if(session('premiereBouteille') == $info){
+                    return 'stop';
+                }
                $collection->push($info);
             }
 		}

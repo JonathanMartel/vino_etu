@@ -6,29 +6,11 @@
 <span class="success"></span>
 @endif
 
+
 <div class="entete-page">
     <h1 class="titre-formulaire">Modifier un vin</h1>
     <img src="{{URL::asset('/assets/icon/deux-coupe-jaune.svg')}}" alt="Icone deux coupe de vin">
 </div>
-
-@if (Auth::user()->id)
-@if(isset($bouteille->code_saq) || $bouteille->user_id === 1 )
-<!-- La bouteille est importé de la saq ou créée par un administrateur -->
-@if(Auth::user()->admin)
-<!-- L'utilisateur a droit de modifier une bouteille de la SAQ si c'est un admin -->
-<p>Attention, vous modifiez une bouteille accessible globalement</p>
-
-<!-- formulaire de modification d'une bouteille de la SAQ -->
-
-@else
-<p class="msg-redirect">Vous n'avez pas les droits suffisant pour modifier cette bouteille. Vous pouvez en créer une personifiée dans votre cellier, elle ne sera accessible qu'à vous</p>
-
-@endif
-@else
-
-<!-- C'est une bouteille perso donc l'utilisateur doit être le user_id de la bouteille ou un admin -->
-@if(Auth::user()->id === $bouteille->user_id )
-<!-- Si l'admin peut modifier les bouteilles perso on peut lui donner le droit ici  -->
 
 <div class="row">
     <form class="col s12 edit-vin " action="{{ route('bouteilleUpdate', $bouteille->id) }}" method="POST" enctype="multipart/form-data">
@@ -87,12 +69,13 @@
         </div>
     
     <div class="col s12 btn-space">
-        
+        @if( $idCellier != 0)
         <a href="{{route('ficheVin', ['idCellier'=>$idCellier,'idBouteille'=>$idBouteille])}}
          " class="btn waves-effect waves-light button btn-annuler" name="annuler">Annuler</a>
-
-        
-
+        @else 
+        <a href="{{route('importerBouteille')}}
+         " class="btn waves-effect waves-light button btn-annuler" name="annuler">Annuler</a>
+        @endif
         <a class="btn waves-effect waves-light button btn-modifier modal-trigger" href="#modal-modifier" disabled>Modifier</a>
 
         <!-- Modal Structure pour modifier-->
@@ -134,18 +117,6 @@
         <a href="#!" class="modal-close waves-effect waves-green btn-flat">Annuler</a>
     </div>
 </div>
-
-
-@else
-<!-- theoriquement l'utilisateur ne devrait pas pouvoir accéder à cette bouteille car c'est la bouteille perso d'un autre user  -->
-<p class="msg-redirect">Vous n'avez pas les droits suffisant pour modifier cette bouteille. Vous pouvez en créer une personifiée dans votre cellier, elle ne sera accessible qu'à vous</p>
-<!-- bouton créer bouteille ou redirection auto -->
-
-@endif
-@endif
-@else
-<p>Veuillez vous identifier pour accéder à cette partie du site</p>
-@endif
 
 @endsection
 <link href="{{asset('css/bouteille_edit.css')}}" rel="stylesheet" />
