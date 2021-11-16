@@ -11,19 +11,24 @@
 
     <mat-card-content>
 
-      <div class="mat-form-prefix">
-          <a mat-button (click)="formulaireModifierUtilisateur(utilisateur)">
-              <mat-icon>person</mat-icon>
-              <span>Informartions personnelles</span>
-          </a>
-      </div>
-
-      <div class="mat-form-prefix">
-          <a mat-button routerLink="celliers">
-              <mat-icon svgIcon="cellier"></mat-icon>
-              <span>Mes celliers</span>
-          </a>
-      </div>
+      <a mat-button (click)="formulaireModifierUtilisateur(utilisateur)">
+        <div class="mat-form-prefix">
+          <mat-icon>person</mat-icon>
+          <span>Informartions personnelles</span>
+        </div>
+      </a>
+      <a mat-button routerLink="/celliers">
+        <div class="mat-form-prefix">
+          <mat-icon svgIcon="cellier"></mat-icon>
+          <span>Mes celliers</span>
+        </div>
+      </a>
+      <a mat-button (click)='deconnexion()'>
+        <div class="mat-form-prefix">
+          <mat-icon>logout</mat-icon>
+          <span>Déconnexion</span>
+        </div>
+      </a>
 
 
     </mat-card-content>

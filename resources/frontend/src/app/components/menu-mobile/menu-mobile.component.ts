@@ -21,12 +21,12 @@ export class MenuMobileComponent implements OnInit {
     }
 
     // Fonction pour se deconnecter et envoyer une notification de confirmation
-    deconnexion() {
+    /* deconnexion() {
         this.servAuth.deconnexion();
         this.router.navigate(['/connection']);
         this.snackbar.open(`Vous etes maintenant déconnecté`, "Fermer", {duration: 3000, panelClass: 'notif'});
 
-    }
+    } */
 
     // Verifier si l'utilisateur est authentifie pour l'affichage des icones
     estAuthentifie() {

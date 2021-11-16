@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { ModifierUtilisateurComponent } from '@pages/modifier-utilisateur/modifier-utilisateur.component';
 import { AuthService } from '@services/auth.service';
 import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
@@ -19,6 +21,8 @@ export class ProfilUtilisateurComponent implements OnInit {
     private authService: AuthService,
     private servBouteilleDeVin: BouteilleDeVinService,
     public dialog: MatDialog,
+    public router: Router,
+    private snackbar: MatSnackBar,
   ) { }
 
   ngOnInit(): void {
@@ -29,6 +33,21 @@ export class ProfilUtilisateurComponent implements OnInit {
       this.utilisateur = data;
     });
   }
+
+  openSnackBar(message: any, action: any) {
+    this.snackbar.open(message, action, {
+        duration: 3000,
+        panelClass: 'notif-success'
+    });
+  }
+
+  // Fonction pour se deconnecter et envoyer une notification de confirmation
+    deconnexion() {
+        this.authService.deconnexion();
+        this.router.navigate(['/connection']);
+        this.snackbar.open(`Vous etes maintenant déconnecté`, "Fermer", {duration: 3000, panelClass: 'notif'});
+
+    }
 
   formulaireModifierUtilisateur(utilisateur: any): void {
 
