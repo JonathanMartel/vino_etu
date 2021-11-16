@@ -188,11 +188,13 @@ document.addEventListener('DOMContentLoaded', function() {
     /** Action bouton annuler, efface les champs modifié et retire les boutons annuler, valider et effacer. Réactive le bouton modifier **/
     btnAnnuleActive.addEventListener("click",function(e){
         e.preventDefault();
+        infoForm.reset();
+        estValide();
         boutonModifier.classList.remove("non-active");
         btnEffacerActive.classList.add("non-active");
         btnValideActive.classList.add("non-active");
         btnAnnuleActive.classList.add("non-active");
-        infoForm.reset();
+        
 
         for (let i = 0; i < inputs.length; i++){
             inputs[i].readOnly = true;
@@ -245,44 +247,61 @@ document.addEventListener('DOMContentLoaded', function() {
 
         });
 
-        /** validation fonctionnelle, mais chaque champs à la fois**/
-       
+        /** validation **/
 
         function estValide() {
-            
-            if( prix.value < 0 || prix.value > 100000) {
-                let messagePrix = "Prix de 0 à 100 000";
+
+            let valide = true;
+            let prixRegex ="^[0-9]+(\.[0-9]{1,2})?$";
+            if(!prix.value.match(prixRegex)){
+                let messagePrix = "Format invalide";
                 document.getElementById("messagePrix").innerHTML = messagePrix;
-                return false;
+                valide = false;
+            }
+
+            else if( prix.value < 0 || prix.value > 100000) {
+                let messagePrix = "Prix de 0 à 100 000";
+                prix.classList.add("champNonValide");
+                document.getElementById("messagePrix").innerHTML = messagePrix;
+                valide = false;
             }else{
                 document.getElementById("messagePrix").innerHTML ="";
+                prix.classList.remove("champNonValide");
             }
 
             if( quantite.value < 0 || quantite.value > 999) {
-                    let messageQuantite = "Quantité entre 0 et 999";
-                    document.getElementById("messageQuantite").innerHTML = messageQuantite;
-                    return false;
+                let messageQuantite = "Quantité entre 0 et 999";
+                quantite.classList.add("champNonValide");
+                document.getElementById("messageQuantite").innerHTML = messageQuantite;
+                valide = false;
             }else{
                 document.getElementById("messageQuantite").innerHTML ="";
+                quantite.classList.remove("champNonValide");
             }
 
             if( commentaire.value.length > 50) {
                 let messageCommentaire = "Maximun 50 charactères";
+                commentaire.classList.add("champNonValide");
                 document.getElementById("messageCommentaire").innerHTML = messageCommentaire;
-                return false;
+                valide = false;
             }else{
                 document.getElementById("messageCommentaire").innerHTML ="";
+                commentaire.classList.remove("champNonValide");
             }
 
             if( garde_jusqua.value.length > 50) {
                 let messageGardeJusqua = "Maximun 50 charactères";
+                garde_jusqua.classList.add("champNonValide");
+                // btnValideActive.setAttribute("disabled","true");
                 document.getElementById("messageGardeJusqua").innerHTML = messageGardeJusqua;
-                return false;
+                valide = false;
             }else{
                 document.getElementById("messageGardeJusqua").innerHTML ="";
+                garde_jusqua.classList.remove("champNonValide");
+                // btnValideActive.removeAttribute('disabled');
             }
 
-            return( true );
+            return valide;
 
         }
 
@@ -291,11 +310,12 @@ document.addEventListener('DOMContentLoaded', function() {
              input.addEventListener("input", (e) => {
                  e.preventDefault();
                  console.log('change');
-                 if(!estValide(input)){
-                     input.classList.add("champNonValide");
-                 }else{
-                    input.classList.remove("champNonValide");
-                 }
+                //  if(!estValide(input)){
+                //      input.classList.add("champNonValide");
+                //  }else{
+                //     input.classList.remove("champNonValide");
+                //  }
+                estValide(input);
              });
          });
 });

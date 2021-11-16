@@ -110,7 +110,7 @@
                             </div>
                             <div class="form-modifier-item" >
                                 <label for="prix">Prix d'achat</label>
-                                <input type="number" name="prix" readonly="readonly" id="prix" data-js-input class="input-fiche-cercle" value="{!! $cellierBouteille->prix !!}"/>
+                                <input type="number" name="prix"  readonly="readonly" id="prix" data-js-input class="input-fiche-cercle" value="{!! $cellierBouteille->prix !!}"/>
                             </div>
                             <p id="messagePrix" class="nonValide"></p>
                             <div class="form-modifier-item" >
