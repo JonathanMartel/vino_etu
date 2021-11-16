@@ -118,7 +118,7 @@ class CellierController extends Controller {
     public function destroy(int $cellierId) {
 
         $cellier = Cellier::find($cellierId);
-        
+
         $cellier->delete();
 
         return response() -> json([

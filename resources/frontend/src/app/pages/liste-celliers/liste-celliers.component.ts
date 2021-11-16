@@ -77,6 +77,7 @@ export class ListeCelliersComponent implements OnInit {
         .afterClosed().subscribe(res => {
             if(res){
               this.servBouteilleDeVin.supprimerUnCellier(idCellier).subscribe(()=>{
+                this.chargerCelliers();
                 this.snackbar.open('Supprimer avec succès', 'fermer');
               });
             }
