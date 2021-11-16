@@ -8,6 +8,10 @@ h1.titre {
     padding-right: 2rem;
 }
 
+.margin-bottom{
+    margin-bottom: 1em;
+}
+
 
 .modifier .material-icons {
     font-size: 33px;
