@@ -124,6 +124,7 @@ nav .sidenav-trigger{
 
 .container {
 	text-align: center;
+    max-width: inherit;
 }
 
 
