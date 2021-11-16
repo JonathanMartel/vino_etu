@@ -21,7 +21,6 @@ export class AuthService {
     // Durée de vie du token, en secondes
     private expirationEnSecondes: number = 3600; // 1 heure
 
-
     private url: string = "http://127.0.0.1:8000/api";
     // private url: string = "http://kalimotxo-vino.akira.dev/api";
     // private url: string = new URL(window.location.href).origin + "/api";
@@ -257,4 +256,6 @@ export class AuthService {
             this.utilisateurToken :
             false;
     }
+
+
 }

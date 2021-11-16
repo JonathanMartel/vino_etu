@@ -38,6 +38,8 @@ import { BouteillesCellierResolver } from '@services/bouteilles-cellier.resolver
 import { DatePipe, registerLocaleData } from '@angular/common';
 import localeFrCa from "@angular/common/locales/fr-CA"
 import { StringHelpersService } from '@services/helpers/string-helpers.service';
+import { ProfilUtilisateurComponent } from './pages/profil-utilisateur/profil-utilisateur.component';
+import { ModifierUtilisateurComponent } from './pages/modifier-utilisateur/modifier-utilisateur.component';
 import { ModifierCellierComponent } from './pages/modifier-cellier/modifier-cellier.component';
 
 @NgModule({
@@ -57,6 +59,8 @@ import { ModifierCellierComponent } from './pages/modifier-cellier/modifier-cell
         MatConfirmDialogComponent,
         ListeCelliersComponent,
         AjoutCellierComponent,
+        ProfilUtilisateurComponent,
+        ModifierUtilisateurComponent,
         ModifierCellierComponent,
 
     ],

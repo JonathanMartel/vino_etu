@@ -66,6 +66,9 @@ Route::group(['middleware' => ["auth:sanctum"]], function () {
     // Récupérer un cellier donné
     Route::get('celliers/{cellier}', [CellierController::class, "show"]);
 
+    // Récupérer un utilisateur donné
+    Route::get('user/{userId}', [CustomAuthController::class, "getUtilisateur"]);
+
     // Récupérer la liste des celliers pour un utilisateur donné
     Route::get('celliers', [CellierController::class, "afficherCelliersParUtilisateur"]);
 
@@ -89,6 +92,9 @@ Route::group(['middleware' => ["auth:sanctum"]], function () {
 
     // Supprimer une bouteille
     Route::delete('supprimer/{cellierBouteilleAchetee}', [CellierBouteilleAcheteeController::class, "supprimerBouteille"]);
+
+     // Modifier les informations d'un utilisateur
+     Route::put('user/{userId}', [CustomAuthController::class, "update"]);
 
     //Deconnexion
     Route::post('deconnexion', [CustomAuthController::class, "deconnexion"]);
