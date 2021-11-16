@@ -161,8 +161,6 @@ class BouteilleController extends Controller
             'url_saq' => 'url',
             'type_id' => 'required | exists:types,id',
             'format_id' => 'required | exists:formats,id',
-
-
         ]);
         
         /**

@@ -1,0 +1,28 @@
+h1.titre {
+    font-size: 4rem;
+    margin: 1em;
+}
+
+.padding {
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+
+.modifier .material-icons {
+    font-size: 33px;
+    color: #AA7E42;
+}
+
+.supprimer .material-icons {
+    font-size: 33px;
+    color: #742F30;
+}
+
+.optacity-checkbox {
+    opacity: 1;
+}
+
+.margin-right {
+    margin-right: 1rem;
+}

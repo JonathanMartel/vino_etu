@@ -76,6 +76,8 @@ document.addEventListener('DOMContentLoaded', function() {
         tooltip: false,
     });
 
+     
+
     /**
      * Ajouter un note à une bouteille en cliquant sur une étoile
      */

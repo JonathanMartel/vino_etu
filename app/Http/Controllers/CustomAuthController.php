@@ -13,13 +13,24 @@ use Carbon\Carbon;
 class CustomAuthController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display the login page .
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
         return view('auth.login');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function listeUsager()
+    {
+        $users = User::all();
+        return view('user.listeUsager',['users'=>$users]);
     }
 
     /**
@@ -212,6 +223,9 @@ class CustomAuthController extends Controller
       return redirect('/user/'.$id.'/password')->withSuccess('Le mot de passe n\'est pas valides!');
 
     }
+
+
+    
 
 
     /**
