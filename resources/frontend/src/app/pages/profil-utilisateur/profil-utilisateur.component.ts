@@ -22,7 +22,7 @@ export class ProfilUtilisateurComponent implements OnInit {
   ngOnInit(): void {
 
     // Recuperer les données de l'utilisateur authentifie
-    this.utilisateur = this.authService.utilisateurAuthentifie;
+    //this.utilisateur = this.authService.utilisateurAuthentifie;
   }
 
   formulaireModifierUtilisateur(utilisateur: any): void {
@@ -39,7 +39,7 @@ export class ProfilUtilisateurComponent implements OnInit {
 
 
   profilUtilisateur() {
-    this.utilisateurModifier = this.authService.utilisateurAuthentifie;
+    //this.utilisateurModifier = this.authService.utilisateurAuthentifie;
     this.utilisateurModifier = this.utilisateur;
   }
 

@@ -6,7 +6,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatConfirmDialogComponent } from '@components/mat-confirm-dialog/mat-confirm-dialog.component';
 
 
-
 @Injectable({
     providedIn: 'root'
 })
@@ -81,7 +80,11 @@ export class BouteilleDeVinService {
      * @param {number} userId Id de l'utilisateur
      * @returns {Observable} Liste des celliers de l'utilisateur
      */
-    getListeCelliersParUtilisateur(userId: number): any {
+    getListeCelliersParUtilisateur(userId: number|null): any {
+        if(!userId) {
+            return false;
+        }
+
         const options = {
             params: {
                 userId: userId
@@ -135,6 +138,23 @@ export class BouteilleDeVinService {
     modifierUtilisateur(userId: any, data: any) {
 
         return this.http.put<any>(this.url + '/user/' + userId, data)
+    }
+
+    /**
+     * Modifie les données d'un cellier
+     * 
+     * @param {array} data
+     * 
+     * @returns
+     */
+     modifierCellier(data: any, idCellier : any) {
+
+        let body = {
+            'nom': data.nom,
+            'description': data.description,
+        }
+
+        return this.http.put<any>(this.url + '/celliers/'+ idCellier, body);
 
     }
 

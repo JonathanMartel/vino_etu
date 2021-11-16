@@ -35,11 +35,36 @@
     display: flex;
     justify-content: space-around;
 }
-.content button{
+.content-header button{
     background-color: #4c1920;
     color: #fff;
 }
 .content a {
     text-decoration: none;
     color: #000;
+}
+
+.nom-cellier{
+    display: flex;
+    align-items: center;
+}
+
+.nom-cellier .mat-icon{
+    font-size: 1.2rem; 
+}
+
+.nom-cellier .mat-icon:hover{
+    cursor: pointer;
+}
+
+.nom-cellier button{
+    padding: 0px;
+    margin: 0;
+    margin-left: 10px;
+    width: 25px;
+    height: 25px;
+}
+
+.action-cellier{
+    display: flex;
 }

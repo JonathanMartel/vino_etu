@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AjoutCellierComponent } from '@pages/ajout-cellier/ajout-cellier.component';
+import { ModifierCellierComponent } from '@pages/modifier-cellier/modifier-cellier.component';
 import { AuthService } from '@services/auth.service';
 import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 
@@ -22,7 +23,8 @@ export class ListeCelliersComponent implements OnInit {
   constructor(
     private servBouteilleDeVin: BouteilleDeVinService,
     private authService: AuthService,
-    public formAjout: MatDialog
+    public formAjout: MatDialog,
+    public formModif: MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -44,8 +46,19 @@ export class ListeCelliersComponent implements OnInit {
     const response = refModal.componentInstance.chargerCelliers.subscribe(() => {this.chargerCelliers()});
  }
 
-  // Affichage de la liste avec le nouveau cellier
+  // Appel du formulaire pour la modification d'un cellier
 
+  formulaireModification(data: any): void {
+
+    let refModal = this.formModif.open(ModifierCellierComponent, {
+      data
+  });
+
+  const response = refModal.componentInstance.chargerCelliers.subscribe(() => {this.chargerCelliers()});
+  
+ }
+
+  // Affichage de la liste avec le nouveau cellier
   chargerCelliers() {
     this.servBouteilleDeVin.getListeCelliersParUtilisateur(this.authService.getIdUtilisateurAuthentifie()).subscribe( (cellier: any) => {
         this.celliers = this.listeCelliers = cellier

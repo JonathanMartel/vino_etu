@@ -40,6 +40,7 @@ import localeFrCa from "@angular/common/locales/fr-CA"
 import { StringHelpersService } from '@services/helpers/string-helpers.service';
 import { ProfilUtilisateurComponent } from './pages/profil-utilisateur/profil-utilisateur.component';
 import { ModifierUtilisateurComponent } from './pages/modifier-utilisateur/modifier-utilisateur.component';
+import { ModifierCellierComponent } from './pages/modifier-cellier/modifier-cellier.component';
 
 @NgModule({
     declarations: [
@@ -60,6 +61,7 @@ import { ModifierUtilisateurComponent } from './pages/modifier-utilisateur/modif
         AjoutCellierComponent,
         ProfilUtilisateurComponent,
         ModifierUtilisateurComponent,
+        ModifierCellierComponent,
 
     ],
     imports: [
