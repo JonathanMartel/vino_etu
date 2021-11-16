@@ -134,6 +134,10 @@ export class BouteilleDeVinService {
 
     }
 
+    getUtilisateurParId(userId: any) {
+
+        return this.http.get<any>(this.url + '/user/' + userId)
+    }
 
     modifierUtilisateur(userId: any, data: any) {
 
@@ -157,6 +161,7 @@ export class BouteilleDeVinService {
         return this.http.put<any>(this.url + '/celliers/'+ idCellier, body);
 
     }
+
 
 }
 

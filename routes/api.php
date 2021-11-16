@@ -66,6 +66,9 @@ Route::group(['middleware' => ["auth:sanctum"]], function () {
     // Récupérer un cellier donné
     Route::get('celliers/{cellier}', [CellierController::class, "show"]);
 
+    // Récupérer un utilisateur donné
+    Route::get('user/{userId}', [CustomAuthController::class, "getUtilisateur"]);
+
     // Récupérer la liste des celliers pour un utilisateur donné
     Route::get('celliers', [CellierController::class, "afficherCelliersParUtilisateur"]);
 

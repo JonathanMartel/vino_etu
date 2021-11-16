@@ -29,6 +29,20 @@ class CustomAuthController extends Controller {
         //
     }
 
+
+    /**
+     * prendre utilisateur 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getUtilisateur(int $utilisateurId) {
+        
+        $utilisateur = User::find($utilisateurId);
+
+        return $utilisateur;
+    }
+
+
     /**
      * Show the form for creating a new resource.
      *

@@ -26,6 +26,9 @@ export class ModifierUtilisateurComponent implements OnInit {
     dob: new FormControl(''),
   })
 
+  // Émetteur d'événnement afin d'afficher la liste des celliers sans refresh après la modification
+  @Output("profilUtilisateur") profilUtilisateur: EventEmitter<any> = new EventEmitter();
+
 
   constructor(
     private servBouteilleDeVin: BouteilleDeVinService,
@@ -76,10 +79,12 @@ export class ModifierUtilisateurComponent implements OnInit {
 
     this.servBouteilleDeVin.modifierUtilisateur(this.userId, nouvelleInfo).subscribe(() => {
       this.openSnackBar('Vous avez modifié les informations personnelle avec succès', 'Fermer');
-      setTimeout(() => {
+
       this.formModifierUtilisateur.close();
-    }, 2000);
-      this.router.navigate(['profil']);
+
+      this.profilUtilisateur.emit();
+
+      //this.router.navigate(['profil']);
     });
   }
 }

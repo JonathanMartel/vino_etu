@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ModifierUtilisateurComponent } from '@pages/modifier-utilisateur/modifier-utilisateur.component';
 import { AuthService } from '@services/auth.service';
+import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 
 @Component({
   selector: 'app-profil-utilisateur',
@@ -16,13 +17,17 @@ export class ProfilUtilisateurComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
+    private servBouteilleDeVin: BouteilleDeVinService,
     public dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
 
-    // Recuperer les données de l'utilisateur authentifie
-    //this.utilisateur = this.authService.utilisateurAuthentifie;
+    // Recuperer l'utilisateur authentifie
+    this.servBouteilleDeVin.getUtilisateurParId(this.authService.getIdUtilisateurAuthentifie()).subscribe((data: any) => {
+      console.log(data);
+      this.utilisateur = data;
+    });
   }
 
   formulaireModifierUtilisateur(utilisateur: any): void {
@@ -34,13 +39,15 @@ export class ProfilUtilisateurComponent implements OnInit {
 
     this.profilUtilisateur();
 
-    //const response = modifierUtilisateur.componentInstance.profilUtilisateur.subscribe(() => {this.profilUtilisateur()});
+    const response = modifierUtilisateur.componentInstance.profilUtilisateur.subscribe(() => {this.profilUtilisateur()});
   }
 
 
   profilUtilisateur() {
-    //this.utilisateurModifier = this.authService.utilisateurAuthentifie;
-    this.utilisateurModifier = this.utilisateur;
+    this.servBouteilleDeVin.getUtilisateurParId(this.authService.getIdUtilisateurAuthentifie()).subscribe((data: any) => {
+      console.log(data);
+      this.utilisateurModifier = this.utilisateur = data;
+    });
   }
 
 }
