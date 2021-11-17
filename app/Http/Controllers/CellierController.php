@@ -77,6 +77,9 @@ class CellierController extends Controller
      */
     public function edit(Cellier $cellier)
     {
+        if(session('user')->id != $cellier->user_id) {
+            return redirect('cellier');
+        }
         return view('celliers.edit', ['cellier' => $cellier]);
     }
 

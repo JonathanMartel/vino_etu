@@ -64,7 +64,7 @@
                     @if( session('user')->admin == 1)
                     <li><a href="{{ route('importerBouteille') }}">Importer bouteille</a></li>
                     <li><a href="{{ route('gererUsagers') }}">Gérer des usagers</a></li>
-
+                    <li><a href="{{ route('modifierCatalogue') }}">Modification de bouteilles</a></li>
                     @else
                     <li><a href="{{ route('cellier') }}">Vos celliers</a></li>
                     <li><a href="{{ route('dashboard') }}"><span class="black-text">Mon Compte</span></a></li>
@@ -81,7 +81,7 @@
                     @if( session('user')->admin == 1)
                     <li class="tab"><a href="{{ route('importerBouteille') }}"><span class="black-text">Importer bouteille</span></a></li>
                     <li class="tab"><a href="{{route('gererUsagers') }}"><span class="black-text">Gérer des usagers</span></a></li>
-
+                    <li class="tab"><a href="{{route('modifierCatalogue') }}"><span class="black-text">Modification de bouteilles</span></a></li>
                     @else
                         <li class="tab"><a href="{{ route('cellier') }}"><span class="black-text">Vos celliers</span></a></li>
                          <li class="tab"><a href="{{ route('dashboard') }}"><span class="black-text">Mon Compte</span></a></li>
