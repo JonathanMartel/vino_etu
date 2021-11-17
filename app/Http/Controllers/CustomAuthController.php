@@ -82,11 +82,8 @@ class CustomAuthController extends Controller
         if(Auth::attempt($credentials)){
           session(['user' => Auth::user()]);
           
-          if(session('user')->admin){
-            return redirect()->intended('importerBouteille');
-          }
           
-          return redirect()->intended('cellier');
+          return redirect()->intended('importerBouteille');
         }
 
         return redirect('login')->withSuccess('Les informations de connexion ne sont pas valides!');
