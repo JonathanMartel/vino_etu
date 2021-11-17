@@ -257,9 +257,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 let messagePrix = "Format invalide";
                 document.getElementById("messagePrix").innerHTML = messagePrix;
                 valide = false;
-            }
-
-            else if( prix.value < 0 || prix.value > 100000) {
+            }else if( prix.value < 0 || prix.value > 100000){
                 let messagePrix = "Prix de 0 à 100 000";
                 prix.classList.add("champNonValide");
                 document.getElementById("messagePrix").innerHTML = messagePrix;
@@ -310,12 +308,15 @@ document.addEventListener('DOMContentLoaded', function() {
              input.addEventListener("input", (e) => {
                  e.preventDefault();
                  console.log('change');
-                //  if(!estValide(input)){
-                //      input.classList.add("champNonValide");
-                //  }else{
-                //     input.classList.remove("champNonValide");
-                //  }
-                estValide(input);
+                 estValide(input);
+                  if(!estValide(input)){
+                    btnValideActive.classList.add("boutonNonValide");
+                    btnValideActive.setAttribute("disabled","true");
+                  }else{
+                    btnValideActive.classList.remove("boutonNonValide");
+                    btnValideActive.removeAttribute('disabled');
+                  }
+                
              });
          });
 });

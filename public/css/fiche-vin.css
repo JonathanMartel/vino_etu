@@ -257,5 +257,9 @@ input:focus-visible{
 .champNonValide{
     border-style: dashed;
     border-color: red;
-    background-color: #9aa2a888;
+    background-color: #cbd0d488;
+}
+
+.boutonNonValide{
+    opacity: 50%;
 }
