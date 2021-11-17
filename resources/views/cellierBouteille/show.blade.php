@@ -145,14 +145,8 @@
                     <button class="bouton-fiche valider"  data-js-modifier>Modifier</button>
                     <button class="bouton-fiche non-active" data-js-btnAnnuler>Annuler</button> 
                     <button  class="bouton-fiche valider non-active"  data-js-btnValider >Valider</button>
-
-                    <form action="{{ route('cellierBouteille.destroy', $bouteille->id)}}" method="POST">
-                        @method('DELETE')
-                        @csrf
-                        <button class="bouton-fiche effacer non-active" data-js-btnEffacer >Suprimer</button>
-                    </form>
-                   
-                </div> 
+                    <button class="bouton-fiche effacer non-active" data-js-btnEffacer >Suprimer</button>
+                </div>
             </form>
         </div>
     </section>

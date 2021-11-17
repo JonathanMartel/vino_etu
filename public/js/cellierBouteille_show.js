@@ -46,6 +46,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const idCellier = location.pathname.split('/')[2]
     const idBouteille = location.pathname.split('/')[3]
     
+
+
+    let elMillesime = document.querySelector('[data-millesime]').dataset.millesime;
+    
     sessionStorage.setItem('idCellier', idCellier);
     sessionStorage.setItem('idBouteille', idBouteille);
 
@@ -110,21 +114,30 @@ document.addEventListener('DOMContentLoaded', function() {
          });
      });
 
+
+     let btnMillesime;
+
+
+/* Boutons millesime */
+
  for (let i = 0; i < boutonMillesime.length; i++) {
 
         boutonMillesime[i].addEventListener("click", function(e) {
         e.preventDefault();
-        const millesime = boutonMillesime[i].dataset.jsBouton;
         
+         elMillesime = boutonMillesime[i].dataset.jsBouton;
+        btnMillesime = boutonMillesime[i];
         document.querySelectorAll('button').forEach(button => {
             button.classList.remove('millesime-item-selected');
         })
 
         
+        
+
         boutonMillesime[i].querySelector('button').classList.add('millesime-item-selected');
         /* Fetch cellier_Bouteille */
 
-        fetch(`/obtenirMillesime/${idCellier}/${idBouteille}/${millesime}`)
+        fetch(`/obtenirMillesime/${idCellier}/${idBouteille}/${elMillesime}`)
         
         .then(response => {
             return (response.json())
@@ -188,9 +201,11 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     /** Action bouton annuler, efface les champs modifié et retire les boutons annuler, valider et effacer. Réactive le bouton modifier **/
+    
     btnAnnuleActive.addEventListener("click",function(e){
         e.preventDefault();
         infoForm.reset();
+        btnMillesime.click();
         estValide();
         boutonModifier.classList.remove("non-active");
         btnEffacerActive.classList.add("non-active");
@@ -243,11 +258,24 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
 
-        btnEffacerActive.addEventListener("click",function(e){
+         btnEffacerActive.addEventListener("click",function(e){
             e.preventDefault();
             console.log('click effacer');
 
-        });
+
+            fetch(`/suprimerCellierBouteille/${idCellier}/${idBouteille}/${elMillesime}`)
+        
+            .then(response => {
+                return (response.json())
+            })
+            .then(response => {
+                console.log(response);
+                location.href=response;
+    
+            }).catch(error => console.log(error))
+
+
+       });
 
         /** validation **/
 

@@ -8,7 +8,7 @@
     <meta name="author" content="" />
     
     <title>In Vino Veritas</title>
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link rel="icon" href="{{asset('assets/logo/logo-vino.svg') }}">
     
     
     
