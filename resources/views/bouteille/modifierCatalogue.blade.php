@@ -3,6 +3,17 @@
 
 <h1 class="titre">Modification de bouteilles</h1>
 
+<nav>
+    <div class="nav-wrapper">
+      <form>
+        <div class="input-field">
+          <input id="search" type="search" required>
+          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+          <i class="material-icons">close</i>
+        </div>
+      </form>
+    </div>
+  </nav>
 
 <table class="table striped highlight responsive-table">
         <thead>
@@ -42,4 +53,4 @@
 <span class="message"></span>
 @endsection
 
-
+<script src="{{asset('js/modifierCatalogue.js')}}"></script>
