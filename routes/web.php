@@ -122,7 +122,7 @@ Route::get('/reinitialiserCellier/{idCellier}', [CellierController::class, 'rein
 
 Route::get('/importerBouteille', [BouteilleController::class, 'index'])->name('importerBouteille')->middleware('admin')->middleware('prevent-back-history');
 Route::get('/obtenirListeSAQ/{page}', [BouteilleController::class, 'obtenirListeSAQ'])->name('obtenirListeSAQ')->middleware('admin')->middleware('prevent-back-history');
-
+Route::get('/modifierCatalogue', [BouteilleController::class, 'modifierCatalogue'])->name('modifierCatalogue')->middleware('admin')->middleware('prevent-back-history');
 
 
 
