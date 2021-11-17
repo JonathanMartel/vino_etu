@@ -291,10 +291,18 @@ class CellierBouteilleController extends Controller
      * @param  \App\Models\CellierBouteille  $cellierBouteille
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CellierBouteille $cellierBouteille)
+    public function destroy($idCellier, $idBouteille, $millesime)
     {
-        $cellierBouteille->delete();
 
-        return redirect('/');
+        CellierBouteille::suprimerCellierBouteille($idCellier, $idBouteille, $millesime);
+      
+        if(isset(CellierBouteille::obtenirMillesimesParBouteille($idCellier, $idBouteille)[0])){
+            $url = URL::to(''). '/cellier/'.$idCellier.'/'.$idBouteille;
+
+        }else{
+
+            $url = URL::to(''). '/cellier/'.$idCellier;
+        }
+        return response()->json($url);
     }
 }

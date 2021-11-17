@@ -144,7 +144,7 @@ class CellierBouteille extends Model
         ->where('bouteille_id', $idBouteille)
         ->where('millesime','like' ,$millesime . "%")
         ->update(['note' => $note]);
-        
+
     }
 
 
@@ -174,5 +174,17 @@ class CellierBouteille extends Model
                 ]);
 
     }
-    
+
+    public static function suprimerCellierBouteille($idCellier, $idBouteille, $millesime)
+    {
+        if($millesime == 0) {
+            $millesime = 0000;
+        }
+        
+        DB::table('cellier_bouteilles')
+        ->where('cellier_id', $idCellier)
+        ->where('bouteille_id', $idBouteille)
+        ->where('millesime', $millesime)->delete();
+    }
+
 }
