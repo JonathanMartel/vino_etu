@@ -226,6 +226,26 @@ class CustomAuthController extends Controller
 
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\user  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function adminedit(user $user)
+    {
+      $id = $user->id;
+      $nom = $user->nom;
+      $courriel = $user->courriel;
+      $date_naissance = $user->date_naissance;
+
+      return view('user.adminmodifieuser', ['nom' => $nom,
+                                       'courriel' => $courriel,
+                                       'date_naissance' => $date_naissance,
+                                       'id' => $id
+                                      ]);
+    }
+
 
     
 

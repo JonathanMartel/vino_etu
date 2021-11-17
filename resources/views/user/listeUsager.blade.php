@@ -38,27 +38,20 @@
               <td>{{$user->courriel}}</td>
               <td>{{$user->date_naissance}}</td>
               <td>
-                <form action="#">
+                
                 @if($user->admin === 1)
-                <p>
-                  <label>
-                    <input type="checkbox" checked="checked"/>
-                    <span></span>
-                  </label>
-                </p>
+                <!-- <i class="material-icons small black-text">check</i> -->
+                <span>Oui</span>
                 @else
-                <p>
-                  <label>
-                    <input type="checkbox" />
-                    <span></span>
-                  </label>
-                </p>
+                <!-- <i class="material-icons small black-text">close</i> -->
+                <span>Non</span>
                 @endif
                 </form>
               </td>
 
               <td>
-                <a class="waves-effect waves-light button modifier margin-right" href="{{ route('custom.edit', $user->id)}}"><i class="material-icons">edit</i></a>
+                <a class="waves-effect waves-light button modifier margin-right" href="{{ route('adminuser.edit', $user->id)}}"><i class="material-icons">edit</i></a>
+
                 <a class="waves-effect waves-light button supprimer modal-trigger" href="#{{$user->id}}"><i class="material-icons">delete</i></a>
 
                 <!-- Modal Structure supprimer-->
@@ -94,4 +87,3 @@
 
 <link href="{{asset('css/liste-usager.css')}}" rel="stylesheet" />
 
-<!-- <link href="{{asset('css/bouteilles.css')}}" rel="stylesheet" /> -->
