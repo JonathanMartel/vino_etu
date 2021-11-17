@@ -29,7 +29,7 @@
             <td>{{$bouteille->code_saq}}</td>
             <td>{{$bouteille->prix_saq}}</td>
             <td>{{$bouteille->url_saq}}</td>
-            <td>{{$bouteille->taille}}</td>
+            <td>{{$bouteille->taille}} cL</td>
             <td>{{$bouteille->type}}</td>
 
             
