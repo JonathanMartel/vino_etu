@@ -63,15 +63,15 @@
 
 
               </div>
-              @if(session('success'))
+              
+              
+              
+              
+            </div>	@if(session('success'))
                 <div class="text-center p-t-12">
                   <span class="red-text">{{ session('success')}}</span>
                 </div>
               @endif
-              
-              
-              
-            </div>	
           </form>
         </div>
       </div>

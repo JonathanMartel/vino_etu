@@ -24,3 +24,7 @@ h1.titre {
     width: 80px;
     height: 80px;
 }
+
+table.striped tr:hover{
+    cursor: pointer;
+}

@@ -49,7 +49,7 @@
                     @endif
                 </div>
                 @if(!$bouteille->url_saq || Auth::user()->admin)
-                    <a class="bouteilleSAQConteneur-fiche" href="{{ route('bouteilleEdit', ['bouteille' =>$bouteille->id, 'idCellier' => $cellier->id])}}"><i class="material-icons-fiche">edit</i></a>
+                    <a class="bouteilleSAQConteneur-fiche" href="{{ route('bouteilleEdit', $bouteille->id)}}"><i class="material-icons-fiche">edit</i></a>
                 @endif
             </div>
 

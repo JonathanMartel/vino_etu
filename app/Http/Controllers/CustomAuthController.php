@@ -13,13 +13,24 @@ use Carbon\Carbon;
 class CustomAuthController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display the login page .
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
         return view('auth.login');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function listeUsager()
+    {
+        $users = User::all();
+        return view('user.listeUsager',['users'=>$users]);
     }
 
     /**
@@ -70,12 +81,8 @@ class CustomAuthController extends Controller
         $credentials = $request->only('courriel', 'password');
         if(Auth::attempt($credentials)){
           session(['user' => Auth::user()]);
-          
-          if(session('user')->admin){
-            return redirect()->intended('importerBouteille');
-          }
-          
-          return redirect()->intended('cellier');
+                 
+          return redirect()->intended('importerBouteille');
         }
 
         return redirect('login')->withSuccess('Les informations de connexion ne sont pas valides!');
@@ -212,6 +219,9 @@ class CustomAuthController extends Controller
       return redirect('/user/'.$id.'/password')->withSuccess('Le mot de passe n\'est pas valides!');
 
     }
+
+
+    
 
 
     /**

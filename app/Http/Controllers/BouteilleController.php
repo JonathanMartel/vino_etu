@@ -7,8 +7,10 @@ use App\Models\Bouteille;
 use Illuminate\Http\Request;
 use App\Models\Type;
 use App\Models\Format;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
-use Illuminate\Support\Facades\File; 
+use Illuminate\Support\Facades\File;
+use Symfony\Component\VarDumper\Cloner\Data;
 
 class BouteilleController extends Controller
 {
@@ -22,13 +24,19 @@ class BouteilleController extends Controller
          return view('bouteille.index', []);
     }
 
+    public function modifierCatalogue()
+    {   
+        $bouteilles = Bouteille::obtenirBouteilles();
+         return view('bouteille.modifierCatalogue')->with( 
+             'bouteilles', $bouteilles);
+    }
 
      /**
      * Mettre à jour la table Bouteille en important une liste de bouteille du site de la SAQ
      * @return response une liste de bouteilles qui n'était pas dans la BD
      */
-	public function obtenirListeSAQ() {
-        $nouvellesBouteilles = Bouteille::obtenirListeSAQ();
+	public function obtenirListeSAQ($page) {
+        $nouvellesBouteilles = Bouteille::obtenirListeSAQ($page);
        
         return response()->json($nouvellesBouteilles);
     }
@@ -126,9 +134,11 @@ class BouteilleController extends Controller
      * @param  \App\Models\Bouteille  $bouteille
      * @return \Illuminate\Http\Response
      */
-    public function edit(Bouteille $bouteille, $idCellier)
+    public function edit(Bouteille $bouteille)
     {
-        session(['idCellier' => $idCellier]);
+        if($bouteille->user_id != session('user')->id)
+            return redirect('/cellier');
+
         $types = Type::all();
         $formats = Format::all();
         // $idBouteille = $bouteille->id;
@@ -137,7 +147,7 @@ class BouteilleController extends Controller
                                         'bouteille'=> $bouteille,
                                         'types' => $types,
                                         'formats' => $formats,
-                                        'idCellier' => $idCellier,
+                                        'idCellier' => session('idCellier') ?? 0,
                                         'idBouteille' =>$bouteille
 
     ]);
@@ -161,8 +171,6 @@ class BouteilleController extends Controller
             'url_saq' => 'url',
             'type_id' => 'required | exists:types,id',
             'format_id' => 'required | exists:formats,id',
-
-
         ]);
         
         /**
