@@ -7,8 +7,10 @@ use App\Models\Bouteille;
 use Illuminate\Http\Request;
 use App\Models\Type;
 use App\Models\Format;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
-use Illuminate\Support\Facades\File; 
+use Illuminate\Support\Facades\File;
+use Symfony\Component\VarDumper\Cloner\Data;
 
 class BouteilleController extends Controller
 {
@@ -22,6 +24,12 @@ class BouteilleController extends Controller
          return view('bouteille.index', []);
     }
 
+    public function modifierCatalogue()
+    {   
+        $bouteilles = Bouteille::obtenirBouteilles();
+         return view('bouteille.modifierCatalogue')->with( 
+             'bouteilles', $bouteilles);
+    }
 
      /**
      * Mettre à jour la table Bouteille en important une liste de bouteille du site de la SAQ
@@ -130,6 +138,7 @@ class BouteilleController extends Controller
     {
         if($bouteille->user_id != session('user')->id)
             return redirect('/cellier');
+
         $types = Type::all();
         $formats = Format::all();
         // $idBouteille = $bouteille->id;

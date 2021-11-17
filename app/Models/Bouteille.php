@@ -28,6 +28,14 @@ class Bouteille extends Model
         return $this->belongsTo(Format::class);
     }
 
+    public static function obtenirBouteilles(){
+        return DB::table('bouteilles')
+        ->select('bouteilles.nom', 'bouteilles.id', 'pays', 'description', 'type', 'code_saq', 'url_saq', 'url_img', 'prix_saq', 'taille' )
+        ->join('types', 'bouteilles.type_id', '=', 'types.id')
+        ->join('formats', 'formats.id', '=', 'bouteilles.format_id')
+        ->paginate(20);
+    }
+
     /**
      * @param motCle
      * Rechercher dans la table bouteilles les noms qui contiennent le motCle
