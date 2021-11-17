@@ -107,7 +107,7 @@ Route::get('/cellierBouteille/edit', [CellierBouteilleController::class, 'edit']
 
 Route::put('/cellier/{idCellier}/{idBouteille}/{millesime}', [CellierBouteilleController::class, 'update'])->middleware('auth')->name('cellierBouteille.update')->middleware('prevent-back-history');
 
-Route::delete('/cellierBouteille/{idBouteille}', [CellierBouteilleController::class, 'destroy'])->middleware('auth')->name('cellierBouteille.destroy')->middleware('prevent-back-history');
+Route::get('/suprimerCellierBouteille/{idCellier}/{idBouteille}/{millesime}', [CellierBouteilleController::class, 'destroy'])->middleware('auth')->name('cellierBouteille.destroy')->middleware('prevent-back-history');
 
 /*route pour le fetch*/
 

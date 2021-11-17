@@ -81,7 +81,7 @@
 
     <section class="">
         <div class="form-modifier form">
-            <form id="" action="" method="POST" class="form-modifier" data-js-form> 
+            <form id="" name="myForm" action="" method="POST" class="form-modifier" data-js-form> 
                 @method('PUT')
                 @csrf
                 <div class="millesime-info-debut">
@@ -110,13 +110,14 @@
                             </div>
                             <div class="form-modifier-item" >
                                 <label for="prix">Prix d'achat</label>
-                                <input type="number" name="prix" readonly="readonly" id="prix" data-js-input class="input-fiche-cercle" value="{!! $cellierBouteille->prix !!}"/>
+                                <input type="number" name="prix"  readonly="readonly" id="prix" data-js-input class="input-fiche-cercle" value="{!! $cellierBouteille->prix !!}"/>
                             </div>
-                            <p id="message"></p>
+                            <p id="messagePrix" class="nonValide"></p>
                             <div class="form-modifier-item" >
                                 <label for="quantite">Qte</label>
                                 <input type="number" name="quantite" readonly="readonly" id="quantite" data-js-input class="input-fiche-cercle" value="{!! $cellierBouteille->quantite !!}"/>
                             </div>
+                            <p id="messageQuantite" class="nonValide"></p>
                         </div>
                     </div>
                 </div>
@@ -124,10 +125,12 @@
                     <div class="item-commentaire" >
                         <label for="commentaire">Commentaire</label>
                         <input type="textarea" name="commentaire" readonly="readonly" id="commentaire" data-js-input class="textarea" placeholder="Aucun commentaire" value="{{ $cellierBouteille->commentaire }}"/>
+                        <p id="messageCommentaire" class="nonValide"></p>
                     </div>
                     <div class="item-commentaire" >
                         <label for="garde_jusqua">Garder jusqu'à</label>
                         <input type="textarea" name="garde_jusqua" readonly="readonly" placeholder="Non disponible" id="garde_jusqua" data-js-input class="textarea" value="{!! $cellierBouteille->garde_jusqua !!}"/>
+                        <p id="messageGardeJusqua" class="nonValide"></p>
                     </div>
                     <div class="item-commentaire" >
                         <label for="date_achat">Date d'achat :</label>
@@ -143,7 +146,7 @@
                     <button class="bouton-fiche non-active" data-js-btnAnnuler>Annuler</button> 
                     <button  class="bouton-fiche valider non-active"  data-js-btnValider >Valider</button>
                     <button class="bouton-fiche effacer non-active" data-js-btnEffacer >Suprimer</button>
-                </div> 
+                </div>
             </form>
         </div>
     </section>
