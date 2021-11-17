@@ -271,8 +271,9 @@ class CustomAuthController extends Controller
       if(isset($request->admin)){
         $admin=1;
       }else{
-        $admin = "";
+        $admin = null;
       }
+      // echo($admin);
 
       $bool = Hash::check($password, $adminPassword);
       if ($bool) {
