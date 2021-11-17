@@ -3,7 +3,7 @@
 
 <h1 class="titre">Mettre à jour le catalogue de bouteilles</h1>
 <div class=" flex-center">
-    <a class="waves-effect waves-light btn-large" href="{{ route('obtenirListeSAQ') }}">Importer des bouteilles du site de la SAQ</a>
+    <a class="waves-effect waves-light btn-large" >Importer des bouteilles du site de la SAQ</a>
     
     
     <div class="preloader-wrapper big ">
@@ -19,7 +19,7 @@
       </div>
 </div>
 
-<table class="table striped responsive-table">
+<table class="table striped highlight responsive-table">
         <thead>
           <tr>
               <th>Image</th>
