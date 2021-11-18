@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const idBouteille = location.pathname.split('/')[3]
     
 
-
+    let btnMillesime = document.querySelector('[data-millesime]');
     let elMillesime = document.querySelector('[data-millesime]').dataset.millesime;
     
     sessionStorage.setItem('idCellier', idCellier);
@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function() {
      });
 
 
-     let btnMillesime;
+     
 
 
 /* Boutons millesime */
@@ -219,7 +219,7 @@ document.addEventListener('DOMContentLoaded', function() {
             inputs[i].classList.add("input-fiche-cercle");
             }
             datepicker.disabled =  true;
-            btnMillesime.click();
+            btnMillesime.click();   
     });
 
 

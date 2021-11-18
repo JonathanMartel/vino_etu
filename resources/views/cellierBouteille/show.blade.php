@@ -184,7 +184,6 @@
 <link href="{{asset('css/star-rating.css')}}" rel="stylesheet" />
 <link href="{{asset('css/fiche-vin.css')}}" rel="stylesheet" />
 <script src="{{asset('js/star-rating.js')}}"></script>
-
 <script src="{{asset('js/cellier_index.js')}}"></script>
 
 
