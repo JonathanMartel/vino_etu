@@ -197,15 +197,23 @@ class BouteilleController extends Controller
             if($bouteilleExistante[0]->id == $bouteille->id) {
               
                 self::updateBouteille($bouteille, $request);
-        
+                if(!session()->has('idCellier')){
+                    return redirect(URL::to('') . '/modifierCatalogue')->withInput()->with("modifieBouteille", "une bouteille modifiée");
+                }
+                else {
                 return redirect(URL::to('') . '/cellier/'. session('idCellier') . '/'. $bouteille->id)->withInput()->with("modifieBouteille", "une bouteille modifiée");
+                }
             }else {
                 return back()->withInput()->with('erreur', "Bouteille existe déjà");
             }
         }else {
             self::updateBouteille($bouteille, $request);
-    
+            if(!session()->has('idCellier')){
+                return redirect(URL::to('') . '/modifierCatalogue')->withInput()->with("modifieBouteille", "une bouteille modifiée");
+            }
+            else {
             return redirect(URL::to('') . '/cellier/'. session('idCellier') . '/'. $bouteille->id)->withInput()->with("modifieBouteille", "une bouteille modifiée");
+            }
         }   
       
     }

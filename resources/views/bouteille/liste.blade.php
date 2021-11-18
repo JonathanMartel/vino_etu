@@ -15,7 +15,7 @@
 
         <tbody>
         @foreach($bouteilles as $bouteille)
-          <tr>
+          <tr data-id="{{$bouteille->id}}">
             <td><img src="{{$bouteille->url_img}}" alt="{{$bouteille->nom}}"></td>
             <td>{{$bouteille->nom}}</td>
             <td>{{$bouteille->pays}}</td>

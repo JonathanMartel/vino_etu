@@ -1,15 +1,23 @@
 @extends('layouts.app')
 @section('content')
 
+@if(Session::get('modifieBouteille'))
+<span class="modifieBouteille"></span>
+@endif
+
+@if(Session::get('deleteBouteille'))
+<span class="deleteBouteille"></span>
+@endif
+
 <h1 class="titre">Modification de bouteilles</h1>
 
-<nav>
+<nav class="white ">
     <div class="nav-wrapper">
       <form>
         <div class="input-field">
           <input id="search" type="search" required>
-          <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-          <i class="material-icons">close</i>
+          <label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
+          <i id="close" class="material-icons">close</i>
         </div>
       </form>
     </div>
@@ -33,7 +41,7 @@
   
           <tbody>
           @foreach($bouteilles as $bouteille)
-            <tr>
+            <tr data-id="{{$bouteille->id}}">
               <td><img src="{{$bouteille->url_img}}" alt="{{$bouteille->nom}}"></td>
               <td>{{$bouteille->nom}}</td>
               <td>{{$bouteille->pays}}</td>
@@ -56,3 +64,5 @@
 @endsection
 
 <script src="{{asset('js/modifierCatalogue.js')}}"></script>
+<link href="{{asset('css/liste-usager.css')}}" rel="stylesheet" />
+<link href="{{asset('css/modifierCatalogue.css')}}" rel="stylesheet" />
