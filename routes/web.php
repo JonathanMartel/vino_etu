@@ -5,7 +5,6 @@ use App\Http\Controllers\CellierBouteilleController;
 use App\Http\Controllers\BouteilleController;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\CellierController;
-use App\Http\Controllers\SocialShareButtonsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -126,7 +125,6 @@ Route::get('/rechercherCatalogue/{term?}', [BouteilleController::class, 'recherc
 Route::get('/importerBouteille', [BouteilleController::class, 'index'])->name('importerBouteille')->middleware('admin')->middleware('prevent-back-history');
 Route::get('/obtenirListeSAQ/{page}', [BouteilleController::class, 'obtenirListeSAQ'])->name('obtenirListeSAQ')->middleware('admin')->middleware('prevent-back-history');
 Route::get('/modifierCatalogue', [BouteilleController::class, 'modifierCatalogue'])->name('modifierCatalogue')->middleware('admin')->middleware('prevent-back-history');
-
 
 
 
