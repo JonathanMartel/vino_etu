@@ -238,7 +238,8 @@ class CustomAuthController extends Controller
       return view('user.adminmodifieuser', ['nom' => $nom,
                                        'courriel' => $courriel,
                                        'date_naissance' => $date_naissance,
-                                       'id' => $id
+                                       'id' => $id,
+                                       'user'=>$user
                                       ]);
     }
 
@@ -281,8 +282,8 @@ class CustomAuthController extends Controller
           'admin' => $admin,
           'password'=> $userPassword
         ]);
-        return redirect('liste-usager');
-        // return redirect('dashboard')->withInput()->with("modifieInfo", "infomation modifiée");
+        // return redirect('liste-usager');
+        return redirect('liste-usager')->withInput()->with("modifie", "infomation modifiée");
       }
 
       return redirect('/user/'.$id.'/adminedit')->withSuccess('Le mot de passe n\'est pas valides!');

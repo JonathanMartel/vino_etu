@@ -30,3 +30,10 @@ h1.titre {
 .margin-right {
     margin-right: 1rem;
 }
+
+@media only screen and (min-width: 993px){
+   #toast-container {
+    
+    max-width: 100% !important;
+    } 
+}

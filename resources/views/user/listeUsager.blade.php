@@ -1,6 +1,10 @@
 @extends('layouts.app')
 @section('content')
 
+@if(Session::get('modifie'))
+<span class="modifie"></span>
+@endif
+
 <script src="{{asset('js/liste_usager.js')}}"></script>
 
 
@@ -32,7 +36,7 @@
 
         <tbody>
         @foreach($users as $user)
-          @if(Auth::user()->id != $user->id)
+          
             <tr>
               <td>{{$user->nom}}</td>
               <td>{{$user->courriel}}</td>
@@ -51,9 +55,24 @@
 
               <td>
                 <a class="waves-effect waves-light button modifier margin-right" href="{{ route('adminuser.edit', $user->id)}}"><i class="material-icons">edit</i></a>
+                @if(Auth::user()->id === $user->id)
+                <a class="waves-effect waves-light button supprimer modal-trigger" href="#modaladmin"><i class="material-icons">delete</i></a>
+                <!-- Modal Structure supprimer-->
+                <div id="modaladmin" class="modal">
+                  <div class="modal-content">
+                      <h4>Supprimer ce usager</h4>
+                      <p>Vous ne pouvez pas supprimer vous-même!</p>
+                  </div>
+                  <div class="modal-footer">
+                    
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Annuler</a>
+                  </div>
+                </div>
+
+                @else
 
                 <a class="waves-effect waves-light button supprimer modal-trigger" href="#{{$user->id}}"><i class="material-icons">delete</i></a>
-
+                @endif
                 <!-- Modal Structure supprimer-->
                 <div id="{{$user->id}}" class="modal">
                   <div class="modal-content">
@@ -72,7 +91,7 @@
               </td>
             </tr>
           
-          @endif
+          
           
           
 

@@ -152,7 +152,7 @@ input:not([type]):focus:not([readonly]), input[type=text]:not(.browser-default):
 	right: auto !important;
 	bottom: 0;
 	left: auto !important;
-	
+    width: 100%;
   }
 
   .btn, .btn-large, .btn-small, .btn-flat {

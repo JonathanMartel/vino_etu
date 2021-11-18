@@ -48,9 +48,15 @@
               <div class="input-field col s12">
                 <div class="flex-row">
                 <span>Admin</span>
+                 @if(isset($user->admin))
                   <label>
+                    <input type="checkbox" name="admin" checked="checked">
+                    <span></span></label>
+                    @else
+                    <label>
                     <input type="checkbox" name="admin">
                     <span></span>
+                    @endif
                   </label>
                 </div>
               </div>
