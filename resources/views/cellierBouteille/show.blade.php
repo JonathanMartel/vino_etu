@@ -186,7 +186,6 @@
 <script src="{{asset('js/star-rating.js')}}"></script>
 
 <script src="{{asset('js/cellier_index.js')}}"></script>
-<link href="{{asset('css/bouteille_edit.css')}}" rel="stylesheet" />
-<script src="{{asset('js/bouteille_edit.js')}}"></script>
+
 
 
