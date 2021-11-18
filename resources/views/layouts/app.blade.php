@@ -8,7 +8,7 @@
     <meta name="author" content="" />
     
     <title>In Vino Veritas</title>
-    <link rel="icon" href="{{asset('assets/logo/logo-vino.svg') }}">
+    <link rel="icon" href="{{asset('assets/logo/logo-vino(2).svg') }}">
     
     
     
@@ -40,7 +40,7 @@
 <div id="body_container">
     <header class="flex-row padding-1rem z-depth-1">
             <!-- Voir la navigation !!! -->
-        <a href="{{ route('cellier') }}" class="brand-logo left "><img class="logo" src="{{asset('assets/logo/logo-vino.svg')}}" alt="logo InVino"></a>
+        <a href="{{ route('cellier') }}" class="brand-logo left "><img class="logo" src="{{asset('assets/logo/vino-logo-v2.svg')}}" alt="logo InVino"></a>
 
         <nav class="nav-extended white z-depth-0">
             <div class="nav-wrapper">

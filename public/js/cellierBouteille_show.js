@@ -258,6 +258,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
 
+        /* Bouton supprimer */
+
          btnEffacerActive.addEventListener("click",function(e){
             e.preventDefault();
             console.log('click effacer');
