@@ -33,6 +33,7 @@ class Bouteille extends Model
         ->select('bouteilles.nom', 'bouteilles.id', 'pays', 'description', 'type', 'code_saq', 'url_saq', 'url_img', 'prix_saq', 'taille' )
         ->join('types', 'bouteilles.type_id', '=', 'types.id')
         ->join('formats', 'formats.id', '=', 'bouteilles.format_id')
+        ->where('user_id', 1)
         ->paginate(20);
     }
 
@@ -52,6 +53,24 @@ class Bouteille extends Model
         ->get();
     }
 
+    public static function rechercherCatalogue($motCle) {
+        return DB::table('bouteilles')
+        ->select('bouteilles.nom', 'bouteilles.id', 'pays', 'description', 'type', 'type_id', 'format_id', 'url_img', 'prix_saq', 'taille', 'code_saq', 'url_saq' )
+        ->where('user_id', 1)
+        ->where(function($query) use ($motCle){
+         $query->where('bouteilles.nom', "LIKE" , "%" .$motCle. "%")
+        ->orWhere('taille', "LIKE" , $motCle. "%")
+        ->orWhere('pays', "LIKE" , $motCle. "%")
+        ->orWhere('prix_saq', "LIKE" , $motCle. "%")
+        ->orWhere('code_saq', "LIKE" , $motCle. "%")
+        ->orWhere('type', "LIKE" , $motCle. "%")
+        ->orWhere('description', "LIKE" , $motCle. "%")
+        ->orWhere('url_saq', "LIKE" , $motCle. "%");
+        })
+        ->join('types', 'bouteilles.type_id', '=', 'types.id')
+        ->join('formats', 'formats.id', '=', 'bouteilles.format_id')
+        ->paginate(20);
+    }
         /**
      * @param $request
      * Rechercher dans la table bouteilles pour vérifier si une bouteille existe déjà

@@ -116,6 +116,8 @@ Route::get('/rechercheBouteillesParMotCle/{motCle}', [BouteilleController::class
 Route::get('/rechercheDansCellier/{motCle}/{idCellier}', [CellierController::class, 'rechercheDansCellier'])->name('rechercheDansCellier')->middleware('auth')->middleware('prevent-back-history');
 Route::get('/reinitialiserCellier/{idCellier}', [CellierController::class, 'reinitialiserCellier'])->name('reinitialiserCellier')->middleware('auth')->middleware('prevent-back-history');
 
+
+Route::get('/rechercherCatalogue/{term?}', [BouteilleController::class, 'rechercherCatalogue'])->name('rechercherCatalogue')->middleware('admin')->middleware('prevent-back-history');
 Route::get('/importerBouteille', [BouteilleController::class, 'index'])->name('importerBouteille')->middleware('admin')->middleware('prevent-back-history');
 Route::get('/obtenirListeSAQ/{page}', [BouteilleController::class, 'obtenirListeSAQ'])->name('obtenirListeSAQ')->middleware('admin')->middleware('prevent-back-history');
 Route::get('/modifierCatalogue', [BouteilleController::class, 'modifierCatalogue'])->name('modifierCatalogue')->middleware('admin')->middleware('prevent-back-history');

@@ -52,6 +52,20 @@ class BouteilleController extends Controller
         return response()->json($listeBouteilles);
     }
 
+    public function rechercherCatalogue($motCle = null)
+{      
+    if( !$motCle )
+    {
+        $bouteilles = Bouteille::obtenirBouteilles();
+    }
+    else
+    {
+        //Get match on name
+        $bouteilles = Bouteille::rechercherCatalogue($motCle);
+    }
+   
+    return response()->json([ 'table' => view('bouteille.liste', compact('bouteilles'))->render()]);
+}
     /**
      * @param nom
      * @param type_id

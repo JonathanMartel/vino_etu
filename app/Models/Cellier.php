@@ -40,7 +40,7 @@ class Cellier extends Model
      * @return rows une jointure de tous les tables contenant le mot clé
      */
     public static function rechercheDansCellier($motCle, $idCellier){
-        if(strtolower($motCle) == 'non millisimé')
+        if(strtolower($motCle) == 'non millésimé')
         {
             return DB::table('bouteilles')
             ->select('bouteilles.nom', 'bouteille_id', 'pays', 'description', 'type', 'type_id', 'format_id', 'url_img', 'taille', 'millesime', 'note', 'quantite', 'prix', 'garde_jusqua', 'date_achat', 'url_saq' )

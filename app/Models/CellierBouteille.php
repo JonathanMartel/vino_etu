@@ -136,9 +136,7 @@ class CellierBouteille extends Model
      * ajouter une note de dégustation à une bouteille
      */
     public static function ajouterNote($idCellier, $idBouteille, $millesime, $note)
-    {
-     
-        
+    {     
          DB::table('cellier_bouteilles')
         ->where('cellier_id', $idCellier)
         ->where('bouteille_id', $idBouteille)
@@ -146,9 +144,6 @@ class CellierBouteille extends Model
         ->update(['note' => $note]);
 
     }
-
-
-
 
  /**
       *@param idCellier
@@ -177,14 +172,12 @@ class CellierBouteille extends Model
 
     public static function suprimerCellierBouteille($idCellier, $idBouteille, $millesime)
     {
-        if($millesime == 0) {
-            $millesime = 0000;
-        }
         
         DB::table('cellier_bouteilles')
         ->where('cellier_id', $idCellier)
         ->where('bouteille_id', $idBouteille)
-        ->where('millesime', $millesime)->delete();
+        ->where('millesime','like' ,$millesime . "%")
+        ->delete();
     }
 
 }
