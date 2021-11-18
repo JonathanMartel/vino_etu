@@ -174,14 +174,24 @@ class CellierBouteilleController extends Controller
         }
         // print_r ($cellierBouteille);
 
-        return view('cellierBouteille.show', [
+        $shareComponent = \Share::currentPage()
+        ->facebook()
+        ->twitter()
+        ->linkedin()
+        ->telegram()
+        ->whatsapp()        
+        ->reddit();
+        
+
+        return view('cellierBouteille.show',[
             'bouteille' => $bouteille[0],
             'cellierBouteille' => $cellierBouteille[0],
             'cellier' => $cellier,
             'cellierBouteilleMillesime' =>  $cellierBouteilleMillesime,
             'celliers' => $celliers,
             'bouteilles' => $bouteilles,
-            'cellierBouteillesByIDs' => $cellierBouteillesByIDs
+            'cellierBouteillesByIDs' => $cellierBouteillesByIDs,
+            'shareComponent'=> $shareComponent
         ]);
         
     }
@@ -305,4 +315,10 @@ class CellierBouteilleController extends Controller
         }
         return response()->json($url);
     }
+
+
+   
+
+
+
 }

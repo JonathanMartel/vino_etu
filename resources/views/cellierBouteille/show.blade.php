@@ -1,6 +1,8 @@
 @extends('layouts.app')
 @section('content')
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+
 @if(Session::get('modifieBouteille'))
 <span class="modifieBouteille"></span>
 @endif
@@ -58,6 +60,9 @@
             <h2 class="description-titre">Description</h2>
             <p>{{ $bouteille->description ?? "Aucune description" }}</p>
         </article>
+        
+                    
+        {!! $shareComponent !!}
     </section>
 
 

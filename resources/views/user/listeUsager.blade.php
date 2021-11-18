@@ -14,7 +14,7 @@
     <div class="nav-wrapper">
       <form>
         <div class="input-field">
-          <input id="search" type="search" required>
+          <input id="search" type="search" placeholder="Rechercher" autocomplete="off" required>
           <label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
           <i class="material-icons">close</i>
         </div>
@@ -38,9 +38,9 @@
         @foreach($users as $user)
           
             <tr>
-              <td>{{$user->nom}}</td>
-              <td>{{$user->courriel}}</td>
-              <td>{{$user->date_naissance}}</td>
+              <td class="nom">{{$user->nom}}</td>
+              <td class="courriel">{{$user->courriel}}</td>
+              <td class="date_naissance">{{$user->date_naissance}}</td>
               <td>
                 
                 @if($user->admin === 1)
@@ -90,13 +90,7 @@
                 </div>
               </td>
             </tr>
-          
-          
-          
-          
-
         @endforeach
-
        
         </tbody>
       </table>
