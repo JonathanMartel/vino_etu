@@ -20,5 +20,28 @@ document.addEventListener('DOMContentLoaded', function() {
              M.Toast.dismissAll();
          });
      }
+
+    /**
+    * function pour search les usagers
+    */ 
+     
+     var search_input = document.querySelector("#search");
+
+     search_input.addEventListener("keyup", function(e){
+        var noms = document.querySelectorAll(".nom");
+        var search_item = e.target.value.toLowerCase();
+
+        noms.forEach(function(item){
+            // console.log(item.textContent);
+            if(item.textContent.toLowerCase().indexOf(search_item) != -1){
+               item.closest("tr").style.display = "table-row";
+            }
+            else{
+              item.closest("tr").style.display = "none";
+              }
+          })
+
+          
+     });
   
   });
