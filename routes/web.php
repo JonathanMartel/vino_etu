@@ -60,6 +60,10 @@ Route::put('/user/{user}/edit', [CustomAuthController::class, 'update'])->middle
 Route::get('/user/{user}/password', [CustomAuthController::class, 'modifiePassword'])->middleware('auth')->name('password.edit')->middleware('prevent-back-history');
 Route::put('/user/{user}/password', [CustomAuthController::class, 'passwordupdate'])->middleware('auth')->name('password.update')->middleware('prevent-back-history');
 Route::get('liste-usager', [CustomAuthController::class, 'listeUsager'])->middleware('admin')->name('gererUsagers')->middleware('prevent-back-history');
+Route::get('/user/{user}/adminedit', [CustomAuthController::class, 'adminedit'])->middleware('admin')->name('adminuser.edit')->middleware('prevent-back-history');
+Route::put('/user/{user}/adminedit', [CustomAuthController::class, 'adminupdate'])->middleware('admin')->name('adminuser.update')->middleware('prevent-back-history');
+
+Route::delete('/user/{user}/delete', [CustomAuthController::class, 'destroy'])->middleware('admin')->name('user.destroy')->middleware('prevent-back-history');
 
 
 /*
