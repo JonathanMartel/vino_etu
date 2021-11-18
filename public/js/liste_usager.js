@@ -29,6 +29,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
      search_input.addEventListener("keyup", function(e){
         var noms = document.querySelectorAll(".nom");
+        var courriels = document.querySelectorAll(".courriel");
+        var date_naissances = document.querySelectorAll(".date_naissance");
         var search_item = e.target.value.toLowerCase();
 
         noms.forEach(function(item){
@@ -41,7 +43,6 @@ document.addEventListener('DOMContentLoaded', function() {
               }
           })
 
-          
      });
   
   });
