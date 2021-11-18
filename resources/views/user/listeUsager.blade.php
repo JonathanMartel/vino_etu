@@ -1,9 +1,26 @@
 @extends('layouts.app')
 @section('content')
 
+@if(Session::get('modifie'))
+<span class="modifie"></span>
+@endif
+
+<script src="{{asset('js/liste_usager.js')}}"></script>
 
 
 <h1 class="titre">Liste d'usager</h1>
+
+<nav class="white margin-bottom">
+    <div class="nav-wrapper">
+      <form>
+        <div class="input-field">
+          <input id="search" type="search" required>
+          <label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
+          <i class="material-icons">close</i>
+        </div>
+      </form>
+    </div>
+  </nav>
 
 <div class="padding">
 <table class="table striped">
@@ -19,46 +36,73 @@
 
         <tbody>
         @foreach($users as $user)
-          <tr>
-            <td>{{$user->nom}}</td>
-            <td>{{$user->courriel}}</td>
-            <td>{{$user->date_naissance}}</td>
-            <td>
-              <form action="#">
-              @if($user->admin === 1)
-              <p>
-                <label>
-                  <input type="checkbox" checked="checked"/>
-                  <span></span>
-                </label>
-              </p>
-              @else
-              <p>
-                <label>
-                  <input type="checkbox" />
-                  <span></span>
-                </label>
-              </p>
-              @endif
-              </form>
-            </td>
+          
+            <tr>
+              <td>{{$user->nom}}</td>
+              <td>{{$user->courriel}}</td>
+              <td>{{$user->date_naissance}}</td>
+              <td>
+                
+                @if($user->admin === 1)
+                <!-- <i class="material-icons small black-text">check</i> -->
+                <span>Oui</span>
+                @else
+                <!-- <i class="material-icons small black-text">close</i> -->
+                <span>Non</span>
+                @endif
+                </form>
+              </td>
 
-            <td>
-              <a class="waves-effect waves-light button modifier margin-right" href="{{ route('custom.edit', $user->id)}}"><i class="material-icons">edit</i></a>
-              <a class="waves-effect waves-light button supprimer modal-trigger" href="#"><i class="material-icons">delete</i></a>
-            </td>
-          </tr>
+              <td>
+                <a class="waves-effect waves-light button modifier margin-right" href="{{ route('adminuser.edit', $user->id)}}"><i class="material-icons">edit</i></a>
+                @if(Auth::user()->id === $user->id)
+                <a class="waves-effect waves-light button supprimer modal-trigger" href="#modaladmin"><i class="material-icons">delete</i></a>
+                <!-- Modal Structure supprimer-->
+                <div id="modaladmin" class="modal">
+                  <div class="modal-content">
+                      <h4>Supprimer ce usager</h4>
+                      <p>Vous ne pouvez pas supprimer vous-même!</p>
+                  </div>
+                  <div class="modal-footer">
+                    
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Annuler</a>
+                  </div>
+                </div>
+
+                @else
+
+                <a class="waves-effect waves-light button supprimer modal-trigger" href="#{{$user->id}}"><i class="material-icons">delete</i></a>
+                @endif
+                <!-- Modal Structure supprimer-->
+                <div id="{{$user->id}}" class="modal">
+                  <div class="modal-content">
+                      <h4>Supprimer ce usager</h4>
+                      <p>Êtes-vous certain de supprimer le usager <span>{{ ucfirst($user->nom) }}</span>?</p>
+                  </div>
+                  <div class="modal-footer">
+                    <form action="{{ route('user.destroy', $user->id)}}" method="POST">
+                      @method('DELETE')
+                      @csrf
+                      <button class="waves-effect waves-green btn-flat">Supprimer</button>
+                    </form>
+                    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Annuler</a>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          
+          
+          
+          
 
         @endforeach
 
        
         </tbody>
       </table>
-    
-<span class="message"></span>
+      
+ 
 @endsection
 
 <link href="{{asset('css/liste-usager.css')}}" rel="stylesheet" />
 
-<!-- <link href="{{asset('css/bouteilles.css')}}" rel="stylesheet" /> -->
-<!-- <script src="{{asset('js/bouteille_index.js')}}"></script> -->
