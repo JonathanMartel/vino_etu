@@ -52,6 +52,20 @@ class BouteilleController extends Controller
         return response()->json($listeBouteilles);
     }
 
+    public function rechercherCatalogue($motCle = null)
+{      
+    if( !$motCle )
+    {
+        $bouteilles = Bouteille::obtenirBouteilles();
+    }
+    else
+    {
+        //Get match on name
+        $bouteilles = Bouteille::rechercherCatalogue($motCle);
+    }
+   
+    return response()->json([ 'table' => view('bouteille.liste', compact('bouteilles'))->render()]);
+}
     /**
      * @param nom
      * @param type_id
@@ -183,15 +197,33 @@ class BouteilleController extends Controller
             if($bouteilleExistante[0]->id == $bouteille->id) {
               
                 self::updateBouteille($bouteille, $request);
-        
+                if(!session()->has('idCellier')){
+                    echo "<script>
+                            localStorage.clear();
+                            localStorage.setItem('modifieBouteille', 'une bouteille modifiée');
+                            window.close();
+                         </script>";
+                   
+                }
+                else {
                 return redirect(URL::to('') . '/cellier/'. session('idCellier') . '/'. $bouteille->id)->withInput()->with("modifieBouteille", "une bouteille modifiée");
+                }
             }else {
                 return back()->withInput()->with('erreur', "Bouteille existe déjà");
             }
         }else {
             self::updateBouteille($bouteille, $request);
-    
+            if(!session()->has('idCellier')){
+                echo "<script>
+                        localStorage.clear();
+                        localStorage.setItem('modifieBouteille', 'une bouteille modifiée');
+                        window.close();
+                    </script>";
+               
+            }
+            else {
             return redirect(URL::to('') . '/cellier/'. session('idCellier') . '/'. $bouteille->id)->withInput()->with("modifieBouteille", "une bouteille modifiée");
+            }
         }   
       
     }
@@ -223,6 +255,17 @@ class BouteilleController extends Controller
     {
         $bouteille->delete();
 
-        return redirect('/cellier/'.session('idCellier'))->withInput()->with("deleteBouteille", "une bouteille supprimée");
+        if(!session()->has('idCellier')){
+            echo "<script>
+                    localStorage.clear();
+                    localStorage.setItem('deleteBouteille', 'une bouteille supprimée');
+                    window.close();
+                </script>";
+           
+        }
+        else {
+            return redirect('/cellier/'.session('idCellier'))->withInput()->with("deleteBouteille", "une bouteille supprimée");
+        }
+        
     }
 }

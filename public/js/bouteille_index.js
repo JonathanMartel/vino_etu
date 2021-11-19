@@ -94,7 +94,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         document.querySelectorAll('[data-id]').forEach(tr => {
 
                             tr.addEventListener('click', () => {
-                                tr.dataset.id
                                 window.open(location.origin + "/vin/" + tr.dataset.id + "/edit", '_blank').focus();
                             })
                         })
