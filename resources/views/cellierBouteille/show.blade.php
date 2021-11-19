@@ -181,8 +181,31 @@
                 <div class="bouton">
                     <button class="bouton-fiche valider"  data-js-modifier>Modifier</button>
                     <button class="bouton-fiche non-active" data-js-btnAnnuler>Annuler</button> 
-                    <button  class="bouton-fiche valider non-active"  data-js-btnValider >Valider</button>
-                    <button class="bouton-fiche effacer non-active" data-js-btnEffacer >Suprimer</button>
+                    <button  class="bouton-fiche valider non-active modal-trigger" href="#modal-valider" data-js-btnValider >Valider</button>
+                    <button class="bouton-fiche effacer non-active modal-trigger" href="#modal-suprimer"  data-js-btnEffacer >Suprimer</button>
+                </div>
+
+                <!-- Modal bouton suprimer -->
+                <div id="modal-suprimer" class="modal">
+                    <div class="modal-content">
+                        <h4>Supprimer ce millésime</h4>
+                        <p>Êtes-vous certain de vouloir supprimer ce millésime et les informations qu'il contient?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="waves-effect waves-green btn-flat modale-close" data-js-suprimerModal >Supprimer</button>
+                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Annuler</a>
+                    </div>
+                </div>
+                 <!-- Modal bouton valider -->
+                 <div id="modal-valider" class="modal">
+                    <div class="modal-content">
+                        <h4>Modifier ce millésime</h4>
+                        <p>Êtes-vous certain de vouloir modifier ce millésime, en cliquant valider les informations seront modifiées.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="waves-effect waves-green btn-flat modal-close" data-js-validerModal >Valider</button>
+                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Annuler</a>
+                    </div>
                 </div>
             </form>
         </div>
@@ -199,5 +222,7 @@
 <link href="{{asset('css/fiche-vin.css')}}" rel="stylesheet" />
 <script src="{{asset('js/star-rating.js')}}"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+<script src="{{asset('js/cellier_index.js')}}"></script>
+
 
 

@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const idBouteille = location.pathname.split('/')[3]
     
 
-
+    let btnMillesime = document.querySelector('[data-millesime]');
     let elMillesime = document.querySelector('[data-millesime]').dataset.millesime;
     
     sessionStorage.setItem('idCellier', idCellier);
@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function() {
      });
 
 
-     let btnMillesime;
+     
 
 
 /* Boutons millesime */
@@ -200,12 +200,12 @@ document.addEventListener('DOMContentLoaded', function() {
         datepicker.disabled = false;
     });
 
-    /** Action bouton annuler, efface les champs modifié et retire les boutons annuler, valider et effacer. Réactive le bouton modifier **/
+    /** Action bouton annuler ---> efface les champs modifié et retire les boutons annuler, valider et effacer. Réactive le bouton modifier **/
     
     btnAnnuleActive.addEventListener("click",function(e){
         e.preventDefault();
         infoForm.reset();
-        btnMillesime.click();
+        
         estValide();
         boutonModifier.classList.remove("non-active");
         btnEffacerActive.classList.add("non-active");
@@ -218,13 +218,14 @@ document.addEventListener('DOMContentLoaded', function() {
             inputs[i].classList.remove("input-active");
             inputs[i].classList.add("input-fiche-cercle");
             }
-
             datepicker.disabled =  true;
+            btnMillesime.click();   
     });
 
 
     /** Bouton valider **/
-        btnValideActive.addEventListener("click",function(e){
+    const btnValideActiveModal = document.querySelector('[data-js-validerModal]')
+    btnValideActiveModal.addEventListener("click",function(e){
             e.preventDefault();
             let annee = millesime.value;
              
@@ -258,7 +259,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
 
-         btnEffacerActive.addEventListener("click",function(e){
+        /* Bouton supprimer */
+
+        const btnEffacerActiveModal = document.querySelector('[data-js-suprimerModal]')
+
+         btnEffacerActiveModal.addEventListener("click",function(e){
             e.preventDefault();
             console.log('click effacer');
 
