@@ -263,3 +263,16 @@ input:focus-visible{
 .boutonNonValide{
     opacity: 50%;
 }
+
+div#social-links {
+    max-width: 500px;
+}
+div#social-links ul li {
+    display: inline-block;
+}          
+div#social-links ul li a {
+    padding: 10px;
+    margin: 1px;
+    font-size: 30px;
+    color: #222;
+}
