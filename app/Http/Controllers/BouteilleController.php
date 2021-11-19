@@ -198,7 +198,12 @@ class BouteilleController extends Controller
               
                 self::updateBouteille($bouteille, $request);
                 if(!session()->has('idCellier')){
-                    return redirect(URL::to('') . '/modifierCatalogue')->withInput()->with("modifieBouteille", "une bouteille modifiée");
+                    echo "<script>
+                            localStorage.clear();
+                            localStorage.setItem('modifieBouteille', 'une bouteille modifiée');
+                            window.close();
+                         </script>";
+                   
                 }
                 else {
                 return redirect(URL::to('') . '/cellier/'. session('idCellier') . '/'. $bouteille->id)->withInput()->with("modifieBouteille", "une bouteille modifiée");
@@ -209,7 +214,12 @@ class BouteilleController extends Controller
         }else {
             self::updateBouteille($bouteille, $request);
             if(!session()->has('idCellier')){
-                return redirect(URL::to('') . '/modifierCatalogue')->withInput()->with("modifieBouteille", "une bouteille modifiée");
+                echo "<script>
+                        localStorage.clear();
+                        localStorage.setItem('modifieBouteille', 'une bouteille modifiée');
+                        window.close();
+                    </script>";
+               
             }
             else {
             return redirect(URL::to('') . '/cellier/'. session('idCellier') . '/'. $bouteille->id)->withInput()->with("modifieBouteille", "une bouteille modifiée");
@@ -245,6 +255,17 @@ class BouteilleController extends Controller
     {
         $bouteille->delete();
 
-        return redirect('/cellier/'.session('idCellier'))->withInput()->with("deleteBouteille", "une bouteille supprimée");
+        if(!session()->has('idCellier')){
+            echo "<script>
+                    localStorage.clear();
+                    localStorage.setItem('deleteBouteille', 'une bouteille supprimée');
+                    window.close();
+                </script>";
+           
+        }
+        else {
+            return redirect('/cellier/'.session('idCellier'))->withInput()->with("deleteBouteille", "une bouteille supprimée");
+        }
+        
     }
 }

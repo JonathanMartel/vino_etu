@@ -3,3 +3,18 @@ table.highlight.striped>tbody>tr:hover {
     background-color: #BBC7C1;
     cursor: pointer;
 }
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav .pagination li {
+    height: unset;
+}
+
+table ~ nav, nav .pagination li.active {
+    background-color: #CDCED1;
+}
+

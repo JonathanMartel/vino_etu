@@ -1,41 +1,38 @@
 document.addEventListener('DOMContentLoaded', function() {
+   
+   
+     window.addEventListener('storage', () => {
+        
+        if (localStorage.getItem('modifieBouteille')) {
+            var toastHTML =
+                '<span>Une bouteille a été modifiée</span><button class="btn-flat toast-action">Fermer</button>';
+            M.toast({ html: toastHTML, displayLength: 5000 });
+    
+            const message = document.querySelector(".toast-action");
+    
+            message.addEventListener("click", () => {
+                M.Toast.dismissAll();
+            });
+        }
+    
+          if (localStorage.getItem('deleteBouteille')) {
+              var toastHTML =
+                  '<span>Une bouteille a été supprimé</span><button class="btn-flat toast-action">Fermer</button>';
+              M.toast({ html: toastHTML, displayLength: 5000 });
+      
+              const message = document.querySelector(".toast-action");
+      
+              message.addEventListener("click", () => {
+                  M.Toast.dismissAll();
+              });
+          }
+          localStorage.clear();
+    
+          rechercherBouteilles();
+      });
+
 
     
-    /**
-     * Message Dialogue si une bouteille a été créé
-     */
-
-     const modifieBouteille = document.querySelector(".modifieBouteille");
-
-     if (modifieBouteille) {
-         var toastHTML =
-             '<span>Une bouteille a été modifiée</span><button class="btn-flat toast-action">Fermer</button>';
-         M.toast({ html: toastHTML, displayLength: 5000 });
- 
-         const message = document.querySelector(".toast-action");
- 
-         message.addEventListener("click", () => {
-             M.Toast.dismissAll();
-         });
-     }
- 
-      /**
-      * Message Dialogue si une bouteille a été supprimé
-      */
- 
-       const deleteBouteille = document.querySelector(".deleteBouteille");
- 
-       if (deleteBouteille) {
-           var toastHTML =
-               '<span>Une bouteille a été supprimé</span><button class="btn-flat toast-action">Fermer</button>';
-           M.toast({ html: toastHTML, displayLength: 5000 });
-   
-           const message = document.querySelector(".toast-action");
-   
-           message.addEventListener("click", () => {
-               M.Toast.dismissAll();
-           });
-       }
  
     const recherche = document.querySelector("#search");
    
@@ -122,4 +119,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     modifierBouteille();
+
+
+   
 });

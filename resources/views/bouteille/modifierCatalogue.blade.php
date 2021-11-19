@@ -60,7 +60,7 @@
         </table>
         {!! $bouteilles->links('pagination::bootstrap-4') !!}
 </div>
-<span class="message"></span>
+
 @endsection
 
 <script src="{{asset('js/modifierCatalogue.js')}}"></script>
