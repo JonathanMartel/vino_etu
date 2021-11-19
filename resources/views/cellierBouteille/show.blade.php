@@ -59,40 +59,8 @@
             <p>{{ $bouteille->description ?? "Aucune description" }}</p>
         </article>
         <article>
-        <div id="social-links">
-            <ul>
-                <li>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.positronx.io/create-autocomplete-search-in-laravel-with-typeahead-js/" class="social-button " id="" title="" rel="">
-                    <span class="fab fa-facebook-square"></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://twitter.com/intent/tweet?text=Your+share+text+comes+here&amp;url=https://www.positronx.io/create-autocomplete-search-in-laravel-with-typeahead-js/" class="social-button " id="" title="" rel="">
-                    <span class="fab fa-twitter"></span>
-                    </a>
-                </li>
-                <li>
-                    <a href="https://www.linkedin.com/sharing/share-offsite?mini=true&amp;url=https://www.positronx.io/create-autocomplete-search-in-laravel-with-typeahead-js/&amp;title=Your+share+text+comes+here&amp;summary=" class="social-button " id="" title="" rel="">
-                    <span class="fab fa-linkedin"></span>
-                    </a>
-                </li>
-                <li>
-                    <a target="_blank" href="https://telegram.me/share/url?url=https://www.positronx.io/create-autocomplete-search-in-laravel-with-typeahead-js/&amp;text=Your+share+text+comes+here" class="social-button " id="" title="" rel="">
-                    <span class="fab fa-telegram"></span>
-                    </a>
-                </li>
-                <li>
-                    <a target="_blank" href="https://wa.me/?text=https://www.positronx.io/create-autocomplete-search-in-laravel-with-typeahead-js/" class="social-button " id="" title="" rel="">
-                    <span class="fab fa-whatsapp"></span>
-                    </a>
-                </li>
-                <li>
-                    <a target="_blank" href="https://www.reddit.com/submit?title=Your+share+text+comes+here&amp;url=https://www.positronx.io/create-autocomplete-search-in-laravel-with-typeahead-js/" class="social-button " id="" title="" rel="">
-                    <span class="fab fa-reddit"></span>
-                    </a>
-                </li>
-            </ul>
-        </div>
+        {!! $shareComponent !!}
+        
         </article>
 
     </section>

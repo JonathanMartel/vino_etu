@@ -62,7 +62,6 @@ Route::put('/user/{user}/password', [CustomAuthController::class, 'passwordupdat
 Route::get('liste-usager', [CustomAuthController::class, 'listeUsager'])->middleware('admin')->name('gererUsagers')->middleware('prevent-back-history');
 Route::get('/user/{user}/adminedit', [CustomAuthController::class, 'adminedit'])->middleware('admin')->name('adminuser.edit')->middleware('prevent-back-history');
 Route::put('/user/{user}/adminedit', [CustomAuthController::class, 'adminupdate'])->middleware('admin')->name('adminuser.update')->middleware('prevent-back-history');
-
 Route::delete('/user/{user}/delete', [CustomAuthController::class, 'destroy'])->middleware('admin')->name('user.destroy')->middleware('prevent-back-history');
 
 
@@ -79,7 +78,6 @@ Route::get('/cellier/{idCellier}/ajouterVin', [CellierBouteilleController::class
 Route::post('/cellierBouteille/store', [CellierBouteilleController::class, 'store'])->name('cellierBouteille.store')->middleware('auth')->middleware('prevent-back-history');
 Route::get('/obtenirMillesimesParBouteille/{idCellier}/{idBouteille}', [CellierBouteilleController::class, 'obtenirMillesimesParBouteille'])->name('obtenirMillesimesParBouteille')->middleware('auth')->middleware('prevent-back-history');
 Route::get('/ajouterNote/{idCellier}/{idBouteille}/{millesime}/{note}', [CellierBouteilleController::class, 'ajouterNote'])->name('ajouterNote')->middleware('auth')->middleware('prevent-back-history');
-
 Route::get('/obtenirMillesime/{idCellier}/{idBouteille}/{millesime}', [CellierBouteilleController::class, 'obtenirMillesime'])->name('obtenirMillesime')->middleware('auth')->middleware('prevent-back-history');
 
 /*

@@ -36,7 +36,6 @@ class CellierBouteilleController extends Controller
 
         }
 
-
         return view('cellierBouteille.index', [
             'cellier' => $cellier,
           'cellierBouteillesByIDs' => $cellierBouteillesByIDs ?? [],
@@ -173,8 +172,15 @@ class CellierBouteilleController extends Controller
 
         }
         // print_r ($cellierBouteille);
+        $shareComponent = \Share::currentPage()
+        ->facebook()
+        ->twitter()
+        ->linkedin()
+        ->telegram()
+        ->whatsapp()        
+        ->reddit();
 
-        return view('cellierBouteille.show', [
+        return view('cellierBouteille.show', compact('shareComponent'),[
             'bouteille' => $bouteille[0],
             'cellierBouteille' => $cellierBouteille[0],
             'cellier' => $cellier,
@@ -305,4 +311,5 @@ class CellierBouteilleController extends Controller
         }
         return response()->json($url);
     }
+    
 }
