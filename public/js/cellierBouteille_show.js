@@ -46,6 +46,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const idCellier = location.pathname.split('/')[2]
     const idBouteille = location.pathname.split('/')[3]
     
+
+    let btnMillesime = document.querySelector('[data-millesime]');
+    let elMillesime = document.querySelector('[data-millesime]').dataset.millesime;
+    
     sessionStorage.setItem('idCellier', idCellier);
     sessionStorage.setItem('idBouteille', idBouteille);
 
@@ -56,6 +60,18 @@ document.addEventListener('DOMContentLoaded', function() {
             format : 'yyyy-mm-dd'
             
          });
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     /**
@@ -98,21 +114,30 @@ document.addEventListener('DOMContentLoaded', function() {
          });
      });
 
+
+     
+
+
+/* Boutons millesime */
+
  for (let i = 0; i < boutonMillesime.length; i++) {
 
         boutonMillesime[i].addEventListener("click", function(e) {
         e.preventDefault();
-        const millesime = boutonMillesime[i].dataset.jsBouton;
         
+         elMillesime = boutonMillesime[i].dataset.jsBouton;
+        btnMillesime = boutonMillesime[i];
         document.querySelectorAll('button').forEach(button => {
             button.classList.remove('millesime-item-selected');
         })
 
         
+        
+
         boutonMillesime[i].querySelector('button').classList.add('millesime-item-selected');
         /* Fetch cellier_Bouteille */
 
-        fetch(`/obtenirMillesime/${idCellier}/${idBouteille}/${millesime}`)
+        fetch(`/obtenirMillesime/${idCellier}/${idBouteille}/${elMillesime}`)
         
         .then(response => {
             return (response.json())
@@ -175,27 +200,32 @@ document.addEventListener('DOMContentLoaded', function() {
         datepicker.disabled = false;
     });
 
-    /** Action bouton annuler, efface les champs modifié et retire les boutons annuler, valider et effacer. Réactive le bouton modifier **/
+    /** Action bouton annuler ---> efface les champs modifié et retire les boutons annuler, valider et effacer. Réactive le bouton modifier **/
+    
     btnAnnuleActive.addEventListener("click",function(e){
         e.preventDefault();
+        infoForm.reset();
+        
+        estValide();
         boutonModifier.classList.remove("non-active");
         btnEffacerActive.classList.add("non-active");
         btnValideActive.classList.add("non-active");
         btnAnnuleActive.classList.add("non-active");
-        infoForm.reset();
+        
 
         for (let i = 0; i < inputs.length; i++){
             inputs[i].readOnly = true;
             inputs[i].classList.remove("input-active");
             inputs[i].classList.add("input-fiche-cercle");
             }
-
             datepicker.disabled =  true;
+            btnMillesime.click();   
     });
 
 
     /** Bouton valider **/
-        btnValideActive.addEventListener("click",function(e){
+    const btnValideActiveModal = document.querySelector('[data-js-validerModal]')
+    btnValideActiveModal.addEventListener("click",function(e){
             e.preventDefault();
             let annee = millesime.value;
              
@@ -212,32 +242,116 @@ document.addEventListener('DOMContentLoaded', function() {
                 commentaire.value = commentaire.value.trim()
             })
               .catch(error => console.log('Le fetch ne fonctionne toujours pas',error))
-         
-           /* Validation non-terminée*/ 
 
-            // let messagePrix = "Entrez de 0 à 100000";
-            // if (prix.value < 0 || prix.value > 6) {
-            //     btnValideActive.disabled = true;
-            //     document.getElementById("message").innerHTML = messagePrix;
-                  
-            // }else {
+            if(estValide()){
 
-                for (let i = 0; i < inputs.length; i++){
-                    inputs[i].readOnly = true;
-                    inputs[i].classList.remove("input-active");
-                    inputs[i].classList.add("input-fiche-cercle");
-                }
+                    for (let i = 0; i < inputs.length; i++){
+                        inputs[i].readOnly = true;
+                        inputs[i].classList.remove("input-active");
+                        inputs[i].classList.add("input-fiche-cercle");
+                    }
 
-                boutonModifier.classList.remove("non-active");
-                btnAnnuleActive.classList.add("non-active");
-                btnValideActive.classList.add("non-active");
-                btnEffacerActive.classList.add("non-active");
-            });
+                    boutonModifier.classList.remove("non-active");
+                    btnAnnuleActive.classList.add("non-active");
+                    btnValideActive.classList.add("non-active");
+                    btnEffacerActive.classList.add("non-active");
+            }
+        });
 
 
-        btnEffacerActive.addEventListener("click",function(e){
+        /* Bouton supprimer */
+
+        const btnEffacerActiveModal = document.querySelector('[data-js-suprimerModal]')
+
+         btnEffacerActiveModal.addEventListener("click",function(e){
             e.preventDefault();
             console.log('click effacer');
 
-        });
+
+            fetch(`/suprimerCellierBouteille/${idCellier}/${idBouteille}/${elMillesime}`)
+        
+            .then(response => {
+                return (response.json())
+            })
+            .then(response => {
+                console.log(response);
+                location.href=response;
+    
+            }).catch(error => console.log(error))
+
+
+       });
+
+        /** validation **/
+
+        function estValide() {
+
+            let valide = true;
+            let prixRegex ="^[0-9]+(\.[0-9]{1,2})?$";
+            if(!prix.value.match(prixRegex)){
+                let messagePrix = "Format invalide";
+                document.getElementById("messagePrix").innerHTML = messagePrix;
+                valide = false;
+            }else if( prix.value < 0 || prix.value > 100000){
+                let messagePrix = "Prix de 0 à 100 000";
+                prix.classList.add("champNonValide");
+                document.getElementById("messagePrix").innerHTML = messagePrix;
+                valide = false;
+            }else{
+                document.getElementById("messagePrix").innerHTML ="";
+                prix.classList.remove("champNonValide");
+            }
+
+            if( quantite.value < 0 || quantite.value > 999) {
+                let messageQuantite = "Quantité entre 0 et 999";
+                quantite.classList.add("champNonValide");
+                document.getElementById("messageQuantite").innerHTML = messageQuantite;
+                valide = false;
+            }else{
+                document.getElementById("messageQuantite").innerHTML ="";
+                quantite.classList.remove("champNonValide");
+            }
+
+            if( commentaire.value.length > 50) {
+                let messageCommentaire = "Maximun 50 charactères";
+                commentaire.classList.add("champNonValide");
+                document.getElementById("messageCommentaire").innerHTML = messageCommentaire;
+                valide = false;
+            }else{
+                document.getElementById("messageCommentaire").innerHTML ="";
+                commentaire.classList.remove("champNonValide");
+            }
+
+            if( garde_jusqua.value.length > 50) {
+                let messageGardeJusqua = "Maximun 50 charactères";
+                garde_jusqua.classList.add("champNonValide");
+                // btnValideActive.setAttribute("disabled","true");
+                document.getElementById("messageGardeJusqua").innerHTML = messageGardeJusqua;
+                valide = false;
+            }else{
+                document.getElementById("messageGardeJusqua").innerHTML ="";
+                garde_jusqua.classList.remove("champNonValide");
+                // btnValideActive.removeAttribute('disabled');
+            }
+
+            return valide;
+
+        }
+
+
+         inputs.forEach((input) => {
+             input.addEventListener("input", (e) => {
+                 e.preventDefault();
+                 console.log('change');
+                 estValide(input);
+                  if(!estValide(input)){
+                    btnValideActive.classList.add("boutonNonValide");
+                    btnValideActive.setAttribute("disabled","true");
+                  }else{
+                    btnValideActive.classList.remove("boutonNonValide");
+                    btnValideActive.removeAttribute('disabled');
+                  }
+                
+             });
+         });
 });

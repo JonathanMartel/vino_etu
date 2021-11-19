@@ -248,3 +248,18 @@ input:focus-visible{
     font-weight: 700;
     font-size: 1.563rem;
 }
+
+.nonValide{
+    color: red;
+    text-align: right;
+}
+
+.champNonValide{
+    border-style: dashed;
+    border-color: red;
+    background-color: #cbd0d488;
+}
+
+.boutonNonValide{
+    opacity: 50%;
+}

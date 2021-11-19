@@ -25,22 +25,18 @@ class CellierBouteille extends Model
      */
     public static function modifierQuantiteBouteille($idCellier, $idBouteille, $millesime, $modificationQuantite){
 
-        if($millesime == 0) {
-            $millesime = 0000;
-        }
-
         $quantite = DB::table('cellier_bouteilles')
         ->select('quantite')
         ->where('cellier_id', $idCellier)
         ->where('bouteille_id', $idBouteille)
-        ->where('millesime', $millesime)
+        ->where('millesime','like' ,$millesime . "%")
         ->get();
 
         if($quantite[0]->quantite + $modificationQuantite >= 0){
             DB::table('cellier_bouteilles')
             ->where('cellier_id', $idCellier)
             ->where('bouteille_id', $idBouteille)
-            ->where('millesime', $millesime)
+            ->where('millesime','like' ,$millesime . "%")
             ->increment('quantite', $modificationQuantite);
         }
      
@@ -57,12 +53,11 @@ class CellierBouteille extends Model
      * @return row une ligne de la table cellier_bouteilles
      */
     public static function rechercheCellierBouteille($idCellier, $idBouteille, $millesime) {
-        if ($millesime==0)
-        $millesime=0000;
+      
         return DB::table('cellier_bouteilles')
         ->where('cellier_id', $idCellier)
         ->where('bouteille_id', $idBouteille)
-        ->where('millesime', $millesime)
+        ->where('millesime','like' ,$millesime . "%")
         ->get();
     }
 
@@ -141,21 +136,14 @@ class CellierBouteille extends Model
      * ajouter une note de dégustation à une bouteille
      */
     public static function ajouterNote($idCellier, $idBouteille, $millesime, $note)
-    {
-        if($millesime == 0) {
-            $millesime = 0000;
-        }
-        
+    {     
          DB::table('cellier_bouteilles')
         ->where('cellier_id', $idCellier)
         ->where('bouteille_id', $idBouteille)
-        ->where('millesime', $millesime)
+        ->where('millesime','like' ,$millesime . "%")
         ->update(['note' => $note]);
-        
+
     }
-
-
-
 
  /**
       *@param idCellier
@@ -169,14 +157,10 @@ class CellierBouteille extends Model
      */
     public static function modifierCellierBouteille($idCellier, $idBouteille, $millesime, $prix, $quantite, $date_achat, $commentaire=null, $garde_jusqua=null)
     {
-        if($millesime == 0) {
-            $millesime = 0000;
-        }
-        
          DB::table('cellier_bouteilles')
         ->where('cellier_id', $idCellier)
         ->where('bouteille_id', $idBouteille)
-        ->where('millesime', $millesime)
+        ->where('millesime','like' ,$millesime . "%")
         ->update(['prix' => $prix,
                     'quantite'=> $quantite,
                     'commentaire'=>$commentaire,
@@ -185,5 +169,15 @@ class CellierBouteille extends Model
                 ]);
 
     }
-    
+
+    public static function suprimerCellierBouteille($idCellier, $idBouteille, $millesime)
+    {
+        
+        DB::table('cellier_bouteilles')
+        ->where('cellier_id', $idCellier)
+        ->where('bouteille_id', $idBouteille)
+        ->where('millesime','like' ,$millesime . "%")
+        ->delete();
+    }
+
 }

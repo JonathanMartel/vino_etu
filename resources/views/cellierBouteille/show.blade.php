@@ -58,6 +58,43 @@
             <h2 class="description-titre">Description</h2>
             <p>{{ $bouteille->description ?? "Aucune description" }}</p>
         </article>
+        <article>
+        <div id="social-links">
+            <ul>
+                <li>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.positronx.io/create-autocomplete-search-in-laravel-with-typeahead-js/" class="social-button " id="" title="" rel="">
+                    <span class="fab fa-facebook-square"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://twitter.com/intent/tweet?text=Your+share+text+comes+here&amp;url=https://www.positronx.io/create-autocomplete-search-in-laravel-with-typeahead-js/" class="social-button " id="" title="" rel="">
+                    <span class="fab fa-twitter"></span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.linkedin.com/sharing/share-offsite?mini=true&amp;url=https://www.positronx.io/create-autocomplete-search-in-laravel-with-typeahead-js/&amp;title=Your+share+text+comes+here&amp;summary=" class="social-button " id="" title="" rel="">
+                    <span class="fab fa-linkedin"></span>
+                    </a>
+                </li>
+                <li>
+                    <a target="_blank" href="https://telegram.me/share/url?url=https://www.positronx.io/create-autocomplete-search-in-laravel-with-typeahead-js/&amp;text=Your+share+text+comes+here" class="social-button " id="" title="" rel="">
+                    <span class="fab fa-telegram"></span>
+                    </a>
+                </li>
+                <li>
+                    <a target="_blank" href="https://wa.me/?text=https://www.positronx.io/create-autocomplete-search-in-laravel-with-typeahead-js/" class="social-button " id="" title="" rel="">
+                    <span class="fab fa-whatsapp"></span>
+                    </a>
+                </li>
+                <li>
+                    <a target="_blank" href="https://www.reddit.com/submit?title=Your+share+text+comes+here&amp;url=https://www.positronx.io/create-autocomplete-search-in-laravel-with-typeahead-js/" class="social-button " id="" title="" rel="">
+                    <span class="fab fa-reddit"></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        </article>
+
     </section>
 
 
@@ -81,7 +118,7 @@
 
     <section class="">
         <div class="form-modifier form">
-            <form id="" action="" method="POST" class="form-modifier" data-js-form> 
+            <form id="" name="myForm" action="" method="POST" class="form-modifier" data-js-form> 
                 @method('PUT')
                 @csrf
                 <div class="millesime-info-debut">
@@ -110,13 +147,14 @@
                             </div>
                             <div class="form-modifier-item" >
                                 <label for="prix">Prix d'achat</label>
-                                <input type="number" name="prix" readonly="readonly" id="prix" data-js-input class="input-fiche-cercle" value="{!! $cellierBouteille->prix !!}"/>
+                                <input type="number" name="prix"  readonly="readonly" id="prix" data-js-input class="input-fiche-cercle" value="{!! $cellierBouteille->prix !!}"/>
                             </div>
-                            <p id="message"></p>
+                            <p id="messagePrix" class="nonValide"></p>
                             <div class="form-modifier-item" >
                                 <label for="quantite">Qte</label>
                                 <input type="number" name="quantite" readonly="readonly" id="quantite" data-js-input class="input-fiche-cercle" value="{!! $cellierBouteille->quantite !!}"/>
                             </div>
+                            <p id="messageQuantite" class="nonValide"></p>
                         </div>
                     </div>
                 </div>
@@ -124,10 +162,12 @@
                     <div class="item-commentaire" >
                         <label for="commentaire">Commentaire</label>
                         <input type="textarea" name="commentaire" readonly="readonly" id="commentaire" data-js-input class="textarea" placeholder="Aucun commentaire" value="{{ $cellierBouteille->commentaire }}"/>
+                        <p id="messageCommentaire" class="nonValide"></p>
                     </div>
                     <div class="item-commentaire" >
                         <label for="garde_jusqua">Garder jusqu'à</label>
                         <input type="textarea" name="garde_jusqua" readonly="readonly" placeholder="Non disponible" id="garde_jusqua" data-js-input class="textarea" value="{!! $cellierBouteille->garde_jusqua !!}"/>
+                        <p id="messageGardeJusqua" class="nonValide"></p>
                     </div>
                     <div class="item-commentaire" >
                         <label for="date_achat">Date d'achat :</label>
@@ -141,9 +181,32 @@
                 <div class="bouton">
                     <button class="bouton-fiche valider"  data-js-modifier>Modifier</button>
                     <button class="bouton-fiche non-active" data-js-btnAnnuler>Annuler</button> 
-                    <button  class="bouton-fiche valider non-active"  data-js-btnValider >Valider</button>
-                    <button class="bouton-fiche effacer non-active" data-js-btnEffacer >Suprimer</button>
-                </div> 
+                    <button  class="bouton-fiche valider non-active modal-trigger" href="#modal-valider" data-js-btnValider >Valider</button>
+                    <button class="bouton-fiche effacer non-active modal-trigger" href="#modal-suprimer"  data-js-btnEffacer >Suprimer</button>
+                </div>
+
+                <!-- Modal bouton suprimer -->
+                <div id="modal-suprimer" class="modal">
+                    <div class="modal-content">
+                        <h4>Supprimer ce millésime</h4>
+                        <p>Êtes-vous certain de vouloir supprimer ce millésime et les informations qu'il contient?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="waves-effect waves-green btn-flat modale-close" data-js-suprimerModal >Supprimer</button>
+                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Annuler</a>
+                    </div>
+                </div>
+                 <!-- Modal bouton valider -->
+                 <div id="modal-valider" class="modal">
+                    <div class="modal-content">
+                        <h4>Modifier ce millésime</h4>
+                        <p>Êtes-vous certain de vouloir modifier ce millésime, en cliquant valider les informations seront modifiées.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="waves-effect waves-green btn-flat modal-close" data-js-validerModal >Valider</button>
+                        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Annuler</a>
+                    </div>
+                </div>
             </form>
         </div>
     </section>
@@ -158,5 +221,8 @@
 <link href="{{asset('css/star-rating.css')}}" rel="stylesheet" />
 <link href="{{asset('css/fiche-vin.css')}}" rel="stylesheet" />
 <script src="{{asset('js/star-rating.js')}}"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+<script src="{{asset('js/cellier_index.js')}}"></script>
+
 
 

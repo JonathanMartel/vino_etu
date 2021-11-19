@@ -60,6 +60,10 @@ Route::put('/user/{user}/edit', [CustomAuthController::class, 'update'])->middle
 Route::get('/user/{user}/password', [CustomAuthController::class, 'modifiePassword'])->middleware('auth')->name('password.edit')->middleware('prevent-back-history');
 Route::put('/user/{user}/password', [CustomAuthController::class, 'passwordupdate'])->middleware('auth')->name('password.update')->middleware('prevent-back-history');
 Route::get('liste-usager', [CustomAuthController::class, 'listeUsager'])->middleware('admin')->name('gererUsagers')->middleware('prevent-back-history');
+Route::get('/user/{user}/adminedit', [CustomAuthController::class, 'adminedit'])->middleware('admin')->name('adminuser.edit')->middleware('prevent-back-history');
+Route::put('/user/{user}/adminedit', [CustomAuthController::class, 'adminupdate'])->middleware('admin')->name('adminuser.update')->middleware('prevent-back-history');
+
+Route::delete('/user/{user}/delete', [CustomAuthController::class, 'destroy'])->middleware('admin')->name('user.destroy')->middleware('prevent-back-history');
 
 
 /*
@@ -103,7 +107,7 @@ Route::get('/cellierBouteille/edit', [CellierBouteilleController::class, 'edit']
 
 Route::put('/cellier/{idCellier}/{idBouteille}/{millesime}', [CellierBouteilleController::class, 'update'])->middleware('auth')->name('cellierBouteille.update')->middleware('prevent-back-history');
 
-Route::delete('/cellierBouteille/{idBouteille}', [CellierBouteilleController::class, 'destroy'])->middleware('auth')->name('cellierBouteille.destroy')->middleware('prevent-back-history');
+Route::get('/suprimerCellierBouteille/{idCellier}/{idBouteille}/{millesime}', [CellierBouteilleController::class, 'destroy'])->middleware('auth')->name('cellierBouteille.destroy')->middleware('prevent-back-history');
 
 /*route pour le fetch*/
 
@@ -116,6 +120,8 @@ Route::get('/rechercheBouteillesParMotCle/{motCle}', [BouteilleController::class
 Route::get('/rechercheDansCellier/{motCle}/{idCellier}', [CellierController::class, 'rechercheDansCellier'])->name('rechercheDansCellier')->middleware('auth')->middleware('prevent-back-history');
 Route::get('/reinitialiserCellier/{idCellier}', [CellierController::class, 'reinitialiserCellier'])->name('reinitialiserCellier')->middleware('auth')->middleware('prevent-back-history');
 
+
+Route::get('/rechercherCatalogue/{term?}', [BouteilleController::class, 'rechercherCatalogue'])->name('rechercherCatalogue')->middleware('admin')->middleware('prevent-back-history');
 Route::get('/importerBouteille', [BouteilleController::class, 'index'])->name('importerBouteille')->middleware('admin')->middleware('prevent-back-history');
 Route::get('/obtenirListeSAQ/{page}', [BouteilleController::class, 'obtenirListeSAQ'])->name('obtenirListeSAQ')->middleware('admin')->middleware('prevent-back-history');
 Route::get('/modifierCatalogue', [BouteilleController::class, 'modifierCatalogue'])->name('modifierCatalogue')->middleware('admin')->middleware('prevent-back-history');

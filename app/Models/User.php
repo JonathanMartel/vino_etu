@@ -21,7 +21,8 @@ class User extends Authenticatable
         'nom',
         'courriel',
         'password',
-        'date_naissance'
+        'date_naissance',
+        'admin',
     ];
 
     /**

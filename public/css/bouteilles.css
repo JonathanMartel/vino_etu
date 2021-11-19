@@ -25,6 +25,8 @@ h1.titre {
     height: 80px;
 }
 
-table.striped tr:hover{
+
+table.highlight.striped>tbody>tr:hover {
+    background-color: #BBC7C1;
     cursor: pointer;
 }

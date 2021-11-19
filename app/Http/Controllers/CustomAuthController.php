@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Bouteille;
+use App\Models\Cellier;
 use Illuminate\Http\Request;
 
 use Hash;
@@ -220,6 +222,74 @@ class CustomAuthController extends Controller
 
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\user  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function adminedit(user $user)
+    {
+      $id = $user->id;
+      $nom = $user->nom;
+      $courriel = $user->courriel;
+      $date_naissance = $user->date_naissance;
+
+      return view('user.adminmodifieuser', ['nom' => $nom,
+                                       'courriel' => $courriel,
+                                       'date_naissance' => $date_naissance,
+                                       'id' => $id,
+                                       'user'=>$user
+                                      ]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\user  $user
+     * @return \Illuminate\Http\Response
+     */
+
+    public function adminupdate(Request $request, user $user)
+    {
+      $request->validate([
+        'nom' =>'required|max:25|min:2',
+        'courriel' => 'required|email:rfc,filter',
+        'password' => 'required|min:6|max:20',
+        'date_naissance' => 'required|date_format:Y-m-d|before:'.Carbon::now()->subYears(18)->format('Y-m-d').'|after:'. Carbon::now()->subYears(100)->format('Y-m-d')     
+    ]);
+      // var_dump($request->admin);
+      $adminPassword = Auth::user()->password;
+      $password = $request->password;
+      $id = $user->id;
+      $userPassword = $user->password;
+
+      if(isset($request->admin)){
+        $admin=1;
+      }else{
+        $admin = null;
+      }
+      // echo($admin);
+
+      $bool = Hash::check($password, $adminPassword);
+      if ($bool) {
+        $user->fill($request->all());
+        $user->update([
+          'nom' => $request->nom,
+          'courriel' => $request->courriel,
+          'date_naissance' => $request->date_naissance,
+          'admin' => $admin,
+          'password'=> $userPassword
+        ]);
+        // return redirect('liste-usager');
+        return redirect('liste-usager')->withInput()->with("modifie", "infomation modifiée");
+      }
+
+      return redirect('/user/'.$id.'/adminedit')->withSuccess('Le mot de passe n\'est pas valides!');
+
+    }
+
 
     
 
@@ -232,6 +302,10 @@ class CustomAuthController extends Controller
      */
     public function destroy(user $user)
     {
-        //
+      $id_user = $user->id;
+      $deletedRows = Cellier::where('user_id', $id_user)->delete();
+      $celliers = Bouteille::where('user_id', $id_user)->delete();
+      $user->delete();
+      return redirect('liste-usager');
     }
 }
