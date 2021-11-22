@@ -90,7 +90,7 @@ return [
         'array'   => 'Le tableau :attribute doit contenir au moins :min éléments.',
         'file'    => 'La taille du fichier de :attribute doit être supérieure à :min kilo-octets.',
         'numeric' => 'La valeur de :attribute doit être supérieure ou égale à :min.',
-        'string'  => 'Le texte :attribute doit contenir au moins :min caractères.',
+        'string'  => 'Le champ doit contenir au moins :min caractères.',
     ],
     'multiple_of'          => 'La valeur de :attribute doit être un multiple de :value',
     'not_in'               => 'Le champ :attribute sélectionné n\'est pas valide.',
