@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\DB;
 
 class User extends Authenticatable
 {
@@ -43,4 +44,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * @param motCle
+     * Rechercher dans la table users les noms qui contiennent le motCle
+     * @return rows des lignes de la table users
+     */
+    public static function rechercheUsersParMotCle($motCle) {
+
+        return DB::table('users')
+        ->select('id','nom','courriel','date_naissance','admin')
+        ->where('users.nom', "LIKE" , $motCle. "%")
+        ->orWhere('users.courriel', "LIKE" , $motCle. "%")
+        ->orWhere('users.date_naissance', "LIKE" , $motCle. "%")
+        ->get();
+    }
 }

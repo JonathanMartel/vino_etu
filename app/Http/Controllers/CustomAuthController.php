@@ -290,10 +290,6 @@ class CustomAuthController extends Controller
 
     }
 
-
-    
-
-
     /**
      * Remove the specified resource from storage.
      *
@@ -308,4 +304,33 @@ class CustomAuthController extends Controller
       $user->delete();
       return redirect('liste-usager');
     }
+
+     /**
+     * @param motCle
+     * Rechercher dans la table users les noms qui contiennent le motCle
+     * @return response une listes des usagers qui contiennent le motCle dans leur nom
+     */
+    public function rechercheUsersParMotCle($motCle) {
+      if(isset($motCle)){
+        $users = User::rechercheUsersParMotCle($motCle);
+      }
+      else {
+        $users = User::all();
+      }
+      
+
+      // return response()->json($listeUsers);
+      return response()->json([ 'table' => view('user.table', compact('users'))->render()]);
+
+    }
+
+    public function affichelisteUsager() {
+      
+      $users = User::all();
+      
+      return response()->json([ 'table' => view('user.table', compact('users'))->render()]);
+
+    }
+
+
 }
