@@ -124,5 +124,8 @@ Route::get('/importerBouteille', [BouteilleController::class, 'index'])->name('i
 Route::get('/obtenirListeSAQ/{page}', [BouteilleController::class, 'obtenirListeSAQ'])->name('obtenirListeSAQ')->middleware('admin')->middleware('prevent-back-history');
 Route::get('/modifierCatalogue', [BouteilleController::class, 'modifierCatalogue'])->name('modifierCatalogue')->middleware('admin')->middleware('prevent-back-history');
 
+Route::get('/rechercherUsager/{motCle}', [CustomAuthController::class, 'rechercheUsersParMotCle'])->name('rechercheUsersParMotCle')->middleware('admin')->middleware('prevent-back-history');
+Route::get('/affichelisteUsager', [CustomAuthController::class, 'affichelisteUsager'])->name('affichelisteUsager')->middleware('admin')->middleware('prevent-back-history');
+
 
 
