@@ -7,7 +7,7 @@ use App\Models\Bouteille;
 use App\Models\Cellier;
 use Illuminate\Http\Request;
 
-use Hash;
+use Illuminate\Support\Facades\Hash;
 use Session;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
