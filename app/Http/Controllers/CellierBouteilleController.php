@@ -9,6 +9,7 @@ use App\Models\Format;
 use App\Models\Cellier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
+use Share;
 
 class CellierBouteilleController extends Controller
 {
@@ -172,7 +173,7 @@ class CellierBouteilleController extends Controller
 
         }
         // print_r ($cellierBouteille);
-        $shareComponent = \Share::currentPage()
+        $shareComponent = Share::currentPage()
         ->facebook()
         ->twitter()
         ->linkedin()
