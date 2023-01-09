@@ -109,7 +109,7 @@ class Controler
 		}
 
 		/**
-		 * Enlève la bouteille du cellier
+		 * Enlève la bouteille au cellier
 		 */
 		private function boireBouteilleCellier()
 		{
@@ -119,6 +119,9 @@ class Controler
 			echo json_encode($resultat);
 		}
 
+		/**
+		 * Ajout la bouteille au cellier
+		 */
 		private function ajouterBouteilleCellier()
 		{
 			$body = json_decode(file_get_contents('php://input'));

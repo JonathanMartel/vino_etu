@@ -17,7 +17,7 @@ const BaseURL = document.baseURI;
 window.addEventListener('load', function() {
     console.log("load");
 
-    /* Boucle pour ajouter un gestionnaire d'évènement clique sur le bouton boire de la bouteille du cellier
+    /* Boucle pour ajouter un gestionnaire d'évènement clique sur le bouton boire de d'une bouteille du cellier
     -- À factoriser */
     document.querySelectorAll(".btnBoire").forEach(function(element){
         console.log(element);
@@ -48,7 +48,7 @@ window.addEventListener('load', function() {
 
     });
 
-    /* Boucle pour ajouter un gestionnaire d'évènement clique sur le bouton ajouter de la bouteille du cellier
+    /* Boucle pour ajouter un gestionnaire d'évènement clique sur le bouton ajouter de l'une bouteille du cellier
     -- À factoriser */
     document.querySelectorAll(".btnAjouter").forEach(function(element){
         console.log(element);
@@ -78,6 +78,14 @@ window.addEventListener('load', function() {
 
     });
    
+
+
+/**
+ * Gestionnaire d'évènement keyUp sur la boîte de dialogue 
+ * Permet d'afficher le nom des bouteilles de la bd qui correspond aux caractères tapés
+ * Ajout un gestionnaire d'évènement clique sur les noms affichés
+ */
+
     let inputNomBouteille = document.querySelector("[name='nom_bouteille']");
     console.log(inputNomBouteille);
     let liste = document.querySelector('.listeAutoComplete');
@@ -115,6 +123,10 @@ window.addEventListener('load', function() {
         
       });
 
+
+
+    /* Object bouteille avec ses propriétés*/  
+
       let bouteille = {
         nom : document.querySelector(".nom_bouteille"),
         millesime : document.querySelector("[name='millesime']"),
@@ -125,7 +137,9 @@ window.addEventListener('load', function() {
         notes : document.querySelector("[name='notes']"),
       };
 
-
+    /*
+      * Gestionnaire d'évènement clique sur l'élément li ( nom de la bouteille ) qui permet de faire la sélection parmi les choix de la liste
+    */
       liste.addEventListener("click", function(evt){
         console.dir(evt.target)
         if(evt.target.tagName == "LI"){
