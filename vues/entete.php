@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
-		<title>Un petit verre de vino</title>
+		<title>Vino</title>
 
 		<meta charset="utf-8">
 		<meta http-equiv="cache-control" content="no-cache">
@@ -14,8 +14,8 @@
 		<link rel="stylesheet" href="./css/base_h5bp.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="./css/main.css" type="text/css" media="screen">
 		<base href="<?php echo BASEURL; ?>">
-		<!--<script src="./js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>-->
-		<script src="./js/plugins.js"></script>
+		<!-- <script src="./js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+		<script src="./js/plugins.js"></script> -->
 		<script src="./js/main.js"></script>
 	</head>
 	<body >

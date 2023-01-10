@@ -15,7 +15,7 @@ class Controler
 {
 	
 		/**
-		 * Traite la requête
+		 * Fonction qui traite la requête 
 		 * @return void
 		 */
 		public function gerer()
@@ -43,6 +43,10 @@ class Controler
 			}
 		}
 
+		/**
+		 * Traite la page d'accueil
+		 * @return void
+		 */
 		private function accueil()
 		{
 			$bte = new Bouteille();
@@ -53,27 +57,36 @@ class Controler
                   
 		}
 		
-
+		/**
+		 * Retourne la liste des bouteilles d'un cellier
+		 * @return string Retourne un JSON encodé en tant que chaîne de caractères 
+		 */
 		private function listeBouteille()
 		{
 			$bte = new Bouteille();
-            $cellier = $bte->getListeBouteilleCellier();
-            
+            $cellier = $bte->getListeBouteilleCellier();  
             echo json_encode($cellier);
                   
 		}
 		
+
+		/**
+		 * Retourne la liste des bouteilles de la bd à partir d'une boîte de dialogue d'autocomplete
+		 * @return string Retourne un JSON encodé en tant que chaîne de caractères 
+		 */
 		private function autocompleteBouteille()
 		{
 			$bte = new Bouteille();
-			//var_dump(file_get_contents('php://input'));
 			$body = json_decode(file_get_contents('php://input'));
-			//var_dump($body);
             $listeBouteille = $bte->autocomplete($body->nom);
-            
-            echo json_encode($listeBouteille);
-                  
+            echo json_encode($listeBouteille);        
 		}
+
+		/**
+		 * 
+		 * Ajout d'une bouteille dans un cellier si tous les champs requis sont rempli sinon traite la vue ajouter
+		 * @return Bool True si l'ajout est réussi
+		 */
 		private function ajouterNouvelleBouteilleCellier()
 		{
 			$body = json_decode(file_get_contents('php://input'));
@@ -94,16 +107,21 @@ class Controler
 			
             
 		}
-		
+
+		/**
+		 * Enlève la bouteille au cellier
+		 */
 		private function boireBouteilleCellier()
 		{
 			$body = json_decode(file_get_contents('php://input'));
-			
 			$bte = new Bouteille();
 			$resultat = $bte->modifierQuantiteBouteilleCellier($body->id, -1);
 			echo json_encode($resultat);
 		}
 
+		/**
+		 * Ajout la bouteille au cellier
+		 */
 		private function ajouterBouteilleCellier()
 		{
 			$body = json_decode(file_get_contents('php://input'));
