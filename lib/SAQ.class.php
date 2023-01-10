@@ -188,12 +188,9 @@ class SAQ extends Modele {
 				$prix= str_replace(",", ".", $prixOnly);
 				
 				
-				//traiter image  -- à faire plus tard
-				
+				//traiter image 
 				$bte -> img = 's7d9.scene7.com/is/image/SAQ/'.$bte -> desc -> code_SAQ.'_is?$saq-rech-prod-gril$';
-				//https://www.saq.com/media/catalog/product/1/3/13584455-1_1578538222.png?quality=80&fit=bounds&height=166&width=111&canvas=111:166
-		//s7d9.scene7.com/is/image/SAQ/13637422_is?$saq-rech-prod-gril$
-		//s7d9.scene7.com/is/image/SAQ/12216562_is?$saq-rech-prod-gril$
+			
 			
 			
 				$bte -> prix = $prix;
