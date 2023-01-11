@@ -22,12 +22,79 @@
 @import url('./5-objects/grid.css');
 @import url('./5-objects/transition.css');
 
-
+a{
+    text-decoration: none;
+    color:brown;
+}
 
 /*ajout pour la démo*/
 .cellier{
-    
+    padding:20px;
+    background-color: rgb(250, 250, 250);
 }
-.bouteille{
 
+.bouteille {
+   padding:10px;
+   
+   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.bouteille .img{
+    text-align:center;
+}
+
+.bouteille .description{
+    text-align: left;
+}
+
+.bouteille .description p{
+    margin:0;
+    font-size:16px;
+    line-height: 20px;;
+}
+
+.btnModifier{
+    display:block;
+    text-decoration: none;
+    text-align: right;
+}
+
+
+.formFak{
+    max-width: fit-content;
+    margin: 30px auto;
+}
+
+.recherche{
+    display: block;
+    margin: 0 auto;
+    width:80%;
+}
+
+input.notes{
+    min-height: 80px;
+}
+
+.listeAutoComplete{
+    list-style: none;
+    text-align: center;
+}
+
+.listeAutoComplete li{
+   cursor: pointer;
+   color:#333;
+   padding:2px 0;
+}
+
+.listeAutoComplete li:hover{
+    cursor: pointer;
+    color:brown
+ }
+
+footer{
+    padding:20px;
+    background-color: black;
+    color:#fff;
+    font-size: 14px;
+    text-align: right;
 }
