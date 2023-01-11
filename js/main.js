@@ -10,6 +10,7 @@
 
 const BaseURL = "https://localhost/vino_etu/";
 //const BaseURL = document.baseURI;
+
 console.log(BaseURL);
 window.addEventListener('load', function() {
     console.log("load");
