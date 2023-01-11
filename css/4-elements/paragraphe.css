@@ -1,0 +1,7 @@
+p{
+    
+    font-size: calc(0.65em + 1vmin);
+    line-height:1.5em;
+    max-width: 70ch;
+    margin-bottom:20px;
+}

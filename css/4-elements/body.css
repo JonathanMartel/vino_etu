@@ -1,0 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans&family=DM+Serif+Display&display=swap');
+
+body{
+    max-width: 100%;
+    font-family: 'DM Sans', sans-serif;
+    font-size: calc(0.65em + 1vmin);
+}
