@@ -76,8 +76,6 @@ class Bouteille extends Modele {
 			 //$this->_db->error;
 		}
 		
-		
-		
 		return $rows;
 	}
 
@@ -207,7 +205,7 @@ class Bouteille extends Modele {
 
 
 
-		/**
+	/**
 	 * Cette méthode modifie une ou des bouteilles au cellier
 	 * 
 	 * @param Array $data Tableau des données représentants la bouteille.

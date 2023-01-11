@@ -117,14 +117,14 @@ window.addEventListener('load', function() {
           fetch(requete)
               .then(response => {
                   if (response.status === 200) {
-                   // console.log(response.json)
+                   console.log(response.json)
                     return response.json();
                   } else {
                     throw new Error('Erreur');
                   }
                 })
                 .then(response => {
-                  //console.log(response);
+                  console.log(response);
 
                   response.forEach(function(element){
                     liste.innerHTML += "<li data-id='"+element.id +"'>"+element.nom+"</li>";
@@ -135,12 +135,6 @@ window.addEventListener('load', function() {
                 });
         }
       });
-
-
-
- 
-
-
 
     /*
       * Gestionnaire d'évènement clique sur l'élément li ( nom de la bouteille ) 
