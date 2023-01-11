@@ -2,6 +2,7 @@ header {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    color: black;
 
 }
 
@@ -9,19 +10,20 @@ nav {
     display: flex;
     flex-direction: row;
     height: 100px;
-  
     justify-items: flex-end;
     justify-content: space-between;
-    text-transform: uppercase;
-   
+    text-decoration: none;
+    
 }
 
 .link a {
     margin: 20px; 
+    color: var(--focus);
+    
 }
 
 header .link {
-    margin-top: 30px;
+    margin-top: 20px;
     padding-top: 20px;
   
 }
@@ -36,6 +38,6 @@ nav img {
 /* hover */
 
 header .link a:hover{
-    color: var(--focus);
+    text-decoration: underline var(--focus);
 }
 
