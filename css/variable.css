@@ -1,0 +1,14 @@
+
+ :root{
+   
+    --font-size-base: 10px;
+    --font-size-ratio: 0.9;
+
+   
+    --primaire: black;
+    --focus: #910717;
+    --txtSurvol:var(--focus);
+
+  
+  
+}
