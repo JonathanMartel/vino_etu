@@ -22,4 +22,9 @@ Script PHP qui permet d'aller récupérer des données du site de la SAQ (pour d
 
 Bingo.
 
+<<<<<<< HEAD
 SAID
+=======
+
+Test.
+>>>>>>> 03be589a24b084af0b187397bd82f1829a6834db
