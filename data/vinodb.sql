@@ -34,7 +34,7 @@ CREATE TABLE `vino__bouteille` (
   `code_saq` varchar(50) DEFAULT NULL,
   `pays` varchar(50) DEFAULT NULL,
   `description` varchar(200) DEFAULT NULL,
-  `prix_saq` float DEFAULT NULL,
+  `prix_saq` float(7,2) DEFAULT NULL,
   `url_saq` varchar(200) DEFAULT NULL,
   `url_img` varchar(200) DEFAULT NULL,
   `format` varchar(20) DEFAULT NULL,

@@ -25,6 +25,9 @@ class Controler
 				case 'listeBouteille':
 					$this->listeBouteille();
 					break;
+				case 'uneBouteilleCellier':
+					$this->getBouteille($_GET['idVin'], $_GET['idCellier']);
+					break;
 				case 'autocompleteBouteille':
 					$this->autocompleteBouteille();
 					break;
@@ -36,6 +39,9 @@ class Controler
 					break;
 				case 'boireBouteilleCellier':
 					$this->boireBouteilleCellier();
+					break;
+				case 'modifierBouteilleCellier':
+					$this->modifierBouteilleCellier();
 					break;
 				default:
 					$this->accueil();
@@ -69,11 +75,30 @@ class Controler
                   
 		}
 		
+		
+		/**
+		 * Retourne la bouteilles d'un cellier
+		 * @return string Retourne un JSON encodé en tant que chaîne de caractères 
+		*/
+		private function getBouteille($idVin, $idCellier)
+		{
+			//var_dump($id);
+			if(!empty($idCellier) && !empty($idVin)){
+				$bte = new Bouteille();
+				$data = $bte->getBouteilleCellier($idVin, $idCellier);
+		
+				//echo json_encode($data);
+				
+				include("vues/entete.php");
+				include("vues/modifier.php");
+				include("vues/pied.php");
+			}
+		}
 
 		/**
 		 * Retourne la liste des bouteilles de la bd à partir d'une boîte de dialogue d'autocomplete
 		 * @return string Retourne un JSON encodé en tant que chaîne de caractères 
-		 */
+		*/
 		private function autocompleteBouteille()
 		{
 			$bte = new Bouteille();
@@ -107,6 +132,35 @@ class Controler
 			
             
 		}
+
+
+		/**
+		 * 
+		 * Modification d'une bouteille dans un cellier si tous les champs requis sont rempli sinon traite la vue modification
+		 * @return Bool True si la modification est réussie
+		 */
+		private function modifierBouteilleCellier()
+		{
+			$body = json_decode(file_get_contents('php://input'));  //out idCellier
+			
+			//$nom = $bte->getBouteilleNom($id);
+			if(!empty($body)){
+				$bte = new Bouteille();
+				//var_dump($_POST['data']);
+				
+				//var_dump($data);
+				$resultat = $bte->modifieBouteilleCellier();
+				echo json_encode($resultat);
+			}
+			else{
+				include("vues/entete.php");
+				include("vues/modifier.php");
+				include("vues/pied.php");
+			}
+			
+            
+		}
+
 
 		/**
 		 * Enlève la bouteille au cellier

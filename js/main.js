@@ -11,9 +11,11 @@
 
 const BaseURL = document.baseURI;
 
+
 /**
  * Gestionnaire d'évènement au téléchargement de la page
  */
+
 window.addEventListener('load', function() {
     console.log("load");
 
@@ -48,6 +50,7 @@ window.addEventListener('load', function() {
 
     });
 
+
     /* Boucle pour ajouter un gestionnaire d'évènement clique sur le bouton ajouter de l'une bouteille du cellier
     -- À factoriser */
     document.querySelectorAll(".btnAjouter").forEach(function(element){
@@ -77,6 +80,34 @@ window.addEventListener('load', function() {
         })
 
     });
+
+
+      /* Boucle pour ajouter un gestionnaire d'évènement clique sur le bouton modifier de l'une bouteille du cellier
+    -- À factoriser */
+    document.querySelectorAll(".btnModifier").forEach(function(element){
+      console.log(element);
+      element.addEventListener("click", function(evt){
+          let id = evt.target.parentElement.dataset.id;
+          let idVin = evt.target.parentElement.dataset.idVin;
+          console.log(idVin);
+          let requete = new Request(BaseURL+"index.php?requete=modifierBouteilleCellier", {method: 'POST', body: '{"id": '+id+', idVin:'+idVin+'}'});
+
+          fetch(requete)
+          .then(response => {
+              if (response.status === 200) {
+                return response.json();
+              } else {
+                throw new Error('Erreur');
+              }
+            })
+            .then(response => {
+              console.debug(response);
+            }).catch(error => {
+              console.error(error);
+            });
+      })
+
+  });
    
 
 
@@ -98,11 +129,11 @@ window.addEventListener('load', function() {
         if(nom){
           console.log(BaseURL);
           let requete = new Request(BaseURL+"index.php?requete=autocompleteBouteille", {method: 'POST', body: '{"nom": "'+nom+'"}'});
-          console.log(requete)
+          //console.log(requete)
           fetch(requete)
               .then(response => {
                   if (response.status === 200) {
-                    console.log(response.json)
+                   // console.log(response.json)
                     return response.json();
                   } else {
                     throw new Error('Erreur');

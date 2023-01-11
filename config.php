@@ -24,6 +24,7 @@
 			if(file_exists('./'.$dossier.$class.'.class.php'))
 			{
 				require_once('./'.$dossier.$class.'.class.php');
+				
 			}
 		}
 		
