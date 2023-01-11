@@ -1,35 +1,34 @@
-
+<section class="containerCatalogue">
     <?php
+
     foreach ($data as $cle => $bouteille) {
 
     ?>
-        <section class="bouteille">
 
-            <div class="imgBouteille">
+
+        <div class="carteCatalogue">
+            <div>
                 <img src="https:<?php echo $bouteille['image'] ?>">
-            </div>
-
-            <div class="descBouteille">
                 <p class="nom">Nom : <?php echo $bouteille['nom'] ?></p>
                 <p class="quantite">Quantité : <?php echo $bouteille['quantite'] ?></p>
                 <p class="pays">Pays : <?php echo $bouteille['pays'] ?></p>
                 <p class="type">Type : <?php echo $bouteille['type'] ?></p>
-                <p class="millesime">Millesime : <?php echo $bouteille['millesime'] ?></p>
-                <p><a href="<?php echo $bouteille['url_saq'] ?>">Voir SAQ</a></p>
-            </div>
-
-            <div class="options" data-id="<?php echo $bouteille['id_bouteille_cellier'] ?>">
-                <button>Modifier</button>
+                <p class="millesime">Millesime : <?php echo $bouteille['millesime'] ?></p><br>
                 <button>Ajouter</button>
+                <button>Modifier</button>
                 <button>Boire</button>
             </div>
-    </section>
-<?php
+
+        </div>
+    <?php
 
 
 
 
 
     }
+    ?>
 
-?>
+
+
+</section>
