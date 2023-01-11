@@ -20,4 +20,4 @@ Script PHP qui permet d'aller récupérer des données du site de la SAQ (pour d
 - Transférer les fichiers par FTP
 - Tester
 
-Bingo.
+Bingo. 
