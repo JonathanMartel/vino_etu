@@ -26,7 +26,7 @@ class Controler
 					$this->listeBouteille();
 					break;
 				case 'uneBouteilleCellier':
-					$this->getBouteille();
+					$this->getBouteille($_GET['idVin'], $_GET['idCellier']);
 					break;
 				case 'autocompleteBouteille':
 					$this->autocompleteBouteille();
@@ -80,23 +80,25 @@ class Controler
 		 * Retourne la bouteilles d'un cellier
 		 * @return string Retourne un JSON encodé en tant que chaîne de caractères 
 		*/
-		private function getBouteille()
+		private function getBouteille($idVin, $idCellier)
 		{
-			$body = json_decode(file_get_contents('php://input'));  //out idCellier et idVin
-
-			var_dump()
-
-
-			$bte = new Bouteille();
-            $cellier = $bte->getBouteilleCellier();  
-            echo json_encode($cellier);
-                  
+			//var_dump($id);
+			if(!empty($idCellier) && !empty($idVin)){
+				$bte = new Bouteille();
+				$data = $bte->getBouteilleCellier($idVin, $idCellier);
+		
+				//echo json_encode($data);
+				
+				include("vues/entete.php");
+				include("vues/modifier.php");
+				include("vues/pied.php");
+			}
 		}
 
 		/**
 		 * Retourne la liste des bouteilles de la bd à partir d'une boîte de dialogue d'autocomplete
 		 * @return string Retourne un JSON encodé en tant que chaîne de caractères 
-		 */
+		*/
 		private function autocompleteBouteille()
 		{
 			$bte = new Bouteille();
@@ -147,7 +149,7 @@ class Controler
 				//var_dump($_POST['data']);
 				
 				//var_dump($data);
-				$resultat = $bte->modifieBouteilleCellier($id);
+				$resultat = $bte->modifieBouteilleCellier();
 				echo json_encode($resultat);
 			}
 			else{
