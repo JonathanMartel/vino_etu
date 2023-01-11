@@ -1,0 +1,25 @@
+/* SETTINGS */
+
+@import url('./1-settings/variables.css');
+
+/* TOOLS */
+
+
+/* GENERIC */
+
+/* ELEMTENTS */
+@import url('./4-elements/body.css');
+@import url('./4-elements/nav.css');
+@import url('./4-elements/form.css');
+@import url('./4-elements/title.css');
+@import url('./4-elements/main.css');
+@import url('./4-elements/paragraphe.css');
+
+@import url('./3-generic/reset.css');
+
+/* OBJECTS */
+@import url('./5-objects/grid.css');
+@import url('./5-objects/transition.css');
+
+
+

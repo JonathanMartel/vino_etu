@@ -1,0 +1,103 @@
+form input, textarea {
+  font-family: 'DM Sans', sans-serif;
+  font-size: calc(1em + 1vmin);
+    
+}
+
+input[type='email'] {
+  border: 1px solid var(--color-brun);
+  border-radius: 4px;
+  padding: 8px;
+  display: inline-block;
+}
+
+input[type=email]:focus {
+  border: 2px solid var(--color-brun);
+}
+
+form.login {
+  display: flex;
+  padding:8px;
+  justify-content: flex-end;
+  gap:8px;
+ 
+}
+
+form:not(.login) button {
+  background-color: #000;
+  color:#fff;
+  display: inline-block;
+  text-decoration: none;
+  padding: 8px ;
+  margin: 5px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color, ease-in-out 0.3s; 
+}
+
+form:not(.login) button:hover {
+  background-color: var(--color-brun-fonce);
+
+}
+
+form.login button {
+ /* position : absolute;
+  top:calc(0.2em + 1vmin);
+  right:5px;*/
+  position: relative;
+  height: 40px;
+  width: 40px;
+  border:none;
+  background-color: #000;
+
+}
+
+form.login button:hover {
+  cursor: pointer;
+}
+
+form.login button:hover svg {
+  position:absolute;
+  background-color: var(--color-brun-fonce);
+}
+
+form.login svg {
+  position: absolute;
+  pointer-events: none;
+  fill: #fff;
+  height: 35px;
+  width: 35px;
+  left: 0;
+  top: 2px;
+  background-color: var(--color-brun);
+  padding: 5px;
+  border-radius: 50%;
+  transition: all ease-in-out 0.3s;
+}
+
+form textarea{
+  margin-top:20px;
+  width: 100%;
+  padding:8px;
+  min-height: 200px;
+  border-radius: 4px;
+}
+
+form textarea:focus{
+  outline: none;
+  box-shadow: 0 0 0 1px rgba(134, 82, 4, 0.8);
+}
+
+
+@media (min-width: 500px) {
+
+  form input, textarea {
+    font-size: calc(0.5em + 1vmin);    
+  }
+
+ 
+
+  
+
+}

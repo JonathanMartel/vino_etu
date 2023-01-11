@@ -1,0 +1,33 @@
+/* Objects : transition */
+
+
+[data-js-from] {
+    opacity: 0;
+    transition: opacity .3s ease,
+                transform .3s ease;
+}
+
+[data-js-from="top"] {
+    opacity: 0;
+    transform: translate(0, -100px);
+}
+
+[data-js-from="right"] {
+    opacity: 0;
+    transform: translate(100px, 0);
+}
+
+[data-js-from="bottom"] {
+    opacity: 0;
+    transform: translate(0, 100px);
+}
+
+[data-js-from="left"] {
+    opacity: 0;
+    transform: translate(-100px, 0);
+}
+
+.show {
+    opacity: 1;
+    transform: translate(0, 0);
+}
