@@ -11,16 +11,32 @@
 
 const BaseURL = document.baseURI;
 
+
 /**
  * Gestionnaire d'évènement au téléchargement de la page
  */
+
 window.addEventListener('load', function() {
     console.log("load");
+
+     /* Object bouteille avec ses propriétés*/  
+    let bouteille = {
+      nom : document.querySelector(".nom_bouteille"),
+      millesime : document.querySelector("[name='millesime']"),
+      quantite : document.querySelector("[name='quantite']"),
+      date_achat : document.querySelector("[name='date_achat']"),
+      prix : document.querySelector("[name='prix']"),
+      garde_jusqua : document.querySelector("[name='garde_jusqua']"),
+      notes : document.querySelector("[name='notes']"),
+    };
+
+
+
 
     /* Boucle pour ajouter un gestionnaire d'évènement clique sur le bouton boire de d'une bouteille du cellier
     -- À factoriser */
     document.querySelectorAll(".btnBoire").forEach(function(element){
-        console.log(element);
+       // console.log(element);
         element.addEventListener("click", function(evt){
             let id = evt.target.parentElement.dataset.id;
             let elemBouteille = evt.target.parentElement.parentElement;
@@ -48,15 +64,17 @@ window.addEventListener('load', function() {
 
     });
 
+
     /* Boucle pour ajouter un gestionnaire d'évènement clique sur le bouton ajouter de l'une bouteille du cellier
     -- À factoriser */
     document.querySelectorAll(".btnAjouter").forEach(function(element){
-        console.log(element);
+        //console.log(element);
         element.addEventListener("click", function(evt){
             let id = evt.target.parentElement.dataset.id;
             let elemBouteille = evt.target.parentElement.parentElement;
             let elemQuantite = elemBouteille.querySelector('.quantite').innerText.split(': ');
             let newQuantite = parseInt(elemQuantite[1]) + 1
+
             let requete = new Request(BaseURL+"index.php?requete=ajouterBouteilleCellier", {method: 'POST', body: '{"id": '+id+'}'});
 
             fetch(requete)
@@ -77,15 +95,12 @@ window.addEventListener('load', function() {
         })
 
     });
-   
-
 
 /**
  * Gestionnaire d'évènement keyUp sur la boîte de dialogue 
  * Permet d'afficher le nom des bouteilles de la bd qui correspond aux caractères tapés
  * Ajout un gestionnaire d'évènement clique sur les noms affichés
  */
-
     let inputNomBouteille = document.querySelector("[name='nom_bouteille']");
     console.log(inputNomBouteille);
     let liste = document.querySelector('.listeAutoComplete');
@@ -95,50 +110,41 @@ window.addEventListener('load', function() {
         console.log(evt);
         let nom = inputNomBouteille.value;
         liste.innerHTML = "";
+
         if(nom){
-          console.log(BaseURL);
           let requete = new Request(BaseURL+"index.php?requete=autocompleteBouteille", {method: 'POST', body: '{"nom": "'+nom+'"}'});
-          console.log(requete)
+          
           fetch(requete)
               .then(response => {
                   if (response.status === 200) {
-                    console.log(response.json)
+                   // console.log(response.json)
                     return response.json();
                   } else {
                     throw new Error('Erreur');
                   }
                 })
                 .then(response => {
-                  console.log(response);
-                  
-                 
+                  //console.log(response);
+
                   response.forEach(function(element){
                     liste.innerHTML += "<li data-id='"+element.id +"'>"+element.nom+"</li>";
                   })
+
                 }).catch(error => {
                   console.error(error);
                 });
         }
-        
-        
       });
 
 
 
-    /* Object bouteille avec ses propriétés*/  
+ 
 
-      let bouteille = {
-        nom : document.querySelector(".nom_bouteille"),
-        millesime : document.querySelector("[name='millesime']"),
-        quantite : document.querySelector("[name='quantite']"),
-        date_achat : document.querySelector("[name='date_achat']"),
-        prix : document.querySelector("[name='prix']"),
-        garde_jusqua : document.querySelector("[name='garde_jusqua']"),
-        notes : document.querySelector("[name='notes']"),
-      };
+
 
     /*
-      * Gestionnaire d'évènement clique sur l'élément li ( nom de la bouteille ) qui permet de faire la sélection parmi les choix de la liste
+      * Gestionnaire d'évènement clique sur l'élément li ( nom de la bouteille ) 
+        qui permet de faire la sélection parmi les choix de la liste
     */
       liste.addEventListener("click", function(evt){
         console.dir(evt.target)
@@ -168,8 +174,10 @@ window.addEventListener('load', function() {
             "quantite":bouteille.quantite.value,
             "millesime":bouteille.millesime.value,
           };
+
           let requete = new Request(BaseURL+"index.php?requete=ajouterNouvelleBouteilleCellier", {method: 'POST', body: JSON.stringify(param)});
-            fetch(requete)
+            
+          fetch(requete)
                 .then(response => {
                     if (response.status === 200) {
                       console.log(bouteille.quantite.value);
@@ -188,6 +196,4 @@ window.addEventListener('load', function() {
         });
       } 
   }
-    
-
 });

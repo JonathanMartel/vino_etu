@@ -37,7 +37,7 @@ class MonSQL {
 	 * @return Singleton
 	 */
 	public static function getInstance() {
-
+	
 		if (is_null(self::$_instance)) {
 			self::$_instance = new mysqli(HOST, USER, PASSWORD, DATABASE);
 			if (self::$_instance-> connect_errno) {

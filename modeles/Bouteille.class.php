@@ -12,6 +12,8 @@
  */
 class Bouteille extends Modele {
 	const TABLE = 'vino__bouteille';
+
+	const TABLESAQ = 'vino__bouteille__SAQ';
     
 	public function getListeBouteille()
 	{
@@ -28,6 +30,8 @@ class Bouteille extends Modele {
 		
 		return $rows;
 	}
+
+	
 	
 	public function getListeBouteilleCellier()
 	{
@@ -76,6 +80,59 @@ class Bouteille extends Modele {
 		
 		return $rows;
 	}
+
+
+
+	public function getBouteilleCellier($idVin, $idCellier)
+	{
+		
+		$rows = Array();
+		$requete ='SELECT 
+						c.id as id_bouteille_cellier,
+						c.id_bouteille, 
+						c.date_achat, 
+						c.garde_jusqua, 
+						c.notes, 
+						c.prix, 
+						c.quantite,
+						c.millesime, 
+						b.id,
+						b.nom, 
+						b.type, 
+						b.image, 
+						b.code_saq, 
+						b.url_saq, 
+						b.pays, 
+						b.description,
+						t.type 
+						FROM vino__cellier c 
+						INNER JOIN vino__bouteille b ON c.id_bouteille = b.id
+						INNER JOIN vino__type t ON t.id = b.type
+						WHERE c.id_bouteille = '.$idVin.'
+						AND c.id = '.$idCellier.'
+						'; 
+		if(($res = $this->_db->query($requete)) ==	 true)
+		{
+			
+			if($res->num_rows)
+			{
+				while($row = $res->fetch_assoc())
+				{
+					$row['nom'] = trim(utf8_encode($row['nom']));
+					$rows[] = $row;
+				}
+			}
+		}
+		else 
+		{
+			throw new Exception("Erreur de requête sur la base de donnée", 1);
+			 //$this->_db->error;
+		}
+		
+		
+		//var_dump($rows);
+		return $rows;
+	}
 	
 	/**
 	 * Cette méthode permet de retourner les résultats de recherche pour la fonction d'autocomplete de l'ajout des bouteilles dans le cellier
@@ -96,7 +153,7 @@ class Bouteille extends Modele {
 		$nom = preg_replace("/\*/","%" , $nom);
 		 
 		//echo $nom;
-		$requete ='SELECT id, nom FROM vino__bouteille where LOWER(nom) like LOWER("%'. $nom .'%") LIMIT 0,'. $nb_resultat; 
+		$requete ='SELECT id, nom FROM vino__bouteille__SAQ where LOWER(nom) like LOWER("%'. $nom .'%") LIMIT 0,'. $nb_resultat; 
 		//var_dump($requete);
 		if(($res = $this->_db->query($requete)) ==	 true)
 		{
@@ -146,6 +203,39 @@ class Bouteille extends Modele {
         $res = $this->_db->query($requete);
         
 		return $res;
+	}
+
+
+
+		/**
+	 * Cette méthode modifie une ou des bouteilles au cellier
+	 * 
+	 * @param Array $data Tableau des données représentants la bouteille.
+	 * 
+	 * @return Boolean Succès ou échec de l'ajout.
+	 */
+	public function modifieBouteilleCellier($id)
+	{
+		//TODO : Valider les données.
+		
+		
+		//$data = $this -> getBouteilleCellier($id);
+
+		//print_r($data);
+		/*
+		$requete = "UPDATE vino__cellier
+					SET 
+					date_achat='.$data->date_achat.',,
+					garde_jusqua='.$data->garde_jusqua.',,
+					notes='.$data->notes.',,
+					prix='.$data->prix.',,
+					quantite='.$data->quantite.',,
+					millesime='.$data->millesime.', 
+					WHERE id_bouteille='.$data->id_bouteille.'";
+
+        $res = $this->_db->query($requete);
+        
+		return $res;*/
 	}
 	
 	
