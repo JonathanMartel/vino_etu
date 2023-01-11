@@ -1,0 +1,19 @@
+.bouteille{
+    display: flex;
+    max-height: 500px;
+    justify-content: center;
+    margin-top: 200px;
+}
+
+.imgBouteille{
+    display: flex;
+    width: 20%;
+    justify-content: flex-end;
+}
+
+.descBouteille{
+    display: flex;
+    flex-direction: column;
+    width:30%;
+    padding: 60px;
+}
