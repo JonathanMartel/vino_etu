@@ -1,4 +1,4 @@
-/**
+/*/**
  * @file Script contenant les fonctions de base
  * @author Jonathan Martel (jmartel@cmaisonneuve.qc.ca)
  * @version 0.1
@@ -101,7 +101,7 @@ window.addEventListener('load', function() {
  * Permet d'afficher le nom des bouteilles de la bd qui correspond aux caractères tapés
  * Ajout un gestionnaire d'évènement clique sur les noms affichés
  */
-    let inputNomBouteille = document.querySelector("[name='nom_bouteille']");
+    let inputNomBouteille = document.querySelector("input[name='nom_bouteille']");
     console.log(inputNomBouteille);
     let liste = document.querySelector('.listeAutoComplete');
 
@@ -117,7 +117,7 @@ window.addEventListener('load', function() {
           fetch(requete)
               .then(response => {
                   if (response.status === 200) {
-                   console.log(response.json)
+                   console.log(response.json);
                     return response.json();
                   } else {
                     throw new Error('Erreur');
@@ -126,16 +126,15 @@ window.addEventListener('load', function() {
                 .then(response => {
                   console.log(response);
 
-                  response.forEach(function(element){
+                  /*response.forEach(function(element){
                     liste.innerHTML += "<li data-id='"+element.id +"'>"+element.nom+"</li>";
-                  })
+                  })*/
 
                 }).catch(error => {
                   console.error(error);
                 });
         }
       });
-
     /*
       * Gestionnaire d'évènement clique sur l'élément li ( nom de la bouteille ) 
         qui permet de faire la sélection parmi les choix de la liste
@@ -151,7 +150,6 @@ window.addEventListener('load', function() {
 
         }
       });
-
 
       /**
        * Gestion évènement clique sur le bouton Ajouter une bouteille au cellier

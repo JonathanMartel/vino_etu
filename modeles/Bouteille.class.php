@@ -31,8 +31,6 @@ class Bouteille extends Modele {
 		return $rows;
 	}
 
-	
-	
 	public function getListeBouteilleCellier()
 	{
 		
@@ -187,7 +185,7 @@ class Bouteille extends Modele {
 	public function ajouterBouteilleCellier($data)
 	{
 		//TODO : Valider les données.
-		//var_dump($data);	
+		var_dump($data);	
 		
 		$requete = "INSERT INTO vino__cellier(id_bouteille,date_achat,garde_jusqua,notes,prix,quantite,millesime) VALUES (".
 		"'".$data->id_bouteille."',".
@@ -216,11 +214,10 @@ class Bouteille extends Modele {
 	{
 		//TODO : Valider les données.
 		
-		
 		//$data = $this -> getBouteilleCellier($id);
 
 		//print_r($data);
-		/*
+		
 		$requete = "UPDATE vino__cellier
 					SET 
 					date_achat='.$data->date_achat.',,
@@ -233,7 +230,7 @@ class Bouteille extends Modele {
 
         $res = $this->_db->query($requete);
         
-		return $res;*/
+		return $res;
 	}
 	
 	
@@ -248,8 +245,6 @@ class Bouteille extends Modele {
 	public function modifierQuantiteBouteilleCellier($id, $nombre)
 	{
 		//TODO : Valider les données.
-			
-			
 		$requete = "UPDATE vino__cellier SET quantite = GREATEST(quantite + ". $nombre. ", 0) WHERE id = ". $id;
 		//echo $requete;
         $res = $this->_db->query($requete);
