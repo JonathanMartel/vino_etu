@@ -92,6 +92,9 @@ input.notes{
  }
 
 footer{
+    position:sticky;
+    bottom:0;
+    width: 100%;
     padding:20px;
     background-color: black;
     color:#fff;
