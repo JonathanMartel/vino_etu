@@ -1,4 +1,4 @@
-<div class="cellier">
+<div class="cellier grid">
 <?php
 foreach ($data as $cle => $bouteille) {
  

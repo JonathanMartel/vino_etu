@@ -1,18 +1,18 @@
 form input, textarea {
   font-family: 'DM Sans', sans-serif;
-  font-size: calc(1em + 1vmin);
+  font-size: 16px!important;
     
 }
 
-input[type='email'] {
-  border: 1px solid var(--color-brun);
+input{
+  border: 1px solid var(--color-primary);
   border-radius: 4px;
   padding: 8px;
   display: inline-block;
 }
 
-input[type=email]:focus {
-  border: 2px solid var(--color-brun);
+input:focus {
+  border: 2px solid var(--color-secondary);
 }
 
 form.login {
@@ -23,7 +23,7 @@ form.login {
  
 }
 
-form:not(.login) button {
+button {
   background-color: #000;
   color:#fff;
   display: inline-block;
@@ -36,8 +36,8 @@ form:not(.login) button {
   transition: background-color, ease-in-out 0.3s; 
 }
 
-form:not(.login) button:hover {
-  background-color: var(--color-brun-fonce);
+button:hover {
+  background-color: var(--color-secondary-fonce);
 
 }
 
@@ -59,7 +59,7 @@ form.login button:hover {
 
 form.login button:hover svg {
   position:absolute;
-  background-color: var(--color-brun-fonce);
+  background-color: var(--color-secondary-fonce);
 }
 
 form.login svg {
@@ -70,7 +70,7 @@ form.login svg {
   width: 35px;
   left: 0;
   top: 2px;
-  background-color: var(--color-brun);
+  background-color: var(--color-secondary);
   padding: 5px;
   border-radius: 50%;
   transition: all ease-in-out 0.3s;

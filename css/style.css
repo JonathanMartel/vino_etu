@@ -10,6 +10,7 @@
 /* ELEMTENTS */
 @import url('./4-elements/body.css');
 @import url('./4-elements/nav.css');
+@import url('./4-elements/button.css');
 @import url('./4-elements/form.css');
 @import url('./4-elements/title.css');
 @import url('./4-elements/main.css');
@@ -23,3 +24,10 @@
 
 
 
+/*ajout pour la démo*/
+.cellier{
+    
+}
+.bouteille{
+
+}
