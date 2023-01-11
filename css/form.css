@@ -1,0 +1,105 @@
+form input {
+  display: block;
+  border: none;
+  border-bottom: 0.5px solid var(--focus);
+  outline: 0;
+  padding: 0.8em 1em;
+  margin: 1em 0;
+  min-width: 30%;
+}
+
+form input:focus {
+  box-shadow: 0 0px 2px;
+  border: black;
+
+}
+
+
+
+.newletter {
+  border-top: 2px solid var(--bordure-couleur);
+  display: grid;
+  padding-top: 15px;
+  margin-top: 80px;
+}
+
+
+.form-title {
+  font-size: 1rem;
+  text-transform: uppercase;
+  text-align: center;
+ 
+}
+
+.trier {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 15px;
+  padding: 5px;
+  font-size: 1em;
+}
+
+.trier select {
+  text-align: center;
+  border: black 2px solid;
+  border-radius: 3px;
+}
+
+
+/* --------------------------- formulaire de connexion et d'inscription ------------------*/
+.formCo {
+  justify-items: center;
+ 
+
+}
+
+button a {
+  text-decoration: none;
+  color: white;
+}
+
+.inscCo {
+  padding: 60px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  text-align: start;
+  background-color: white;
+}
+
+.inscCo input {
+  width: 100%;
+}
+
+.selectEnchere {
+  display: block;
+  background-color: var(--claire);
+  border: var(--primaire) 2px solid;
+  outline: 0;
+  padding: 0.8em 1em;
+  font-family: var(--font-famille-nav);
+  margin: 1em 0;
+  min-width: 20%;
+}
+
+.enchereForm select {
+  margin: 0;
+  font-family: var(--font-famille-titre);
+  width: 109%;
+}
+
+.enchereForm form input {
+  margin-top: 0px;
+}
+
+.inscCo {
+  font-family: var(--font-famille-titre);
+  color: black;
+  font-weight: 600;
+}
+
+/******* erreur ****************************/
+
+.error {
+  border-color: red;
+}
