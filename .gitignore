@@ -21,4 +21,5 @@ Desktop.ini
 !/.travis.yml
 !/.project
 dataconf.php
+dataconf_prod.php
 .push.settings.jsonc
