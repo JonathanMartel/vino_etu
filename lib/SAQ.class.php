@@ -24,9 +24,11 @@ class SAQ extends Modele {
 
 	public function __construct() {
 		parent::__construct();
-		if (!($this -> stmt = $this -> _db -> prepare("INSERT INTO vino__bouteille__SAQ(nom, type, image, code_saq, pays, description, prix_saq, url_saq, url_img, format) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
+		/*Importation catalogue*/
+		if (!($this -> stmt = $this -> _db -> prepare("INSERT INTO vino__bouteille(nom, type, image, code_saq, pays, description, prix_saq, url_saq, url_img, format) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
 			echo "Echec de la préparation : (" . $mysqli -> errno . ") " . $mysqli -> error;
 		}
+		
 	}
 
 	/**
@@ -179,21 +181,20 @@ class SAQ extends Modele {
 			//var_dump($type);
 			$type = $type['id'];
 
-			$rows = $this -> _db -> query("select id from vino__bouteille__SAQ where code_saq = '" . $bte -> desc -> code_SAQ . "'");
+			$rows = $this -> _db -> query("select id from vino__bouteille where code_saq = '" . $bte -> desc -> code_SAQ . "'");
 			if ($rows -> num_rows < 1) {
 
 				//Traiter le prix
 				$prixTrim = trim($bte -> prix);
 				$prixOnly= str_replace("$", "", $prixTrim);
 				$prix= str_replace(",", ".", $prixOnly);
-				
+				$bte -> prix = $prix;
 				
 				//traiter image 
-				$bte -> img = 's7d9.scene7.com/is/image/SAQ/'.$bte -> desc -> code_SAQ.'_is?$saq-rech-prod-gril$';
+				$bte -> img = '//s7d9.scene7.com/is/image/SAQ/'.$bte -> desc -> code_SAQ.'_is?$saq-rech-prod-gril$';
 			
-			
-			
-				$bte -> prix = $prix;
+		
+				
 				//var_dump($bte -> prix);
 
 				$this -> stmt -> bind_param("sissssdsss", $bte -> nom, $type, $bte -> img, $bte -> desc -> code_SAQ, $bte -> desc -> pays, $bte -> desc -> texte, $bte -> prix, $bte -> url, $bte -> img, $bte -> desc -> format);

@@ -3,9 +3,9 @@
  * Class Controler
  * Gère les requêtes HTTP
  * 
- * @author Jonathan Martel
- * @version 1.0
- * @update 2019-01-21
+ * @author Jonathan Martel & Annabelle Gamache
+ * @version 1.2
+ * @update 2023-01-12
  * @license Creative Commons BY-NC 3.0 (Licence Creative Commons Attribution - Pas d’utilisation commerciale 3.0 non transposé)
  * @license http://creativecommons.org/licenses/by-nc/3.0/deed.fr
  * 
@@ -25,8 +25,8 @@ class Controler
 				case 'listeBouteille':
 					$this->listeBouteille();
 					break;
-				case 'uneBouteilleCellier':
-					$this->getBouteille($_GET['idVin'], $_GET['idCellier']);
+				case 'uneBouteilleCellierModif':
+					$this->getBouteilleModifier($_GET['idVin'], $_GET['idCellier']);
 					break;
 				case 'autocompleteBouteille':
 					$this->autocompleteBouteille();
@@ -80,7 +80,7 @@ class Controler
 		 * Retourne la bouteilles d'un cellier
 		 * @return string Retourne un JSON encodé en tant que chaîne de caractères 
 		*/
-		private function getBouteille($idVin, $idCellier)
+		private function getBouteilleModifier($idVin, $idCellier)
 		{
 			//var_dump($id);
 			if(!empty($idCellier) && !empty($idVin)){
@@ -115,14 +115,17 @@ class Controler
 		private function ajouterNouvelleBouteilleCellier()
 		{
 			$body = json_decode(file_get_contents('php://input'));
-			//var_dump($body);
+			
+			
+
 			if(!empty($body)){
 				$bte = new Bouteille();
-				//var_dump($_POST['data']);
 				
-				//var_dump($data);
 				$resultat = $bte->ajouterBouteilleCellier($body);
 				echo json_encode($resultat);
+				
+            	$data = $bte->getListeBouteilleCellier();
+				
 			}
 			else{
 				include("vues/entete.php");
@@ -141,16 +144,22 @@ class Controler
 		 */
 		private function modifierBouteilleCellier()
 		{
-			$body = json_decode(file_get_contents('php://input'));  //out idCellier
+			$body = json_decode(file_get_contents('php://input'));
 			
-			//$nom = $bte->getBouteilleNom($id);
+			//var_dump($body);
+
 			if(!empty($body)){
 				$bte = new Bouteille();
-				//var_dump($_POST['data']);
 				
-				//var_dump($data);
-				$resultat = $bte->modifieBouteilleCellier();
+				$resultat = $bte->modifieBouteilleCellier($body);
+				
+				$data = $bte->getListeBouteilleCellier();
+
 				echo json_encode($resultat);
+				
+            	
+
+				
 			}
 			else{
 				include("vues/entete.php");
@@ -170,6 +179,7 @@ class Controler
 			$body = json_decode(file_get_contents('php://input'));
 			$bte = new Bouteille();
 			$resultat = $bte->modifierQuantiteBouteilleCellier($body->id, -1);
+
 			echo json_encode($resultat);
 		}
 
