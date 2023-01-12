@@ -179,11 +179,12 @@ class SAQ extends Modele {
 			 * 	On remplace "," par "." ainsi (15,5$ devient 15.5$) en reglant le 2me bug
 			 * 
 			 *	Après on remplace "i" dasn la requette paramettré par "d" 
-			 * */ 
-			$bte -> prix = str_replace(',' , '.' , $bte -> prix);
+			 * mais 
+			 * */  
+			//$bte -> prix = str_replace(',' , '.' , $bte -> prix);
 			$rows = $this -> _db -> query("select id from vino__bouteille where code_saq = '" . $bte -> desc -> code_SAQ . "'");
 			if ($rows -> num_rows < 1) {
-				$this -> stmt -> bind_param("sissssdsss", $bte -> nom, $type, $bte -> img, $bte -> desc -> code_SAQ, $bte -> desc -> pays, $bte -> desc -> texte, $bte -> prix, $bte -> url, $bte -> img, $bte -> desc -> format);
+				$this -> stmt -> bind_param("sissssisss", $bte -> nom, $type, $bte -> img, $bte -> desc -> code_SAQ, $bte -> desc -> pays, $bte -> desc -> texte, $bte -> prix, $bte -> url, $bte -> img, $bte -> desc -> format);
 				$retour -> succes = $this -> stmt -> execute();
 				$retour -> raison = self::INSERE;
 				//var_dump($this->stmt);
