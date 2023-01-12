@@ -146,16 +146,18 @@ class Controler
 		{
 			$body = json_decode(file_get_contents('php://input'));
 			
-			
+			//var_dump($body);
 
 			if(!empty($body)){
 				$bte = new Bouteille();
 				
 				$resultat = $bte->modifieBouteilleCellier($body);
-				var_dump($resultat);
+				
+				$data = $bte->getListeBouteilleCellier();
+
 				echo json_encode($resultat);
 				
-            	$data = $bte->getListeBouteilleCellier();
+            	
 
 				
 			}
@@ -177,6 +179,7 @@ class Controler
 			$body = json_decode(file_get_contents('php://input'));
 			$bte = new Bouteille();
 			$resultat = $bte->modifierQuantiteBouteilleCellier($body->id, -1);
+
 			echo json_encode($resultat);
 		}
 

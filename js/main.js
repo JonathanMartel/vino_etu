@@ -225,7 +225,7 @@ window.addEventListener('load', function() {
         let btnModifier = document.querySelector("[name='modifierBouteilleCellier']");
         if(btnModifier){
           btnModifier.addEventListener("click", function(evt){
-            console.log(bouteille);
+            
             var param = {
               "id_bouteille_cellier":bouteille.id_bouteille_cellier.value,
               "id_bouteille":bouteille.id_bouteille.value,
@@ -236,6 +236,8 @@ window.addEventListener('load', function() {
               "quantite":bouteille.quantite.value,
               "millesime":bouteille.millesime.value,
             };
+
+           // console.log(bouteille);
   
             /*Validation TODO avant requête*/
   
@@ -244,19 +246,20 @@ window.addEventListener('load', function() {
             fetch(requete)
                   .then(response => {
                       if (response.status === 200) {
+                        //console.log(response.text());
                         return response.json();
                       } else {
                         throw new Error('Erreur');
                       }
                     })
                     .then(response => {
-                      console.log(response);
+                     // console.log(response);
                     }).catch(error => {
                       console.error(error);
                     });
           
                     //retour au ceillier
-                    //window.location.href = BaseURL;
+                    window.location.href = BaseURL;
   
           });
         }

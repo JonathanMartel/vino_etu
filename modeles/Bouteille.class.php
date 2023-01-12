@@ -222,20 +222,18 @@ class Bouteille extends Modele {
 	public function modifieBouteilleCellier($data)
 	{
 		//TODO : Valider les données.
-		var_dump($data);
-
 		$requete = "UPDATE vino__cellier
 					SET 
-					date_achat='.$data->date_achat.',
-					garde_jusqua='.$data->garde_jusqua.',
-					notes='.$data->notes.',
-					prix='.$data->prix.',
-					quantite='.$data->quantite.',
-					millesime='.$data->millesime.'
-					WHERE id='.$data->id_bouteille_cellier.'";
+					date_achat='$data->date_achat',
+					garde_jusqua='$data->garde_jusqua',
+					notes='$data->notes',
+					prix='$data->prix',
+					quantite='$data->quantite',
+					millesime='$data->millesime'
+					WHERE id='$data->id_bouteille_cellier'";
 
         $res = $this->_db->query($requete);
-        
+      
 		return $res;
 	}
 	
