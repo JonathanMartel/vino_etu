@@ -19,7 +19,7 @@ const BaseURL = document.baseURI;
 window.addEventListener('load', function() {
     console.log("load");
 
-     /* Object bouteille avec ses propriétés*/  
+     /* Objet bouteille avec ses propriétés*/  
     let bouteille = {
       nom : document.querySelector(".nom_bouteille"),
       millesime : document.querySelector("[name='millesime']"),
@@ -35,7 +35,6 @@ window.addEventListener('load', function() {
 
 /* COMPOSANT BOUTEILLE 
 
-/***************************************************************************** */
 
     /* Boucle pour ajouter un gestionnaire d'évènement clique sur le bouton boire de d'une bouteille du cellier
     -- À factoriser */
@@ -101,8 +100,6 @@ window.addEventListener('load', function() {
 
     });
 
-/***************************************************************************** */
-
 /* COMPOSANT BOUTEILLE FIN
 
 /***************************************************************************** */
@@ -112,10 +109,6 @@ window.addEventListener('load', function() {
 /***************************************************************************** */
 
 /* FORM AJOUTER
-
-/***************************************************************************** */
-
-
 
 /**
  * Gestionnaire d'évènement keyUp sur la boîte de dialogue 
@@ -178,7 +171,7 @@ window.addEventListener('load', function() {
 
 
       /**
-       * VUE = Formulaire ajout d'une nouvelle bouteille
+       * VUE = FORMULAIRE AJOUTER une nouvelle bouteille au cellier
        * Gestion évènement clique sur le bouton Ajouter une bouteille au cellier
        */
       let btnAjouter = document.querySelector("[name='ajouterBouteilleCellier']");
@@ -217,12 +210,60 @@ window.addEventListener('load', function() {
                   window.location.href = BaseURL;
 
         });
-      } 
-  }
-});
+      }
+  }  // FIN if(inputNomBouteille){
 
-/***************************************************************************** */
+  /*******FORM AJOUTER FIN************************************************* */
 
-/* FORM AJOUTER FIN
 
-/***************************************************************************** */
+        /**
+       * VUE = FORMULAIRE MODIFIER une outeille du cellier
+       * Gestion évènement clique sur le bouton Modifier une bouteille du cellier
+       */
+        let btnModifier = document.querySelector("[name='modifierBouteilleCellier']");
+        if(btnModifier){
+          btnModifier.addEventListener("click", function(evt){
+            var param = {
+              "id_bouteille":bouteille.nom.dataset.id,
+              "date_achat":bouteille.date_achat.value,
+              "garde_jusqua":bouteille.garde_jusqua.value,
+              "notes":bouteille.notes.value,
+              "prix":bouteille.prix.value,
+              "quantite":bouteille.quantite.value,
+              "millesime":bouteille.millesime.value,
+            };
+  
+            /*Validation TODO avant requête*/
+  
+            let requete = new Request(BaseURL+"index.php?requete=modifierBouteilleCellier", {method: 'POST', body: JSON.stringify(param)});
+              
+            fetch(requete)
+                  .then(response => {
+                      if (response.status === 200) {
+                        return response.json();
+                      } else {
+                        throw new Error('Erreur');
+                      }
+                    })
+                    .then(response => {
+                      console.log(response);
+                    }).catch(error => {
+                      console.error(error);
+                    });
+          
+                    //retour au ceillier
+                    window.location.href = BaseURL;
+  
+          });
+        }
+
+
+
+
+
+}); // FIN window load
+
+
+
+
+

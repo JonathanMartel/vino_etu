@@ -40,9 +40,9 @@ class Controler
 				case 'boireBouteilleCellier':
 					$this->boireBouteilleCellier();
 					break;
-				/*case 'modifierBouteilleCellier':
+				case 'modifierBouteilleCellier':
 					$this->modifierBouteilleCellier();
-					break;*/
+					break;
 				default:
 					$this->accueil();
 					break;

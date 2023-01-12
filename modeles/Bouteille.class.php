@@ -39,7 +39,9 @@ class Bouteille extends Modele {
 		$rows = Array();
 		$requete ='SELECT 
 						c.id as id_bouteille_cellier,
+						c.nom_cellier,
 						c.id_bouteille, 
+						c.nom_bouteille_usager,
 						c.date_achat, 
 						c.garde_jusqua, 
 						c.notes, 

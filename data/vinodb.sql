@@ -40,7 +40,7 @@ CREATE TABLE `vino__bouteille` (
   `format` varchar(20) DEFAULT NULL,
   `type` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=11 ;
 
 
 
@@ -68,7 +68,9 @@ INSERT INTO `vino__bouteille` VALUES(10, 'Tenuta Il Falchetto Bricco Paradiso -.
 DROP TABLE IF EXISTS `vino__cellier`;
 CREATE TABLE `vino__cellier` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nom_cellier` varchar(200) DEFAULT NULL,
   `id_bouteille` int(11) DEFAULT NULL,
+  `nom_bouteille_usager` varchar(200) DEFAULT NULL,
   `date_achat` date DEFAULT NULL,
   `garde_jusqua` varchar(200) DEFAULT NULL,
   `notes` varchar(200) DEFAULT NULL,
@@ -76,21 +78,21 @@ CREATE TABLE `vino__cellier` (
   `quantite` int(11) DEFAULT NULL,
   `millesime` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=10 ;
 
 --
 -- Contenu de la table `vino__cellier`
 --
 
-INSERT INTO `vino__cellier` VALUES(1, 10, '0000-00-00', '', '', 0, 3, 0);
-INSERT INTO `vino__cellier` VALUES(2, 10, '0000-00-00', '', '', 0, 1, 0);
-INSERT INTO `vino__cellier` VALUES(3, 5, '2019-01-16', '2020', '2019-01-16', 22, 10, 1999);
-INSERT INTO `vino__cellier` VALUES(4, 5, '0000-00-00', '', '', 0, 1, 0);
-INSERT INTO `vino__cellier` VALUES(5, 5, '0000-00-00', '', '', 0, 1, 0);
-INSERT INTO `vino__cellier` VALUES(6, 0, '0000-00-00', '', '', 0, 1, 0);
-INSERT INTO `vino__cellier` VALUES(7, 0, '0000-00-00', '', '', 0, 1, 0);
-INSERT INTO `vino__cellier` VALUES(8, 5, '0000-00-00', '', '', 0, 10, 2000);
-INSERT INTO `vino__cellier` VALUES(9, 3, '2019-01-26', 'non', '2019-01-26', 23.52, 1, 2015);
+INSERT INTO `vino__cellier` VALUES(1, 'cellier1', 10, 'bestBouteille', '0000-00-00', '', 'Note usager bla bla bla', 0, 3, 0);
+INSERT INTO `vino__cellier` VALUES(2, 'cellier2', 10, '', '0000-00-00', '', 'Note usager bla bla bla', 0, 1, 0);
+INSERT INTO `vino__cellier` VALUES(3, 'cellier3', 5, '', '2019-01-16', '2020', 'Note usager bla bla bla', 22, 10, 1999);
+INSERT INTO `vino__cellier` VALUES(4, 'cellier4', 5, '', '0000-00-00', '', 'Note usager bla bla bla', 0, 1, 0);
+INSERT INTO `vino__cellier` VALUES(5, 'cellier5', 5, '', '0000-00-00', '', 'Note usager bla bla bla', 0, 1, 0);
+INSERT INTO `vino__cellier` VALUES(6, 'cellier6', 0, '', '0000-00-00', '', 'Note usager bla bla bla', 0, 1, 0);
+INSERT INTO `vino__cellier` VALUES(7, 'cellier7', 0, '', '0000-00-00', '', 'Note usager bla bla bla', 0, 1, 0);
+INSERT INTO `vino__cellier` VALUES(8, 'cellier8', 5, '', '0000-00-00', '', 'Note usager bla bla bla', 0, 10, 2000);
+INSERT INTO `vino__cellier` VALUES(9, 'cellier9', 3, '', '2019-01-26', 'non', 'Note usager bla bla bla', 23.52, 1, 2015);
 
 -- --------------------------------------------------------
 
@@ -103,7 +105,7 @@ CREATE TABLE `vino__type` (
   `id` int(11) NOT NULL,
   `type` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Contenu de la table `vino__type`

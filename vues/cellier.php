@@ -1,5 +1,6 @@
 <div class="cellier grid">
     <?php
+    echo phpversion();
     foreach ($data as $cle => $bouteille) {
     ?>
 
