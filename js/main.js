@@ -209,11 +209,13 @@ window.addEventListener('load', function() {
                   })
                   .then(response => {
                     console.log(response);
-                   // window.location.href = BaseURL;
                   }).catch(error => {
                     console.error(error);
                   });
         
+                  //retour au ceillier
+                  window.location.href = BaseURL;
+
         });
       } 
   }
