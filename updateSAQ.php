@@ -18,10 +18,7 @@
 		$nombre = $saq->getProduits($nombreProduit,$page+$i);
 		echo "importation : ". $nombre. "<br>";
 	
-	}
-	
-	
-	
+	}	
 
 ?>
 </body>

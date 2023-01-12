@@ -114,13 +114,16 @@ class Bouteille extends Modele {
 		{
 			throw new Exception("Erreur de requête sur la base de données", 1);
 			 
-		}
-		
+		}	
 		
 		//var_dump($rows);
 		return $rows;
 	}
-	
+
+	public function modifierBouteilleCellier($id_bouteille)	
+	{
+		# code...
+	}
 	
 	/**
 	 * Cette méthode ajoute une ou des bouteilles au cellier

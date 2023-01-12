@@ -36,6 +36,9 @@ class Controler
 			case 'boireBouteilleCellier':
 				$this->boireBouteilleCellier();
 				break;
+			case 'modifier':
+				$this->formModif();
+				break;
 			default:
 				$this->accueil();
 				break;
@@ -50,8 +53,7 @@ class Controler
 		include("vues/cellier.php");
 		include("vues/pied.php");
 				
-	}
-	
+	}	
 
 	private function listeBouteille()
 	{
@@ -73,14 +75,14 @@ class Controler
 		echo json_encode($listeBouteille);
 				
 	}
+
 	private function ajouterNouvelleBouteilleCellier()
 	{
 		$body = json_decode(file_get_contents('php://input'));
 		//var_dump($body);
 		if(!empty($body)){
 			$bte = new Bouteille();
-			//var_dump($_POST['data']);
-			
+			//var_dump($_POST['data']);			
 			//var_dump($data);
 			$resultat = $bte->ajouterBouteilleCellier($body);
 			echo json_encode($resultat);
@@ -89,24 +91,33 @@ class Controler
 			include("vues/entete.php");
 			include("vues/ajouter.php");
 			include("vues/pied.php");
-		}
-		
-		
+		}		
+	}
+
+	/**
+	 * redirection vers le formulaire de modification d'une bouteille
+	 */
+	public function formModif()
+	{
+		$body = json_decode(file_get_contents('php://input'));
+		$bte = new Bouteille();
+		$data = $bte->modifierBouteilleCellier($body->id);
+		include("vues/entete.php");
+		include("vues/modifier.php");
+		include("vues/pied.php");
 	}
 	
 	private function boireBouteilleCellier()
 	{
-		$body = json_decode(file_get_contents('php://input'));
-		
+		$body = json_decode(file_get_contents('php://input'));		
 		$bte = new Bouteille();
-		$resultat = $bte->modifierQuantiteBouteilleCellier($body->id, -1);
+		$resultat = $bte->modifierQuantiteBouteilleCellier($body->id, -1);		
 		echo json_encode($resultat);
 	}
 
 	private function ajouterBouteilleCellier()
 	{
-		$body = json_decode(file_get_contents('php://input'));
-		
+		$body = json_decode(file_get_contents('php://input'));		
 		$bte = new Bouteille();
 		$resultat = $bte->modifierQuantiteBouteilleCellier($body->id, 1);
 		echo json_encode($resultat);
