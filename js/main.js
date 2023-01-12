@@ -258,8 +258,10 @@ window.addEventListener('load', function() {
                       console.error(error);
                     });
           
-                    //retour au ceillier
-                    window.location.href = BaseURL;
+                       //retour au ceillier
+                       setTimeout(function(){
+                        window.location.href = BaseURL;
+                     }, 50);
   
           });
         }
