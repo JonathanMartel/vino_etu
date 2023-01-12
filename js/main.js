@@ -23,6 +23,7 @@ window.addEventListener('load', function() {
             fetch(requete)
             .then(response => {
                 if (response.status === 200) {
+                  window.location.reload();
                   return response.json();
                 } else {
                   throw new Error('Erreur');
@@ -46,6 +47,7 @@ window.addEventListener('load', function() {
             fetch(requete)
             .then(response => {
                 if (response.status === 200) {
+                  window.location.reload();
                   return response.json();
                 } else {
                   throw new Error('Erreur');
