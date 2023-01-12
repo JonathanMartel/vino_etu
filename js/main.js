@@ -9,10 +9,12 @@
  */
 
 //const BaseURL = "https://jmartel.webdev.cmaisonneuve.qc.ca/n61/vino/";
-//const BaseURL = document.baseURI;
+const BaseURL = document.baseURI;
 console.log(BaseURL);
 window.addEventListener('load', function() {
-    console.log("load");
+    
+  console.log("load");
+
     document.querySelectorAll(".btnBoire").forEach(function(element){
         console.log(element);
         element.addEventListener("click", function(evt){
@@ -28,6 +30,8 @@ window.addEventListener('load', function() {
                 }
               })
               .then(response => {
+                // Reload page
+                window.location.reload();
                 console.debug(response);
               }).catch(error => {
                 console.error(error);
@@ -36,6 +40,9 @@ window.addEventListener('load', function() {
 
     });
 
+    /*
+    * Gerer l evenement lorsqu on clioque sur le boutton  'Ajouter'
+    */
     document.querySelectorAll(".btnAjouter").forEach(function(element){
         console.log(element);
         element.addEventListener("click", function(evt){
@@ -51,6 +58,8 @@ window.addEventListener('load', function() {
                 }
               })
               .then(response => {
+                // Reload page
+                window.location.reload();
                 console.debug(response);
               }).catch(error => {
                 console.error(error);
