@@ -184,7 +184,7 @@ class Bouteille extends Modele {
 	/**
 	 * Cette méthode ajoute une ou des bouteilles au cellier
 	 * 
-	 * @param Object $data Tableau des données représentants la bouteille.
+	 * @param Object $data Données représentants la bouteille.
 	 * 
 	 * @return Boolean Succès ou échec de l'ajout.
 	 */
@@ -212,35 +212,31 @@ class Bouteille extends Modele {
 
 
 
-		/**
+	/**
 	 * Cette méthode modifie une ou des bouteilles au cellier
 	 * 
-	 * @param Array $data Tableau des données représentants la bouteille.
+	 * @param Object $data Données représentants la bouteille.
 	 * 
 	 * @return Boolean Succès ou échec de l'ajout.
 	 */
-	public function modifieBouteilleCellier($id)
+	public function modifieBouteilleCellier($data)
 	{
 		//TODO : Valider les données.
-		
-		
-		//$data = $this -> getBouteilleCellier($id);
+		var_dump($data);
 
-		//print_r($data);
-		/*
 		$requete = "UPDATE vino__cellier
 					SET 
-					date_achat='.$data->date_achat.',,
-					garde_jusqua='.$data->garde_jusqua.',,
-					notes='.$data->notes.',,
-					prix='.$data->prix.',,
-					quantite='.$data->quantite.',,
-					millesime='.$data->millesime.', 
-					WHERE id_bouteille='.$data->id_bouteille.'";
+					date_achat='.$data->date_achat.',
+					garde_jusqua='.$data->garde_jusqua.',
+					notes='.$data->notes.',
+					prix='.$data->prix.',
+					quantite='.$data->quantite.',
+					millesime='.$data->millesime.'
+					WHERE id='.$data->id_bouteille_cellier.'";
 
         $res = $this->_db->query($requete);
         
-		return $res;*/
+		return $res;
 	}
 	
 	

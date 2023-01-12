@@ -21,6 +21,8 @@ window.addEventListener('load', function() {
 
      /* Objet bouteille avec ses propriétés*/  
     let bouteille = {
+      id_bouteille_cellier : document.querySelector("[name='id_bouteille_cellier']"),
+      id_bouteille : document.querySelector("[name='id_bouteille']"),
       nom : document.querySelector(".nom_bouteille"),
       millesime : document.querySelector("[name='millesime']"),
       quantite : document.querySelector("[name='quantite']"),
@@ -223,8 +225,10 @@ window.addEventListener('load', function() {
         let btnModifier = document.querySelector("[name='modifierBouteilleCellier']");
         if(btnModifier){
           btnModifier.addEventListener("click", function(evt){
+            console.log(bouteille);
             var param = {
-              "id_bouteille":bouteille.nom.dataset.id,
+              "id_bouteille_cellier":bouteille.id_bouteille_cellier.value,
+              "id_bouteille":bouteille.id_bouteille.value,
               "date_achat":bouteille.date_achat.value,
               "garde_jusqua":bouteille.garde_jusqua.value,
               "notes":bouteille.notes.value,
@@ -252,7 +256,7 @@ window.addEventListener('load', function() {
                     });
           
                     //retour au ceillier
-                    window.location.href = BaseURL;
+                    //window.location.href = BaseURL;
   
           });
         }

@@ -115,7 +115,9 @@ class Controler
 		private function ajouterNouvelleBouteilleCellier()
 		{
 			$body = json_decode(file_get_contents('php://input'));
-			//var_dump($body);
+			
+			
+
 			if(!empty($body)){
 				$bte = new Bouteille();
 				
@@ -142,24 +144,27 @@ class Controler
 		 */
 		private function modifierBouteilleCellier()
 		{
-			/*$body = json_decode(file_get_contents('php://input'));  
+			$body = json_decode(file_get_contents('php://input'));
 			
 			
-			//$nom = $bte->getBouteilleNom($id);
+
 			if(!empty($body)){
 				$bte = new Bouteille();
-				//var_dump($_POST['data']);
 				
-				//var_dump($data);
-				$resultat = $bte->modifieBouteilleCellier();
+				$resultat = $bte->modifieBouteilleCellier($body);
+				var_dump($resultat);
 				echo json_encode($resultat);
+				
+            	$data = $bte->getListeBouteilleCellier();
+
+				
 			}
 			else{
 				include("vues/entete.php");
-				include("vues/cellier.php");
+				include("vues/modifier.php");
 				include("vues/pied.php");
 			}
-			*/
+			
             
 		}
 

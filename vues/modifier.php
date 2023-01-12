@@ -13,6 +13,9 @@ foreach ($data as $cle => $bouteille) {
                 <p>Garde : <input name="garde_jusqua" value="<?php echo $bouteille['garde_jusqua'] ?>"></p>
                 <p>Notes <input name="notes" value="<?php echo $bouteille['notes'] ?>"></p>
 
+                <input type="hidden" name="id_bouteille_cellier" value="<?php echo $bouteille['id_bouteille_cellier'] ?>">
+                <input type="hidden" name="id_bouteille" value="<?php echo $bouteille['id_bouteille'] ?>">
+
                 <button name="modifierBouteilleCellier">Modifier la bouteille (champs tous obligatoires)</button>
             </div>
             
