@@ -76,8 +76,11 @@ input.notes{
 }
 
 .listeAutoComplete{
+    padding:10px;
+    margin: 0 auto;
+    width:80%;
     list-style: none;
-    text-align: center;
+   
 }
 
 .listeAutoComplete li{

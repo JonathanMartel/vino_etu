@@ -43,25 +43,6 @@ CREATE TABLE `vino__bouteille` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 
---
--- Structure de la table `vino__bouteille__SAQ`
---
-
-DROP TABLE IF EXISTS `vino__bouteille__SAQ`;
-CREATE TABLE `vino__bouteille__SAQ` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nom` varchar(200) DEFAULT NULL,
-  `image` varchar(200) DEFAULT NULL,
-  `code_saq` varchar(50) DEFAULT NULL,
-  `pays` varchar(50) DEFAULT NULL,
-  `description` varchar(200) DEFAULT NULL,
-  `prix_saq` float(7,2) DEFAULT NULL,
-  `url_saq` varchar(200) DEFAULT NULL,
-  `url_img` varchar(200) DEFAULT NULL,
-  `format` varchar(20) DEFAULT NULL,
-  `type` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
 -- Contenu de la table `vino__bouteille`

@@ -31,7 +31,11 @@ window.addEventListener('load', function() {
     };
 
 
+/***************************************************************************** */
 
+/* COMPOSANT BOUTEILLE 
+
+/***************************************************************************** */
 
     /* Boucle pour ajouter un gestionnaire d'évènement clique sur le bouton boire de d'une bouteille du cellier
     -- À factoriser */
@@ -70,12 +74,13 @@ window.addEventListener('load', function() {
     document.querySelectorAll(".btnAjouter").forEach(function(element){
         //console.log(element);
         element.addEventListener("click", function(evt){
+
             let id = evt.target.parentElement.dataset.id;
             let elemBouteille = evt.target.parentElement.parentElement;
             let elemQuantite = elemBouteille.querySelector('.quantite').innerText.split(': ');
             let newQuantite = parseInt(elemQuantite[1]) + 1
 
-            let requete = new Request(BaseURL+"index.php?requete=ajouterBouteilleCellier", {method: 'POST', body: '{"id": '+id+'}'});
+            let requete = new Request(BaseURL+"index.php?requete=ajouterBouteilleCellier", {method: 'POST', body: '{"id": '+id+', "nombre": '+1+'}'});
 
             fetch(requete)
             .then(response => {
@@ -96,13 +101,29 @@ window.addEventListener('load', function() {
 
     });
 
+/***************************************************************************** */
+
+/* COMPOSANT BOUTEILLE FIN
+
+/***************************************************************************** */
+
+
+
+/***************************************************************************** */
+
+/* FORM AJOUTER
+
+/***************************************************************************** */
+
+
+
 /**
  * Gestionnaire d'évènement keyUp sur la boîte de dialogue 
  * Permet d'afficher le nom des bouteilles de la bd qui correspond aux caractères tapés
  * Ajout un gestionnaire d'évènement clique sur les noms affichés
  */
     let inputNomBouteille = document.querySelector("[name='nom_bouteille']");
-    console.log(inputNomBouteille);
+   // console.log(inputNomBouteille);
     let liste = document.querySelector('.listeAutoComplete');
 
     if(inputNomBouteille){
@@ -138,9 +159,6 @@ window.addEventListener('load', function() {
 
 
 
- 
-
-
 
     /*
       * Gestionnaire d'évènement clique sur l'élément li ( nom de la bouteille ) 
@@ -160,6 +178,7 @@ window.addEventListener('load', function() {
 
 
       /**
+       * VUE = Formulaire ajout d'une nouvelle bouteille
        * Gestion évènement clique sur le bouton Ajouter une bouteille au cellier
        */
       let btnAjouter = document.querySelector("[name='ajouterBouteilleCellier']");
@@ -175,6 +194,8 @@ window.addEventListener('load', function() {
             "millesime":bouteille.millesime.value,
           };
 
+          /*Validation TODO avant requête*/
+
           let requete = new Request(BaseURL+"index.php?requete=ajouterNouvelleBouteilleCellier", {method: 'POST', body: JSON.stringify(param)});
             
           fetch(requete)
@@ -188,7 +209,7 @@ window.addEventListener('load', function() {
                   })
                   .then(response => {
                     console.log(response);
-                  
+                   // window.location.href = BaseURL;
                   }).catch(error => {
                     console.error(error);
                   });
@@ -197,3 +218,9 @@ window.addEventListener('load', function() {
       } 
   }
 });
+
+/***************************************************************************** */
+
+/* FORM AJOUTER FIN
+
+/***************************************************************************** */

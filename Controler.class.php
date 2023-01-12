@@ -40,9 +40,9 @@ class Controler
 				case 'boireBouteilleCellier':
 					$this->boireBouteilleCellier();
 					break;
-				case 'modifierBouteilleCellier':
+				/*case 'modifierBouteilleCellier':
 					$this->modifierBouteilleCellier();
-					break;
+					break;*/
 				default:
 					$this->accueil();
 					break;
@@ -118,15 +118,16 @@ class Controler
 			//var_dump($body);
 			if(!empty($body)){
 				$bte = new Bouteille();
-				//var_dump($_POST['data']);
 				
-				//var_dump($data);
 				$resultat = $bte->ajouterBouteilleCellier($body);
 				echo json_encode($resultat);
+				
+            	$data = $bte->getListeBouteilleCellier();
+				
 			}
 			else{
 				include("vues/entete.php");
-				include("vues/cellier.php");
+				include("vues/ajouter.php");
 				include("vues/pied.php");
 			}
 			
@@ -141,7 +142,7 @@ class Controler
 		 */
 		private function modifierBouteilleCellier()
 		{
-			$body = json_decode(file_get_contents('php://input'));  
+			/*$body = json_decode(file_get_contents('php://input'));  
 			
 			
 			//$nom = $bte->getBouteilleNom($id);
@@ -158,7 +159,7 @@ class Controler
 				include("vues/cellier.php");
 				include("vues/pied.php");
 			}
-			
+			*/
             
 		}
 
