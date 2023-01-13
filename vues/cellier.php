@@ -4,9 +4,8 @@ foreach ($data as $cle => $bouteille) {
  
     ?>
     <div class="bouteille" data-quantite="">
-        <div class="img">
-            
-            <img src="https:<?php echo $bouteille['image'] ?>">
+        <div class="img">            
+            <img src="<?php echo $bouteille['image'] ?>" >
         </div>
         <div class="description">
             <p class="nom">Nom : <?php echo $bouteille['nom'] ?></p>
@@ -19,7 +18,7 @@ foreach ($data as $cle => $bouteille) {
         <div class="options" data-id="<?php echo $bouteille['id_bouteille_cellier'] ?>">
             <button class='btnModifier'>Modifier</button>
             <button class='btnAjouter'>Ajouter</button>
-            <a href="?requete=modifier"><button class='btnBoire'>Boire</button></a>            
+            <button class='btnBoire'>Boire</button>            
         </div>
     </div>
 <?php

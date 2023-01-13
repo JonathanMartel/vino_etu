@@ -16,8 +16,7 @@
 	{
 		echo "<h2>page ". ($page+$i)."</h2>";
 		$nombre = $saq->getProduits($nombreProduit,$page+$i);
-		echo "importation : ". $nombre. "<br>";
-	
+		echo "importation : ". $nombre. "<br>";	
 	}	
 
 ?>

@@ -12,10 +12,8 @@
 const BaseURL = document.baseURI;
 
 console.log(BaseURL);
-window.addEventListener('load', function() {
-    
+window.addEventListener('load', function() {    
   console.log("load");
-
     document.querySelectorAll(".btnBoire").forEach(function(element){
         console.log(element);
         element.addEventListener("click", function(evt){
@@ -24,15 +22,15 @@ window.addEventListener('load', function() {
 
             fetch(requete)
             .then(response => {
-                if (response.status === 200) {                  
+                if (response.status === 200) {
+                  // Récharger la page pour voir les changements  
+                  location.reload();                 
                   return response.json();
                 } else {
                   throw new Error('Erreur');
                 }
               })
-              .then(response => {
-                // Reload page
-                window.location.reload();
+              .then(response => {                
                 console.debug(response);
               }).catch(error => {
                 console.error(error);
@@ -52,15 +50,16 @@ window.addEventListener('load', function() {
 
             fetch(requete)
             .then(response => {
-                if (response.status === 200) {                  
+                if (response.status === 200) {
+                  // Récharger la page 
+                  location.reload();                 
                   return response.json();
                 } else {
                   throw new Error('Erreur');
                 }
               })
               .then(response => {
-                // Reload page
-                window.location.reload();
+                                
                 console.debug(response);
               }).catch(error => {
                 console.error(error);
@@ -82,16 +81,14 @@ window.addEventListener('load', function() {
           let requete = new Request(BaseURL+"index.php?requete=autocompleteBouteille", {method: 'POST', body: '{"nom": "'+nom+'"}'});
           fetch(requete)
               .then(response => {
-                  if (response.status === 200) {
+                  if (response.status === 200) {                    
                     return response.json();
                   } else {
                     throw new Error('Erreur');
                   }
                 })
                 .then(response => {
-                  console.log(response);
-                  
-                 
+                  console.log(response);                  
                   response.forEach(function(element){
                     liste.innerHTML += "<li data-id='"+element.id +"'>"+element.nom+"</li>";
                   })
