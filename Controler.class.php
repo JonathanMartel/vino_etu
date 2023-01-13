@@ -19,8 +19,7 @@ class Controler
 	 */
 	public function gerer()
 	{
-		
-		switch ($_GET['requete']) {
+			switch ($_GET['requete']) {
 			case 'listeBouteille':
 				$this->listeBouteille();
 				break;
@@ -36,9 +35,10 @@ class Controler
 			case 'boireBouteilleCellier':
 				$this->boireBouteilleCellier();
 				break;
-			case 'modifier':
+				//Pour l'affichage de la vue de modification
+			/* case 'modifier':
 				$this->formModif();
-				break;
+				break; */
 			default:
 				$this->accueil();
 				break;
@@ -58,8 +58,7 @@ class Controler
 	private function listeBouteille()
 	{
 		$bte = new Bouteille();
-		$cellier = $bte->getListeBouteilleCellier();
-		
+		$cellier = $bte->getListeBouteilleCellier();		
 		echo json_encode($cellier);
 				
 	}
@@ -93,19 +92,6 @@ class Controler
 			include("vues/pied.php");
 		}		
 	}
-
-	/**
-	 * redirection vers le formulaire de modification d'une bouteille
-	 */
-	public function formModif()
-	{
-		$body = json_decode(file_get_contents('php://input'));
-		$bte = new Bouteille();
-		$data = $bte->modifierBouteilleCellier($body->id);
-		include("vues/entete.php");
-		include("vues/modifier.php");
-		include("vues/pied.php");
-	}
 	
 	private function boireBouteilleCellier()
 	{
@@ -114,6 +100,20 @@ class Controler
 		$resultat = $bte->modifierQuantiteBouteilleCellier($body->id, -1);		
 		echo json_encode($resultat);
 	}
+	/**
+	 * redirection vers le formulaire de modification d'une bouteille
+	 */
+	/* private function formModif()
+	{
+		$body = json_decode(file_get_contents('php://input'));
+		$bte = new Bouteille();
+		$data = $bte->modifierBouteilleCellier($body->id);
+		include("vues/entete.php");
+		include("vues/modifier.php");
+		include("vues/pied.php");
+	} */
+	
+	
 
 	private function ajouterBouteilleCellier()
 	{
