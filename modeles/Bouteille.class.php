@@ -104,7 +104,7 @@ class Bouteille extends Modele {
 			{
 				while($row = $res->fetch_assoc())
 				{
-					$row['nom'] = trim(utf8_encode($row['nom']));
+					$row['nom'] = trim(utf8_encode($row['nom']));// mb_convert_encoding
 					$rows[] = $row;
 					
 				}
@@ -114,13 +114,16 @@ class Bouteille extends Modele {
 		{
 			throw new Exception("Erreur de requête sur la base de données", 1);
 			 
-		}
-		
+		}	
 		
 		//var_dump($rows);
 		return $rows;
 	}
-	
+
+	public function modifierBouteilleCellier($id_bouteille)	
+	{
+		# code...
+	}
 	
 	/**
 	 * Cette méthode ajoute une ou des bouteilles au cellier

@@ -8,8 +8,9 @@
  *
  */
 
-//const BaseURL = "https://jmartel.webdev.cmaisonneuve.qc.ca/n61/vino/";
+//const BaseURL = "https://localhost/vino_etu/";
 const BaseURL = document.baseURI;
+
 console.log(BaseURL);
 window.addEventListener('load', function() {
     
@@ -23,7 +24,7 @@ window.addEventListener('load', function() {
 
             fetch(requete)
             .then(response => {
-                if (response.status === 200) {
+                if (response.status === 200) {                  
                   return response.json();
                 } else {
                   throw new Error('Erreur');
@@ -51,7 +52,7 @@ window.addEventListener('load', function() {
 
             fetch(requete)
             .then(response => {
-                if (response.status === 200) {
+                if (response.status === 200) {                  
                   return response.json();
                 } else {
                   throw new Error('Erreur');
