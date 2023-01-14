@@ -1,0 +1,50 @@
+header{
+	padding: 20px;
+	background-color: #73162F;
+	text-align: center;
+}
+header nav a{
+	color: white;
+	display: block;
+	text-decoration: none;
+}
+header nav a:hover{
+	text-decoration: underline;
+}
+
+p a{
+	color: #73162F;
+	text-decoration: none;
+}
+p a:hover{
+	text-decoration: underline;
+}
+h1{
+	padding: 10px;
+}
+.vino{
+	font-size: 150%;
+}
+
+main{
+	padding: 50px;
+	text-align: center;
+}
+
+footer{
+	padding: 5px;
+	background-color: #73162F;
+	text-align: center;
+}
+
+.bouteille{
+	border-top: solid black ;
+	padding: 40px;
+}
+
+img{
+	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+header, footer{
+	color: white;
+}
