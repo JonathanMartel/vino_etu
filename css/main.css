@@ -7,8 +7,8 @@ html, body {
 	margin: 0;
 	background-color: #E5E5E5;
 	
-	font-family: 'Roboto', 'RobotoDraft', sans-serif;
-	font-size: 95%;
+	font-family: 'Sofia Sans', sans-serif;
+	font-size: 100%;
 	
 }
 .liste {
@@ -43,6 +43,7 @@ html, body {
 	max-width:111px;
 	max-height:166px; 
 }
+
 @media all and (max-width:640px)
 {
 	footer
@@ -54,7 +55,7 @@ html, body {
 
 footer
 {
-	position: fixed;;
+	position: fixed;
 	bottom:0px;
 	width: 100%;
 	padding-top:3px;

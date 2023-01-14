@@ -163,10 +163,11 @@ class Bouteille extends Modele {
 	}
 	
 	
-	/* public function modifierBouteilleCellier($id_bouteille)	
+	public function modifierBouteilleCellier($id_cellier)	
 	{
-		# code...
-	} */
+		$requete = "SELECT * from vino__cellier WHERE id = $id_cellier";
+		
+	} /* */
 }
 
 
