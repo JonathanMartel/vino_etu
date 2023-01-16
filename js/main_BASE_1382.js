@@ -19,10 +19,8 @@ const BaseURL = document.baseURI;
 window.addEventListener('load', function() {
     console.log("load");
 
-     /* Objet bouteille avec ses propriétés*/  
+     /* Object bouteille avec ses propriétés*/  
     let bouteille = {
-      id_bouteille_cellier : document.querySelector("[name='id_bouteille_cellier']"),
-      id_bouteille : document.querySelector("[name='id_bouteille']"),
       nom : document.querySelector(".nom_bouteille"),
       millesime : document.querySelector("[name='millesime']"),
       quantite : document.querySelector("[name='quantite']"),
@@ -33,14 +31,8 @@ window.addEventListener('load', function() {
     };
 
 
-/***************************************************************************** */
-<<<<<<< HEAD
-=======
 
-/* COMPOSANT BOUTEILLE 
->>>>>>> 5d15ff5c0fe0b99b897cb7b5c393fcca4b2c16a5
 
-/* COMPOSANT BOUTEILLE 
     /* Boucle pour ajouter un gestionnaire d'évènement clique sur le bouton boire de d'une bouteille du cellier
     -- À factoriser */
     document.querySelectorAll(".btnBoire").forEach(function(element){
@@ -78,13 +70,12 @@ window.addEventListener('load', function() {
     document.querySelectorAll(".btnAjouter").forEach(function(element){
         //console.log(element);
         element.addEventListener("click", function(evt){
-
             let id = evt.target.parentElement.dataset.id;
             let elemBouteille = evt.target.parentElement.parentElement;
             let elemQuantite = elemBouteille.querySelector('.quantite').innerText.split(': ');
             let newQuantite = parseInt(elemQuantite[1]) + 1
 
-            let requete = new Request(BaseURL+"index.php?requete=ajouterBouteilleCellier", {method: 'POST', body: '{"id": '+id+', "nombre": '+1+'}'});
+            let requete = new Request(BaseURL+"index.php?requete=ajouterBouteilleCellier", {method: 'POST', body: '{"id": '+id+'}'});
 
             fetch(requete)
             .then(response => {
@@ -105,29 +96,13 @@ window.addEventListener('load', function() {
 
     });
 
-/* COMPOSANT BOUTEILLE FIN
-<<<<<<< HEAD
-=======
-
->>>>>>> 5d15ff5c0fe0b99b897cb7b5c393fcca4b2c16a5
-/***************************************************************************** */
-
-
-
-/***************************************************************************** */
-
-/* FORM AJOUTER
-<<<<<<< HEAD
-=======
-
->>>>>>> 5d15ff5c0fe0b99b897cb7b5c393fcca4b2c16a5
 /**
  * Gestionnaire d'évènement keyUp sur la boîte de dialogue 
  * Permet d'afficher le nom des bouteilles de la bd qui correspond aux caractères tapés
  * Ajout un gestionnaire d'évènement clique sur les noms affichés
  */
     let inputNomBouteille = document.querySelector("[name='nom_bouteille']");
-   // console.log(inputNomBouteille);
+    console.log(inputNomBouteille);
     let liste = document.querySelector('.listeAutoComplete');
 
     if(inputNomBouteille){
@@ -163,6 +138,9 @@ window.addEventListener('load', function() {
 
 
 
+ 
+
+
 
     /*
       * Gestionnaire d'évènement clique sur l'élément li ( nom de la bouteille ) 
@@ -182,7 +160,6 @@ window.addEventListener('load', function() {
 
 
       /**
-       * VUE = FORMULAIRE AJOUTER une nouvelle bouteille au cellier
        * Gestion évènement clique sur le bouton Ajouter une bouteille au cellier
        */
       let btnAjouter = document.querySelector("[name='ajouterBouteilleCellier']");
@@ -198,8 +175,6 @@ window.addEventListener('load', function() {
             "millesime":bouteille.millesime.value,
           };
 
-          /*Validation TODO avant requête*/
-
           let requete = new Request(BaseURL+"index.php?requete=ajouterNouvelleBouteilleCellier", {method: 'POST', body: JSON.stringify(param)});
             
           fetch(requete)
@@ -213,79 +188,12 @@ window.addEventListener('load', function() {
                   })
                   .then(response => {
                     console.log(response);
+                  
                   }).catch(error => {
                     console.error(error);
                   });
         
-                  //retour au ceillier
-                  window.location.href = BaseURL;
-
         });
-      }
-  }  // FIN if(inputNomBouteille){
-
-  /*******FORM AJOUTER FIN************************************************* */
-
-
-        /**
-       * VUE = FORMULAIRE MODIFIER une outeille du cellier
-       * Gestion évènement clique sur le bouton Modifier une bouteille du cellier
-       */
-        let btnModifier = document.querySelector("[name='modifierBouteilleCellier']");
-        if(btnModifier){
-          btnModifier.addEventListener("click", function(evt){
-            
-            var param = {
-              "id_bouteille_cellier":bouteille.id_bouteille_cellier.value,
-              "id_bouteille":bouteille.id_bouteille.value,
-              "date_achat":bouteille.date_achat.value,
-              "garde_jusqua":bouteille.garde_jusqua.value,
-              "notes":bouteille.notes.value,
-              "prix":bouteille.prix.value,
-              "quantite":bouteille.quantite.value,
-              "millesime":bouteille.millesime.value,
-            };
-
-           // console.log(bouteille);
-  
-            /*Validation TODO avant requête*/
-  
-            let requete = new Request(BaseURL+"index.php?requete=modifierBouteilleCellier", {method: 'POST', body: JSON.stringify(param)});
-              
-            fetch(requete)
-                  .then(response => {
-                      if (response.status === 200) {
-                        //console.log(response.text());
-                        return response.json();
-                      } else {
-                        throw new Error('Erreur');
-                      }
-                    })
-                    .then(response => {
-                     // console.log(response);
-                    }).catch(error => {
-                      console.error(error);
-                    });
-          
-                       //retour au ceillier
-                       setTimeout(function(){
-                        window.location.href = BaseURL;
-                     }, 50);
-  
-          });
-        }
-
-
-
-
-
-<<<<<<< HEAD
-}); // FIN window load
-=======
-}); // FIN window load
-
-
-
-
-
->>>>>>> 5d15ff5c0fe0b99b897cb7b5c393fcca4b2c16a5
+      } 
+  }
+});

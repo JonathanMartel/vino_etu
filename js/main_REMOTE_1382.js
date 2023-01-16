@@ -34,13 +34,10 @@ window.addEventListener('load', function() {
 
 
 /***************************************************************************** */
-<<<<<<< HEAD
-=======
 
 /* COMPOSANT BOUTEILLE 
->>>>>>> 5d15ff5c0fe0b99b897cb7b5c393fcca4b2c16a5
 
-/* COMPOSANT BOUTEILLE 
+
     /* Boucle pour ajouter un gestionnaire d'évènement clique sur le bouton boire de d'une bouteille du cellier
     -- À factoriser */
     document.querySelectorAll(".btnBoire").forEach(function(element){
@@ -106,10 +103,7 @@ window.addEventListener('load', function() {
     });
 
 /* COMPOSANT BOUTEILLE FIN
-<<<<<<< HEAD
-=======
 
->>>>>>> 5d15ff5c0fe0b99b897cb7b5c393fcca4b2c16a5
 /***************************************************************************** */
 
 
@@ -117,10 +111,7 @@ window.addEventListener('load', function() {
 /***************************************************************************** */
 
 /* FORM AJOUTER
-<<<<<<< HEAD
-=======
 
->>>>>>> 5d15ff5c0fe0b99b897cb7b5c393fcca4b2c16a5
 /**
  * Gestionnaire d'évènement keyUp sur la boîte de dialogue 
  * Permet d'afficher le nom des bouteilles de la bd qui correspond aux caractères tapés
@@ -279,13 +270,9 @@ window.addEventListener('load', function() {
 
 
 
-<<<<<<< HEAD
-}); // FIN window load
-=======
 }); // FIN window load
 
 
 
 
 
->>>>>>> 5d15ff5c0fe0b99b897cb7b5c393fcca4b2c16a5
