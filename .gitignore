@@ -10,6 +10,7 @@ Session.vim
 tmtags
 Thumbs.db
 Desktop.ini
+note.txt
 
 # ignore Composer downloads
 /vendor/*
