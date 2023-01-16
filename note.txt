@@ -2,3 +2,5 @@
 
 1. ajouter remote repositoire: git remote -v 
 2. git remote add upstream (https://github.com/Projet-Web-2-Vino/vino_etu.git)url
+
+composer install --ignore-platform-reqs / composer update --ignore-platform-reqs 
