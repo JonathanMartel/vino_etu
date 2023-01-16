@@ -1,0 +1,4 @@
+1. git pull upstream main  (mise a jour)
+
+1. ajouter remote repositoire: git remote -v 
+2. git remote add upstream (https://github.com/Projet-Web-2-Vino/vino_etu.git)url

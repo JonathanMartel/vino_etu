@@ -261,8 +261,4 @@ class Bouteille extends Modele
 
 		return $res;
 	}
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 5d15ff5c0fe0b99b897cb7b5c393fcca4b2c16a5
