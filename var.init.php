@@ -1,16 +1,13 @@
 <?php
-  /**
-   * Faire l'assignation des variables ici avec les isset() ou !empty()
-   */
-   
-   
-	if(empty($_GET['requete']))
-	{
-		$_GET['requete'] = '';
-	}
-    
 	
+	/**
+	 * DB config
+	*/
+
 	
-   
-   
+	define("BASEURL", 'http://localhost:8012/vino_me/'); // dev
+	define('HOST', 'localhost');
+	define('USER', 'root');
+	define('PASSWORD', '');  
+	define('DATABASE', 'vinodb');
 ?>

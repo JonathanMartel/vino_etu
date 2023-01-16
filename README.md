@@ -1,5 +1,5 @@
 # vino
-Projet en cours de développement par les étudiants des groupes de Projet Web 2.
+Projet en cours de développement Projet Web 2.
 
 ## url
 https://e0239070.webdev.cmaisonneuve.qc.ca/vino/
@@ -22,5 +22,12 @@ Script PHP qui permet d'aller récupérer des données du site de la SAQ (pour d
 - Déployer la base de données qui se trouve dans /data/
 - Transférer les fichiers par FTP
 - Tester
+
+/**********************************************/
+- git pull
+- composer install pour les dépendances
+- lancer le mysql local
+- php artisan serve
+
 
 Bingo.
