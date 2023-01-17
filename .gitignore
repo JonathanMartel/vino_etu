@@ -24,3 +24,4 @@ Desktop.ini
 dataconf.php
 dataconf_prod.php
 .push.settings.jsonc
+.env
