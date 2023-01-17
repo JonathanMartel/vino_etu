@@ -48,6 +48,9 @@ Route::post('/cellier/creer', [CellierController::class, 'creer'])
 // Édition d'un cellier
 Route::get('/cellier/edit/{id}', [CellierController::class, 'edit'])
 ->name('cellier.edit');
-Route::get('/cellier/update/{id}', [CellierController::class, 'update'])
+Route::post('/cellier/update/{id}', [CellierController::class, 'update'])
 ->name('cellier.update');
+
+Route::post('/cellier/supprime/{id}', [CellierController::class, 'supprime'])
+->name('cellier.supprime'); 
 

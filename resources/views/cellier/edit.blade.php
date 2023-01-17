@@ -6,7 +6,7 @@
 @endif
 
 
-<form action="{{ route('cellier.update'), ['id' => $cellier->id]}}" method="POST">
+<form action="{{ route('cellier.update', ['id' => $cellier->id])}}" method="POST">
 
     @csrf
 

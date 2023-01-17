@@ -68,7 +68,7 @@ class CellierController extends Controller
     public function edit(Request $request, $id)
     {
       
-
+        //dd($id);
         $cellier = Cellier::findOrFail($id);
        
         return view('cellier.edit', [
@@ -83,6 +83,7 @@ class CellierController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //dd($id);
         $this->validateCellier($request);
 
         // On assume que la requête
@@ -91,7 +92,7 @@ class CellierController extends Controller
 
         // Retourne au formulaire
         return redirect()
-            ->route('cellier.show')
+            ->route('cellier.index')
             ->withSuccess('La modification a réussi!');
     }
 
@@ -101,6 +102,7 @@ class CellierController extends Controller
      */
     public function supprime(Request $request, $id)
     {
+        //dd($id);
         $cellier = Cellier::findOrFail($id);
         $cellier->delete();
         
