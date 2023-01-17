@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS `vino__bouteille`, `vino__bouteille_personalize`, `vino__cellier`, `vino__cellier_has_vino__bouteille`, `vino__commentaire`, `vino__type`, `vino__usager`;
+
 
 -- -----------------------------------------------------
 -- Schema appvinoc_vinodb
@@ -26,10 +28,11 @@ CREATE TABLE IF NOT EXISTS `appvinoc_vinodb`.`vino__bouteille` (
   `code_saq` INT NULL,
   `pays` VARCHAR(45) NULL,
   `description` VARCHAR(200) NULL,
-  `prix` VARCHAR(45) NULL,
-  `url` VARCHAR(200) NULL,
+  `prix_saq` VARCHAR(45) NULL,
+  `url_saq` VARCHAR(200) NULL,
   `url_img` VARCHAR(200) NULL,
   `couleur` VARCHAR(45) NULL,
+  `format` varchar(20)  NULL,
   PRIMARY KEY (`id`),
   CONSTRAINT `type`
     FOREIGN KEY (`id`)
