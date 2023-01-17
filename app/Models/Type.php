@@ -5,14 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Cellier extends Model
+class Type extends Model
 {
-    //use HasFactory;
-
-     // Empêche _aucune_ colonne d'être remplie
-     protected $guarded = [];
-
-    protected $table = 'vino__cellier';
+    protected $table = 'vino__type';
 
     /*Si on ajoute ses colonnes 
     public const CREATED_AT = null;
