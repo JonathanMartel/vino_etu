@@ -1,8 +1,8 @@
 <a href="/SAQ">Importer le catalogue</a>
-
+<a href="/cellier">Espace cellier</a>
 <h1>Vue : Liste Bouteilles</h1>
-@if ($msg)
-<p>{{ $msg }}</p>
+@if (session('success'))
+<p style="font-size:1.3em; color: green;">{{ session('success') }}</p>
 @endif
 <div class="cellier grid">
     <?php

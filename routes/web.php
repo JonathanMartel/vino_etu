@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SAQController;
 use App\Http\Controllers\BouteilleController;
+use App\Http\Controllers\CellierController;
 
 
 
@@ -19,30 +20,34 @@ use App\Http\Controllers\BouteilleController;
 |
 */
 
+// Permet de tester rapidement la connection*/
 Route::get('/testDB', function () {
     return view('testDB');
 });
 
-/*Route::get('/SAQ', function () {
-    return view('bouteille.updateSAQ');
-});*/
-
+// Importe le catalogue de la SAQ*/
 Route::get('/SAQ', [SAQController::class, 'import'])
     ->name('bouteille.updateSAQ');
-
-
-// Route pour Équipe
-/*Route::get('/', function ($lang) {
-    App::setLocale($lang);
-    Log::debug('/'. $lang. '/equipe');
-    $allEquipes = Equipe::findAll();
-    return view('equipe.all', [
-        'allEquipes' => $allEquipes,
-        'title' => 'Équipe'
-    ]);
-})->where('lang', $langValidator);*/
 
 // Route pour Liste bouteille
 Route::get('/', [BouteilleController::class, 'index'])
     ->name('bouteille.liste');
+
+/* CELLIER */
+Route::get('/cellier', [CellierController::class, 'index'])
+    ->name('cellier.index'); 
+
+// Ajout d'un cellier
+Route::get('/cellier/nouveau', [CellierController::class, 'nouveau'])
+    ->name('cellier.nouveau'); 
+
+Route::post('/cellier/creer', [CellierController::class, 'creer'])
+->name('cellier.creer'); 
+
+
+// Édition d'un cellier
+Route::get('/cellier/edit/{id}', [CellierController::class, 'edit'])
+->name('cellier.edit');
+Route::get('/cellier/update/{id}', [CellierController::class, 'update'])
+->name('cellier.update');
 

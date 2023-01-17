@@ -9,6 +9,9 @@ class Cellier extends Model
 {
     //use HasFactory;
 
+     // Empêche _aucune_ colonne d'être remplie
+     protected $guarded = [];
+
     protected $table = 'vino__cellier';
 
     /*Si on ajoute ses colonnes 
