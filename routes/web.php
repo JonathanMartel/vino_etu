@@ -22,7 +22,10 @@ Route::prefix('admin')->group(function (){
 
 Route::get('/login', [AdminController::class, 'index'])->name('login_form');
 
-Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+Route::post('/login/administrator', [AdminController::class, 'login'])->name('admin.login');
+
+//faut se connecter pour voir dashboard 
+Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard')->middleware('admin');
 
 }); 
 
