@@ -25,7 +25,7 @@
 		<header>
 			<!-- <h1>Cellier - <span class="vino">Vino</span>  - Cellar</h1>  -->
 			
-			<div><a href="?requete=accueil"><img src="/vino_etu/img/vino1.jpg" alt="logo" class="logo"></a></div>
+			<div><a href="?requete=accueil"><img src="/vino_etu-main/img/vino1.jpg" alt="logo" class="logo"></a></div>
 			<nav>
 					<h3><a href="?requete=cellier">Cellier</a></h3>
 					<!-- <a href="?requete=ajouterNouvelleBouteilleCellier">Ajouter une bouteille au cellier</a>  -->
