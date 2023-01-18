@@ -1,4 +1,6 @@
 <?php
+
+
 /**
  * Class Controler
  * Gère les requêtes HTTP
@@ -37,16 +39,61 @@ class Controler
 				case 'boireBouteilleCellier':
 					$this->boireBouteilleCellier();
 					break;
+				
+				case 'login':
+					$this->login();
+					break;
+				case 'register':
+					$this->register();
+					break;
+				case 'cellier':
+					$this->cellier();
+					break;
+
+
 				default:
 					$this->accueil();
 					break;
 			}
 		}
 
+		private function login()
+		{
+			include("vues/entete.php");
+			include("vues/login.php");
+			include("vues/pied.php");
+		}
+
+
+		private function register()
+		{
+			if (!empty($_POST)) {
+				$user = new Usager();
+				$user->addUtilisateur($_POST);
+				/* header("vues/login.php");
+				exit(); */
+			}
+			include("vues/entete.php");
+			include("vues/register.php");
+			include("vues/pied.php");
+                  
+		}
+
+
+	
 		private function accueil()
+		{
+			include("vues/entete.php");
+			include("vues/accueil.php");
+			include("vues/pied.php");
+                  
+		}
+		
+		private function cellier()
 		{
 			$bte = new Bouteille();
             $data = $bte->getListeBouteilleCellier();
+			 //var_dump($data);
 			include("vues/entete.php");
 			include("vues/cellier.php");
 			include("vues/pied.php");
@@ -82,7 +129,6 @@ class Controler
 				$bte = new Bouteille();
 				//var_dump($_POST['data']);
 				
-				//var_dump($data);
 				$resultat = $bte->ajouterBouteilleCellier($body);
 				echo json_encode($resultat);
 			}

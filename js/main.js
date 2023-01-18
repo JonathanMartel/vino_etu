@@ -8,11 +8,15 @@
  *
  */
 
-//const BaseURL = "https://jmartel.webdev.cmaisonneuve.qc.ca/n61/vino/";
-const BaseURL = document.baseURI;
-console.log(BaseURL);
+//const BaseURL = "https://localhost/vino_etu/";
+const BaseURL = "http://localhost:8080/vino_etu/";
+
+//console.log(BaseURL);
+
 window.addEventListener('load', function() {
-    console.log("load");
+    
+ // console.log("load");
+
     document.querySelectorAll(".btnBoire").forEach(function(element){
         console.log(element);
         element.addEventListener("click", function(evt){
@@ -22,12 +26,14 @@ window.addEventListener('load', function() {
             fetch(requete)
             .then(response => {
                 if (response.status === 200) {
+                  // Récharger la page  
+                  location.reload();                 
                   return response.json();
                 } else {
                   throw new Error('Erreur');
                 }
               })
-              .then(response => {
+              .then(response => {                
                 console.debug(response);
               }).catch(error => {
                 console.error(error);
@@ -36,6 +42,9 @@ window.addEventListener('load', function() {
 
     });
 
+    /*
+    * Gerer l evenement lorsqu on clioque sur le boutton  'Ajouter'
+    */
     document.querySelectorAll(".btnAjouter").forEach(function(element){
         console.log(element);
         element.addEventListener("click", function(evt){
@@ -45,12 +54,15 @@ window.addEventListener('load', function() {
             fetch(requete)
             .then(response => {
                 if (response.status === 200) {
+                  // Récharger la page 
+                  location.reload();                 
                   return response.json();
                 } else {
                   throw new Error('Erreur');
                 }
               })
               .then(response => {
+                                
                 console.debug(response);
               }).catch(error => {
                 console.error(error);
@@ -60,7 +72,7 @@ window.addEventListener('load', function() {
     });
    
     let inputNomBouteille = document.querySelector("[name='nom_bouteille']");
-    console.log(inputNomBouteille);
+    //console.log(inputNomBouteille);
     let liste = document.querySelector('.listeAutoComplete');
 
     if(inputNomBouteille){
@@ -72,16 +84,14 @@ window.addEventListener('load', function() {
           let requete = new Request(BaseURL+"index.php?requete=autocompleteBouteille", {method: 'POST', body: '{"nom": "'+nom+'"}'});
           fetch(requete)
               .then(response => {
-                  if (response.status === 200) {
+                  if (response.status === 200) {                    
                     return response.json();
                   } else {
                     throw new Error('Erreur');
                   }
                 })
                 .then(response => {
-                  console.log(response);
-                  
-                 
+                  console.log(response);                  
                   response.forEach(function(element){
                     liste.innerHTML += "<li data-id='"+element.id +"'>"+element.nom+"</li>";
                   })
