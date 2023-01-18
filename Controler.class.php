@@ -46,9 +46,12 @@ class Controler
 				case 'register':
 					$this->register();
 					break;
+<<<<<<< HEAD
 				case 'cellier':
 					$this->cellier();
 					break;
+=======
+>>>>>>> 198e3bade9df98d32f729f5c91268564fa3655ec
 
 
 				default:
@@ -62,6 +65,7 @@ class Controler
 			include("vues/entete.php");
 			include("vues/login.php");
 			include("vues/pied.php");
+<<<<<<< HEAD
 		}
 
 
@@ -73,6 +77,12 @@ class Controler
 				/* header("vues/login.php");
 				exit(); */
 			}
+=======
+                  
+		}
+		private function register()
+		{
+>>>>>>> 198e3bade9df98d32f729f5c91268564fa3655ec
 			include("vues/entete.php");
 			include("vues/register.php");
 			include("vues/pied.php");
@@ -80,7 +90,10 @@ class Controler
 		}
 
 
+<<<<<<< HEAD
 	
+=======
+>>>>>>> 198e3bade9df98d32f729f5c91268564fa3655ec
 		private function accueil()
 		{
 			include("vues/entete.php");
@@ -93,7 +106,11 @@ class Controler
 		{
 			$bte = new Bouteille();
             $data = $bte->getListeBouteilleCellier();
+<<<<<<< HEAD
 			 //var_dump($data);
+=======
+			/* var_dump($data); */
+>>>>>>> 198e3bade9df98d32f729f5c91268564fa3655ec
 			include("vues/entete.php");
 			include("vues/cellier.php");
 			include("vues/pied.php");
@@ -104,8 +121,7 @@ class Controler
 		private function listeBouteille()
 		{
 			$bte = new Bouteille();
-            $cellier = $bte->getListeBouteilleCellier();
-            
+            $cellier = $bte->getListeBouteilleCellier();            
             echo json_encode($cellier);
                   
 		}

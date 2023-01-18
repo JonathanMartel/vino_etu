@@ -1,8 +1,13 @@
+<<<<<<< HEAD
 <!-- </main>
+=======
+</main>
+>>>>>>> 198e3bade9df98d32f729f5c91268564fa3655ec
 <footer>
 	<h2>Vino 2023 ©</h2>
 </footer>
 </body>
+<<<<<<< HEAD
 
 </html> -->
 </main>
@@ -12,5 +17,7 @@
 	</nav>
 </footer>
 </body>
+=======
+>>>>>>> 198e3bade9df98d32f729f5c91268564fa3655ec
 
 </html>

@@ -9,6 +9,7 @@
  */
 
 //const BaseURL = "https://localhost/vino_etu/";
+<<<<<<< HEAD
 const BaseURL = "http://localhost:8080/vino_etu/";
 
 //console.log(BaseURL);
@@ -17,6 +18,13 @@ window.addEventListener('load', function() {
     
  // console.log("load");
 
+=======
+const BaseURL = document.baseURI;
+
+console.log(BaseURL);
+window.addEventListener('load', function() {    
+  console.log("load");
+>>>>>>> 198e3bade9df98d32f729f5c91268564fa3655ec
     document.querySelectorAll(".btnBoire").forEach(function(element){
         console.log(element);
         element.addEventListener("click", function(evt){
@@ -26,7 +34,11 @@ window.addEventListener('load', function() {
             fetch(requete)
             .then(response => {
                 if (response.status === 200) {
+<<<<<<< HEAD
                   // Récharger la page  
+=======
+                  // Récharger la page pour voir les changements  
+>>>>>>> 198e3bade9df98d32f729f5c91268564fa3655ec
                   location.reload();                 
                   return response.json();
                 } else {

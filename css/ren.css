@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
 red = #73162F other = #7D1629
 beige = F1F2D8
@@ -76,6 +77,8 @@ jaune =  CC9933
 
 
 
+=======
+>>>>>>> 198e3bade9df98d32f729f5c91268564fa3655ec
 header{
 	padding: 20px;
 	background-color: #73162F;
@@ -105,7 +108,11 @@ h1{
 }
 
 main{
+<<<<<<< HEAD
 	/* padding: 50px; */
+=======
+	padding: 50px;
+>>>>>>> 198e3bade9df98d32f729f5c91268564fa3655ec
 	text-align: center;
 }
 
@@ -126,6 +133,7 @@ img{
 header, footer{
 	color: white;
 }
+<<<<<<< HEAD
 .bg-img{
 	min-height: 800px;
 	background-image: url('../img/accueil-img.png');
@@ -174,3 +182,5 @@ header, footer{
 	transform: translateY(-2px);
   }
   
+=======
+>>>>>>> 198e3bade9df98d32f729f5c91268564fa3655ec

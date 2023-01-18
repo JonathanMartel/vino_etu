@@ -12,8 +12,13 @@
 		<link rel="stylesheet" href="./css/main.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="./css/ren.css" type="text/css" media="screen">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
+<<<<<<< HEAD
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+=======
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+>>>>>>> 198e3bade9df98d32f729f5c91268564fa3655ec
 		<base href="<?php echo BASEURL; ?>">
 		<script src="./js/plugins.js"></script>
 		<script src="./js/main.js"></script>
@@ -23,6 +28,7 @@
 
 	<body>
 		<header>
+<<<<<<< HEAD
 			<!-- <h1>Cellier - <span class="vino">Vino</span>  - Cellar</h1>  -->
 			
 			<div><a href="?requete=accueil"><img src="/vino_etu-main/img/vino1.jpg" alt="logo" class="logo"></a></div>
@@ -30,6 +36,13 @@
 					<h3><a href="?requete=cellier">Cellier</a></h3>
 					<!-- <a href="?requete=ajouterNouvelleBouteilleCellier">Ajouter une bouteille au cellier</a>  -->
 					<!-- <h3><a href="?requete=login" class="btnlogin">Se Connecter</a></h3> -->
+=======
+			<h1>Cellier - <span class="vino">Vino</span>  - Cellar</h1> 
+			<nav>
+					<a href="?requete=accueil">Mon cellier</a>
+					<a href="?requete=ajouterNouvelleBouteilleCellier">Ajouter une bouteille au cellier</a>
+					<h3><a href="?requete=login" class="btnlogin">Se Connecter</a></h3>
+>>>>>>> 198e3bade9df98d32f729f5c91268564fa3655ec
 			</nav>
 		</header>
 		<main>

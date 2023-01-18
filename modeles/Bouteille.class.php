@@ -14,8 +14,7 @@ class Bouteille extends Modele {
 	const TABLE = 'vino__bouteille';
     
 	public function getListeBouteille()
-	{
-		
+	{		
 		$rows = Array();
 		$res = $this->_db->query('Select * from '. self::TABLE);
 		if($res->num_rows)
@@ -70,9 +69,7 @@ class Bouteille extends Modele {
 		{
 			throw new Exception("Erreur de requête sur la base de donnée", 1);
 			 //$this->_db->error;
-		}
-		
-		
+		}	
 		
 		return $rows;
 	}
@@ -89,8 +86,7 @@ class Bouteille extends Modele {
 	 */
        
 	public function autocomplete($nom, $nb_resultat=10)
-	{
-		
+	{		
 		$rows = Array();
 		$nom = $this->_db->real_escape_string($nom);
 		$nom = preg_replace("/\*/","%" , $nom);
@@ -104,7 +100,7 @@ class Bouteille extends Modele {
 			{
 				while($row = $res->fetch_assoc())
 				{
-					$row['nom'] = trim(utf8_encode($row['nom']));
+					$row['nom'] = trim(utf8_encode($row['nom']));// mb_convert_encoding
 					$rows[] = $row;
 					
 				}
@@ -114,14 +110,32 @@ class Bouteille extends Modele {
 		{
 			throw new Exception("Erreur de requête sur la base de données", 1);
 			 
-		}
-		
+		}	
 		
 		//var_dump($rows);
 		return $rows;
 	}
-	
-	
+
+	/**
+	 * Cette méthode change la quantité d'une bouteille en particulier dans le cellier
+	 * 
+	 * @param int $id id de la bouteille
+	 * @param int $nombre Nombre de bouteille a ajouter ou retirer
+	 * 
+	 * @return Boolean Succès ou échec de l'ajout.
+	 */
+	public function modifierQuantiteBouteilleCellier($id, $nombre)
+	{
+		//TODO : Valider les données.
+				
+		$requete = "UPDATE vino__cellier SET quantite = GREATEST(quantite + ". $nombre. ", 0) WHERE id = ". $id;
+		//echo $requete;
+        $res = $this->_db->query($requete);
+        
+		return $res;
+	}
+
+		
 	/**
 	 * Cette méthode ajoute une ou des bouteilles au cellier
 	 * 
@@ -151,25 +165,11 @@ class Bouteille extends Modele {
 	
 	
 	
-	/**
-	 * Cette méthode change la quantité d'une bouteille en particulier dans le cellier
-	 * 
-	 * @param int $id id de la bouteille
-	 * @param int $nombre Nombre de bouteille a ajouter ou retirer
-	 * 
-	 * @return Boolean Succès ou échec de l'ajout.
-	 */
-	public function modifierQuantiteBouteilleCellier($id, $nombre)
+	public function modifierBouteilleCellier($id_cellier)	
 	{
-		//TODO : Valider les données.
-			
-			
-		$requete = "UPDATE vino__cellier SET quantite = GREATEST(quantite + ". $nombre. ", 0) WHERE id = ". $id;
-		//echo $requete;
-        $res = $this->_db->query($requete);
-        
-		return $res;
-	}
+		$requete = "SELECT * from vino__cellier WHERE id = $id_cellier";
+		
+	} /* */
 }
 
 

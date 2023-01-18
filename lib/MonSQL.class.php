@@ -44,7 +44,12 @@ class MonSQL {
 				echo "Echec lors de la connexion à MySQL : (" . self::$_instance -> connect_errno . ") " . self::$_instance-> connect_error;
 			}
 			else {
+<<<<<<< HEAD
 				self::$_instance->set_charset("utf8mb4");	
+=======
+				// SAID
+				//self::$_instance->set_charset("UTF-8");	
+>>>>>>> 198e3bade9df98d32f729f5c91268564fa3655ec
 			}
 		}
 
