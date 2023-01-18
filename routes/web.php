@@ -27,6 +27,11 @@ Route::post('/login/administrator', [AdminController::class, 'login'])->name('ad
 //faut se connecter pour voir dashboard 
 Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard')->middleware('admin');
 
+
+Route::get('/logout', [AdminController::class, 'adminLogout'])->name('admin.logout')->middleware('admin');
+
+Route::get('/register', [AdminController::class, 'adminRegister'])->name('admin.register');
+
 }); 
 
 /***End Admin Route */
