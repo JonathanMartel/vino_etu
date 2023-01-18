@@ -17,4 +17,6 @@ class Bouteille extends Model
 
     /*Pour l'instant il n'y en a pas */
     public $timestamps = false;
+
+
 }

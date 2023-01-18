@@ -1,12 +1,14 @@
 <?php
 
+
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SAQController;
-use App\Http\Controllers\BouteilleController;
 use App\Http\Controllers\CellierController;
-
+use App\Http\Controllers\BouteilleController;
+use App\Http\Controllers\RechercheController;
+use App\Http\Controllers\EmployeeController;
 
 
 /*
@@ -40,7 +42,6 @@ Route::get('/cellier', [CellierController::class, 'index'])
 // Ajout d'un cellier
 Route::get('/cellier/nouveau', [CellierController::class, 'nouveau'])
     ->name('cellier.nouveau'); 
-
 Route::post('/cellier/creer', [CellierController::class, 'creer'])
 ->name('cellier.creer'); 
 
@@ -51,6 +52,21 @@ Route::get('/cellier/edit/{id}', [CellierController::class, 'edit'])
 Route::post('/cellier/update/{id}', [CellierController::class, 'update'])
 ->name('cellier.update');
 
+// Suppression d'un cellier
 Route::post('/cellier/supprime/{id}', [CellierController::class, 'supprime'])
 ->name('cellier.supprime'); 
+
+/* Bouteille */
+
+// Ajout d'une bouteille
+Route::get('/bouteille/nouveau', [BouteilleController::class, 'nouveau'])
+    ->name('bouteille.nouveau');
+
+Route::post('/bouteille/recherche', [BouteilleController::class, 'recherche'])
+->name('bouteille.recherche');
+
+
+Route::post('/bouteille/creer', [BouteilleController::class, 'creer'])
+->name('bouteille.creer'); 
+
 

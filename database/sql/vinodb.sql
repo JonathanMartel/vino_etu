@@ -10,8 +10,6 @@ CREATE TABLE `vino__type` (
 ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4;
 
 
-
-
 -- -----------------------------------------------------
 -- Table `vinodb`.`vino__bouteille`
 -- -----------------------------------------------------
@@ -99,3 +97,13 @@ INSERT INTO `vino__cellier` VALUES(2, 1, 'cellier2');
 INSERT INTO `vino__type` VALUES(1, 'Vin rouge');
 INSERT INTO `vino__type` VALUES(2, 'Vin blanc');
 INSERT INTO `vino__type` VALUES(3, 'Vin rosé');
+
+
+/*pour test seulement A ENLEVER PLUS TARD*/
+DROP TABLE IF EXISTS `employees`;
+CREATE TABLE `employees` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(20) NOT NULL,
+  `phone` VARCHAR(20) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4;
