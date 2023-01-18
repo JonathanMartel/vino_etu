@@ -1,5 +1,9 @@
+<!-- Pour tester des routes -->
 <a href="/SAQ">Importer le catalogue</a>
 <a href="/cellier">Espace cellier</a>
+
+<a href="/bouteille/nouveau">Ajouter une bouteille</a>
+
 <h1>Vue : Liste Bouteilles</h1>
 @if (session('success'))
 <p style="font-size:1.3em; color: green;">{{ session('success') }}</p>
