@@ -132,7 +132,8 @@ class SAQ extends Modele {
 					$info -> desc -> type = trim($aDesc[0]);
 					$info -> desc -> format = trim($aDesc[1]);
 					$info -> desc -> pays = trim($aDesc[2]);
-				}				
+				}
+				
 				$info -> desc -> texte = trim($info -> desc -> texte);
 			}
 		}
@@ -144,7 +145,8 @@ class SAQ extends Modele {
 				if(preg_match("/\d+/", $node -> textContent, $aRes))
 				{
 					$info -> desc -> code_SAQ = trim($aRes[0]);
-				}			
+				}
+				
 				
 				
 			}

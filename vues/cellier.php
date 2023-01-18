@@ -1,10 +1,7 @@
 <div class="cellier">
 
 <h1>Votre Cellier</h1>
-<<<<<<< HEAD
 <a href="?requete=ajouterNouvelleBouteilleCellier">Ajouter une bouteille au cellier</a>
-=======
->>>>>>> 198e3bade9df98d32f729f5c91268564fa3655ec
     
 <?php
 foreach ($data as $cle => $bouteille) {

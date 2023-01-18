@@ -39,10 +39,6 @@ html, body {
 	transition: color 200ms ease-in-out;
 	
 }
-.img img{/* style="max-width:111px; max-height:166px;" */
-	max-width:111px;
-	max-height:166px; 
-}
 
 /* @media all and (max-width:640px)
 {
