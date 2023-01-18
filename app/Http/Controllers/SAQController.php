@@ -20,10 +20,15 @@ class SAQController extends Controller
 
         $saq -> getProduits($nombreProduit,$page);//import les produits
         $msg = 'Importation réussie !';
+        $data = Bouteille::get();
        
-        return view('bouteille.liste', [
+       /* return view('bouteille.liste', [
             'msg' => $msg,
             'data' => Bouteille::get()
-        ]);
+        ]);*/
+
+        return redirect()
+        ->route('bouteille.liste')
+        ->withSuccess('La modification a réussi!');
     }
 }
