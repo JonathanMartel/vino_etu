@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bouteille;
-//use Illuminate\Http\Request;
+use App\Models\BouteillePersonalize;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
+//use Illuminate\Http\Request;
+
 
 
 class BouteilleController extends Controller
@@ -42,20 +44,21 @@ class BouteilleController extends Controller
     }
 
     /*
-     Création d'un ceillier dansla BD
+     Création d'une bouteille dans la BD
     */
     public function creer(Request $request)
     {
-        $this->validatebouteille($request);
+        //$this->validateBouteille($request);
 
         // On assume que la requête
-        $bouteille = bouteille::create($request->all());
+        $bouteille = BouteillePersonalize::create(Request::all());
 
+        //dd($bouteille);
     
         //Redirect avec message de succès
         return redirect()
         ->route('bouteille.nouveau')
-        ->withSuccess('Vous avez créé le bouteille '.$bouteille->nom_bouteille.'!');
+        ->withSuccess('Vous avez créé le bouteille '.$bouteille->nom.'!');
     }
 
     public function recherche(Request $request)
@@ -76,10 +79,15 @@ class BouteilleController extends Controller
             return json_encode($data);
     }
 
-        
-       /* $bte = new Bouteille();
-        $body = json_decode(file_get_contents('php://input'));
-        $listeBouteille = $bte->autocomplete($body->nom);
-        echo json_encode($listeBouteille);  */      
+    /**
+     * Fonction qui permet de valider les données de l'usager 
+     */
+    private function validateBouteille(Request $request)
+    {
+        Request::validate([
+            'nom' => 'required',
+            'type' => 'required'
+        ]);
+    }
     
 }

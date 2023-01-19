@@ -1,23 +1,29 @@
 
+<a href="/cellier">Espace cellier</a>
+<a href="/bouteille">Liste bouteille du catalogue</a>
+
 <h1>Ajout d'une bouteille à un cellier</h1>
-<form name="recherche" action=>
+@if (session()->has('success'))
+<span style="color:green">{{ session('success') }}</span>
+@endif
+<form name="recherche"  method="POST">
     @csrf
+	<label for="recherche"> Recherche  :</label>
 <input type="text" name="recherche" id="recherche" class="form-controller" onkeyup="fetchData()">
-<input type="hidden" name="_token" value="{{ csrf_token() }}" />
+
 </form>
 <table id="listeAutoComplete">
-    <thead>
-        <tr>
-            <th>Nom</th>
-        </tr>
-    </thead>
+    
     <tbody id="tbodyfordata">
         <!-- Data will be appened here -->
     </tbody>
 </table>
+<!-- Fin zone recherche -->
 
+<br><br>
+<!-- Début form ajout -->
 <div id="nouvelleBouteille">
-	<form id="formAjoutBouteille">
+	<form id="formAjoutBouteille" action="{{ route('bouteille.creer')}}" method="POST">
 		@csrf
 	
 		 <!-- Obligatoire -->

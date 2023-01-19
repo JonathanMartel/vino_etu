@@ -14,7 +14,7 @@
 @endif
 
 
-<h1>Vue : Liste Bouteilles</h1>
+<h1>Vue : Liste Bouteilles du catalogue</h1>
 @if (session('success'))
 <p style="font-size:1.3em; color: green;">{{ session('success') }}</p>
 

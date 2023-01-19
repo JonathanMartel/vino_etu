@@ -92,6 +92,7 @@ CREATE TABLE `vino__bouteille_personalize` (
   `url_saq` varchar(200) DEFAULT NULL,
   `url_img` varchar(200) DEFAULT NULL,
   `format` varchar(20) DEFAULT NULL,
+  `millesime` varchar(20) DEFAULT NULL,
   `type` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
