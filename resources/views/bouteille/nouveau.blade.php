@@ -1,6 +1,6 @@
 
 <h1>Ajout d'une bouteille à un cellier</h1>
-<form name="recherche">
+<form name="recherche" action=>
     @csrf
 <input type="text" name="recherche" id="recherche" class="form-controller" onkeyup="fetchData()">
 <input type="hidden" name="_token" value="{{ csrf_token() }}" />
@@ -116,7 +116,7 @@
 						if(evt.target.tagName == "TD"){
 						
 						injectBouteilleInfo(bouteille)
-						
+
 						//console.log(liste);
 						liste.innerHTML = "";
 						elRecheche = "";

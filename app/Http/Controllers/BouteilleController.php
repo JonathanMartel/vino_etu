@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Request;
 use App\Models\Bouteille;
+//use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Request;
+
 
 class BouteilleController extends Controller
 {
@@ -58,32 +60,19 @@ class BouteilleController extends Controller
 
     public function recherche(Request $request)
     {
-            //dd('recherche');
+            
             $data = '';
-           // $recherche = $request->get('recherche');
-            $recherche = $request->input('recherche');
+            $recherche = Request::get('recherche');
+
+         //Requete sur la recherche , limit de 10
             if($recherche != '')
             {
                 $data = DB::table('vino__bouteille')
                 ->where('nom','like','%' .$recherche. '%')
+                ->take(10)
                 ->get();
             }
-            // else
-            // if you want to show all the data
-            // {
-            //     $data = DB::table('categories')
-            //     ->orderBy('title','asc')
-            //     ->get();
-            // }
 
-           /* if ($request->ajax()) {
-                return response()->json($data);
-            }*/
-        
-            /*return view('bouteille.nouveau', [
-               'data' => $data
-            ]);*/
-            dd($data);
             return json_encode($data);
     }
 
