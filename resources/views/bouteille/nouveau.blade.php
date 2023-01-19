@@ -23,30 +23,35 @@
 		 <!-- Obligatoire -->
 		  <label for="nom"> * Nom  :</label>
 		  <input id="nom" name="nom" type="text" value="" required>
-		  
+		  <br>
 		  <span>* Type :</span>
+		  <br>
 		  <input type="radio" name="type" id="rouge" value="1" required>
-		  <label for="rouge">Rouge</label><br>
+		  <label for="rouge">Rouge</label>
 		  <input type="radio" name="type" id="blanc" value="2">
-		  <label for="blanc">Blanc</label><br>
+		  <label for="blanc">Blanc</label>
 		  <input type="radio" name="type" id="rose" value="3">
-		  <label for="rose">Rosé</label><br>
-	
+		  <label for="rose">Rosé</label>
+		  <br>
 		  <!-- Pas obligatoire -->
+		  <label for="pays">Pays :</label>
+		  <input id="pays" name="pays" type="text" value="">
+		  <br>
 		  <label for="format">Format :</label>
 		  <input id="format" name="format" type="text" value="">
-		  
+		  <br>
 		  <label for="millesime">Millesime :</label>
 		  <input id="millesime" name="millesime" type="text" value="">
-	
+		  <br>
 		  <label for="description">Description</label>
-		  <textarea id="description" name="description">
-			
-		  </textarea>
-	
+		  <textarea id="description" name="description"></textarea>
+		  <br>
 		  <!-- Caché non obligatoire -->
 		  <input id="url_saq" name="url_saq" type="hidden" value="">
 		  <input id="code_saq" name="code_saq" type="hidden" value="">
+		  <input id="image" name="image" type="hidden" value="">
+		  <input id="prix_saq" name="prix_saq" type="hidden" value="">
+		  <input id="url_img" name="url_img" type="hidden" value="">
 	
 		  <button>Ajouter</button>
 
@@ -60,7 +65,7 @@
 	{
        
 		//recherche Value
-		const elRecheche = document.getElementById('recherche').value;
+		let elRecheche = document.getElementById('recherche').value;
 
 		//Liste recherche
 		let liste = document.getElementById('listeAutoComplete');
@@ -111,8 +116,6 @@
 						if(evt.target.tagName == "TD"){
 						
 						injectBouteilleInfo(bouteille)
-						//bouteille.nom.dataset.id = evt.target.dataset.id;
-						//bouteille.nom.innerHTML = evt.target.children.innerHTML;
 						
 						//console.log(liste);
 						liste.innerHTML = "";
@@ -146,36 +149,33 @@
 
 		//console.log(bte)
 		var form = document.getElementById('formAjoutBouteille')
-		//console.log(form.nom)
 		
+		//Injecter les info de la bouteille dans le formulaire si vient de la recherche
 		for (const property in bte) {
-  			//console.log(form.`${property}`);
-			  console.log(`${property}: ${object[property]}`);
 			  prop = `${property}`;
-			  
-			  //Si element existe dans le form
-			  if(form[prop]){
+			  value = `${bte[property]}`;
+			 // console.log(prop);
+			 // console.log(value);
 
-				//radio bouton
-				if (prop == 'type'){
-					console.log('type')
-					switch (`${object[property]}`) {
-						case '1':
-						document.getElementById("rouge").checked;
-							break;
-						case '2':
-						document.getElementById("blanc").checked;
-						break;
-						case '3':
-						document.getElementById("rose").checked;
-						break;
-					}
-				}else{
-					form[prop].value = `${bte[property]}`;
+			 // radio bouton
+			  if (prop == 'type'){
+				console.log(typeof value)
+				valueBte = value
+				switch (valueBte) {
+					case '1':
+					console.log(document.getElementById("rouge"))
+					document.getElementById("rouge").checked =true;
+					break;
+					case '2':
+					document.getElementById("blanc").checked =true;
+					break;
+					case '3':
+					document.getElementById("rose").checked =true;
+					break;
 				}
-			}
-		
-			  
+			  }else{
+				form[prop].value = value;
+			  }  
 		}
 		
 	}
