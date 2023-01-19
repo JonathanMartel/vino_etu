@@ -6,6 +6,9 @@ jaune =  CC9933
 .top{
 	margin-top: 30px;
 }
+.down{
+	padding-bottom: 30px;
+}
 .form-style-8{
 	max-width: 200px;
 	margin-left: auto;
@@ -127,7 +130,7 @@ header, footer{
 	color: white;
 }
 .bg-img{
-	min-height: 800px;
+	min-height: 700px;
 	background-image: url('../img/accueil-img.png');
 	
 }
@@ -135,6 +138,7 @@ header, footer{
 	max-width: 300px;
 	max-height: 100px;
 	display: inline;
+	border-radius: 25px;
 }
 .logo:hover{
 	transition: all 0.5s cubic-bezier(.23, 1, 0.32, 1);
@@ -154,7 +158,7 @@ header, footer{
 .button-28 {
 	background-color: black;
 	border: 2px solid #1A1A1A;
-
+	border-radius: 100px;
 	color: white;
 	cursor: pointer;
 	display: inline-block;

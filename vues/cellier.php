@@ -1,6 +1,6 @@
 <div class="cellier">
 
-<h1>Votre Cellier</h1>
+<h1>Celliers --Nom--</h1>
 <a href="?requete=ajouterNouvelleBouteilleCellier">Ajouter une bouteille au cellier</a>
     
 <?php
