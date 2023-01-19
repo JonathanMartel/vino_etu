@@ -84,10 +84,13 @@ DROP TABLE IF EXISTS `vino__bouteille_personalize`;
 CREATE TABLE `vino__bouteille_personalize` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(200) DEFAULT NULL,
-  `description` varchar(200) DEFAULT NULL,
-  `url_saq` varchar(200) DEFAULT NULL,
+  `image` varchar(200) DEFAULT NULL,
   `code_saq` varchar(50) DEFAULT NULL,
   `pays` varchar(50) DEFAULT NULL,
+  `description` varchar(200) DEFAULT NULL,
+  `prix_saq` varchar(50) DEFAULT NULL,
+  `url_saq` varchar(200) DEFAULT NULL,
+  `url_img` varchar(200) DEFAULT NULL,
   `format` varchar(20) DEFAULT NULL,
   `type` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`))
