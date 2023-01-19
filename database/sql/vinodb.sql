@@ -82,11 +82,14 @@ ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4;
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `vino__bouteille_personalize`;
 CREATE TABLE `vino__bouteille_personalize` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `nom` VARCHAR(200) NULL,
-  `description` VARCHAR(200) NULL,
-  `provenance` VARCHAR(45) NULL,
-  `couleur` VARCHAR(45) NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nom` varchar(200) DEFAULT NULL,
+  `description` varchar(200) DEFAULT NULL,
+  `url_saq` varchar(200) DEFAULT NULL,
+  `code_saq` varchar(50) DEFAULT NULL,
+  `pays` varchar(50) DEFAULT NULL,
+  `format` varchar(20) DEFAULT NULL,
+  `type` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -99,11 +102,3 @@ INSERT INTO `vino__type` VALUES(2, 'Vin blanc');
 INSERT INTO `vino__type` VALUES(3, 'Vin rosé');
 
 
-/*pour test seulement A ENLEVER PLUS TARD*/
-DROP TABLE IF EXISTS `employees`;
-CREATE TABLE `employees` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(20) NOT NULL,
-  `phone` VARCHAR(20) NOT NULL,
-  PRIMARY KEY (`id`))
-ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4;
