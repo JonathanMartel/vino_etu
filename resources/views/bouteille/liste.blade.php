@@ -1,21 +1,20 @@
 
-<x-app-layout>
-<a href="/SAQ">Importer le catalogue</a>
-    
-<x-slot name="header">
-    <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        {{ __('Bouteille') }}
-    </h2>
-@if ($msg)
-<p>{{ $msg }}</p>
-
 <!-- Pour tester des routes -->
 <a href="/SAQ">Importer le catalogue</a>
 <a href="/cellier">Espace cellier</a>
-
 <a href="/bouteille/nouveau">Ajouter une bouteille</a>
 
-<h1>Vue : Liste Bouteilles</h1>
+
+
+    
+<x-slot name="header">
+  
+@if ($msg)
+<p>{{ $msg }}</p>
+@endif
+
+
+<h1>Vue : Liste Bouteilles du catalogue</h1>
 @if (session('success'))
 <p style="font-size:1.3em; color: green;">{{ session('success') }}</p>
 
@@ -46,15 +45,15 @@
                             <div class="options" data-id="<?php echo $bouteille['id_bouteille_cellier'] ?>" data-id-vin="<?php echo $bouteille['id_bouteille'] ?>">
                                 <!-- <button class='btnModifier'>Modifier</button> -->
             
-                                <x-primary-button class="ml-3">
-                                    {{ __('Ajouter') }}
-                                    <!--<button class='btnAjouter'>Ajouter</button>-->
-                                </x-primary-button>
+                           
                                 
-                                <x-primary-button class="ml-3">
-                                    {{ __('Boire') }}
-                                    <!--<button class='btnAjouter'>Ajouter</button>-->
-                                </x-primary-button>
+                                    <button class='btnAjouter'>Ajouter</button>
+                               
+                                
+                               
+                                   
+                                    <button class='btnAjouter'>Ajouter</button>
+                                
                                
             
                             </div>
@@ -73,4 +72,3 @@
     
 </div>
 </div>
-</x-app-layout>

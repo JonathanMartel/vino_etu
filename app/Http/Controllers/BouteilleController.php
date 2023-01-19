@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Request;
 use App\Models\Bouteille;
+use App\Models\BouteillePersonalize;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Request;
+//use Illuminate\Http\Request;
+
+
 
 class BouteilleController extends Controller
 {
@@ -40,57 +44,50 @@ class BouteilleController extends Controller
     }
 
     /*
-     Création d'un ceillier dansla BD
+     Création d'une bouteille dans la BD
     */
     public function creer(Request $request)
     {
-        $this->validatebouteille($request);
+        //$this->validateBouteille($request);
 
         // On assume que la requête
-        $bouteille = bouteille::create($request->all());
+        $bouteille = BouteillePersonalize::create(Request::all());
 
+        //dd($bouteille);
     
         //Redirect avec message de succès
         return redirect()
         ->route('bouteille.nouveau')
-        ->withSuccess('Vous avez créé le bouteille '.$bouteille->nom_bouteille.'!');
+        ->withSuccess('Vous avez créé le bouteille '.$bouteille->nom.'!');
     }
 
     public function recherche(Request $request)
     {
-            //dd('recherche');
+            
             $data = '';
-           // $recherche = $request->get('recherche');
-            $recherche = $request->input('recherche');
+            $recherche = Request::get('recherche');
+
+         //Requete sur la recherche , limit de 10
             if($recherche != '')
             {
                 $data = DB::table('vino__bouteille')
                 ->where('nom','like','%' .$recherche. '%')
+                ->take(10)
                 ->get();
             }
-            // else
-            // if you want to show all the data
-            // {
-            //     $data = DB::table('categories')
-            //     ->orderBy('title','asc')
-            //     ->get();
-            // }
 
-           /* if ($request->ajax()) {
-                return response()->json($data);
-            }*/
-        
-            /*return view('bouteille.nouveau', [
-               'data' => $data
-            ]);*/
-            dd($data);
             return json_encode($data);
     }
 
-        
-       /* $bte = new Bouteille();
-        $body = json_decode(file_get_contents('php://input'));
-        $listeBouteille = $bte->autocomplete($body->nom);
-        echo json_encode($listeBouteille);  */      
+    /**
+     * Fonction qui permet de valider les données de l'usager 
+     */
+    private function validateBouteille(Request $request)
+    {
+        Request::validate([
+            'nom' => 'required',
+            'type' => 'required'
+        ]);
+    }
     
 }

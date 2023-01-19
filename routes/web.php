@@ -43,9 +43,9 @@ Route::get('/register', [AdminController::class, 'adminRegister'])->name('admin.
 
 /***End Admin Route */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -55,8 +55,6 @@ Route::get('/dashboard', function () {
 Route::get('/bouteille', [BouteilleController::class, 'index'])
     ->name('bouteille');
 
-Route::get('/SAQ', [SAQController::class, 'import'])
-    ->name('bouteille.updateSAQ');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -76,7 +74,7 @@ Route::get('/SAQ', [SAQController::class, 'import'])
     ->name('bouteille.updateSAQ');
 
 // Route pour Liste bouteille
-Route::get('/', [BouteilleController::class, 'index'])
+Route::get('/bouteille', [BouteilleController::class, 'index'])
     ->name('bouteille.liste');
 
 /* CELLIER */

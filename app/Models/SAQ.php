@@ -81,7 +81,7 @@ class SAQ extends Model {
 		self::$_webpage = curl_exec($s);
 		self::$_status = curl_getinfo($s, CURLINFO_HTTP_CODE);
 		curl_close($s);
-//dd(curl_error($s));
+
 		$doc = new \DOMDocument();
 		$doc -> recover = true;
 		$doc -> strictErrorChecking = false;
@@ -207,8 +207,11 @@ class SAQ extends Model {
 				$bte -> prix = $prix;
 				
 				//traiter image 
+				/*scraping img not working anymore
 				$bte -> img = '//s7d9.scene7.com/is/image/SAQ/'.$bte -> desc -> code_SAQ.'_is?$saq-rech-prod-gril$';
-			
+				*/
+				//img par défaut
+			    $bte -> img = 'www.saq.com/media/catalog/product/';
 		
 				
 				//var_dump($bte -> prix);
