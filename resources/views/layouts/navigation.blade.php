@@ -24,9 +24,7 @@
                     <!-- Aller sur**** -->
                     
                     <!-- Aller sur catelogue bouteille liste -->
-                    <x-nav-link :href="route('bouteille')" :active="request()->routeIs('bouteille')">
-                        {{ __('Bouteille') }}
-                    </x-nav-link>
+                   
 
                 </div>
             </div>

@@ -23,8 +23,6 @@ use App\Http\Controllers\EmployeeController;
 |
 */
 
-/***End Admin Route */
-
 Route::get('/', function () {
     return view('home');
 });
@@ -32,10 +30,6 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
-// Route pour Liste bouteille
-Route::get('/bouteille', [BouteilleController::class, 'index'])
-    ->name('bouteille');
 
 
 Route::middleware('auth')->group(function () {
@@ -45,6 +39,7 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+require __DIR__.'/admin.php';
 
 // Permet de tester rapidement la connection*/
 Route::get('/testDB', function () {
