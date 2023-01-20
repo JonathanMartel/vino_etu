@@ -55,7 +55,7 @@ class BouteilleController extends Controller
 
 
         //--------TODO 
-        
+
         /*ajout bouteille/ceillier
         /* model=CelliersBouteilles 
 
@@ -86,6 +86,71 @@ class BouteilleController extends Controller
 
             return json_encode($data);
     }
+
+
+    /**
+     * Edit bouteille
+    */
+    public function edit(Request $request, $id)
+    {
+      
+        // TODO lier usager à ses bouteille...
+        //$bouteille = BouteillePersonalize::findOrFail($id);
+        $bouteille = Bouteille::findOrFail($id);
+
+       
+       
+        return view('bouteille.edit', [
+            'bouteille' => $bouteille
+        ]);
+    }
+
+
+     /**
+     * Update
+     */
+    public function update(Request $request, $id)
+    {
+        //dd($id);
+        $this->validateBouteille($request);
+
+        
+        // TODO lier usager à ses bouteille...
+        //$bouteille = BouteillePersonalize::findOrFail($id)->update(Request::all());
+        $bouteille = Bouteille::findOrFail($id)->update(Request::all());
+        
+
+
+        // Retourne a la liste du cellier --TODO
+        return redirect()
+            ->route('bouteille.edit')
+            ->withSuccess('La modification a réussi!');
+    }
+
+
+    /**
+     * Supprime
+     */
+    public function supprime(Request $request, $id)
+    {
+        //dd($id);
+        // TODO lier usager à ses bouteille...
+        //$bouteille = BouteillePersonalize::findOrFail($id);
+        $bouteille = Bouteille::findOrFail($id);
+        $bouteille->delete();
+
+        //--------TODO 
+
+        /*supprimer bouteille/ceillier
+        /* model=CelliersBouteilles 
+
+        --------------*/
+
+        
+        return "Vous avez supprimer le cellier {$bouteille->nom} !";
+
+    }
+
 
     /**
      * Fonction qui permet de valider les données de l'usager 

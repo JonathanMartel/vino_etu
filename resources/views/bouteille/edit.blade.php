@@ -2,14 +2,14 @@
 <a href="/cellier">Espace cellier</a>
 <a href="/bouteille">Liste bouteille du catalogue</a>
 
-<h1>Modification d'une bouteille à un cellier</h1>
+<h1>Modification d'une bouteille d'un cellier</h1>
 @if (session()->has('success'))
 <span style="color:green">{{ session('success') }}</span>
 @endif
 
 <!-- Début form modif -->
 
-	<form id="formAjoutBouteille" action="{{ route('bouteille.update')}}" method="POST">
+	<form id="formAjoutBouteille" action="{{ route('bouteille.update', ['id' => $bouteille->id])}}" method="POST">
 		@csrf
 	
 		 <!-- Obligatoire -->
@@ -17,14 +17,14 @@
 		  <input id="nom" name="nom" type="text" value="{{ old('nom', $bouteille->nom)}}" required>
 		  <br>
 
-          <!-- TODO checked the bon type -->
+          
 		  <span>* Type :</span>
 		  <br>
-		  <input type="radio" name="type" id="rouge" value="1" required>
+		  <input type="radio" name="type" id="rouge" value="1" required @if($bouteille->type == "1") checked @endif >
 		  <label for="rouge">Rouge</label>
-		  <input type="radio" name="type" id="blanc" value="2">
+		  <input type="radio" name="type" id="blanc" value="2" @if($bouteille->type == "2") checked @endif>
 		  <label for="blanc">Blanc</label>
-		  <input type="radio" name="type" id="rose" value="3">
+		  <input type="radio" name="type" id="rose" value="3" @if($bouteille->type == "3") checked @endif>
 		  <label for="rose">Rosé</label>
 		  <br>
 		  <!-- Pas obligatoire -->
@@ -51,5 +51,10 @@
 
 		</form>
 
+        <form action="{{ route('bouteille.supprime', ['id' => $bouteille->id]) }}" method="POST">
+            @csrf
+        
+            <button>Supprimer</button>
+        </form>
 
 
