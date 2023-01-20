@@ -53,6 +53,14 @@ class BouteilleController extends Controller
         // On assume que la requête
         $bouteille = BouteillePersonalize::create(Request::all());
 
+
+        //--------TODO 
+        
+        /*ajout bouteille/ceillier
+        /* model=CelliersBouteilles 
+
+        --------------*/
+
         //dd($bouteille);
     
         //Redirect avec message de succès

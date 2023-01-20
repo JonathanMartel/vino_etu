@@ -111,4 +111,6 @@ Route::post('/bouteille/recherche', [BouteilleController::class, 'recherche'])
 Route::post('/bouteille/creer', [BouteilleController::class, 'creer'])
 ->name('bouteille.creer'); 
 
-
+// Édition d'une bouteille
+Route::get('/bouteille/edit/{id}', [BouteilleController::class, 'edit'])
+->name('bouteille.edit');
