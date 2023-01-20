@@ -20,4 +20,20 @@ class Cellier extends Model
 
     /*Pour l'instant il n'y en a pas */
     public $timestamps = false;
+
+    public $incrementing = true;
+
+   /* relation avec Bouteille */
+   public function bouteilles()
+   {
+       return $this->hasMany(BouteillePersonalize::class);
+   }
+
+   /* relation avec User */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+
 }
