@@ -15,4 +15,10 @@ class Type extends Model
 
     /*Pour l'instant il n'y en a pas */
     public $timestamps = false;
+
+     /* relation avec Bouteille */
+     public function bouteilles()
+     {
+        return $this->hasMany(BouteillePersonalize::class);
+     }
 }
