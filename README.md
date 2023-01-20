@@ -2,7 +2,7 @@
 Projet en cours de développement Projet Web 2.
 
 ## url
-https://e0239070.webdev.cmaisonneuve.qc.ca/vino/
+https://appvino.com/
 
 Démo : https://jmartel.webdev.cmaisonneuve.qc.ca/n61/vino/
 ## Fonctionnalités

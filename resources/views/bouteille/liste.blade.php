@@ -30,7 +30,7 @@
                     foreach ($data as $cle => $bouteille) {
                     ?>
                         <div class="bouteille" data-quantite="<?php echo $bouteille['quantite'] ?>">
-                            <a class="btnModifier" href='index.php?requete=uneBouteilleCellierModif&idVin=<?php echo $bouteille['id_bouteille'] ?>&idCellier=<?php echo $bouteille['id_bouteille_cellier'] ?>'>Modifier</a>
+                            <a class="btnModifier" href='{{ route('bouteille.edit', ['id' => $bouteille->id ]) }}'>Modifier</a>
                             <div class="img">
                                 <img src="https:<?php echo $bouteille['image'] ?>">
                             </div>
