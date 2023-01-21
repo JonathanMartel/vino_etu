@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Cellier;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class BouteillePersonalize extends Model
 {
@@ -18,4 +19,20 @@ class BouteillePersonalize extends Model
 
    /*Pour l'instant il n'y en a pas */
    public $timestamps = false;
+   public $incrementing = true;
+
+
+   /* relation avec Cellier */
+   public function celliers()
+    {
+        return $this->hasMany(Cellier::class);
+    }
+
+   /* relation avec Type */
+   public function type()
+   {
+      return $this->belongsTo(Type::class);
+   }
+
+
 }
