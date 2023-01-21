@@ -2,11 +2,11 @@
 
 namespace App\Http\Middleware;
 
-use Closure;
 use Illuminate\Http\Request;
-use Auth;
+use Closure;
 
-class Admin
+
+class AdminMiddleware
 {
     /**
      * Handle an incoming request.
@@ -17,8 +17,8 @@ class Admin
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!Auth::guard('admin')->check()){
-            return redirect()->route('login_form')->with('error', 'Please login first');
+        if(!auth()->user() || !auth()->user()->is_admin){
+            abort(403);
         }
 
         return $next($request);

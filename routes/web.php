@@ -23,33 +23,19 @@ use App\Http\Controllers\EmployeeController;
 |
 */
 
-
-/***Admin Route */
-Route::prefix('admin')->group(function (){
-
-Route::get('/login', [AdminController::class, 'index'])->name('login_form');
-
-Route::post('/login/administrator', [AdminController::class, 'login'])->name('admin.login');
-
-//faut se connecter pour voir dashboard 
-Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard')->middleware('admin');
-
-
-Route::get('/logout', [AdminController::class, 'adminLogout'])->name('admin.logout')->middleware('admin');
-
-Route::get('/register', [AdminController::class, 'adminRegister'])->name('admin.register');
-
-}); 
-
-/***End Admin Route */
-
-/*Route::get('/', function () {
-    return view('welcome');
-});*/
+Route::get('/', function () {
+    return view('home');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+
+//aller login apres register 
+Route::get('/utilisateur/login', function () {
+    return view('auth.login');
+});
 
 
 Route::middleware('auth')->group(function () {
@@ -59,6 +45,7 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+require __DIR__.'/admin.php';
 
 
 

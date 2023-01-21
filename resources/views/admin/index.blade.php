@@ -1,17 +1,18 @@
+<x-admin-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Admin Dashboard') }}
+        </h2>
+    </x-slot>
 
-@extends('admin.admin_master')
-@section('admin')
-    <h1>Admin index blade </h1>
-    <a href={{ route('admin.logout') }}>Logout</a>
-
-    @if(Session::has('error'))
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        <strong>{{ session::get('error')}} </strong> 
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-      </div>
-    @endif
-    <h1>Login Admin Name: {{ Auth::guard('admin')->user()->name }} </h1>
-    <h1>Login Admin Email: {{ Auth::guard('admin')->user()->email }} </h1>
-@endSection
-
-  
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
+                    {{ __("You're logged in!") }} 
+                    <p>{{ Auth::user()->name }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</x-admin-layout>
