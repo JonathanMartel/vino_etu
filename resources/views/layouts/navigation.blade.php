@@ -17,7 +17,8 @@
                     </x-nav-link>
                     <!-- admin seulement -->
                    
-                    @if(Auth::user()->is_admin == 1)
+                    
+                    @if(Auth::user()->is_admin)
                     
                     <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
                         {{ __('Admin Dashboard') }}

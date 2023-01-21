@@ -7,3 +7,6 @@ Nous avons donc commencer à revoir les interfaces graphique et les relation des
 En investiguant dans le code source, nous avions également une meilleure idée si l'utilisation d'un framework était envisageable.
 
 En somme, la phase préparative s'est bien déroulée. nous avons eu les réponses à nos questionnements et nous avons pu être capable de mieux planifier le sprint #1.
+
+Voir planification sprint # 0 dans le ScrumDesk : 
+https://app.scrumdesk.com/#/projects/36882/plan

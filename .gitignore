@@ -28,7 +28,7 @@ dataconf_prod.php
 
 note.txt
 
-
+.env
 .env.backup
 .env.production
 .phpunit.result.cache
