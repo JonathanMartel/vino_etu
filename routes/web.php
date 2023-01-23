@@ -11,7 +11,7 @@ use App\Http\Controllers\CellierController;
 use App\Http\Controllers\BouteilleController;
 use App\Http\Controllers\RechercheController;
 use App\Http\Controllers\AcceuilController;
-
+use App\Http\Controllers\FallbackController;
 
 /*
 |--------------------------------------------------------------------------
@@ -131,3 +131,7 @@ Route::post('/bouteille/update/{id}', [BouteilleController::class, 'update'])
 // Suppression d'un bouteille
 Route::post('/bouteille/supprime/{id}', [BouteilleController::class, 'bouteille'])
 ->name('bouteille.supprime');
+
+
+// Route Fallback pour les routes non existantes Page Erreur 404
+Route::fallback(FallbackController::class);

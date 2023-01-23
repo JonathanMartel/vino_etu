@@ -13,8 +13,7 @@
     position: relative; /* To make the navbar positions relative to this container */
     padding: 0;
   }
-
-  .carousel .background {
+.background {
     background-position: center center;
     background-size: 100% 100%;
     background-repeat: no-repeat;
@@ -27,7 +26,7 @@
     }
   }
 
-  .carousel .background.a {
+.background.a {
     background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://images.pexels.com/photos/2909085/pexels-photo-2909085.jpeg?auto=compress&cs=tinysrgb&w=600");
   }
 
@@ -92,6 +91,41 @@
   }
 
 
+
+
 /*
-    FIN SECTION PAGE ACCUEIL
+    SECTION PAGE FALLBACK
 */
+
+.container_fallback {
+    display: flex;
+    justify-content: center;
+}
+
+.text_fallback{
+    width: 50%; /* or any other width */
+    margin: 0 auto;
+    text-align: center;
+
+    font-size: 2rem;
+    font-family: poppins;
+}
+.text_fallback h1{
+    font-size: 5rem;
+    font-family: poppins;
+    font-weight: 600;
+}
+.text_fallback h3{
+    background-color: red;
+    font-size: 1.5rem;
+    font-family: poppins;
+    font-weight: 300;
+}
+.button_fallback{
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+}
+
+
+
