@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Cellier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class CellierController extends Controller
 {
@@ -14,10 +15,10 @@ class CellierController extends Controller
      */
     public function index(Request $request)
     {
-       /* TODO Ajouter where id_usager dans where
-        ex: $celliers = Cellier::where('id_usager', $id_usager)->get();*/
-     
-         $celliers = Cellier::get();
+       
+       Auth::check();
+       $id_usager = Auth::id();
+       $celliers = Cellier::where('id_usager', $id_usager)->get();
       
         return view('cellier.index', [
             'celliers' => $celliers
@@ -32,10 +33,12 @@ class CellierController extends Controller
     public function nouveau(Request $request)
     {
 
+       Auth::check();
+       $id_usager = Auth::id();
        
         //Liste des cellier au besoins ... 
         // TODO selon le id de l'usager pas encore implementer
-         $celliers = DB::table('vino__cellier')
+         $celliers = DB::table('vino__cellier')->where('id_usager', $id_usager)
          ->get();
 
         //vue creation ceillier 

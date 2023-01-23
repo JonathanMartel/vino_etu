@@ -17,7 +17,7 @@
         @enderror
     </label>
     <!--TODO ajout de l'id de l'usager -->
-    <input name="id_usager" type="hidden" value="1" />
+    <input name="id_usager" type="hidden" value="{{Auth::id()}}" />
     <button>Créer</button>
 
 </form>

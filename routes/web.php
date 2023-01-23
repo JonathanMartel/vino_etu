@@ -1,16 +1,15 @@
 <?php
 
-
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth\RegisteredUserController;
+
+
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SAQController;
 use App\Http\Controllers\CellierController;
 use App\Http\Controllers\BouteilleController;
-use App\Http\Controllers\RechercheController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -23,20 +22,16 @@ use App\Http\Controllers\RechercheController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+/*Route::get('/', function () {
+    return view('welcome');
+});*/
+
+Route::get('/', [RegisteredUserController::class, 'create'])
+                ->name('register');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
-
-//aller login apres register 
-Route::get('/utilisateur/login', function () {
-    return view('auth.login');
-});
-
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -45,9 +40,6 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
-require __DIR__.'/admin.php';
-
-
 
 
 /**** ROUTE TEST ET IMPORTE CATALOGUE *** */
