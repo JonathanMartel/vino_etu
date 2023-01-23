@@ -236,6 +236,127 @@
         </div>
     </div>
 
+  <!-- component  Pour Gestion des Usager -->
+    <div class="container mx-auto px-4 sm:px-8">
+        <div class="py-8">
+            <div>
+                <h2 class="text-2xl font-semibold leading-tight">Gestion Usagers</h2>
+            </div>
+            <div class="my-2 flex sm:flex-row flex-col">
+
+                <!-- Section Crud Cellier -->
+                <div class="block relative">
+                    <span class="h-full absolute inset-y-0 left-0 flex items-center pl-2">
+                        <svg viewBox="0 0 24 24" class="h-4 w-4 fill-current text-gray-500">
+                            <path
+                                d="M10 4a6 6 0 100 12 6 6 0 000-12zm-8 6a8 8 0 1114.32 4.906l5.387 5.387a1 1 0 01-1.414 1.414l-5.387-5.387A8 8 0 012 10z">
+                            </path>
+                        </svg>
+                    </span>
+                    <input placeholder="Rechercher"
+                        class="appearance-none rounded-r rounded-l sm:rounded-l-none border border-gray-400 border-b block pl-8 pr-6 py-2 w-full bg-white text-sm placeholder-gray-400 text-gray-700 focus:bg-white focus:placeholder-gray-600 focus:text-gray-700 focus:outline-none" />
+                </div>
+            </div>
+            <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
+                <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
+                    <table class="min-w-full leading-normal">
+                        <thead>
+                            <tr>
+                                <th
+                                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                    Nom
+                                </th>
+                                <th
+                                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                    Email
+                                </th>
+                                <th
+                                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                    CELLIER
+                                </th>
+
+                                <th
+                                    class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
+                                    Action
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                    <div class="flex items-center">
+
+                                        {{-- Image svg par défaut pour les usager--}}
+                                        <svg  width="50" height="100"  class="svg-icon" ;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M514.56 518.144m-499.2 0a499.2 499.2 0 1 0 998.4 0 499.2 499.2 0 1 0-998.4 0Z" fill="#09435B" />
+                                            <path d="M839.68 775.168V732.16c0-87.552-156.672-111.616-156.672-111.616H367.616s-158.208 24.064-158.208 111.616v42.496s-0.512 32.256 50.688 33.28c50.688 1.024 265.216 0 265.216 0s214.016 1.024 264.704 0c51.2-0.512 49.664-32.768 49.664-32.768z" fill="#F04D4E" />
+                                            <path d="M578.56 614.4h-52.736l-158.208 3.072s-158.208 27.136-158.208 114.688v42.496s-0.512 32.256 50.688 33.28c50.688 1.024 51.2-0.512 51.2-0.512L466.432 691.2H578.56V614.4z" fill="#D84850" />
+                                            <path d="M430.08 522.24h189.44v117.76h-189.44z" fill="#C7928E" />
+                                            <path d="M701.952 357.888S727.04 431.104 660.48 475.136v-131.584l41.472 14.336zM337.408 357.888S327.68 431.104 378.88 475.136v-131.584l-41.472 14.336z" fill="#333333" />
+                                            <path d="M378.88 344.576V478.208s32.768 115.2 146.432 115.2S670.72 476.16 670.72 476.16v-122.368s6.144-174.08-145.408-174.08S378.88 344.576 378.88 344.576z" fill="#FECCCB" />
+                                            <path d="M527.36 593.92c-112.64 0-148.48-115.2-148.48-115.2v-133.632s-5.12-164.864 148.48-164.864V593.92z" fill="#D8AEAF" />
+                                            <path d="M463.872 273.92s24.064 96.768 249.344 96.768c0 0-3.584-194.048-186.368-194.048s-188.928 194.56-188.928 194.56 76.288-20.992 125.952-97.28z" fill="#2B2B2B" />
+                                            <path d="M428.032 557.056L368.128 619.52 465.92 692.224l62.464-48.64z" fill="#B6D5D0" /><path d="M621.568 557.056L681.984 619.52l-97.792 72.704-62.464-48.64z" fill="#B6D5D0" />
+                                        </svg>
+
+                                        <div class="ml-3">
+                                            <p class="text-gray-900 whitespace-no-wrap">
+                                                Fabrizio Estrella
+                                            </p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                    <p class="text-gray-900 whitespace-no-wrap">fabrizio@latelierdesvins.com</p>
+                                </td>
+                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                    <p class="text-gray-900 whitespace-no-wrap">
+                                      5
+                                    </p>
+                                </td>
+
+                                {{-- Section Action Crud  --}}
+                                <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                    <a href="#"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-green-600 hover:text-green-800"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M5 13l4 4L19 7" />
+                                      </svg></a>
+
+                                      <a href="#"><svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-red-600 hover:text-red-800"
+                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                          d="M6 18L18 6M6 6l12 12" />
+                                      </svg></a>
+                                </td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+
+                    {{-- Section Pagination --}}
+                    <div
+                        class="px-5 py-9 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          ">
+                        <span class="text-xs xs:text-sm text--900">
+                            Pagination 1 é 4 de 50 Entrées
+                        </span>
+                        <div class="inline-flex  mt-2 py-4 xs:mt-0">
+                            <button
+                                class="text-sm bg-red-800 hover:bg-red-300 text-white font-regular py-2 px-4 rounded-l">
+                                Précedent
+                            </button>
+                            <button
+                                class="text-sm bg-red-800 hover:bg-red-300 text-white font-regular py-2 px-4 rounded-r">
+                                Prochain
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 
 
