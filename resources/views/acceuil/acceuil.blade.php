@@ -11,8 +11,7 @@
   {{-- Section AlpineJS --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.11.1/cdn.js"></script>
 </head>
-<body class="p-10">
-    <div class="container-fluid main">
+<body>
 
 
         <div id="myCarousel" class="carousel carousel-fade slide" data-ride="carousel" data-interval="3000">
@@ -44,7 +43,7 @@
               </button>
         </div>
 
-      </div>
+
 
 </body>
 </html>
