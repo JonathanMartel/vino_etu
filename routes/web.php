@@ -117,12 +117,12 @@ Route::post('/cellier/supprime/{id}', [CellierController::class, 'supprime'])
 
 /****************BOUTEILLE *********/
 
-// Route pour Liste bouteille
-Route::get('/bouteille', [BouteilleController::class, 'index'])
+// Route pour Liste bouteille d'un cellier
+Route::get('/bouteille/{id}', [BouteilleController::class, 'index'])
     ->name('bouteille.liste');
 
-// Ajout d'une bouteille
-Route::get('/bouteille/nouveau', [BouteilleController::class, 'nouveau'])
+// Ajout d'une bouteille dans un cellier
+Route::get('/bouteille/nouveau/{id}', [BouteilleController::class, 'nouveau'])
     ->name('bouteille.nouveau');
 
 Route::post('/bouteille/recherche', [BouteilleController::class, 'recherche'])
