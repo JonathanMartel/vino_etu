@@ -1,17 +1,20 @@
 <?php
 
-
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth\RegisteredUserController;
+
+
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SAQController;
 use App\Http\Controllers\CellierController;
 use App\Http\Controllers\BouteilleController;
+
 use App\Http\Controllers\RechercheController;
 use App\Http\Controllers\AcceuilController;
 use App\Http\Controllers\FallbackController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +27,7 @@ use App\Http\Controllers\FallbackController;
 |
 */
 
+
 // Route::get('/', function () {
 //     return view('home');
 // });
@@ -32,6 +36,14 @@ use App\Http\Controllers\FallbackController;
 Route::get('/', AcceuilController::class)->name('acceuil');
 
 
+
+
+/*Route::get('/', function () {
+    return view('welcome');
+});*/
+
+Route::get('/', [RegisteredUserController::class, 'create'])
+                ->name('register');
 
 
 // Route::get('/dashboard', function () {
@@ -46,10 +58,12 @@ Route::get('/dashboard', function () {
 });
 
 
+
 //aller login apres register
 Route::get('/utilisateur/login', function () {
     return view('auth.login');
 });
+
 
 
 Route::middleware('auth')->group(function () {
@@ -59,9 +73,6 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
-require __DIR__.'/admin.php';
-
-
 
 
 /**** ROUTE TEST ET IMPORTE CATALOGUE *** */
