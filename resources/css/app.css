@@ -1,3 +1,97 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+
+
+/*
+    SECTION PAGE ACCUEIL
+*/
+.container-fluid.main{
+    position: relative; /* To make the navbar positions relative to this container */
+    padding: 0;
+  }
+
+  .carousel .background {
+    background-position: center center;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    height: 700px;
+  }
+
+  @media (max-width:991px) {
+    .carousel .background {
+      background-size: cover; /* To make the background image looks good */
+    }
+  }
+
+  .carousel .background.a {
+    background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://images.pexels.com/photos/2909085/pexels-photo-2909085.jpeg?auto=compress&cs=tinysrgb&w=600");
+  }
+
+
+  .covertext {
+    position: absolute; /* To make the div to be place anywhere. It is out of the document flow */
+    top: 200px; /* The distance between the div with the top of document */
+    left: 0px; /* Make the div full width */
+    right: 0px; /* Make the div full width */
+  }
+
+  .title {
+    font-family: Verdana;
+    font-weight: 600;
+    font-size: 60px;
+    color: #ffffff;
+    text-align: center;
+  }
+
+  .subtitle {
+    font-family: Verdana;
+    font-size: 23px;
+    color: #ffffff;
+    text-align: center;
+  }
+
+  .explore {
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .explore .btn-lg,
+  .explore .btn-lg:hover {
+    border-radius: 30px;
+    padding: 15px 25px;
+    font-size: 22px;
+    background-image: none;
+    background-color: #FF4000;
+    border-color: #FF4000;
+    color: #ffffff;
+  }
+
+  .btn {
+    border-radius: 0px;
+    background-image: none;
+    background-color: #FF4000;
+    border-color: #FF4000;
+    color: #ffffff;
+    margin-bottom: 20px;
+    box-shadow: none;
+    outline: none;
+  }
+
+  .btn:focus,
+  .btn:active:focus,
+  .btn.active:focus,
+  .btn.focus,
+  .btn:active.focus,
+  .btn.active.focus {
+    color: #ffffff;
+    outline: none;
+  }
+
+
+/*
+    FIN SECTION PAGE ACCUEIL
+*/
