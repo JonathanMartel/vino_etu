@@ -10,6 +10,7 @@ use App\Http\Controllers\SAQController;
 use App\Http\Controllers\CellierController;
 use App\Http\Controllers\BouteilleController;
 use App\Http\Controllers\RechercheController;
+use App\Http\Controllers\AcceuilController;
 
 
 /*
@@ -23,9 +24,15 @@ use App\Http\Controllers\RechercheController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+// Route::get('/', function () {
+//     return view('home');
+// });
+
+//Section page d'accueil
+Route::get('/', AcceuilController::class)->name('acceuil');
+
+
+
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
