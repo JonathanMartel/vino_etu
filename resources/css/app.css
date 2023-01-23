@@ -14,7 +14,7 @@
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    height: 700px;
+    min-height: 100vh;
   }
 
 
