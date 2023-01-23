@@ -28,12 +28,12 @@
 
           </div>
           <div class="col-xs-12 explore">
-            <a href=""><button class=" w-80 bg-red-800 hover:bg-red-300 text-white font-regular py-2 px-4 rounded">
+            <a href="/utilisateur/inscription"><button class=" w-80 bg-red-800 hover:bg-red-300 text-white font-regular py-2 px-4 rounded">
                 Inscrivez-vous
               </button></a>
           </div>
           <div class="col-xs-12 explore">
-            <a href="#"><button class=" w-80 bg-red-800 hover:bg-red-300 text-white font-regular py-2 px-4 rounded">
+            <a href="/utilisateur/connnexion"><button class=" w-80 bg-red-800 hover:bg-red-300 text-white font-regular py-2 px-4 rounded">
                 Connexion
               </button></a>
           </div>

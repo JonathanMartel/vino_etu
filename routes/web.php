@@ -42,7 +42,7 @@ Route::get('/', AcceuilController::class)->name('acceuil');
     return view('welcome');
 });*/
 
-Route::get('/', [RegisteredUserController::class, 'create'])
+Route::get('/utilisateur/inscription', [RegisteredUserController::class, 'create'])
                 ->name('register');
 
 
@@ -60,7 +60,7 @@ Route::get('/dashboard', function () {
 
 
 //aller login apres register
-Route::get('/utilisateur/login', function () {
+Route::get('/utilisateur/connnexion', function () {
     return view('auth.login');
 });
 
