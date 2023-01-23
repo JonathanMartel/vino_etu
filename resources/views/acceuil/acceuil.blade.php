@@ -28,19 +28,21 @@
 
           </div>
           <div class="col-xs-12 explore">
-            <a href=""><button class=" w-80 bg-red-800 hover:bg-red-300 text-white font-regular py-2 px-4 rounded">
+            <a href="/utilisateur/inscription"><button class=" w-80 bg-red-800 hover:bg-red-300 text-white font-regular py-2 px-4 rounded">
                 Inscrivez-vous
               </button></a>
           </div>
           <div class="col-xs-12 explore">
-            <a href="#"><button class=" w-80 bg-red-800 hover:bg-red-300 text-white font-regular py-2 px-4 rounded">
+            <a href="/utilisateur/connnexion"><button class=" w-80 bg-red-800 hover:bg-red-300 text-white font-regular py-2 px-4 rounded">
                 Connexion
               </button></a>
           </div>
           <div class=" py-12 col-xs-12 explore">
+            <!-- Pas besoin de ce bouton 
             <button class="w-80 bg-transparent hover:bg-red-300 text-white font-semibold hover:text-white py-2 px-4 border border-white hover:border-transparent rounded">
                 EXPLORER LES CELLIERS
               </button>
+              -->
         </div>
 
 
