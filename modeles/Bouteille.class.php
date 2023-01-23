@@ -17,7 +17,47 @@ class Bouteille extends Modele {
 	{
 		
 		$rows = Array();
-		$res = $this->_db->query('Select * from '. self::TABLE);
+		$res = $this->_db->query('SELECT * FROM '. self::TABLE);
+		if($res->num_rows)
+		{
+			while($row = $res->fetch_assoc())
+			{
+				$rows[] = $row;
+			}
+		}
+		
+		return $rows;
+	}
+
+/* 	public function getListeBouteilleCellier($id)
+	{
+		
+		$rows = Array();
+		$res = $this->_db->query('SELECT * FROM vino__bouteille_saq WHERE id_cellier = ' . $id);
+		if($res->num_rows)
+		{
+			while($row = $res->fetch_assoc())
+			{
+				$rows[] = $row;
+			}
+		}
+		
+		return $rows;
+	} */
+
+	public static function getListeBouteilleCellier($id)
+    {
+        $db = static::getDB();
+        $sql = 'SELECT * FROM vino__bouteille_saq WHERE id_cellier = ' . $id;
+        $stmt = $db->prepare($sql);
+        $stmt->execute([]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+	public function getListeBouteilleSAQ($id_cellier)
+	{
+		$rows = Array();
+		$res = $this->_db->query("SELECT * FROM vino__bouteille_saq WHERE id_cellier = '" . $id_cellier . "'");
 		if($res->num_rows)
 		{
 			while($row = $res->fetch_assoc())
@@ -29,7 +69,7 @@ class Bouteille extends Modele {
 		return $rows;
 	}
 	
-	public function getListeBouteilleCellier()
+	/* public function getListeBouteilleCellier()
 	{
 		
 		$rows = Array();
@@ -75,7 +115,7 @@ class Bouteille extends Modele {
 		
 		
 		return $rows;
-	}
+	} */
 	
 	/**
 	 * Cette méthode permet de retourner les résultats de recherche pour la fonction d'autocomplete de l'ajout des bouteilles dans le cellier
@@ -134,8 +174,9 @@ class Bouteille extends Modele {
 		//TODO : Valider les données.
 		var_dump($data);	
 		
-		$requete = "INSERT INTO vino__cellier(id_bouteille,date_achat,garde_jusqua,notes,prix,quantite,millesime) VALUES (".
+		$requete = "INSERT INTO vino__bouteille_saq(id_bouteille,id_cellier,date_achat,garde_jusqua,notes,prix,quantite,millesime) VALUES (".
 		"'".$data->id_bouteille."',".
+		"'".$data->id_cellier."',".
 		"'".$data->date_achat."',".
 		"'".$data->garde_jusqua."',".
 		"'".$data->notes."',".
@@ -169,6 +210,8 @@ class Bouteille extends Modele {
         $res = $this->_db->query($requete);
         
 		return $res;
+
+
 	}
 }
 

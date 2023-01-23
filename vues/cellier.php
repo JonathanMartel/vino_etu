@@ -1,7 +1,7 @@
 <div class="cellier">
 
-<h1>Celliers --Nom--</h1>
-<a href="?requete=ajouterNouvelleBouteilleCellier">Ajouter une bouteille au cellier</a>
+<h1>Nom du Cellier: <?= $datacell[0]['nom']?></h1>
+<a href="?requete=ajouterNouvelleBouteilleCellier">Ajouter une bouteille au cellier de la SAQ</a>
     
 <?php
 foreach ($data as $cle => $bouteille) {
@@ -34,5 +34,3 @@ foreach ($data as $cle => $bouteille) {
 
 ?>	
 </div>
-
-

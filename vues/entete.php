@@ -16,8 +16,8 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Sofia+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 	<base href="<?php echo BASEURL; ?>">
-	<script src="./js/plugins.js"></script>
 	<script src="./js/main.js"></script>
+	<!-- <script src="./js/plugins.js"></script> -->
 	<!--<script src="./js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>-->
 </head>
 
@@ -26,6 +26,8 @@
 	<header>
 		<!-- <h1>Cellier - <span class="vino">Vino</span>  - Cellar</h1>  -->
 
+<div>
+
 		<div><a href="?requete=accueil"><img src="/vino_etu/img/vino1.jpg" alt="logo" class="logo"></a></div>
 		<?php
 
@@ -33,13 +35,26 @@
 		/* if($_SESSION)echo 'Bienvenue ' . $_SESSION['usager'][0]['nom'] . ' - ' . '<a href="?requete=listecellier" style="color: white; text-decoration: none;">Liste Cellier</a> - <a href="?requete=deconnexion" style="color: white; text-decoration: none;">Déconnexion</a>';	 */
 		/* if($_SESSION)echo 'Bienvenue ' . $_SESSION['usager'][0]['nom'] . ' - ' . '<a href="?requete=profil" style="color: white; text-decoration: none;">Profil</a> - <a href="?requete=listecellier" style="color: white; text-decoration: none;">Liste Cellier</a>'; */
 		?>
-
-
 		<nav style="text-decoration: none;">
 			<!-- <h3><a href="?requete=cellier">Liste Cellier</a></h3> -->
 
 			<!-- <a href="?requete=ajouterNouvelleBouteilleCellier">Ajouter une bouteille au cellier</a>  -->
 			<!-- <h3><a href="?requete=login" class="btnlogin">Se Connecter</a></h3> -->
 		</nav>
+
+
+		<nav>
+		<?php
+		if(!$_SESSION) echo '<h3><a href="?requete=login" class="btnlogin button-28">Se connecter</a></h3>';
+		?>
+		<?php
+		if($_SESSION) echo '<div class="headerflex"><a href="?requete=profil" class="btnlogin button-28">Profil</a><a href="?requete=listecellier" class="btnlogin button-28">Liste Celliers</a><a href="?requete=deconnexion" class="btnlogin button-28">Déconnexion</a></div>';
+		?>
+		
+	</nav>
+
+</div>
+
+
 	</header>
 	<main>

@@ -61,6 +61,9 @@ class Controler
 			case 'listecellier':
 				$this->listecellier();
 				break;
+			case 'ajoutercellier':
+				$this->ajoutercellier();
+				break;
 
 
 			default:
@@ -132,7 +135,6 @@ class Controler
 				exit();
 			}
 		}
-
 		include("vues/entete.php");
 		include("vues/login.php");
 		include("vues/pied.php");
@@ -148,31 +150,43 @@ class Controler
 
 	private function cellier()
 	{
-		$bte = new Bouteille();
-		$data = $bte->getListeBouteilleCellier();
-		//var_dump($data);
+		$id_cellier = 3; // TROUVER COMMENT PASSER L'ID CELLIER
+		$cellier = new Cellier();
+		$datacell = $cellier->getCellier($id_cellier);
+		 $bte = new Bouteille();
+		$data = $bte->getListeBouteilleSAQ($id_cellier); 
+		//var_dump($datacell);
 		include("vues/entete.php");
 		include("vues/cellier.php");
 		include("vues/pied.php");
 	}
 
-	private function listecellier()
-	{
-		/* $bte = new Bouteille();
-            $data = $bte->getListeBouteilleCellier(); */
-		include("vues/entete.php");
-		include("vues/listecellier.php");
-		include("vues/pied.php");
-	}
+	private function listecellier() {
+		$id_usager = $_SESSION['usager'][0]['id'];
+		$cellier = new Cellier();
+		$data = $cellier->getListeCelliers($id_usager);
+		//echo json_encode($data);           
+		 include("vues/entete.php");
+		 include("vues/listecellier.php");
+		 include("vues/pied.php");
+		}
 
-
+		private function ajoutercellier() {
+			if (!empty($_POST)) {
+				$celier = new Cellier();
+				$celier->ajouterCellier($_POST);
+				// Afficher liste des celliers
+				header("Location: http://localhost:8080/vino_etu/?requete=listecellier");
+			}else{include("vues/entete.php");
+				include("vues/ajoutcellier.php");
+				include("vues/pied.php");}
+			}
 
 	private function listeBouteille()
 	{
 		$bte = new Bouteille();
-		$cellier = $bte->getListeBouteilleCellier();
-
-		echo json_encode($cellier);
+		//$cellier = $bte->getListeBouteilleCellier();
+		//echo json_encode($cellier);
 	}
 	private function autocompleteBouteille()
 	{
@@ -181,7 +195,6 @@ class Controler
 		$body = json_decode(file_get_contents('php://input'));
 		//var_dump($body);
 		$listeBouteille = $bte->autocomplete($body->nom);
-
 		echo json_encode($listeBouteille);
 	}
 	private function ajouterNouvelleBouteilleCellier()
@@ -193,6 +206,10 @@ class Controler
 			$resultat = $bte->ajouterBouteilleCellier($body);
 			echo json_encode($resultat);
 		} else {
+			$cellier = new Cellier();
+			$id_usager = $_SESSION['usager'][0]['id'];
+			$data = $cellier->getListeCelliers($id_usager);
+			//var_dump($data);
 			include("vues/entete.php");
 			include("vues/ajouter.php");
 			include("vues/pied.php");

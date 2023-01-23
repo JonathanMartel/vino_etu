@@ -8,7 +8,113 @@ jaune =  CC9933
 }
 .down{
 	padding-bottom: 30px;
+	
 }
+
+header{
+	padding: 20px;
+	background-color: #73162F;
+	text-align: center;
+}
+header nav a{
+	color: white;
+	display: block;
+	text-decoration: none;
+}
+header nav a:hover{
+	text-decoration: underline;
+}
+
+p a{
+	color: #73162F;
+	text-decoration: none;
+}
+p a:hover{
+	text-decoration: underline;
+}
+
+h1{
+	padding: 10px;
+}
+
+.vino{
+	font-size: 150%;
+}
+
+main{
+	text-align: center;
+}
+
+footer{
+	padding: 5px;
+	background-color: #73162F;
+	text-align: center;
+}
+
+.bouteille{
+	border-top: solid black ;
+	padding: 40px;
+}
+
+img{
+	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+header, footer{
+	color: white;
+}
+
+.bg-img{
+	min-height: 700px;
+	background-image: url('../img/accueil-img.png');
+	
+}
+
+.logo{
+	max-width: 300px;
+	max-height: 100px;
+	display: inline;
+	border-radius: 25px;
+}
+
+.logo:hover{
+	transition: all 0.5s cubic-bezier(.23, 1, 0.32, 1);
+	box-shadow: rgba(0, 0, 0, 0.56) 0px 5px 5px 4px;
+}
+
+.bienvenue{
+	margin: 0;
+	padding-top: 100px;
+	color: white;
+	font-size: larger;
+	
+}
+
+/* Button */
+.button-28 {
+	background-color: black;
+	border: 2px solid #1A1A1A;
+	border-radius: 100px;
+	color: white;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 16px;
+	outline: none;
+	padding: 16px 24px;
+	text-decoration: none;
+	transition: all 0.5s cubic-bezier(.23, 1, 0.32, 1);
+  }
+
+  
+  .button-28:hover {
+	color: black;
+	background-color: white;
+	text-decoration: none;
+	box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+	transform: translateY(-2px);
+  }
+  
+/* FormStyle */
 .form-style-8{
 	max-width: 200px;
 	margin-left: auto;
@@ -77,104 +183,20 @@ jaune =  CC9933
 	background-color:#34CACA;
 }
 
+@media all and (max-width:640px)
+{
+/* 	footer
+	{
+		display:none;
+	} */
 
-
-header{
-	padding: 20px;
-	background-color: #73162F;
-	text-align: center;
-}
-header nav a{
-	color: white;
-	display: block;
-	text-decoration: none;
-}
-header nav a:hover{
-	text-decoration: underline;
-}
-
-p a{
-	color: #73162F;
-	text-decoration: none;
-}
-p a:hover{
-	text-decoration: underline;
-}
-h1{
-	padding: 10px;
-}
-.vino{
-	font-size: 150%;
-}
-
-main{
-	/* padding: 50px; */
-	text-align: center;
-}
-
-footer{
-	padding: 5px;
-	background-color: #73162F;
-	text-align: center;
-}
-
-.bouteille{
-	border-top: solid black ;
-	padding: 40px;
-}
-
-img{
-	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-}
-header, footer{
-	color: white;
-}
-.bg-img{
-	min-height: 700px;
-	background-image: url('../img/accueil-img.png');
+	.headerflex{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	.headerflex a{
+		width: 90px;
+	}
 	
 }
-.logo{
-	max-width: 300px;
-	max-height: 100px;
-	display: inline;
-	border-radius: 25px;
-}
-.logo:hover{
-	transition: all 0.5s cubic-bezier(.23, 1, 0.32, 1);
-	box-shadow: rgba(0, 0, 0, 0.56) 0px 5px 5px 4px;
-}
-.bienvenue{
-	margin: 0;
-	padding-top: 200px;
-	color: white;
-	font-size: larger;
-	
-}
-
-
-
-/* CSS */
-.button-28 {
-	background-color: black;
-	border: 2px solid #1A1A1A;
-	border-radius: 100px;
-	color: white;
-	cursor: pointer;
-	display: inline-block;
-	font-size: 16px;
-	outline: none;
-	padding: 16px 24px;
-	text-decoration: none;
-	transition: all 0.5s cubic-bezier(.23, 1, 0.32, 1);
-  }
-
-  
-  .button-28:hover {
-	color: black;
-	background-color: white;
-	text-decoration: none;
-	box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
-	transform: translateY(-2px);
-  }
-  

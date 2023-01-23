@@ -40,15 +40,6 @@ html, body {
 	
 }
 
-/* @media all and (max-width:640px)
-{
-	footer
-	{
-		display:none;
-	}
-	
-} */
-
 footer
 {
 	position: fixed;

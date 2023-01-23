@@ -6,7 +6,7 @@
 
 </html> -->
 </main>
-<footer>
+<footer style="display: none;">
 	<nav>
 		<?php
 		if(!$_SESSION) echo '<h3><a href="?requete=login" class="btnlogin button-28">Se connecter</a></h3>';

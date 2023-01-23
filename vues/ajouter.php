@@ -19,9 +19,15 @@
             <p>Garde : <input name="garde_jusqua"></p>
             <p>Notes <input name="notes"></p>
         </div> -->
-
+        
         <div class="form-style-8" style="padding-top: 0;">
-        <p>Nom : <span data-id="" class="nom_bouteille"></span></p>
+            <p>Nom : <span data-id="" class="nom_bouteille"></span></p>
+            <select name="id_cellier">
+                <?php
+                    foreach($data as $cle => $cellier)
+                    echo '<option value="' . $cellier["id"]. '">Cellier: ' . $cellier['nom'] . '</option>'
+                    ?>
+            </select>
                 <input type="text" name="millesime" placeholder="Millesime" />
                 <input type="text" name="quantite" placeholder="Quantite" />
                 <input type="text" name="date_achat" placeholder="Date d'achat" />
