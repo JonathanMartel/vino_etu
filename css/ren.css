@@ -1,8 +1,32 @@
 /*
-red = #73162F other = #7D1629
+red = #73162F
 beige = F1F2D8
-jaune =  CC9933
+card = rgb(214, 214, 202)
 */
+.wrapajout{
+	display: flex;
+	justify-content: center;
+}
+.card{
+	background-color: rgb(214, 214, 202);
+	padding: 10px;
+	border-radius: 15px;
+	width: 300px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 10px;
+	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.cardcellier{
+	background-color: rgb(214, 214, 202);
+	padding: 10px;
+	border-radius: 15px;
+	width: 500px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 10px;
+	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
 .top{
 	margin-top: 30px;
 }
