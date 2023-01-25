@@ -1,7 +1,7 @@
 
 
 <div class="form-style-8">
-	<h1>Votre Profil</h1>
+	<h2>Votre Profil</h2>
 
 	<?php
 	
