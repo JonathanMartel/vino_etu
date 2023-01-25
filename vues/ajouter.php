@@ -1,10 +1,12 @@
 <div class="ajouter">
 
-    <h1>Ajout d'une bouteille de la SAQ au cellier</h1>
-
+    
     <div class="nouvelleBouteille" vertical layout>
+        
+        <div class="form-style-8" style="padding-top: 50px;">
+            <h2>Ajout d'une bouteille de la SAQ au cellier</h2>
 
-    <div class="form-style-8" style="padding-top: 0;">
+
         <input type="text" name="nom_bouteille" placeholder="Recherche une bouteile" />
         </div>
         <div class="listeAutoComplete">
