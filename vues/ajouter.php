@@ -1,6 +1,6 @@
 <div class="ajouter">
 
-    <h1>Ajout d'une bouteille au cellier</h1>
+    <h1>Ajout d'une bouteille de la SAQ au cellier</h1>
 
     <div class="nouvelleBouteille" vertical layout>
 
@@ -22,6 +22,7 @@
         
         <div class="form-style-8" style="padding-top: 0;">
             <p>Nom : <span data-id="" class="nom_bouteille"></span></p>
+            Choisissez un cellier:
             <select name="id_cellier">
                 <?php
                     foreach($data as $cle => $cellier)
@@ -31,9 +32,11 @@
                 <input type="text" name="millesime" placeholder="Millesime" />
                 <input type="text" name="quantite" placeholder="Quantite" />
                 <input type="text" name="date_achat" placeholder="Date d'achat" />
-                <input type="text" name="prix" placeholder="Prix"/>
+                <input type="text" name="prix_saq" placeholder="Prix"/>
                 <input type="text" name="garde_jusqua" placeholder="Garde jusqu'a"/>
                 <input type="text" name="notes" placeholder="Notes" />
+                <input type="text" name="pays" placeholder="Pays" />
+                <input type="text" name="id_type" placeholder="Type" />
                 
                 <input type="button" name="ajouterBouteilleCellier" value="Ajouter la bouteille" />
         </div>
