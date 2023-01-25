@@ -74,6 +74,62 @@ window.addEventListener('load', function () {
     })
 
   });
+  /*
+  * Gerer l evenement lorsqu on clique sur le boutton  'Boire'
+  */
+  document.querySelectorAll(".btnBoiresaq").forEach(function (element) {
+    console.log(element);
+    element.addEventListener("click", function (evt) {
+      let id = evt.target.parentElement.dataset.id;
+      let requete = new Request(BaseURL + "index.php?requete=boireBouteilleCellierSAQ", { method: 'POST', body: '{"id": ' + id + '}' });
+
+      fetch(requete)
+        .then(response => {
+          if (response.status === 200) {
+            // Récharger la page  
+            location.reload();
+            return response.json();
+          } else {
+            throw new Error('Erreur');
+          }
+        })
+        .then(response => {
+          console.debug(response);
+        }).catch(error => {
+          console.error(error);
+        });
+    })
+
+  });
+
+  /*
+  * Gerer l evenement lorsqu on clique sur le boutton  'Ajouter'
+  */
+  document.querySelectorAll(".btnAjoutersaq").forEach(function (element) {
+    console.log(element);
+    element.addEventListener("click", function (evt) {
+      let id = evt.target.parentElement.dataset.id;
+      let requete = new Request(BaseURL + "index.php?requete=ajouterBouteilleCellierSAQ", { method: 'POST', body: '{"id": ' + id + '}' });
+
+      fetch(requete)
+        .then(response => {
+          if (response.status === 200) {
+            // Récharger la page 
+            location.reload();
+            return response.json();
+          } else {
+            throw new Error('Erreur');
+          }
+        })
+        .then(response => {
+
+          console.debug(response);
+        }).catch(error => {
+          console.error(error);
+        });
+    })
+
+  });
 
 
   /*
@@ -117,9 +173,11 @@ window.addEventListener('load', function () {
       millesime: document.querySelector("[name='millesime']"),
       quantite: document.querySelector("[name='quantite']"),
       date_achat: document.querySelector("[name='date_achat']"),
-      prix: document.querySelector("[name='prix']"),
+      prix_saq: document.querySelector("[name='prix_saq']"),
       garde_jusqua: document.querySelector("[name='garde_jusqua']"),
       notes: document.querySelector("[name='notes']"),
+      pays: document.querySelector("[name='pays']"),
+      id_type: document.querySelector("[name='id_type']"),
     };
 
 
@@ -145,11 +203,14 @@ window.addEventListener('load', function () {
           "date_achat": bouteille.date_achat.value,
           "garde_jusqua": bouteille.garde_jusqua.value,
           "notes": bouteille.date_achat.value,
-          "prix": bouteille.prix.value,
+          "prix_saq": bouteille.prix_saq.value,
           "quantite": bouteille.quantite.value,
           "millesime": bouteille.millesime.value,
+          "pays": bouteille.pays.value,
+          "id_type": bouteille.id_type.value,
         };
         let requete = new Request(BaseURL + "index.php?requete=ajouterNouvelleBouteilleCellier", { method: 'POST', body: JSON.stringify(param) });
+        console.log(JSON.stringify(param));
         fetch(requete)
           .then(response => {
             if (response.status === 200) {
@@ -162,7 +223,7 @@ window.addEventListener('load', function () {
             console.log(response);
           }).catch(error => {
             console.error(error);
-            window.location="http://localhost:8080/vino_etu/?requete=cellier";//R
+          //  window.location="http://localhost:8080/vino_etu/?requete=cellier";//R
           });
 
       });
