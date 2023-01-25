@@ -73,6 +73,12 @@ class Controler
 			case 'ajouterNouvelleBouteilleCellierPrive':
 				$this->ajouterNouvelleBouteilleCellierPrive();
 				break;
+			case 'deleteprive':
+				$this->deleteprive();
+				break;
+			case 'deleteSAQ':
+				$this->deleteSAQ();
+				break;
 
 
 			default:
@@ -173,6 +179,26 @@ class Controler
 		include("vues/cellier.php");
 		include("vues/pied.php");
 	}
+	private function deleteprive()
+	{
+		if (!empty($_POST)) {
+
+			$id_bouteille = $_POST['id']; 
+			$bte = new Bouteille();
+			$bte->deleteprive($id_bouteille);
+			header("Location: http://localhost:8080/vino_etu/?requete=listecellier");
+		}
+	}
+	private function deleteSAQ()
+	{
+		if (!empty($_POST)) {
+
+			$id_bouteille = $_POST['id']; 
+			$bte = new Bouteille();
+			$bte->deleteSAQ($id_bouteille);
+			header("Location: http://localhost:8080/vino_etu/?requete=listecellier");
+		}
+	}
 
 	private function listecellier()
 	{
@@ -221,6 +247,7 @@ class Controler
 		//$cellier = $bte->getListeBouteilleCellier();
 		//echo json_encode($cellier);
 	}
+
 	private function autocompleteBouteille()
 	{
 		$bte = new Bouteille();
@@ -229,11 +256,12 @@ class Controler
 		//var_dump($body);
 		$listeBouteille = $bte->autocomplete($body->nom);
 		echo json_encode($listeBouteille);
+		
 	}
 	private function ajouterNouvelleBouteilleCellier()
 	{
 		$body = json_decode(file_get_contents('php://input'));
-		var_dump($body);
+		//var_dump($body);
 		if (!empty($body)) {
 			$bte = new Bouteille();
 			$resultat = $bte->ajouterBouteilleCellier($body);
