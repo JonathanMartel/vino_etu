@@ -24,6 +24,11 @@ foreach ($dataprive as $cle => $bouteille) {
             <button>Modifier</button>
             <button class='btnAjouter'>Ajouter</button>
             <button class='btnBoire'>Boire</button>  
+
+            <form action="?requete=deleteprive" method="post">
+                <input type="hidden" name="id" value="<?php echo $bouteille['id'] ?>" />
+                <input type="submit" value="Supprimer" />
+            </form>
         </div>
     </div>
 <?php
@@ -52,7 +57,10 @@ foreach ($data as $cle => $bouteille) {
             <button>Modifier</button>
             <button class='btnAjoutersaq'>Ajouter</button>
             <button class='btnBoiresaq'>Boire</button>
-            
+            <form action="?requete=deleteSAQ" method="post">
+                <input type="hidden" name="id" value="<?php echo $bouteille['id'] ?>" />
+                <input type="submit" value="Supprimer" />
+            </form>
         </div>
     </div>
 <?php
