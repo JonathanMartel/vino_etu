@@ -2,8 +2,13 @@
 
 <div class="wrapajout">
     <h3><a href="?requete=ajoutercellier" class="btnlogin button-28">Ajouter un nouveau cellier</a></h3>
-    <h3><a href="?requete=ajouterNouvelleBouteilleCellierPrive" class="btnlogin button-28">Ajouter une bouteille privé</a></h3>
-    <h3><a href="?requete=ajouterNouvelleBouteilleCellier" class="btnlogin button-28">Ajouter une bouteille SAQ</a></h3>
+    <?php
+        if($data){
+        echo  '<h3><a href="?requete=ajouterNouvelleBouteilleCellierPrive" class="btnlogin button-28">Ajouter une bouteille privé</a></h3>';
+        echo   '<h3><a href="?requete=ajouterNouvelleBouteilleCellier" class="btnlogin button-28">Ajouter une bouteille SAQ</a></h3>';
+        }
+?>
+
 </div>
     <h1>Vos Celliers</h1>
 
