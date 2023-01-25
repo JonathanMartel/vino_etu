@@ -23,7 +23,13 @@
                 <input type="text" name="garde_jusqua" placeholder="Garde jusqu'a"/>
                 <input type="text" name="notes" placeholder="Notes" />
                 <input type="text" name="pays" placeholder="Pays" />
-                <input type="text" name="id_type" placeholder="Type" />
+                Choisissez un type:
+            <select name="id_type">
+                <?php
+                    foreach($datatype as $cle => $type)
+                    echo '<option value="' . $type["id"]. '">' . $type['type'] . '</option>'
+                    ?>
+            </select>
                 
                 <input type="submit" value="Ajouter le Cellier" class="top"/>
 
