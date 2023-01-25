@@ -68,6 +68,20 @@ class Bouteille extends Modele {
 		
 		return $rows;
 	}
+	public function getListeBouteillePrive($id_cellier)
+	{
+		$rows = Array();
+		$res = $this->_db->query("SELECT * FROM vino__bouteille_prive WHERE id_cellier = '" . $id_cellier . "'");
+		if($res->num_rows)
+		{
+			while($row = $res->fetch_assoc())
+			{
+				$rows[] = $row;
+			}
+		}
+		
+		return $rows;
+	}
 	
 	/* public function getListeBouteilleCellier()
 	{
@@ -174,21 +188,45 @@ class Bouteille extends Modele {
 		//TODO : Valider les données.
 		var_dump($data);	
 		
-		$requete = "INSERT INTO vino__bouteille_saq(id_bouteille,id_cellier,date_achat,garde_jusqua,notes,prix,quantite,millesime) VALUES (".
+		$requete = "INSERT INTO vino__bouteille_saq(id_bouteille,id_cellier,date_achat,garde_jusqua,notes,quantite,pays,id_type,millesime) VALUES (".
+	
 		"'".$data->id_bouteille."',".
 		"'".$data->id_cellier."',".
 		"'".$data->date_achat."',".
 		"'".$data->garde_jusqua."',".
 		"'".$data->notes."',".
-		"'".$data->prix."',".
 		"'".$data->quantite."',".
+		"'".$data->pays."',".
+		"'".$data->id_type."',".
 		"'".$data->millesime."')";
 
         $res = $this->_db->query($requete);
         
 		return $res;
 	}
+	public function ajouterBouteilleCellierPrive($data)
+	{
+		//TODO : Valider les données.
+		//var_dump($data);	
+		
+		$requete = "INSERT INTO vino__bouteille_prive(nom,id_cellier,date_achat,garde_jusqua,notes,prix_achat,quantite,pays,id_type,millesime) VALUES (".
+		"'".$data['nom']."',".
+		"'".$data['id_cellier']."',".
+		"'".$data['date_achat']."',".
+		"'".$data['garde_jusqua']."',".
+		"'".$data['notes']."',".
+		"'".$data['prix_achat']."',".
+		"'".$data['quantite']."',".
+		"'".$data['pays']."',".
+		"'".$data['id_type']."',".
+		"'".$data['millesime']."')";
 
+        $res = $this->_db->query($requete);
+        
+		return $res;
+	}
+
+	
 	
 	
 	
@@ -205,7 +243,20 @@ class Bouteille extends Modele {
 		//TODO : Valider les données.
 			
 			
-		$requete = "UPDATE vino__cellier SET quantite = GREATEST(quantite + ". $nombre. ", 0) WHERE id = ". $id;
+		$requete = "UPDATE vino__bouteille_prive SET quantite = GREATEST(quantite + ". $nombre. ", 0) WHERE id = ". $id;
+		//echo $requete;
+        $res = $this->_db->query($requete);
+        
+		return $res;
+
+
+	}
+	public function modifierQuantiteBouteilleCellierSAQ($id, $nombre)
+	{
+		//TODO : Valider les données.
+			
+			
+		$requete = "UPDATE vino__bouteille_saq SET quantite = GREATEST(quantite + ". $nombre. ", 0) WHERE id = ". $id;
 		//echo $requete;
         $res = $this->_db->query($requete);
         
