@@ -28,6 +28,21 @@ class Bouteille extends Modele {
 		
 		return $rows;
 	}
+	public function getListeType()
+	{
+		
+		$rows = Array();
+		$res = $this->_db->query('SELECT * FROM vino__type');
+		if($res->num_rows)
+		{
+			while($row = $res->fetch_assoc())
+			{
+				$rows[] = $row;
+			}
+		}
+		
+		return $rows;
+	}
 
 	public function getListeBouteilleSAQ($id_cellier)
 	{
