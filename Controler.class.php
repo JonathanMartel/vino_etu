@@ -224,6 +224,26 @@ class Controler
 			include("vues/pied.php");
 		}
 	}
+	private function ajouterNouvelleBouteilleCellier()
+	{
+		$body = json_decode(file_get_contents('php://input'));
+		//var_dump($body);
+		if (!empty($body)) {
+			$bte = new Bouteille();
+			$resultat = $bte->ajouterBouteilleCellier($body);
+			echo json_encode($resultat);
+		} else {
+			$cellier = new Cellier();
+			$id_usager = $_SESSION['usager'][0]['id'];
+			$data = $cellier->getListeCelliers($id_usager);
+			$bte = new Bouteille();
+			$datatype =  $bte->getListeType();
+			//var_dump($datatype);
+			include("vues/entete.php");
+			include("vues/ajouter.php");
+			include("vues/pied.php");
+		}
+	}
 	private function ajouterNouvelleBouteilleCellierPrive()
 	{
 		if (!empty($_POST)) {
@@ -234,7 +254,8 @@ class Controler
 		$id_usager = $_SESSION['usager'][0]['id'];
 		$cellier = new Cellier();
 		$data = $cellier->getListeCelliers($id_usager);
-			
+		$bte = new Bouteille();
+		$datatype =  $bte->getListeType();
 			include("vues/entete.php");
 			include("vues/ajouterprive.php");
 			include("vues/pied.php");
@@ -258,24 +279,7 @@ class Controler
 		echo json_encode($listeBouteille);
 		
 	}
-	private function ajouterNouvelleBouteilleCellier()
-	{
-		$body = json_decode(file_get_contents('php://input'));
-		//var_dump($body);
-		if (!empty($body)) {
-			$bte = new Bouteille();
-			$resultat = $bte->ajouterBouteilleCellier($body);
-			echo json_encode($resultat);
-		} else {
-			$cellier = new Cellier();
-			$id_usager = $_SESSION['usager'][0]['id'];
-			$data = $cellier->getListeCelliers($id_usager);
-			//var_dump($data);
-			include("vues/entete.php");
-			include("vues/ajouter.php");
-			include("vues/pied.php");
-		}
-	}
+
 	private function boireBouteilleCellier()
 	{
 		$body = json_decode(file_get_contents('php://input'));
