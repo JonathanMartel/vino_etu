@@ -11,7 +11,7 @@ card = rgb(214, 214, 202)
 	background-color: rgb(214, 214, 202);
 	padding: 10px;
 	border-radius: 15px;
-	width: 300px;
+	max-width: 300px;
 	margin-left: auto;
 	margin-right: auto;
 	margin-bottom: 10px;
@@ -21,7 +21,7 @@ card = rgb(214, 214, 202)
 	background-color: rgb(214, 214, 202);
 	padding: 10px;
 	border-radius: 15px;
-	width: 500px;
+	max-width: 500px;
 	margin-left: auto;
 	margin-right: auto;
 	margin-bottom: 10px;
