@@ -40,6 +40,12 @@ class Controler
 				$this->boireBouteilleCellier();
 				break;
 
+			case 'ajouterBouteilleCellierSAQ':
+				$this->ajouterBouteilleCellierSAQ();
+				break;
+			case 'boireBouteilleCellierSAQ':
+				$this->boireBouteilleCellierSAQ();
+				break;
 			case 'profil':
 				$this->profil();
 				break;
@@ -64,6 +70,9 @@ class Controler
 			case 'ajoutercellier':
 				$this->ajoutercellier();
 				break;
+			case 'ajouterNouvelleBouteilleCellierPrive':
+				$this->ajouterNouvelleBouteilleCellierPrive();
+				break;
 
 
 			default:
@@ -79,7 +88,7 @@ class Controler
 		include("vues/accueil.php");
 		include("vues/pied.php");
 	}
-	
+
 	private function profil()
 	{
 		include("vues/entete.php");
@@ -94,7 +103,7 @@ class Controler
 			$_SESSION['usager'][0]['nom'] = $_POST['nom'];
 			$_SESSION['usager'][0]['email'] = $_POST['email'];
 			header("Location: http://localhost:8080/vino_etu/?requete=profil");
-			exit(); 
+			exit();
 		}
 		include("vues/entete.php");
 		include("vues/profilmod.php");
@@ -150,37 +159,61 @@ class Controler
 
 	private function cellier()
 	{
-		$id_cellier = 3; // TROUVER COMMENT PASSER L'ID CELLIER
-		$cellier = new Cellier();
-		$datacell = $cellier->getCellier($id_cellier);
-		 $bte = new Bouteille();
-		$data = $bte->getListeBouteilleSAQ($id_cellier); 
-		//var_dump($datacell);
+		if (!empty($_POST)) {
+
+			$id_cellier = $_POST['id']; // TROUVER COMMENT PASSER L'ID CELLIER
+			$cellier = new Cellier();
+			$datacell = $cellier->getCellier($id_cellier);
+			$bte = new Bouteille();
+			$data = $bte->getListeBouteilleSAQ($id_cellier);
+			$dataprive = $bte->getListeBouteillePrive($id_cellier);
+		}
+			//var_dump($data);
 		include("vues/entete.php");
 		include("vues/cellier.php");
 		include("vues/pied.php");
 	}
 
-	private function listecellier() {
+	private function listecellier()
+	{
 		$id_usager = $_SESSION['usager'][0]['id'];
 		$cellier = new Cellier();
 		$data = $cellier->getListeCelliers($id_usager);
 		//echo json_encode($data);           
-		 include("vues/entete.php");
-		 include("vues/listecellier.php");
-		 include("vues/pied.php");
-		}
+		include("vues/entete.php");
+		include("vues/listecellier.php");
+		include("vues/pied.php");
+	}
 
-		private function ajoutercellier() {
-			if (!empty($_POST)) {
-				$celier = new Cellier();
-				$celier->ajouterCellier($_POST);
-				// Afficher liste des celliers
-				header("Location: http://localhost:8080/vino_etu/?requete=listecellier");
-			}else{include("vues/entete.php");
-				include("vues/ajoutcellier.php");
-				include("vues/pied.php");}
-			}
+	private function ajoutercellier()
+	{
+		if (!empty($_POST)) {
+			$celier = new Cellier();
+			$celier->ajouterCellier($_POST);
+			// Afficher liste des celliers
+			header("Location: http://localhost:8080/vino_etu/?requete=listecellier");
+		} else {
+			include("vues/entete.php");
+			include("vues/ajoutcellier.php");
+			include("vues/pied.php");
+		}
+	}
+	private function ajouterNouvelleBouteilleCellierPrive()
+	{
+		if (!empty($_POST)) {
+			$bte = new Bouteille();
+			$bte->ajouterBouteilleCellierPrive($_POST);
+			header("Location: http://localhost:8080/vino_etu/?requete=listecellier");
+	} else {
+		$id_usager = $_SESSION['usager'][0]['id'];
+		$cellier = new Cellier();
+		$data = $cellier->getListeCelliers($id_usager);
+			
+			include("vues/entete.php");
+			include("vues/ajouterprive.php");
+			include("vues/pied.php");
+		}
+	}
 
 	private function listeBouteille()
 	{
@@ -200,7 +233,7 @@ class Controler
 	private function ajouterNouvelleBouteilleCellier()
 	{
 		$body = json_decode(file_get_contents('php://input'));
-		//var_dump($body);
+		var_dump($body);
 		if (!empty($body)) {
 			$bte = new Bouteille();
 			$resultat = $bte->ajouterBouteilleCellier($body);
@@ -229,6 +262,22 @@ class Controler
 
 		$bte = new Bouteille();
 		$resultat = $bte->modifierQuantiteBouteilleCellier($body->id, 1);
+		echo json_encode($resultat);
+	}
+	private function boireBouteilleCellierSAQ()
+	{
+		$body = json_decode(file_get_contents('php://input'));
+
+		$bte = new Bouteille();
+		$resultat = $bte->modifierQuantiteBouteilleCellierSAQ($body->id, -1);
+		echo json_encode($resultat);
+	}
+	private function ajouterBouteilleCellierSAQ()
+	{
+		$body = json_decode(file_get_contents('php://input'));
+
+		$bte = new Bouteille();
+		$resultat = $bte->modifierQuantiteBouteilleCellierSAQ($body->id, 1);
 		echo json_encode($resultat);
 	}
 }
