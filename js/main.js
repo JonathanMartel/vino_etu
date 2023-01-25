@@ -212,18 +212,18 @@ window.addEventListener('load', function () {
         let requete = new Request(BaseURL + "index.php?requete=ajouterNouvelleBouteilleCellier", { method: 'POST', body: JSON.stringify(param) });
         console.log(JSON.stringify(param));
         fetch(requete)
-          .then(response => {
-            if (response.status === 200) {
-              return response.json();
-            } else {
-              throw new Error('Erreur');
-            }
-          })
-          .then(response => {
-            console.log(response);
+        .then(response => {
+          if (response.status === 200) {
+            return response.json();
+          } else {
+            throw new Error('Erreur');
+          }
+        })
+        .then(response => {
+          console.log(response);
+          window.location="http://localhost:8080/vino_etu/?requete=listecellier";//R
           }).catch(error => {
             console.error(error);
-          //  window.location="http://localhost:8080/vino_etu/?requete=cellier";//R
           });
 
       });
