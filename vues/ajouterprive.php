@@ -1,11 +1,11 @@
 <div class="ajouter">
 
-    <h1>Ajout d'une bouteille privé dans un cellier</h1>
-
-
-
-    <div class="form-style-8" style="padding-top: 0;">
-
+    
+    
+    
+    <div class="form-style-8" style="padding-top: 50px;">
+        
+    <h2>Ajout d'une bouteille privé dans un cellier</h2>
         <div class="form-style-8" style="padding-top: 0;">
             <form action="?requete=ajouterNouvelleBouteilleCellierPrive" method="post">
             Choisissez un cellier:
