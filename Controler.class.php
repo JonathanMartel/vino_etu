@@ -22,6 +22,7 @@ class Controler
 	 */
 	public function gerer()
 	{
+		if(isset($_GET['id'])) $id = $_GET['id'];
 
 		switch ($_GET['requete']) {
 			case 'listeBouteille':
@@ -79,6 +80,14 @@ class Controler
 			case 'deleteSAQ':
 				$this->deleteSAQ();
 				break;
+
+				//yordan
+			case "getBouteille":
+				$this->getBouteille($id);
+				break;
+			case "modifierBouteilleCellier":
+				$this->modifierBouteilleCellier();
+				break;	
 
 
 			default:
@@ -311,5 +320,37 @@ class Controler
 		$bte = new Bouteille();
 		$resultat = $bte->modifierQuantiteBouteilleCellierSAQ($body->id, 1);
 		echo json_encode($resultat);
+	}
+
+///yordan
+	private function getBouteille($id)
+	{
+		$bte = new Bouteille();
+		$data = $bte->getBouteilleCellier($id);
+		$id_usager = $_SESSION['usager'][0]['id'];
+		$cellier = new Cellier();
+		$datacell = $cellier->getListeCelliers($id_usager);
+		$bte = new Bouteille();
+		$datatype =  $bte->getListeType();
+		include("vues/entete.php");
+		include("vues/modifier.php");
+		include("vues/pied.php");
+	}
+	private function modifierBouteilleCellier()
+	{
+		$body = json_decode(file_get_contents('php://input'));
+		if(!empty($body)){
+			$bte = new Bouteille();
+			$resultat = $bte->modifierBouteilleCellier($body);			
+			echo json_encode($resultat);
+			header("Location: http://localhost:8080/vino_etu/?requete=listecellier");
+			exit();
+		}
+		else {
+			include("vues/entete.php");
+			include("vues/modifier.php");
+			include("vues/pied.php");
+		}
+		
 	}
 }
