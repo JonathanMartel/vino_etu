@@ -21,7 +21,8 @@ foreach ($dataprive as $cle => $bouteille) {
             <p class="millesime">Millesime : <?php echo $bouteille['millesime'] ?></p>
         </div>
         <div class="options" data-id="<?php echo $bouteille['id'] ?>">
-            <button>Modifier</button>
+            <!-- <button>Modifier</button> -->
+            <button class="btnModifier">Modifier</button>
             <button class='btnAjouter'>Ajouter</button>
             <button class='btnBoire'>Boire</button>  
 

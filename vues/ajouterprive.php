@@ -1,7 +1,4 @@
 <div class="ajouter">
-
-    
-    
     
     <div class="form-style-8" style="padding-top: 50px;">
         
