@@ -2,7 +2,7 @@
     
         
         <div class="form-style-8" style="padding-top: 50px;">        
-            <h2>Ajout d'une bouteille privé dans un cellier</h2>
+            <h2>Modification bouteille privé</h2>
             Choisissez un cellier:
             <select name="id_cellier">
                 <?php
