@@ -25,9 +25,9 @@ class Controler
 		if(isset($_GET['id'])) $id = $_GET['id'];
 
 		switch ($_GET['requete']) {
-			case 'listeBouteille':
+			/* case 'listeBouteille':
 				$this->listeBouteille();
-				break;
+				break; */
 			case 'autocompleteBouteille':
 				$this->autocompleteBouteille();
 				break;
@@ -271,12 +271,12 @@ class Controler
 		}
 	}
 
-	private function listeBouteille()
+/* 	private function listeBouteille()
 	{
 		$bte = new Bouteille();
-		//$cellier = $bte->getListeBouteilleCellier();
-		//echo json_encode($cellier);
-	}
+		$cellier = $bte->getListeBouteilleCellier();
+		echo json_encode($cellier);
+	} */
 
 	private function autocompleteBouteille()
 	{
