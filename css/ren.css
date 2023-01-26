@@ -7,16 +7,7 @@ card = rgb(214, 214, 202)
 	display: flex;
 	justify-content: center;
 }
-.card{
-	background-color: rgb(214, 214, 202);
-	padding: 10px;
-	border-radius: 15px;
-	max-width: 300px;
-	margin-left: auto;
-	margin-right: auto;
-	margin-bottom: 10px;
-	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-}
+
 .cardcellier{
 	background-color: rgb(214, 214, 202);
 	padding: 10px;
@@ -32,7 +23,7 @@ card = rgb(214, 214, 202)
 }
 .down{
 	padding-bottom: 30px;
-	
+
 }
 
 header{
@@ -80,9 +71,9 @@ footer{
 	padding: 40px;
 }
 
-img{
+/* img{
 	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-}
+} */
 
 header, footer{
 	color: white;
@@ -91,7 +82,7 @@ header, footer{
 .bg-img{
 	min-height: 700px;
 	background-image: url('../img/accueil-img.png');
-	
+    height: 100vh;
 }
 
 .logo{
@@ -102,21 +93,28 @@ header, footer{
 }
 
 .logo:hover{
-	transition: all 0.5s cubic-bezier(.23, 1, 0.32, 1);
-	box-shadow: rgba(0, 0, 0, 0.56) 0px 5px 5px 4px;
+	/* transition: all 0.5s cubic-bezier(.23, 1, 0.32, 1);
+	box-shadow: rgba(0, 0, 0, 0.56) 0px 5px 5px 4px; */
 }
 
 .bienvenue{
 	margin: 0;
 	padding-top: 100px;
 	color: white;
-	font-size: larger;
-	
+	font-size: 1.7em;
+	font-weight: 600;
+	text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+
 }
 
 /* Button */
 .button-28 {
-	background-color: black;
+	background-color: #73162F;
 	border: 2px solid #1A1A1A;
 	border-radius: 100px;
 	color: white;
@@ -124,12 +122,12 @@ header, footer{
 	display: inline-block;
 	font-size: 16px;
 	outline: none;
-	padding: 16px 24px;
+	padding: 16px 60px;
 	text-decoration: none;
 	transition: all 0.5s cubic-bezier(.23, 1, 0.32, 1);
   }
 
-  
+
   .button-28:hover {
 	color: black;
 	background-color: white;
@@ -137,7 +135,7 @@ header, footer{
 	box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
 	transform: translateY(-2px);
   }
-  
+
 /* FormStyle */
 .form-style-8{
 	max-width: 200px;
@@ -165,7 +163,7 @@ header, footer{
 .form-style-8 input[type="url"],
 .form-style-8 input[type="password"],
 .form-style-8 textarea,
-.form-style-8 select 
+.form-style-8 select
 {
 	box-sizing: border-box;
 	-webkit-box-sizing: border-box;
@@ -185,13 +183,13 @@ header, footer{
 	resize:none;
 	overflow: hidden;
 }
-.form-style-8 input[type="button"], 
+.form-style-8 input[type="button"],
 .form-style-8 input[type="submit"]{
-	-moz-box-shadow: inset 0px 1px 0px 0px #45D6D6;
-	-webkit-box-shadow: inset 0px 1px 0px 0px #45D6D6;
-	box-shadow: inset 0px 1px 0px 0px #45D6D6;
-	background-color: #2CBBBB;
-	border: 1px solid #27A0A0;
+	-moz-box-shadow: inset 0px 1px 0px 0px #000;
+	-webkit-box-shadow: inset 0px 1px 0px 0px #000;
+	box-shadow: inset 0px 1px 0px 0px #73162F;
+	background-color: #73162F;
+	border: 1px solid #73162F;
 	display: inline-block;
 	cursor: pointer;
 	color: #FFFFFF;
@@ -200,11 +198,13 @@ header, footer{
 	padding: 8px 18px;
 	text-decoration: none;
 	text-transform: uppercase;
+	border-radius: 100px;
 }
-.form-style-8 input[type="button"]:hover, 
+.form-style-8 input[type="button"]:hover,
 .form-style-8 input[type="submit"]:hover {
-	background:linear-gradient(to bottom, #34CACA 5%, #30C9C9 100%);
-	background-color:#34CACA;
+	background:linear-gradient(to bottom, #FFFFFF 5%, #FFFFFF 100%);
+	background-color:#FFFFFF;
+	color: #000;
 }
 
 @media all and (max-width:640px)
@@ -222,5 +222,187 @@ header, footer{
 	.headerflex a{
 		width: 90px;
 	}
-	
+
 }
+
+
+.dropdown {
+	position: relative;
+	display: inline-block;
+  }
+
+  .dropbtn {
+	background-color:transparent;
+	color: white;
+	
+	font-size: 16px;
+	text-transform: uppercase;
+	border: none;
+  }
+
+  .dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #000;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 1;
+  }
+
+  .dropdown-content a {
+	color: white;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+  }
+
+  .dropdown-content a:hover {
+	background-color: #ddd;
+  }
+
+  .dropdown:hover .dropdown-content {
+	display: block;
+  }
+
+  .flexLogoMenu{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+  }
+
+  .flexCellier {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin: 40px;
+	}
+	
+	.flexCellier .card {
+	flex: 1 0 calc(25% - 20px);
+	margin: 10px;
+	}
+
+	
+	.card{
+		background-color: rgb(214, 214, 202);
+		padding: 10px;
+		border-radius: 15px;
+		max-width: 300px;
+		box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+	}
+	
+	
+	@media (max-width:768px) {
+		.flexCellier .card {
+		flex: 1 0 90%;
+
+		}
+
+		.flexCellier {
+			justify-content: center;
+		}
+
+		.dropdown {
+		position: relative;
+		display: inline-block;
+		margin: 0 auto;
+		}
+		.dropbtn {
+		background-color:transparent;
+		color: white;
+		font-size: 14px;
+		text-transform: uppercase;
+		border: none;
+		}
+		.dropdown-content {
+		position: absolute;
+		display: none;
+		background-color: #000;
+		width: 90%;
+		max-width: 300px;
+		box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+		z-index: 1;
+		left: 50%;
+		transform: translateX(-50%);
+		}
+		.dropdown-content a {
+		color: white;
+		padding: 12px 16px;
+		text-decoration: none;
+		display: block;
+		}
+		.dropdown-content a:hover {
+		background-color: #ddd;
+		}
+		.dropdown:hover .dropdown-content {
+		display: block;
+		}
+
+		.logo {
+			max-width: 150px;
+			max-height: 50px;
+			display: inline-block;
+			border-radius: 12.5px;
+			}
+
+			
+		}
+
+		.nom{
+			text-transform: uppercase;
+		}
+
+		.lieu{
+			font-size: 18px;
+		}
+
+		.flexLieu{
+			display: flex;
+			align-items: center;
+			width: 100%; /* add this */
+			justify-content: center; /* add this */
+
+
+		}
+
+		.flexLieu img{
+			width: 20px;
+			height: 20px;
+		}
+
+		.flexLieu p{
+			text-transform: capitalize;
+		}
+
+		.btnConnexion a {
+			color: white;
+			padding: 15px;
+			font-size: 15px;
+			text-transform: uppercase;
+			text-decoration: none;
+
+		}
+
+		.flexConnCreer{
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.imgCreer img{
+			width: 40px;
+			margin: 15px;
+			
+		}
+
+		.flexUsaFle{
+			display: flex;
+			align-items: center;
+			
+		}
+		.imgArrow img{
+			width: 20px;
+			margin: 15px;
+			
+		}
+		
