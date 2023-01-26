@@ -28,33 +28,52 @@
 
 <div>
 
-		<div><a href="?requete=accueil"><img src="/vino_etu/img/vino1.jpg" alt="logo" class="logo"></a></div>
-		<?php
+	<div class="flexLogoMenu">
 
-		if ($_SESSION) echo '<p>Bienvenue ' . $_SESSION['usager'][0]['nom'] . '</p>'
-		/* if($_SESSION)echo 'Bienvenue ' . $_SESSION['usager'][0]['nom'] . ' - ' . '<a href="?requete=listecellier" style="color: white; text-decoration: none;">Liste Cellier</a> - <a href="?requete=deconnexion" style="color: white; text-decoration: none;">Déconnexion</a>';	 */
-		/* if($_SESSION)echo 'Bienvenue ' . $_SESSION['usager'][0]['nom'] . ' - ' . '<a href="?requete=profil" style="color: white; text-decoration: none;">Profil</a> - <a href="?requete=listecellier" style="color: white; text-decoration: none;">Liste Cellier</a>'; */
+		<div><a href="?requete=accueil"><img src="/vino_etu/img/Logo-vino_blanc1.png" alt="logo" class="logo"></a></div>
+	<?php
+		if ($_SESSION) {
+			echo 
+			'<div>
+			<div class="dropdown">
+				<div class="flexUsaFle">	
+					<div><button class="dropbtn">Bienvenue ' . $_SESSION['usager'][0]['nom']. '</button></div>
+					<div class="imgArrow">
+						<a href="?requete=register">
+							<img src="/vino_etu/img/arrow-blanc.png">
+						</a>
+					</div>
+				</div>
+
+				<div class="dropdown-content">
+					<a href="?requete=profil">Profil</a>
+					<a href="?requete=listecellier">Liste Celliers</a>
+					<a href="?requete=deconnexion">Déconnexion</a>
+				</div>
+				</div>
+			</div>';
+		}
 		?>
-		<nav style="text-decoration: none;">
-			<!-- <h3><a href="?requete=cellier">Liste Cellier</a></h3> -->
 
-			<!-- <a href="?requete=ajouterNouvelleBouteilleCellier">Ajouter une bouteille au cellier</a>  -->
-			<!-- <h3><a href="?requete=login" class="btnlogin">Se Connecter</a></h3> -->
-		</nav>
+	<?php
+		if(!$_SESSION) {
+			echo 
+			'<div class="flexConnCreer">
+				<div class="btnConnexion"><a href="?requete=login">Se connecter</a></div>
+				<div class="imgCreer">
+					<a href="?requete=register">
+						<img src="/vino_etu/img/user-account.png">
+					</a>
+				</div>
+			</div>';
+		}
+	?>
 
-
-		<nav>
-		<?php
-		if(!$_SESSION) echo '<h3><a href="?requete=login" class="btnlogin button-28">Se connecter</a></h3>';
-		?>
-		<?php
-		if($_SESSION) echo '<div class="headerflex"><a href="?requete=profil" class="btnlogin button-28">Profil</a><a href="?requete=listecellier" class="btnlogin button-28">Liste Celliers</a><a href="?requete=deconnexion" class="btnlogin button-28">Déconnexion</a></div>';
-		?>
-		
-	</nav>
+</div>
+	
 
 </div>
 
-
+		
 	</header>
-	<main>
+<main>
