@@ -223,6 +223,38 @@ class Bouteille extends Modele {
 
 	}
 
+//yordan
+	public function getBouteilleCellier($id)
+	{
+		$requete = "SELECT * FROM vino__bouteille_prive WHERE id = $id";
+		$data = $this->_db->query($requete);
+		$row = $data->fetch_assoc();
+		
+		return $row;
+	}
+		/**Modification d'une bouteille */
+		public function modifierBouteilleCellier($data)	
+		{
+			var_dump($data);
+			$id = $data->id;
+			$requete = "UPDATE 	`vino__bouteille_prive` SET 
+								`id_cellier`='".$data->id_cellier."', 
+								`id_type`='".$data->id_type."', 
+								`nom`='".$data->nom."', 
+								`pays`='".$data->pays."', 
+								`date_achat`='".$data->date_achat."',
+								`garde_jusqua`='".$data->garde_jusqua."', 
+								`notes`='".$data->notes."',
+								`prix_achat`='".$data->prix_achat."',
+								`quantite`='".$data->quantite."',
+								`millesime`='".$data->millesime."' WHERE id = $id";
+								
+			$res = $this->_db->query($requete);
+			
+			return $res;
+	
+		} 
+
 /* public function getListeBouteilleCellier()
 	{
 		
