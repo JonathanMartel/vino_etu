@@ -230,6 +230,79 @@ window.addEventListener('load', function () {
     }
   }
 
+      /*
+      * Affichage de la vue de modification d'une bouteille  
+      */
+      let btnModifier = document.querySelectorAll(".btnModifier").forEach(function(e){
+        //console.log(e);
+        e.addEventListener('click', function(evt){
+          let id = evt.target.parentElement.dataset.id;
+          
+          console.log(location.href);
+          //let requete = new Request(BaseURL+`index.php?requete=modifier`);//, {method: 'GET'}?id=${id}`,
+          location.href = BaseURL+`index.php?requete=getBouteille&id=${id}`;//
+        })
+      });
+
+
+          /**
+     * Modification d'une bouteille
+     */
+    document.querySelectorAll(".modifierBouteille").forEach(function(e) {
+      console.log(e);
+      e.addEventListener('click', function(evt){
+        //console.log(id);
+        let bouteille = {
+          nom : document.querySelector(".nom_bouteille"),
+          id : document.querySelector("[name=id]"),
+          millesime : document.querySelector("[name='millesime']"),
+          pays : document.querySelector("[name='pays']"),
+          id_cellier : document.querySelector("[name='id_cellier']"),
+          id_type : document.querySelector("[name='id_type']"),
+          quantite : document.querySelector("[name='quantite']"),
+          date_achat : document.querySelector("[name='date_achat']"),
+          prix_achat : document.querySelector("[name='prix_achat']"),
+          garde_jusqua : document.querySelector("[name='garde_jusqua']"),
+          notes : document.querySelector("[name='notes']"),
+          
+        };
+
+
+        var param = {
+          "id":bouteille.id.value,
+          "nom":bouteille.nom.value,
+          "pays":bouteille.pays.value,
+          "millesime":bouteille.millesime.value,
+          "id_cellier": bouteille.id_cellier.value,
+          "id_type": bouteille.id_type.value,
+          "quantite":bouteille.quantite.value,
+          "date_achat":bouteille.date_achat.value,
+          "prix_achat":bouteille.prix_achat.value,
+          "garde_jusqua":bouteille.garde_jusqua.value,
+          "notes":bouteille.notes.value,
+        };
+        let requete = new Request(BaseURL+"index.php?requete=modifierBouteilleCellier", {method: 'POST', body: JSON.stringify(param)});
+
+      fetch(requete)
+      .then(response => {
+        if (response.status === 200) {
+          return response.json();
+        } else {
+          throw new Error('Erreur');
+        }
+      })
+      .then(response => {
+        console.log(response);
+      
+      }).catch(error => {
+        console.error(error);
+        window.location="http://localhost:8080/vino_etu/?requete=listecellier";//R
+      });
+        
+
+      })
+    });
+
 
 });
 
