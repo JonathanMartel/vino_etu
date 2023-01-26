@@ -1,3 +1,40 @@
+/*
+red = #73162F
+beige = F1F2D8
+card = rgb(214, 214, 202)
+*/
+.wrapajout{
+	display: flex;
+	justify-content: center;
+}
+.card{
+	background-color: rgb(214, 214, 202);
+	padding: 10px;
+	border-radius: 15px;
+	max-width: 300px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 10px;
+	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.cardcellier{
+	background-color: rgb(214, 214, 202);
+	padding: 10px;
+	border-radius: 15px;
+	max-width: 500px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 10px;
+	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.top{
+	margin-top: 30px;
+}
+.down{
+	padding-bottom: 30px;
+	
+}
+
 header{
 	padding: 20px;
 	background-color: #73162F;
@@ -19,15 +56,16 @@ p a{
 p a:hover{
 	text-decoration: underline;
 }
+
 h1{
 	padding: 10px;
 }
+
 .vino{
 	font-size: 150%;
 }
 
 main{
-	padding: 50px;
 	text-align: center;
 }
 
@@ -45,6 +83,144 @@ footer{
 img{
 	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
+
 header, footer{
 	color: white;
+}
+
+.bg-img{
+	min-height: 700px;
+	background-image: url('../img/accueil-img.png');
+	
+}
+
+.logo{
+	max-width: 300px;
+	max-height: 100px;
+	display: inline;
+	border-radius: 25px;
+}
+
+.logo:hover{
+	transition: all 0.5s cubic-bezier(.23, 1, 0.32, 1);
+	box-shadow: rgba(0, 0, 0, 0.56) 0px 5px 5px 4px;
+}
+
+.bienvenue{
+	margin: 0;
+	padding-top: 100px;
+	color: white;
+	font-size: larger;
+	
+}
+
+/* Button */
+.button-28 {
+	background-color: black;
+	border: 2px solid #1A1A1A;
+	border-radius: 100px;
+	color: white;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 16px;
+	outline: none;
+	padding: 16px 24px;
+	text-decoration: none;
+	transition: all 0.5s cubic-bezier(.23, 1, 0.32, 1);
+  }
+
+  
+  .button-28:hover {
+	color: black;
+	background-color: white;
+	text-decoration: none;
+	box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+	transform: translateY(-2px);
+  }
+  
+/* FormStyle */
+.form-style-8{
+	max-width: 200px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 100px;
+}
+.form-style-8 h2{
+	background: black;
+	text-transform: uppercase;
+	font-family: 'Open Sans Condensed', sans-serif;
+	color: white;
+	font-size: 18px;
+	font-weight: 100;
+	padding: 20px;
+	margin: -30px -30px 30px -30px;
+}
+.form-style-8 input[type="text"],
+.form-style-8 input[type="date"],
+.form-style-8 input[type="datetime"],
+.form-style-8 input[type="email"],
+.form-style-8 input[type="number"],
+.form-style-8 input[type="search"],
+.form-style-8 input[type="time"],
+.form-style-8 input[type="url"],
+.form-style-8 input[type="password"],
+.form-style-8 textarea,
+.form-style-8 select 
+{
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	outline: none;
+	display: block;
+	width: 100%;
+	padding: 7px;
+	border: none;
+	border-bottom: 1px solid #ddd;
+	background: transparent;
+	margin-bottom: 10px;
+	font: 16px Arial, Helvetica, sans-serif;
+	height: 45px;
+}
+.form-style-8 textarea{
+	resize:none;
+	overflow: hidden;
+}
+.form-style-8 input[type="button"], 
+.form-style-8 input[type="submit"]{
+	-moz-box-shadow: inset 0px 1px 0px 0px #45D6D6;
+	-webkit-box-shadow: inset 0px 1px 0px 0px #45D6D6;
+	box-shadow: inset 0px 1px 0px 0px #45D6D6;
+	background-color: #2CBBBB;
+	border: 1px solid #27A0A0;
+	display: inline-block;
+	cursor: pointer;
+	color: #FFFFFF;
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 14px;
+	padding: 8px 18px;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+.form-style-8 input[type="button"]:hover, 
+.form-style-8 input[type="submit"]:hover {
+	background:linear-gradient(to bottom, #34CACA 5%, #30C9C9 100%);
+	background-color:#34CACA;
+}
+
+@media all and (max-width:640px)
+{
+/* 	footer
+	{
+		display:none;
+	} */
+
+	.headerflex{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	.headerflex a{
+		width: 90px;
+	}
+	
 }

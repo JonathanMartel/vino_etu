@@ -10,7 +10,7 @@ Session.vim
 tmtags
 Thumbs.db
 Desktop.ini
-notes.md
+
 # ignore Composer downloads
 /vendor/*
 /bower_components/*
@@ -20,5 +20,5 @@ notes.md
 !/.gitignore
 !/.travis.yml
 !/.project
-dataconf.php
+
 .push.settings.jsonc
