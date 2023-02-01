@@ -146,17 +146,17 @@ class Bouteille extends Modele {
         
 		return $res;
 	}
+	
 	public function ajouterBouteilleCellierPrive($data)
 	{
 		//TODO : Valider les données.
 		//var_dump($data);	
 		
-		$requete = "INSERT INTO vino__bouteille_prive(nom,id_cellier,date_achat,garde_jusqua,notes,prix_achat,quantite,pays,id_type,millesime) VALUES (".
+		$requete = "INSERT INTO vino__bouteille_prive(nom,id_cellier,date_achat,garde_jusqua,prix_achat,quantite,pays,id_type,millesime) VALUES (".
 		"'".$data['nom']."',".
 		"'".$data['id_cellier']."',".
 		"'".$data['date_achat']."',".
 		"'".$data['garde_jusqua']."',".
-		"'".$data['notes']."',".
 		"'".$data['prix_achat']."',".
 		"'".$data['quantite']."',".
 		"'".$data['pays']."',".

@@ -245,7 +245,7 @@ window.addEventListener('load', function () {
       });
 
       /*
-      * Affichage de la vue de modification d'une bouteille  
+      * Affichage de la vue de cellier
       */
      let cellier = document.querySelectorAll(".cellierid").forEach(function(e){
 

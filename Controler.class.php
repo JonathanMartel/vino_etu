@@ -259,13 +259,20 @@ class Controler
 	private function ajouterNouvelleBouteilleCellierPrive()
 	{
 		if (!empty($_POST)) {
+
 			$bte = new Bouteille();
 			$bte->ajouterBouteilleCellierPrive($_POST);
-			header("Location: http://localhost:8080/vino_etu/?requete=listecellier");
-		} else {
-			$id_usager = $_SESSION['usager'][0]['id'];
+			$id_cellier = $_GET['id'];
 			$cellier = new Cellier();
-			$data = $cellier->getListeCelliers($id_usager);
+			$datacell = $cellier->getcellier($id_cellier);
+			$succes = 'Bravo!';
+			include("vues/entete.php");
+			include("vues/ajouterprive.php");
+			include("vues/pied.php");
+		} else {
+			$id_cellier = $_GET['id'];
+			$cellier = new Cellier();
+			$datacell = $cellier->getcellier($id_cellier);
 			$bte = new Bouteille();
 			$datatype =  $bte->getListeType();
 			include("vues/entete.php");
