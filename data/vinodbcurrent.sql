@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : sam. 21 jan. 2023 à 22:58
+-- Généré le : mer. 01 fév. 2023 à 02:38
 -- Version du serveur : 10.4.24-MariaDB
 -- Version de PHP : 8.1.6
 
@@ -445,10 +445,10 @@ CREATE TABLE `vino__bouteille_prive` (
   `nom` varchar(256) DEFAULT 'Sans nom',
   `millesime` varchar(50) DEFAULT NULL,
   `pays` varchar(100) DEFAULT NULL,
-  `date_adquisition` date NOT NULL,
+  `date_achat` date NOT NULL,
   `garde_jusqua` date DEFAULT NULL,
   `prix_achat` float DEFAULT NULL,
-  `quantité` int(11) NOT NULL,
+  `quantite` int(11) NOT NULL,
   `notes` int(11) DEFAULT NULL,
   `id_type` int(11) NOT NULL,
   `id_cellier` int(11) NOT NULL
@@ -462,25 +462,24 @@ CREATE TABLE `vino__bouteille_prive` (
 
 CREATE TABLE `vino__bouteille_saq` (
   `id` int(11) NOT NULL,
+  `nom` varchar(200) DEFAULT NULL,
+  `image` varchar(200) DEFAULT NULL,
+  `code_saq` varchar(50) DEFAULT NULL,
+  `pays` varchar(50) DEFAULT NULL,
+  `description` varchar(200) DEFAULT NULL,
   `id_bouteille` int(11) DEFAULT NULL,
   `id_cellier` int(11) NOT NULL,
   `date_achat` date DEFAULT NULL,
   `garde_jusqua` varchar(200) DEFAULT NULL,
   `notes` varchar(200) DEFAULT NULL,
-  `prix` float DEFAULT NULL,
+  `prix_saq` float DEFAULT NULL,
+  `url_saq` varchar(200) DEFAULT NULL,
+  `url_image` varchar(200) DEFAULT NULL,
+  `format` varchar(20) DEFAULT NULL,
   `quantite` int(11) DEFAULT NULL,
-  `millesime` int(11) DEFAULT NULL
+  `millesime` int(11) DEFAULT NULL,
+  `id_type` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `vino__bouteille_saq`
---
-
-INSERT INTO `vino__bouteille_saq` (`id`, `id_bouteille`, `id_cellier`, `date_achat`, `garde_jusqua`, `notes`, `prix`, `quantite`, `millesime`) VALUES
-(1, 9, 1, '2019-03-21', '2028', 'ok', 16.9, 1, 2020),
-(2, 8, 1, '2019-03-21', 'non', 'Bon', 50.45, 1, 2018),
-(3, 10, 2, '2020-06-14', 'non', 'Bon', 50.45, 3, 2012),
-(4, 20, 2, '2019-03-21', 'non', 'ok', 45.45, 5, 2018);
 
 -- --------------------------------------------------------
 
@@ -494,14 +493,6 @@ CREATE TABLE `vino__cellier` (
   `lieu` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
   `id_usager` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Déchargement des données de la table `vino__cellier`
---
-
-INSERT INTO `vino__cellier` (`id`, `nom`, `lieu`, `id_usager`) VALUES
-(1, 'Chalet', 'étagère', 1),
-(2, 'Maison', 'sous-sol', 1);
 
 -- --------------------------------------------------------
 
@@ -543,8 +534,7 @@ CREATE TABLE `vino__usager` (
 --
 
 INSERT INTO `vino__usager` (`id`, `email`, `mdp`, `nom`, `role`) VALUES
-(1, 'yor@test.com', '2yG9q7O7s42BI\r\n', 'Yor', 'user'),
-(2, 'admin@admin.com', '2yyTvgxzGcGgA\r\n', 'admin', 'admin');
+(1, 'r@r.com', '$2y$10$QapWetm0HED4TdtSsvgGWu2mg2MSRCo4VKYj3WN/pOpOIOgi4Aa1W', 'Renaud ', 'user');
 
 --
 -- Index pour les tables déchargées
@@ -569,7 +559,8 @@ ALTER TABLE `vino__bouteille_prive`
 -- Index pour la table `vino__bouteille_saq`
 --
 ALTER TABLE `vino__bouteille_saq`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_type` (`id_type`);
 
 --
 -- Index pour la table `vino__cellier`
@@ -606,19 +597,19 @@ ALTER TABLE `vino__bouteille`
 -- AUTO_INCREMENT pour la table `vino__bouteille_prive`
 --
 ALTER TABLE `vino__bouteille_prive`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT pour la table `vino__bouteille_saq`
 --
 ALTER TABLE `vino__bouteille_saq`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT pour la table `vino__cellier`
 --
 ALTER TABLE `vino__cellier`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT pour la table `vino__type`
@@ -630,30 +621,7 @@ ALTER TABLE `vino__type`
 -- AUTO_INCREMENT pour la table `vino__usager`
 --
 ALTER TABLE `vino__usager`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- Contraintes pour les tables déchargées
---
-
---
--- Contraintes pour la table `vino__bouteille`
---
-ALTER TABLE `vino__bouteille`
-  ADD CONSTRAINT `vino__bouteille_ibfk_1` FOREIGN KEY (`type`) REFERENCES `vino__type` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Contraintes pour la table `vino__bouteille_prive`
---
-ALTER TABLE `vino__bouteille_prive`
-  ADD CONSTRAINT `fk_id_cellier` FOREIGN KEY (`id_cellier`) REFERENCES `vino__cellier` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_type` FOREIGN KEY (`id_type`) REFERENCES `vino__type` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Contraintes pour la table `vino__cellier`
---
-ALTER TABLE `vino__cellier`
-  ADD CONSTRAINT `fk_usager` FOREIGN KEY (`id_usager`) REFERENCES `vino__usager` (`id`);
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
