@@ -8,7 +8,7 @@
  *
  */
 
-//const BaseURL = "https://localhost/vino_etu/";
+//const BaseURL = "https://vino-etu.000webhostapp.com/";
 const BaseURL = "http://localhost:8080/vino_etu/";
 
 //console.log(BaseURL);
