@@ -9,7 +9,7 @@
  */
 
 //const BaseURL = "https://vino-etu.000webhostapp.com/";
-const BaseURL = "http://localhost:8080/vino_etu/";
+const BaseURL = "http://localhost:/vino_etu/";
 
 //console.log(BaseURL);
 
@@ -222,7 +222,7 @@ window.addEventListener('load', function () {
         })
         .then(response => {
           console.log(response);
-          window.location="http://localhost:8080/vino_etu/?requete=listecellier";//R
+          window.location=`${BaseURL}?requete=listecellier`;//R
           }).catch(error => {
             console.error(error);
           });
@@ -309,7 +309,7 @@ window.addEventListener('load', function () {
       
       }).catch(error => {
         console.error(error);
-        window.location="http://localhost:8080/vino_etu/?requete=listecellier";//R
+        window.location=BaseURL+"?requete=listecellier";//R
       });
         
 
