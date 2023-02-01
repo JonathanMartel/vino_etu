@@ -1,6 +1,6 @@
 # Vino
 
-![vino](Capture4.JPG) 
+![vino](Capture.JPG) 
 
 
 Projet en cours de développement par les étudiants des groupes de Projet Web 2.

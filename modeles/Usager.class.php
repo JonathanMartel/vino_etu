@@ -22,7 +22,7 @@ class Usager extends Modele {
 	}
 	public function updateProfil($data)
 	{
-		$requete = "UPDATE vino__usager SET nom = '" . $data['nom'] . "', email = '" . $data['email'] .  "' WHERE id = '" . $_SESSION['usager'][0]['id'] . "'";
+		$requete = "UPDATE vino__usager SET nom = '" . $data['nom'] . "' WHERE id = '" . $_SESSION['usager'][0]['id'] . "'";
 		
         $res = $this->_db->query($requete);
         

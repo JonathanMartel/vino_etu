@@ -1,18 +1,6 @@
 <?php
 session_start();
 
-/**
- * Class Controler
- * Gère les requêtes HTTP
- * 
- * @author Jonathan Martel
- * @version 1.0
- * @update 2019-01-21
- * @license Creative Commons BY-NC 3.0 (Licence Creative Commons Attribution - Pas d’utilisation commerciale 3.0 non transposé)
- * @license http://creativecommons.org/licenses/by-nc/3.0/deed.fr
- * 
- */
-
 class Controler
 {
 
@@ -119,8 +107,7 @@ class Controler
 			$user = new Usager();
 			$user->updateProfil($_POST);
 			$_SESSION['usager'][0]['nom'] = $_POST['nom'];
-			$_SESSION['usager'][0]['email'] = $_POST['email'];
-			header("Location: http://localhost:8080/vino_etu/?requete=profil");
+			header("Location: " . BASEURL . "?requete=profil");
 			exit();
 		}
 		include("vues/entete.php");
@@ -133,7 +120,7 @@ class Controler
 		if (!empty($_POST)) {
 			$user = new Usager();
 			$user->addUtilisateur($_POST);
-			header("Location: http://localhost:8080/vino_etu/?requete=login");
+			header("Location: " . BASEURL . "?requete=login");
 			exit();
 		}
 		include("vues/entete.php");
@@ -158,7 +145,7 @@ class Controler
 
 			if (!$erreur) {
 				$_SESSION['usager'] = $usager;
-				header("Location: http://localhost:8080/vino_etu/");
+				header("Location: " . BASEURL . "?requete=listecellier");
 				exit();
 			}
 		}
@@ -198,7 +185,7 @@ class Controler
 			$id_bouteille = $_POST['id'];
 			$bte = new Bouteille();
 			$bte->deleteprive($id_bouteille);
-			header("Location: http://localhost:8080/vino_etu/?requete=listecellier");
+			header("Location: " . BASEURL . "?requete=listecellier");
 		}
 	}
 	private function deleteSAQ()
@@ -208,7 +195,7 @@ class Controler
 			$id_bouteille = $_POST['id'];
 			$bte = new Bouteille();
 			$bte->deleteSAQ($id_bouteille);
-			header("Location: http://localhost:8080/vino_etu/?requete=listecellier");
+			header("Location: " . BASEURL . "?requete=listecellier");
 		}
 	}
 
@@ -229,7 +216,7 @@ class Controler
 			$celier = new Cellier();
 			$celier->ajouterCellier($_POST);
 			// Afficher liste des celliers
-			header("Location: http://localhost:8080/vino_etu/?requete=listecellier");
+			header("Location: " . BASEURL . "?requete=listecellier");
 		} else {
 			include("vues/entete.php");
 			include("vues/ajoutcellier.php");
@@ -259,13 +246,20 @@ class Controler
 	private function ajouterNouvelleBouteilleCellierPrive()
 	{
 		if (!empty($_POST)) {
+
 			$bte = new Bouteille();
 			$bte->ajouterBouteilleCellierPrive($_POST);
-			header("Location: http://localhost:8080/vino_etu/?requete=listecellier");
-		} else {
-			$id_usager = $_SESSION['usager'][0]['id'];
+			$id_cellier = $_GET['id'];
 			$cellier = new Cellier();
-			$data = $cellier->getListeCelliers($id_usager);
+			$datacell = $cellier->getcellier($id_cellier);
+			$succes = 'Bravo!';
+			include("vues/entete.php");
+			include("vues/ajouterprive.php");
+			include("vues/pied.php");
+		} else {
+			$id_cellier = $_GET['id'];
+			$cellier = new Cellier();
+			$datacell = $cellier->getcellier($id_cellier);
 			$bte = new Bouteille();
 			$datatype =  $bte->getListeType();
 			include("vues/entete.php");
@@ -358,7 +352,7 @@ class Controler
 			$bte = new Bouteille();
 			$resultat = $bte->modifierBouteilleCellier($body);
 			echo json_encode($resultat);
-			header("Location: http://localhost:8080/vino_etu/?requete=listecellier");
+			header("Location: ". BASEURL . "?requete=listecellier");
 			exit();
 		} else {
 			include("vues/entete.php");

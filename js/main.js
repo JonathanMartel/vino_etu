@@ -198,6 +198,7 @@ window.addEventListener('load', function () {
       btnAjouter.addEventListener("click", function (evt) {
         console.log(bouteille.id_cellier.value);
         var param = {
+          "nom": bouteille.nom.value,
           "id_bouteille": bouteille.nom.dataset.id,
           "id_cellier": bouteille.id_cellier.value,
           "date_achat": bouteille.date_achat.value,
@@ -245,7 +246,7 @@ window.addEventListener('load', function () {
       });
 
       /*
-      * Affichage de la vue de modification d'une bouteille  
+      * Affichage de la vue de cellier
       */
      let cellier = document.querySelectorAll(".cellierid").forEach(function(e){
 
