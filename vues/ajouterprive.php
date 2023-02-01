@@ -14,7 +14,7 @@
                 <input type="text" name="nom" placeholder="Nom" />
                 <input type="number" name="millesime" placeholder="Millesime" />
                 <input type="number" name="quantite" placeholder="Quantite" min="0"/>
-                <input type="number" name="prix_achat" placeholder="Prix"/>
+                <input type="text" name="prix_achat" placeholder="Prix"/>
                 <input type="text" name="pays" placeholder="Pays" />
     </div>
     <div >
