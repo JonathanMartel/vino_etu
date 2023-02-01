@@ -244,6 +244,18 @@ window.addEventListener('load', function () {
         })
       });
 
+      /*
+      * Affichage de la vue de modification d'une bouteille  
+      */
+     let cellier = document.querySelectorAll(".cellierid").forEach(function(e){
+
+       //console.log(e);
+       e.addEventListener('click', function(evt){
+        let id = evt.target.parentElement.dataset.id;
+           location.href = BaseURL+`index.php?requete=cellierid&id=${id}`; 
+        })
+      });
+
 
           /**
      * Modification d'une bouteille
