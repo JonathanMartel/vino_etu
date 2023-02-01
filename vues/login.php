@@ -8,13 +8,13 @@
     <button name="">Se Connecter</button> -->
 
 <div class="form-style-8">
-  <h2>Connection</h2>
+  <h2>Connexion</h2>
 
     <form action="?requete=login" method="post">
       <input type="email" name="email" placeholder="Email" />
-      <input type="text" name="mdp" placeholder="Mot de passe" />
-      <input type="submit" value="GO!" class="top"/>
-      <p class="lien"><a href="?requete=register" class="btnlogin button-28 top">Créer un compte</a></p>
+      <input type="password" name="mdp" placeholder="Mot de passe" />
+      <input type="submit" value="Se Connecter!" class="top"/>
+      
     </form>
 </div>
 

@@ -1,6 +1,6 @@
 
 
 <section class="bg-img">
-    <p class="bienvenue">Bienvenue dans notre nouveau site Web de cave à vin. C'est un endroit où vous pourrez explorer le monde des grands vins, trouver l'inspiration et profiter de nos fonctionnalités incroyables de nos spécialistes.</p>
+    <p class="bienvenue">Bienvenue dans l'App de Gestion d'inventaire de Cave à vin. <br> Ici vous pouvez gérer le stock de vos celliers.</p>
 </section>
 
