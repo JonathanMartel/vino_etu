@@ -7,8 +7,7 @@
         <form action="?requete=ajoutercellier" method="post">
             <input type="text" name="nom" placeholder="Nom du Cellier" />
             <input type="text" name="lieu" placeholder="Lieu du Cellier" />
-
-            <input type="submit" value="Ajouter le Cellier" class="top"/>
+            <button type="submit" class="top button-28">Ajouter le Cellier</button>
         </form>
 
     </div>

@@ -13,8 +13,7 @@
     <form action="?requete=login" method="post">
       <input type="email" name="email" placeholder="Email" />
       <input type="password" name="mdp" placeholder="Mot de passe" />
-      <input type="submit" value="Se Connecter!" class="top"/>
-      
+      <button type="submit" class="top button-28">Se Connecter</button>
     </form>
 </div>
 

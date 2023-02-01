@@ -1,7 +1,7 @@
 <div class="cellier">
 
 <div class="wrapajout">
-    <h3><a href="?requete=ajoutercellier" class="btnlogin button-28">Ajouter un nouveau cellier</a></h3>
+    <h3><a href="?requete=ajoutercellier" class="button-28">Ajouter un nouveau cellier</a></h3>
 </div>
     <h1>Vos Celliers</h1>
         <div class="flexCellier">
@@ -19,10 +19,10 @@
         
     <!--     <form action="?requete=cellier" method="post">
             <input type="hidden" name="id" value="<?php echo $cellier['id'] ?>" />
-            <input type="submit" value="Accéder a votre cellier" class="btnlogin button-28" />
+            <input type="submit" value="Accéder a votre cellier" class="button-28" />
         </form> -->
         <div data-id="<?php echo $cellier['id'] ?>">
-            <button class="cellierid btnlogin button-28">Accéder a votre cellier</button>
+            <button class="cellierid button-28">Accéder a votre cellier</button>
         </div>
         
     </div>
