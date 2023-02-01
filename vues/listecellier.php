@@ -24,10 +24,13 @@
             <p class="lieu"><?php echo $cellier['lieu'] ?></p>
         </div>
         
-        <form action="?requete=cellier" method="post">
+    <!--     <form action="?requete=cellier" method="post">
             <input type="hidden" name="id" value="<?php echo $cellier['id'] ?>" />
             <input type="submit" value="Accéder a votre cellier" class="btnlogin button-28" />
-        </form>
+        </form> -->
+        <div data-id="<?php echo $cellier['id'] ?>">
+            <button class="cellierid">Accéder a votre cellier</button>
+        </div>
         
     </div>
     

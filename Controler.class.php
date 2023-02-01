@@ -22,10 +22,10 @@ class Controler
 	 */
 	public function gerer()
 	{
-		if(isset($_GET['id'])) $id = $_GET['id'];
+		if (isset($_GET['id'])) $id = $_GET['id'];
 
 		switch ($_GET['requete']) {
-			/* case 'listeBouteille':
+				/* case 'listeBouteille':
 				$this->listeBouteille();
 				break; */
 			case 'autocompleteBouteille':
@@ -65,6 +65,9 @@ class Controler
 			case 'cellier':
 				$this->cellier();
 				break;
+			case 'cellierid':
+				$this->cellierid($id);
+				break;
 			case 'listecellier':
 				$this->listecellier();
 				break;
@@ -87,7 +90,7 @@ class Controler
 				break;
 			case "modifierBouteilleCellier":
 				$this->modifierBouteilleCellier();
-				break;	
+				break;
 
 
 			default:
@@ -183,7 +186,7 @@ class Controler
 			$data = $bte->getListeBouteilleSAQ($id_cellier);
 			$dataprive = $bte->getListeBouteillePrive($id_cellier);
 		}
-			//var_dump($data);
+		//var_dump($data);
 		include("vues/entete.php");
 		include("vues/cellier.php");
 		include("vues/pied.php");
@@ -192,7 +195,7 @@ class Controler
 	{
 		if (!empty($_POST)) {
 
-			$id_bouteille = $_POST['id']; 
+			$id_bouteille = $_POST['id'];
 			$bte = new Bouteille();
 			$bte->deleteprive($id_bouteille);
 			header("Location: http://localhost:8080/vino_etu/?requete=listecellier");
@@ -202,7 +205,7 @@ class Controler
 	{
 		if (!empty($_POST)) {
 
-			$id_bouteille = $_POST['id']; 
+			$id_bouteille = $_POST['id'];
 			$bte = new Bouteille();
 			$bte->deleteSAQ($id_bouteille);
 			header("Location: http://localhost:8080/vino_etu/?requete=listecellier");
@@ -259,19 +262,19 @@ class Controler
 			$bte = new Bouteille();
 			$bte->ajouterBouteilleCellierPrive($_POST);
 			header("Location: http://localhost:8080/vino_etu/?requete=listecellier");
-	} else {
-		$id_usager = $_SESSION['usager'][0]['id'];
-		$cellier = new Cellier();
-		$data = $cellier->getListeCelliers($id_usager);
-		$bte = new Bouteille();
-		$datatype =  $bte->getListeType();
+		} else {
+			$id_usager = $_SESSION['usager'][0]['id'];
+			$cellier = new Cellier();
+			$data = $cellier->getListeCelliers($id_usager);
+			$bte = new Bouteille();
+			$datatype =  $bte->getListeType();
 			include("vues/entete.php");
 			include("vues/ajouterprive.php");
 			include("vues/pied.php");
 		}
 	}
 
-/* 	private function listeBouteille()
+	/* 	private function listeBouteille()
 	{
 		$bte = new Bouteille();
 		$cellier = $bte->getListeBouteilleCellier();
@@ -286,7 +289,6 @@ class Controler
 		//var_dump($body);
 		$listeBouteille = $bte->autocomplete($body->nom);
 		echo json_encode($listeBouteille);
-		
 	}
 
 	private function boireBouteilleCellier()
@@ -322,7 +324,7 @@ class Controler
 		echo json_encode($resultat);
 	}
 
-///yordan
+	///yordan
 	private function getBouteille($id)
 	{
 		$bte = new Bouteille();
@@ -336,21 +338,32 @@ class Controler
 		include("vues/modifier.php");
 		include("vues/pied.php");
 	}
+	private function cellierid($id)
+	{
+		$id_cellier = $_GET['id']; // TROUVER COMMENT PASSER L'ID CELLIER
+		$cellier = new Cellier();
+		$datacell = $cellier->getCellier($id_cellier);
+		$bte = new Bouteille();
+		$data = $bte->getListeBouteilleSAQ($id_cellier);
+		$dataprive = $bte->getListeBouteillePrive($id_cellier);
+		include("vues/entete.php");
+		include("vues/cellier.php");
+		include("vues/pied.php");
+	}
+	
 	private function modifierBouteilleCellier()
 	{
 		$body = json_decode(file_get_contents('php://input'));
-		if(!empty($body)){
+		if (!empty($body)) {
 			$bte = new Bouteille();
-			$resultat = $bte->modifierBouteilleCellier($body);			
+			$resultat = $bte->modifierBouteilleCellier($body);
 			echo json_encode($resultat);
 			header("Location: http://localhost:8080/vino_etu/?requete=listecellier");
 			exit();
-		}
-		else {
+		} else {
 			include("vues/entete.php");
 			include("vues/modifier.php");
 			include("vues/pied.php");
 		}
-		
 	}
 }
