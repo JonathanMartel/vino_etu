@@ -13,6 +13,6 @@
 	?>
 </div>
 
-<a href="?requete=profilmod" class="btnlogin button-28">Modifier son profil</a>
+<a href="?requete=profilmod" class="button-28">Modifier son profil</a>
 
 

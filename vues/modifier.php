@@ -27,7 +27,9 @@
             </select>
         
             <input type="hidden" name="id" value="<?= $data["id"] ?>">
-            <input type="submit" value="Modifier ma bouteille" class="modifierBouteille" />
+
+            <button type="submit" class="modifierBouteille top button-28">Modifier ma bouteille</button>
+
 
         </div>
 </div>

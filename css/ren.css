@@ -199,6 +199,7 @@ header, footer{
 	text-decoration: none;
 	text-transform: uppercase;
 	border-radius: 100px;
+
 }
 .form-style-8 input[type="button"]:hover,
 .form-style-8 input[type="submit"]:hover {
