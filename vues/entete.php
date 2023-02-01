@@ -30,7 +30,7 @@
 
 	<div class="flexLogoMenu">
 
-		<div><a href="?requete=accueil"><img src="/vino_etu/img/Logo-vino_blanc1.png" alt="logo" class="logo"></a></div>
+		<div><img src="/vino_etu/img/Logo-vino_blanc1.png" alt="logo" class="logo"></div>
 	<?php
 		if ($_SESSION) {
 			echo 
@@ -39,9 +39,7 @@
 				<div class="flexUsaFle">	
 					<div><button class="dropbtn">Bienvenue ' . $_SESSION['usager'][0]['nom']. '</button></div>
 					<div class="imgArrow">
-						<a href="?requete=register">
 							<img src="/vino_etu/img/arrow-blanc.png">
-						</a>
 					</div>
 				</div>
 
