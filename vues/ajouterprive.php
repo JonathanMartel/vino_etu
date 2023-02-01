@@ -37,7 +37,7 @@
 <?php
 }else{
     echo '<h1>' . $succes. '</h1>';
-    echo '<h2>Vous avez belle et bien ajoutez une nouvelle bouteille dans votre cellier</h2>';
-    echo '<div data-id=' . $datacell[0]['id'] .'><button class="cellierid">Accéder a votre cellier</button></div>';
+    echo '<h2>Vous avez belle et bien ajoutez une nouvelle bouteille privé dans votre cellier</h2>';
+    echo '<div data-id=' . $datacell[0]['id'] .'><button class="cellierid btnlogin button-28">Accéder a votre cellier</button></div>';
 }
 ?>

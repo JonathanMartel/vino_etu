@@ -10,7 +10,7 @@
     ?>
 
 <div class="card">
-        <img src="/vino_etu/img/vin.jpg" alt="" style="width: 300px; border-radius: 15px;">
+        <img src="/vino_etu/img/vin.jpg" alt="cellier" />
         <h3 class="nom"><?php echo $cellier['nom'] ?></h3>
         <div class="flexLieu">
             <img src="/vino_etu/img/location.png" alt="">
@@ -22,7 +22,7 @@
             <input type="submit" value="Accéder a votre cellier" class="btnlogin button-28" />
         </form> -->
         <div data-id="<?php echo $cellier['id'] ?>">
-            <button class="cellierid">Accéder a votre cellier</button>
+            <button class="cellierid btnlogin button-28">Accéder a votre cellier</button>
         </div>
         
     </div>

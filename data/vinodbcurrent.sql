@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 01 fév. 2023 à 02:38
+-- Généré le : mer. 01 fév. 2023 à 03:41
 -- Version du serveur : 10.4.24-MariaDB
 -- Version de PHP : 8.1.6
 
@@ -534,7 +534,7 @@ CREATE TABLE `vino__usager` (
 --
 
 INSERT INTO `vino__usager` (`id`, `email`, `mdp`, `nom`, `role`) VALUES
-(1, 'r@r.com', '$2y$10$QapWetm0HED4TdtSsvgGWu2mg2MSRCo4VKYj3WN/pOpOIOgi4Aa1W', 'Renaud ', 'user');
+(1, 'r@r.com', '$2y$10$6MDL8xKrgXqtxrCR2N9nY.HPWr2j19KU8EYboMhSvDf2tZhUg7tI6', 'Renaud BC', 'user');
 
 --
 -- Index pour les tables déchargées
@@ -597,19 +597,19 @@ ALTER TABLE `vino__bouteille`
 -- AUTO_INCREMENT pour la table `vino__bouteille_prive`
 --
 ALTER TABLE `vino__bouteille_prive`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT pour la table `vino__bouteille_saq`
 --
 ALTER TABLE `vino__bouteille_saq`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT pour la table `vino__cellier`
 --
 ALTER TABLE `vino__cellier`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT pour la table `vino__type`
@@ -621,7 +621,7 @@ ALTER TABLE `vino__type`
 -- AUTO_INCREMENT pour la table `vino__usager`
 --
 ALTER TABLE `vino__usager`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
