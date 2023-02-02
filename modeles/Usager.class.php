@@ -20,9 +20,19 @@ class Usager extends Modele {
         
 		return $res;
 	}
+
+	/**Modification de l'information de l'usager */
 	public function updateProfil($data)
 	{
-		$requete = "UPDATE vino__usager SET nom = '" . $data['nom'] . "' WHERE id = '" . $_SESSION['usager'][0]['id'] . "'";
+		if (!empty($data['mdpConfirm']) && $data['mdp'] === $data['mdpConfirm']) {
+			$mdp = password_hash($data['mdpConfirm'], PASSWORD_DEFAULT);
+		}else {
+			$mdp = $_SESSION['usager'][0]['mdp'];
+		}
+		$requete = "UPDATE vino__usager SET nom = '" . $data['nom'] . 
+										"', email='" . $data['email'] . 
+										"', mdp='" . $mdp. 
+										"' WHERE id = '" . $_SESSION['usager'][0]['id'] . "'";
 		
         $res = $this->_db->query($requete);
         

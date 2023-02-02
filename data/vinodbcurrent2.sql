@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : jeu. 02 fév. 2023 à 04:01
--- Version du serveur : 10.4.24-MariaDB
--- Version de PHP : 8.1.6
+-- Généré le : jeu. 02 fév. 2023 à 21:23
+-- Version du serveur : 10.4.25-MariaDB
+-- Version de PHP : 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -252,7 +252,7 @@ CREATE TABLE `vino__bouteille_prive` (
   `millesime` varchar(50) DEFAULT NULL,
   `pays` varchar(100) DEFAULT NULL,
   `date_achat` date NOT NULL,
-  `garde_jusqua` date DEFAULT NULL,
+  `garde_jusqua` varchar(10) DEFAULT NULL,
   `prix_achat` float DEFAULT NULL,
   `quantite` int(11) NOT NULL,
   `notes` int(11) DEFAULT NULL,
@@ -330,7 +330,8 @@ CREATE TABLE `vino__usager` (
 --
 
 INSERT INTO `vino__usager` (`id`, `email`, `mdp`, `nom`, `role`) VALUES
-(1, 'r@r.com', '$2y$10$6MDL8xKrgXqtxrCR2N9nY.HPWr2j19KU8EYboMhSvDf2tZhUg7tI6', 'Renaud BC', 'user');
+(1, 'r@r.com', '$2y$10$6MDL8xKrgXqtxrCR2N9nY.HPWr2j19KU8EYboMhSvDf2tZhUg7tI6', 'Renaud BC', 'user'),
+(9, 'y@t.com', '$2y$10$H1aVb1IjRdIbjWi0NQqFwOe2hH/2AuuWDlSRO6a5eRAFJOFkowEYG', 'y', NULL);
 
 --
 -- Index pour les tables déchargées
@@ -393,19 +394,19 @@ ALTER TABLE `vino__bouteille`
 -- AUTO_INCREMENT pour la table `vino__bouteille_prive`
 --
 ALTER TABLE `vino__bouteille_prive`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `vino__bouteille_saq`
 --
 ALTER TABLE `vino__bouteille_saq`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `vino__cellier`
 --
 ALTER TABLE `vino__cellier`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `vino__type`
@@ -417,7 +418,7 @@ ALTER TABLE `vino__type`
 -- AUTO_INCREMENT pour la table `vino__usager`
 --
 ALTER TABLE `vino__usager`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

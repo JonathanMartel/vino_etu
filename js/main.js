@@ -11,6 +11,7 @@
 //const BaseURL = "https://vino-etu.000webhostapp.com/";
 const BaseURL = "http://localhost:8080/vino_etu/";
 
+/* import ValidateForm from "./ValidateForm.js"; */
 //console.log(BaseURL);
 
 window.addEventListener('load', function () {
@@ -155,7 +156,7 @@ window.addEventListener('load', function () {
             }
           })
           .then(response => {
-            console.log(response);
+            //console.log(response);
             response.forEach(function (element) {
               liste.innerHTML += "<p data-id='" + element.id + "'>" + element.nom + "</p>";
             })
@@ -240,11 +241,8 @@ window.addEventListener('load', function () {
         })
         .then(response => {
           console.log(response);
-<<<<<<< HEAD
           window.location = BaseURL + "?requete=listecellier";
-=======
-          window.location=BaseURL+"?requete=listecellier";//R
->>>>>>> 110910e70cf3569ed89bdd492a86a1abaab8394c
+
           }).catch(error => {
             console.error(error);
             window.location = BaseURL + "?requete=listecellier";
@@ -342,7 +340,7 @@ window.addEventListener('load', function () {
       
       }).catch(error => {
         console.error(error);
-<<<<<<< HEAD
+
         window.location = BaseURL + "?requete=listecellier";
       });
         
@@ -390,15 +388,106 @@ window.addEventListener('load', function () {
       }).catch(error => {
         console.error(error);
         window.location = BaseURL + "?requete=listecellier";
-=======
-        window.location=BaseURL+"?requete=listecellier";//R
->>>>>>> 110910e70cf3569ed89bdd492a86a1abaab8394c
+
       });
         
 
-      })
+    })
     });
 
+    btn = document.querySelector("[data-js-submit]");//#ajout
+    
+    let form = document.querySelector('[data-name="form"]');
+    console.log(btn); 
+    btn.addEventListener("click", (e)=>{
+      
+      e.preventDefault();
+      console.log(form);
+      
+      let bool = formValidator();
+      console.log(bool);
+      
+      if (bool) {
+        form.submit();
+      }
+    })
+    
+    /* document.querySelectorAll("#ajout").forEach(function (e) {
+      //e.preventDefault();      
+      e.addEventListener("click", function(evt) {
+        e.preventDefault;
+        evt.addEventListener("onsubmit", formValidator());       
+      });
+    }); */
+
+    /**
+     * Methode de validation du form d'ajout
+     */
+    function formValidator() {
+      let formValid = true,      
+          nom = form[1].value,
+          millesime = form[2].value,
+          quantite = form[3].value,
+          prix_achat = form[4].value,
+          pays = form[5].value,
+          date_achat = form[6].value,
+          garde_jusqua = form[7].value;
+        console.log(garde_jusqua); 
+      if (nom == "") {
+        document.getElementById("nom").textContent = "Veuillez remplir ce champ";
+        formValid = false;
+        return false;
+      } else {
+        document.getElementById("nom").textContent = "";
+      } 
+      if (millesime == "") {
+        document.getElementById("millesime").textContent = "Champ obligatoire";
+        formValid = false;
+        return false;
+      } else {
+        document.getElementById("millesime").textContent = "";
+      } 
+      if (quantite < 1) {
+        document.getElementById("quantite").textContent = "Veuillez entrer une chifre";
+        formValid = false;
+        return false;
+      } else {
+        document.getElementById("quantite").textContent = "";
+      } 
+      if (prix_achat == "") {
+        document.getElementById("prix_achat").textContent = "Champ obligatoire";
+        formValid = false;
+        return false;
+      } else {
+        document.getElementById("prix_achat").textContent = "";
+      } 
+      if (pays == "") {
+        document.getElementById("pays").textContent = "Champ obligatoire";
+        formValid = false;
+        return false;
+      } else {
+        document.getElementById("pays").textContent = "";
+      } 
+      if (date_achat == "") {
+        document.getElementById("date_achat").textContent = "Champ obligatoire";
+        formValid = false;
+        return false;
+      } else {
+        document.getElementById("date_achat").textContent = "";
+      }
+      if (garde_jusqua == "") {
+        document.getElementById("garde_jusqua").textContent = "Champ obligatoire";
+        formValid = false;
+        return false;
+      } else {
+        document.getElementById("garde_jusqua").textContent = "";
+      } 
+      console.log(formValid);
+      if (formValid === true) {
+
+        return true;
+      }
+    }
 
 });
 
