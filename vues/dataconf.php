@@ -1,10 +1,6 @@
 <?php
 	// Remplir et renommer dataconf.php
-
-
 	define("BASEURL", "http://localhost:8080/vino_etu/");
-	//define("BASEURL", "https://vino-etu.000webhostapp.com/");
-
 	define('HOST', 'localhost');
 	define('USER', 'root');
 	define('PASSWORD', '');
