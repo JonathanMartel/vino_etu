@@ -355,7 +355,7 @@ window.addEventListener('load', function () {
         document.getElementById("nom").textContent = "";
       } 
       if (quantite < 1) {
-        document.getElementById("quantite").textContent = "Veuillez entrer une chifre positive";
+        document.getElementById("quantite").textContent = "Veuillez entrer une chifre";
         formValid = false;
         return false;
       } else {
