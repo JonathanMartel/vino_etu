@@ -26,10 +26,6 @@ card = rgb(214, 214, 202)
 
 }
 
-.error-message { /* background-color: #73162F; */
-	color: #da1449;
-}
-
 header{
 	padding: 20px;
 	background-color: #73162F;
@@ -114,12 +110,6 @@ header, footer{
     transform: translate(-50%, -50%);
 
 
-}
-
-form label {  /* background-color: aqua;  */
-	min-width: 500px;
-	text-align: left;
-	font-size: 10pt;
 }
 
 /* Button */

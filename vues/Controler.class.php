@@ -192,9 +192,6 @@ class Controler
 			$bte = new Bouteille();
 			$bte->deleteprive($id_bouteille);
 			$succes = 'Bravo!';
-			$id_cellier = $_GET['id'];
-			$cellier = new Cellier();
-			$datacell = $cellier->getcellier($id_cellier);
 		include("vues/entete.php");
 		include("vues/cellier.php");
 		include("vues/pied.php");

@@ -22,7 +22,7 @@
             <input type="date" name="garde_jusqua" value="<?= $data["garde_jusqua"] ?>" />
             Prix:
             <input type="text" name="prix_achat" value="<?= $data["prix_achat"] ?>" />
-            Notes:
+            Notes sur 10:
             <input type="text" name="notes" value="<?= $data["notes"] ?>" />
             Pays:
             <input type="text" name="pays" value="<?= $data["pays"] ?>" />
@@ -36,7 +36,7 @@
         
             <input type="hidden" name="id" value="<?= $data["id"] ?>">
 
-            <button type="submit" class="modifierBouteille top button-28">Modifier</button>
+            <button type="submit" class="modifierBouteille top button-28">Modifier ma bouteille</button>
 
 
         </div>
