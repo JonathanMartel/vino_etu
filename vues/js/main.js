@@ -240,11 +240,7 @@ window.addEventListener('load', function () {
         })
         .then(response => {
           console.log(response);
-<<<<<<< HEAD
           window.location = BaseURL + "?requete=listecellier";
-=======
-          window.location=BaseURL+"?requete=listecellier";//R
->>>>>>> 110910e70cf3569ed89bdd492a86a1abaab8394c
           }).catch(error => {
             console.error(error);
             window.location = BaseURL + "?requete=listecellier";
@@ -342,7 +338,6 @@ window.addEventListener('load', function () {
       
       }).catch(error => {
         console.error(error);
-<<<<<<< HEAD
         window.location = BaseURL + "?requete=listecellier";
       });
         
@@ -390,9 +385,6 @@ window.addEventListener('load', function () {
       }).catch(error => {
         console.error(error);
         window.location = BaseURL + "?requete=listecellier";
-=======
-        window.location=BaseURL+"?requete=listecellier";//R
->>>>>>> 110910e70cf3569ed89bdd492a86a1abaab8394c
       });
         
 
