@@ -3,7 +3,10 @@
 <div class="wrapajout">
     <h3><a href="?requete=ajoutercellier" class="button-28">Ajouter un nouveau cellier</a></h3>
 </div>
-    <h1>Vos Celliers</h1>
+<div class="form-style-8">
+
+    <h2 class="titre">Vos Celliers</h2>
+</div>
         <div class="flexCellier">
     <?php
     foreach ($data as $cle => $cellier) {
