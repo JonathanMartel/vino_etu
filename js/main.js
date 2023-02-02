@@ -167,7 +167,16 @@ window.addEventListener('load', function () {
 
     });
 
-    let bouteille = {
+        let bouteille = {
+        nom : document.querySelector(".nom_bouteille"),
+        millesime : document.querySelector("[name='millesime']"),
+        id_cellier : document.querySelector("[name='id_cellier']"),
+        quantite : document.querySelector("[name='quantite']"),
+        // notes : document.querySelector("[name='notes']"),
+        date_achat : document.querySelector("[name='date_achat']"),
+        garde_jusqua : document.querySelector("[name='garde_jusqua']"),
+      };
+/*    2ieme let bouteille = {
       nom: document.querySelector(".nom_bouteille"),
       id_cellier: document.querySelector("[name='id_cellier']"),
       millesime: document.querySelector("[name='millesime']"),
@@ -178,7 +187,7 @@ window.addEventListener('load', function () {
       notes: document.querySelector("[name='notes']"),
       pays: document.querySelector("[name='pays']"),
       id_type: document.querySelector("[name='id_type']"),
-    };
+    }; */
 
 
     liste.addEventListener("click", function (evt) {
@@ -196,8 +205,17 @@ window.addEventListener('load', function () {
     let btnAjouter = document.querySelector("[name='ajouterBouteilleCellier']");
     if (btnAjouter) {
       btnAjouter.addEventListener("click", function (evt) {
-        console.log(bouteille.id_cellier.value);
+        
         var param = {
+          "id_cellier": bouteille.id_cellier.value,
+          "id_bouteille":bouteille.nom.dataset.id,
+          "date_achat":bouteille.date_achat.value,
+          "garde_jusqua":bouteille.garde_jusqua.value,
+         // "notes":bouteille.notes.value,
+          "quantite":bouteille.quantite.value,
+          "millesime":bouteille.millesime.value,
+        };
+    /*     var param = {
           "nom": bouteille.nom.value,
           "id_bouteille": bouteille.nom.dataset.id,
           "id_cellier": bouteille.id_cellier.value,
@@ -209,7 +227,7 @@ window.addEventListener('load', function () {
           "millesime": bouteille.millesime.value,
           "pays": bouteille.pays.value,
           "id_type": bouteille.id_type.value,
-        };
+        }; */
         let requete = new Request(BaseURL + "index.php?requete=ajouterNouvelleBouteilleCellier", { method: 'POST', body: JSON.stringify(param) });
         console.log(JSON.stringify(param));
         fetch(requete)
@@ -222,9 +240,14 @@ window.addEventListener('load', function () {
         })
         .then(response => {
           console.log(response);
+<<<<<<< HEAD
+          window.location = BaseURL + "?requete=listecellier";
+=======
           window.location=BaseURL+"?requete=listecellier";//R
+>>>>>>> 110910e70cf3569ed89bdd492a86a1abaab8394c
           }).catch(error => {
             console.error(error);
+            window.location = BaseURL + "?requete=listecellier";
           });
 
       });
@@ -242,6 +265,16 @@ window.addEventListener('load', function () {
           console.log(location.href);
           //let requete = new Request(BaseURL+`index.php?requete=modifier`);//, {method: 'GET'}?id=${id}`,
           location.href = BaseURL+`index.php?requete=getBouteille&id=${id}`;//
+        })
+      });
+      let btnModifiersaq = document.querySelectorAll(".btnModifiersaq").forEach(function(e){
+        //console.log(e);
+        e.addEventListener('click', function(evt){
+          let id = evt.target.parentElement.dataset.id;
+          
+          console.log(location.href);
+          //let requete = new Request(BaseURL+`index.php?requete=modifier`);//, {method: 'GET'}?id=${id}`,
+          location.href = BaseURL+`index.php?requete=getBouteillesaq&id=${id}`;//
         })
       });
 
@@ -309,7 +342,57 @@ window.addEventListener('load', function () {
       
       }).catch(error => {
         console.error(error);
+<<<<<<< HEAD
+        window.location = BaseURL + "?requete=listecellier";
+      });
+        
+
+      })
+    });
+          /**
+     * Modification d'une bouteille saq
+     */
+    document.querySelectorAll(".modifierBouteillesaq").forEach(function(e) {
+      console.log(e);
+      e.addEventListener('click', function(evt){
+        //console.log(id);
+        let bouteille = {
+          id : document.querySelector("[name=id]"),
+          millesime : document.querySelector("[name='millesime']"),
+          id_cellier : document.querySelector("[name='id_cellier']"),
+          date_achat : document.querySelector("[name='date_achat']"),
+          garde_jusqua : document.querySelector("[name='garde_jusqua']"),
+          notes : document.querySelector("[name='notes']"),
+        };
+
+
+        var param = {
+          "id":bouteille.id.value,
+          "millesime":bouteille.millesime.value,
+          "id_cellier": bouteille.id_cellier.value,
+          "date_achat":bouteille.date_achat.value,
+          "garde_jusqua":bouteille.garde_jusqua.value,
+          "notes":bouteille.notes.value,
+        };
+        let requete = new Request(BaseURL+"index.php?requete=modifierBouteilleCelliersaq", {method: 'POST', body: JSON.stringify(param)});
+
+      fetch(requete)
+      .then(response => {
+        if (response.status === 200) {
+          return response.json();
+        } else {
+          throw new Error('Erreur');
+        }
+      })
+      .then(response => {
+        console.log(response);
+      
+      }).catch(error => {
+        console.error(error);
+        window.location = BaseURL + "?requete=listecellier";
+=======
         window.location=BaseURL+"?requete=listecellier";//R
+>>>>>>> 110910e70cf3569ed89bdd492a86a1abaab8394c
       });
         
 

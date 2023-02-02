@@ -355,7 +355,7 @@ header, footer{
 		}
 
 		.nom{
-			text-transform: uppercase;
+			/* text-transform: uppercase; */
 		}
 
 		.lieu{

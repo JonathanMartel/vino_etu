@@ -9,14 +9,22 @@
                     foreach($datacell as $cle => $cellier)
                     echo '<option value="' . $cellier["id"]. '">Cellier: ' . $cellier['nom'] . '</option>'
                     ?>
-            </select>         
+            </select>     
+            Nom:    
             <input class="nom_bouteille" type="text" name="nom" value="<?= $data["nom"] ?>" />
+            Millesime:
             <input type="text" name="millesime" value="<?= $data["millesime"] ?>" />
+            Quantité:
             <input type="text" name="quantite" value="<?= $data["quantite"] ?>" />
-            <input type="text" name="date_achat" value="<?= $data["date_achat"] ?>" />
+            Date d'achat:
+            <input type="date" name="date_achat" value="<?= $data["date_achat"] ?>" />
+            Garde jusqu'a
+            <input type="date" name="garde_jusqua" value="<?= $data["garde_jusqua"] ?>" />
+            Prix:
             <input type="text" name="prix_achat" value="<?= $data["prix_achat"] ?>" />
-            <input type="text" name="garde_jusqua" value="<?= $data["garde_jusqua"] ?>" />
+            Notes:
             <input type="text" name="notes" value="<?= $data["notes"] ?>" />
+            Pays:
             <input type="text" name="pays" value="<?= $data["pays"] ?>" />
             Choisissez un type:
             <select name="id_type">

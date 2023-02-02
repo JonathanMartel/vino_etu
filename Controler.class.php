@@ -76,8 +76,14 @@ class Controler
 			case "getBouteille":
 				$this->getBouteille($id);
 				break;
+			case "getBouteillesaq":
+				$this->getBouteillesaq($id);
+				break;
 			case "modifierBouteilleCellier":
 				$this->modifierBouteilleCellier();
+				break;
+			case "modifierBouteilleCelliersaq":
+				$this->modifierBouteilleCelliersaq();
 				break;
 
 
@@ -185,9 +191,16 @@ class Controler
 			$id_bouteille = $_POST['id'];
 			$bte = new Bouteille();
 			$bte->deleteprive($id_bouteille);
-			header("Location: " . BASEURL . "?requete=listecellier");
+			$succes = 'Bravo!';
+			$id_cellier = $_GET['id'];
+			$cellier = new Cellier();
+			$datacell = $cellier->getcellier($id_cellier);
+		include("vues/entete.php");
+		include("vues/cellier.php");
+		include("vues/pied.php");
 		}
 	}
+
 	private function deleteSAQ()
 	{
 		if (!empty($_POST)) {
@@ -232,12 +245,9 @@ class Controler
 			$resultat = $bte->ajouterBouteilleCellier($body);
 			echo json_encode($resultat);
 		} else {
-			$cellier = new Cellier();
+			 $cellier = new Cellier();
 			$id_usager = $_SESSION['usager'][0]['id'];
 			$data = $cellier->getListeCelliers($id_usager);
-			$bte = new Bouteille();
-			$datatype =  $bte->getListeType();
-			//var_dump($datatype);
 			include("vues/entete.php");
 			include("vues/ajouter.php");
 			include("vues/pied.php");
@@ -332,13 +342,27 @@ class Controler
 		include("vues/modifier.php");
 		include("vues/pied.php");
 	}
+	private function getBouteillesaq($id)
+	{
+		$bte = new Bouteille();
+		$data = $bte->getBouteilleCelliersaq($id);
+		$id_usager = $_SESSION['usager'][0]['id'];
+		$cellier = new Cellier();
+		$datacell = $cellier->getListeCelliers($id_usager);
+		$bte = new Bouteille();
+		$datatype =  $bte->getListeType();
+		include("vues/entete.php");
+		include("vues/modifiersaq.php");
+		include("vues/pied.php");
+	}
 	private function cellierid($id)
 	{
-		$id_cellier = $_GET['id']; // TROUVER COMMENT PASSER L'ID CELLIER
+		$id_cellier = $_GET['id']; 
 		$cellier = new Cellier();
 		$datacell = $cellier->getCellier($id_cellier);
 		$bte = new Bouteille();
 		$data = $bte->getListeBouteilleSAQ($id_cellier);
+		//var_dump($data);
 		$dataprive = $bte->getListeBouteillePrive($id_cellier);
 		include("vues/entete.php");
 		include("vues/cellier.php");
@@ -357,6 +381,22 @@ class Controler
 		} else {
 			include("vues/entete.php");
 			include("vues/modifier.php");
+			include("vues/pied.php");
+		}
+	}
+	
+	private function modifierBouteilleCelliersaq()
+	{
+		$body = json_decode(file_get_contents('php://input'));
+		if (!empty($body)) {
+			$bte = new Bouteille();
+			$resultat = $bte->modifierBouteilleCelliersaq($body);
+			echo json_encode($resultat);
+			header("Location: ". BASEURL . "?requete=listecellier");
+			exit();
+		} else {
+			include("vues/entete.php");
+			include("vues/modifiersaq.php");
 			include("vues/pied.php");
 		}
 	}
