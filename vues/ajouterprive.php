@@ -13,21 +13,25 @@
         <div>
             <input type="hidden" name="id_cellier" value=<?= $datacell[0]['id'] ?> />
             <span id="nom" class="error-message"></span>
-            <input type="text" name="nom" placeholder="Nom" />            
+            <input type="text" name="nom" placeholder="Nom" />
+            <span id="millesime" class="error-message"></span>            
             <input  type="number" name="millesime" placeholder="2000" />
             <span id="quantite" class="error-message"></span>
-            <input type="number" name="quantite" placeholder="Quantite" min="0" value="0"/>
-            
+            <input type="number" name="quantite" placeholder="Quantite" min="0" value="1"/>
+            <span id="prix_achat" class="error-message"></span>
             <input type="text" name="prix_achat" placeholder="Prix"/>
+            <span id="pays" class="error-message"></span>
             <input type="text" name="pays" placeholder="Pays" />
         </div>
         <div>
-            Date d'achat:
-            <input type="date" name="date_achat" placeholder="Date d'achat" />
-            Garder jusqu'a:
-            <input type="date" name="garde_jusqu'à" placeholder="Garde jusqu'à"/>
+            
+            Date d'achat: 
+            <span id="date_achat" class="error-message"></span>
+            <input type="date" name="date_achat" placeholder="Date d'achat" />            
+             
+            <span id="garde_jusqua" class="error-message"></span>
+            <input type="text" name="garde_jusqua" placeholder="Garder jusqu'à"/>
             Choisissez un type:
-
             <select name="id_type">
                 <?php
                     foreach($datatype as $cle => $type)
