@@ -6,7 +6,7 @@
 	define('HOST', 'localhost');
 	define('USER', 'root');
 	define('PASSWORD', '');
-	define('DATABASE', 'vinodbcurrent');
+	define('DATABASE', 'vinodbcurrent2');
 
 	//Herbergeur
 /* 	define('HOST', 'localhost');

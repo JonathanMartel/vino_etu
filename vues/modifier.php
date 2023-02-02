@@ -28,7 +28,7 @@
         
             <input type="hidden" name="id" value="<?= $data["id"] ?>">
 
-            <button type="submit" class="modifierBouteille top button-28">Modifier ma bouteille</button>
+            <button type="submit" class="modifierBouteille top button-28">Modifier</button>
 
 
         </div>

@@ -116,6 +116,12 @@ header, footer{
 
 }
 
+form label {  /* background-color: aqua;  */
+	min-width: 500px;
+	text-align: left;
+	font-size: 10pt;
+}
+
 /* Button */
 .button-28 {
 	background-color: #73162F;

@@ -5,8 +5,9 @@
     
     <div class="form-style-8" style="padding-top: 50px;">
         
+
         <h2>Ajout d'une bouteille privé dans un cellier</h2>
-        <!--  <div class="form-style-8" style="padding-top: 0;">-->
+       
         <form data-name="form" action="?requete=ajouterNouvelleBouteilleCellierPrive&id=<?= $datacell[0]['id'] ?>" method="post">
             
         <div>
@@ -26,6 +27,7 @@
             Garder jusqu'a:
             <input type="date" name="garde_jusqu'à" placeholder="Garde jusqu'à"/>
             Choisissez un type:
+
             <select name="id_type">
                 <?php
                     foreach($datatype as $cle => $type)
