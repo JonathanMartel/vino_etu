@@ -11,6 +11,7 @@
 //const BaseURL = "https://vino-etu.000webhostapp.com/";
 const BaseURL = "http://localhost/vino_etu/";
 
+/* import ValidateForm from "./ValidateForm.js"; */
 //console.log(BaseURL);
 
 window.addEventListener('load', function () {
@@ -155,7 +156,7 @@ window.addEventListener('load', function () {
             }
           })
           .then(response => {
-            console.log(response);
+            //console.log(response);
             response.forEach(function (element) {
               liste.innerHTML += "<p data-id='" + element.id + "'>" + element.nom + "</p>";
             })
@@ -313,9 +314,59 @@ window.addEventListener('load', function () {
       });
         
 
-      })
+    })
     });
 
+    btn = document.querySelector("[data-js-submit]");//#ajout
+    
+    let form = document.querySelector('[data-name="form"]');
+    console.log(btn); 
+    btn.addEventListener("click", (e)=>{
+      
+      e.preventDefault();
+      console.log(form);
+      
+      let bool = formValidator();
+      console.log(bool);
+      
+      if (bool) {
+        form.submit();
+      }
+    })
+    
+    /* document.querySelectorAll("#ajout").forEach(function (e) {
+      //e.preventDefault();      
+      e.addEventListener("click", function(evt) {
+        e.preventDefault;
+        evt.addEventListener("onsubmit", formValidator());       
+      });
+    }); */
+    
+    function formValidator() {
+      let formValid = true;      
+      let nom = form[1].value;
+      let quantite = form[3].value;
+      console.log(quantite); 
+      if (nom == "") {
+        document.getElementById("nom").textContent = "Veuillez remplir ce champ";
+        formValid = false;
+        return false;
+      } else {
+        document.getElementById("nom").textContent = "";
+      } 
+      if (quantite < 1) {
+        document.getElementById("quantite").textContent = "Veuillez entrer une chifre positive";
+        formValid = false;
+        return false;
+      } else {
+        document.getElementById("quantite").textContent = "";
+      } 
+      console.log(formValid);
+      if (formValid === true) {
+
+        return true;
+      }
+    }
 
 });
 
