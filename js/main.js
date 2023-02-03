@@ -9,7 +9,7 @@
  */
 
 //const BaseURL = "https://vino-etu.000webhostapp.com/";
-const BaseURL = "http://localhost:8080/vino_etu/";
+const BaseURL = "http://localhost/vino_etu/";
 
 /* import ValidateForm from "./ValidateForm.js"; */
 //console.log(BaseURL);
