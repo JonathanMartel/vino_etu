@@ -425,22 +425,23 @@ window.addEventListener('load', function () {
      */
     function formValidator() {
       let formValid = true,      
-          nom = form[1].value,
-          millesime = form[2].value,
+          nom = form[1].value.trim().replace(/\s+/g, ' '),
+          millesimeRex = /(^[1|2]\d{3}$)/, //form[2].value,// 
+          millesime = millesimeRex.test(form[2].value),
           quantite = form[3].value,
           prix_achat = form[4].value,
-          pays = form[5].value,
+          pays = form[5].value.trim().replace(/\s+/g, ' '),
           date_achat = form[6].value,
-          garde_jusqua = form[7].value;
-        console.log(garde_jusqua); 
-      if (nom == "") {
+          garde_jusqua = form[7].value.trim().replace(/\s+/g, ' ');
+        console.log(millesime); //str.replace(/\s+/g, ' ')
+      if (nom.trim() == "") {
         document.getElementById("nom").textContent = "Veuillez remplir ce champ";
         formValid = false;
         return false;
       } else {
         document.getElementById("nom").textContent = "";
       } 
-      if (millesime == "") {
+      if (millesime == false) {
         document.getElementById("millesime").textContent = "Champ obligatoire";
         formValid = false;
         return false;
