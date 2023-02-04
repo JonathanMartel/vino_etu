@@ -395,22 +395,45 @@ window.addEventListener('load', function () {
     })
     });
 
-    btn = document.querySelector("[data-js-submit]");//#ajout
-    
-    let form = document.querySelector('[data-name="form"]');
-    console.log(btn); 
-    btn.addEventListener("click", (e)=>{
-      
+    /**Listenner pour modif profil */
+    let btnModProfil = this.document.querySelector('.top.button-28'),
+        formModProfil= this.document.querySelector('#modProfilForm');
+    console.log(formModProfil);
+    btnModProfil.addEventListener('click', (e) => {
       e.preventDefault();
-      console.log(form);
-      
+      console.log(formModProfil[0].value);
+      let boolModProf = formModProfilVal(); 
+      console.log(boolModProf);  
+      if (boolModProf) {
+        formModProfil.submit();
+      }
+    });
+
+    function formModProfilVal() {
+      let nom = formModProfil[0].value.trim().replace(/\s+/g, ' ');
+      if (nom == "") {
+        document.getElementById("nom").textContent = "Veuillez remplir ce champ";        
+        return false;
+      }  else {
+        document.getElementById("nom").textContent = "";
+        return true;
+      } 
+    }
+
+    /**Listenner pour le form ajoutPrive */
+    btn = document.querySelector("[data-js-submit]");    
+    let form = document.querySelector('[data-name="form"]');
+    //console.log(btn); 
+    btn.addEventListener("click", (e)=>{      
+      e.preventDefault();
+      console.log(form);      
       let bool = formValidator();
-      console.log(bool);
-      
+      console.log(bool);      
       if (bool) {
         form.submit();
       }
     })
+
     
     /* document.querySelectorAll("#ajout").forEach(function (e) {
       //e.preventDefault();      
@@ -421,7 +444,7 @@ window.addEventListener('load', function () {
     }); */
 
     /**
-     * Methode de validation du form d'ajout
+     * Methode de validation du form d'ajout privé
      */
     function formValidator() {
       let formValid = true,      
@@ -485,7 +508,6 @@ window.addEventListener('load', function () {
       } 
       console.log(formValid);
       if (formValid === true) {
-
         return true;
       }
     }
