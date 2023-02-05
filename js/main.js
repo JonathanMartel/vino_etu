@@ -9,7 +9,7 @@
  */
 
 //const BaseURL = "https://vino-etu.000webhostapp.com/";
-const BaseURL = "http://localhost:8080/vino_etu/";
+const BaseURL = "http://localhost/vino_etu/";
 
 /* import ValidateForm from "./ValidateForm.js"; */
 //console.log(BaseURL);
@@ -289,14 +289,14 @@ window.addEventListener('load', function () {
       });
 
 
-          /**
+    /**
      * Modification d'une bouteille
      */
     document.querySelectorAll(".modifierBouteille").forEach(function(e) {
       console.log(e);
-      e.addEventListener('click', function(evt){
+      e.addEventListener('click', function(evt){        
         //console.log(id);
-        let bouteille = {
+        var bouteille = {
           nom : document.querySelector(".nom_bouteille"),
           id : document.querySelector("[name=id]"),
           millesime : document.querySelector("[name='millesime']"),
@@ -307,25 +307,90 @@ window.addEventListener('load', function () {
           date_achat : document.querySelector("[name='date_achat']"),
           prix_achat : document.querySelector("[name='prix_achat']"),
           garde_jusqua : document.querySelector("[name='garde_jusqua']"),
-          notes : document.querySelector("[name='notes']"),
-          
+          notes : document.querySelector("[name='notes']"),          
         };
-
-
+        let boolModifPrive = formValModPrive();
+        
+        /**Validation des champs de modif des bouteille privé */
+        console.log(bouteille.quantite.value);
+        function formValModPrive() {
+          let prixRex = /^\d+.\d{1,2}$/,
+              nomRex = /^([0-9a-zA-Z\_&':]+\s?){1,6}$/i,
+              notesRex = /^10|[1-9]$/,
+              paysRex = /^\D*$/i,
+              quantiteRex = /^[1-9]{0,4}$/i,
+              garde_jusquaRex = /^\d{4}|[a-z]{2,4}$/i,
+              millesimeRex = /(^[1|2]\d{3}$)/;
+              console.log(bouteille.nom.value.trim().replace(/\s+/g, ' '));
+          if (nomRex.test(bouteille.nom.value.trim().replace(/\s+/g, ' ')) == false) {
+            document.getElementById("nom").textContent = "Veuillez remplir ce champ";
+            return false;
+          } else {
+            document.getElementById("nom").textContent = "";
+          }           
+          if (millesimeRex.test(bouteille.millesime.value.trim()) == false) {
+            document.getElementById("millesime").textContent = "Veuillez remplir ce champ";
+            return false;
+          } else {
+            document.getElementById("millesime").textContent = "";
+          } 
+          if (quantiteRex.test(bouteille.quantite.value.trim()) == false) {
+            document.getElementById("quantite").textContent = "Veuillez entrer une chifre";
+            return false;
+          } else {
+            document.getElementById("quantite").textContent = "";
+          } 
+          if (bouteille.date_achat.value == "") {
+            document.getElementById("date_achat").textContent = "Champ obligatoire";            
+            return false;
+          } else {
+            document.getElementById("date_achat").textContent = "";
+          }
+          if (garde_jusquaRex.test(bouteille.garde_jusqua.value) == false) {
+            document.getElementById("garde_jusqua").textContent = "Champ obligatoire";
+            return false;
+          } else {
+            document.getElementById("garde_jusqua").textContent = "";
+          }
+          if (prixRex.test(bouteille.prix_achat.value) == false) {
+            document.getElementById("prix_achat").textContent = "Champ obligatoire";
+            return false;
+          } else {
+            document.getElementById("prix_achat").textContent = "";
+          } 
+          if (notesRex.test(bouteille.notes.value) == false) {
+            document.getElementById("notes").textContent = "Champ obligatoire";
+            return false;
+          } else {
+            document.getElementById("notes").textContent = "";
+          }
+          console.log(paysRex.test(bouteille.pays.value.trim().replace(/\s+/g, ' ')));
+          if (paysRex.test(bouteille.pays.value.trim().replace(/\s+/g, ' ')) == false || bouteille.pays.value.trim().replace(/\s+/g, '') == "") {
+            document.getElementById("pays").textContent = "Champ obligatoire";
+            return false;
+          } else {
+            document.getElementById("pays").textContent = "";
+          }      
+          console.log("submit");
+          return true;
+        }
+         console.log(bouteille.pays.value.trim().replace(/\s+/g, ' '));
         var param = {
           "id":bouteille.id.value,
-          "nom":bouteille.nom.value,
-          "pays":bouteille.pays.value,
-          "millesime":bouteille.millesime.value,
+          "nom":bouteille.nom.value.trim().replace(/\s+/g, ' '),
+          "pays":bouteille.pays.value.trim().replace(/\s+/g, ' '),
+          "millesime":bouteille.millesime.value.trim(),
           "id_cellier": bouteille.id_cellier.value,
           "id_type": bouteille.id_type.value,
-          "quantite":bouteille.quantite.value,
+          "quantite":bouteille.quantite.value.trim(),
           "date_achat":bouteille.date_achat.value,
-          "prix_achat":bouteille.prix_achat.value,
-          "garde_jusqua":bouteille.garde_jusqua.value,
-          "notes":bouteille.notes.value,
+          "prix_achat":bouteille.prix_achat.value.trim(),
+          "garde_jusqua":bouteille.garde_jusqua.value.trim(),
+          "notes":bouteille.notes.value.trim(),
         };
-        let requete = new Request(BaseURL+"index.php?requete=modifierBouteilleCellier", {method: 'POST', body: JSON.stringify(param)});
+    if (boolModifPrive) {      
+    
+      let requete = new Request(BaseURL+"index.php?requete=modifierBouteilleCellier", {method: 'POST', body: JSON.stringify(param)});
 
       fetch(requete)
       .then(response => {
@@ -344,10 +409,11 @@ window.addEventListener('load', function () {
         window.location = BaseURL + "?requete=listecellier";
       });
         
-
+    }
       })
     });
-          /**
+
+    /**
      * Modification d'une bouteille saq
      */
     document.querySelectorAll(".modifierBouteillesaq").forEach(function(e) {
@@ -362,7 +428,6 @@ window.addEventListener('load', function () {
           garde_jusqua : document.querySelector("[name='garde_jusqua']"),
           notes : document.querySelector("[name='notes']"),
         };
-
 
         var param = {
           "id":bouteille.id.value,
@@ -390,57 +455,73 @@ window.addEventListener('load', function () {
         window.location = BaseURL + "?requete=listecellier";
 
       });
-        
-
     })
     });
 
-    btn = document.querySelector("[data-js-submit]");//#ajout
-    
-    let form = document.querySelector('[data-name="form"]');
-    console.log(btn); 
-    btn.addEventListener("click", (e)=>{
-      
+    /**Listenner pour modif profil */
+    let btnModProfil = this.document.querySelector('.top.button-28'),
+        formModProfil= this.document.querySelector('#modProfilForm');
+    //console.log(formModProfil);
+    btnModProfil.addEventListener('click', (e) => {
       e.preventDefault();
-      console.log(form);
-      
+      console.log(formModProfil[0].value);
+      let boolModProf = formModProfilVal(); 
+      console.log(boolModProf);  
+      if (boolModProf) {
+        formModProfil.submit();
+      }
+    });
+
+    /**Methode de validation du form modification du profil
+     * @return bool
+     */
+    function formModProfilVal() {
+      let nom = formModProfil[0].value.trim().replace(/\s+/g, ' ');
+      if (nom == "") {
+        document.getElementById("nom").textContent = "Veuillez remplir ce champ";        
+        return false;
+      }  else {
+        document.getElementById("nom").textContent = "";
+        return true;
+      } 
+    }
+
+    /**Listenner pour le form ajoutPrive */
+    let btn = document.querySelector("[data-js-submit]");    
+    let form = document.querySelector('[data-name="form"]');
+    //console.log(btn); 
+    btn.addEventListener("click", (e)=>{      
+      e.preventDefault();
+      console.log(form);      
       let bool = formValidator();
-      console.log(bool);
-      
+      console.log(bool);      
       if (bool) {
         form.submit();
       }
-    })
+    })    
     
-    /* document.querySelectorAll("#ajout").forEach(function (e) {
-      //e.preventDefault();      
-      e.addEventListener("click", function(evt) {
-        e.preventDefault;
-        evt.addEventListener("onsubmit", formValidator());       
-      });
-    }); */
-
     /**
-     * Methode de validation du form d'ajout
+     * Methode de validation du form d'ajout privé
      */
     function formValidator() {
       let formValid = true,      
-          nom = form[1].value,
-          millesime = form[2].value,
+          nom = form[1].value.trim().replace(/\s+/g, ' '),
+          millesimeRex = /(^[1|2]\d{3}$)/, //form[2].value,// 
+          millesime = millesimeRex.test(form[2].value),
           quantite = form[3].value,
           prix_achat = form[4].value,
-          pays = form[5].value,
+          pays = form[5].value.trim().replace(/\s+/g, ' '),
           date_achat = form[6].value,
-          garde_jusqua = form[7].value;
-        console.log(garde_jusqua); 
-      if (nom == "") {
+          garde_jusqua = form[7].value.trim().replace(/\s+/g, ' ');
+        console.log(millesime); //str.replace(/\s+/g, ' ')
+      if (nom.trim() == "") {
         document.getElementById("nom").textContent = "Veuillez remplir ce champ";
         formValid = false;
         return false;
       } else {
         document.getElementById("nom").textContent = "";
       } 
-      if (millesime == "") {
+      if (millesime == false) {
         document.getElementById("millesime").textContent = "Champ obligatoire";
         formValid = false;
         return false;
@@ -484,10 +565,15 @@ window.addEventListener('load', function () {
       } 
       console.log(formValid);
       if (formValid === true) {
-
         return true;
       }
     }
+
+    
+
+
+
+
 
 });
 
