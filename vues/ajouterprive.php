@@ -25,7 +25,7 @@
         </div>
         <div>
             
-            Date d'achat: 
+            Date d'achat: <br> 
             <span id="date_achat" class="error-message"></span>
             <input type="date" name="date_achat" placeholder="Date d'achat" />            
              
