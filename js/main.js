@@ -317,7 +317,7 @@ window.addEventListener('load', function () {
           let prixRex = /^\d+.\d{1,2}$/,
               nomRex = /^([0-9a-zA-Z\_&':]+\s?){1,6}$/i,
               notesRex = /^10|[1-9]$/,
-              paysRex = /^\D*$/i,
+              paysRex = /([a-z\']+\s?){1,6}$/i,
               quantiteRex = /^[1-9]{0,4}$/i,
               garde_jusquaRex = /^\d{4}|[a-z]{2,4}$/i,
               millesimeRex = /(^[1|2]\d{3}$)/;
@@ -476,8 +476,9 @@ window.addEventListener('load', function () {
      * @return bool
      */
     function formModProfilVal() {
-      let nom = formModProfil[0].value.trim().replace(/\s+/g, ' ');
-      if (nom == "") {
+      let nomRex = /^([0-9a-zA-Z\_&':]+\s?){1,3}$/i,
+          nom = formModProfil[0].value;
+      if (nomRex.test(nom) == false) {
         document.getElementById("nom").textContent = "Veuillez remplir ce champ";        
         return false;
       }  else {
@@ -502,71 +503,68 @@ window.addEventListener('load', function () {
     
     /**
      * Methode de validation du form d'ajout privé
+     * @return bool
      */
-    function formValidator() {
-      let formValid = true,      
+    function formValidator() {       
+      let nomRex = /^([0-9a-zA-Z\_&':]+\s?){1,6}$/i,      
           nom = form[1].value.trim().replace(/\s+/g, ' '),
-          millesimeRex = /(^[1|2]\d{3}$)/, //form[2].value,// 
+          millesimeRex = /(^[1|2]\d{3}$)/, 
           millesime = millesimeRex.test(form[2].value),
           quantite = form[3].value,
-          prix_achat = form[4].value,
+          prixRex = /^(\d+)(.\d{1,2})?$/,
+          prix_achat = form[4].value.trim().replace(/\s+/g, ''),
+          paysRex = /([a-z\']+\s?){1,6}$/i,
           pays = form[5].value.trim().replace(/\s+/g, ' '),
           date_achat = form[6].value,
+          garde_jusquaRex = /^\d{4}|[a-z]{2,4}$/i,
           garde_jusqua = form[7].value.trim().replace(/\s+/g, ' ');
         console.log(millesime); //str.replace(/\s+/g, ' ')
-      if (nom.trim() == "") {
-        document.getElementById("nom").textContent = "Veuillez remplir ce champ";
-        formValid = false;
+        console.log(nomRex.test(form[1].value));
+
+      if (nomRex.test(nom) == false) {
+        document.getElementById("nom").textContent = "Veuillez remplir ce champ";        
         return false;
       } else {
         document.getElementById("nom").textContent = "";
       } 
       if (millesime == false) {
-        document.getElementById("millesime").textContent = "Champ obligatoire";
-        formValid = false;
+        document.getElementById("millesime").textContent = "Champ obligatoire";        
         return false;
       } else {
         document.getElementById("millesime").textContent = "";
       } 
       if (quantite < 1) {
-        document.getElementById("quantite").textContent = "Veuillez entrer une chifre";
-        formValid = false;
+        document.getElementById("quantite").textContent = "Veuillez entrer une chifre";        
         return false;
       } else {
         document.getElementById("quantite").textContent = "";
       } 
-      if (prix_achat == "") {
+      if (prixRex.test(prix_achat) == false) {
         document.getElementById("prix_achat").textContent = "Champ obligatoire";
-        formValid = false;
         return false;
       } else {
         document.getElementById("prix_achat").textContent = "";
       } 
-      if (pays == "") {
+      if (paysRex.test(pays) == false) {
         document.getElementById("pays").textContent = "Champ obligatoire";
-        formValid = false;
         return false;
       } else {
         document.getElementById("pays").textContent = "";
       } 
       if (date_achat == "") {
         document.getElementById("date_achat").textContent = "Champ obligatoire";
-        formValid = false;
         return false;
       } else {
         document.getElementById("date_achat").textContent = "";
       }
-      if (garde_jusqua == "") {
+      if (garde_jusquaRex.test(garde_jusqua) == false) {
         document.getElementById("garde_jusqua").textContent = "Champ obligatoire";
-        formValid = false;
         return false;
       } else {
         document.getElementById("garde_jusqua").textContent = "";
       } 
-      console.log(formValid);
-      if (formValid === true) {
-        return true;
-      }
+      console.log("submit");      
+      return true;      
     }
 
     
