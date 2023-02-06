@@ -11,14 +11,12 @@
 //const BaseURL = "https://vino-etu.000webhostapp.com/";
 const BaseURL = "http://localhost/vino_etu/";
 
+//import Validation from "./validation.js";
 /* import ValidateForm from "./ValidateForm.js"; */
-//console.log(BaseURL);
 
 window.addEventListener('load', function () {
 
-  // console.log("load");
-
-
+  
   /*
   * Gerer l evenement lorsqu on clique sur le boutton  'Boire'
   */
@@ -177,18 +175,7 @@ window.addEventListener('load', function () {
         date_achat : document.querySelector("[name='date_achat']"),
         garde_jusqua : document.querySelector("[name='garde_jusqua']"),
       };
-/*    2ieme let bouteille = {
-      nom: document.querySelector(".nom_bouteille"),
-      id_cellier: document.querySelector("[name='id_cellier']"),
-      millesime: document.querySelector("[name='millesime']"),
-      quantite: document.querySelector("[name='quantite']"),
-      date_achat: document.querySelector("[name='date_achat']"),
-      prix_saq: document.querySelector("[name='prix_saq']"),
-      garde_jusqua: document.querySelector("[name='garde_jusqua']"),
-      notes: document.querySelector("[name='notes']"),
-      pays: document.querySelector("[name='pays']"),
-      id_type: document.querySelector("[name='id_type']"),
-    }; */
+
 
 
     liste.addEventListener("click", function (evt) {
@@ -216,19 +203,7 @@ window.addEventListener('load', function () {
           "quantite":bouteille.quantite.value,
           "millesime":bouteille.millesime.value,
         };
-    /*     var param = {
-          "nom": bouteille.nom.value,
-          "id_bouteille": bouteille.nom.dataset.id,
-          "id_cellier": bouteille.id_cellier.value,
-          "date_achat": bouteille.date_achat.value,
-          "garde_jusqua": bouteille.garde_jusqua.value,
-          "notes": bouteille.date_achat.value,
-          "prix_saq": bouteille.prix_saq.value,
-          "quantite": bouteille.quantite.value,
-          "millesime": bouteille.millesime.value,
-          "pays": bouteille.pays.value,
-          "id_type": bouteille.id_type.value,
-        }; */
+    
         let requete = new Request(BaseURL + "index.php?requete=ajouterNouvelleBouteilleCellier", { method: 'POST', body: JSON.stringify(param) });
         console.log(JSON.stringify(param));
         fetch(requete)
@@ -317,7 +292,7 @@ window.addEventListener('load', function () {
           let prixRex = /^\d+.\d{1,2}$/,
               nomRex = /^([0-9a-zA-Z\_&':]+\s?){1,6}$/i,
               notesRex = /^10|[1-9]$/,
-              paysRex = /^\D*$/i,
+              paysRex = /([a-z\']+\s?){1,6}$/i,
               quantiteRex = /^[1-9]{0,4}$/i,
               garde_jusquaRex = /^\d{4}|[a-z]{2,4}$/i,
               millesimeRex = /(^[1|2]\d{3}$)/;
@@ -458,26 +433,115 @@ window.addEventListener('load', function () {
     })
     });
 
-    /**Listenner pour modif profil */
-    let btnModProfil = this.document.querySelector('.top.button-28'),
-        formModProfil= this.document.querySelector('#modProfilForm');
-    //console.log(formModProfil);
-    btnModProfil.addEventListener('click', (e) => {
-      e.preventDefault();
-      console.log(formModProfil[0].value);
-      let boolModProf = formModProfilVal(); 
-      console.log(boolModProf);  
-      if (boolModProf) {
-        formModProfil.submit();
-      }
-    });
+    let currentRequete = window.location.search.substring(window.location.pathname.lastIndexOf('/'));
+    if (currentRequete.includes("ajouterNouvelleBouteilleCellierPrive") == true) {
+      console.log(window.location.search);//== 'requete' .substring(window.location.pathname.lastIndexOf('/'))
+      console.log(currentRequete.includes("ajouterNouvelleBouteilleCellierPrive"));
+      /**Listenner pour le form ajoutPrive */
+      //document.querySelectorAll("#ajoutPrive").forEach(function(e){})
+            
+      let btn = this.document.querySelector("#ajoutPrive"); // [data-js-submit]      
+      let form = document.getElementById("ajouterPrive");  // '[data-name="form"]'    
+      btn.addEventListener("click", function (evt) { 
+        evt.preventDefault(); 
+        console.log("hola");               
+      
+        console.log(formValidator());      
+        let bool = formValidator();
+        console.log(bool);      
+        if (bool) {
+          form.submit();
+        }    
+      })
+       /**
+     * Methode de validation du form d'ajout privé
+     * @return bool
+    */
+    function formValidator() {       
+      let nomRex = /^([0-9a-zA-Z\_&':]+\s?){1,6}$/i,      
+          nom = document.querySelector("[name='nom']").value.trim().replace(/\s+/g, ' '),
+          millesimeRex = /(^[1|2]\d{3}$)/, 
+          millesime = millesimeRex.test(form[2].value),
+          quantite = form[3].value,
+          prixRex = /^(\d+)(.\d{1,2})?$/,
+          prix_achat = form[4].value.trim().replace(/\s+/g, ''),
+          paysRex = /([a-z\']+\s?){1,6}$/i,
+          pays = form[5].value.trim().replace(/\s+/g, ' '),
+          date_achat = form[6].value,
+          garde_jusquaRex = /^\d{4}|[a-z]{2,4}$/i,
+          garde_jusqua = form[7].value.trim().replace(/\s+/g, ' ');
+        console.log(millesime); //str.replace(/\s+/g, ' ')
+        console.log(nomRex.test(form[1].value));
 
-    /**Methode de validation du form modification du profil
+      if (nomRex.test(nom) == false) {
+        document.getElementById("nom").textContent = "Veuillez remplir ce champ";        
+        return false;
+      } else {
+        document.getElementById("nom").textContent = "";
+      } 
+      if (millesime == false) {
+        document.getElementById("millesime").textContent = "Champ obligatoire";        
+        return false;
+      } else {
+        document.getElementById("millesime").textContent = "";
+      } 
+      if (quantite < 1) {
+        document.getElementById("quantite").textContent = "Veuillez entrer une chifre";        
+        return false;
+      } else {
+        document.getElementById("quantite").textContent = "";
+      } 
+      if (prixRex.test(prix_achat) == false) {
+        document.getElementById("prix_achat").textContent = "Champ obligatoire";
+        return false;
+      } else {
+        document.getElementById("prix_achat").textContent = "";
+      } 
+      if (paysRex.test(pays) == false) {
+        document.getElementById("pays").textContent = "Champ obligatoire";
+        return false;
+      } else {
+        document.getElementById("pays").textContent = "";
+      } 
+      if (date_achat == "") {
+        document.getElementById("date_achat").textContent = "Champ obligatoire";
+        return false;
+      } else {
+        document.getElementById("date_achat").textContent = "";
+      }
+      if (garde_jusquaRex.test(garde_jusqua) == false) {
+        document.getElementById("garde_jusqua").textContent = "Champ obligatoire";
+        return false;
+      } else {
+        document.getElementById("garde_jusqua").textContent = "";
+      } 
+      console.log("submit");      
+      return true;      
+    }    
+    }   
+    
+     
+    if (currentRequete.includes("profilmod") == true) {
+        /**Listenner pour modif profil */
+      let btnModProfil = document.querySelector("[name='btnModProfil']"),
+          formModProfil= document.querySelector('#modProfilForm');
+      //console.log(formModProfil[0]);
+      document.querySelector("[name='btnModProfil']").addEventListener('click', function (e) {
+        e.preventDefault();      
+        let boolModProf = formModProfilVal(); 
+        console.log(boolModProf);  
+        if (boolModProf) {
+          formModProfil.submit();
+        }
+      });
+      /**Methode de validation du form modification du profil
      * @return bool
      */
-    function formModProfilVal() {
-      let nom = formModProfil[0].value.trim().replace(/\s+/g, ' ');
-      if (nom == "") {
+    function formModProfilVal() { 
+      let nomRex = /^([0-9a-zA-Z\_&':]+\s?){1,3}$/i,
+          nom = document.querySelector("[name='nom']");//formModProfil[0].value;
+          console.log(nom);
+      if (nomRex.test(nom.value) == false) {
         document.getElementById("nom").textContent = "Veuillez remplir ce champ";        
         return false;
       }  else {
@@ -485,94 +549,7 @@ window.addEventListener('load', function () {
         return true;
       } 
     }
-
-    /**Listenner pour le form ajoutPrive */
-    let btn = document.querySelector("[data-js-submit]");    
-    let form = document.querySelector('[data-name="form"]');
-    //console.log(btn); 
-    btn.addEventListener("click", (e)=>{      
-      e.preventDefault();
-      console.log(form);      
-      let bool = formValidator();
-      console.log(bool);      
-      if (bool) {
-        form.submit();
-      }
-    })    
-    
-    /**
-     * Methode de validation du form d'ajout privé
-     */
-    function formValidator() {
-      let formValid = true,      
-          nom = form[1].value.trim().replace(/\s+/g, ' '),
-          millesimeRex = /(^[1|2]\d{3}$)/, //form[2].value,// 
-          millesime = millesimeRex.test(form[2].value),
-          quantite = form[3].value,
-          prix_achat = form[4].value,
-          pays = form[5].value.trim().replace(/\s+/g, ' '),
-          date_achat = form[6].value,
-          garde_jusqua = form[7].value.trim().replace(/\s+/g, ' ');
-        console.log(millesime); //str.replace(/\s+/g, ' ')
-      if (nom.trim() == "") {
-        document.getElementById("nom").textContent = "Veuillez remplir ce champ";
-        formValid = false;
-        return false;
-      } else {
-        document.getElementById("nom").textContent = "";
-      } 
-      if (millesime == false) {
-        document.getElementById("millesime").textContent = "Champ obligatoire";
-        formValid = false;
-        return false;
-      } else {
-        document.getElementById("millesime").textContent = "";
-      } 
-      if (quantite < 1) {
-        document.getElementById("quantite").textContent = "Veuillez entrer une chifre";
-        formValid = false;
-        return false;
-      } else {
-        document.getElementById("quantite").textContent = "";
-      } 
-      if (prix_achat == "") {
-        document.getElementById("prix_achat").textContent = "Champ obligatoire";
-        formValid = false;
-        return false;
-      } else {
-        document.getElementById("prix_achat").textContent = "";
-      } 
-      if (pays == "") {
-        document.getElementById("pays").textContent = "Champ obligatoire";
-        formValid = false;
-        return false;
-      } else {
-        document.getElementById("pays").textContent = "";
-      } 
-      if (date_achat == "") {
-        document.getElementById("date_achat").textContent = "Champ obligatoire";
-        formValid = false;
-        return false;
-      } else {
-        document.getElementById("date_achat").textContent = "";
-      }
-      if (garde_jusqua == "") {
-        document.getElementById("garde_jusqua").textContent = "Champ obligatoire";
-        formValid = false;
-        return false;
-      } else {
-        document.getElementById("garde_jusqua").textContent = "";
-      } 
-      console.log(formValid);
-      if (formValid === true) {
-        return true;
-      }
     }
-
-    
-
-
-
 
 
 });
