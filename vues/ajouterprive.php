@@ -8,7 +8,7 @@
 
         <h2>Ajout d'une bouteille privé dans un cellier</h2>
        
-        <form data-name="form" action="?requete=ajouterNouvelleBouteilleCellierPrive&id=<?= $datacell[0]['id'] ?>" method="post">
+        <form data-name="form" id="ajouterPrive" action="?requete=ajouterNouvelleBouteilleCellierPrive&id=<?= $datacell[0]['id'] ?>" method="post">
             
         <div>
             <input type="hidden" name="id_cellier" value=<?= $datacell[0]['id'] ?> />
@@ -41,7 +41,7 @@
             <div class="error-message"></div>
         </div>
         <div>            
-            <button data-js-submit id="ajout" class="top button-28">Ajouter</button>
+            <button id="ajoutPrive" class="top button-28">Ajouter</button>
         </div>
         </form>
         
