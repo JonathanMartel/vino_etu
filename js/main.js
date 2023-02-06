@@ -9,7 +9,8 @@
  */
 
 //const BaseURL = "https://vino-etu.000webhostapp.com/";
-const BaseURL = "http://localhost/vino_etu/";
+const BaseURL = "http://localhost:8080/vino_etu/";
+//const BaseURL = "http://localhost/vino_etu/";
 
 /* import ValidateForm from "./ValidateForm.js"; */
 //console.log(BaseURL);
@@ -301,7 +302,7 @@ window.addEventListener('load', function () {
       });
 
 
-          /**
+    /**
      * Modification d'une bouteille
      */
     document.querySelectorAll(".modifierBouteille").forEach(function(e) {
@@ -359,7 +360,8 @@ window.addEventListener('load', function () {
 
       })
     });
-          /**
+    
+    /**
      * Modification d'une bouteille saq
      */
     document.querySelectorAll(".modifierBouteillesaq").forEach(function(e) {
@@ -384,27 +386,35 @@ window.addEventListener('load', function () {
           "garde_jusqua":bouteille.garde_jusqua.value,
           "notes":bouteille.notes.value,
         };
-        let requete = new Request(BaseURL+"index.php?requete=modifierBouteilleCelliersaq", {method: 'POST', body: JSON.stringify(param)});
 
-      fetch(requete)
-      .then(response => {
-        if (response.status === 200) {
-          return response.json();
-        } else {
-          throw new Error('Erreur');
-        }
-      })
-      .then(response => {
-        console.log(response);
-      
-      }).catch(error => {
-        console.error(error);
-        window.location = BaseURL + "?requete=listecellier";
-
-      });
+        // Said :
+        console.log('Param : ');
+        console.log(param);
         
 
-    })
+        // Validation des champs
+        let status = validModifBouteuilleSaq(param);
+        if(status)
+        {              
+          let requete = new Request(BaseURL+"index.php?requete=modifierBouteilleCelliersaq", {method: 'POST', body: JSON.stringify(param)});
+          fetch(requete)
+          .then(response => {
+            if (response.status === 200) {
+              return response.json();
+            } else {
+              throw new Error('Erreur');
+            }
+          })
+          .then(response => {
+            console.log(response);
+          
+          }).catch(error => {
+            console.error(error);
+            window.location = BaseURL + "?requete=listecellier";
+
+          });
+        }    
+      })
     });
 
     btn = document.querySelector("[data-js-submit]");//#ajout
@@ -460,7 +470,7 @@ window.addEventListener('load', function () {
         document.getElementById("millesime").textContent = "";
       } 
       if (quantite < 1) {
-        document.getElementById("quantite").textContent = "Veuillez entrer une chifre";
+        document.getElementById("quantite").textContent = "Veuillez entrer un chiffre";
         formValid = false;
         return false;
       } else {
@@ -538,7 +548,7 @@ window.addEventListener('load', function () {
 
       // Valider Quantite
       if (quantite < 1) {
-        document.getElementById("quantite").textContent = "Veuillez entrer une chifre";
+        document.getElementById("quantite").textContent = "Veuillez entrer un chiffre";
         formValid = false;
         return false;
       } else {
@@ -565,6 +575,79 @@ window.addEventListener('load', function () {
 
       console.log(formValid);
       
+      if (formValid === true) {
+        return true;
+      }
+    }
+
+    
+    /**
+     * Methode de validation lors de la modification d une bouteuille SAQ
+    */
+    function validModifBouteuilleSaq(params) {
+          
+      let formValid = true,  
+          millesime = params.millesime;
+          notes = params.notes; 
+          date_achat = params.date_achat; 
+          garde_jusqua = params.garde_jusqua;
+
+      // Valider date achat
+      if (date_achat == "") {
+        document.getElementById("date_achat").textContent = "Champ obligatoire";
+        formValid = false;
+        return false;
+      } else {
+        document.getElementById("date_achat").textContent = "";
+      }
+      
+      // Valider garde_jusqua
+      if (garde_jusqua == "") {
+        document.getElementById("garde_jusqua").textContent = "Champ obligatoire";
+        formValid = false;
+        return false;
+      } else {
+        document.getElementById("garde_jusqua").textContent = "";
+      } 
+
+      // Valider date de recolte
+      if (millesime == "") {
+        document.getElementById("millesime").textContent = "Champ obligatoire";
+        formValid = false;
+        return false;
+      } else {
+        // N'est pas un chiffre
+        if (!millesime.match(/^[0-9]{4}$/)){
+          document.getElementById("millesime").textContent = "Millesime doit etre composé uniquement de 4 chiffres";
+          formValid = false;
+          return false;
+        }else{  
+            if (millesime > '2023') {
+              document.getElementById("millesime").textContent = "Millesime ne doit pas dépassée 2023";
+              formValid = false;
+              return false;
+            }else{
+              document.getElementById("millesime").textContent = "";
+            } 
+        }
+      }
+
+      // Valider Notes
+      if (!notes.match(/^[0-9]+$/)){
+        document.getElementById("notes").textContent = "Notes doit etre numerique";
+        formValid = false;
+        return false;
+      }else{  
+        if ((notes < 1) || (notes > 10)) {
+          document.getElementById("notes").textContent = "Veuillez entrer un chiffre de 1 à 10";
+          formValid = false;
+          return false;
+        } else {
+          document.getElementById("notes").textContent = "";
+        }
+      }
+
+      // Retourner resultat
       if (formValid === true) {
         return true;
       }
