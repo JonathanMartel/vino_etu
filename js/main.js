@@ -534,12 +534,12 @@ window.addEventListener('load', function () {
       } else {
         // N'est pas un chiffre
         if (!millesime.match(/^[0-9]{4}$/)){
-          document.getElementById("millesime").textContent = "Millesime doit etre composé uniquement de 4 chiffres";
+          document.getElementById("millesime").textContent = "année de 4 chiffres";
           formValid = false;
           return false;
         }else{  
             if (millesime > '2023') {
-              document.getElementById("millesime").textContent = "Millesime ne doit pas dépassée 2023";
+              document.getElementById("millesime").textContent = "Millesime inférieure 2023";
               formValid = false;
               return false;
             }else{
@@ -550,7 +550,7 @@ window.addEventListener('load', function () {
 
       // Valider Quantite
       if (!quantite.match(/^[0-9]+$/)){
-        document.getElementById("quantite").textContent = "Quantite doit etre numerique";
+        document.getElementById("quantite").textContent = "Valeur numerique";
         formValid = false;
         return false;
       }else{  
@@ -625,12 +625,12 @@ window.addEventListener('load', function () {
       } else {
         // N'est pas un chiffre
         if (!millesime.match(/^[0-9]{4}$/)){
-          document.getElementById("millesime").textContent = "Millesime doit etre composé uniquement de 4 chiffres";
+          document.getElementById("millesime").textContent = " Année 4 de chiffres";
           formValid = false;
           return false;
         }else{  
             if (millesime > '2023') {
-              document.getElementById("millesime").textContent = "Millesime ne doit pas dépassée 2023";
+              document.getElementById("millesime").textContent = "Millesime inférieure 2023";
               formValid = false;
               return false;
             }else{
@@ -641,12 +641,12 @@ window.addEventListener('load', function () {
 
       // Valider Notes
       if (!notes.match(/^[0-9]+$/)){
-        document.getElementById("notes").textContent = "Notes doit etre numerique";
+        document.getElementById("notes").textContent = "Valeur numerique";
         formValid = false;
         return false;
       }else{  
         if ((notes < 1) || (notes > 10)) {
-          document.getElementById("notes").textContent = "Veuillez entrer un chiffre de 1 à 10";
+          document.getElementById("notes").textContent = "Chiffre de 1 à 10";
           formValid = false;
           return false;
         } else {
