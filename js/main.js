@@ -233,13 +233,9 @@ window.addEventListener('load', function () {
           "id_type": bouteille.id_type.value,
         }; */
         
-        // Said :
-        
-        console.log('Param : ');
-        console.log(param);
-        
+        // Said :    
         // Validation des champs
-        let status = validAjoutNouvelleBouteuilleSaq(param);
+        let status = validAjoutNouvelleBouteilleSaq(param);
         if(status)
         {  
           let requete = new Request(BaseURL + "index.php?requete=ajouterNouvelleBouteilleCellier", { method: 'POST', body: JSON.stringify(param) });
@@ -388,12 +384,9 @@ window.addEventListener('load', function () {
         };
 
         // Said :
-        console.log('Param : ');
-        console.log(param);
         
-
         // Validation des champs
-        let status = validModifBouteuilleSaq(param);
+        let status = validModifBouteilleSaq(param);
         if(status)
         {              
           let requete = new Request(BaseURL+"index.php?requete=modifierBouteilleCelliersaq", {method: 'POST', body: JSON.stringify(param)});
@@ -513,9 +506,9 @@ window.addEventListener('load', function () {
 
     // SAID ..
     /**
-     * Methode de validation de l'ajout d une nouvelle bouteuille SAQ
+     * Methode de validation de l'ajout d une nouvelle bouteille SAQ
      */
-    function validAjoutNouvelleBouteuilleSaq(params) {
+    function validAjoutNouvelleBouteilleSaq(params) {
       
       let formValid = true,  
           id_bouteille = params.id_bouteille;    
@@ -538,21 +531,36 @@ window.addEventListener('load', function () {
         document.getElementById("millesime").textContent = "Champ obligatoire";
         formValid = false;
         return false;
-      } else if (millesime > '2023') {
-        document.getElementById("millesime").textContent = "Millesime ne doit pas dépassée 2023";
-        formValid = false;
-        return false;
-      }else{
-        document.getElementById("millesime").textContent = "";
-      } 
+      } else {
+        // N'est pas un chiffre
+        if (!millesime.match(/^[0-9]{4}$/)){
+          document.getElementById("millesime").textContent = "Millesime doit etre composé uniquement de 4 chiffres";
+          formValid = false;
+          return false;
+        }else{  
+            if (millesime > '2023') {
+              document.getElementById("millesime").textContent = "Millesime ne doit pas dépassée 2023";
+              formValid = false;
+              return false;
+            }else{
+              document.getElementById("millesime").textContent = "";
+            } 
+        }
+      }
 
       // Valider Quantite
-      if (quantite < 1) {
-        document.getElementById("quantite").textContent = "Veuillez entrer un chiffre";
+      if (!quantite.match(/^[0-9]+$/)){
+        document.getElementById("quantite").textContent = "Quantite doit etre numerique";
         formValid = false;
         return false;
-      } else {
-        document.getElementById("quantite").textContent = "";
+      }else{  
+        if (quantite < 1){
+          document.getElementById("quantite").textContent = "Veuillez entrer un chiffre";
+          formValid = false;
+          return false;
+        } else {
+          document.getElementById("quantite").textContent = "";
+        }
       }
 
       // Valider date achat
@@ -573,8 +581,7 @@ window.addEventListener('load', function () {
         document.getElementById("garde_jusqua").textContent = "";
       } 
 
-      console.log(formValid);
-      
+      // Retourner Resultat      
       if (formValid === true) {
         return true;
       }
@@ -582,9 +589,9 @@ window.addEventListener('load', function () {
 
     
     /**
-     * Methode de validation lors de la modification d une bouteuille SAQ
+     * Methode de validation lors de la modification d une bouteille SAQ
     */
-    function validModifBouteuilleSaq(params) {
+    function validModifBouteilleSaq(params) {
           
       let formValid = true,  
           millesime = params.millesime;
