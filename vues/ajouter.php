@@ -12,11 +12,16 @@
 
         </ul>
             <div >
+                <span id="nom_bouteille" class="error-message"></span>    
                 <p>Nom : <span data-id="" class="nom_bouteille"></span></p>
-                <p>Millesime : <input name="millesime"></p>
+                <span id="millesime" class="error-message"></span>
+                <p>Millesime : <input name="millesime" ></p>
+                <span id="quantite" class="error-message"></span>
                 <p>Quantite : <input name="quantite" value="1"></p>
                 <!-- <p>Notes sur 10: <input name="notes"></p> -->
+                <span id="date_achat" class="error-message"></span>
                 <p>Date achat : <input type="date" name="date_achat"></p>
+                <span id="garde_jusqua" class="error-message"></span>
                 <p>Garde : <input type="date" name="garde_jusqua"></p>
                 Choisissez un cellier:
             <select name="id_cellier">

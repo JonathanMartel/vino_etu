@@ -8,8 +8,11 @@
  *
  */
 
-//const BaseURL = "https://vino-etu.000webhostapp.com/";
-const BaseURL = "http://localhost/vino_etu/";
+
+const BaseURL = "https://vino-etu.000webhostapp.com/";
+//const BaseURL = "http://localhost:8080/vino_etu/";
+//const BaseURL = "http://localhost/vino_etu/";
+
 
 //import Validation from "./validation.js";
 /* import ValidateForm from "./ValidateForm.js"; */
@@ -183,17 +186,18 @@ window.addEventListener('load', function () {
       if (evt.target.tagName == "P") {
         bouteille.nom.dataset.id = evt.target.dataset.id;
         bouteille.nom.innerHTML = evt.target.innerHTML;
-
         liste.innerHTML = "";
         inputNomBouteille.value = "";
-
       }
     });
 
     let btnAjouter = document.querySelector("[name='ajouterBouteilleCellier']");
-    if (btnAjouter) {
+    if (btnAjouter) 
+    {
       btnAjouter.addEventListener("click", function (evt) {
         
+        evt.preventDefault();
+
         var param = {
           "id_cellier": bouteille.id_cellier.value,
           "id_bouteille":bouteille.nom.dataset.id,
@@ -203,26 +207,47 @@ window.addEventListener('load', function () {
           "quantite":bouteille.quantite.value,
           "millesime":bouteille.millesime.value,
         };
-    
-        let requete = new Request(BaseURL + "index.php?requete=ajouterNouvelleBouteilleCellier", { method: 'POST', body: JSON.stringify(param) });
-        console.log(JSON.stringify(param));
-        fetch(requete)
-        .then(response => {
-          if (response.status === 200) {
-            return response.json();
-          } else {
-            throw new Error('Erreur');
-          }
-        })
-        .then(response => {
-          console.log(response);
-          window.location = BaseURL + "?requete=listecellier";
 
-          }).catch(error => {
-            console.error(error);
+
+    /*     var param = {
+          "nom": bouteille.nom.value,
+          "id_bouteille": bouteille.nom.dataset.id,
+          "id_cellier": bouteille.id_cellier.value,
+          "date_achat": bouteille.date_achat.value,
+          "garde_jusqua": bouteille.garde_jusqua.value,
+          "notes": bouteille.date_achat.value,
+          "prix_saq": bouteille.prix_saq.value,
+          "quantite": bouteille.quantite.value,
+          "millesime": bouteille.millesime.value,
+          "pays": bouteille.pays.value,
+          "id_type": bouteille.id_type.value,
+        }; */
+        
+        // Said :    
+        // Validation des champs
+        let status = validAjoutNouvelleBouteilleSaq(param);
+        if(status)
+        {  
+          let requete = new Request(BaseURL + "index.php?requete=ajouterNouvelleBouteilleCellier", { method: 'POST', body: JSON.stringify(param) });
+          console.log(JSON.stringify(param));
+          fetch(requete)
+          .then(response => {
+            if (response.status === 200) {
+              return response.json();
+            } else {
+              throw new Error('Erreur');
+            }
+          })
+          .then(response => {
+            console.log(response);
+
             window.location = BaseURL + "?requete=listecellier";
-          });
 
+            }).catch(error => {
+              console.error(error);
+              window.location = BaseURL + "?requete=listecellier";
+            });
+        }
       });
     }
   }
@@ -412,25 +437,33 @@ window.addEventListener('load', function () {
           "garde_jusqua":bouteille.garde_jusqua.value,
           "notes":bouteille.notes.value,
         };
-        let requete = new Request(BaseURL+"index.php?requete=modifierBouteilleCelliersaq", {method: 'POST', body: JSON.stringify(param)});
 
-      fetch(requete)
-      .then(response => {
-        if (response.status === 200) {
-          return response.json();
-        } else {
-          throw new Error('Erreur');
-        }
+        // Said :
+        
+        // Validation des champs
+        let status = validModifBouteilleSaq(param);
+        if(status)
+        {              
+          let requete = new Request(BaseURL+"index.php?requete=modifierBouteilleCelliersaq", {method: 'POST', body: JSON.stringify(param)});
+          fetch(requete)
+          .then(response => {
+            if (response.status === 200) {
+              return response.json();
+            } else {
+              throw new Error('Erreur');
+            }
+          })
+          .then(response => {
+            console.log(response);
+          
+          }).catch(error => {
+            console.error(error);
+            window.location = BaseURL + "?requete=listecellier";
+
+          });
+        }    
       })
-      .then(response => {
-        console.log(response);
-      
-      }).catch(error => {
-        console.error(error);
-        window.location = BaseURL + "?requete=listecellier";
 
-      });
-    })
     });
 
     let currentRequete = window.location.search.substring(window.location.pathname.lastIndexOf('/'));
@@ -486,7 +519,9 @@ window.addEventListener('load', function () {
         document.getElementById("millesime").textContent = "";
       } 
       if (quantite < 1) {
-        document.getElementById("quantite").textContent = "Veuillez entrer une chifre";        
+        document.getElementById("quantite").textContent = "Veuillez entrer un chiffre";
+        formValid = false;
+
         return false;
       } else {
         document.getElementById("quantite").textContent = "";
@@ -551,6 +586,162 @@ window.addEventListener('load', function () {
     }
     }
 
+
+    // SAID ..
+    /**
+     * Methode de validation de l'ajout d une nouvelle bouteille SAQ
+     */
+    function validAjoutNouvelleBouteilleSaq(params) {
+      
+      let formValid = true,  
+          id_bouteille = params.id_bouteille;    
+          millesime = params.millesime;
+          quantite = params.quantite; 
+          date_achat = params.date_achat; 
+          garde_jusqua = params.garde_jusqua;
+  
+      // Valider nom bouteuille
+      if (id_bouteille == "") {
+        document.getElementById("nom_bouteille").textContent = "Champ obligatoire";
+        formValid = false;
+        return false;
+      } else {
+        document.getElementById("nom_bouteille").textContent = "";
+      } 
+
+      // Valider date de recolte
+      if (millesime == "") {
+        document.getElementById("millesime").textContent = "Champ obligatoire";
+        formValid = false;
+        return false;
+      } else {
+        // N'est pas un chiffre
+        if (!millesime.match(/^[0-9]{4}$/)){
+          document.getElementById("millesime").textContent = "année de 4 chiffres";
+          formValid = false;
+          return false;
+        }else{  
+            if (millesime > '2023') {
+              document.getElementById("millesime").textContent = "Millesime inférieure 2023";
+              formValid = false;
+              return false;
+            }else{
+              document.getElementById("millesime").textContent = "";
+            } 
+        }
+      }
+
+      // Valider Quantite
+      if (!quantite.match(/^[0-9]+$/)){
+        document.getElementById("quantite").textContent = "Valeur numerique";
+        formValid = false;
+        return false;
+      }else{  
+        if (quantite < 1){
+          document.getElementById("quantite").textContent = "Veuillez entrer un chiffre";
+          formValid = false;
+          return false;
+        } else {
+          document.getElementById("quantite").textContent = "";
+        }
+      }
+
+      // Valider date achat
+      if (date_achat == "") {
+        document.getElementById("date_achat").textContent = "Champ obligatoire";
+        formValid = false;
+        return false;
+      } else {
+        document.getElementById("date_achat").textContent = "";
+      }
+      
+      // Valider garde_jusqua
+      if (garde_jusqua == "") {
+        document.getElementById("garde_jusqua").textContent = "Champ obligatoire";
+        formValid = false;
+        return false;
+      } else {
+        document.getElementById("garde_jusqua").textContent = "";
+      } 
+
+      // Retourner Resultat      
+      if (formValid === true) {
+        return true;
+      }
+    }
+
+    
+    /**
+     * Methode de validation lors de la modification d une bouteille SAQ
+    */
+    function validModifBouteilleSaq(params) {
+          
+      let formValid = true,  
+          millesime = params.millesime;
+          notes = params.notes; 
+          date_achat = params.date_achat; 
+          garde_jusqua = params.garde_jusqua;
+
+      // Valider date achat
+      if (date_achat == "") {
+        document.getElementById("date_achat").textContent = "Champ obligatoire";
+        formValid = false;
+        return false;
+      } else {
+        document.getElementById("date_achat").textContent = "";
+      }
+      
+      // Valider garde_jusqua
+      if (garde_jusqua == "") {
+        document.getElementById("garde_jusqua").textContent = "Champ obligatoire";
+        formValid = false;
+        return false;
+      } else {
+        document.getElementById("garde_jusqua").textContent = "";
+      } 
+
+      // Valider date de recolte
+      if (millesime == "") {
+        document.getElementById("millesime").textContent = "Champ obligatoire";
+        formValid = false;
+        return false;
+      } else {
+        // N'est pas un chiffre
+        if (!millesime.match(/^[0-9]{4}$/)){
+          document.getElementById("millesime").textContent = " Année 4 de chiffres";
+          formValid = false;
+          return false;
+        }else{  
+            if (millesime > '2023') {
+              document.getElementById("millesime").textContent = "Millesime inférieure 2023";
+              formValid = false;
+              return false;
+            }else{
+              document.getElementById("millesime").textContent = "";
+            } 
+        }
+      }
+
+      // Valider Notes
+      if (!notes.match(/^[0-9]+$/)){
+        document.getElementById("notes").textContent = "Valeur numerique";
+        formValid = false;
+        return false;
+      }else{  
+        if ((notes < 1) || (notes > 10)) {
+          document.getElementById("notes").textContent = "Chiffre de 1 à 10";
+          formValid = false;
+          return false;
+        } else {
+          document.getElementById("notes").textContent = "";
+        }
+      }
+
+      // Retourner resultat
+      if (formValid === true) {
+        return true;
+      }
+    }
 
 });
 

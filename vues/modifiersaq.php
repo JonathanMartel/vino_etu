@@ -11,12 +11,16 @@
                     ?>
             </select>         
             Date d'achat:
+            <span id="date_achat" class="error-message"></span>    
             <input type="date" name="date_achat" value="<?= $data["date_achat"] ?>" />
             Garde jusqu'a:
+            <span id="garde_jusqua" class="error-message"></span>    
             <input type="date" name="garde_jusqua" value="<?= $data["garde_jusqua"] ?>" />
             Millesime:
+            <span id="millesime" class="error-message"></span>    
             <input type="text" name="millesime" value="<?= $data["millesime"] ?>" />
             Notez sur 10:
+            <span id="notes" class="error-message"></span>    
             <input type="text" name="notes" value="<?= $data["notes"] ?>" />
     
             <input type="hidden" name="id" value="<?= $data["id"] ?>">
