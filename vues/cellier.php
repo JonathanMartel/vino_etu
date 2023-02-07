@@ -13,7 +13,7 @@
     
 
 <?php
-foreach ($dataprive as $cle => $bouteille) {
+foreach ($dataprive as $cle => $bouteille) {    
     ?>
     <div class="bouteille cardcellier">
         <h2>Bouteille Privé</h2>
@@ -56,7 +56,7 @@ foreach ($dataprive as $cle => $bouteille) {
 
 
 <?php
-foreach ($data as $cle => $bouteille) {
+foreach ($data as $cle => $bouteille) {    
     ?>
     <div class="bouteille cardcellier">
         <h2>Bouteille SAQ</h2>
@@ -102,7 +102,6 @@ foreach ($data as $cle => $bouteille) {
 <?php
 }else{
     echo '<h1>' . $succes. '</h1>';
-    echo '<h2>Vous avez belle et bien supprimer la bouteille privé</h2>';
-    echo '<a href="?requete=listecellier">Liste Celliers</a>';
+    echo '<h2>Vous avez supprimé une bouteille privé</h2>';    
 }
 ?>
