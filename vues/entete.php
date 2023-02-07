@@ -27,11 +27,14 @@
 		<!-- <h1>Cellier - <span class="vino">Vino</span>  - Cellar</h1>  -->
 
 <div>
-
+	
 	<div class="flexLogoMenu">
-
-		<div><img src="/vino_etu/img/Logo-vino_blanc1.png" alt="logo" class="logo"></div>
 	<?php
+		if ($_SESSION) {
+			echo'<div><a href="?requete=listecellier"><img src="/vino_etu/img/Logo-vino_blanc1.png" alt="logo" class="logo"></a></div>';
+		} else {
+			echo'<div><a href="?requete=login"><img src="/vino_etu/img/Logo-vino_blanc1.png" alt="logo" class="logo"></a></div>';
+		}
 		if ($_SESSION) {
 			echo 
 			'<div>
