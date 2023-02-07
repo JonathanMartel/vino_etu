@@ -30,8 +30,8 @@ class Usager extends Modele {
 			$mdp = $_SESSION['usager'][0]['mdp'];
 		}
 		$requete = "UPDATE vino__usager SET nom = '" . $data['nom'] . 
-										"', email='" . $data['email'] . 
-										"', mdp='" . $mdp. 
+										//"', email='" . $data['email'] . 
+										//"', mdp='" . $mdp. 
 										"' WHERE id = '" . $_SESSION['usager'][0]['id'] . "'";
 		
         $res = $this->_db->query($requete);
